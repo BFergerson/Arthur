@@ -1,0 +1,17 @@
+apply plugin: 'groovy'
+
+group 'com.codebrig.omnisrc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.bblfsh:bblfsh-client:1.10.1'
+    compile group: 'org.kohsuke', name: 'github-api', version: '1.92'
+    compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '5.0.1.201806211838-r'
+}

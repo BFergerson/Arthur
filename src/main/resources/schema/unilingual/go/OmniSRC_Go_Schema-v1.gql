@@ -1,0 +1,1542 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+uuid sub attribute datatype string;
+
+#####----- Go -----#####
+implicitAttribute sub attribute datatype string;
+slice3Attribute sub attribute datatype string;
+lineAttribute sub attribute datatype string;
+kindAttribute sub attribute datatype string;
+offsetAttribute sub attribute datatype string;
+tokAttribute sub attribute datatype string;
+incompleteAttribute sub attribute datatype string;
+colAttribute sub attribute datatype string;
+dirAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token
+	has uuid;
+
+#####----- Go -----#####
+GoSourceArtifact sub SourceArtifact;
+
+LabeledStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__colon_relation
+	plays has__label_relation
+	plays has__stmt_relation
+	# Semantic
+	plays STATEMENT;
+
+StructTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has incompleteAttribute
+	# Structural
+	plays has__fields_relation
+	plays has__struct_relation
+	# Semantic
+	plays TYPE
+	plays EXPRESSION
+	plays ENTRY
+	plays ARGUMENT
+	plays POSITIONAL
+	plays KEY
+	plays CALLEE;
+
+IfStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__cond_relation
+	plays has__if_relation
+	plays has__init_relation
+	plays has__else_relation
+	# Semantic
+	plays STATEMENT
+	plays IF
+	plays ELSE;
+
+InterfaceTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has incompleteAttribute
+	# Structural
+	plays has__interface_relation
+	plays has__methods_relation
+	# Semantic
+	plays INCOMPLETE
+	plays TYPE
+	plays EXPRESSION
+	plays ENTRY
+	plays KEY
+	plays CALLEE
+	plays ARGUMENT
+	plays POSITIONAL;
+
+OperatorArtifact sub GoSourceArtifact
+	# Semantic
+	plays OPERATOR
+	plays EXPRESSION
+	plays BINARY
+	plays ASSIGNMENT
+	plays RELATIONAL
+	plays DECLARATION
+	plays EQUAL
+	plays UNARY
+	plays NOT
+	plays ARITHMETIC
+	plays TAKE_ADDRESS
+	plays ADD
+	plays BOOLEAN
+	plays BITWISE
+	plays NEGATIVE
+	plays AND
+	plays OR
+	plays LESS_THAN
+	plays GREATER_THAN
+	plays INCREMENT
+	plays MULTIPLY
+	plays SUBSTRACT
+	plays LEFT_SHIFT
+	plays GREATER_THAN_OR_EQUAL
+	plays RIGHT_SHIFT
+	plays LESS_THAN_OR_EQUAL
+	plays INCOMPLETE
+	plays DIVIDE
+	plays DECREMENT
+	plays MODULO
+	plays XOR
+	plays POSITIVE;
+
+GoStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__call_relation
+	plays has__go_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE;
+
+GenDeclArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays has__specs_relation
+	plays has__lparen_relation
+	plays has__rparen_relation
+	plays has__tok_pos_relation
+	plays has__doc_relation
+	# Semantic
+	plays DECLARATION
+	plays VARIABLE
+	plays TYPE
+	plays INCOMPLETE;
+
+ForStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__for_relation
+	plays has__post_relation
+	plays has__init_relation
+	plays has__cond_relation
+	# Semantic
+	plays STATEMENT
+	plays FOR;
+
+StarExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__star_relation
+	plays has__x_relation
+	# Semantic
+	plays EXPRESSION
+	plays TYPE
+	plays FUNCTION
+	plays RECEIVER
+	plays BINARY
+	plays ASSIGNMENT
+	plays ENTRY
+	plays LEFT
+	plays POSITIONAL
+	plays ARGUMENT
+	plays RIGHT
+	plays VALUE
+	plays KEY
+	plays CONDITION
+	plays IF
+	plays FOR
+	plays ITERATOR;
+
+KeyValueExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__colon_relation
+	plays has__key_relation
+	plays has__value_relation
+	# Semantic
+	plays EXPRESSION;
+
+DeferStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__call_relation
+	plays has__defer_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE;
+
+UnaryExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__op_pos_relation
+	plays has__op_relation
+	plays has__x_relation
+	# Semantic
+	plays UNARY
+	plays EXPRESSION
+	plays TAKE_ADDRESS
+	plays NEGATIVE
+	plays POSITIONAL
+	plays ARGUMENT
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT
+	plays BOOLEAN
+	plays ARITHMETIC
+	plays CONDITION
+	plays IF
+	plays VALUE
+	plays INCOMPLETE
+	plays LEFT
+	plays BITWISE
+	plays POSITIVE
+	plays FOR
+	plays KEY;
+
+ImportSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays has__end_pos_relation
+	plays has__path_relation
+	plays has__name_relation
+	plays has__comment_relation
+	plays has__doc_relation
+	# Semantic
+	plays IMPORT
+	plays DECLARATION;
+
+SliceExprArtifact sub GoSourceArtifact
+	# Attributes
+	has slice3Attribute
+	# Structural
+	plays has__lbrack_relation
+	plays has__rbrack_relation
+	plays has__x_relation
+	plays has__low_relation
+	plays has__high_relation
+	plays has__max_relation
+	# Semantic
+	plays EXPRESSION
+	plays ARGUMENT
+	plays POSITIONAL
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT
+	plays LEFT
+	plays VALUE;
+
+CompositeLitArtifact sub GoSourceArtifact
+	# Structural
+	plays has__elts_relation
+	plays has__lbrace_relation
+	plays has__rbrace_relation
+	plays has__type_relation
+	# Semantic
+	plays LITERAL
+	plays EXPRESSION
+	plays VALUE
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT
+	plays ARGUMENT
+	plays POSITIONAL
+	plays KEY
+	plays LEFT;
+
+IncDecStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__op_relation
+	plays has__tok_pos_relation
+	plays has__x_relation
+	# Semantic
+	plays STATEMENT
+	plays UNARY
+	plays INCREMENT
+	plays FOR
+	plays UPDATE
+	plays DECREMENT
+	plays INITIALIZATION
+	plays IF
+	plays SWITCH;
+
+SwitchStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__switch_relation
+	plays has__tag_relation
+	plays has__init_relation
+	# Semantic
+	plays STATEMENT
+	plays SWITCH;
+
+IndexExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__index_relation
+	plays has__lbrack_relation
+	plays has__rbrack_relation
+	plays has__x_relation
+	# Semantic
+	plays EXPRESSION
+	plays BINARY
+	plays ASSIGNMENT
+	plays LEFT
+	plays RIGHT
+	plays POSITIONAL
+	plays ARGUMENT
+	plays VALUE
+	plays CONDITION
+	plays IF
+	plays CALLEE
+	plays FOR
+	plays KEY
+	plays ITERATOR;
+
+CommClauseArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__case_relation
+	plays has__colon_relation
+	plays has__comm_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE
+	plays CASE;
+
+FieldListArtifact sub GoSourceArtifact
+	# Structural
+	plays has__list_relation
+	plays has__closing_relation
+	plays has__opening_relation
+	# Semantic
+	plays ARGS_LIST
+	plays RETURN
+	plays FUNCTION
+	plays LIST
+	plays RECEIVER
+	plays INCOMPLETE;
+
+CaseClauseArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__list_relation
+	plays has__case_relation
+	plays has__colon_relation
+	# Semantic
+	plays STATEMENT
+	plays CASE;
+
+ValueSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays has__names_relation
+	plays has__values_relation
+	plays has__type_relation
+	plays has__comment_relation
+	plays has__doc_relation
+	# Semantic
+	plays DECLARATION;
+
+BinaryExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__op_pos_relation
+	plays has__op_relation
+	plays has__x_relation
+	plays has__y_relation
+	# Semantic
+	plays BINARY
+	plays EXPRESSION
+	plays RELATIONAL
+	plays CONDITION
+	plays IF
+	plays EQUAL
+	plays NOT
+	plays ARITHMETIC
+	plays LEFT
+	plays RIGHT
+	plays ADD
+	plays BITWISE
+	plays BOOLEAN
+	plays AND
+	plays ASSIGNMENT
+	plays LESS_THAN
+	plays ARGUMENT
+	plays POSITIONAL
+	plays OR
+	plays GREATER_THAN
+	plays MULTIPLY
+	plays SUBSTRACT
+	plays GREATER_THAN_OR_EQUAL
+	plays LEFT_SHIFT
+	plays FOR
+	plays LESS_THAN_OR_EQUAL
+	plays RIGHT_SHIFT
+	plays DIVIDE
+	plays VALUE
+	plays MODULO
+	plays XOR
+	plays NEGATIVE
+	plays KEY;
+
+ExprStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__x_relation
+	# Semantic
+	plays STATEMENT
+	plays INITIALIZATION
+	plays IF
+	plays FOR
+	plays UPDATE
+	plays SWITCH;
+
+CommentGroupArtifact sub GoSourceArtifact
+	# Structural
+	plays has__list_relation
+	# Semantic
+	plays LIST
+	plays COMMENT;
+
+FuncDeclArtifact sub GoSourceArtifact
+	# Structural
+	plays has__name_relation
+	plays has__type_relation
+	plays has__body_relation
+	plays has__recv_relation
+	plays has__doc_relation
+	# Semantic
+	plays DECLARATION
+	plays FUNCTION
+	plays UNANNOTATED;
+
+TypeAssertExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__lparen_relation
+	plays has__rparen_relation
+	plays has__x_relation
+	plays has__type_relation
+	# Semantic
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT
+	plays ARGUMENT
+	plays POSITIONAL
+	plays LEFT
+	plays VALUE
+	plays CALLEE
+	plays CONDITION
+	plays IF;
+
+TypeSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays has__assign_relation
+	plays has__name_relation
+	plays has__type_relation
+	plays has__doc_relation
+	plays has__comment_relation
+	# Semantic
+	plays DECLARATION;
+
+ParenExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__lparen_relation
+	plays has__rparen_relation
+	plays has__x_relation
+	# Semantic
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays BINARY
+	plays LEFT
+	plays CALLEE
+	plays RIGHT
+	plays POSITIONAL
+	plays ARGUMENT
+	plays ASSIGNMENT
+	plays CONDITION
+	plays IF
+	plays ENTRY
+	plays VALUE
+	plays TYPE;
+
+BlockStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__list_relation
+	plays has__lbrace_relation
+	plays has__rbrace_relation
+	# Semantic
+	plays STATEMENT
+	plays SCOPE
+	plays BLOCK
+	plays BODY
+	plays THEN
+	plays FUNCTION
+	plays FOR
+	plays ELSE
+	plays SWITCH;
+
+SelectStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__select_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE
+	plays SWITCH;
+
+TypeSwitchStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__assign_relation
+	plays has__body_relation
+	plays has__switch_relation
+	plays has__init_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE
+	plays SWITCH;
+
+CommentArtifact sub GoSourceArtifact
+	# Structural
+	plays has__slash_relation
+	# Semantic
+	plays COMMENT;
+
+DeclStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__decl_relation
+	# Semantic
+	plays STATEMENT;
+
+SelectorExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__sel_relation
+	plays has__x_relation
+	# Semantic
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays CALLEE
+	plays BINARY
+	plays POSITIONAL
+	plays ARGUMENT
+	plays LEFT
+	plays ASSIGNMENT
+	plays TYPE
+	plays RIGHT
+	plays VALUE
+	plays ENTRY
+	plays CONDITION
+	plays IF
+	plays KEY
+	plays FOR
+	plays ITERATOR;
+
+ArrayTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays has__elt_relation
+	plays has__lbrack_relation
+	plays has__len_relation
+	# Semantic
+	plays TYPE
+	plays LIST
+	plays EXPRESSION
+	plays ARGUMENT
+	plays POSITIONAL
+	plays CALLEE
+	plays ENTRY
+	plays KEY;
+
+ReturnStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__results_relation
+	plays has__return_relation
+	# Semantic
+	plays STATEMENT
+	plays RETURN;
+
+BasicLitArtifact sub GoSourceArtifact
+	# Attributes
+	has kindAttribute
+	# Structural
+	plays has__value_pos_relation
+	# Semantic
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays NUMBER
+	plays STRING
+	plays POSITIONAL
+	plays ARGUMENT
+	plays BINARY
+	plays RIGHT
+	plays IMPORT
+	plays PATHNAME
+	plays VALUE
+	plays KEY
+	plays ASSIGNMENT
+	plays LEFT
+	plays CHARACTER
+	plays INCOMPLETE
+	plays CALLEE
+	plays CONDITION
+	plays IF;
+
+EmptyStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has implicitAttribute
+	# Structural
+	plays has__semicolon_relation
+	# Semantic
+	plays UNANNOTATED;
+
+IdentArtifact sub GoSourceArtifact
+	# Structural
+	plays has__name_pos_relation
+	# Semantic
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays BINARY
+	plays NAME
+	plays LEFT
+	plays ASSIGNMENT
+	plays POSITIONAL
+	plays ARGUMENT
+	plays TYPE
+	plays CALLEE
+	plays KEY
+	plays FUNCTION
+	plays RIGHT
+	plays ENTRY
+	plays RECEIVER
+	plays VALUE
+	plays VARIABLE
+	plays FOR
+	plays ITERATOR
+	plays ALIAS
+	plays IMPORT
+	plays CONDITION
+	plays IF;
+
+AssignStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__lhs_relation
+	plays has__rhs_relation
+	plays has__op_relation
+	plays has__tok_pos_relation
+	# Semantic
+	plays STATEMENT
+	plays BINARY
+	plays ASSIGNMENT
+	plays DECLARATION
+	plays INITIALIZATION
+	plays IF
+	plays OPERATOR
+	plays ARITHMETIC
+	plays ADD
+	plays FOR
+	plays BITWISE
+	plays OR
+	plays UPDATE
+	plays SUBSTRACT
+	plays RIGHT_SHIFT
+	plays MULTIPLY
+	plays AND
+	plays XOR
+	plays SWITCH
+	plays DIVIDE
+	plays NEGATIVE
+	plays LEFT_SHIFT
+	plays MODULO;
+
+CallExprArtifact sub GoSourceArtifact
+	# Structural
+	plays has__args_relation
+	plays has__ellipsis_relation
+	plays has__fun_relation
+	plays has__lparen_relation
+	plays has__rparen_relation
+	# Semantic
+	plays CALL
+	plays EXPRESSION
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT
+	plays POSITIONAL
+	plays ARGUMENT
+	plays LEFT
+	plays VALUE
+	plays CONDITION
+	plays IF
+	plays KEY
+	plays FOR
+	plays CALLEE;
+
+FieldArtifact sub GoSourceArtifact
+	# Structural
+	plays has__type_relation
+	plays has__names_relation
+	plays has__tag_relation
+	plays has__doc_relation
+	plays has__comment_relation
+	# Semantic
+	plays ARGUMENT
+	plays RETURN
+	plays ENTRY
+	plays FUNCTION
+	plays RECEIVER
+	plays UNANNOTATED;
+
+FuncTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays has__func_relation
+	plays has__params_relation
+	plays has__results_relation
+	# Semantic
+	plays FUNCTION
+	plays TYPE
+	plays EXPRESSION
+	plays ENTRY
+	plays CALLEE
+	plays KEY;
+
+MapTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays has__key_relation
+	plays has__map_relation
+	plays has__value_relation
+	# Semantic
+	plays TYPE
+	plays MAP
+	plays EXPRESSION
+	plays ARGUMENT
+	plays POSITIONAL
+	plays ENTRY
+	plays CALLEE
+	plays KEY;
+
+FileArtifact sub GoSourceArtifact
+	# Structural
+	plays has__comments_relation
+	plays has__decls_relation
+	plays has__imports_relation
+	plays has__name_relation
+	plays has__package_relation
+	plays has__doc_relation
+	# Semantic
+	plays FILE;
+
+RangeStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays has__body_relation
+	plays has__for_relation
+	plays has__tok_pos_relation
+	plays has__x_relation
+	plays has__key_relation
+	plays has__value_relation
+	# Semantic
+	plays STATEMENT
+	plays FOR
+	plays ITERATOR;
+
+SendStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays has__arrow_relation
+	plays has__chan_relation
+	plays has__value_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE
+	plays FOR
+	plays UPDATE;
+
+BranchStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays has__tok_pos_relation
+	plays has__label_relation
+	# Semantic
+	plays STATEMENT
+	plays BREAK
+	plays CONTINUE
+	plays GOTO
+	plays INCOMPLETE;
+
+ChanTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has dirAttribute
+	# Structural
+	plays has__arrow_relation
+	plays has__begin_relation
+	plays has__value_relation
+	# Semantic
+	plays INCOMPLETE
+	plays TYPE
+	plays EXPRESSION
+	plays ARGUMENT
+	plays POSITIONAL
+	plays ENTRY
+	plays KEY
+	plays CALLEE;
+
+FuncLitArtifact sub GoSourceArtifact
+	# Structural
+	plays has__body_relation
+	plays has__type_relation
+	# Semantic
+	plays EXPRESSION
+	plays ARGUMENT
+	plays POSITIONAL
+	plays CALLEE
+	plays ASSIGNMENT
+	plays BINARY
+	plays RIGHT
+	plays VALUE;
+
+PositionArtifact sub GoSourceArtifact
+	# Attributes
+	has lineAttribute
+	has offsetAttribute
+	has colAttribute;
+
+EllipsisArtifact sub GoSourceArtifact
+	# Structural
+	plays has__ellipsis_relation
+	plays has__elt_relation
+	# Semantic
+	plays EXPRESSION
+	plays TYPE;
+
+##########---------- Structural Relationships ----------##########
+
+#####----- Go -----#####
+_rbrack_relation sub relationship
+	relates is__rbrack_relation, relates has__rbrack_relation;
+is__rbrack_relation sub role;
+has__rbrack_relation sub role;
+
+_path_relation sub relationship
+	relates is__path_relation, relates has__path_relation;
+is__path_relation sub role;
+has__path_relation sub role;
+
+_body_relation sub relationship
+	relates is__body_relation, relates has__body_relation;
+is__body_relation sub role;
+has__body_relation sub role;
+
+_package_relation sub relationship
+	relates is__package_relation, relates has__package_relation;
+is__package_relation sub role;
+has__package_relation sub role;
+
+_x_relation sub relationship
+	relates is__x_relation, relates has__x_relation;
+is__x_relation sub role;
+has__x_relation sub role;
+
+_label_relation sub relationship
+	relates is__label_relation, relates has__label_relation;
+is__label_relation sub role;
+has__label_relation sub role;
+
+_imports_relation sub relationship
+	relates is__imports_relation, relates has__imports_relation;
+is__imports_relation sub role;
+has__imports_relation sub role;
+
+_elts_relation sub relationship
+	relates is__elts_relation, relates has__elts_relation;
+is__elts_relation sub role;
+has__elts_relation sub role;
+
+_case_relation sub relationship
+	relates is__case_relation, relates has__case_relation;
+is__case_relation sub role;
+has__case_relation sub role;
+
+_init_relation sub relationship
+	relates is__init_relation, relates has__init_relation;
+is__init_relation sub role;
+has__init_relation sub role;
+
+_rparen_relation sub relationship
+	relates is__rparen_relation, relates has__rparen_relation;
+is__rparen_relation sub role;
+has__rparen_relation sub role;
+
+_names_relation sub relationship
+	relates is__names_relation, relates has__names_relation;
+is__names_relation sub role;
+has__names_relation sub role;
+
+_call_relation sub relationship
+	relates is__call_relation, relates has__call_relation;
+is__call_relation sub role;
+has__call_relation sub role;
+
+_lbrace_relation sub relationship
+	relates is__lbrace_relation, relates has__lbrace_relation;
+is__lbrace_relation sub role;
+has__lbrace_relation sub role;
+
+_doc_relation sub relationship
+	relates is__doc_relation, relates has__doc_relation;
+is__doc_relation sub role;
+has__doc_relation sub role;
+
+_comment_relation sub relationship
+	relates is__comment_relation, relates has__comment_relation;
+is__comment_relation sub role;
+has__comment_relation sub role;
+
+_arrow_relation sub relationship
+	relates is__arrow_relation, relates has__arrow_relation;
+is__arrow_relation sub role;
+has__arrow_relation sub role;
+
+_for_relation sub relationship
+	relates is__for_relation, relates has__for_relation;
+is__for_relation sub role;
+has__for_relation sub role;
+
+_slash_relation sub relationship
+	relates is__slash_relation, relates has__slash_relation;
+is__slash_relation sub role;
+has__slash_relation sub role;
+
+_name_pos_relation sub relationship
+	relates is__name_pos_relation, relates has__name_pos_relation;
+is__name_pos_relation sub role;
+has__name_pos_relation sub role;
+
+_star_relation sub relationship
+	relates is__star_relation, relates has__star_relation;
+is__star_relation sub role;
+has__star_relation sub role;
+
+_interface_relation sub relationship
+	relates is__interface_relation, relates has__interface_relation;
+is__interface_relation sub role;
+has__interface_relation sub role;
+
+_rhs_relation sub relationship
+	relates is__rhs_relation, relates has__rhs_relation;
+is__rhs_relation sub role;
+has__rhs_relation sub role;
+
+_tag_relation sub relationship
+	relates is__tag_relation, relates has__tag_relation;
+is__tag_relation sub role;
+has__tag_relation sub role;
+
+_fun_relation sub relationship
+	relates is__fun_relation, relates has__fun_relation;
+is__fun_relation sub role;
+has__fun_relation sub role;
+
+_recv_relation sub relationship
+	relates is__recv_relation, relates has__recv_relation;
+is__recv_relation sub role;
+has__recv_relation sub role;
+
+_high_relation sub relationship
+	relates is__high_relation, relates has__high_relation;
+is__high_relation sub role;
+has__high_relation sub role;
+
+_len_relation sub relationship
+	relates is__len_relation, relates has__len_relation;
+is__len_relation sub role;
+has__len_relation sub role;
+
+_opening_relation sub relationship
+	relates is__opening_relation, relates has__opening_relation;
+is__opening_relation sub role;
+has__opening_relation sub role;
+
+_comments_relation sub relationship
+	relates is__comments_relation, relates has__comments_relation;
+is__comments_relation sub role;
+has__comments_relation sub role;
+
+_assign_relation sub relationship
+	relates is__assign_relation, relates has__assign_relation;
+is__assign_relation sub role;
+has__assign_relation sub role;
+
+_name_relation sub relationship
+	relates is__name_relation, relates has__name_relation;
+is__name_relation sub role;
+has__name_relation sub role;
+
+_post_relation sub relationship
+	relates is__post_relation, relates has__post_relation;
+is__post_relation sub role;
+has__post_relation sub role;
+
+_begin_relation sub relationship
+	relates is__begin_relation, relates has__begin_relation;
+is__begin_relation sub role;
+has__begin_relation sub role;
+
+_select_relation sub relationship
+	relates is__select_relation, relates has__select_relation;
+is__select_relation sub role;
+has__select_relation sub role;
+
+_semicolon_relation sub relationship
+	relates is__semicolon_relation, relates has__semicolon_relation;
+is__semicolon_relation sub role;
+has__semicolon_relation sub role;
+
+_value_relation sub relationship
+	relates is__value_relation, relates has__value_relation;
+is__value_relation sub role;
+has__value_relation sub role;
+
+_else_relation sub relationship
+	relates is__else_relation, relates has__else_relation;
+is__else_relation sub role;
+has__else_relation sub role;
+
+_op_relation sub relationship
+	relates is__op_relation, relates has__op_relation;
+is__op_relation sub role;
+has__op_relation sub role;
+
+_type_relation sub relationship
+	relates is__type_relation, relates has__type_relation;
+is__type_relation sub role;
+has__type_relation sub role;
+
+_methods_relation sub relationship
+	relates is__methods_relation, relates has__methods_relation;
+is__methods_relation sub role;
+has__methods_relation sub role;
+
+_values_relation sub relationship
+	relates is__values_relation, relates has__values_relation;
+is__values_relation sub role;
+has__values_relation sub role;
+
+_args_relation sub relationship
+	relates is__args_relation, relates has__args_relation;
+is__args_relation sub role;
+has__args_relation sub role;
+
+_key_relation sub relationship
+	relates is__key_relation, relates has__key_relation;
+is__key_relation sub role;
+has__key_relation sub role;
+
+_go_relation sub relationship
+	relates is__go_relation, relates has__go_relation;
+is__go_relation sub role;
+has__go_relation sub role;
+
+_defer_relation sub relationship
+	relates is__defer_relation, relates has__defer_relation;
+is__defer_relation sub role;
+has__defer_relation sub role;
+
+_decl_relation sub relationship
+	relates is__decl_relation, relates has__decl_relation;
+is__decl_relation sub role;
+has__decl_relation sub role;
+
+_list_relation sub relationship
+	relates is__list_relation, relates has__list_relation;
+is__list_relation sub role;
+has__list_relation sub role;
+
+_lbrack_relation sub relationship
+	relates is__lbrack_relation, relates has__lbrack_relation;
+is__lbrack_relation sub role;
+has__lbrack_relation sub role;
+
+_decls_relation sub relationship
+	relates is__decls_relation, relates has__decls_relation;
+is__decls_relation sub role;
+has__decls_relation sub role;
+
+_sel_relation sub relationship
+	relates is__sel_relation, relates has__sel_relation;
+is__sel_relation sub role;
+has__sel_relation sub role;
+
+_max_relation sub relationship
+	relates is__max_relation, relates has__max_relation;
+is__max_relation sub role;
+has__max_relation sub role;
+
+_elt_relation sub relationship
+	relates is__elt_relation, relates has__elt_relation;
+is__elt_relation sub role;
+has__elt_relation sub role;
+
+_chan_relation sub relationship
+	relates is__chan_relation, relates has__chan_relation;
+is__chan_relation sub role;
+has__chan_relation sub role;
+
+_colon_relation sub relationship
+	relates is__colon_relation, relates has__colon_relation;
+is__colon_relation sub role;
+has__colon_relation sub role;
+
+_rbrace_relation sub relationship
+	relates is__rbrace_relation, relates has__rbrace_relation;
+is__rbrace_relation sub role;
+has__rbrace_relation sub role;
+
+_lparen_relation sub relationship
+	relates is__lparen_relation, relates has__lparen_relation;
+is__lparen_relation sub role;
+has__lparen_relation sub role;
+
+_struct_relation sub relationship
+	relates is__struct_relation, relates has__struct_relation;
+is__struct_relation sub role;
+has__struct_relation sub role;
+
+_comm_relation sub relationship
+	relates is__comm_relation, relates has__comm_relation;
+is__comm_relation sub role;
+has__comm_relation sub role;
+
+_cond_relation sub relationship
+	relates is__cond_relation, relates has__cond_relation;
+is__cond_relation sub role;
+has__cond_relation sub role;
+
+_map_relation sub relationship
+	relates is__map_relation, relates has__map_relation;
+is__map_relation sub role;
+has__map_relation sub role;
+
+_stmt_relation sub relationship
+	relates is__stmt_relation, relates has__stmt_relation;
+is__stmt_relation sub role;
+has__stmt_relation sub role;
+
+_if_relation sub relationship
+	relates is__if_relation, relates has__if_relation;
+is__if_relation sub role;
+has__if_relation sub role;
+
+_return_relation sub relationship
+	relates is__return_relation, relates has__return_relation;
+is__return_relation sub role;
+has__return_relation sub role;
+
+_y_relation sub relationship
+	relates is__y_relation, relates has__y_relation;
+is__y_relation sub role;
+has__y_relation sub role;
+
+_low_relation sub relationship
+	relates is__low_relation, relates has__low_relation;
+is__low_relation sub role;
+has__low_relation sub role;
+
+_ellipsis_relation sub relationship
+	relates is__ellipsis_relation, relates has__ellipsis_relation;
+is__ellipsis_relation sub role;
+has__ellipsis_relation sub role;
+
+_fields_relation sub relationship
+	relates is__fields_relation, relates has__fields_relation;
+is__fields_relation sub role;
+has__fields_relation sub role;
+
+_specs_relation sub relationship
+	relates is__specs_relation, relates has__specs_relation;
+is__specs_relation sub role;
+has__specs_relation sub role;
+
+_lhs_relation sub relationship
+	relates is__lhs_relation, relates has__lhs_relation;
+is__lhs_relation sub role;
+has__lhs_relation sub role;
+
+_results_relation sub relationship
+	relates is__results_relation, relates has__results_relation;
+is__results_relation sub role;
+has__results_relation sub role;
+
+_end_pos_relation sub relationship
+	relates is__end_pos_relation, relates has__end_pos_relation;
+is__end_pos_relation sub role;
+has__end_pos_relation sub role;
+
+_tok_pos_relation sub relationship
+	relates is__tok_pos_relation, relates has__tok_pos_relation;
+is__tok_pos_relation sub role;
+has__tok_pos_relation sub role;
+
+_func_relation sub relationship
+	relates is__func_relation, relates has__func_relation;
+is__func_relation sub role;
+has__func_relation sub role;
+
+_closing_relation sub relationship
+	relates is__closing_relation, relates has__closing_relation;
+is__closing_relation sub role;
+has__closing_relation sub role;
+
+_op_pos_relation sub relationship
+	relates is__op_pos_relation, relates has__op_pos_relation;
+is__op_pos_relation sub role;
+has__op_pos_relation sub role;
+
+_value_pos_relation sub relationship
+	relates is__value_pos_relation, relates has__value_pos_relation;
+is__value_pos_relation sub role;
+has__value_pos_relation sub role;
+
+_switch_relation sub relationship
+	relates is__switch_relation, relates has__switch_relation;
+is__switch_relation sub role;
+has__switch_relation sub role;
+
+_params_relation sub relationship
+	relates is__params_relation, relates has__params_relation;
+is__params_relation sub role;
+has__params_relation sub role;
+
+_index_relation sub relationship
+	relates is__index_relation, relates has__index_relation;
+is__index_relation sub role;
+has__index_relation sub role;
+
+##########---------- Semantic Roles ----------##########
+IS_UNANNOTATED sub relationship
+	relates UNANNOTATED;
+UNANNOTATED sub role;
+
+IS_GREATER_THAN_OR_EQUAL sub relationship
+	relates GREATER_THAN_OR_EQUAL;
+GREATER_THAN_OR_EQUAL sub role;
+
+IS_LEFT_SHIFT sub relationship
+	relates LEFT_SHIFT;
+LEFT_SHIFT sub role;
+
+IS_LEFT sub relationship
+	relates LEFT;
+LEFT sub role;
+
+IS_ARITHMETIC sub relationship
+	relates ARITHMETIC;
+ARITHMETIC sub role;
+
+IS_POSITIONAL sub relationship
+	relates POSITIONAL;
+POSITIONAL sub role;
+
+IS_DECLARATION sub relationship
+	relates DECLARATION;
+DECLARATION sub role;
+
+IS_XOR sub relationship
+	relates XOR;
+XOR sub role;
+
+IS_CONDITION sub relationship
+	relates CONDITION;
+CONDITION sub role;
+
+IS_THEN sub relationship
+	relates THEN;
+THEN sub role;
+
+IS_KEY sub relationship
+	relates KEY;
+KEY sub role;
+
+IS_CALL sub relationship
+	relates CALL;
+CALL sub role;
+
+IS_DIVIDE sub relationship
+	relates DIVIDE;
+DIVIDE sub role;
+
+IS_VARIABLE sub relationship
+	relates VARIABLE;
+VARIABLE sub role;
+
+IS_CHARACTER sub relationship
+	relates CHARACTER;
+CHARACTER sub role;
+
+IS_INITIALIZATION sub relationship
+	relates INITIALIZATION;
+INITIALIZATION sub role;
+
+IS_CONTINUE sub relationship
+	relates CONTINUE;
+CONTINUE sub role;
+
+IS_OPERATOR sub relationship
+	relates OPERATOR;
+OPERATOR sub role;
+
+IS_PATHNAME sub relationship
+	relates PATHNAME;
+PATHNAME sub role;
+
+IS_STRING sub relationship
+	relates STRING;
+STRING sub role;
+
+IS_PRIMITIVE sub relationship
+	relates PRIMITIVE;
+PRIMITIVE sub role;
+
+IS_STATEMENT sub relationship
+	relates STATEMENT;
+STATEMENT sub role;
+
+IS_ADD sub relationship
+	relates ADD;
+ADD sub role;
+
+IS_RIGHT_SHIFT sub relationship
+	relates RIGHT_SHIFT;
+RIGHT_SHIFT sub role;
+
+IS_SCOPE sub relationship
+	relates SCOPE;
+SCOPE sub role;
+
+IS_ARGS_LIST sub relationship
+	relates ARGS_LIST;
+ARGS_LIST sub role;
+
+IS_NUMBER sub relationship
+	relates NUMBER;
+NUMBER sub role;
+
+IS_FOR sub relationship
+	relates FOR;
+FOR sub role;
+
+IS_BOOLEAN sub relationship
+	relates BOOLEAN;
+BOOLEAN sub role;
+
+IS_NAME sub relationship
+	relates NAME;
+NAME sub role;
+
+IS_NOT sub relationship
+	relates NOT;
+NOT sub role;
+
+IS_LIST sub relationship
+	relates LIST;
+LIST sub role;
+
+IS_POSITIVE sub relationship
+	relates POSITIVE;
+POSITIVE sub role;
+
+IS_BINARY sub relationship
+	relates BINARY;
+BINARY sub role;
+
+IS_RETURN sub relationship
+	relates RETURN;
+RETURN sub role;
+
+IS_ASSIGNMENT sub relationship
+	relates ASSIGNMENT;
+ASSIGNMENT sub role;
+
+IS_IDENTIFIER sub relationship
+	relates IDENTIFIER;
+IDENTIFIER sub role;
+
+IS_EQUAL sub relationship
+	relates EQUAL;
+EQUAL sub role;
+
+IS_GREATER_THAN sub relationship
+	relates GREATER_THAN;
+GREATER_THAN sub role;
+
+IS_BREAK sub relationship
+	relates BREAK;
+BREAK sub role;
+
+IS_ELSE sub relationship
+	relates ELSE;
+ELSE sub role;
+
+IS_TYPE sub relationship
+	relates TYPE;
+TYPE sub role;
+
+IS_IF sub relationship
+	relates IF;
+IF sub role;
+
+IS_LITERAL sub relationship
+	relates LITERAL;
+LITERAL sub role;
+
+IS_LESS_THAN sub relationship
+	relates LESS_THAN;
+LESS_THAN sub role;
+
+IS_FUNCTION sub relationship
+	relates FUNCTION;
+FUNCTION sub role;
+
+IS_CASE sub relationship
+	relates CASE;
+CASE sub role;
+
+IS_MAP sub relationship
+	relates MAP;
+MAP sub role;
+
+IS_GOTO sub relationship
+	relates GOTO;
+GOTO sub role;
+
+IS_COMMENT sub relationship
+	relates COMMENT;
+COMMENT sub role;
+
+IS_ITERATOR sub relationship
+	relates ITERATOR;
+ITERATOR sub role;
+
+IS_IMPORT sub relationship
+	relates IMPORT;
+IMPORT sub role;
+
+IS_SUBSTRACT sub relationship
+	relates SUBSTRACT;
+SUBSTRACT sub role;
+
+IS_ARGUMENT sub relationship
+	relates ARGUMENT;
+ARGUMENT sub role;
+
+IS_TAKE_ADDRESS sub relationship
+	relates TAKE_ADDRESS;
+TAKE_ADDRESS sub role;
+
+IS_RIGHT sub relationship
+	relates RIGHT;
+RIGHT sub role;
+
+IS_UPDATE sub relationship
+	relates UPDATE;
+UPDATE sub role;
+
+IS_FILE sub relationship
+	relates FILE;
+FILE sub role;
+
+IS_INCREMENT sub relationship
+	relates INCREMENT;
+INCREMENT sub role;
+
+IS_CALLEE sub relationship
+	relates CALLEE;
+CALLEE sub role;
+
+IS_EXPRESSION sub relationship
+	relates EXPRESSION;
+EXPRESSION sub role;
+
+IS_ALIAS sub relationship
+	relates ALIAS;
+ALIAS sub role;
+
+IS_VALUE sub relationship
+	relates VALUE;
+VALUE sub role;
+
+IS_DECREMENT sub relationship
+	relates DECREMENT;
+DECREMENT sub role;
+
+IS_LESS_THAN_OR_EQUAL sub relationship
+	relates LESS_THAN_OR_EQUAL;
+LESS_THAN_OR_EQUAL sub role;
+
+IS_RECEIVER sub relationship
+	relates RECEIVER;
+RECEIVER sub role;
+
+IS_ENTRY sub relationship
+	relates ENTRY;
+ENTRY sub role;
+
+IS_BITWISE sub relationship
+	relates BITWISE;
+BITWISE sub role;
+
+IS_MODULO sub relationship
+	relates MODULO;
+MODULO sub role;
+
+IS_BLOCK sub relationship
+	relates BLOCK;
+BLOCK sub role;
+
+IS_AND sub relationship
+	relates AND;
+AND sub role;
+
+IS_NEGATIVE sub relationship
+	relates NEGATIVE;
+NEGATIVE sub role;
+
+IS_MULTIPLY sub relationship
+	relates MULTIPLY;
+MULTIPLY sub role;
+
+IS_SWITCH sub relationship
+	relates SWITCH;
+SWITCH sub role;
+
+IS_BODY sub relationship
+	relates BODY;
+BODY sub role;
+
+IS_UNARY sub relationship
+	relates UNARY;
+UNARY sub role;
+
+IS_RELATIONAL sub relationship
+	relates RELATIONAL;
+RELATIONAL sub role;
+
+IS_OR sub relationship
+	relates OR;
+OR sub role;
+
+IS_INCOMPLETE sub relationship
+	relates INCOMPLETE;
+INCOMPLETE sub role;

@@ -1,0 +1,2056 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+uuid sub attribute datatype string;
+
+#####----- Ruby -----#####
+selectorAttribute sub attribute datatype string;
+lineAttribute sub attribute datatype string;
+inlineAttribute sub attribute datatype string;
+documentationAttribute sub attribute datatype string;
+offsetAttribute sub attribute datatype string;
+colAttribute sub attribute datatype string;
+nameAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token
+	has uuid;
+
+#####----- Ruby -----#####
+RubySourceArtifact sub SourceArtifact;
+
+SymArtifact sub RubySourceArtifact
+	# Semantic
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays VALUE
+	plays TUPLE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays ASSIGNMENT
+	plays BINARY
+	plays BODY
+	plays LEFT
+	plays THEN
+	plays ELSE;
+
+ConstArtifact sub RubySourceArtifact
+	# Structural
+	plays has_base_relation
+	# Semantic
+	plays INCOMPLETE
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays VALUE
+	plays TUPLE
+	plays RIGHT
+	plays BINARY
+	plays LEFT
+	plays ASSIGNMENT
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays CONDITION
+	plays FOR
+	plays UPDATE;
+
+OpAsgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_operator_relation
+	plays has_target_relation
+	plays has_value_relation
+	plays has_comments_relation
+	# Semantic
+	plays BINARY
+	plays ASSIGNMENT
+	plays OPERATOR
+	plays EXPRESSION
+	plays ARITHMETIC
+	plays ADD
+	plays BODY
+	plays THEN
+	plays SUBSTRACT
+	plays BITWISE
+	plays OR
+	plays ELSE
+	plays MULTIPLY
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays RIGHT
+	plays AND
+	plays DIVIDE
+	plays FOR
+	plays LEFT_SHIFT
+	plays RIGHT_SHIFT
+	plays XOR
+	plays MODULO
+	plays LEFT
+	plays INCOMPLETE;
+
+MatchWithLvasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays EXPRESSION
+	plays CONDITION
+	plays UNANNOTATED
+	plays BODY
+	plays RIGHT
+	plays LEFT
+	plays BINARY
+	plays THEN;
+
+ShadowargArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays UNANNOTATED;
+
+SendArrayArtifact sub RubySourceArtifact
+	# Attributes
+	has selectorAttribute
+	# Structural
+	plays has_values_relation
+	plays has_base_relation
+	# Semantic
+	plays EXPRESSION
+	plays LIST
+	plays RIGHT
+	plays BINARY
+	plays LEFT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays VALUE
+	plays TUPLE
+	plays CONDITION
+	plays ASSIGNMENT
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays FOR
+	plays UPDATE;
+
+WhenArtifact sub RubySourceArtifact
+	# Structural
+	plays has_conditions_relation
+	plays has_body_relation
+	# Semantic
+	plays EXPRESSION
+	plays CASE;
+
+RedoArtifact sub RubySourceArtifact
+	# Semantic
+	plays EXPRESSION
+	plays THEN
+	plays BODY
+	plays UNANNOTATED
+	plays ELSE;
+
+CbaseArtifact sub RubySourceArtifact
+	# Semantic
+	plays INCOMPLETE
+	plays QUALIFIED
+	plays IDENTIFIER
+	plays EXPRESSION;
+
+OperatorArtifact sub RubySourceArtifact
+	# Semantic
+	plays BINARY
+	plays OPERATOR
+	plays EXPRESSION
+	plays ARITHMETIC
+	plays ADD
+	plays SUBSTRACT
+	plays BITWISE
+	plays OR
+	plays MULTIPLY
+	plays AND
+	plays DIVIDE
+	plays LEFT_SHIFT
+	plays RIGHT_SHIFT
+	plays XOR
+	plays MODULO
+	plays INCOMPLETE;
+
+OptargArtifact sub RubySourceArtifact
+	# Structural
+	plays has_default_relation
+	# Semantic
+	plays ARGUMENT
+	plays EXPRESSION
+	plays DEFAULT
+	plays NAME;
+
+IdentifierArtifact sub RubySourceArtifact
+	# Attributes
+	has nameAttribute
+;
+
+AliasArtifact sub RubySourceArtifact
+	# Structural
+	plays has__1_relation
+	plays has__2_relation
+	# Semantic
+	plays STATEMENT
+	plays ALIAS
+	plays BODY
+	plays EXPRESSION
+	plays ELSE
+	plays THEN;
+
+WhileArtifact sub RubySourceArtifact
+	# Structural
+	plays has_condition_relation
+	plays has_body_relation
+	plays has_comments_relation
+	# Semantic
+	plays STATEMENT
+	plays WHILE
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays BINARY
+	plays RIGHT;
+
+SendIdentifierArtifact sub RubySourceArtifact
+	# Attributes
+	has selectorAttribute
+	# Structural
+	plays has_base_relation
+	plays has_comments_relation
+	# Semantic
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays RIGHT
+	plays LEFT
+	plays BINARY
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays VALUE
+	plays TUPLE
+	plays BODY
+	plays CONDITION
+	plays ASSIGNMENT
+	plays THEN
+	plays ELSE
+	plays FOR
+	plays UPDATE;
+
+DstrArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays UNANNOTATED
+	plays RIGHT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays BODY
+	plays EXPRESSION
+	plays ASSIGNMENT
+	plays THEN
+	plays LEFT
+	plays ELSE;
+
+IvasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_value_relation
+	# Semantic
+	plays LEFT
+	plays BINARY
+	plays ASSIGNMENT
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays RIGHT
+	plays CONDITION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays FOR
+	plays ITERATOR;
+
+OrAsgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	plays has_value_relation
+	# Semantic
+	plays OR
+	plays BITWISE
+	plays OPERATOR
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays BINARY
+	plays RIGHT
+	plays LEFT
+	plays CONDITION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays ASSIGNMENT;
+
+PostexeArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	# Semantic
+	plays UNANNOTATED;
+
+UntilArtifact sub RubySourceArtifact
+	# Structural
+	plays has_condition_relation
+	plays has_body_relation
+	# Semantic
+	plays STATEMENT
+	plays WHILE
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE;
+
+RetryArtifact sub RubySourceArtifact
+	# Semantic
+	plays STATEMENT
+	plays CALL
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE;
+
+CvarArtifact sub RubySourceArtifact
+	# Semantic
+	plays VISIBILITY
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays TYPE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays LEFT
+	plays CONDITION
+	plays RIGHT
+	plays BINARY
+	plays BODY
+	plays ASSIGNMENT
+	plays THEN
+	plays VALUE
+	plays TUPLE
+	plays ELSE;
+
+HashArtifact sub RubySourceArtifact
+	# Structural
+	plays has_contents_relation
+	plays has_comments_relation
+	# Semantic
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays MAP
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays VALUE
+	plays TUPLE
+	plays RIGHT
+	plays BINARY
+	plays BODY
+	plays ASSIGNMENT
+	plays LEFT
+	plays ELSE
+	plays THEN
+	plays FOR
+	plays UPDATE;
+
+DefsArtifact sub RubySourceArtifact
+	# Structural
+	plays has_base_relation
+	plays has_class_relation
+	plays has_args_relation
+	# Semantic
+	plays STATEMENT
+	plays DECLARATION
+	plays INCOMPLETE
+	plays IDENTIFIER
+	plays FUNCTION
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays CONDITION;
+
+SendOperatorArtifact sub RubySourceArtifact
+	# Structural
+	plays has_base_relation
+	plays has_values_relation
+	plays has_comments_relation
+	# Semantic
+	plays OPERATOR
+	plays EXPRESSION
+	plays BINARY
+	plays RELATIONAL
+	plays EQUAL
+	plays ARITHMETIC
+	plays BITWISE
+	plays LEFT_SHIFT
+	plays ADD
+	plays RIGHT
+	plays CONDITION
+	plays BODY
+	plays NOT
+	plays LEFT
+	plays UNARY
+	plays SUBSTRACT
+	plays MULTIPLY
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays THEN
+	plays DIVIDE
+	plays OR
+	plays MODULO
+	plays VALUE
+	plays TUPLE
+	plays INCOMPLETE
+	plays IDENTICAL
+	plays GREATER_THAN_OR_EQUAL
+	plays ELSE
+	plays ASSIGNMENT
+	plays LESS_THAN_OR_EQUAL
+	plays AND
+	plays RIGHT_SHIFT
+	plays XOR
+	plays FOR;
+
+NilNodeArtifact sub RubySourceArtifact
+	# Semantic
+	plays NULL
+	plays BODY;
+
+ArrayArtifact sub RubySourceArtifact
+	# Structural
+	plays has_contents_relation
+	# Semantic
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays LIST
+	plays VALUE
+	plays TUPLE
+	plays RIGHT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays BINARY
+	plays BODY
+	plays ASSIGNMENT
+	plays LEFT
+	plays THEN
+	plays ELSE
+	plays FOR
+	plays UPDATE;
+
+ArgsArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays ARGUMENT
+	plays INCOMPLETE
+	plays EXPRESSION;
+
+ReturnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	# Semantic
+	plays STATEMENT
+	plays RETURN
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays RIGHT;
+
+SendRequireArtifact sub RubySourceArtifact
+	# Attributes
+	has selectorAttribute
+	# Structural
+	plays has_values_relation
+	plays has_base_relation
+	plays has_comments_relation
+	# Semantic
+	plays EXPRESSION
+	plays IMPORT
+	plays UNANNOTATED
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays RIGHT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays LEFT
+	plays CONDITION;
+
+KwbeginArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_comments_relation
+	# Semantic
+	plays BLOCK
+	plays EXPRESSION
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays THEN
+	plays ELSE
+	plays ASSIGNMENT
+	plays LEFT
+	plays FOR
+	plays VALUE
+	plays TUPLE;
+
+OrArtifact sub RubySourceArtifact
+	# Structural
+	plays has_left_relation
+	plays has_right_relation
+	# Semantic
+	plays OR
+	plays BINARY
+	plays BOOLEAN
+	plays OPERATOR
+	plays EXPRESSION
+	plays CONDITION
+	plays RIGHT
+	plays LEFT
+	plays BODY
+	plays VALUE
+	plays TUPLE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays ASSIGNMENT
+	plays THEN
+	plays ELSE;
+
+KwargArtifact sub RubySourceArtifact
+	# Semantic
+	plays ARGUMENT
+	plays EXPRESSION
+	plays MAP
+	plays NAME;
+
+KwrestargArtifact sub RubySourceArtifact
+	# Semantic
+	plays ARGUMENT
+	plays INCOMPLETE
+	plays IDENTIFIER
+	plays EXPRESSION;
+
+DefArtifact sub RubySourceArtifact
+	# Structural
+	plays has_args_relation
+	plays has_body_relation
+	plays has_comments_relation
+	# Semantic
+	plays STATEMENT
+	plays DECLARATION
+	plays IDENTIFIER
+	plays FUNCTION
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays BINARY
+	plays RIGHT
+	plays CONDITION;
+
+FloatArtifact sub RubySourceArtifact
+	# Semantic
+	plays NUMBER
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays VALUE
+	plays TUPLE
+	plays LEFT
+	plays BINARY
+	plays ASSIGNMENT
+	plays BODY
+	plays ELSE
+	plays THEN;
+
+LvarArtifact sub RubySourceArtifact
+	# Semantic
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays LEFT
+	plays RIGHT
+	plays VALUE
+	plays TUPLE
+	plays BINARY
+	plays CONDITION
+	plays ASSIGNMENT
+	plays BODY
+	plays ELSE
+	plays THEN
+	plays FOR
+	plays UPDATE;
+
+CommentArtifact sub RubySourceArtifact
+	# Attributes
+	has inlineAttribute
+	has documentationAttribute
+	# Structural
+	plays has_end_relation
+	plays has_start_relation
+	# Semantic
+	plays NOOP
+	plays COMMENT;
+
+MasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_targets_relation
+	plays has_values_relation
+	# Semantic
+	plays ASSIGNMENT
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE;
+
+AndArtifact sub RubySourceArtifact
+	# Structural
+	plays has_left_relation
+	plays has_right_relation
+	# Semantic
+	plays BINARY
+	plays BOOLEAN
+	plays OPERATOR
+	plays AND
+	plays EXPRESSION
+	plays CONDITION
+	plays LEFT
+	plays BODY
+	plays RIGHT
+	plays VALUE
+	plays TUPLE
+	plays THEN
+	plays ELSE
+	plays ASSIGNMENT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT;
+
+BackRefArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays INCOMPLETE
+	plays REGEXP
+	plays EXPRESSION
+	plays RIGHT
+	plays BINARY
+	plays LEFT
+	plays VALUE
+	plays TUPLE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays BODY
+	plays ASSIGNMENT
+	plays THEN;
+
+ResbodyArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_exceptions_relation
+	plays has_alias_relation
+	# Semantic
+	plays CATCH
+	plays EXPRESSION;
+
+NextArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	# Semantic
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays UNANNOTATED
+	plays RIGHT;
+
+RestargArtifact sub RubySourceArtifact
+	# Semantic
+	plays ARGUMENT
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays LIST;
+
+ZsuperArtifact sub RubySourceArtifact
+	# Semantic
+	plays UNANNOTATED
+	plays LEFT
+	plays EXPRESSION
+	plays BINARY
+	plays RIGHT
+	plays BODY
+	plays ELSE
+	plays THEN
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays CONDITION
+	plays ASSIGNMENT;
+
+RegexpArtifact sub RubySourceArtifact
+	# Structural
+	plays has_text_relation
+	plays has_options_relation
+	# Semantic
+	plays REGEXP
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays LEFT
+	plays BODY
+	plays ASSIGNMENT
+	plays THEN
+	plays ELSE;
+
+SclassArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_object_relation
+	plays has_comments_relation
+	# Semantic
+	plays DECLARATION
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays TYPE
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays THEN;
+
+ClassArtifact sub RubySourceArtifact
+	# Structural
+	plays has_comments_relation
+	plays has_body_relation
+	plays has_parent_relation
+	# Semantic
+	plays STATEMENT
+	plays DECLARATION
+	plays IDENTIFIER
+	plays TYPE
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays RIGHT;
+
+KwoptargArtifact sub RubySourceArtifact
+	# Structural
+	plays has_default_relation
+	# Semantic
+	plays ARGUMENT
+	plays INCOMPLETE
+	plays EXPRESSION
+	plays NAME;
+
+BlockargArtifact sub RubySourceArtifact
+	# Semantic
+	plays UNANNOTATED;
+
+ModuleArtifact sub RubySourceArtifact
+	# Structural
+	plays has_comments_relation
+	plays has_file_relation
+	plays has_begin_relation
+	# Semantic
+	plays STATEMENT
+	plays MODULE
+	plays IDENTIFIER
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE;
+
+PositionArtifact sub RubySourceArtifact
+	# Attributes
+	has lineAttribute
+	has offsetAttribute
+	has colAttribute
+;
+
+AndAsgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	plays has_value_relation
+	# Semantic
+	plays OPERATOR
+	plays BITWISE
+	plays AND
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE;
+
+BeginArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_comments_relation
+	# Semantic
+	plays BLOCK
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays CONDITION
+	plays RIGHT
+	plays LEFT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays FOR
+	plays ASSIGNMENT
+	plays UPDATE;
+
+StrArtifact sub RubySourceArtifact
+	# Semantic
+	plays LITERAL
+	plays STRING
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays VALUE
+	plays TUPLE
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays ASSIGNMENT
+	plays BINARY
+	plays BODY
+	plays LEFT
+	plays THEN
+	plays ELSE
+	plays FOR;
+
+CaseArtifact sub RubySourceArtifact
+	# Structural
+	plays has_when_clauses_relation
+	plays has_else_relation
+	plays has_casevar_relation
+	plays has_comments_relation
+	# Semantic
+	plays STATEMENT
+	plays SWITCH
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays ASSIGNMENT
+	plays LEFT
+	plays FOR
+	plays CONDITION;
+
+RescueArtifact sub RubySourceArtifact
+	# Structural
+	plays has_handlers_relation
+	plays has_body_relation
+	plays has_else_relation
+	plays has_comments_relation
+	# Semantic
+	plays TRY
+	plays EXPRESSION
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays ASSIGNMENT
+	plays THEN
+	plays ELSE;
+
+SuperArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays UNANNOTATED
+	plays EXPRESSION
+	plays BINARY
+	plays BODY
+	plays RIGHT
+	plays ELSE
+	plays THEN
+	plays LEFT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays ASSIGNMENT
+	plays CONDITION
+	plays VALUE
+	plays TUPLE;
+
+PairArtifact sub RubySourceArtifact
+	# Structural
+	plays has__1_relation
+	plays has__2_relation
+	# Semantic
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays TUPLE;
+
+CvasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_value_relation
+	# Semantic
+	plays LEFT
+	plays ASSIGNMENT
+	plays BINARY
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays FOR
+	plays ITERATOR;
+
+BlockPassArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays UNANNOTATED;
+
+DsymArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays INCOMPLETE
+	plays STRING
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays BINARY
+	plays BODY
+	plays VALUE
+	plays TUPLE
+	plays ASSIGNMENT
+	plays LEFT;
+
+UndefArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	# Semantic
+	plays STATEMENT
+	plays INCOMPLETE
+	plays BODY
+	plays THEN
+	plays EXPRESSION;
+
+GvasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	plays has_comments_relation
+	# Semantic
+	plays UNANNOTATED
+	plays BODY
+	plays BINARY
+	plays LEFT
+	plays EXPRESSION
+	plays THEN
+	plays RIGHT
+	plays ELSE;
+
+PreexeArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	# Semantic
+	plays UNANNOTATED;
+
+SendAssignArtifact sub RubySourceArtifact
+	# Attributes
+	has selectorAttribute
+	# Structural
+	plays has_values_relation
+	plays has_base_relation
+	plays has_comments_relation
+	# Semantic
+	plays LEFT
+	plays ASSIGNMENT
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays RIGHT
+	plays BINARY
+	plays FOR
+	plays CONDITION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT;
+
+SendQualifiedArtifact sub RubySourceArtifact
+	# Attributes
+	has selectorAttribute
+	# Structural
+	plays has_qnames_relation
+	plays has_values_relation
+	plays has_comments_relation
+	# Semantic
+	plays QUALIFIED
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays LEFT
+	plays THEN
+	plays CONDITION
+	plays ELSE
+	plays ASSIGNMENT
+	plays FOR
+	plays UPDATE;
+
+IntArtifact sub RubySourceArtifact
+	# Semantic
+	plays NUMBER
+	plays LITERAL
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays VALUE
+	plays TUPLE
+	plays BINARY
+	plays LEFT
+	plays ASSIGNMENT
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays CONDITION;
+
+YieldArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	# Semantic
+	plays UNANNOTATED
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays BINARY
+	plays RIGHT
+	plays LEFT
+	plays ELSE
+	plays ASSIGNMENT
+	plays CONDITION
+	plays CALL
+	plays FOR
+	plays FUNCTION
+	plays ARGUMENT;
+
+CasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_value_relation
+	plays has_base_relation
+	plays has_comments_relation
+	# Semantic
+	plays LEFT
+	plays ASSIGNMENT
+	plays BINARY
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays ELSE
+	plays BODY
+	plays THEN
+	plays RIGHT
+	plays FOR
+	plays ITERATOR;
+
+NilArtifact sub RubySourceArtifact
+	# Semantic
+	plays UNANNOTATED
+	plays RIGHT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays BODY
+	plays ASSIGNMENT
+	plays LEFT
+	plays EXPRESSION
+	plays ELSE
+	plays THEN
+	plays CONDITION;
+
+DefinedArtifact sub RubySourceArtifact
+	# Semantic
+	plays CONDITION
+	plays EXPRESSION
+	plays UNANNOTATED
+	plays LEFT
+	plays RIGHT
+	plays BODY
+	plays BINARY
+	plays VALUE
+	plays TUPLE;
+
+RegoptArtifact sub RubySourceArtifact
+	# Structural
+	plays has_options_relation
+	# Semantic
+	plays REGEXP
+	plays INCOMPLETE
+	plays EXPRESSION;
+
+SendStatementArtifact sub RubySourceArtifact
+	# Structural
+	plays has_base_relation
+	plays has_values_relation
+	# Semantic
+	plays STATEMENT
+	plays FOR
+	plays ITERATOR
+	plays EXPRESSION
+	plays FUNCTION
+	plays ANONYMOUS
+	plays DECLARATION
+	plays VISIBILITY
+	plays INSTANCE
+	plays SUBTYPE
+	plays WORLD
+	plays VALUE
+	plays TUPLE
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays THEN
+	plays CALL
+	plays ARGUMENT
+	plays CONDITION
+	plays LEFT
+	plays ELSE
+	plays CONTINUE
+	plays ASSIGNMENT;
+
+ComplexArtifact sub RubySourceArtifact
+	# Semantic
+	plays NUMBER
+	plays LITERAL
+	plays INCOMPLETE
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays RIGHT
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION;
+
+ArgArtifact sub RubySourceArtifact
+	# Semantic
+	plays ARGUMENT
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays NAME;
+
+WhilePostArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_condition_relation
+	# Semantic
+	plays STATEMENT
+	plays WHILE
+	plays BODY;
+
+IvarArtifact sub RubySourceArtifact
+	# Semantic
+	plays INSTANCE
+	plays VISIBILITY
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays LEFT
+	plays RIGHT
+	plays VALUE
+	plays TUPLE
+	plays CONDITION
+	plays BINARY
+	plays ASSIGNMENT
+	plays BODY
+	plays ELSE
+	plays THEN
+	plays FOR
+	plays UPDATE;
+
+FalseArtifact sub RubySourceArtifact
+	# Semantic
+	plays LITERAL
+	plays BOOLEAN
+	plays EXPRESSION
+	plays VALUE
+	plays TUPLE
+	plays RIGHT
+	plays BINARY
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays LEFT
+	plays ASSIGNMENT
+	plays BODY
+	plays ELSE
+	plays THEN
+	plays CONDITION;
+
+IrangeArtifact sub RubySourceArtifact
+	# Structural
+	plays has__1_relation
+	plays has__2_relation
+	# Semantic
+	plays INCOMPLETE
+	plays TUPLE
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays VALUE
+	plays FOR
+	plays UPDATE
+	plays ASSIGNMENT
+	plays BINARY
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays LEFT;
+
+SplatArtifact sub RubySourceArtifact
+	# Semantic
+	plays INCOMPLETE
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays LEFT
+	plays BINARY
+	plays RIGHT
+	plays ASSIGNMENT;
+
+ErangeArtifact sub RubySourceArtifact
+	# Structural
+	plays has__1_relation
+	plays has__2_relation
+	# Semantic
+	plays INCOMPLETE
+	plays TUPLE
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays FOR
+	plays UPDATE
+	plays ASSIGNMENT
+	plays BINARY
+	plays VALUE
+	plays THEN
+	plays BODY;
+
+BlockArtifact sub RubySourceArtifact
+	# Structural
+	plays has_blockdata_relation
+	plays has_body_relation
+	plays has_args_relation
+	plays has_comments_relation
+	# Semantic
+	plays BLOCK
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays VALUE
+	plays TUPLE
+	plays THEN
+	plays ASSIGNMENT
+	plays ELSE
+	plays CONDITION
+	plays LEFT
+	plays FOR
+	plays UPDATE;
+
+XstrArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays UNANNOTATED
+	plays BODY
+	plays RIGHT
+	plays BINARY
+	plays EXPRESSION
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays THEN
+	plays ELSE
+	plays LEFT
+	plays CONDITION;
+
+MlhsArtifact sub RubySourceArtifact
+	# Structural
+	plays has_children_relation
+	# Semantic
+	plays LEFT
+	plays INCOMPLETE
+	plays FOR
+	plays EXPRESSION
+	plays ITERATOR;
+
+EnsureArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_ensure_body_relation
+	# Semantic
+	plays FINALLY
+	plays EXPRESSION;
+
+GvarArtifact sub RubySourceArtifact
+	# Semantic
+	plays VISIBILITY
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays WORLD
+	plays RIGHT
+	plays LEFT
+	plays BINARY
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays CONDITION
+	plays VALUE
+	plays TUPLE
+	plays BODY
+	plays ASSIGNMENT
+	plays ELSE
+	plays THEN
+	plays FOR
+	plays UPDATE;
+
+KwsplatArtifact sub RubySourceArtifact
+	# Semantic
+	plays INCOMPLETE
+	plays EXPRESSION;
+
+LvasgnArtifact sub RubySourceArtifact
+	# Structural
+	plays has_value_relation
+	# Semantic
+	plays LEFT
+	plays BINARY
+	plays ASSIGNMENT
+	plays IDENTIFIER
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays CONDITION
+	plays RIGHT
+	plays FOR
+	plays ITERATOR
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays UPDATE;
+
+SendCallArtifact sub RubySourceArtifact
+	# Structural
+	plays has_values_relation
+	plays has_base_relation
+	plays has_comments_relation
+	# Semantic
+	plays CALL
+	plays FUNCTION
+	plays EXPRESSION
+	plays RIGHT
+	plays BODY
+	plays BINARY
+	plays ARGUMENT
+	plays CONDITION
+	plays THEN
+	plays LEFT
+	plays VALUE
+	plays TUPLE
+	plays ELSE
+	plays ASSIGNMENT
+	plays FOR
+	plays UPDATE;
+
+ForArtifact sub RubySourceArtifact
+	# Structural
+	plays has_iterated_relation
+	plays has_iterators_relation
+	plays has_body_relation
+	plays has_comments_relation
+	# Semantic
+	plays STATEMENT
+	plays FOR
+	plays BODY
+	plays EXPRESSION
+	plays THEN
+	plays ELSE
+	plays CONDITION;
+
+TrueArtifact sub RubySourceArtifact
+	# Semantic
+	plays LITERAL
+	plays BOOLEAN
+	plays EXPRESSION
+	plays VALUE
+	plays TUPLE
+	plays RIGHT
+	plays BINARY
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays ASSIGNMENT
+	plays LEFT
+	plays CONDITION
+	plays BODY
+	plays ELSE
+	plays THEN;
+
+SelfArtifact sub RubySourceArtifact
+	# Semantic
+	plays LEFT
+	plays THIS
+	plays EXPRESSION
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays RIGHT
+	plays BINARY
+	plays VALUE
+	plays TUPLE
+	plays ASSIGNMENT
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays FOR
+	plays UPDATE;
+
+SymbolArtifact sub RubySourceArtifact
+	# Semantic
+	plays IDENTIFIER
+	plays EXPRESSION;
+
+RationalArtifact sub RubySourceArtifact
+	# Semantic
+	plays NUMBER
+	plays LITERAL
+	plays INCOMPLETE
+	plays PRIMITIVE
+	plays EXPRESSION
+	plays RIGHT
+	plays LEFT
+	plays CALL
+	plays ARGUMENT
+	plays FUNCTION
+	plays BINARY;
+
+UntilPostArtifact sub RubySourceArtifact
+	# Structural
+	plays has_body_relation
+	plays has_condition_relation
+	# Semantic
+	plays STATEMENT
+	plays WHILE;
+
+BreakArtifact sub RubySourceArtifact
+	# Structural
+	plays has_target_relation
+	# Semantic
+	plays STATEMENT
+	plays BREAK
+	plays EXPRESSION
+	plays BODY
+	plays THEN
+	plays ELSE
+	plays RIGHT;
+
+IfArtifact sub RubySourceArtifact
+	# Structural
+	plays has_condition_relation
+	plays has_body_relation
+	plays has_else_relation
+	plays has_comments_relation
+	# Semantic
+	plays STATEMENT
+	plays IF
+	plays EXPRESSION
+	plays BODY
+	plays ELSE
+	plays RIGHT
+	plays BINARY
+	plays THEN
+	plays VALUE
+	plays TUPLE
+	plays ASSIGNMENT
+	plays CALL
+	plays FUNCTION
+	plays ARGUMENT
+	plays LEFT
+	plays FOR
+	plays CONDITION;
+
+##########---------- Structural Relationships ----------##########
+
+#####----- Ruby -----#####
+ensure_body_relation sub relationship
+	relates is_ensure_body_relation, relates has_ensure_body_relation;
+is_ensure_body_relation sub role;
+has_ensure_body_relation sub role;
+
+casevar_relation sub relationship
+	relates is_casevar_relation, relates has_casevar_relation;
+is_casevar_relation sub role;
+has_casevar_relation sub role;
+
+contents_relation sub relationship
+	relates is_contents_relation, relates has_contents_relation;
+is_contents_relation sub role;
+has_contents_relation sub role;
+
+file_relation sub relationship
+	relates is_file_relation, relates has_file_relation;
+is_file_relation sub role;
+has_file_relation sub role;
+
+end_relation sub relationship
+	relates is_end_relation, relates has_end_relation;
+is_end_relation sub role;
+has_end_relation sub role;
+
+object_relation sub relationship
+	relates is_object_relation, relates has_object_relation;
+is_object_relation sub role;
+has_object_relation sub role;
+
+_1_relation sub relationship
+	relates is__1_relation, relates has__1_relation;
+is__1_relation sub role;
+has__1_relation sub role;
+
+handlers_relation sub relationship
+	relates is_handlers_relation, relates has_handlers_relation;
+is_handlers_relation sub role;
+has_handlers_relation sub role;
+
+iterated_relation sub relationship
+	relates is_iterated_relation, relates has_iterated_relation;
+is_iterated_relation sub role;
+has_iterated_relation sub role;
+
+args_relation sub relationship
+	relates is_args_relation, relates has_args_relation;
+is_args_relation sub role;
+has_args_relation sub role;
+
+blockdata_relation sub relationship
+	relates is_blockdata_relation, relates has_blockdata_relation;
+is_blockdata_relation sub role;
+has_blockdata_relation sub role;
+
+operator_relation sub relationship
+	relates is_operator_relation, relates has_operator_relation;
+is_operator_relation sub role;
+has_operator_relation sub role;
+
+comments_relation sub relationship
+	relates is_comments_relation, relates has_comments_relation;
+is_comments_relation sub role;
+has_comments_relation sub role;
+
+conditions_relation sub relationship
+	relates is_conditions_relation, relates has_conditions_relation;
+is_conditions_relation sub role;
+has_conditions_relation sub role;
+
+text_relation sub relationship
+	relates is_text_relation, relates has_text_relation;
+is_text_relation sub role;
+has_text_relation sub role;
+
+value_relation sub relationship
+	relates is_value_relation, relates has_value_relation;
+is_value_relation sub role;
+has_value_relation sub role;
+
+parent_relation sub relationship
+	relates is_parent_relation, relates has_parent_relation;
+is_parent_relation sub role;
+has_parent_relation sub role;
+
+begin_relation sub relationship
+	relates is_begin_relation, relates has_begin_relation;
+is_begin_relation sub role;
+has_begin_relation sub role;
+
+condition_relation sub relationship
+	relates is_condition_relation, relates has_condition_relation;
+is_condition_relation sub role;
+has_condition_relation sub role;
+
+left_relation sub relationship
+	relates is_left_relation, relates has_left_relation;
+is_left_relation sub role;
+has_left_relation sub role;
+
+options_relation sub relationship
+	relates is_options_relation, relates has_options_relation;
+is_options_relation sub role;
+has_options_relation sub role;
+
+_2_relation sub relationship
+	relates is__2_relation, relates has__2_relation;
+is__2_relation sub role;
+has__2_relation sub role;
+
+class_relation sub relationship
+	relates is_class_relation, relates has_class_relation;
+is_class_relation sub role;
+has_class_relation sub role;
+
+qnames_relation sub relationship
+	relates is_qnames_relation, relates has_qnames_relation;
+is_qnames_relation sub role;
+has_qnames_relation sub role;
+
+default_relation sub relationship
+	relates is_default_relation, relates has_default_relation;
+is_default_relation sub role;
+has_default_relation sub role;
+
+else_relation sub relationship
+	relates is_else_relation, relates has_else_relation;
+is_else_relation sub role;
+has_else_relation sub role;
+
+start_relation sub relationship
+	relates is_start_relation, relates has_start_relation;
+is_start_relation sub role;
+has_start_relation sub role;
+
+alias_relation sub relationship
+	relates is_alias_relation, relates has_alias_relation;
+is_alias_relation sub role;
+has_alias_relation sub role;
+
+base_relation sub relationship
+	relates is_base_relation, relates has_base_relation;
+is_base_relation sub role;
+has_base_relation sub role;
+
+right_relation sub relationship
+	relates is_right_relation, relates has_right_relation;
+is_right_relation sub role;
+has_right_relation sub role;
+
+values_relation sub relationship
+	relates is_values_relation, relates has_values_relation;
+is_values_relation sub role;
+has_values_relation sub role;
+
+when_clauses_relation sub relationship
+	relates is_when_clauses_relation, relates has_when_clauses_relation;
+is_when_clauses_relation sub role;
+has_when_clauses_relation sub role;
+
+targets_relation sub relationship
+	relates is_targets_relation, relates has_targets_relation;
+is_targets_relation sub role;
+has_targets_relation sub role;
+
+exceptions_relation sub relationship
+	relates is_exceptions_relation, relates has_exceptions_relation;
+is_exceptions_relation sub role;
+has_exceptions_relation sub role;
+
+body_relation sub relationship
+	relates is_body_relation, relates has_body_relation;
+is_body_relation sub role;
+has_body_relation sub role;
+
+iterators_relation sub relationship
+	relates is_iterators_relation, relates has_iterators_relation;
+is_iterators_relation sub role;
+has_iterators_relation sub role;
+
+target_relation sub relationship
+	relates is_target_relation, relates has_target_relation;
+is_target_relation sub role;
+has_target_relation sub role;
+
+children_relation sub relationship
+	relates is_children_relation, relates has_children_relation;
+is_children_relation sub role;
+has_children_relation sub role;
+
+##########---------- Semantic Roles ----------##########
+IS_GREATER_THAN_OR_EQUAL sub relationship
+	relates GREATER_THAN_OR_EQUAL;
+GREATER_THAN_OR_EQUAL sub role;
+
+IS_LEFT_SHIFT sub relationship
+	relates LEFT_SHIFT;
+LEFT_SHIFT sub role;
+
+IS_LEFT sub relationship
+	relates LEFT;
+LEFT sub role;
+
+IS_XOR sub relationship
+	relates XOR;
+XOR sub role;
+
+IS_DIVIDE sub relationship
+	relates DIVIDE;
+DIVIDE sub role;
+
+IS_CONTINUE sub relationship
+	relates CONTINUE;
+CONTINUE sub role;
+
+IS_OPERATOR sub relationship
+	relates OPERATOR;
+OPERATOR sub role;
+
+IS_PRIMITIVE sub relationship
+	relates PRIMITIVE;
+PRIMITIVE sub role;
+
+IS_STATEMENT sub relationship
+	relates STATEMENT;
+STATEMENT sub role;
+
+IS_ADD sub relationship
+	relates ADD;
+ADD sub role;
+
+IS_FOR sub relationship
+	relates FOR;
+FOR sub role;
+
+IS_LIST sub relationship
+	relates LIST;
+LIST sub role;
+
+IS_BINARY sub relationship
+	relates BINARY;
+BINARY sub role;
+
+IS_ASSIGNMENT sub relationship
+	relates ASSIGNMENT;
+ASSIGNMENT sub role;
+
+IS_IDENTIFIER sub relationship
+	relates IDENTIFIER;
+IDENTIFIER sub role;
+
+IS_EQUAL sub relationship
+	relates EQUAL;
+EQUAL sub role;
+
+IS_DEFAULT sub relationship
+	relates DEFAULT;
+DEFAULT sub role;
+
+IS_ELSE sub relationship
+	relates ELSE;
+ELSE sub role;
+
+IS_IF sub relationship
+	relates IF;
+IF sub role;
+
+IS_LITERAL sub relationship
+	relates LITERAL;
+LITERAL sub role;
+
+IS_MAP sub relationship
+	relates MAP;
+MAP sub role;
+
+IS_COMMENT sub relationship
+	relates COMMENT;
+COMMENT sub role;
+
+IS_ITERATOR sub relationship
+	relates ITERATOR;
+ITERATOR sub role;
+
+IS_CATCH sub relationship
+	relates CATCH;
+CATCH sub role;
+
+IS_ARGUMENT sub relationship
+	relates ARGUMENT;
+ARGUMENT sub role;
+
+IS_RIGHT sub relationship
+	relates RIGHT;
+RIGHT sub role;
+
+IS_UPDATE sub relationship
+	relates UPDATE;
+UPDATE sub role;
+
+IS_ANONYMOUS sub relationship
+	relates ANONYMOUS;
+ANONYMOUS sub role;
+
+IS_ALIAS sub relationship
+	relates ALIAS;
+ALIAS sub role;
+
+IS_VALUE sub relationship
+	relates VALUE;
+VALUE sub role;
+
+IS_LESS_THAN_OR_EQUAL sub relationship
+	relates LESS_THAN_OR_EQUAL;
+LESS_THAN_OR_EQUAL sub role;
+
+IS_TRY sub relationship
+	relates TRY;
+TRY sub role;
+
+IS_NULL sub relationship
+	relates NULL;
+NULL sub role;
+
+IS_MODULO sub relationship
+	relates MODULO;
+MODULO sub role;
+
+IS_MODULE sub relationship
+	relates MODULE;
+MODULE sub role;
+
+IS_AND sub relationship
+	relates AND;
+AND sub role;
+
+IS_SWITCH sub relationship
+	relates SWITCH;
+SWITCH sub role;
+
+IS_BODY sub relationship
+	relates BODY;
+BODY sub role;
+
+IS_UNARY sub relationship
+	relates UNARY;
+UNARY sub role;
+
+IS_RELATIONAL sub relationship
+	relates RELATIONAL;
+RELATIONAL sub role;
+
+IS_OR sub relationship
+	relates OR;
+OR sub role;
+
+IS_INCOMPLETE sub relationship
+	relates INCOMPLETE;
+INCOMPLETE sub role;
+
+IS_UNANNOTATED sub relationship
+	relates UNANNOTATED;
+UNANNOTATED sub role;
+
+IS_SUBTYPE sub relationship
+	relates SUBTYPE;
+SUBTYPE sub role;
+
+IS_ARITHMETIC sub relationship
+	relates ARITHMETIC;
+ARITHMETIC sub role;
+
+IS_DECLARATION sub relationship
+	relates DECLARATION;
+DECLARATION sub role;
+
+IS_THEN sub relationship
+	relates THEN;
+THEN sub role;
+
+IS_CONDITION sub relationship
+	relates CONDITION;
+CONDITION sub role;
+
+IS_CALL sub relationship
+	relates CALL;
+CALL sub role;
+
+IS_STRING sub relationship
+	relates STRING;
+STRING sub role;
+
+IS_RIGHT_SHIFT sub relationship
+	relates RIGHT_SHIFT;
+RIGHT_SHIFT sub role;
+
+IS_FINALLY sub relationship
+	relates FINALLY;
+FINALLY sub role;
+
+IS_NUMBER sub relationship
+	relates NUMBER;
+NUMBER sub role;
+
+IS_BOOLEAN sub relationship
+	relates BOOLEAN;
+BOOLEAN sub role;
+
+IS_NAME sub relationship
+	relates NAME;
+NAME sub role;
+
+IS_NOT sub relationship
+	relates NOT;
+NOT sub role;
+
+IS_THIS sub relationship
+	relates THIS;
+THIS sub role;
+
+IS_RETURN sub relationship
+	relates RETURN;
+RETURN sub role;
+
+IS_REGEXP sub relationship
+	relates REGEXP;
+REGEXP sub role;
+
+IS_BREAK sub relationship
+	relates BREAK;
+BREAK sub role;
+
+IS_TYPE sub relationship
+	relates TYPE;
+TYPE sub role;
+
+IS_INSTANCE sub relationship
+	relates INSTANCE;
+INSTANCE sub role;
+
+IS_FUNCTION sub relationship
+	relates FUNCTION;
+FUNCTION sub role;
+
+IS_CASE sub relationship
+	relates CASE;
+CASE sub role;
+
+IS_NOOP sub relationship
+	relates NOOP;
+NOOP sub role;
+
+IS_IMPORT sub relationship
+	relates IMPORT;
+IMPORT sub role;
+
+IS_SUBSTRACT sub relationship
+	relates SUBSTRACT;
+SUBSTRACT sub role;
+
+IS_TUPLE sub relationship
+	relates TUPLE;
+TUPLE sub role;
+
+IS_EXPRESSION sub relationship
+	relates EXPRESSION;
+EXPRESSION sub role;
+
+IS_WORLD sub relationship
+	relates WORLD;
+WORLD sub role;
+
+IS_BITWISE sub relationship
+	relates BITWISE;
+BITWISE sub role;
+
+IS_IDENTICAL sub relationship
+	relates IDENTICAL;
+IDENTICAL sub role;
+
+IS_BLOCK sub relationship
+	relates BLOCK;
+BLOCK sub role;
+
+IS_VISIBILITY sub relationship
+	relates VISIBILITY;
+VISIBILITY sub role;
+
+IS_MULTIPLY sub relationship
+	relates MULTIPLY;
+MULTIPLY sub role;
+
+IS_QUALIFIED sub relationship
+	relates QUALIFIED;
+QUALIFIED sub role;
+
+IS_WHILE sub relationship
+	relates WHILE;
+WHILE sub role;
