@@ -164,7 +164,6 @@ class OmniSchemaGenerator {
         println "Cloned: $githubRepository"
     }
 
-
     static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
         return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()
     }
