@@ -167,7 +167,7 @@ class ObservedLanguage {
         return language == SourceLanguage.OmniSRC
     }
 
-    private static String toValidEntity(String entity) {
+    static String toValidEntity(String entity) {
         //ex. EntityName
         entity = entity.replace("?", "")
         entity = handleBreaker(".", entity)
@@ -176,7 +176,7 @@ class ObservedLanguage {
         return entity + "Artifact"
     }
 
-    private static String toValidAttribute(String attribute) {
+    static String toValidAttribute(String attribute) {
         //ex. attributeName
         attribute = handleBreaker(".", attribute)
         attribute = handleBreaker("_", attribute)
@@ -184,7 +184,7 @@ class ObservedLanguage {
         return attribute + "Attribute"
     }
 
-    private static String toValidRelation(String relation) {
+    static String toValidRelation(String relation) {
         //ex. relation_name
         relation = relation.replace("@", "")
         int breakerIndex
