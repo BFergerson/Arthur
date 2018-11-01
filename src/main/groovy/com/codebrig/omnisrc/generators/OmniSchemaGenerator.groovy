@@ -23,6 +23,7 @@ import static com.google.common.io.Files.*
 class OmniSchemaGenerator {
 
     public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
+    public static final int PARSE_FILES_PER_PROJECT = 1000
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()
@@ -131,21 +132,23 @@ class OmniSchemaGenerator {
         int parsedFileCount = 0
         outputFolder.eachFileRecurse(FileType.FILES) {
             if (observedLanguage.language.isValidExtension(getFileExtension(it.name))) {
-                println "Parsing: " + it
-                parsedFileCount++
-                def fileContent = it.text
-                def resp = client.parse(it.name, fileContent, observedLanguage.language.key(), Encoding.UTF8$.MODULE$)
-                //todo: error handling
+                if (parsedFileCount < PARSE_FILES_PER_PROJECT) {
+                    println "Parsing: " + it
+                    def fileContent = it.text
+                    def resp = client.parse(it.name, fileContent, observedLanguage.language.key(), Encoding.UTF8$.MODULE$)
+                    //todo: error handling
 
-                asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
-                    if (it != null && !it.internalType().isEmpty()) {
-                        //attributes
-                        observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
-                        //relations
-                        observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
-                        //roles
-                        observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
+                    asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
+                        if (it != null && !it.internalType().isEmpty()) {
+                            //attributes
+                            observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
+                            //relations
+                            observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
+                            //roles
+                            observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
+                        }
                     }
+                    parsedFileCount++
                 }
             }
         }
