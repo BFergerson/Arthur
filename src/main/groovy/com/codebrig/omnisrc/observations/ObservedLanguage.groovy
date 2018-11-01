@@ -51,13 +51,15 @@ class ObservedLanguage {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
         entityChildren.each { child ->
-            if (child.properties().get("internalRole").isDefined()) {
+            if (child.properties().get("internalRole").isDefined()
+                    && !child.internalType().isEmpty()) { //todo: understand this clause
                 //parent relates to child (has)
                 relations.get(entity).observeHas(toValidRelation(child.properties().get("internalRole").get()))
 
                 //child relates to parent (is)
-                relations.putIfAbsent(child.internalType(), new ObservedRelations())
-                relations.get(child.internalType()).observeIs(toValidRelation(child.properties().get("internalRole").get()))
+                def childEntity = toValidEntity(child.internalType())
+                relations.putIfAbsent(childEntity, new ObservedRelations())
+                relations.get(childEntity).observeIs(toValidRelation(child.properties().get("internalRole").get()))
             }
         }
     }
@@ -193,6 +195,9 @@ class ObservedLanguage {
             sb.setCharAt(breakerIndex, Character.toLowerCase(sb.charAt(breakerIndex)))
             sb.insert(breakerIndex, "_")
             relation = sb.toString()
+        }
+        if (relation.startsWith("_")) {
+            relation = relation.substring(1)
         }
         return relation + "_relation"
     }

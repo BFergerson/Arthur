@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class ObservedRelations {
 
-    private TreeMap<String, AtomicInteger> hasObservations = new TreeMap<>()
+    private Map<String, AtomicInteger> hasObservations = new HashMap<>()
     private Map<String, AtomicInteger> isObservations = new HashMap<>()
 
     void observeHas(String relation) {
