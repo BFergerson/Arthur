@@ -55,10 +55,10 @@ class GraknSchemaWriter {
         }
     }
 
-    private static void outputAttributes(StringBuilder sb, ObservedLanguage observedLanguage) {
+    private void outputAttributes(StringBuilder sb, ObservedLanguage observedLanguage) {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         observedLanguage.observedAttributes.each {
-            def attribute = observedLanguage.getAttribute(it)
+            def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             sb.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
                     .append(" datatype string;\n") //todo: dynamic datatype
         }
@@ -76,12 +76,12 @@ class GraknSchemaWriter {
         }
     }
 
-    private static void outputStructuralRelationships(StringBuilder sb, ObservedLanguage observedLanguage) {
+    private void outputStructuralRelationships(StringBuilder sb, ObservedLanguage observedLanguage) {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         def observedRelations = observedLanguage.observedRelations
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
-            def fullRelation = observedLanguage.getRelation(relation)
+            def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
             def isRole = "is_$fullRelation"
             def hasRole = "has_$fullRelation"
             sb.append(fullRelation).append(" sub ").append(observedLanguage.getRelationExtends(fullRelation)).append("\n")
@@ -116,14 +116,14 @@ class GraknSchemaWriter {
         }
     }
 
-    private static void outputEntities(StringBuilder sb, ObservedLanguage observedLanguage) {
+    private void outputEntities(StringBuilder sb, ObservedLanguage observedLanguage) {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         sb.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
 
         def observedEntities = observedLanguage.observedEntities
         for (int i = 0; i < observedEntities.size(); i++) {
             def entity = observedEntities.get(i)
-            def fullEntity = observedLanguage.getEntity(entity)
+            def fullEntity = observedLanguage.getEntity(entity, rootLanguage.isOmnilingual())
             sb.append(fullEntity).append(" sub ").append(observedLanguage.getEntityExtends(fullEntity))
 
             //has
@@ -145,14 +145,16 @@ class GraknSchemaWriter {
                 def hasRelations = observedLanguage.relations.get(entity).rankedHasRelations
                 if (!isRelations.isEmpty() || !hasRelations.isEmpty()) sb.append("\n\t# Structural\n")
                 for (int z = 0; z < isRelations.size(); z++) {
-                    sb.append("\tplays is_").append(observedLanguage.getRelation(isRelations.get(z)))
+                    sb.append("\tplays is_").append(observedLanguage.getRelation(
+                            isRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < isRelations.size() || !hasRelations.isEmpty()) {
                         sb.append("\n")
                     }
                 }
                 for (int z = 0; z < hasRelations.size(); z++) {
-                    sb.append("\tplays has_").append(observedLanguage.getRelation(hasRelations.get(z)))
+                    sb.append("\tplays has_").append(observedLanguage.getRelation(
+                            hasRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < hasRelations.size()) {
                         sb.append("\n")

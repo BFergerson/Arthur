@@ -74,11 +74,11 @@ class ObservedLanguage {
         entityExtends.put(language.qualifiedName + entity, entity)
     }
 
-    String getEntity(String entity) {
-        if (entityExtends.containsKey(language.qualifiedName + entity)) {
-            return language.qualifiedName + entity
+    String getEntity(String entity, boolean multilingual) {
+        if (isOmnilingual() || !multilingual) {
+            return entity
         }
-        return entity
+        return language.qualifiedName + entity
     }
 
     String getEntityExtends(String entity) {
@@ -89,11 +89,11 @@ class ObservedLanguage {
         attributeExtends.put(language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute), attribute)
     }
 
-    String getAttribute(String attribute) {
-        if (attributeExtends.containsKey(language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute))) {
-            return language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute)
+    String getAttribute(String attribute, boolean multilingual) {
+        if (isOmnilingual() || !multilingual) {
+            return attribute
         }
-        return attribute
+        return language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute)
     }
 
     String getAttributeExtends(String attribute) {
@@ -104,11 +104,11 @@ class ObservedLanguage {
         relationExtends.put(language.key() + "_" + relation, relation)
     }
 
-    String getRelation(String relation) {
-        if (relationExtends.containsKey(language.key() + "_" + relation)) {
-            return language.key() + "_" + relation
+    String getRelation(String relation, boolean multilingual) {
+        if (isOmnilingual() || !multilingual) {
+            return relation
         }
-        return relation
+        return language.key() + "_" + relation
     }
 
     String getRelationExtends(String relation) {
