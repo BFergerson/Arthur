@@ -84,10 +84,12 @@ class GraknSchemaWriter {
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
             def isRole = "is_$fullRelation"
             def hasRole = "has_$fullRelation"
-            sb.append(fullRelation).append(" sub ").append(observedLanguage.getRelationExtends(fullRelation)).append("\n")
+            def subType = observedLanguage.getRelationExtends(fullRelation)
+
+            sb.append(fullRelation).append(" sub ").append(subType).append("\n")
             sb.append("\trelates ").append(isRole)
             sb.append(", relates ").append(hasRole).append(";\n")
-            if (relation == fullRelation) {
+            if (subType == "relationship") {
                 sb.append(isRole).append(" sub ").append("role").append(";\n")
                 sb.append(hasRole).append(" sub ").append("role").append(";\n")
             } else {
@@ -131,7 +133,8 @@ class GraknSchemaWriter {
                 def attrList = observedLanguage.attributes.get(entity).rankedAttributes
                 if (!attrList.isEmpty()) sb.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
-                    sb.append("\thas ").append(attrList.get(z))
+                    def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())
+                    sb.append("\thas ").append(attribute)
 
                     if ((z + 1) < attrList.size()) {
                         sb.append("\n")
