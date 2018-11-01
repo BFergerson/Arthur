@@ -1,5 +1,7 @@
 package com.codebrig.omnisrc
 
+import com.google.common.io.Files
+
 /**
  * @author github.com/BFergerson
  */
@@ -37,5 +39,25 @@ enum SourceLanguage {
 
     boolean isValidExtension(String extension) {
         return fileExtensions.contains(extension.toLowerCase())
+    }
+
+    static boolean isSourceLanguageKnown(File file) {
+        def fileExtension = Files.getFileExtension(file.name)
+        return values().any { it.isValidExtension(fileExtension) }
+    }
+
+    static SourceLanguage getSourceLangauge(File file) {
+        def sourceLanguage
+        def fileExtension = Files.getFileExtension(file.name)
+        values().each {
+            if (it.isValidExtension(fileExtension)) {
+                sourceLanguage = it
+            }
+        }
+        if (sourceLanguage != null) {
+            return sourceLanguage
+        } else {
+            throw new IllegalArgumentException("Could not detect source code language of file: " + file)
+        }
     }
 }
