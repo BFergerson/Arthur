@@ -45,7 +45,6 @@ class GraknSchemaWriter {
 
         //todo: smarter and dynamic
         sb.append("token sub attribute datatype string;\n")
-        sb.append("uuid sub attribute datatype string;\n")
 
         if (rootLanguage.isOmnilingual()) {
             outputAttributes(sb, rootLanguage)
@@ -107,8 +106,7 @@ class GraknSchemaWriter {
         println "Writing globalEntities"
         sb.append("\n##########---------- Entities ----------##########\n")
         sb.append("SourceArtifact sub entity\n")
-                .append("\thas token\n")
-                .append("\thas uuid;\n")
+                .append("\thas token;\n")
 
         if (rootLanguage.isOmnilingual()) {
             outputEntities(sb, rootLanguage)
