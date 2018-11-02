@@ -20,6 +20,10 @@ class ObservedAttributes {
         observations.remove(attribute)
     }
 
+    List<String> getAttributes() {
+        return observations.keySet().toList()
+    }
+
     List<String> getRankedAttributes() {
         return entriesSortedByValues(observations).keySet().toList()
     }

@@ -11,6 +11,7 @@ class GraknSchemaWriter {
 
     private final ObservedLanguage rootLanguage
     private final List<ObservedLanguage> observedLanguages
+    private boolean naturalOrdering = true
 
     GraknSchemaWriter(ObservedLanguage observedLanguage) {
         this.observedLanguages = Collections.singletonList(Objects.requireNonNull(observedLanguage))
@@ -26,7 +27,7 @@ class GraknSchemaWriter {
         println "Writing semantic roles"
         sb.append("\n##########---------- Semantic Roles ----------##########\n")
 
-        def observedRoles = rootLanguage.observedRoles
+        def observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
         for (int i = 0; i < observedRoles.size(); i++) {
             def role = observedRoles.get(i)
             sb.append("IS_").append(role).append(" sub relationship\n")
@@ -56,7 +57,7 @@ class GraknSchemaWriter {
 
     private void outputAttributes(StringBuilder sb, ObservedLanguage observedLanguage) {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        observedLanguage.observedAttributes.each {
+        observedLanguage.getObservedAttributes(naturalOrdering).each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             sb.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
                     .append(" datatype string;\n") //todo: dynamic datatype
@@ -77,7 +78,7 @@ class GraknSchemaWriter {
 
     private void outputStructuralRelationships(StringBuilder sb, ObservedLanguage observedLanguage) {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        def observedRelations = observedLanguage.observedRelations
+        def observedRelations = observedLanguage.getObservedRelations(naturalOrdering)
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
@@ -120,7 +121,7 @@ class GraknSchemaWriter {
         sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         sb.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
 
-        def observedEntities = observedLanguage.observedEntities
+        def observedEntities = observedLanguage.getObservedEntities(naturalOrdering)
         for (int i = 0; i < observedEntities.size(); i++) {
             def entity = observedEntities.get(i)
             def fullEntity = observedLanguage.getEntity(entity, rootLanguage.isOmnilingual())
@@ -183,6 +184,14 @@ class GraknSchemaWriter {
                 sb.append("\n")
             }
         }
+    }
+
+    boolean getNaturalOrdering() {
+        return naturalOrdering
+    }
+
+    void setNaturalOrdering(boolean naturalOrdering) {
+        this.naturalOrdering = naturalOrdering
     }
 
     String getSchemaDefinition() {

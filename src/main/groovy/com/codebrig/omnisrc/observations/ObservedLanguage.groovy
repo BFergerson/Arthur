@@ -118,32 +118,82 @@ class ObservedLanguage {
     }
 
     List<String> getObservedEntities() {
-        return attributes.keySet().toList()
+        return getObservedEntities(true)
+    }
+
+    List<String> getObservedEntities(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnEntities = attributes.keySet().toList()
+            rtnEntities.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnEntities
+        } else {
+            return attributes.keySet().toList()
+        }
     }
 
     List<String> getObservedAttributes() {
-        return attributes.values().collect({ it.rankedAttributes })
-                .flatten().toSet().toList() as List<String>
+        return getObservedAttributes(true)
+    }
+
+    List<String> getObservedAttributes(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnAttributes = attributes.values().collect({ it.attributes })
+                    .flatten().toSet().toList() as List<String>
+            rtnAttributes.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnAttributes
+        } else {
+            return attributes.values().collect({ it.rankedAttributes })
+                    .flatten().toSet().toList() as List<String>
+        }
     }
 
     List<String> getObservedRoles() {
-        return roles.values().collect { it.rankedRoles }
-                .flatten().toSet().toList() as List<String>
+        return getObservedRoles(true)
+    }
+
+    List<String> getObservedRoles(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRoles = roles.values().collect { it.roles }
+                    .flatten().toSet().toList() as List<String>
+            rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRoles
+        } else {
+            return roles.values().collect { it.rankedRoles }
+                    .flatten().toSet().toList() as List<String>
+        }
     }
 
     List<String> getObservedRelations() {
-        return relations.values().collect { it.rankedIsRelations + it.rankedHasRelations }
-                .flatten().toSet().toList() as List<String>
+        return getObservedRelations(true)
+    }
+
+    List<String> getObservedRelations(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRelations = relations.values().collect { it.isRelations + it.hasRelations }
+                    .flatten().toSet().toList() as List<String>
+            rtnRelations.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRelations
+        } else {
+            return relations.values().collect { it.rankedIsRelations + it.rankedHasRelations }
+                    .flatten().toSet().toList() as List<String>
+        }
     }
 
     List<String> getEntitiesWithRole(String role) {
-        def roles = new ArrayList<String>()
+        return getEntitiesWithRole(role, true)
+    }
+
+    List<String> getEntitiesWithRole(String role, boolean naturalOrdering) {
+        def rtnRoles = new ArrayList<String>()
         this.roles.each {
-            if (it.value.rankedRoles.contains(role)) {
-                roles.add(it.key)
+            if (it.value.roles.contains(role)) {
+                rtnRoles.add(it.key)
             }
         }
-        return roles
+        if (naturalOrdering) {
+            rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
+        }
+        return rtnRoles
     }
 
     boolean observedEntity(String entity) {

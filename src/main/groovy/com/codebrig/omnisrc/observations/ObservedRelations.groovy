@@ -20,8 +20,16 @@ class ObservedRelations {
         isObservations.get(relation).incrementAndGet()
     }
 
+    List<String> getHasRelations() {
+        return hasObservations.keySet().toList()
+    }
+
     List<String> getRankedHasRelations() {
         return entriesSortedByValues(hasObservations).keySet().toList()
+    }
+
+    List<String> getIsRelations() {
+        return isObservations.keySet().toList()
     }
 
     List<String> getRankedIsRelations() {

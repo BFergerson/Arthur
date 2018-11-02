@@ -20,6 +20,10 @@ class ObservedRoles {
         observations.remove(role)
     }
 
+    List<String> getRoles() {
+        return observations.keySet().toList()
+    }
+
     List<String> getRankedRoles() {
         return entriesSortedByValues(observations).keySet().toList()
     }
