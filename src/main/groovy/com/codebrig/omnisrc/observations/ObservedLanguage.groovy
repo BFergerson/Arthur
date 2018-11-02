@@ -260,15 +260,15 @@ class ObservedLanguage {
         return observedAttributes.contains(attribute)
     }
 
+    boolean observedRelation(String relation) {
+        return observedRelations.contains(relation)
+    }
+
     boolean observedEntityRole(String entity, String role) {
         if (!roles.containsKey(entity)) {
             return false
         }
         return roles.get(entity).rankedRoles.contains(role)
-    }
-
-    boolean observedRelation(String relation) {
-        return observedRelations.contains(relation)
     }
 
     boolean isOmnilingual() {

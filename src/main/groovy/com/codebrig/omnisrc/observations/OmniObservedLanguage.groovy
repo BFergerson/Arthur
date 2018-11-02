@@ -43,23 +43,47 @@ class OmniObservedLanguage extends ObservedLanguage {
     }
 
     @Override
-    List<String> getObservedEntities() {
-        return globalEntities.toList()
+    List<String> getObservedEntities(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnEntities = globalEntities.toList()
+            rtnEntities.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnEntities
+        } else {
+            return globalEntities.toList()
+        }
     }
 
     @Override
-    List<String> getObservedAttributes() {
-        return globalAttributes.toList()
+    List<String> getObservedAttributes(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnAttributes = globalAttributes.toList()
+            rtnAttributes.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnAttributes
+        } else {
+            return globalAttributes.toList()
+        }
     }
 
     @Override
-    List<?> getObservedRelations() {
-        return globalRelations.toList()
+    List<String> getObservedRoles(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRoles = globalRoles.toList()
+            rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRoles
+        } else {
+            return globalRoles.toList()
+        }
     }
 
     @Override
-    List<String> getObservedRoles() {
-        return globalRoles.toList()
+    List<String> getObservedRelations(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRelations = globalRelations.toList()
+            rtnRelations.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRelations
+        } else {
+            return globalRelations.toList()
+        }
     }
 
     @Override
