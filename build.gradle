@@ -11,6 +11,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile group: 'org.codehaus.gpars', name: 'gpars', version: '1.2.1'
     compile 'org.bblfsh:bblfsh-client:1.10.1'
     compile group: 'org.kohsuke', name: 'github-api', version: '1.92'
     compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '5.0.1.201806211838-r'

@@ -5,7 +5,9 @@ import com.codebrig.omnisrc.observations.ObservedLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
 import groovy.io.FileType
+import groovyx.gpars.GParsPool
 import org.bblfsh.client.BblfshClient
 import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
@@ -14,6 +16,7 @@ import org.kohsuke.github.GitHub
 import scala.collection.JavaConverters
 
 import java.util.concurrent.TimeUnit
+import java.util.stream.Collectors
 
 import static com.google.common.io.Files.*
 
@@ -104,7 +107,7 @@ class OmniSchemaGenerator {
                 .list().iterator().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
-            doGithubRepositoryObservation(client, it.fullName, observedLanguage)
+            analyzeGithubRepositoryObservation(client, it.fullName, observedLanguage)
             return false
         }
         return observedLanguage
@@ -118,8 +121,8 @@ class OmniSchemaGenerator {
         outputFile.write(schemaWriter.getSchemaDefinition())
     }
 
-    static void doGithubRepositoryObservation(BblfshClient client, String repoName, ObservedLanguage observedLanguage) {
-        println "Doing repo: $repoName"
+    static void analyzeGithubRepositoryObservation(BblfshClient client, String repoName, ObservedLanguage observedLanguage) {
+        println "Analyzing repository: $repoName"
         def outputFolder = new File("/tmp/omnisrc/out/$repoName")
         if (new File(outputFolder, "cloned.omnisrc").exists()) {
             println "$repoName already exists. Skipping"
@@ -129,30 +132,34 @@ class OmniSchemaGenerator {
             cloneRepo(repoName, outputFolder)
         }
 
-        int parsedFileCount = 0
+        def sourceFiles = new ArrayList<File>()
         outputFolder.eachFileRecurse(FileType.FILES) {
             if (observedLanguage.language.isValidExtension(getFileExtension(it.name))) {
-                if (parsedFileCount < PARSE_FILES_PER_PROJECT) {
-                    println "Parsing: " + it
-                    def fileContent = it.text
-                    def resp = client.parse(it.name, fileContent, observedLanguage.language.key(), Encoding.UTF8$.MODULE$)
-                    //todo: error handling
+                sourceFiles.add(it)
+            }
+        }
+        def responseList = new ArrayList<ParseResponse>()
+        GParsPool.withPool {
+            sourceFiles.stream().limit(PARSE_FILES_PER_PROJECT).collect(Collectors.toList()).eachParallel {
+                println "Parsing: " + it
+                responseList.add(client.parse(it.name, it.text, observedLanguage.language.key(), Encoding.UTF8$.MODULE$))
+            }
+        }
 
-                    asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
-                        if (it != null && !it.internalType().isEmpty()) {
-                            //attributes
-                            observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
-                            //relations
-                            observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
-                            //roles
-                            observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
-                        }
-                    }
-                    parsedFileCount++
+        println "Extracting observed attributes, relations, and roles"
+        responseList.each { resp ->
+            asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
+                if (it != null && !it.internalType().isEmpty()) {
+                    //attributes
+                    observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
+                    //relations
+                    observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
+                    //roles
+                    observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
                 }
             }
         }
-        println "Parsed $parsedFileCount " + observedLanguage.language.qualifiedName + " files"
+        println "Parsed " + responseList.size() + " " + observedLanguage.language.qualifiedName + " files"
     }
 
     static void cloneRepo(String githubRepository, File outputDirectory) {
