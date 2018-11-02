@@ -129,7 +129,7 @@ class GraknSchemaWriter {
 
             //has
             if (observedLanguage.attributes.containsKey(entity)) {
-                def attrList = observedLanguage.attributes.get(entity).rankedAttributes
+                def attrList = observedLanguage.getEntityObservedAttributes(entity, naturalOrdering)
                 if (!attrList.isEmpty()) sb.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
                     def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())
@@ -143,8 +143,8 @@ class GraknSchemaWriter {
 
             //plays (UAST structure)
             if (observedLanguage.relations.containsKey(entity)) {
-                def isRelations = observedLanguage.relations.get(entity).rankedIsRelations
-                def hasRelations = observedLanguage.relations.get(entity).rankedHasRelations
+                def isRelations = observedLanguage.getEntityObservedIsRelations(entity, naturalOrdering)
+                def hasRelations = observedLanguage.getEntityObservedHasRelations(entity, naturalOrdering)
                 if (!isRelations.isEmpty() || !hasRelations.isEmpty()) sb.append("\n\t# Structural\n")
                 for (int z = 0; z < isRelations.size(); z++) {
                     sb.append("\tplays is_").append(observedLanguage.getRelation(
@@ -166,7 +166,7 @@ class GraknSchemaWriter {
 
             //plays (semantic roles)
             if (observedLanguage.roles.containsKey(entity)) {
-                def roleList = observedLanguage.roles.get(entity).rankedRoles
+                def roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
                 if (!roleList.isEmpty()) {
                     sb.append("\n\t# Semantic\n")
                     for (int z = 0; z < roleList.size(); z++) {

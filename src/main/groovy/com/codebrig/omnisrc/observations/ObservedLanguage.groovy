@@ -179,6 +179,62 @@ class ObservedLanguage {
         }
     }
 
+    List<String> getEntityObservedAttributes(String entity) {
+        return getEntityObservedAttributes(entity, true)
+    }
+
+    List<String> getEntityObservedAttributes(String entity, boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnAttributes = attributes.get(entity).attributes
+            rtnAttributes.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnAttributes
+        } else {
+            return attributes.get(entity).rankedAttributes
+        }
+    }
+
+    List<String> getEntityObservedIsRelations(String entity) {
+        return getEntityObservedIsRelations(entity, true)
+    }
+
+    List<String> getEntityObservedIsRelations(String entity, boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRelations = relations.get(entity).isRelations
+            rtnRelations.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRelations
+        } else {
+            return relations.get(entity).rankedIsRelations
+        }
+    }
+
+    List<String> getEntityObservedHasRelations(String entity) {
+        return getEntityObservedHasRelations(entity, true)
+    }
+
+    List<String> getEntityObservedHasRelations(String entity, boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRelations = relations.get(entity).hasRelations
+            rtnRelations.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRelations
+        } else {
+            return relations.get(entity).rankedHasRelations
+        }
+    }
+
+    List<String> getEntityObservedRoles(String entity) {
+        return getEntityObservedRoles(entity, true)
+    }
+
+    List<String> getEntityObservedRoles(String entity, boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRoles = roles.get(entity).roles
+            rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRoles
+        } else {
+            return roles.get(entity).rankedRoles
+        }
+    }
+
     List<String> getEntitiesWithRole(String role) {
         return getEntitiesWithRole(role, true)
     }
