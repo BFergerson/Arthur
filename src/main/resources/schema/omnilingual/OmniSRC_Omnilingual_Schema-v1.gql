@@ -2994,6 +2994,7 @@ JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptAnyTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_javascript_element_type_relation
 	plays is_javascript_params_relation
 	plays is_javascript_return_type_relation
 	plays is_javascript_type_annotation_relation
@@ -3055,6 +3056,13 @@ JavascriptArrayPatternArtifact sub JavascriptSourceArtifact
 	plays INCOMPLETE
 	plays LEFT
 	plays LIST;
+
+JavascriptArrayTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_javascript_type_annotation_relation
+	plays has_javascript_element_type_relation
+	# Semantic
+	plays UNANNOTATED;
 
 JavascriptArrowFunctionExpressionArtifact sub JavascriptSourceArtifact
 	# Attributes
@@ -10839,6 +10847,11 @@ default_relation sub relationship
 is_default_relation sub role;
 has_default_relation sub role;
 
+element_type_relation sub relationship
+	relates is_element_type_relation, relates has_element_type_relation;
+is_element_type_relation sub role;
+has_element_type_relation sub role;
+
 else_relation sub relationship
 	relates is_else_relation, relates has_else_relation;
 is_else_relation sub role;
@@ -11476,10 +11489,10 @@ java_dimensions_relation sub relationship
 is_java_dimensions_relation sub role;
 has_java_dimensions_relation sub role;
 
-java_element_type_relation sub relationship
+java_element_type_relation sub element_type_relation
 	relates is_java_element_type_relation, relates has_java_element_type_relation;
-is_java_element_type_relation sub role;
-has_java_element_type_relation sub role;
+is_java_element_type_relation sub is_element_type_relation;
+has_java_element_type_relation sub has_element_type_relation;
 
 java_else_expression_relation sub relationship
 	relates is_java_else_expression_relation, relates has_java_else_expression_relation;
@@ -11811,6 +11824,11 @@ javascript_discriminant_relation sub relationship
 	relates is_javascript_discriminant_relation, relates has_javascript_discriminant_relation;
 is_javascript_discriminant_relation sub role;
 has_javascript_discriminant_relation sub role;
+
+javascript_element_type_relation sub element_type_relation
+	relates is_javascript_element_type_relation, relates has_javascript_element_type_relation;
+is_javascript_element_type_relation sub is_element_type_relation;
+has_javascript_element_type_relation sub has_element_type_relation;
 
 javascript_elements_relation sub relationship
 	relates is_javascript_elements_relation, relates has_javascript_elements_relation;
