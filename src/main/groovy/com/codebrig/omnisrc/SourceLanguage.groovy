@@ -1,6 +1,8 @@
 package com.codebrig.omnisrc
 
+import com.google.common.base.Charsets
 import com.google.common.io.Files
+import com.google.common.io.Resources
 
 /**
  * @author github.com/BFergerson
@@ -35,6 +37,16 @@ enum SourceLanguage {
 
     String getSchemaDefinitionName() {
         return "OmniSRC_" + qualifiedName + "_Schema"
+    }
+
+    String getFullSchemaDefinition(String version) {
+        if (this == OmniSRC) {
+            return Resources.toString(Resources.getResource(
+                    "schema/omnilingual/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
+        } else {
+            return Resources.toString(Resources.getResource(
+                    "schema/unilingual/" + key() + "/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
+        }
     }
 
     boolean isValidExtension(String extension) {
