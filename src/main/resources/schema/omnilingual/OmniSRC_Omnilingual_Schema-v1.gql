@@ -10785,252 +10785,256 @@ RubyZsuperArtifact sub RubySourceArtifact
 	plays UNANNOTATED;
 
 ##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
 
 #####----- Omnilingual -----#####
-args_relation sub relationship
+args_relation sub parent_child_relation
 	relates is_args_relation, relates has_args_relation;
-is_args_relation sub role;
-has_args_relation sub role;
+is_args_relation sub is_parent;
+has_args_relation sub is_child;
 
-arguments_relation sub relationship
+arguments_relation sub parent_child_relation
 	relates is_arguments_relation, relates has_arguments_relation;
-is_arguments_relation sub role;
-has_arguments_relation sub role;
+is_arguments_relation sub is_parent;
+has_arguments_relation sub is_child;
 
-begin_relation sub relationship
+begin_relation sub parent_child_relation
 	relates is_begin_relation, relates has_begin_relation;
-is_begin_relation sub role;
-has_begin_relation sub role;
+is_begin_relation sub is_parent;
+has_begin_relation sub is_child;
 
-body_relation sub relationship
+body_relation sub parent_child_relation
 	relates is_body_relation, relates has_body_relation;
-is_body_relation sub role;
-has_body_relation sub role;
+is_body_relation sub is_parent;
+has_body_relation sub is_child;
 
-bound_relation sub relationship
+bound_relation sub parent_child_relation
 	relates is_bound_relation, relates has_bound_relation;
-is_bound_relation sub role;
-has_bound_relation sub role;
+is_bound_relation sub is_parent;
+has_bound_relation sub is_child;
 
-cases_relation sub relationship
+cases_relation sub parent_child_relation
 	relates is_cases_relation, relates has_cases_relation;
-is_cases_relation sub role;
-has_cases_relation sub role;
+is_cases_relation sub is_parent;
+has_cases_relation sub is_child;
 
-children_relation sub relationship
+children_relation sub parent_child_relation
 	relates is_children_relation, relates has_children_relation;
-is_children_relation sub role;
-has_children_relation sub role;
+is_children_relation sub is_parent;
+has_children_relation sub is_child;
 
-class_relation sub relationship
+class_relation sub parent_child_relation
 	relates is_class_relation, relates has_class_relation;
-is_class_relation sub role;
-has_class_relation sub role;
+is_class_relation sub is_parent;
+has_class_relation sub is_child;
 
-comments_relation sub relationship
+comments_relation sub parent_child_relation
 	relates is_comments_relation, relates has_comments_relation;
-is_comments_relation sub role;
-has_comments_relation sub role;
+is_comments_relation sub is_parent;
+has_comments_relation sub is_child;
 
-cond_relation sub relationship
+cond_relation sub parent_child_relation
 	relates is_cond_relation, relates has_cond_relation;
-is_cond_relation sub role;
-has_cond_relation sub role;
+is_cond_relation sub is_parent;
+has_cond_relation sub is_child;
 
-declaration_relation sub relationship
+declaration_relation sub parent_child_relation
 	relates is_declaration_relation, relates has_declaration_relation;
-is_declaration_relation sub role;
-has_declaration_relation sub role;
+is_declaration_relation sub is_parent;
+has_declaration_relation sub is_child;
 
-default_relation sub relationship
+default_relation sub parent_child_relation
 	relates is_default_relation, relates has_default_relation;
-is_default_relation sub role;
-has_default_relation sub role;
+is_default_relation sub is_parent;
+has_default_relation sub is_child;
 
-element_type_relation sub relationship
+element_type_relation sub parent_child_relation
 	relates is_element_type_relation, relates has_element_type_relation;
-is_element_type_relation sub role;
-has_element_type_relation sub role;
+is_element_type_relation sub is_parent;
+has_element_type_relation sub is_child;
 
-else_relation sub relationship
+else_relation sub parent_child_relation
 	relates is_else_relation, relates has_else_relation;
-is_else_relation sub role;
-has_else_relation sub role;
+is_else_relation sub is_parent;
+has_else_relation sub is_child;
 
-elt_relation sub relationship
+elt_relation sub parent_child_relation
 	relates is_elt_relation, relates has_elt_relation;
-is_elt_relation sub role;
-has_elt_relation sub role;
+is_elt_relation sub is_parent;
+has_elt_relation sub is_child;
 
-elts_relation sub relationship
+elts_relation sub parent_child_relation
 	relates is_elts_relation, relates has_elts_relation;
-is_elts_relation sub role;
-has_elts_relation sub role;
+is_elts_relation sub is_parent;
+has_elts_relation sub is_child;
 
-expression_relation sub relationship
+expression_relation sub parent_child_relation
 	relates is_expression_relation, relates has_expression_relation;
-is_expression_relation sub role;
-has_expression_relation sub role;
+is_expression_relation sub is_parent;
+has_expression_relation sub is_child;
 
-expressions_relation sub relationship
+expressions_relation sub parent_child_relation
 	relates is_expressions_relation, relates has_expressions_relation;
-is_expressions_relation sub role;
-has_expressions_relation sub role;
+is_expressions_relation sub is_parent;
+has_expressions_relation sub is_child;
 
-finally_relation sub relationship
+finally_relation sub parent_child_relation
 	relates is_finally_relation, relates has_finally_relation;
-is_finally_relation sub role;
-has_finally_relation sub role;
+is_finally_relation sub is_parent;
+has_finally_relation sub is_child;
 
-func_relation sub relationship
+func_relation sub parent_child_relation
 	relates is_func_relation, relates has_func_relation;
-is_func_relation sub role;
-has_func_relation sub role;
+is_func_relation sub is_parent;
+has_func_relation sub is_child;
 
-handlers_relation sub relationship
+handlers_relation sub parent_child_relation
 	relates is_handlers_relation, relates has_handlers_relation;
-is_handlers_relation sub role;
-has_handlers_relation sub role;
+is_handlers_relation sub is_parent;
+has_handlers_relation sub is_child;
 
-if_relation sub relationship
+if_relation sub parent_child_relation
 	relates is_if_relation, relates has_if_relation;
-is_if_relation sub role;
-has_if_relation sub role;
+is_if_relation sub is_parent;
+has_if_relation sub is_child;
 
-implements_relation sub relationship
+implements_relation sub parent_child_relation
 	relates is_implements_relation, relates has_implements_relation;
-is_implements_relation sub role;
-has_implements_relation sub role;
+is_implements_relation sub is_parent;
+has_implements_relation sub is_child;
 
-imports_relation sub relationship
+imports_relation sub parent_child_relation
 	relates is_imports_relation, relates has_imports_relation;
-is_imports_relation sub role;
-has_imports_relation sub role;
+is_imports_relation sub is_parent;
+has_imports_relation sub is_child;
 
-index_relation sub relationship
+index_relation sub parent_child_relation
 	relates is_index_relation, relates has_index_relation;
-is_index_relation sub role;
-has_index_relation sub role;
+is_index_relation sub is_parent;
+has_index_relation sub is_child;
 
-init_relation sub relationship
+init_relation sub parent_child_relation
 	relates is_init_relation, relates has_init_relation;
-is_init_relation sub role;
-has_init_relation sub role;
+is_init_relation sub is_parent;
+has_init_relation sub is_child;
 
-items_relation sub relationship
+items_relation sub parent_child_relation
 	relates is_items_relation, relates has_items_relation;
-is_items_relation sub role;
-has_items_relation sub role;
+is_items_relation sub is_parent;
+has_items_relation sub is_child;
 
-key_relation sub relationship
+key_relation sub parent_child_relation
 	relates is_key_relation, relates has_key_relation;
-is_key_relation sub role;
-has_key_relation sub role;
+is_key_relation sub is_parent;
+has_key_relation sub is_child;
 
-label_relation sub relationship
+label_relation sub parent_child_relation
 	relates is_label_relation, relates has_label_relation;
-is_label_relation sub role;
-has_label_relation sub role;
+is_label_relation sub is_parent;
+has_label_relation sub is_child;
 
-left_relation sub relationship
+left_relation sub parent_child_relation
 	relates is_left_relation, relates has_left_relation;
-is_left_relation sub role;
-has_left_relation sub role;
+is_left_relation sub is_parent;
+has_left_relation sub is_child;
 
-name_relation sub relationship
+name_relation sub parent_child_relation
 	relates is_name_relation, relates has_name_relation;
-is_name_relation sub role;
-has_name_relation sub role;
+is_name_relation sub is_parent;
+has_name_relation sub is_child;
 
-names_relation sub relationship
+names_relation sub parent_child_relation
 	relates is_names_relation, relates has_names_relation;
-is_names_relation sub role;
-has_names_relation sub role;
+is_names_relation sub is_parent;
+has_names_relation sub is_child;
 
-object_relation sub relationship
+object_relation sub parent_child_relation
 	relates is_object_relation, relates has_object_relation;
-is_object_relation sub role;
-has_object_relation sub role;
+is_object_relation sub is_parent;
+has_object_relation sub is_child;
 
-op_relation sub relationship
+op_relation sub parent_child_relation
 	relates is_op_relation, relates has_op_relation;
-is_op_relation sub role;
-has_op_relation sub role;
+is_op_relation sub is_parent;
+has_op_relation sub is_child;
 
-operand_relation sub relationship
+operand_relation sub parent_child_relation
 	relates is_operand_relation, relates has_operand_relation;
-is_operand_relation sub role;
-has_operand_relation sub role;
+is_operand_relation sub is_parent;
+has_operand_relation sub is_child;
 
-operator_relation sub relationship
+operator_relation sub parent_child_relation
 	relates is_operator_relation, relates has_operator_relation;
-is_operator_relation sub role;
-has_operator_relation sub role;
+is_operator_relation sub is_parent;
+has_operator_relation sub is_child;
 
-package_relation sub relationship
+package_relation sub parent_child_relation
 	relates is_package_relation, relates has_package_relation;
-is_package_relation sub role;
-has_package_relation sub role;
+is_package_relation sub is_parent;
+has_package_relation sub is_child;
 
-params_relation sub relationship
+params_relation sub parent_child_relation
 	relates is_params_relation, relates has_params_relation;
-is_params_relation sub role;
-has_params_relation sub role;
+is_params_relation sub is_parent;
+has_params_relation sub is_child;
 
-return_type_relation sub relationship
+return_type_relation sub parent_child_relation
 	relates is_return_type_relation, relates has_return_type_relation;
-is_return_type_relation sub role;
-has_return_type_relation sub role;
+is_return_type_relation sub is_parent;
+has_return_type_relation sub is_child;
 
-right_relation sub relationship
+right_relation sub parent_child_relation
 	relates is_right_relation, relates has_right_relation;
-is_right_relation sub role;
-has_right_relation sub role;
+is_right_relation sub is_parent;
+has_right_relation sub is_child;
 
-tag_relation sub relationship
+tag_relation sub parent_child_relation
 	relates is_tag_relation, relates has_tag_relation;
-is_tag_relation sub role;
-has_tag_relation sub role;
+is_tag_relation sub is_parent;
+has_tag_relation sub is_child;
 
-target_relation sub relationship
+target_relation sub parent_child_relation
 	relates is_target_relation, relates has_target_relation;
-is_target_relation sub role;
-has_target_relation sub role;
+is_target_relation sub is_parent;
+has_target_relation sub is_child;
 
-targets_relation sub relationship
+targets_relation sub parent_child_relation
 	relates is_targets_relation, relates has_targets_relation;
-is_targets_relation sub role;
-has_targets_relation sub role;
+is_targets_relation sub is_parent;
+has_targets_relation sub is_child;
 
-test_relation sub relationship
+test_relation sub parent_child_relation
 	relates is_test_relation, relates has_test_relation;
-is_test_relation sub role;
-has_test_relation sub role;
+is_test_relation sub is_parent;
+has_test_relation sub is_child;
 
-type_parameters_relation sub relationship
+type_parameters_relation sub parent_child_relation
 	relates is_type_parameters_relation, relates has_type_parameters_relation;
-is_type_parameters_relation sub role;
-has_type_parameters_relation sub role;
+is_type_parameters_relation sub is_parent;
+has_type_parameters_relation sub is_child;
 
-type_relation sub relationship
+type_relation sub parent_child_relation
 	relates is_type_relation, relates has_type_relation;
-is_type_relation sub role;
-has_type_relation sub role;
+is_type_relation sub is_parent;
+has_type_relation sub is_child;
 
-types_relation sub relationship
+types_relation sub parent_child_relation
 	relates is_types_relation, relates has_types_relation;
-is_types_relation sub role;
-has_types_relation sub role;
+is_types_relation sub is_parent;
+has_types_relation sub is_child;
 
-value_relation sub relationship
+value_relation sub parent_child_relation
 	relates is_value_relation, relates has_value_relation;
-is_value_relation sub role;
-has_value_relation sub role;
+is_value_relation sub is_parent;
+has_value_relation sub is_child;
 
-values_relation sub relationship
+values_relation sub parent_child_relation
 	relates is_values_relation, relates has_values_relation;
-is_values_relation sub role;
-has_values_relation sub role;
+is_values_relation sub is_parent;
+has_values_relation sub is_child;
 
 #####----- Go -----#####
 go_args_relation sub args_relation
@@ -11038,15 +11042,15 @@ go_args_relation sub args_relation
 is_go_args_relation sub is_args_relation;
 has_go_args_relation sub has_args_relation;
 
-go_arrow_relation sub relationship
+go_arrow_relation sub parent_child_relation
 	relates is_go_arrow_relation, relates has_go_arrow_relation;
-is_go_arrow_relation sub role;
-has_go_arrow_relation sub role;
+is_go_arrow_relation sub is_parent;
+has_go_arrow_relation sub is_child;
 
-go_assign_relation sub relationship
+go_assign_relation sub parent_child_relation
 	relates is_go_assign_relation, relates has_go_assign_relation;
-is_go_assign_relation sub role;
-has_go_assign_relation sub role;
+is_go_assign_relation sub is_parent;
+has_go_assign_relation sub is_child;
 
 go_begin_relation sub begin_relation
 	relates is_go_begin_relation, relates has_go_begin_relation;
@@ -11058,40 +11062,40 @@ go_body_relation sub body_relation
 is_go_body_relation sub is_body_relation;
 has_go_body_relation sub has_body_relation;
 
-go_call_relation sub relationship
+go_call_relation sub parent_child_relation
 	relates is_go_call_relation, relates has_go_call_relation;
-is_go_call_relation sub role;
-has_go_call_relation sub role;
+is_go_call_relation sub is_parent;
+has_go_call_relation sub is_child;
 
-go_case_relation sub relationship
+go_case_relation sub parent_child_relation
 	relates is_go_case_relation, relates has_go_case_relation;
-is_go_case_relation sub role;
-has_go_case_relation sub role;
+is_go_case_relation sub is_parent;
+has_go_case_relation sub is_child;
 
-go_chan_relation sub relationship
+go_chan_relation sub parent_child_relation
 	relates is_go_chan_relation, relates has_go_chan_relation;
-is_go_chan_relation sub role;
-has_go_chan_relation sub role;
+is_go_chan_relation sub is_parent;
+has_go_chan_relation sub is_child;
 
-go_closing_relation sub relationship
+go_closing_relation sub parent_child_relation
 	relates is_go_closing_relation, relates has_go_closing_relation;
-is_go_closing_relation sub role;
-has_go_closing_relation sub role;
+is_go_closing_relation sub is_parent;
+has_go_closing_relation sub is_child;
 
-go_colon_relation sub relationship
+go_colon_relation sub parent_child_relation
 	relates is_go_colon_relation, relates has_go_colon_relation;
-is_go_colon_relation sub role;
-has_go_colon_relation sub role;
+is_go_colon_relation sub is_parent;
+has_go_colon_relation sub is_child;
 
-go_comm_relation sub relationship
+go_comm_relation sub parent_child_relation
 	relates is_go_comm_relation, relates has_go_comm_relation;
-is_go_comm_relation sub role;
-has_go_comm_relation sub role;
+is_go_comm_relation sub is_parent;
+has_go_comm_relation sub is_child;
 
-go_comment_relation sub relationship
+go_comment_relation sub parent_child_relation
 	relates is_go_comment_relation, relates has_go_comment_relation;
-is_go_comment_relation sub role;
-has_go_comment_relation sub role;
+is_go_comment_relation sub is_parent;
+has_go_comment_relation sub is_child;
 
 go_comments_relation sub comments_relation
 	relates is_go_comments_relation, relates has_go_comments_relation;
@@ -11103,30 +11107,30 @@ go_cond_relation sub cond_relation
 is_go_cond_relation sub is_cond_relation;
 has_go_cond_relation sub has_cond_relation;
 
-go_decl_relation sub relationship
+go_decl_relation sub parent_child_relation
 	relates is_go_decl_relation, relates has_go_decl_relation;
-is_go_decl_relation sub role;
-has_go_decl_relation sub role;
+is_go_decl_relation sub is_parent;
+has_go_decl_relation sub is_child;
 
-go_decls_relation sub relationship
+go_decls_relation sub parent_child_relation
 	relates is_go_decls_relation, relates has_go_decls_relation;
-is_go_decls_relation sub role;
-has_go_decls_relation sub role;
+is_go_decls_relation sub is_parent;
+has_go_decls_relation sub is_child;
 
-go_defer_relation sub relationship
+go_defer_relation sub parent_child_relation
 	relates is_go_defer_relation, relates has_go_defer_relation;
-is_go_defer_relation sub role;
-has_go_defer_relation sub role;
+is_go_defer_relation sub is_parent;
+has_go_defer_relation sub is_child;
 
-go_doc_relation sub relationship
+go_doc_relation sub parent_child_relation
 	relates is_go_doc_relation, relates has_go_doc_relation;
-is_go_doc_relation sub role;
-has_go_doc_relation sub role;
+is_go_doc_relation sub is_parent;
+has_go_doc_relation sub is_child;
 
-go_ellipsis_relation sub relationship
+go_ellipsis_relation sub parent_child_relation
 	relates is_go_ellipsis_relation, relates has_go_ellipsis_relation;
-is_go_ellipsis_relation sub role;
-has_go_ellipsis_relation sub role;
+is_go_ellipsis_relation sub is_parent;
+has_go_ellipsis_relation sub is_child;
 
 go_else_relation sub else_relation
 	relates is_go_else_relation, relates has_go_else_relation;
@@ -11143,40 +11147,40 @@ go_elts_relation sub elts_relation
 is_go_elts_relation sub is_elts_relation;
 has_go_elts_relation sub has_elts_relation;
 
-go_end_pos_relation sub relationship
+go_end_pos_relation sub parent_child_relation
 	relates is_go_end_pos_relation, relates has_go_end_pos_relation;
-is_go_end_pos_relation sub role;
-has_go_end_pos_relation sub role;
+is_go_end_pos_relation sub is_parent;
+has_go_end_pos_relation sub is_child;
 
-go_fields_relation sub relationship
+go_fields_relation sub parent_child_relation
 	relates is_go_fields_relation, relates has_go_fields_relation;
-is_go_fields_relation sub role;
-has_go_fields_relation sub role;
+is_go_fields_relation sub is_parent;
+has_go_fields_relation sub is_child;
 
-go_for_relation sub relationship
+go_for_relation sub parent_child_relation
 	relates is_go_for_relation, relates has_go_for_relation;
-is_go_for_relation sub role;
-has_go_for_relation sub role;
+is_go_for_relation sub is_parent;
+has_go_for_relation sub is_child;
 
-go_fun_relation sub relationship
+go_fun_relation sub parent_child_relation
 	relates is_go_fun_relation, relates has_go_fun_relation;
-is_go_fun_relation sub role;
-has_go_fun_relation sub role;
+is_go_fun_relation sub is_parent;
+has_go_fun_relation sub is_child;
 
 go_func_relation sub func_relation
 	relates is_go_func_relation, relates has_go_func_relation;
 is_go_func_relation sub is_func_relation;
 has_go_func_relation sub has_func_relation;
 
-go_go_relation sub relationship
+go_go_relation sub parent_child_relation
 	relates is_go_go_relation, relates has_go_go_relation;
-is_go_go_relation sub role;
-has_go_go_relation sub role;
+is_go_go_relation sub is_parent;
+has_go_go_relation sub is_child;
 
-go_high_relation sub relationship
+go_high_relation sub parent_child_relation
 	relates is_go_high_relation, relates has_go_high_relation;
-is_go_high_relation sub role;
-has_go_high_relation sub role;
+is_go_high_relation sub is_parent;
+has_go_high_relation sub is_child;
 
 go_if_relation sub if_relation
 	relates is_go_if_relation, relates has_go_if_relation;
@@ -11198,10 +11202,10 @@ go_init_relation sub init_relation
 is_go_init_relation sub is_init_relation;
 has_go_init_relation sub has_init_relation;
 
-go_interface_relation sub relationship
+go_interface_relation sub parent_child_relation
 	relates is_go_interface_relation, relates has_go_interface_relation;
-is_go_interface_relation sub role;
-has_go_interface_relation sub role;
+is_go_interface_relation sub is_parent;
+has_go_interface_relation sub is_child;
 
 go_key_relation sub key_relation
 	relates is_go_key_relation, relates has_go_key_relation;
@@ -11213,60 +11217,60 @@ go_label_relation sub label_relation
 is_go_label_relation sub is_label_relation;
 has_go_label_relation sub has_label_relation;
 
-go_lbrace_relation sub relationship
+go_lbrace_relation sub parent_child_relation
 	relates is_go_lbrace_relation, relates has_go_lbrace_relation;
-is_go_lbrace_relation sub role;
-has_go_lbrace_relation sub role;
+is_go_lbrace_relation sub is_parent;
+has_go_lbrace_relation sub is_child;
 
-go_lbrack_relation sub relationship
+go_lbrack_relation sub parent_child_relation
 	relates is_go_lbrack_relation, relates has_go_lbrack_relation;
-is_go_lbrack_relation sub role;
-has_go_lbrack_relation sub role;
+is_go_lbrack_relation sub is_parent;
+has_go_lbrack_relation sub is_child;
 
-go_len_relation sub relationship
+go_len_relation sub parent_child_relation
 	relates is_go_len_relation, relates has_go_len_relation;
-is_go_len_relation sub role;
-has_go_len_relation sub role;
+is_go_len_relation sub is_parent;
+has_go_len_relation sub is_child;
 
-go_lhs_relation sub relationship
+go_lhs_relation sub parent_child_relation
 	relates is_go_lhs_relation, relates has_go_lhs_relation;
-is_go_lhs_relation sub role;
-has_go_lhs_relation sub role;
+is_go_lhs_relation sub is_parent;
+has_go_lhs_relation sub is_child;
 
-go_list_relation sub relationship
+go_list_relation sub parent_child_relation
 	relates is_go_list_relation, relates has_go_list_relation;
-is_go_list_relation sub role;
-has_go_list_relation sub role;
+is_go_list_relation sub is_parent;
+has_go_list_relation sub is_child;
 
-go_low_relation sub relationship
+go_low_relation sub parent_child_relation
 	relates is_go_low_relation, relates has_go_low_relation;
-is_go_low_relation sub role;
-has_go_low_relation sub role;
+is_go_low_relation sub is_parent;
+has_go_low_relation sub is_child;
 
-go_lparen_relation sub relationship
+go_lparen_relation sub parent_child_relation
 	relates is_go_lparen_relation, relates has_go_lparen_relation;
-is_go_lparen_relation sub role;
-has_go_lparen_relation sub role;
+is_go_lparen_relation sub is_parent;
+has_go_lparen_relation sub is_child;
 
-go_map_relation sub relationship
+go_map_relation sub parent_child_relation
 	relates is_go_map_relation, relates has_go_map_relation;
-is_go_map_relation sub role;
-has_go_map_relation sub role;
+is_go_map_relation sub is_parent;
+has_go_map_relation sub is_child;
 
-go_max_relation sub relationship
+go_max_relation sub parent_child_relation
 	relates is_go_max_relation, relates has_go_max_relation;
-is_go_max_relation sub role;
-has_go_max_relation sub role;
+is_go_max_relation sub is_parent;
+has_go_max_relation sub is_child;
 
-go_methods_relation sub relationship
+go_methods_relation sub parent_child_relation
 	relates is_go_methods_relation, relates has_go_methods_relation;
-is_go_methods_relation sub role;
-has_go_methods_relation sub role;
+is_go_methods_relation sub is_parent;
+has_go_methods_relation sub is_child;
 
-go_name_pos_relation sub relationship
+go_name_pos_relation sub parent_child_relation
 	relates is_go_name_pos_relation, relates has_go_name_pos_relation;
-is_go_name_pos_relation sub role;
-has_go_name_pos_relation sub role;
+is_go_name_pos_relation sub is_parent;
+has_go_name_pos_relation sub is_child;
 
 go_name_relation sub name_relation
 	relates is_go_name_relation, relates has_go_name_relation;
@@ -11278,20 +11282,20 @@ go_names_relation sub names_relation
 is_go_names_relation sub is_names_relation;
 has_go_names_relation sub has_names_relation;
 
-go_op_pos_relation sub relationship
+go_op_pos_relation sub parent_child_relation
 	relates is_go_op_pos_relation, relates has_go_op_pos_relation;
-is_go_op_pos_relation sub role;
-has_go_op_pos_relation sub role;
+is_go_op_pos_relation sub is_parent;
+has_go_op_pos_relation sub is_child;
 
 go_op_relation sub op_relation
 	relates is_go_op_relation, relates has_go_op_relation;
 is_go_op_relation sub is_op_relation;
 has_go_op_relation sub has_op_relation;
 
-go_opening_relation sub relationship
+go_opening_relation sub parent_child_relation
 	relates is_go_opening_relation, relates has_go_opening_relation;
-is_go_opening_relation sub role;
-has_go_opening_relation sub role;
+is_go_opening_relation sub is_parent;
+has_go_opening_relation sub is_child;
 
 go_package_relation sub package_relation
 	relates is_go_package_relation, relates has_go_package_relation;
@@ -11303,115 +11307,115 @@ go_params_relation sub params_relation
 is_go_params_relation sub is_params_relation;
 has_go_params_relation sub has_params_relation;
 
-go_path_relation sub relationship
+go_path_relation sub parent_child_relation
 	relates is_go_path_relation, relates has_go_path_relation;
-is_go_path_relation sub role;
-has_go_path_relation sub role;
+is_go_path_relation sub is_parent;
+has_go_path_relation sub is_child;
 
-go_post_relation sub relationship
+go_post_relation sub parent_child_relation
 	relates is_go_post_relation, relates has_go_post_relation;
-is_go_post_relation sub role;
-has_go_post_relation sub role;
+is_go_post_relation sub is_parent;
+has_go_post_relation sub is_child;
 
-go_rbrace_relation sub relationship
+go_rbrace_relation sub parent_child_relation
 	relates is_go_rbrace_relation, relates has_go_rbrace_relation;
-is_go_rbrace_relation sub role;
-has_go_rbrace_relation sub role;
+is_go_rbrace_relation sub is_parent;
+has_go_rbrace_relation sub is_child;
 
-go_rbrack_relation sub relationship
+go_rbrack_relation sub parent_child_relation
 	relates is_go_rbrack_relation, relates has_go_rbrack_relation;
-is_go_rbrack_relation sub role;
-has_go_rbrack_relation sub role;
+is_go_rbrack_relation sub is_parent;
+has_go_rbrack_relation sub is_child;
 
-go_recv_relation sub relationship
+go_recv_relation sub parent_child_relation
 	relates is_go_recv_relation, relates has_go_recv_relation;
-is_go_recv_relation sub role;
-has_go_recv_relation sub role;
+is_go_recv_relation sub is_parent;
+has_go_recv_relation sub is_child;
 
-go_results_relation sub relationship
+go_results_relation sub parent_child_relation
 	relates is_go_results_relation, relates has_go_results_relation;
-is_go_results_relation sub role;
-has_go_results_relation sub role;
+is_go_results_relation sub is_parent;
+has_go_results_relation sub is_child;
 
-go_return_relation sub relationship
+go_return_relation sub parent_child_relation
 	relates is_go_return_relation, relates has_go_return_relation;
-is_go_return_relation sub role;
-has_go_return_relation sub role;
+is_go_return_relation sub is_parent;
+has_go_return_relation sub is_child;
 
-go_rhs_relation sub relationship
+go_rhs_relation sub parent_child_relation
 	relates is_go_rhs_relation, relates has_go_rhs_relation;
-is_go_rhs_relation sub role;
-has_go_rhs_relation sub role;
+is_go_rhs_relation sub is_parent;
+has_go_rhs_relation sub is_child;
 
-go_rparen_relation sub relationship
+go_rparen_relation sub parent_child_relation
 	relates is_go_rparen_relation, relates has_go_rparen_relation;
-is_go_rparen_relation sub role;
-has_go_rparen_relation sub role;
+is_go_rparen_relation sub is_parent;
+has_go_rparen_relation sub is_child;
 
-go_sel_relation sub relationship
+go_sel_relation sub parent_child_relation
 	relates is_go_sel_relation, relates has_go_sel_relation;
-is_go_sel_relation sub role;
-has_go_sel_relation sub role;
+is_go_sel_relation sub is_parent;
+has_go_sel_relation sub is_child;
 
-go_select_relation sub relationship
+go_select_relation sub parent_child_relation
 	relates is_go_select_relation, relates has_go_select_relation;
-is_go_select_relation sub role;
-has_go_select_relation sub role;
+is_go_select_relation sub is_parent;
+has_go_select_relation sub is_child;
 
-go_semicolon_relation sub relationship
+go_semicolon_relation sub parent_child_relation
 	relates is_go_semicolon_relation, relates has_go_semicolon_relation;
-is_go_semicolon_relation sub role;
-has_go_semicolon_relation sub role;
+is_go_semicolon_relation sub is_parent;
+has_go_semicolon_relation sub is_child;
 
-go_slash_relation sub relationship
+go_slash_relation sub parent_child_relation
 	relates is_go_slash_relation, relates has_go_slash_relation;
-is_go_slash_relation sub role;
-has_go_slash_relation sub role;
+is_go_slash_relation sub is_parent;
+has_go_slash_relation sub is_child;
 
-go_specs_relation sub relationship
+go_specs_relation sub parent_child_relation
 	relates is_go_specs_relation, relates has_go_specs_relation;
-is_go_specs_relation sub role;
-has_go_specs_relation sub role;
+is_go_specs_relation sub is_parent;
+has_go_specs_relation sub is_child;
 
-go_star_relation sub relationship
+go_star_relation sub parent_child_relation
 	relates is_go_star_relation, relates has_go_star_relation;
-is_go_star_relation sub role;
-has_go_star_relation sub role;
+is_go_star_relation sub is_parent;
+has_go_star_relation sub is_child;
 
-go_stmt_relation sub relationship
+go_stmt_relation sub parent_child_relation
 	relates is_go_stmt_relation, relates has_go_stmt_relation;
-is_go_stmt_relation sub role;
-has_go_stmt_relation sub role;
+is_go_stmt_relation sub is_parent;
+has_go_stmt_relation sub is_child;
 
-go_struct_relation sub relationship
+go_struct_relation sub parent_child_relation
 	relates is_go_struct_relation, relates has_go_struct_relation;
-is_go_struct_relation sub role;
-has_go_struct_relation sub role;
+is_go_struct_relation sub is_parent;
+has_go_struct_relation sub is_child;
 
-go_switch_relation sub relationship
+go_switch_relation sub parent_child_relation
 	relates is_go_switch_relation, relates has_go_switch_relation;
-is_go_switch_relation sub role;
-has_go_switch_relation sub role;
+is_go_switch_relation sub is_parent;
+has_go_switch_relation sub is_child;
 
 go_tag_relation sub tag_relation
 	relates is_go_tag_relation, relates has_go_tag_relation;
 is_go_tag_relation sub is_tag_relation;
 has_go_tag_relation sub has_tag_relation;
 
-go_tok_pos_relation sub relationship
+go_tok_pos_relation sub parent_child_relation
 	relates is_go_tok_pos_relation, relates has_go_tok_pos_relation;
-is_go_tok_pos_relation sub role;
-has_go_tok_pos_relation sub role;
+is_go_tok_pos_relation sub is_parent;
+has_go_tok_pos_relation sub is_child;
 
 go_type_relation sub type_relation
 	relates is_go_type_relation, relates has_go_type_relation;
 is_go_type_relation sub is_type_relation;
 has_go_type_relation sub has_type_relation;
 
-go_value_pos_relation sub relationship
+go_value_pos_relation sub parent_child_relation
 	relates is_go_value_pos_relation, relates has_go_value_pos_relation;
-is_go_value_pos_relation sub role;
-has_go_value_pos_relation sub role;
+is_go_value_pos_relation sub is_parent;
+has_go_value_pos_relation sub is_child;
 
 go_value_relation sub value_relation
 	relates is_go_value_relation, relates has_go_value_relation;
@@ -11423,36 +11427,36 @@ go_values_relation sub values_relation
 is_go_values_relation sub is_values_relation;
 has_go_values_relation sub has_values_relation;
 
-go_x_relation sub relationship
+go_x_relation sub parent_child_relation
 	relates is_go_x_relation, relates has_go_x_relation;
-is_go_x_relation sub role;
-has_go_x_relation sub role;
+is_go_x_relation sub is_parent;
+has_go_x_relation sub is_child;
 
-go_y_relation sub relationship
+go_y_relation sub parent_child_relation
 	relates is_go_y_relation, relates has_go_y_relation;
-is_go_y_relation sub role;
-has_go_y_relation sub role;
+is_go_y_relation sub is_parent;
+has_go_y_relation sub is_child;
 
 #####----- Java -----#####
-java_anonymous_class_declaration_relation sub relationship
+java_anonymous_class_declaration_relation sub parent_child_relation
 	relates is_java_anonymous_class_declaration_relation, relates has_java_anonymous_class_declaration_relation;
-is_java_anonymous_class_declaration_relation sub role;
-has_java_anonymous_class_declaration_relation sub role;
+is_java_anonymous_class_declaration_relation sub is_parent;
+has_java_anonymous_class_declaration_relation sub is_child;
 
 java_arguments_relation sub arguments_relation
 	relates is_java_arguments_relation, relates has_java_arguments_relation;
 is_java_arguments_relation sub is_arguments_relation;
 has_java_arguments_relation sub has_arguments_relation;
 
-java_array_relation sub relationship
+java_array_relation sub parent_child_relation
 	relates is_java_array_relation, relates has_java_array_relation;
-is_java_array_relation sub role;
-has_java_array_relation sub role;
+is_java_array_relation sub is_parent;
+has_java_array_relation sub is_child;
 
-java_body_declarations_relation sub relationship
+java_body_declarations_relation sub parent_child_relation
 	relates is_java_body_declarations_relation, relates has_java_body_declarations_relation;
-is_java_body_declarations_relation sub role;
-has_java_body_declarations_relation sub role;
+is_java_body_declarations_relation sub is_parent;
+has_java_body_declarations_relation sub is_child;
 
 java_body_relation sub body_relation
 	relates is_java_body_relation, relates has_java_body_relation;
@@ -11464,10 +11468,10 @@ java_bound_relation sub bound_relation
 is_java_bound_relation sub is_bound_relation;
 has_java_bound_relation sub has_bound_relation;
 
-java_catch_clauses_relation sub relationship
+java_catch_clauses_relation sub parent_child_relation
 	relates is_java_catch_clauses_relation, relates has_java_catch_clauses_relation;
-is_java_catch_clauses_relation sub role;
-has_java_catch_clauses_relation sub role;
+is_java_catch_clauses_relation sub is_parent;
+has_java_catch_clauses_relation sub is_child;
 
 java_comments_relation sub comments_relation
 	relates is_java_comments_relation, relates has_java_comments_relation;
@@ -11484,35 +11488,35 @@ java_default_relation sub default_relation
 is_java_default_relation sub is_default_relation;
 has_java_default_relation sub has_default_relation;
 
-java_dimensions_relation sub relationship
+java_dimensions_relation sub parent_child_relation
 	relates is_java_dimensions_relation, relates has_java_dimensions_relation;
-is_java_dimensions_relation sub role;
-has_java_dimensions_relation sub role;
+is_java_dimensions_relation sub is_parent;
+has_java_dimensions_relation sub is_child;
 
 java_element_type_relation sub element_type_relation
 	relates is_java_element_type_relation, relates has_java_element_type_relation;
 is_java_element_type_relation sub is_element_type_relation;
 has_java_element_type_relation sub has_element_type_relation;
 
-java_else_expression_relation sub relationship
+java_else_expression_relation sub parent_child_relation
 	relates is_java_else_expression_relation, relates has_java_else_expression_relation;
-is_java_else_expression_relation sub role;
-has_java_else_expression_relation sub role;
+is_java_else_expression_relation sub is_parent;
+has_java_else_expression_relation sub is_child;
 
-java_else_statement_relation sub relationship
+java_else_statement_relation sub parent_child_relation
 	relates is_java_else_statement_relation, relates has_java_else_statement_relation;
-is_java_else_statement_relation sub role;
-has_java_else_statement_relation sub role;
+is_java_else_statement_relation sub is_parent;
+has_java_else_statement_relation sub is_child;
 
-java_enum_constants_relation sub relationship
+java_enum_constants_relation sub parent_child_relation
 	relates is_java_enum_constants_relation, relates has_java_enum_constants_relation;
-is_java_enum_constants_relation sub role;
-has_java_enum_constants_relation sub role;
+is_java_enum_constants_relation sub is_parent;
+has_java_enum_constants_relation sub is_child;
 
-java_exception_relation sub relationship
+java_exception_relation sub parent_child_relation
 	relates is_java_exception_relation, relates has_java_exception_relation;
-is_java_exception_relation sub role;
-has_java_exception_relation sub role;
+is_java_exception_relation sub is_parent;
+has_java_exception_relation sub is_child;
 
 java_expression_relation sub expression_relation
 	relates is_java_expression_relation, relates has_java_expression_relation;
@@ -11524,25 +11528,25 @@ java_expressions_relation sub expressions_relation
 is_java_expressions_relation sub is_expressions_relation;
 has_java_expressions_relation sub has_expressions_relation;
 
-java_extended_operands_relation sub relationship
+java_extended_operands_relation sub parent_child_relation
 	relates is_java_extended_operands_relation, relates has_java_extended_operands_relation;
-is_java_extended_operands_relation sub role;
-has_java_extended_operands_relation sub role;
+is_java_extended_operands_relation sub is_parent;
+has_java_extended_operands_relation sub is_child;
 
-java_extra_dimensions2_relation sub relationship
+java_extra_dimensions2_relation sub parent_child_relation
 	relates is_java_extra_dimensions2_relation, relates has_java_extra_dimensions2_relation;
-is_java_extra_dimensions2_relation sub role;
-has_java_extra_dimensions2_relation sub role;
+is_java_extra_dimensions2_relation sub is_parent;
+has_java_extra_dimensions2_relation sub is_child;
 
 java_finally_relation sub finally_relation
 	relates is_java_finally_relation, relates has_java_finally_relation;
 is_java_finally_relation sub is_finally_relation;
 has_java_finally_relation sub has_finally_relation;
 
-java_fragments_relation sub relationship
+java_fragments_relation sub parent_child_relation
 	relates is_java_fragments_relation, relates has_java_fragments_relation;
-is_java_fragments_relation sub role;
-has_java_fragments_relation sub role;
+is_java_fragments_relation sub is_parent;
+has_java_fragments_relation sub is_child;
 
 java_imports_relation sub imports_relation
 	relates is_java_imports_relation, relates has_java_imports_relation;
@@ -11554,45 +11558,45 @@ java_index_relation sub index_relation
 is_java_index_relation sub is_index_relation;
 has_java_index_relation sub has_index_relation;
 
-java_initializer_relation sub relationship
+java_initializer_relation sub parent_child_relation
 	relates is_java_initializer_relation, relates has_java_initializer_relation;
-is_java_initializer_relation sub role;
-has_java_initializer_relation sub role;
+is_java_initializer_relation sub is_parent;
+has_java_initializer_relation sub is_child;
 
-java_initializers_relation sub relationship
+java_initializers_relation sub parent_child_relation
 	relates is_java_initializers_relation, relates has_java_initializers_relation;
-is_java_initializers_relation sub role;
-has_java_initializers_relation sub role;
+is_java_initializers_relation sub is_parent;
+has_java_initializers_relation sub is_child;
 
-java_javadoc_relation sub relationship
+java_javadoc_relation sub parent_child_relation
 	relates is_java_javadoc_relation, relates has_java_javadoc_relation;
-is_java_javadoc_relation sub role;
-has_java_javadoc_relation sub role;
+is_java_javadoc_relation sub is_parent;
+has_java_javadoc_relation sub is_child;
 
 java_label_relation sub label_relation
 	relates is_java_label_relation, relates has_java_label_relation;
 is_java_label_relation sub is_label_relation;
 has_java_label_relation sub has_label_relation;
 
-java_left_hand_side_relation sub relationship
+java_left_hand_side_relation sub parent_child_relation
 	relates is_java_left_hand_side_relation, relates has_java_left_hand_side_relation;
-is_java_left_hand_side_relation sub role;
-has_java_left_hand_side_relation sub role;
+is_java_left_hand_side_relation sub is_parent;
+has_java_left_hand_side_relation sub is_child;
 
-java_left_operand_relation sub relationship
+java_left_operand_relation sub parent_child_relation
 	relates is_java_left_operand_relation, relates has_java_left_operand_relation;
-is_java_left_operand_relation sub role;
-has_java_left_operand_relation sub role;
+is_java_left_operand_relation sub is_parent;
+has_java_left_operand_relation sub is_child;
 
-java_message_relation sub relationship
+java_message_relation sub parent_child_relation
 	relates is_java_message_relation, relates has_java_message_relation;
-is_java_message_relation sub role;
-has_java_message_relation sub role;
+is_java_message_relation sub is_parent;
+has_java_message_relation sub is_child;
 
-java_modifiers_relation sub relationship
+java_modifiers_relation sub parent_child_relation
 	relates is_java_modifiers_relation, relates has_java_modifiers_relation;
-is_java_modifiers_relation sub role;
-has_java_modifiers_relation sub role;
+is_java_modifiers_relation sub is_parent;
+has_java_modifiers_relation sub is_child;
 
 java_name_relation sub name_relation
 	relates is_java_name_relation, relates has_java_name_relation;
@@ -11614,90 +11618,90 @@ java_package_relation sub package_relation
 is_java_package_relation sub is_package_relation;
 has_java_package_relation sub has_package_relation;
 
-java_parameter_relation sub relationship
+java_parameter_relation sub parent_child_relation
 	relates is_java_parameter_relation, relates has_java_parameter_relation;
-is_java_parameter_relation sub role;
-has_java_parameter_relation sub role;
+is_java_parameter_relation sub is_parent;
+has_java_parameter_relation sub is_child;
 
-java_parameters_relation sub relationship
+java_parameters_relation sub parent_child_relation
 	relates is_java_parameters_relation, relates has_java_parameters_relation;
-is_java_parameters_relation sub role;
-has_java_parameters_relation sub role;
+is_java_parameters_relation sub is_parent;
+has_java_parameters_relation sub is_child;
 
-java_qualifier_relation sub relationship
+java_qualifier_relation sub parent_child_relation
 	relates is_java_qualifier_relation, relates has_java_qualifier_relation;
-is_java_qualifier_relation sub role;
-has_java_qualifier_relation sub role;
+is_java_qualifier_relation sub is_parent;
+has_java_qualifier_relation sub is_child;
 
-java_resources_relation sub relationship
+java_resources_relation sub parent_child_relation
 	relates is_java_resources_relation, relates has_java_resources_relation;
-is_java_resources_relation sub role;
-has_java_resources_relation sub role;
+is_java_resources_relation sub is_parent;
+has_java_resources_relation sub is_child;
 
-java_return_type2_relation sub relationship
+java_return_type2_relation sub parent_child_relation
 	relates is_java_return_type2_relation, relates has_java_return_type2_relation;
-is_java_return_type2_relation sub role;
-has_java_return_type2_relation sub role;
+is_java_return_type2_relation sub is_parent;
+has_java_return_type2_relation sub is_child;
 
-java_right_hand_side_relation sub relationship
+java_right_hand_side_relation sub parent_child_relation
 	relates is_java_right_hand_side_relation, relates has_java_right_hand_side_relation;
-is_java_right_hand_side_relation sub role;
-has_java_right_hand_side_relation sub role;
+is_java_right_hand_side_relation sub is_parent;
+has_java_right_hand_side_relation sub is_child;
 
-java_right_operand_relation sub relationship
+java_right_operand_relation sub parent_child_relation
 	relates is_java_right_operand_relation, relates has_java_right_operand_relation;
-is_java_right_operand_relation sub role;
-has_java_right_operand_relation sub role;
+is_java_right_operand_relation sub is_parent;
+has_java_right_operand_relation sub is_child;
 
-java_statements_relation sub relationship
+java_statements_relation sub parent_child_relation
 	relates is_java_statements_relation, relates has_java_statements_relation;
-is_java_statements_relation sub role;
-has_java_statements_relation sub role;
+is_java_statements_relation sub is_parent;
+has_java_statements_relation sub is_child;
 
-java_super_interface_types_relation sub relationship
+java_super_interface_types_relation sub parent_child_relation
 	relates is_java_super_interface_types_relation, relates has_java_super_interface_types_relation;
-is_java_super_interface_types_relation sub role;
-has_java_super_interface_types_relation sub role;
+is_java_super_interface_types_relation sub is_parent;
+has_java_super_interface_types_relation sub is_child;
 
-java_superclass_type_relation sub relationship
+java_superclass_type_relation sub parent_child_relation
 	relates is_java_superclass_type_relation, relates has_java_superclass_type_relation;
-is_java_superclass_type_relation sub role;
-has_java_superclass_type_relation sub role;
+is_java_superclass_type_relation sub is_parent;
+has_java_superclass_type_relation sub is_child;
 
-java_tags_relation sub relationship
+java_tags_relation sub parent_child_relation
 	relates is_java_tags_relation, relates has_java_tags_relation;
-is_java_tags_relation sub role;
-has_java_tags_relation sub role;
+is_java_tags_relation sub is_parent;
+has_java_tags_relation sub is_child;
 
-java_then_expression_relation sub relationship
+java_then_expression_relation sub parent_child_relation
 	relates is_java_then_expression_relation, relates has_java_then_expression_relation;
-is_java_then_expression_relation sub role;
-has_java_then_expression_relation sub role;
+is_java_then_expression_relation sub is_parent;
+has_java_then_expression_relation sub is_child;
 
-java_then_statement_relation sub relationship
+java_then_statement_relation sub parent_child_relation
 	relates is_java_then_statement_relation, relates has_java_then_statement_relation;
-is_java_then_statement_relation sub role;
-has_java_then_statement_relation sub role;
+is_java_then_statement_relation sub is_parent;
+has_java_then_statement_relation sub is_child;
 
-java_thrown_exception_types_relation sub relationship
+java_thrown_exception_types_relation sub parent_child_relation
 	relates is_java_thrown_exception_types_relation, relates has_java_thrown_exception_types_relation;
-is_java_thrown_exception_types_relation sub role;
-has_java_thrown_exception_types_relation sub role;
+is_java_thrown_exception_types_relation sub is_parent;
+has_java_thrown_exception_types_relation sub is_child;
 
-java_type_arguments_relation sub relationship
+java_type_arguments_relation sub parent_child_relation
 	relates is_java_type_arguments_relation, relates has_java_type_arguments_relation;
-is_java_type_arguments_relation sub role;
-has_java_type_arguments_relation sub role;
+is_java_type_arguments_relation sub is_parent;
+has_java_type_arguments_relation sub is_child;
 
-java_type_bounds_relation sub relationship
+java_type_bounds_relation sub parent_child_relation
 	relates is_java_type_bounds_relation, relates has_java_type_bounds_relation;
-is_java_type_bounds_relation sub role;
-has_java_type_bounds_relation sub role;
+is_java_type_bounds_relation sub is_parent;
+has_java_type_bounds_relation sub is_child;
 
-java_type_name_relation sub relationship
+java_type_name_relation sub parent_child_relation
 	relates is_java_type_name_relation, relates has_java_type_name_relation;
-is_java_type_name_relation sub role;
-has_java_type_name_relation sub role;
+is_java_type_name_relation sub is_parent;
+has_java_type_name_relation sub is_child;
 
 java_type_parameters_relation sub type_parameters_relation
 	relates is_java_type_parameters_relation, relates has_java_type_parameters_relation;
@@ -11714,10 +11718,10 @@ java_types_relation sub types_relation
 is_java_types_relation sub is_types_relation;
 has_java_types_relation sub has_types_relation;
 
-java_updaters_relation sub relationship
+java_updaters_relation sub parent_child_relation
 	relates is_java_updaters_relation, relates has_java_updaters_relation;
-is_java_updaters_relation sub role;
-has_java_updaters_relation sub role;
+is_java_updaters_relation sub is_parent;
+has_java_updaters_relation sub is_child;
 
 java_value_relation sub value_relation
 	relates is_java_value_relation, relates has_java_value_relation;
@@ -11730,30 +11734,30 @@ is_java_values_relation sub is_values_relation;
 has_java_values_relation sub has_values_relation;
 
 #####----- Javascript -----#####
-javascript_alternate_relation sub relationship
+javascript_alternate_relation sub parent_child_relation
 	relates is_javascript_alternate_relation, relates has_javascript_alternate_relation;
-is_javascript_alternate_relation sub role;
-has_javascript_alternate_relation sub role;
+is_javascript_alternate_relation sub is_parent;
+has_javascript_alternate_relation sub is_child;
 
-javascript_argument_relation sub relationship
+javascript_argument_relation sub parent_child_relation
 	relates is_javascript_argument_relation, relates has_javascript_argument_relation;
-is_javascript_argument_relation sub role;
-has_javascript_argument_relation sub role;
+is_javascript_argument_relation sub is_parent;
+has_javascript_argument_relation sub is_child;
 
 javascript_arguments_relation sub arguments_relation
 	relates is_javascript_arguments_relation, relates has_javascript_arguments_relation;
 is_javascript_arguments_relation sub is_arguments_relation;
 has_javascript_arguments_relation sub has_arguments_relation;
 
-javascript_attributes_relation sub relationship
+javascript_attributes_relation sub parent_child_relation
 	relates is_javascript_attributes_relation, relates has_javascript_attributes_relation;
-is_javascript_attributes_relation sub role;
-has_javascript_attributes_relation sub role;
+is_javascript_attributes_relation sub is_parent;
+has_javascript_attributes_relation sub is_child;
 
-javascript_block_relation sub relationship
+javascript_block_relation sub parent_child_relation
 	relates is_javascript_block_relation, relates has_javascript_block_relation;
-is_javascript_block_relation sub role;
-has_javascript_block_relation sub role;
+is_javascript_block_relation sub is_parent;
+has_javascript_block_relation sub is_child;
 
 javascript_body_relation sub body_relation
 	relates is_javascript_body_relation, relates has_javascript_body_relation;
@@ -11765,15 +11769,15 @@ javascript_bound_relation sub bound_relation
 is_javascript_bound_relation sub is_bound_relation;
 has_javascript_bound_relation sub has_bound_relation;
 
-javascript_call_properties_relation sub relationship
+javascript_call_properties_relation sub parent_child_relation
 	relates is_javascript_call_properties_relation, relates has_javascript_call_properties_relation;
-is_javascript_call_properties_relation sub role;
-has_javascript_call_properties_relation sub role;
+is_javascript_call_properties_relation sub is_parent;
+has_javascript_call_properties_relation sub is_child;
 
-javascript_callee_relation sub relationship
+javascript_callee_relation sub parent_child_relation
 	relates is_javascript_callee_relation, relates has_javascript_callee_relation;
-is_javascript_callee_relation sub role;
-has_javascript_callee_relation sub role;
+is_javascript_callee_relation sub is_parent;
+has_javascript_callee_relation sub is_child;
 
 javascript_cases_relation sub cases_relation
 	relates is_javascript_cases_relation, relates has_javascript_cases_relation;
@@ -11785,60 +11789,60 @@ javascript_children_relation sub children_relation
 is_javascript_children_relation sub is_children_relation;
 has_javascript_children_relation sub has_children_relation;
 
-javascript_closing_element_relation sub relationship
+javascript_closing_element_relation sub parent_child_relation
 	relates is_javascript_closing_element_relation, relates has_javascript_closing_element_relation;
-is_javascript_closing_element_relation sub role;
-has_javascript_closing_element_relation sub role;
+is_javascript_closing_element_relation sub is_parent;
+has_javascript_closing_element_relation sub is_child;
 
 javascript_comments_relation sub comments_relation
 	relates is_javascript_comments_relation, relates has_javascript_comments_relation;
 is_javascript_comments_relation sub is_comments_relation;
 has_javascript_comments_relation sub has_comments_relation;
 
-javascript_consequent_relation sub relationship
+javascript_consequent_relation sub parent_child_relation
 	relates is_javascript_consequent_relation, relates has_javascript_consequent_relation;
-is_javascript_consequent_relation sub role;
-has_javascript_consequent_relation sub role;
+is_javascript_consequent_relation sub is_parent;
+has_javascript_consequent_relation sub is_child;
 
 javascript_declaration_relation sub declaration_relation
 	relates is_javascript_declaration_relation, relates has_javascript_declaration_relation;
 is_javascript_declaration_relation sub is_declaration_relation;
 has_javascript_declaration_relation sub has_declaration_relation;
 
-javascript_declarations_relation sub relationship
+javascript_declarations_relation sub parent_child_relation
 	relates is_javascript_declarations_relation, relates has_javascript_declarations_relation;
-is_javascript_declarations_relation sub role;
-has_javascript_declarations_relation sub role;
+is_javascript_declarations_relation sub is_parent;
+has_javascript_declarations_relation sub is_child;
 
 javascript_default_relation sub default_relation
 	relates is_javascript_default_relation, relates has_javascript_default_relation;
 is_javascript_default_relation sub is_default_relation;
 has_javascript_default_relation sub has_default_relation;
 
-javascript_directives_relation sub relationship
+javascript_directives_relation sub parent_child_relation
 	relates is_javascript_directives_relation, relates has_javascript_directives_relation;
-is_javascript_directives_relation sub role;
-has_javascript_directives_relation sub role;
+is_javascript_directives_relation sub is_parent;
+has_javascript_directives_relation sub is_child;
 
-javascript_discriminant_relation sub relationship
+javascript_discriminant_relation sub parent_child_relation
 	relates is_javascript_discriminant_relation, relates has_javascript_discriminant_relation;
-is_javascript_discriminant_relation sub role;
-has_javascript_discriminant_relation sub role;
+is_javascript_discriminant_relation sub is_parent;
+has_javascript_discriminant_relation sub is_child;
 
 javascript_element_type_relation sub element_type_relation
 	relates is_javascript_element_type_relation, relates has_javascript_element_type_relation;
 is_javascript_element_type_relation sub is_element_type_relation;
 has_javascript_element_type_relation sub has_element_type_relation;
 
-javascript_elements_relation sub relationship
+javascript_elements_relation sub parent_child_relation
 	relates is_javascript_elements_relation, relates has_javascript_elements_relation;
-is_javascript_elements_relation sub role;
-has_javascript_elements_relation sub role;
+is_javascript_elements_relation sub is_parent;
+has_javascript_elements_relation sub is_child;
 
-javascript_exported_relation sub relationship
+javascript_exported_relation sub parent_child_relation
 	relates is_javascript_exported_relation, relates has_javascript_exported_relation;
-is_javascript_exported_relation sub role;
-has_javascript_exported_relation sub role;
+is_javascript_exported_relation sub is_parent;
+has_javascript_exported_relation sub is_child;
 
 javascript_expression_relation sub expression_relation
 	relates is_javascript_expression_relation, relates has_javascript_expression_relation;
@@ -11850,50 +11854,50 @@ javascript_expressions_relation sub expressions_relation
 is_javascript_expressions_relation sub is_expressions_relation;
 has_javascript_expressions_relation sub has_expressions_relation;
 
-javascript_finalizer_relation sub relationship
+javascript_finalizer_relation sub parent_child_relation
 	relates is_javascript_finalizer_relation, relates has_javascript_finalizer_relation;
-is_javascript_finalizer_relation sub role;
-has_javascript_finalizer_relation sub role;
+is_javascript_finalizer_relation sub is_parent;
+has_javascript_finalizer_relation sub is_child;
 
-javascript_handler_relation sub relationship
+javascript_handler_relation sub parent_child_relation
 	relates is_javascript_handler_relation, relates has_javascript_handler_relation;
-is_javascript_handler_relation sub role;
-has_javascript_handler_relation sub role;
+is_javascript_handler_relation sub is_parent;
+has_javascript_handler_relation sub is_child;
 
-javascript_id_relation sub relationship
+javascript_id_relation sub parent_child_relation
 	relates is_javascript_id_relation, relates has_javascript_id_relation;
-is_javascript_id_relation sub role;
-has_javascript_id_relation sub role;
+is_javascript_id_relation sub is_parent;
+has_javascript_id_relation sub is_child;
 
 javascript_implements_relation sub implements_relation
 	relates is_javascript_implements_relation, relates has_javascript_implements_relation;
 is_javascript_implements_relation sub is_implements_relation;
 has_javascript_implements_relation sub has_implements_relation;
 
-javascript_impltype_relation sub relationship
+javascript_impltype_relation sub parent_child_relation
 	relates is_javascript_impltype_relation, relates has_javascript_impltype_relation;
-is_javascript_impltype_relation sub role;
-has_javascript_impltype_relation sub role;
+is_javascript_impltype_relation sub is_parent;
+has_javascript_impltype_relation sub is_child;
 
-javascript_imported_relation sub relationship
+javascript_imported_relation sub parent_child_relation
 	relates is_javascript_imported_relation, relates has_javascript_imported_relation;
-is_javascript_imported_relation sub role;
-has_javascript_imported_relation sub role;
+is_javascript_imported_relation sub is_parent;
+has_javascript_imported_relation sub is_child;
 
-javascript_indexers_relation sub relationship
+javascript_indexers_relation sub parent_child_relation
 	relates is_javascript_indexers_relation, relates has_javascript_indexers_relation;
-is_javascript_indexers_relation sub role;
-has_javascript_indexers_relation sub role;
+is_javascript_indexers_relation sub is_parent;
+has_javascript_indexers_relation sub is_child;
 
 javascript_init_relation sub init_relation
 	relates is_javascript_init_relation, relates has_javascript_init_relation;
 is_javascript_init_relation sub is_init_relation;
 has_javascript_init_relation sub has_init_relation;
 
-javascript_inner_comments_relation sub relationship
+javascript_inner_comments_relation sub parent_child_relation
 	relates is_javascript_inner_comments_relation, relates has_javascript_inner_comments_relation;
-is_javascript_inner_comments_relation sub role;
-has_javascript_inner_comments_relation sub role;
+is_javascript_inner_comments_relation sub is_parent;
+has_javascript_inner_comments_relation sub is_child;
 
 javascript_key_relation sub key_relation
 	relates is_javascript_key_relation, relates has_javascript_key_relation;
@@ -11905,20 +11909,20 @@ javascript_label_relation sub label_relation
 is_javascript_label_relation sub is_label_relation;
 has_javascript_label_relation sub has_label_relation;
 
-javascript_leading_comments_relation sub relationship
+javascript_leading_comments_relation sub parent_child_relation
 	relates is_javascript_leading_comments_relation, relates has_javascript_leading_comments_relation;
-is_javascript_leading_comments_relation sub role;
-has_javascript_leading_comments_relation sub role;
+is_javascript_leading_comments_relation sub is_parent;
+has_javascript_leading_comments_relation sub is_child;
 
 javascript_left_relation sub left_relation
 	relates is_javascript_left_relation, relates has_javascript_left_relation;
 is_javascript_left_relation sub is_left_relation;
 has_javascript_left_relation sub has_left_relation;
 
-javascript_local_relation sub relationship
+javascript_local_relation sub parent_child_relation
 	relates is_javascript_local_relation, relates has_javascript_local_relation;
-is_javascript_local_relation sub role;
-has_javascript_local_relation sub role;
+is_javascript_local_relation sub is_parent;
+has_javascript_local_relation sub is_child;
 
 javascript_name_relation sub name_relation
 	relates is_javascript_name_relation, relates has_javascript_name_relation;
@@ -11930,60 +11934,60 @@ javascript_object_relation sub object_relation
 is_javascript_object_relation sub is_object_relation;
 has_javascript_object_relation sub has_object_relation;
 
-javascript_opening_element_relation sub relationship
+javascript_opening_element_relation sub parent_child_relation
 	relates is_javascript_opening_element_relation, relates has_javascript_opening_element_relation;
-is_javascript_opening_element_relation sub role;
-has_javascript_opening_element_relation sub role;
+is_javascript_opening_element_relation sub is_parent;
+has_javascript_opening_element_relation sub is_child;
 
 javascript_operator_relation sub operator_relation
 	relates is_javascript_operator_relation, relates has_javascript_operator_relation;
 is_javascript_operator_relation sub is_operator_relation;
 has_javascript_operator_relation sub has_operator_relation;
 
-javascript_param_relation sub relationship
+javascript_param_relation sub parent_child_relation
 	relates is_javascript_param_relation, relates has_javascript_param_relation;
-is_javascript_param_relation sub role;
-has_javascript_param_relation sub role;
+is_javascript_param_relation sub is_parent;
+has_javascript_param_relation sub is_child;
 
 javascript_params_relation sub params_relation
 	relates is_javascript_params_relation, relates has_javascript_params_relation;
 is_javascript_params_relation sub is_params_relation;
 has_javascript_params_relation sub has_params_relation;
 
-javascript_predicate_relation sub relationship
+javascript_predicate_relation sub parent_child_relation
 	relates is_javascript_predicate_relation, relates has_javascript_predicate_relation;
-is_javascript_predicate_relation sub role;
-has_javascript_predicate_relation sub role;
+is_javascript_predicate_relation sub is_parent;
+has_javascript_predicate_relation sub is_child;
 
-javascript_program_relation sub relationship
+javascript_program_relation sub parent_child_relation
 	relates is_javascript_program_relation, relates has_javascript_program_relation;
-is_javascript_program_relation sub role;
-has_javascript_program_relation sub role;
+is_javascript_program_relation sub is_parent;
+has_javascript_program_relation sub is_child;
 
-javascript_properties_relation sub relationship
+javascript_properties_relation sub parent_child_relation
 	relates is_javascript_properties_relation, relates has_javascript_properties_relation;
-is_javascript_properties_relation sub role;
-has_javascript_properties_relation sub role;
+is_javascript_properties_relation sub is_parent;
+has_javascript_properties_relation sub is_child;
 
-javascript_property_relation sub relationship
+javascript_property_relation sub parent_child_relation
 	relates is_javascript_property_relation, relates has_javascript_property_relation;
-is_javascript_property_relation sub role;
-has_javascript_property_relation sub role;
+is_javascript_property_relation sub is_parent;
+has_javascript_property_relation sub is_child;
 
-javascript_quasi_relation sub relationship
+javascript_quasi_relation sub parent_child_relation
 	relates is_javascript_quasi_relation, relates has_javascript_quasi_relation;
-is_javascript_quasi_relation sub role;
-has_javascript_quasi_relation sub role;
+is_javascript_quasi_relation sub is_parent;
+has_javascript_quasi_relation sub is_child;
 
-javascript_quasis_relation sub relationship
+javascript_quasis_relation sub parent_child_relation
 	relates is_javascript_quasis_relation, relates has_javascript_quasis_relation;
-is_javascript_quasis_relation sub role;
-has_javascript_quasis_relation sub role;
+is_javascript_quasis_relation sub is_parent;
+has_javascript_quasis_relation sub is_child;
 
-javascript_rest_relation sub relationship
+javascript_rest_relation sub parent_child_relation
 	relates is_javascript_rest_relation, relates has_javascript_rest_relation;
-is_javascript_rest_relation sub role;
-has_javascript_rest_relation sub role;
+is_javascript_rest_relation sub is_parent;
+has_javascript_rest_relation sub is_child;
 
 javascript_return_type_relation sub return_type_relation
 	relates is_javascript_return_type_relation, relates has_javascript_return_type_relation;
@@ -11995,25 +11999,25 @@ javascript_right_relation sub right_relation
 is_javascript_right_relation sub is_right_relation;
 has_javascript_right_relation sub has_right_relation;
 
-javascript_source_relation sub relationship
+javascript_source_relation sub parent_child_relation
 	relates is_javascript_source_relation, relates has_javascript_source_relation;
-is_javascript_source_relation sub role;
-has_javascript_source_relation sub role;
+is_javascript_source_relation sub is_parent;
+has_javascript_source_relation sub is_child;
 
-javascript_specifiers_relation sub relationship
+javascript_specifiers_relation sub parent_child_relation
 	relates is_javascript_specifiers_relation, relates has_javascript_specifiers_relation;
-is_javascript_specifiers_relation sub role;
-has_javascript_specifiers_relation sub role;
+is_javascript_specifiers_relation sub is_parent;
+has_javascript_specifiers_relation sub is_child;
 
-javascript_super_class_relation sub relationship
+javascript_super_class_relation sub parent_child_relation
 	relates is_javascript_super_class_relation, relates has_javascript_super_class_relation;
-is_javascript_super_class_relation sub role;
-has_javascript_super_class_relation sub role;
+is_javascript_super_class_relation sub is_parent;
+has_javascript_super_class_relation sub is_child;
 
-javascript_super_type_parameters_relation sub relationship
+javascript_super_type_parameters_relation sub parent_child_relation
 	relates is_javascript_super_type_parameters_relation, relates has_javascript_super_type_parameters_relation;
-is_javascript_super_type_parameters_relation sub role;
-has_javascript_super_type_parameters_relation sub role;
+is_javascript_super_type_parameters_relation sub is_parent;
+has_javascript_super_type_parameters_relation sub is_child;
 
 javascript_tag_relation sub tag_relation
 	relates is_javascript_tag_relation, relates has_javascript_tag_relation;
@@ -12025,15 +12029,15 @@ javascript_test_relation sub test_relation
 is_javascript_test_relation sub is_test_relation;
 has_javascript_test_relation sub has_test_relation;
 
-javascript_trailing_comments_relation sub relationship
+javascript_trailing_comments_relation sub parent_child_relation
 	relates is_javascript_trailing_comments_relation, relates has_javascript_trailing_comments_relation;
-is_javascript_trailing_comments_relation sub role;
-has_javascript_trailing_comments_relation sub role;
+is_javascript_trailing_comments_relation sub is_parent;
+has_javascript_trailing_comments_relation sub is_child;
 
-javascript_type_annotation_relation sub relationship
+javascript_type_annotation_relation sub parent_child_relation
 	relates is_javascript_type_annotation_relation, relates has_javascript_type_annotation_relation;
-is_javascript_type_annotation_relation sub role;
-has_javascript_type_annotation_relation sub role;
+is_javascript_type_annotation_relation sub is_parent;
+has_javascript_type_annotation_relation sub is_child;
 
 javascript_type_parameters_relation sub type_parameters_relation
 	relates is_javascript_type_parameters_relation, relates has_javascript_type_parameters_relation;
@@ -12045,26 +12049,26 @@ javascript_types_relation sub types_relation
 is_javascript_types_relation sub is_types_relation;
 has_javascript_types_relation sub has_types_relation;
 
-javascript_update_relation sub relationship
+javascript_update_relation sub parent_child_relation
 	relates is_javascript_update_relation, relates has_javascript_update_relation;
-is_javascript_update_relation sub role;
-has_javascript_update_relation sub role;
+is_javascript_update_relation sub is_parent;
+has_javascript_update_relation sub is_child;
 
 javascript_value_relation sub value_relation
 	relates is_javascript_value_relation, relates has_javascript_value_relation;
 is_javascript_value_relation sub is_value_relation;
 has_javascript_value_relation sub has_value_relation;
 
-javascript_variance_relation sub relationship
+javascript_variance_relation sub parent_child_relation
 	relates is_javascript_variance_relation, relates has_javascript_variance_relation;
-is_javascript_variance_relation sub role;
-has_javascript_variance_relation sub role;
+is_javascript_variance_relation sub is_parent;
+has_javascript_variance_relation sub is_child;
 
 #####----- Php -----#####
-php_adaptations_relation sub relationship
+php_adaptations_relation sub parent_child_relation
 	relates is_php_adaptations_relation, relates has_php_adaptations_relation;
-is_php_adaptations_relation sub role;
-has_php_adaptations_relation sub role;
+is_php_adaptations_relation sub is_parent;
+has_php_adaptations_relation sub is_child;
 
 php_args_relation sub args_relation
 	relates is_php_args_relation, relates has_php_args_relation;
@@ -12081,10 +12085,10 @@ php_cases_relation sub cases_relation
 is_php_cases_relation sub is_cases_relation;
 has_php_cases_relation sub has_cases_relation;
 
-php_catches_relation sub relationship
+php_catches_relation sub parent_child_relation
 	relates is_php_catches_relation, relates has_php_catches_relation;
-is_php_catches_relation sub role;
-has_php_catches_relation sub role;
+is_php_catches_relation sub is_parent;
+has_php_catches_relation sub is_child;
 
 php_children_relation sub children_relation
 	relates is_php_children_relation, relates has_php_children_relation;
@@ -12106,45 +12110,45 @@ php_cond_relation sub cond_relation
 is_php_cond_relation sub is_cond_relation;
 has_php_cond_relation sub has_cond_relation;
 
-php_consts_relation sub relationship
+php_consts_relation sub parent_child_relation
 	relates is_php_consts_relation, relates has_php_consts_relation;
-is_php_consts_relation sub role;
-has_php_consts_relation sub role;
+is_php_consts_relation sub is_parent;
+has_php_consts_relation sub is_child;
 
 php_default_relation sub default_relation
 	relates is_php_default_relation, relates has_php_default_relation;
 is_php_default_relation sub is_default_relation;
 has_php_default_relation sub has_default_relation;
 
-php_dim_relation sub relationship
+php_dim_relation sub parent_child_relation
 	relates is_php_dim_relation, relates has_php_dim_relation;
-is_php_dim_relation sub role;
-has_php_dim_relation sub role;
+is_php_dim_relation sub is_parent;
+has_php_dim_relation sub is_child;
 
 php_else_relation sub else_relation
 	relates is_php_else_relation, relates has_php_else_relation;
 is_php_else_relation sub is_else_relation;
 has_php_else_relation sub has_else_relation;
 
-php_elseifs_relation sub relationship
+php_elseifs_relation sub parent_child_relation
 	relates is_php_elseifs_relation, relates has_php_elseifs_relation;
-is_php_elseifs_relation sub role;
-has_php_elseifs_relation sub role;
+is_php_elseifs_relation sub is_parent;
+has_php_elseifs_relation sub is_child;
 
-php_expr_relation sub relationship
+php_expr_relation sub parent_child_relation
 	relates is_php_expr_relation, relates has_php_expr_relation;
-is_php_expr_relation sub role;
-has_php_expr_relation sub role;
+is_php_expr_relation sub is_parent;
+has_php_expr_relation sub is_child;
 
-php_exprs_relation sub relationship
+php_exprs_relation sub parent_child_relation
 	relates is_php_exprs_relation, relates has_php_exprs_relation;
-is_php_exprs_relation sub role;
-has_php_exprs_relation sub role;
+is_php_exprs_relation sub is_parent;
+has_php_exprs_relation sub is_child;
 
-php_extends_relation sub relationship
+php_extends_relation sub parent_child_relation
 	relates is_php_extends_relation, relates has_php_extends_relation;
-is_php_extends_relation sub role;
-has_php_extends_relation sub role;
+is_php_extends_relation sub is_parent;
+has_php_extends_relation sub is_child;
 
 php_finally_relation sub finally_relation
 	relates is_php_finally_relation, relates has_php_finally_relation;
@@ -12176,45 +12180,45 @@ php_key_relation sub key_relation
 is_php_key_relation sub is_key_relation;
 has_php_key_relation sub has_key_relation;
 
-php_key_var_relation sub relationship
+php_key_var_relation sub parent_child_relation
 	relates is_php_key_var_relation, relates has_php_key_var_relation;
-is_php_key_var_relation sub role;
-has_php_key_var_relation sub role;
+is_php_key_var_relation sub is_parent;
+has_php_key_var_relation sub is_child;
 
 php_left_relation sub left_relation
 	relates is_php_left_relation, relates has_php_left_relation;
 is_php_left_relation sub is_left_relation;
 has_php_left_relation sub has_left_relation;
 
-php_loop_relation sub relationship
+php_loop_relation sub parent_child_relation
 	relates is_php_loop_relation, relates has_php_loop_relation;
-is_php_loop_relation sub role;
-has_php_loop_relation sub role;
+is_php_loop_relation sub is_parent;
+has_php_loop_relation sub is_child;
 
 php_name_relation sub name_relation
 	relates is_php_name_relation, relates has_php_name_relation;
 is_php_name_relation sub is_name_relation;
 has_php_name_relation sub has_name_relation;
 
-php_num_relation sub relationship
+php_num_relation sub parent_child_relation
 	relates is_php_num_relation, relates has_php_num_relation;
-is_php_num_relation sub role;
-has_php_num_relation sub role;
+is_php_num_relation sub is_parent;
+has_php_num_relation sub is_child;
 
 php_params_relation sub params_relation
 	relates is_php_params_relation, relates has_php_params_relation;
 is_php_params_relation sub is_params_relation;
 has_php_params_relation sub has_params_relation;
 
-php_parts_relation sub relationship
+php_parts_relation sub parent_child_relation
 	relates is_php_parts_relation, relates has_php_parts_relation;
-is_php_parts_relation sub role;
-has_php_parts_relation sub role;
+is_php_parts_relation sub is_parent;
+has_php_parts_relation sub is_child;
 
-php_props_relation sub relationship
+php_props_relation sub parent_child_relation
 	relates is_php_props_relation, relates has_php_props_relation;
-is_php_props_relation sub role;
-has_php_props_relation sub role;
+is_php_props_relation sub is_parent;
+has_php_props_relation sub is_child;
 
 php_return_type_relation sub return_type_relation
 	relates is_php_return_type_relation, relates has_php_return_type_relation;
@@ -12226,15 +12230,15 @@ php_right_relation sub right_relation
 is_php_right_relation sub is_right_relation;
 has_php_right_relation sub has_right_relation;
 
-php_stmts_relation sub relationship
+php_stmts_relation sub parent_child_relation
 	relates is_php_stmts_relation, relates has_php_stmts_relation;
-is_php_stmts_relation sub role;
-has_php_stmts_relation sub role;
+is_php_stmts_relation sub is_parent;
+has_php_stmts_relation sub is_child;
 
-php_traits_relation sub relationship
+php_traits_relation sub parent_child_relation
 	relates is_php_traits_relation, relates has_php_traits_relation;
-is_php_traits_relation sub role;
-has_php_traits_relation sub role;
+is_php_traits_relation sub is_parent;
+has_php_traits_relation sub is_child;
 
 php_type_relation sub type_relation
 	relates is_php_type_relation, relates has_php_type_relation;
@@ -12246,30 +12250,30 @@ php_types_relation sub types_relation
 is_php_types_relation sub is_types_relation;
 has_php_types_relation sub has_types_relation;
 
-php_uses_relation sub relationship
+php_uses_relation sub parent_child_relation
 	relates is_php_uses_relation, relates has_php_uses_relation;
-is_php_uses_relation sub role;
-has_php_uses_relation sub role;
+is_php_uses_relation sub is_parent;
+has_php_uses_relation sub is_child;
 
 php_value_relation sub value_relation
 	relates is_php_value_relation, relates has_php_value_relation;
 is_php_value_relation sub is_value_relation;
 has_php_value_relation sub has_value_relation;
 
-php_value_var_relation sub relationship
+php_value_var_relation sub parent_child_relation
 	relates is_php_value_var_relation, relates has_php_value_var_relation;
-is_php_value_var_relation sub role;
-has_php_value_var_relation sub role;
+is_php_value_var_relation sub is_parent;
+has_php_value_var_relation sub is_child;
 
-php_var_relation sub relationship
+php_var_relation sub parent_child_relation
 	relates is_php_var_relation, relates has_php_var_relation;
-is_php_var_relation sub role;
-has_php_var_relation sub role;
+is_php_var_relation sub is_parent;
+has_php_var_relation sub is_child;
 
-php_vars_relation sub relationship
+php_vars_relation sub parent_child_relation
 	relates is_php_vars_relation, relates has_php_vars_relation;
-is_php_vars_relation sub role;
-has_php_vars_relation sub role;
+is_php_vars_relation sub is_parent;
+has_php_vars_relation sub is_child;
 
 #####----- Python -----#####
 python_args_relation sub args_relation
@@ -12277,60 +12281,60 @@ python_args_relation sub args_relation
 is_python_args_relation sub is_args_relation;
 has_python_args_relation sub has_args_relation;
 
-python_asname_relation sub relationship
+python_asname_relation sub parent_child_relation
 	relates is_python_asname_relation, relates has_python_asname_relation;
-is_python_asname_relation sub role;
-has_python_asname_relation sub role;
+is_python_asname_relation sub is_parent;
+has_python_asname_relation sub is_child;
 
-python_bases_relation sub relationship
+python_bases_relation sub parent_child_relation
 	relates is_python_bases_relation, relates has_python_bases_relation;
-is_python_bases_relation sub role;
-has_python_bases_relation sub role;
+is_python_bases_relation sub is_parent;
+has_python_bases_relation sub is_child;
 
 python_body_relation sub body_relation
 	relates is_python_body_relation, relates has_python_body_relation;
 is_python_body_relation sub is_body_relation;
 has_python_body_relation sub has_body_relation;
 
-python_body_stmts_relation sub relationship
+python_body_stmts_relation sub parent_child_relation
 	relates is_python_body_stmts_relation, relates has_python_body_stmts_relation;
-is_python_body_stmts_relation sub role;
-has_python_body_stmts_relation sub role;
+is_python_body_stmts_relation sub is_parent;
+has_python_body_stmts_relation sub is_child;
 
-python_comparators_relation sub relationship
+python_comparators_relation sub parent_child_relation
 	relates is_python_comparators_relation, relates has_python_comparators_relation;
-is_python_comparators_relation sub role;
-has_python_comparators_relation sub role;
+is_python_comparators_relation sub is_parent;
+has_python_comparators_relation sub is_child;
 
-python_context_expr_relation sub relationship
+python_context_expr_relation sub parent_child_relation
 	relates is_python_context_expr_relation, relates has_python_context_expr_relation;
-is_python_context_expr_relation sub role;
-has_python_context_expr_relation sub role;
+is_python_context_expr_relation sub is_parent;
+has_python_context_expr_relation sub is_child;
 
-python_decorator_list_relation sub relationship
+python_decorator_list_relation sub parent_child_relation
 	relates is_python_decorator_list_relation, relates has_python_decorator_list_relation;
-is_python_decorator_list_relation sub role;
-has_python_decorator_list_relation sub role;
+is_python_decorator_list_relation sub is_parent;
+has_python_decorator_list_relation sub is_child;
 
-python_decorators_relation sub relationship
+python_decorators_relation sub parent_child_relation
 	relates is_python_decorators_relation, relates has_python_decorators_relation;
-is_python_decorators_relation sub role;
-has_python_decorators_relation sub role;
+is_python_decorators_relation sub is_parent;
+has_python_decorators_relation sub is_child;
 
 python_default_relation sub default_relation
 	relates is_python_default_relation, relates has_python_default_relation;
 is_python_default_relation sub is_default_relation;
 has_python_default_relation sub has_default_relation;
 
-python_dims_relation sub relationship
+python_dims_relation sub parent_child_relation
 	relates is_python_dims_relation, relates has_python_dims_relation;
-is_python_dims_relation sub role;
-has_python_dims_relation sub role;
+is_python_dims_relation sub is_parent;
+has_python_dims_relation sub is_child;
 
-python_else_stmts_relation sub relationship
+python_else_stmts_relation sub parent_child_relation
 	relates is_python_else_stmts_relation, relates has_python_else_stmts_relation;
-is_python_else_stmts_relation sub role;
-has_python_else_stmts_relation sub role;
+is_python_else_stmts_relation sub is_parent;
+has_python_else_stmts_relation sub is_child;
 
 python_elt_relation sub elt_relation
 	relates is_python_elt_relation, relates has_python_elt_relation;
@@ -12342,130 +12346,130 @@ python_elts_relation sub elts_relation
 is_python_elts_relation sub is_elts_relation;
 has_python_elts_relation sub has_elts_relation;
 
-python_exc_relation sub relationship
+python_exc_relation sub parent_child_relation
 	relates is_python_exc_relation, relates has_python_exc_relation;
-is_python_exc_relation sub role;
-has_python_exc_relation sub role;
+is_python_exc_relation sub is_parent;
+has_python_exc_relation sub is_child;
 
-python_final_stmts_relation sub relationship
+python_final_stmts_relation sub parent_child_relation
 	relates is_python_final_stmts_relation, relates has_python_final_stmts_relation;
-is_python_final_stmts_relation sub role;
-has_python_final_stmts_relation sub role;
+is_python_final_stmts_relation sub is_parent;
+has_python_final_stmts_relation sub is_child;
 
-python_finalbody_relation sub relationship
+python_finalbody_relation sub parent_child_relation
 	relates is_python_finalbody_relation, relates has_python_finalbody_relation;
-is_python_finalbody_relation sub role;
-has_python_finalbody_relation sub role;
+is_python_finalbody_relation sub is_parent;
+has_python_finalbody_relation sub is_child;
 
 python_func_relation sub func_relation
 	relates is_python_func_relation, relates has_python_func_relation;
 is_python_func_relation sub is_func_relation;
 has_python_func_relation sub has_func_relation;
 
-python_generators_relation sub relationship
+python_generators_relation sub parent_child_relation
 	relates is_python_generators_relation, relates has_python_generators_relation;
-is_python_generators_relation sub role;
-has_python_generators_relation sub role;
+is_python_generators_relation sub is_parent;
+has_python_generators_relation sub is_child;
 
 python_handlers_relation sub handlers_relation
 	relates is_python_handlers_relation, relates has_python_handlers_relation;
 is_python_handlers_relation sub is_handlers_relation;
 has_python_handlers_relation sub has_handlers_relation;
 
-python_identifiers_relation sub relationship
+python_identifiers_relation sub parent_child_relation
 	relates is_python_identifiers_relation, relates has_python_identifiers_relation;
-is_python_identifiers_relation sub role;
-has_python_identifiers_relation sub role;
+is_python_identifiers_relation sub is_parent;
+has_python_identifiers_relation sub is_child;
 
-python_ifs_relation sub relationship
+python_ifs_relation sub parent_child_relation
 	relates is_python_ifs_relation, relates has_python_ifs_relation;
-is_python_ifs_relation sub role;
-has_python_ifs_relation sub role;
+is_python_ifs_relation sub is_parent;
+has_python_ifs_relation sub is_child;
 
 python_items_relation sub items_relation
 	relates is_python_items_relation, relates has_python_items_relation;
 is_python_items_relation sub is_items_relation;
 has_python_items_relation sub has_items_relation;
 
-python_iter_relation sub relationship
+python_iter_relation sub parent_child_relation
 	relates is_python_iter_relation, relates has_python_iter_relation;
-is_python_iter_relation sub role;
-has_python_iter_relation sub role;
+is_python_iter_relation sub is_parent;
+has_python_iter_relation sub is_child;
 
 python_key_relation sub key_relation
 	relates is_python_key_relation, relates has_python_key_relation;
 is_python_key_relation sub is_key_relation;
 has_python_key_relation sub has_key_relation;
 
-python_keys_relation sub relationship
+python_keys_relation sub parent_child_relation
 	relates is_python_keys_relation, relates has_python_keys_relation;
-is_python_keys_relation sub role;
-has_python_keys_relation sub role;
+is_python_keys_relation sub is_parent;
+has_python_keys_relation sub is_child;
 
-python_keywords_relation sub relationship
+python_keywords_relation sub parent_child_relation
 	relates is_python_keywords_relation, relates has_python_keywords_relation;
-is_python_keywords_relation sub role;
-has_python_keywords_relation sub role;
+is_python_keywords_relation sub is_parent;
+has_python_keywords_relation sub is_child;
 
 python_left_relation sub left_relation
 	relates is_python_left_relation, relates has_python_left_relation;
 is_python_left_relation sub is_left_relation;
 has_python_left_relation sub has_left_relation;
 
-python_level_relation sub relationship
+python_level_relation sub parent_child_relation
 	relates is_python_level_relation, relates has_python_level_relation;
-is_python_level_relation sub role;
-has_python_level_relation sub role;
+is_python_level_relation sub is_parent;
+has_python_level_relation sub is_child;
 
-python_lines_relation sub relationship
+python_lines_relation sub parent_child_relation
 	relates is_python_lines_relation, relates has_python_lines_relation;
-is_python_lines_relation sub role;
-has_python_lines_relation sub role;
+is_python_lines_relation sub is_parent;
+has_python_lines_relation sub is_child;
 
-python_lower_relation sub relationship
+python_lower_relation sub parent_child_relation
 	relates is_python_lower_relation, relates has_python_lower_relation;
-is_python_lower_relation sub role;
-has_python_lower_relation sub role;
+is_python_lower_relation sub is_parent;
+has_python_lower_relation sub is_child;
 
-python_module_relation sub relationship
+python_module_relation sub parent_child_relation
 	relates is_python_module_relation, relates has_python_module_relation;
-is_python_module_relation sub role;
-has_python_module_relation sub role;
+is_python_module_relation sub is_parent;
+has_python_module_relation sub is_child;
 
-python_msg_relation sub relationship
+python_msg_relation sub parent_child_relation
 	relates is_python_msg_relation, relates has_python_msg_relation;
-is_python_msg_relation sub role;
-has_python_msg_relation sub role;
+is_python_msg_relation sub is_parent;
+has_python_msg_relation sub is_child;
 
-python_name_list_relation sub relationship
+python_name_list_relation sub parent_child_relation
 	relates is_python_name_list_relation, relates has_python_name_list_relation;
-is_python_name_list_relation sub role;
-has_python_name_list_relation sub role;
+is_python_name_list_relation sub is_parent;
+has_python_name_list_relation sub is_child;
 
 python_names_relation sub names_relation
 	relates is_python_names_relation, relates has_python_names_relation;
 is_python_names_relation sub is_names_relation;
 has_python_names_relation sub has_names_relation;
 
-python_noop_lines_relation sub relationship
+python_noop_lines_relation sub parent_child_relation
 	relates is_python_noop_lines_relation, relates has_python_noop_lines_relation;
-is_python_noop_lines_relation sub role;
-has_python_noop_lines_relation sub role;
+is_python_noop_lines_relation sub is_parent;
+has_python_noop_lines_relation sub is_child;
 
-python_noops_previous_relation sub relationship
+python_noops_previous_relation sub parent_child_relation
 	relates is_python_noops_previous_relation, relates has_python_noops_previous_relation;
-is_python_noops_previous_relation sub role;
-has_python_noops_previous_relation sub role;
+is_python_noops_previous_relation sub is_parent;
+has_python_noops_previous_relation sub is_child;
 
-python_noops_remainder_relation sub relationship
+python_noops_remainder_relation sub parent_child_relation
 	relates is_python_noops_remainder_relation, relates has_python_noops_remainder_relation;
-is_python_noops_remainder_relation sub role;
-has_python_noops_remainder_relation sub role;
+is_python_noops_remainder_relation sub is_parent;
+has_python_noops_remainder_relation sub is_child;
 
-python_noops_sameline_relation sub relationship
+python_noops_sameline_relation sub parent_child_relation
 	relates is_python_noops_sameline_relation, relates has_python_noops_sameline_relation;
-is_python_noops_sameline_relation sub role;
-has_python_noops_sameline_relation sub role;
+is_python_noops_sameline_relation sub is_parent;
+has_python_noops_sameline_relation sub is_child;
 
 python_op_relation sub op_relation
 	relates is_python_op_relation, relates has_python_op_relation;
@@ -12477,35 +12481,35 @@ python_operand_relation sub operand_relation
 is_python_operand_relation sub is_operand_relation;
 has_python_operand_relation sub has_operand_relation;
 
-python_ops_relation sub relationship
+python_ops_relation sub parent_child_relation
 	relates is_python_ops_relation, relates has_python_ops_relation;
-is_python_ops_relation sub role;
-has_python_ops_relation sub role;
+is_python_ops_relation sub is_parent;
+has_python_ops_relation sub is_child;
 
-python_optional_vars_relation sub relationship
+python_optional_vars_relation sub parent_child_relation
 	relates is_python_optional_vars_relation, relates has_python_optional_vars_relation;
-is_python_optional_vars_relation sub role;
-has_python_optional_vars_relation sub role;
+is_python_optional_vars_relation sub is_parent;
+has_python_optional_vars_relation sub is_child;
 
-python_orelse_relation sub relationship
+python_orelse_relation sub parent_child_relation
 	relates is_python_orelse_relation, relates has_python_orelse_relation;
-is_python_orelse_relation sub role;
-has_python_orelse_relation sub role;
+is_python_orelse_relation sub is_parent;
+has_python_orelse_relation sub is_child;
 
 python_right_relation sub right_relation
 	relates is_python_right_relation, relates has_python_right_relation;
 is_python_right_relation sub is_right_relation;
 has_python_right_relation sub has_right_relation;
 
-python_slice_relation sub relationship
+python_slice_relation sub parent_child_relation
 	relates is_python_slice_relation, relates has_python_slice_relation;
-is_python_slice_relation sub role;
-has_python_slice_relation sub role;
+is_python_slice_relation sub is_parent;
+has_python_slice_relation sub is_child;
 
-python_step_relation sub relationship
+python_step_relation sub parent_child_relation
 	relates is_python_step_relation, relates has_python_step_relation;
-is_python_step_relation sub role;
-has_python_step_relation sub role;
+is_python_step_relation sub is_parent;
+has_python_step_relation sub is_child;
 
 python_target_relation sub target_relation
 	relates is_python_target_relation, relates has_python_target_relation;
@@ -12527,10 +12531,10 @@ python_type_relation sub type_relation
 is_python_type_relation sub is_type_relation;
 has_python_type_relation sub has_type_relation;
 
-python_upper_relation sub relationship
+python_upper_relation sub parent_child_relation
 	relates is_python_upper_relation, relates has_python_upper_relation;
-is_python_upper_relation sub role;
-has_python_upper_relation sub role;
+is_python_upper_relation sub is_parent;
+has_python_upper_relation sub is_child;
 
 python_value_relation sub value_relation
 	relates is_python_value_relation, relates has_python_value_relation;
@@ -12543,50 +12547,50 @@ is_python_values_relation sub is_values_relation;
 has_python_values_relation sub has_values_relation;
 
 #####----- Ruby -----#####
-ruby_1_relation sub relationship
+ruby_1_relation sub parent_child_relation
 	relates is_ruby_1_relation, relates has_ruby_1_relation;
-is_ruby_1_relation sub role;
-has_ruby_1_relation sub role;
+is_ruby_1_relation sub is_parent;
+has_ruby_1_relation sub is_child;
 
-ruby_2_relation sub relationship
+ruby_2_relation sub parent_child_relation
 	relates is_ruby_2_relation, relates has_ruby_2_relation;
-is_ruby_2_relation sub role;
-has_ruby_2_relation sub role;
+is_ruby_2_relation sub is_parent;
+has_ruby_2_relation sub is_child;
 
-ruby_alias_relation sub relationship
+ruby_alias_relation sub parent_child_relation
 	relates is_ruby_alias_relation, relates has_ruby_alias_relation;
-is_ruby_alias_relation sub role;
-has_ruby_alias_relation sub role;
+is_ruby_alias_relation sub is_parent;
+has_ruby_alias_relation sub is_child;
 
 ruby_args_relation sub args_relation
 	relates is_ruby_args_relation, relates has_ruby_args_relation;
 is_ruby_args_relation sub is_args_relation;
 has_ruby_args_relation sub has_args_relation;
 
-ruby_base_relation sub relationship
+ruby_base_relation sub parent_child_relation
 	relates is_ruby_base_relation, relates has_ruby_base_relation;
-is_ruby_base_relation sub role;
-has_ruby_base_relation sub role;
+is_ruby_base_relation sub is_parent;
+has_ruby_base_relation sub is_child;
 
 ruby_begin_relation sub begin_relation
 	relates is_ruby_begin_relation, relates has_ruby_begin_relation;
 is_ruby_begin_relation sub is_begin_relation;
 has_ruby_begin_relation sub has_begin_relation;
 
-ruby_blockdata_relation sub relationship
+ruby_blockdata_relation sub parent_child_relation
 	relates is_ruby_blockdata_relation, relates has_ruby_blockdata_relation;
-is_ruby_blockdata_relation sub role;
-has_ruby_blockdata_relation sub role;
+is_ruby_blockdata_relation sub is_parent;
+has_ruby_blockdata_relation sub is_child;
 
 ruby_body_relation sub body_relation
 	relates is_ruby_body_relation, relates has_ruby_body_relation;
 is_ruby_body_relation sub is_body_relation;
 has_ruby_body_relation sub has_body_relation;
 
-ruby_casevar_relation sub relationship
+ruby_casevar_relation sub parent_child_relation
 	relates is_ruby_casevar_relation, relates has_ruby_casevar_relation;
-is_ruby_casevar_relation sub role;
-has_ruby_casevar_relation sub role;
+is_ruby_casevar_relation sub is_parent;
+has_ruby_casevar_relation sub is_child;
 
 ruby_children_relation sub children_relation
 	relates is_ruby_children_relation, relates has_ruby_children_relation;
@@ -12603,20 +12607,20 @@ ruby_comments_relation sub comments_relation
 is_ruby_comments_relation sub is_comments_relation;
 has_ruby_comments_relation sub has_comments_relation;
 
-ruby_condition_relation sub relationship
+ruby_condition_relation sub parent_child_relation
 	relates is_ruby_condition_relation, relates has_ruby_condition_relation;
-is_ruby_condition_relation sub role;
-has_ruby_condition_relation sub role;
+is_ruby_condition_relation sub is_parent;
+has_ruby_condition_relation sub is_child;
 
-ruby_conditions_relation sub relationship
+ruby_conditions_relation sub parent_child_relation
 	relates is_ruby_conditions_relation, relates has_ruby_conditions_relation;
-is_ruby_conditions_relation sub role;
-has_ruby_conditions_relation sub role;
+is_ruby_conditions_relation sub is_parent;
+has_ruby_conditions_relation sub is_child;
 
-ruby_contents_relation sub relationship
+ruby_contents_relation sub parent_child_relation
 	relates is_ruby_contents_relation, relates has_ruby_contents_relation;
-is_ruby_contents_relation sub role;
-has_ruby_contents_relation sub role;
+is_ruby_contents_relation sub is_parent;
+has_ruby_contents_relation sub is_child;
 
 ruby_default_relation sub default_relation
 	relates is_ruby_default_relation, relates has_ruby_default_relation;
@@ -12628,25 +12632,25 @@ ruby_else_relation sub else_relation
 is_ruby_else_relation sub is_else_relation;
 has_ruby_else_relation sub has_else_relation;
 
-ruby_end_relation sub relationship
+ruby_end_relation sub parent_child_relation
 	relates is_ruby_end_relation, relates has_ruby_end_relation;
-is_ruby_end_relation sub role;
-has_ruby_end_relation sub role;
+is_ruby_end_relation sub is_parent;
+has_ruby_end_relation sub is_child;
 
-ruby_ensure_body_relation sub relationship
+ruby_ensure_body_relation sub parent_child_relation
 	relates is_ruby_ensure_body_relation, relates has_ruby_ensure_body_relation;
-is_ruby_ensure_body_relation sub role;
-has_ruby_ensure_body_relation sub role;
+is_ruby_ensure_body_relation sub is_parent;
+has_ruby_ensure_body_relation sub is_child;
 
-ruby_exceptions_relation sub relationship
+ruby_exceptions_relation sub parent_child_relation
 	relates is_ruby_exceptions_relation, relates has_ruby_exceptions_relation;
-is_ruby_exceptions_relation sub role;
-has_ruby_exceptions_relation sub role;
+is_ruby_exceptions_relation sub is_parent;
+has_ruby_exceptions_relation sub is_child;
 
-ruby_file_relation sub relationship
+ruby_file_relation sub parent_child_relation
 	relates is_ruby_file_relation, relates has_ruby_file_relation;
-is_ruby_file_relation sub role;
-has_ruby_file_relation sub role;
+is_ruby_file_relation sub is_parent;
+has_ruby_file_relation sub is_child;
 
 ruby_handlers_relation sub handlers_relation
 	relates is_ruby_handlers_relation, relates has_ruby_handlers_relation;
@@ -12668,30 +12672,30 @@ ruby_operator_relation sub operator_relation
 is_ruby_operator_relation sub is_operator_relation;
 has_ruby_operator_relation sub has_operator_relation;
 
-ruby_options_relation sub relationship
+ruby_options_relation sub parent_child_relation
 	relates is_ruby_options_relation, relates has_ruby_options_relation;
-is_ruby_options_relation sub role;
-has_ruby_options_relation sub role;
+is_ruby_options_relation sub is_parent;
+has_ruby_options_relation sub is_child;
 
-ruby_parent_relation sub relationship
+ruby_parent_relation sub parent_child_relation
 	relates is_ruby_parent_relation, relates has_ruby_parent_relation;
-is_ruby_parent_relation sub role;
-has_ruby_parent_relation sub role;
+is_ruby_parent_relation sub is_parent;
+has_ruby_parent_relation sub is_child;
 
-ruby_qnames_relation sub relationship
+ruby_qnames_relation sub parent_child_relation
 	relates is_ruby_qnames_relation, relates has_ruby_qnames_relation;
-is_ruby_qnames_relation sub role;
-has_ruby_qnames_relation sub role;
+is_ruby_qnames_relation sub is_parent;
+has_ruby_qnames_relation sub is_child;
 
 ruby_right_relation sub right_relation
 	relates is_ruby_right_relation, relates has_ruby_right_relation;
 is_ruby_right_relation sub is_right_relation;
 has_ruby_right_relation sub has_right_relation;
 
-ruby_start_relation sub relationship
+ruby_start_relation sub parent_child_relation
 	relates is_ruby_start_relation, relates has_ruby_start_relation;
-is_ruby_start_relation sub role;
-has_ruby_start_relation sub role;
+is_ruby_start_relation sub is_parent;
+has_ruby_start_relation sub is_child;
 
 ruby_target_relation sub target_relation
 	relates is_ruby_target_relation, relates has_ruby_target_relation;
@@ -12703,10 +12707,10 @@ ruby_targets_relation sub targets_relation
 is_ruby_targets_relation sub is_targets_relation;
 has_ruby_targets_relation sub has_targets_relation;
 
-ruby_text_relation sub relationship
+ruby_text_relation sub parent_child_relation
 	relates is_ruby_text_relation, relates has_ruby_text_relation;
-is_ruby_text_relation sub role;
-has_ruby_text_relation sub role;
+is_ruby_text_relation sub is_parent;
+has_ruby_text_relation sub is_child;
 
 ruby_value_relation sub value_relation
 	relates is_ruby_value_relation, relates has_ruby_value_relation;
@@ -12718,10 +12722,10 @@ ruby_values_relation sub values_relation
 is_ruby_values_relation sub is_values_relation;
 has_ruby_values_relation sub has_values_relation;
 
-ruby_when_clauses_relation sub relationship
+ruby_when_clauses_relation sub parent_child_relation
 	relates is_ruby_when_clauses_relation, relates has_ruby_when_clauses_relation;
-is_ruby_when_clauses_relation sub role;
-has_ruby_when_clauses_relation sub role;
+is_ruby_when_clauses_relation sub is_parent;
+has_ruby_when_clauses_relation sub is_child;
 
 ##########---------- Semantic Roles ----------##########
 IS_ADD sub relationship
