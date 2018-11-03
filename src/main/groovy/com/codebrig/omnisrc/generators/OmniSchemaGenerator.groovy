@@ -18,7 +18,7 @@ import scala.collection.JavaConverters
 import java.util.concurrent.TimeUnit
 import java.util.stream.Collectors
 
-import static com.google.common.io.Files.*
+import static com.google.common.io.Files.getFileExtension
 
 /**
  * @author github.com/BFergerson
@@ -148,14 +148,19 @@ class OmniSchemaGenerator {
 
         println "Extracting observed attributes, relations, and roles"
         responseList.each { resp ->
-            asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
-                if (it != null && !it.internalType().isEmpty()) {
-                    //attributes
-                    observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
-                    //relations
-                    observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
-                    //roles
-                    observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
+            if (resp == null) {
+                System.err.println "Got null parse response"
+                //todo: understand this
+            } else {
+                asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
+                    if (it != null && !it.internalType().isEmpty()) {
+                        //attributes
+                        observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
+                        //relations
+                        observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
+                        //roles
+                        observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
+                    }
                 }
             }
         }

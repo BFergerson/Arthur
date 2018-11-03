@@ -68,6 +68,12 @@ class GraknSchemaWriter {
         println "Writing structural relationships"
         sb.append("\n##########---------- Structural Relationships ----------##########\n")
 
+        //todo: smarter and dynamic
+        sb.append("parent_child_relation sub relationship\n" +
+                "\trelates is_parent, relates is_child;\n" +
+                "is_parent sub role;\n" +
+                "is_child sub role;\n")
+
         if (rootLanguage.isOmnilingual()) {
             outputStructuralRelationships(sb, rootLanguage)
         }
@@ -89,9 +95,9 @@ class GraknSchemaWriter {
             sb.append(fullRelation).append(" sub ").append(subType).append("\n")
             sb.append("\trelates ").append(isRole)
             sb.append(", relates ").append(hasRole).append(";\n")
-            if (subType == "relationship") {
-                sb.append(isRole).append(" sub ").append("role").append(";\n")
-                sb.append(hasRole).append(" sub ").append("role").append(";\n")
+            if (subType == "parent_child_relation") {
+                sb.append(isRole).append(" sub ").append("is_parent").append(";\n")
+                sb.append(hasRole).append(" sub ").append("is_child").append(";\n")
             } else {
                 sb.append(isRole).append(" sub ").append("is_$relation").append(";\n")
                 sb.append(hasRole).append(" sub ").append("has_$relation").append(";\n")

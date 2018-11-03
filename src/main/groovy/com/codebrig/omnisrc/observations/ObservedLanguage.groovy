@@ -114,7 +114,7 @@ class ObservedLanguage {
     }
 
     String getRelationExtends(String relation) {
-        return relationExtends.getOrDefault(relation, "relationship")
+        return relationExtends.getOrDefault(relation, "parent_child_relation")
     }
 
     List<String> getObservedEntities() {
