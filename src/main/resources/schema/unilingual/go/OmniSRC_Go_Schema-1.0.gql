@@ -1136,407 +1136,411 @@ ValueSpecArtifact sub GoSourceArtifact
 	plays DECLARATION;
 
 ##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
 
 #####----- Go -----#####
-args_relation sub relationship
+args_relation sub parent_child_relation
 	relates is_args_relation, relates has_args_relation;
-is_args_relation sub role;
-has_args_relation sub role;
+is_args_relation sub is_child;
+has_args_relation sub is_parent;
 
-arrow_relation sub relationship
+arrow_relation sub parent_child_relation
 	relates is_arrow_relation, relates has_arrow_relation;
-is_arrow_relation sub role;
-has_arrow_relation sub role;
+is_arrow_relation sub is_child;
+has_arrow_relation sub is_parent;
 
-assign_relation sub relationship
+assign_relation sub parent_child_relation
 	relates is_assign_relation, relates has_assign_relation;
-is_assign_relation sub role;
-has_assign_relation sub role;
+is_assign_relation sub is_child;
+has_assign_relation sub is_parent;
 
-begin_relation sub relationship
+begin_relation sub parent_child_relation
 	relates is_begin_relation, relates has_begin_relation;
-is_begin_relation sub role;
-has_begin_relation sub role;
+is_begin_relation sub is_child;
+has_begin_relation sub is_parent;
 
-body_relation sub relationship
+body_relation sub parent_child_relation
 	relates is_body_relation, relates has_body_relation;
-is_body_relation sub role;
-has_body_relation sub role;
+is_body_relation sub is_child;
+has_body_relation sub is_parent;
 
-call_relation sub relationship
+call_relation sub parent_child_relation
 	relates is_call_relation, relates has_call_relation;
-is_call_relation sub role;
-has_call_relation sub role;
+is_call_relation sub is_child;
+has_call_relation sub is_parent;
 
-case_relation sub relationship
+case_relation sub parent_child_relation
 	relates is_case_relation, relates has_case_relation;
-is_case_relation sub role;
-has_case_relation sub role;
+is_case_relation sub is_child;
+has_case_relation sub is_parent;
 
-chan_relation sub relationship
+chan_relation sub parent_child_relation
 	relates is_chan_relation, relates has_chan_relation;
-is_chan_relation sub role;
-has_chan_relation sub role;
+is_chan_relation sub is_child;
+has_chan_relation sub is_parent;
 
-closing_relation sub relationship
+closing_relation sub parent_child_relation
 	relates is_closing_relation, relates has_closing_relation;
-is_closing_relation sub role;
-has_closing_relation sub role;
+is_closing_relation sub is_child;
+has_closing_relation sub is_parent;
 
-colon_relation sub relationship
+colon_relation sub parent_child_relation
 	relates is_colon_relation, relates has_colon_relation;
-is_colon_relation sub role;
-has_colon_relation sub role;
+is_colon_relation sub is_child;
+has_colon_relation sub is_parent;
 
-comm_relation sub relationship
+comm_relation sub parent_child_relation
 	relates is_comm_relation, relates has_comm_relation;
-is_comm_relation sub role;
-has_comm_relation sub role;
+is_comm_relation sub is_child;
+has_comm_relation sub is_parent;
 
-comment_relation sub relationship
+comment_relation sub parent_child_relation
 	relates is_comment_relation, relates has_comment_relation;
-is_comment_relation sub role;
-has_comment_relation sub role;
+is_comment_relation sub is_child;
+has_comment_relation sub is_parent;
 
-comments_relation sub relationship
+comments_relation sub parent_child_relation
 	relates is_comments_relation, relates has_comments_relation;
-is_comments_relation sub role;
-has_comments_relation sub role;
+is_comments_relation sub is_child;
+has_comments_relation sub is_parent;
 
-cond_relation sub relationship
+cond_relation sub parent_child_relation
 	relates is_cond_relation, relates has_cond_relation;
-is_cond_relation sub role;
-has_cond_relation sub role;
+is_cond_relation sub is_child;
+has_cond_relation sub is_parent;
 
-decl_relation sub relationship
+decl_relation sub parent_child_relation
 	relates is_decl_relation, relates has_decl_relation;
-is_decl_relation sub role;
-has_decl_relation sub role;
+is_decl_relation sub is_child;
+has_decl_relation sub is_parent;
 
-decls_relation sub relationship
+decls_relation sub parent_child_relation
 	relates is_decls_relation, relates has_decls_relation;
-is_decls_relation sub role;
-has_decls_relation sub role;
+is_decls_relation sub is_child;
+has_decls_relation sub is_parent;
 
-defer_relation sub relationship
+defer_relation sub parent_child_relation
 	relates is_defer_relation, relates has_defer_relation;
-is_defer_relation sub role;
-has_defer_relation sub role;
+is_defer_relation sub is_child;
+has_defer_relation sub is_parent;
 
-doc_relation sub relationship
+doc_relation sub parent_child_relation
 	relates is_doc_relation, relates has_doc_relation;
-is_doc_relation sub role;
-has_doc_relation sub role;
+is_doc_relation sub is_child;
+has_doc_relation sub is_parent;
 
-ellipsis_relation sub relationship
+ellipsis_relation sub parent_child_relation
 	relates is_ellipsis_relation, relates has_ellipsis_relation;
-is_ellipsis_relation sub role;
-has_ellipsis_relation sub role;
+is_ellipsis_relation sub is_child;
+has_ellipsis_relation sub is_parent;
 
-else_relation sub relationship
+else_relation sub parent_child_relation
 	relates is_else_relation, relates has_else_relation;
-is_else_relation sub role;
-has_else_relation sub role;
+is_else_relation sub is_child;
+has_else_relation sub is_parent;
 
-elt_relation sub relationship
+elt_relation sub parent_child_relation
 	relates is_elt_relation, relates has_elt_relation;
-is_elt_relation sub role;
-has_elt_relation sub role;
+is_elt_relation sub is_child;
+has_elt_relation sub is_parent;
 
-elts_relation sub relationship
+elts_relation sub parent_child_relation
 	relates is_elts_relation, relates has_elts_relation;
-is_elts_relation sub role;
-has_elts_relation sub role;
+is_elts_relation sub is_child;
+has_elts_relation sub is_parent;
 
-end_pos_relation sub relationship
+end_pos_relation sub parent_child_relation
 	relates is_end_pos_relation, relates has_end_pos_relation;
-is_end_pos_relation sub role;
-has_end_pos_relation sub role;
+is_end_pos_relation sub is_child;
+has_end_pos_relation sub is_parent;
 
-fields_relation sub relationship
+fields_relation sub parent_child_relation
 	relates is_fields_relation, relates has_fields_relation;
-is_fields_relation sub role;
-has_fields_relation sub role;
+is_fields_relation sub is_child;
+has_fields_relation sub is_parent;
 
-for_relation sub relationship
+for_relation sub parent_child_relation
 	relates is_for_relation, relates has_for_relation;
-is_for_relation sub role;
-has_for_relation sub role;
+is_for_relation sub is_child;
+has_for_relation sub is_parent;
 
-fun_relation sub relationship
+fun_relation sub parent_child_relation
 	relates is_fun_relation, relates has_fun_relation;
-is_fun_relation sub role;
-has_fun_relation sub role;
+is_fun_relation sub is_child;
+has_fun_relation sub is_parent;
 
-func_relation sub relationship
+func_relation sub parent_child_relation
 	relates is_func_relation, relates has_func_relation;
-is_func_relation sub role;
-has_func_relation sub role;
+is_func_relation sub is_child;
+has_func_relation sub is_parent;
 
-go_relation sub relationship
+go_relation sub parent_child_relation
 	relates is_go_relation, relates has_go_relation;
-is_go_relation sub role;
-has_go_relation sub role;
+is_go_relation sub is_child;
+has_go_relation sub is_parent;
 
-high_relation sub relationship
+high_relation sub parent_child_relation
 	relates is_high_relation, relates has_high_relation;
-is_high_relation sub role;
-has_high_relation sub role;
+is_high_relation sub is_child;
+has_high_relation sub is_parent;
 
-if_relation sub relationship
+if_relation sub parent_child_relation
 	relates is_if_relation, relates has_if_relation;
-is_if_relation sub role;
-has_if_relation sub role;
+is_if_relation sub is_child;
+has_if_relation sub is_parent;
 
-imports_relation sub relationship
+imports_relation sub parent_child_relation
 	relates is_imports_relation, relates has_imports_relation;
-is_imports_relation sub role;
-has_imports_relation sub role;
+is_imports_relation sub is_child;
+has_imports_relation sub is_parent;
 
-index_relation sub relationship
+index_relation sub parent_child_relation
 	relates is_index_relation, relates has_index_relation;
-is_index_relation sub role;
-has_index_relation sub role;
+is_index_relation sub is_child;
+has_index_relation sub is_parent;
 
-init_relation sub relationship
+init_relation sub parent_child_relation
 	relates is_init_relation, relates has_init_relation;
-is_init_relation sub role;
-has_init_relation sub role;
+is_init_relation sub is_child;
+has_init_relation sub is_parent;
 
-interface_relation sub relationship
+interface_relation sub parent_child_relation
 	relates is_interface_relation, relates has_interface_relation;
-is_interface_relation sub role;
-has_interface_relation sub role;
+is_interface_relation sub is_child;
+has_interface_relation sub is_parent;
 
-key_relation sub relationship
+key_relation sub parent_child_relation
 	relates is_key_relation, relates has_key_relation;
-is_key_relation sub role;
-has_key_relation sub role;
+is_key_relation sub is_child;
+has_key_relation sub is_parent;
 
-label_relation sub relationship
+label_relation sub parent_child_relation
 	relates is_label_relation, relates has_label_relation;
-is_label_relation sub role;
-has_label_relation sub role;
+is_label_relation sub is_child;
+has_label_relation sub is_parent;
 
-lbrace_relation sub relationship
+lbrace_relation sub parent_child_relation
 	relates is_lbrace_relation, relates has_lbrace_relation;
-is_lbrace_relation sub role;
-has_lbrace_relation sub role;
+is_lbrace_relation sub is_child;
+has_lbrace_relation sub is_parent;
 
-lbrack_relation sub relationship
+lbrack_relation sub parent_child_relation
 	relates is_lbrack_relation, relates has_lbrack_relation;
-is_lbrack_relation sub role;
-has_lbrack_relation sub role;
+is_lbrack_relation sub is_child;
+has_lbrack_relation sub is_parent;
 
-len_relation sub relationship
+len_relation sub parent_child_relation
 	relates is_len_relation, relates has_len_relation;
-is_len_relation sub role;
-has_len_relation sub role;
+is_len_relation sub is_child;
+has_len_relation sub is_parent;
 
-lhs_relation sub relationship
+lhs_relation sub parent_child_relation
 	relates is_lhs_relation, relates has_lhs_relation;
-is_lhs_relation sub role;
-has_lhs_relation sub role;
+is_lhs_relation sub is_child;
+has_lhs_relation sub is_parent;
 
-list_relation sub relationship
+list_relation sub parent_child_relation
 	relates is_list_relation, relates has_list_relation;
-is_list_relation sub role;
-has_list_relation sub role;
+is_list_relation sub is_child;
+has_list_relation sub is_parent;
 
-low_relation sub relationship
+low_relation sub parent_child_relation
 	relates is_low_relation, relates has_low_relation;
-is_low_relation sub role;
-has_low_relation sub role;
+is_low_relation sub is_child;
+has_low_relation sub is_parent;
 
-lparen_relation sub relationship
+lparen_relation sub parent_child_relation
 	relates is_lparen_relation, relates has_lparen_relation;
-is_lparen_relation sub role;
-has_lparen_relation sub role;
+is_lparen_relation sub is_child;
+has_lparen_relation sub is_parent;
 
-map_relation sub relationship
+map_relation sub parent_child_relation
 	relates is_map_relation, relates has_map_relation;
-is_map_relation sub role;
-has_map_relation sub role;
+is_map_relation sub is_child;
+has_map_relation sub is_parent;
 
-max_relation sub relationship
+max_relation sub parent_child_relation
 	relates is_max_relation, relates has_max_relation;
-is_max_relation sub role;
-has_max_relation sub role;
+is_max_relation sub is_child;
+has_max_relation sub is_parent;
 
-methods_relation sub relationship
+methods_relation sub parent_child_relation
 	relates is_methods_relation, relates has_methods_relation;
-is_methods_relation sub role;
-has_methods_relation sub role;
+is_methods_relation sub is_child;
+has_methods_relation sub is_parent;
 
-name_pos_relation sub relationship
+name_pos_relation sub parent_child_relation
 	relates is_name_pos_relation, relates has_name_pos_relation;
-is_name_pos_relation sub role;
-has_name_pos_relation sub role;
+is_name_pos_relation sub is_child;
+has_name_pos_relation sub is_parent;
 
-name_relation sub relationship
+name_relation sub parent_child_relation
 	relates is_name_relation, relates has_name_relation;
-is_name_relation sub role;
-has_name_relation sub role;
+is_name_relation sub is_child;
+has_name_relation sub is_parent;
 
-names_relation sub relationship
+names_relation sub parent_child_relation
 	relates is_names_relation, relates has_names_relation;
-is_names_relation sub role;
-has_names_relation sub role;
+is_names_relation sub is_child;
+has_names_relation sub is_parent;
 
-op_pos_relation sub relationship
+op_pos_relation sub parent_child_relation
 	relates is_op_pos_relation, relates has_op_pos_relation;
-is_op_pos_relation sub role;
-has_op_pos_relation sub role;
+is_op_pos_relation sub is_child;
+has_op_pos_relation sub is_parent;
 
-op_relation sub relationship
+op_relation sub parent_child_relation
 	relates is_op_relation, relates has_op_relation;
-is_op_relation sub role;
-has_op_relation sub role;
+is_op_relation sub is_child;
+has_op_relation sub is_parent;
 
-opening_relation sub relationship
+opening_relation sub parent_child_relation
 	relates is_opening_relation, relates has_opening_relation;
-is_opening_relation sub role;
-has_opening_relation sub role;
+is_opening_relation sub is_child;
+has_opening_relation sub is_parent;
 
-package_relation sub relationship
+package_relation sub parent_child_relation
 	relates is_package_relation, relates has_package_relation;
-is_package_relation sub role;
-has_package_relation sub role;
+is_package_relation sub is_child;
+has_package_relation sub is_parent;
 
-params_relation sub relationship
+params_relation sub parent_child_relation
 	relates is_params_relation, relates has_params_relation;
-is_params_relation sub role;
-has_params_relation sub role;
+is_params_relation sub is_child;
+has_params_relation sub is_parent;
 
-path_relation sub relationship
+path_relation sub parent_child_relation
 	relates is_path_relation, relates has_path_relation;
-is_path_relation sub role;
-has_path_relation sub role;
+is_path_relation sub is_child;
+has_path_relation sub is_parent;
 
-post_relation sub relationship
+post_relation sub parent_child_relation
 	relates is_post_relation, relates has_post_relation;
-is_post_relation sub role;
-has_post_relation sub role;
+is_post_relation sub is_child;
+has_post_relation sub is_parent;
 
-rbrace_relation sub relationship
+rbrace_relation sub parent_child_relation
 	relates is_rbrace_relation, relates has_rbrace_relation;
-is_rbrace_relation sub role;
-has_rbrace_relation sub role;
+is_rbrace_relation sub is_child;
+has_rbrace_relation sub is_parent;
 
-rbrack_relation sub relationship
+rbrack_relation sub parent_child_relation
 	relates is_rbrack_relation, relates has_rbrack_relation;
-is_rbrack_relation sub role;
-has_rbrack_relation sub role;
+is_rbrack_relation sub is_child;
+has_rbrack_relation sub is_parent;
 
-recv_relation sub relationship
+recv_relation sub parent_child_relation
 	relates is_recv_relation, relates has_recv_relation;
-is_recv_relation sub role;
-has_recv_relation sub role;
+is_recv_relation sub is_child;
+has_recv_relation sub is_parent;
 
-results_relation sub relationship
+results_relation sub parent_child_relation
 	relates is_results_relation, relates has_results_relation;
-is_results_relation sub role;
-has_results_relation sub role;
+is_results_relation sub is_child;
+has_results_relation sub is_parent;
 
-return_relation sub relationship
+return_relation sub parent_child_relation
 	relates is_return_relation, relates has_return_relation;
-is_return_relation sub role;
-has_return_relation sub role;
+is_return_relation sub is_child;
+has_return_relation sub is_parent;
 
-rhs_relation sub relationship
+rhs_relation sub parent_child_relation
 	relates is_rhs_relation, relates has_rhs_relation;
-is_rhs_relation sub role;
-has_rhs_relation sub role;
+is_rhs_relation sub is_child;
+has_rhs_relation sub is_parent;
 
-rparen_relation sub relationship
+rparen_relation sub parent_child_relation
 	relates is_rparen_relation, relates has_rparen_relation;
-is_rparen_relation sub role;
-has_rparen_relation sub role;
+is_rparen_relation sub is_child;
+has_rparen_relation sub is_parent;
 
-sel_relation sub relationship
+sel_relation sub parent_child_relation
 	relates is_sel_relation, relates has_sel_relation;
-is_sel_relation sub role;
-has_sel_relation sub role;
+is_sel_relation sub is_child;
+has_sel_relation sub is_parent;
 
-select_relation sub relationship
+select_relation sub parent_child_relation
 	relates is_select_relation, relates has_select_relation;
-is_select_relation sub role;
-has_select_relation sub role;
+is_select_relation sub is_child;
+has_select_relation sub is_parent;
 
-semicolon_relation sub relationship
+semicolon_relation sub parent_child_relation
 	relates is_semicolon_relation, relates has_semicolon_relation;
-is_semicolon_relation sub role;
-has_semicolon_relation sub role;
+is_semicolon_relation sub is_child;
+has_semicolon_relation sub is_parent;
 
-slash_relation sub relationship
+slash_relation sub parent_child_relation
 	relates is_slash_relation, relates has_slash_relation;
-is_slash_relation sub role;
-has_slash_relation sub role;
+is_slash_relation sub is_child;
+has_slash_relation sub is_parent;
 
-specs_relation sub relationship
+specs_relation sub parent_child_relation
 	relates is_specs_relation, relates has_specs_relation;
-is_specs_relation sub role;
-has_specs_relation sub role;
+is_specs_relation sub is_child;
+has_specs_relation sub is_parent;
 
-star_relation sub relationship
+star_relation sub parent_child_relation
 	relates is_star_relation, relates has_star_relation;
-is_star_relation sub role;
-has_star_relation sub role;
+is_star_relation sub is_child;
+has_star_relation sub is_parent;
 
-stmt_relation sub relationship
+stmt_relation sub parent_child_relation
 	relates is_stmt_relation, relates has_stmt_relation;
-is_stmt_relation sub role;
-has_stmt_relation sub role;
+is_stmt_relation sub is_child;
+has_stmt_relation sub is_parent;
 
-struct_relation sub relationship
+struct_relation sub parent_child_relation
 	relates is_struct_relation, relates has_struct_relation;
-is_struct_relation sub role;
-has_struct_relation sub role;
+is_struct_relation sub is_child;
+has_struct_relation sub is_parent;
 
-switch_relation sub relationship
+switch_relation sub parent_child_relation
 	relates is_switch_relation, relates has_switch_relation;
-is_switch_relation sub role;
-has_switch_relation sub role;
+is_switch_relation sub is_child;
+has_switch_relation sub is_parent;
 
-tag_relation sub relationship
+tag_relation sub parent_child_relation
 	relates is_tag_relation, relates has_tag_relation;
-is_tag_relation sub role;
-has_tag_relation sub role;
+is_tag_relation sub is_child;
+has_tag_relation sub is_parent;
 
-tok_pos_relation sub relationship
+tok_pos_relation sub parent_child_relation
 	relates is_tok_pos_relation, relates has_tok_pos_relation;
-is_tok_pos_relation sub role;
-has_tok_pos_relation sub role;
+is_tok_pos_relation sub is_child;
+has_tok_pos_relation sub is_parent;
 
-type_relation sub relationship
+type_relation sub parent_child_relation
 	relates is_type_relation, relates has_type_relation;
-is_type_relation sub role;
-has_type_relation sub role;
+is_type_relation sub is_child;
+has_type_relation sub is_parent;
 
-value_pos_relation sub relationship
+value_pos_relation sub parent_child_relation
 	relates is_value_pos_relation, relates has_value_pos_relation;
-is_value_pos_relation sub role;
-has_value_pos_relation sub role;
+is_value_pos_relation sub is_child;
+has_value_pos_relation sub is_parent;
 
-value_relation sub relationship
+value_relation sub parent_child_relation
 	relates is_value_relation, relates has_value_relation;
-is_value_relation sub role;
-has_value_relation sub role;
+is_value_relation sub is_child;
+has_value_relation sub is_parent;
 
-values_relation sub relationship
+values_relation sub parent_child_relation
 	relates is_values_relation, relates has_values_relation;
-is_values_relation sub role;
-has_values_relation sub role;
+is_values_relation sub is_child;
+has_values_relation sub is_parent;
 
-x_relation sub relationship
+x_relation sub parent_child_relation
 	relates is_x_relation, relates has_x_relation;
-is_x_relation sub role;
-has_x_relation sub role;
+is_x_relation sub is_child;
+has_x_relation sub is_parent;
 
-y_relation sub relationship
+y_relation sub parent_child_relation
 	relates is_y_relation, relates has_y_relation;
-is_y_relation sub role;
-has_y_relation sub role;
+is_y_relation sub is_child;
+has_y_relation sub is_parent;
 
 ##########---------- Semantic Roles ----------##########
 IS_ADD sub relationship
