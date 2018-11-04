@@ -223,6 +223,11 @@ FileArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_FILE;
 
+ForArtifact sub OmnilingualSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_STATEMENT;
+
 ForStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
@@ -9895,7 +9900,7 @@ PythonFloorDivArtifact sub PythonSourceArtifact
 	plays IS_INCOMPLETE
 	plays IS_OPERATOR;
 
-PythonForArtifact sub PythonSourceArtifact
+PythonForArtifact sub ForArtifact
 	# Structural
 	plays is_python_body_relation
 	plays is_python_body_stmts_relation
@@ -9906,10 +9911,8 @@ PythonForArtifact sub PythonSourceArtifact
 	plays has_python_orelse_relation
 	plays has_python_target_relation
 	# Semantic
-	plays IS_FOR
 	plays IS_FOR_ITERATOR_STATEMENT
-	plays IS_ITERATOR
-	plays IS_STATEMENT;
+	plays IS_ITERATOR;
 
 PythonForBodyArtifact sub PythonSourceArtifact
 	# Structural
@@ -11922,6 +11925,15 @@ RubyFloatArtifact sub RubySourceArtifact
 	plays IS_TUPLE
 	plays IS_VALUE;
 
+RubyForArtifact sub ForArtifact
+	# Structural
+	plays is_ruby_file_relation
+	plays has_ruby_body_relation
+	plays has_ruby_iterated_relation
+	plays has_ruby_iterators_relation
+	# Semantic
+	plays IS_FOR_STATEMENT;
+
 RubyGvarArtifact sub RubySourceArtifact
 	# Structural
 	plays is_ruby_base_relation
@@ -12332,6 +12344,7 @@ RubyLvasgnArtifact sub RubySourceArtifact
 	plays is_ruby_condition_relation
 	plays is_ruby_contents_relation
 	plays is_ruby_else_relation
+	plays is_ruby_iterators_relation
 	plays is_ruby_right_relation
 	plays is_ruby_target_relation
 	plays is_ruby_value_relation
@@ -12345,6 +12358,7 @@ RubyLvasgnArtifact sub RubySourceArtifact
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT_THEN
 	plays IS_ASSIGNMENT_BINARY_CONDITION_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_ELSE_EXPRESSION_IDENTIFIER_LEFT
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT
 	plays IS_BINARY
@@ -12353,8 +12367,10 @@ RubyLvasgnArtifact sub RubySourceArtifact
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IDENTIFIER
+	plays IS_ITERATOR
 	plays IS_LEFT
 	plays IS_RIGHT
 	plays IS_THEN;
@@ -12901,6 +12917,7 @@ RubySendCallArtifact sub RubySourceArtifact
 	plays is_ruby_default_relation
 	plays is_ruby_else_relation
 	plays is_ruby_ensure_body_relation
+	plays is_ruby_iterated_relation
 	plays is_ruby_left_relation
 	plays is_ruby_object_relation
 	plays is_ruby_parent_relation
@@ -12924,6 +12941,7 @@ RubySendCallArtifact sub RubySourceArtifact
 	plays IS_CALL
 	plays IS_CALL_CONDITION_EXPRESSION_FUNCTION
 	plays IS_CALL_ELSE_EXPRESSION_FUNCTION
+	plays IS_CALL_EXPRESSION_FOR_FUNCTION_UPDATE
 	plays IS_CALL_EXPRESSION_FUNCTION
 	plays IS_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_CALL_EXPRESSION_FUNCTION_RIGHT
@@ -12931,11 +12949,13 @@ RubySendCallArtifact sub RubySourceArtifact
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_LEFT
 	plays IS_RIGHT
 	plays IS_THEN
 	plays IS_TUPLE
+	plays IS_UPDATE
 	plays IS_VALUE;
 
 RubySendIdentifierArtifact sub RubySourceArtifact
@@ -13198,6 +13218,7 @@ RubySendQualifiedArtifact sub RubySourceArtifact
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
 	plays IS_BODY
+	plays IS_BODY_EXPRESSION_FOR_IDENTIFIER_QUALIFIED
 	plays IS_BODY_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_BODY_EXPRESSION_IDENTIFIER_QUALIFIED_THEN
 	plays IS_CALL
@@ -13210,6 +13231,7 @@ RubySendQualifiedArtifact sub RubySourceArtifact
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_TUPLE_VALUE
+	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IDENTIFIER
 	plays IS_LEFT
@@ -15455,6 +15477,16 @@ ruby_handlers_relation sub handlers_relation
 	relates is_ruby_handlers_relation, relates has_ruby_handlers_relation;
 is_ruby_handlers_relation sub is_handlers_relation;
 has_ruby_handlers_relation sub has_handlers_relation;
+
+ruby_iterated_relation sub parent_child_relation
+	relates is_ruby_iterated_relation, relates has_ruby_iterated_relation;
+is_ruby_iterated_relation sub is_child;
+has_ruby_iterated_relation sub is_parent;
+
+ruby_iterators_relation sub parent_child_relation
+	relates is_ruby_iterators_relation, relates has_ruby_iterators_relation;
+is_ruby_iterators_relation sub is_child;
+has_ruby_iterators_relation sub is_parent;
 
 ruby_left_relation sub left_relation
 	relates is_ruby_left_relation, relates has_ruby_left_relation;
@@ -17902,6 +17934,10 @@ IS_ASSIGNMENT_BINARY_EQUAL_EXPRESSION_RELATIONAL_RIGHT sub role;
 ASSIGNMENT_BINARY_EXPRESSION sub relationship
 	relates IS_ASSIGNMENT_BINARY_EXPRESSION;
 IS_ASSIGNMENT_BINARY_EXPRESSION sub role;
+
+ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT sub relationship
+	relates IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT;
+IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT sub role;
 
 ASSIGNMENT_BINARY_EXPRESSION_FOR_INITIALIZATION_OPERATOR sub relationship
 	relates IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_INITIALIZATION_OPERATOR;
@@ -20371,6 +20407,10 @@ BODY_ENTRY_EXPRESSION_FOR_IDENTIFIER_MAP_VALUE sub relationship
 	relates IS_BODY_ENTRY_EXPRESSION_FOR_IDENTIFIER_MAP_VALUE;
 IS_BODY_ENTRY_EXPRESSION_FOR_IDENTIFIER_MAP_VALUE sub role;
 
+BODY_EXPRESSION_FOR_IDENTIFIER_QUALIFIED sub relationship
+	relates IS_BODY_EXPRESSION_FOR_IDENTIFIER_QUALIFIED;
+IS_BODY_EXPRESSION_FOR_IDENTIFIER_QUALIFIED sub role;
+
 BODY_EXPRESSION_FOR_IF_LIST_THEN sub relationship
 	relates IS_BODY_EXPRESSION_FOR_IF_LIST_THEN;
 IS_BODY_EXPRESSION_FOR_IF_LIST_THEN sub role;
@@ -21154,6 +21194,10 @@ IS_CALL_EXPRESSION_FOR_FUNCTION sub role;
 CALL_EXPRESSION_FOR_FUNCTION_STATEMENT_UPDATE sub relationship
 	relates IS_CALL_EXPRESSION_FOR_FUNCTION_STATEMENT_UPDATE;
 IS_CALL_EXPRESSION_FOR_FUNCTION_STATEMENT_UPDATE sub role;
+
+CALL_EXPRESSION_FOR_FUNCTION_UPDATE sub relationship
+	relates IS_CALL_EXPRESSION_FOR_FUNCTION_UPDATE;
+IS_CALL_EXPRESSION_FOR_FUNCTION_UPDATE sub role;
 
 CALL_EXPRESSION_FOR_INITIALIZATION sub relationship
 	relates IS_CALL_EXPRESSION_FOR_INITIALIZATION;
