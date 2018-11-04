@@ -30,9 +30,9 @@ class GraknSchemaWriter {
         def observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
         for (int i = 0; i < observedRoles.size(); i++) {
             def role = observedRoles.get(i)
-            sb.append("IS_").append(role).append(" sub relationship\n")
-            sb.append("\trelates ").append(role).append(";\n")
-            sb.append(role).append(" sub role;\n")
+            sb.append(role).append(" sub relationship\n")
+            sb.append("\trelates IS_").append(role).append(";\n")
+            sb.append("IS_").append(role).append(" sub role;\n")
 
             if ((i + 1) < observedRoles.size()) {
                 sb.append("\n")
@@ -176,7 +176,7 @@ class GraknSchemaWriter {
                 if (!roleList.isEmpty()) {
                     sb.append("\n\t# Semantic\n")
                     for (int z = 0; z < roleList.size(); z++) {
-                        sb.append("\tplays ").append(roleList.get(z))
+                        sb.append("\tplays IS_").append(roleList.get(z))
 
                         if ((z + 1) < roleList.size()) {
                             sb.append("\n")
