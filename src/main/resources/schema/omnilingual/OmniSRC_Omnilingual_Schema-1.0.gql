@@ -152,7 +152,9 @@ BreakStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays BODY
 	plays BREAK
-	plays STATEMENT;
+	plays IF
+	plays STATEMENT
+	plays THEN;
 
 CatchClauseArtifact sub OmnilingualSourceArtifact
 	# Semantic
@@ -203,7 +205,8 @@ ExpressionStatementArtifact sub OmnilingualSourceArtifact
 	plays FOR
 	plays IF
 	plays STATEMENT
-	plays THEN;
+	plays THEN
+	plays WHILE;
 
 FileArtifact sub OmnilingualSourceArtifact
 	# Semantic
@@ -403,6 +406,7 @@ ThrowStatementArtifact sub OmnilingualSourceArtifact
 
 TryStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
+	plays BODY
 	plays STATEMENT
 	plays TRY;
 
@@ -1546,6 +1550,7 @@ JavaArrayAccessArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_java_arguments_relation
 	plays is_java_array_relation
+	plays is_java_else_expression_relation
 	plays is_java_expression_relation
 	plays is_java_extended_operands_relation
 	plays is_java_initializer_relation
@@ -1554,6 +1559,7 @@ JavaArrayAccessArtifact sub JavaSourceArtifact
 	plays is_java_operand_relation
 	plays is_java_right_hand_side_relation
 	plays is_java_right_operand_relation
+	plays is_java_then_expression_relation
 	plays has_java_array_relation
 	plays has_java_index_relation
 	# Semantic
@@ -1562,6 +1568,7 @@ JavaArrayAccessArtifact sub JavaSourceArtifact
 	plays BINARY
 	plays CALL
 	plays CONDITION
+	plays ELSE
 	plays EXPRESSION
 	plays IF
 	plays INCOMPLETE
@@ -1569,7 +1576,8 @@ JavaArrayAccessArtifact sub JavaSourceArtifact
 	plays POSITIONAL
 	plays RECEIVER
 	plays RIGHT
-	plays SWITCH;
+	plays SWITCH
+	plays THEN;
 
 JavaArrayCreationArtifact sub JavaSourceArtifact
 	# Structural
@@ -1602,6 +1610,7 @@ JavaArrayCreationArtifact sub JavaSourceArtifact
 
 JavaArrayInitializerArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_java_expressions_relation
 	plays is_java_initializer_relation
 	plays is_java_value_relation
 	plays has_java_expressions_relation
@@ -1718,6 +1727,7 @@ JavaBreakStatementArtifact sub BreakStatementArtifact
 	# Structural
 	plays is_java_body_relation
 	plays is_java_statements_relation
+	plays is_java_then_statement_relation
 	plays has_java_label_relation
 	# Semantic
 	plays CASE
@@ -1953,6 +1963,7 @@ JavaExpressionMethodReferenceArtifact sub JavaSourceArtifact
 	plays is_java_right_hand_side_relation
 	plays has_java_expression_relation
 	plays has_java_name_relation
+	plays has_java_type_arguments_relation
 	# Semantic
 	plays ARGUMENT
 	plays ASSIGNMENT
@@ -1980,6 +1991,7 @@ JavaFieldAccessArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_java_arguments_relation
 	plays is_java_array_relation
+	plays is_java_else_expression_relation
 	plays is_java_expression_relation
 	plays is_java_extended_operands_relation
 	plays is_java_initializer_relation
@@ -1997,6 +2009,7 @@ JavaFieldAccessArtifact sub JavaSourceArtifact
 	plays BINARY
 	plays CALL
 	plays CONDITION
+	plays ELSE
 	plays EXPRESSION
 	plays FOR
 	plays IF
@@ -2262,6 +2275,7 @@ JavaMethodInvocationArtifact sub JavaSourceArtifact
 	plays is_java_index_relation
 	plays is_java_initializer_relation
 	plays is_java_left_operand_relation
+	plays is_java_message_relation
 	plays is_java_operand_relation
 	plays is_java_right_hand_side_relation
 	plays is_java_right_operand_relation
@@ -2434,6 +2448,7 @@ JavaParenthesizedExpressionArtifact sub JavaSourceArtifact
 	plays is_java_operand_relation
 	plays is_java_right_hand_side_relation
 	plays is_java_right_operand_relation
+	plays is_java_then_expression_relation
 	plays has_java_expression_relation
 	# Semantic
 	plays ARGUMENT
@@ -2450,7 +2465,8 @@ JavaParenthesizedExpressionArtifact sub JavaSourceArtifact
 	plays LEFT
 	plays POSITIONAL
 	plays RECEIVER
-	plays RIGHT;
+	plays RIGHT
+	plays THEN;
 
 JavaPostfixExpressionArtifact sub JavaSourceArtifact
 	# Structural
@@ -2596,6 +2612,7 @@ JavaQualifiedNameArtifact sub JavaSourceArtifact
 
 JavaQualifiedTypeArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_java_type_arguments_relation
 	plays is_java_type_relation
 	plays has_java_name_relation
 	plays has_java_qualifier_relation
@@ -2747,6 +2764,7 @@ JavaSuperConstructorInvocationArtifact sub JavaSourceArtifact
 JavaSuperMethodInvocationArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_java_arguments_relation
+	plays is_java_body_relation
 	plays is_java_else_expression_relation
 	plays is_java_expression_relation
 	plays is_java_extended_operands_relation
@@ -2764,10 +2782,12 @@ JavaSuperMethodInvocationArtifact sub JavaSourceArtifact
 	plays ASSIGNMENT
 	plays BASE
 	plays BINARY
+	plays BODY
 	plays CALL
 	plays CONDITION
 	plays ELSE
 	plays EXPRESSION
+	plays FUNCTION
 	plays IF
 	plays LEFT
 	plays POSITIONAL
@@ -2821,6 +2841,8 @@ JavaTextElementArtifact sub JavaSourceArtifact
 JavaThisExpressionArtifact sub ThisExpressionArtifact
 	# Structural
 	plays is_java_arguments_relation
+	plays is_java_body_relation
+	plays is_java_else_expression_relation
 	plays is_java_expression_relation
 	plays is_java_initializer_relation
 	plays is_java_left_operand_relation
@@ -2828,28 +2850,37 @@ JavaThisExpressionArtifact sub ThisExpressionArtifact
 	plays is_java_right_operand_relation
 	plays has_java_qualifier_relation
 	# Semantic
+	plays BODY
+	plays ELSE
 	plays FOR
+	plays FUNCTION
+	plays IF
 	plays POSITIONAL
 	plays RECEIVER;
 
 JavaThrowStatementArtifact sub ThrowStatementArtifact
 	# Structural
 	plays is_java_body_relation
+	plays is_java_else_statement_relation
 	plays is_java_statements_relation
 	plays is_java_then_statement_relation
 	plays has_java_expression_relation
 	# Semantic
 	plays CASE
+	plays ELSE
 	plays SWITCH;
 
 JavaTryStatementArtifact sub TryStatementArtifact
 	# Structural
+	plays is_java_body_relation
 	plays is_java_statements_relation
 	plays has_java_body_relation
 	plays has_java_catch_clauses_relation
 	plays has_java_finally_relation
 	plays has_java_resources_relation
 	# Semantic
+	plays CASE
+	plays SWITCH
 	plays UNANNOTATED;
 
 JavaTypeDeclarationArtifact sub JavaSourceArtifact
@@ -3353,10 +3384,7 @@ JavascriptBreakStatementArtifact sub BreakStatementArtifact
 	plays is_javascript_body_relation
 	plays is_javascript_consequent_relation
 	plays has_javascript_label_relation
-	plays has_javascript_leading_comments_relation
-	# Semantic
-	plays IF
-	plays THEN;
+	plays has_javascript_leading_comments_relation;
 
 JavascriptCallExpressionArtifact sub JavascriptSourceArtifact
 	# Structural
@@ -3737,9 +3765,7 @@ JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact
 	plays is_javascript_consequent_relation
 	plays has_javascript_expression_relation
 	plays has_javascript_leading_comments_relation
-	plays has_javascript_trailing_comments_relation
-	# Semantic
-	plays WHILE;
+	plays has_javascript_trailing_comments_relation;
 
 JavascriptFileArtifact sub FileArtifact
 	# Structural
@@ -4944,7 +4970,6 @@ JavascriptTryStatementArtifact sub TryStatementArtifact
 	plays has_javascript_leading_comments_relation
 	plays has_javascript_trailing_comments_relation
 	# Semantic
-	plays BODY
 	plays IF
 	plays THEN;
 
