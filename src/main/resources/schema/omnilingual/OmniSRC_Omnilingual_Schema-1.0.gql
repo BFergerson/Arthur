@@ -10449,6 +10449,7 @@ PythonNameArtifact sub NameArtifact
 	plays has_python_noops_previous_relation
 	plays has_python_noops_sameline_relation
 	# Semantic
+	plays IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_NAME_POSITIONAL
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_IDENTIFIER
 	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_VALUE
