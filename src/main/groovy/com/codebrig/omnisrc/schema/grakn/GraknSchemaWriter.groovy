@@ -96,8 +96,8 @@ class GraknSchemaWriter {
             sb.append("\trelates ").append(isRole)
             sb.append(", relates ").append(hasRole).append(";\n")
             if (subType == "parent_child_relation") {
-                sb.append(isRole).append(" sub ").append("is_parent").append(";\n")
-                sb.append(hasRole).append(" sub ").append("is_child").append(";\n")
+                sb.append(isRole).append(" sub ").append("is_child").append(";\n")
+                sb.append(hasRole).append(" sub ").append("is_parent").append(";\n")
             } else {
                 sb.append(isRole).append(" sub ").append("is_$relation").append(";\n")
                 sb.append(hasRole).append(" sub ").append("has_$relation").append(";\n")
