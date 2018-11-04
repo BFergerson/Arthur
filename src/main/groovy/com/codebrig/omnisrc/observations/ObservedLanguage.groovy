@@ -8,8 +8,12 @@ import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 import java.util.stream.Collectors
 
 /**
- * @author github.com/BFergerson
+ * todo: description
  * todo: ranked over all globalEntities
+ *
+ * @version 0.1
+ * @since 0.1
+ * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class ObservedLanguage {
 

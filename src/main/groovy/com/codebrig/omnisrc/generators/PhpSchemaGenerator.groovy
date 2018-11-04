@@ -5,7 +5,11 @@ import com.codebrig.omnisrc.SourceLanguage
 import java.util.concurrent.TimeUnit
 
 /**
- * @author github.com/BFergerson
+ * todo: description
+ *
+ * @version 0.1
+ * @since 0.1
+ * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class PhpSchemaGenerator extends OmniSchemaGenerator {
 
