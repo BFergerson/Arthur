@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 
 group 'com.codebrig.omnisrc'
-version '1.0-SNAPSHOT'
+version '0.2'
 
 repositories {
     mavenCentral()
@@ -15,4 +15,18 @@ dependencies {
     compile 'org.bblfsh:bblfsh-client:1.10.1'
     compile group: 'org.kohsuke', name: 'github-api', version: '1.92'
     compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '5.0.1.201806211838-r'
+}
+
+task createProperties(dependsOn: processResources) {
+    doLast {
+        new File("$buildDir/resources/main/omnisrc_build.properties").withWriter { w ->
+            Properties p = new Properties()
+            p['version'] = project.version.toString()
+            p.store w, null
+        }
+    }
+}
+
+classes {
+    dependsOn createProperties
 }
