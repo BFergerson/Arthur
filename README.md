@@ -1,6 +1,6 @@
 # OmniSRC
 OmniSRC is a semantic omnilingual UAST (universal abstract syntax tree) schema generator which uses source code as input and outputs unilingual and omnilingual ontologies derived from those language(s).
-OmniSRC parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) and stores the resulting information in a [Grakn](https://github.com/graknlabs/grakn) knowledge graph. 
+OmniSRC parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) and constructs the observed schema for use in a knowledge graph. 
 
 ## Omnilingual Schemas
 
