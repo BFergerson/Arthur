@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.generators
+package com.codebrig.omnisrc.generators.github
 
 import com.codebrig.omnisrc.SourceLanguage
 
@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class PythonSchemaGenerator extends OmniSchemaGenerator {
+class GoSchemaGenerator extends OmniSchemaGenerator {
 
-    public static final SourceLanguage language = SourceLanguage.Python
-    public static final int PARSE_PROJECTS = 30
+    public static final SourceLanguage language = SourceLanguage.Go
+    public static final int PARSE_PROJECTS = 3
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()

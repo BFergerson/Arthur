@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.generators
+package com.codebrig.omnisrc.generators.github
 
 import com.codebrig.omnisrc.SourceLanguage
 
@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class RubySchemaGenerator extends OmniSchemaGenerator {
+class JavascriptSchemaGenerator extends OmniSchemaGenerator {
 
-    public static final SourceLanguage language = SourceLanguage.Ruby
-    public static final int PARSE_PROJECTS = 30
+    public static final SourceLanguage language = SourceLanguage.Javascript
+    public static final int PARSE_PROJECTS = 14
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()

@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.generators
+package com.codebrig.omnisrc.generators.github
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observations.ObservedLanguage
