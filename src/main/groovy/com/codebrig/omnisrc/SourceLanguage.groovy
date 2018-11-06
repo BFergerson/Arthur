@@ -76,4 +76,18 @@ enum SourceLanguage {
             throw new IllegalArgumentException("Could not detect source code language of file: " + file)
         }
     }
+
+    static SourceLanguage getSourceLanguageByName(String languageName) {
+        def sourceLanguage
+        values().each {
+            if (it.name().toLowerCase() == languageName.toLowerCase()) {
+                sourceLanguage = it
+            }
+        }
+        if (sourceLanguage != null) {
+            return sourceLanguage
+        } else {
+            throw new IllegalArgumentException("Could not determine source language of: " + languageName)
+        }
+    }
 }

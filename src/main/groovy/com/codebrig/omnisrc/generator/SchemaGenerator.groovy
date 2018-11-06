@@ -28,17 +28,35 @@ import static com.google.common.io.Files.getFileExtension
  */
 class SchemaGenerator {
 
-    public static final int PARSE_FILES_PER_PROJECT = 1000
+    private final BblfshClient client
 
-    static void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
-        def client = new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE)
-        def schemaWriter = new GraknSchemaWriter(observeLanguage(client, language, parseProjectCount))
+    SchemaGenerator() {
+        this(new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE))
+    }
+
+    SchemaGenerator(BblfshClient client) {
+        this.client = client
+    }
+
+    void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
+        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, parseProjectCount))
         if (outputFile.exists()) outputFile.delete()
         outputFile.createNewFile()
         outputFile.write(schemaWriter.getSchemaDefinition())
     }
 
-    static ObservedLanguage observeLanguage(BblfshClient client, SourceLanguage language, int parseProjectCount) {
+    void generateUnilingualSchema(SourceLanguage language, File inputDirectory, File outputFile) {
+        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, inputDirectory))
+        if (outputFile.exists()) outputFile.delete()
+        outputFile.createNewFile()
+        outputFile.write(schemaWriter.getSchemaDefinition())
+    }
+
+    ObservedLanguage observeLanguage(SourceLanguage language) {
+        return observeLanguage(language, Integer.MAX_VALUE)
+    }
+
+    ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount) {
         def observedLanguage = new ObservedLanguage(language)
         int parsedProjects = 0
         GitHub.connectAnonymously().searchRepositories()
@@ -48,33 +66,44 @@ class SchemaGenerator {
                 .list().iterator().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
-            analyzeGithubRepositoryObservation(client, it.fullName, observedLanguage)
+            parseGithubRepository(it.fullName, observedLanguage)
             return false
         }
         return observedLanguage
     }
 
-    static void analyzeGithubRepositoryObservation(BblfshClient client, String repoName,
-                                                   ObservedLanguage observedLanguage) {
-        println "Analyzing repository: $repoName"
+    ObservedLanguage observeLanguage(SourceLanguage language, File inputDirectory) {
+        def observedLanguage = new ObservedLanguage(language)
+        parseLocalRepo(inputDirectory, observedLanguage)
+        return observedLanguage
+    }
+
+    void parseGithubRepository(String repoName, ObservedLanguage observedLanguage) {
         def outputFolder = new File("/tmp/omnisrc/out/$repoName")
         if (new File(outputFolder, "cloned.omnisrc").exists()) {
-            println "$repoName already exists. Skipping"
+            println "$repoName already exists. Repository cloning skipped."
         } else {
             if (outputFolder.exists()) outputFolder.deleteDir()
             outputFolder.mkdirs()
             cloneRepo(repoName, outputFolder)
         }
+        parseLocalRepo(outputFolder, observedLanguage)
+    }
 
+    private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage) {
+        parseLocalRepo(localRoot, observedLanguage, Integer.MAX_VALUE)
+    }
+
+    private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
         def sourceFiles = new ArrayList<File>()
-        outputFolder.eachFileRecurse(FileType.FILES) {
+        localRoot.eachFileRecurse(FileType.FILES) {
             if (observedLanguage.language.isValidExtension(getFileExtension(it.name))) {
                 sourceFiles.add(it)
             }
         }
         def responseList = new ArrayList<ParseResponse>()
         GParsPool.withPool {
-            sourceFiles.stream().limit(PARSE_FILES_PER_PROJECT).collect(Collectors.toList()).eachParallel {
+            sourceFiles.stream().limit(parseFileLimit).collect(Collectors.toList()).eachParallel {
                 println "Parsing: " + it
                 responseList.add(client.parse(it.name, it.text, observedLanguage.language.key(), Encoding.UTF8$.MODULE$))
             }

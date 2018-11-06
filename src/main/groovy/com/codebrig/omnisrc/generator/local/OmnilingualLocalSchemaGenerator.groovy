@@ -1,11 +1,10 @@
-package com.codebrig.omnisrc.generator.github
+package com.codebrig.omnisrc.generator.local
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.generator.SchemaGenerator
 import com.codebrig.omnisrc.observations.ObservedLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
-import org.bblfsh.client.BblfshClient
 
 import java.util.concurrent.TimeUnit
 
@@ -13,21 +12,19 @@ import java.util.concurrent.TimeUnit
  * todo: description
  *
  * @version 0.2
- * @since 0.1
+ * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class OmnilingualSchemaGenerator extends SchemaGenerator {
-
-    public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
+class OmnilingualLocalSchemaGenerator extends SchemaGenerator {
 
     static void main(String[] args) {
+        def inputDirectory = new File(args[0])
         long startTime = System.currentTimeMillis()
-        def client = new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE)
-
+        def schemaGenerator = new SchemaGenerator()
         def observedLanguages = new ArrayList<ObservedLanguage>()
         SourceLanguage.values().each {
             if (it != SourceLanguage.OmniSRC) {
-                observedLanguages.add(observeLanguage(client, it, PARSE_PROJECTS_PER_LANGUAGE))
+                observedLanguages.add(schemaGenerator.observeLanguage(it, inputDirectory))
             }
         }
 
