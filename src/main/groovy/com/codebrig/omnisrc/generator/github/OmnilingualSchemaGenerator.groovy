@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class OmniSchemaGenerator extends SchemaGenerator {
+class OmnilingualSchemaGenerator extends SchemaGenerator {
 
     public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
 
