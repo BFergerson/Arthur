@@ -1,6 +1,7 @@
-package com.codebrig.omnisrc.generators.github
+package com.codebrig.omnisrc.generator.github
 
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.generator.SchemaGenerator
 
 import java.util.concurrent.TimeUnit
 
@@ -11,14 +12,13 @@ import java.util.concurrent.TimeUnit
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class GoSchemaGenerator extends OmniSchemaGenerator {
-
-    public static final SourceLanguage language = SourceLanguage.Go
-    public static final int PARSE_PROJECTS = 3
+class UnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     static void main(String[] args) {
+        def language = SourceLanguage.valueOf(args[0])
+        def parseProjectsCount = args[1] as int
         long startTime = System.currentTimeMillis()
-        generateUnilingualSchema(language, PARSE_PROJECTS,
+        generateUnilingualSchema(language, parseProjectsCount,
                 new File("src/main/resources/schema/unilingual/" + language.key(), language.getSchemaDefinitionName() + ".gql"))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }

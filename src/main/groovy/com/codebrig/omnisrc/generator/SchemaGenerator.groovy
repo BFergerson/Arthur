@@ -1,8 +1,7 @@
-package com.codebrig.omnisrc.generators.github
+package com.codebrig.omnisrc.generator
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observations.ObservedLanguage
-import com.codebrig.omnisrc.observations.OmniObservedLanguage
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
@@ -24,81 +23,19 @@ import static com.google.common.io.Files.getFileExtension
  * todo: description
  *
  * @version 0.2
- * @since 0.1
+ * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class OmniSchemaGenerator {
+class SchemaGenerator {
 
-    public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
     public static final int PARSE_FILES_PER_PROJECT = 1000
 
-    static void main(String[] args) {
-        long startTime = System.currentTimeMillis()
+    static void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
         def client = new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE)
-
-        def observedLanguages = new ArrayList<ObservedLanguage>()
-        SourceLanguage.values().each {
-            if (it != SourceLanguage.OmniSRC) {
-                observedLanguages.add(observeLanguage(client, it, PARSE_PROJECTS_PER_LANGUAGE))
-            }
-        }
-
-        def omniLanguage = new OmniObservedLanguage()
-        observedLanguages.each { lang ->
-            lang.observedEntities.each { entity ->
-                observedLanguages.stream().each {
-                    if (lang.language != it.language && it.observedEntity(entity)) {
-                        omniLanguage.observeGlobalEntity(entity)
-                        observedLanguages.each {
-                            it.addEntityExtends(entity)
-                        }
-                    }
-                }
-            }
-            lang.observedAttributes.each { attribute ->
-                observedLanguages.stream().each {
-                    if (lang.language != it.language && it.observedAttribute(attribute)) {
-                        omniLanguage.observeGlobalAttribute(attribute)
-                        observedLanguages.each {
-                            it.addAttributeExtends(attribute)
-                        }
-                    }
-                }
-            }
-            lang.observedRelations.each { relation ->
-                observedLanguages.stream().each {
-                    if (lang.language != it.language && it.observedRelation(relation)) {
-                        omniLanguage.observeGlobalRelation(relation)
-                        observedLanguages.each {
-                            it.addRelationExtends(relation)
-                        }
-                    }
-                }
-            }
-            lang.observedRoles.each { role ->
-                omniLanguage.observeGlobalRole(role)
-            }
-        }
-        omniLanguage.observedRoles.each { role ->
-            observedLanguages.each { lang ->
-                lang.getEntitiesWithRole(role).each { entity ->
-                    observedLanguages.each {
-                        if (lang.language != it.language && it.observedEntityRole(entity, role)) {
-                            omniLanguage.addEntityRole(entity, role)
-                            it.removeEntityRole(entity, role)
-                            lang.removeEntityRole(entity, role)
-                        }
-                    }
-                }
-            }
-        }
-
-        def schemaWriter = new GraknSchemaWriter(omniLanguage, observedLanguages.toArray(new ObservedLanguage[0]))
-        def outputFile = new File("src/main/resources/schema/omnilingual/OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Schema.gql")
+        def schemaWriter = new GraknSchemaWriter(observeLanguage(client, language, parseProjectCount))
         if (outputFile.exists()) outputFile.delete()
         outputFile.createNewFile()
         outputFile.write(schemaWriter.getSchemaDefinition())
-        println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 
     static ObservedLanguage observeLanguage(BblfshClient client, SourceLanguage language, int parseProjectCount) {
@@ -117,15 +54,8 @@ class OmniSchemaGenerator {
         return observedLanguage
     }
 
-    static void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
-        def client = new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE)
-        def schemaWriter = new GraknSchemaWriter(observeLanguage(client, language, parseProjectCount))
-        if (outputFile.exists()) outputFile.delete()
-        outputFile.createNewFile()
-        outputFile.write(schemaWriter.getSchemaDefinition())
-    }
-
-    static void analyzeGithubRepositoryObservation(BblfshClient client, String repoName, ObservedLanguage observedLanguage) {
+    static void analyzeGithubRepositoryObservation(BblfshClient client, String repoName,
+                                                   ObservedLanguage observedLanguage) {
         println "Analyzing repository: $repoName"
         def outputFolder = new File("/tmp/omnisrc/out/$repoName")
         if (new File(outputFolder, "cloned.omnisrc").exists()) {
