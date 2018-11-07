@@ -30,5 +30,4 @@ class SchemaGeneratorTest {
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
         assertEquals(verifyFile.text, schemaWriter.getSchemaDefinition())
     }
-
 }
