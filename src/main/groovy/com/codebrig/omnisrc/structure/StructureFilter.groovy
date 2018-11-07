@@ -23,16 +23,20 @@ trait StructureFilter implements Predicate<SourceNode> {
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node) {
-        return getFilteredNodes(new SourceNode(language, node))
+        return getFilteredNodes(SourceNode.getSourceNode(language, node))
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
-        def itr = asJavaIterator(BblfshClient.iterator(sourceNode.underlyingNode, BblfshClient.PreOrder()))
+        return getFilteredNodes(sourceNode, BblfshClient.PreOrder())
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, int sortMethod) {
+        def itr = asJavaIterator(BblfshClient.iterator(sourceNode.underlyingNode, sortMethod))
         def transformItr = new TransformIterator<Node, SourceNode>(itr, { Node node ->
             if (node == null) {
                 return null
             }
-            return new SourceNode(sourceNode.language, sourceNode.underlyingNode, node)
+            return SourceNode.getSourceNode(sourceNode.language, sourceNode.underlyingNode, node)
         })
         return new FilterIterator(transformItr, this)
     }

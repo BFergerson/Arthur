@@ -15,15 +15,24 @@ import scala.collection.JavaConverters
  */
 class SourceNode {
 
+    static SourceNode getSourceNode(SourceLanguage language, Node node) {
+        return getSourceNode(language, node, node)
+    }
+
+    static SourceNode getSourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+        def sourceNode = sourceNodes.get(underlyingNode)
+        if (sourceNode == null) {
+            sourceNodes.put(underlyingNode, new SourceNode(language, rootNode, underlyingNode))
+        }
+        return sourceNodes.get(underlyingNode)
+    }
+
+    private static final Map<Node, SourceNode> sourceNodes = new IdentityHashMap<>()
     private final SourceLanguage language
     private final Node rootNode
     private final Node underlyingNode
 
-    SourceNode(SourceLanguage language, Node underlyingNode) {
-        this(language, underlyingNode, underlyingNode)
-    }
-
-    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+    private SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
@@ -34,7 +43,7 @@ class SourceNode {
     }
 
     SourceNode getRootSourceNode() {
-        return new SourceNode(language, rootNode)
+        return getSourceNode(language, rootNode)
     }
 
     Node getUnderlyingNode() {
@@ -59,7 +68,7 @@ class SourceNode {
             if (node == null) {
                 return null
             }
-            return new SourceNode(language, this.rootNode, node)
+            return getSourceNode(language, this.rootNode, node)
         })
     }
 
@@ -77,9 +86,5 @@ class SourceNode {
 
     static Map<String, String> asJavaMap(scala.collection.Map<String, String> scalaMap) {
         return JavaConverters.mapAsJavaMapConverter(scalaMap).asJava()
-    }
-
-    static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
-        return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()
     }
 }

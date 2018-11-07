@@ -131,27 +131,40 @@ class SchemaGenerator {
                 System.err.println "Got null parse response"
                 //todo: understand this
             } else {
-                SourceNode parentNode
-                def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
-                filter.getFilteredNodes(rootSourceNode).each {
-                    if (it != null && !it.internalType.isEmpty()) {
-                        //attributes
-                        observedLanguage.observeAttributes(it.internalType, it.properties)
-                        //relations
-                        observedLanguage.observeRelations(it.internalType, filter.getFilteredNodes(it.children))
-                        //roles
-                        observedLanguage.observeRoles(it.internalType, it.roles)
-
-                        //parent and child don't relate in any way besides parent/child
-                        if (parentNode != null && !parentNode.underlyingNode.children().contains(it.underlyingNode)) {
-                            observedLanguage.observeParentChildRelation(parentNode.internalType, it)
-                        }
-                    }
-                    parentNode = it
+                def rootSourceNode = SourceNode.getSourceNode(observedLanguage.language, resp.uast)
+                if (filter.evaluate(rootSourceNode)) {
+                    observeSourceNode(observedLanguage, rootSourceNode)
                 }
+                extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
             }
         }
         println "Parsed " + responseList.size() + " " + observedLanguage.language.qualifiedName + " files"
+    }
+
+    private void extractSchema(ObservedLanguage observedLanguage,
+                               SourceNode parentNode, Iterator<SourceNode> childNodes) {
+        childNodes.each {
+            if (filter.evaluate(it)) {
+                extractSchema(observedLanguage, it, it.children)
+                observeSourceNode(observedLanguage, it)
+
+                //parent and child don't relate in any way besides parent/child
+                if (!parentNode.underlyingNode.children().contains(it.underlyingNode)) {
+                    observedLanguage.observeParentChildRelation(parentNode.internalType, it)
+                }
+            } else {
+                extractSchema(observedLanguage, parentNode, it.children)
+            }
+        }
+    }
+
+    private void observeSourceNode(ObservedLanguage observedLanguage, SourceNode sourceNode) {
+        if (sourceNode.internalType.isEmpty()) {
+            return //todo: understand this
+        }
+        observedLanguage.observeAttributes(sourceNode.internalType, sourceNode.properties)
+        observedLanguage.observeRelations(sourceNode.internalType, filter.getFilteredNodes(sourceNode.children))
+        observedLanguage.observeRoles(sourceNode.internalType, sourceNode.roles)
     }
 
     static void cloneRepo(String githubRepository, File outputDirectory) {
