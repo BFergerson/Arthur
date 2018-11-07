@@ -1,0 +1,117 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+
+#####----- Java -----#####
+javaConstructorAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token;
+
+#####----- Omnilingual -----#####
+OmnilingualSourceArtifact sub SourceArtifact;
+
+FileArtifact sub OmnilingualSourceArtifact
+	# Semantic
+	plays IS_FILE;
+
+#####----- Go -----#####
+GoSourceArtifact sub SourceArtifact;
+
+GoFileArtifact sub FileArtifact
+	# Structural
+	plays has_go_decls_relation;
+
+GoFuncDeclArtifact sub GoSourceArtifact
+	# Structural
+	plays is_go_decls_relation
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_DECLARATION_FUNCTION
+	plays IS_FUNCTION;
+
+#####----- Java -----#####
+JavaSourceArtifact sub SourceArtifact;
+
+JavaCompilationUnitArtifact sub JavaSourceArtifact
+	# Structural
+	plays is_parent
+	# Semantic
+	plays IS_FILE;
+
+JavaMethodDeclarationArtifact sub JavaSourceArtifact
+	# Attributes
+	has javaConstructorAttribute
+	# Structural
+	plays is_child
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_DECLARATION_FUNCTION_VISIBILITY_WORLD
+	plays IS_FUNCTION
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
+#####----- Javascript -----#####
+JavascriptSourceArtifact sub SourceArtifact;
+
+JavascriptFileArtifact sub FileArtifact;
+
+#####----- Python -----#####
+PythonSourceArtifact sub SourceArtifact;
+
+PythonModuleArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FILE
+	plays IS_FILE_MODULE
+	plays IS_MODULE;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
+
+#####----- Go -----#####
+go_decls_relation sub parent_child_relation
+	relates is_go_decls_relation, relates has_go_decls_relation;
+is_go_decls_relation sub is_child;
+has_go_decls_relation sub is_parent;
+
+##########---------- Semantic Roles ----------##########
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECLARATION_FUNCTION sub relationship
+	relates IS_DECLARATION_FUNCTION;
+IS_DECLARATION_FUNCTION sub role;
+
+DECLARATION_FUNCTION_VISIBILITY_WORLD sub relationship
+	relates IS_DECLARATION_FUNCTION_VISIBILITY_WORLD;
+IS_DECLARATION_FUNCTION_VISIBILITY_WORLD sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FILE_MODULE sub relationship
+	relates IS_FILE_MODULE;
+IS_FILE_MODULE sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+MODULE sub relationship
+	relates IS_MODULE;
+IS_MODULE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
