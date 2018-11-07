@@ -29,9 +29,10 @@ class GraknSchemaWriter {
 
     private void doSemanticRoles(StringBuilder sb) {
         println "Writing semantic roles"
-        sb.append("\n##########---------- Semantic Roles ----------##########\n")
-
         def observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
+        if (!observedRoles.isEmpty()) {
+            sb.append("\n##########---------- Semantic Roles ----------##########\n")
+        }
         for (int i = 0; i < observedRoles.size(); i++) {
             def role = observedRoles.get(i)
             sb.append(role).append(" sub relationship\n")
@@ -62,8 +63,11 @@ class GraknSchemaWriter {
     }
 
     private void outputAttributes(StringBuilder sb, ObservedLanguage observedLanguage) {
-        sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        observedLanguage.getObservedAttributes(naturalOrdering).each {
+        def observedAttributes = observedLanguage.getObservedAttributes(naturalOrdering)
+        if (!observedAttributes.isEmpty()) {
+            sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+        }
+        observedAttributes.each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             sb.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
                     .append(" datatype string;\n") //todo: dynamic datatype
@@ -91,14 +95,14 @@ class GraknSchemaWriter {
     }
 
     private void outputStructuralRelationships(StringBuilder sb, ObservedLanguage observedLanguage) {
-        sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         def observedRelations = observedLanguage.getObservedRelations(naturalOrdering)
+        observedRelations.remove("parent") //already defined
+        observedRelations.remove("child") //already defined
+        if (!observedRelations.isEmpty()) {
+            sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+        }
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
-            if (relation == "parent" || relation == "child") {
-                continue //already defined
-            }
-
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
             def isRole = "is_$fullRelation"
             def hasRole = "has_$fullRelation"
