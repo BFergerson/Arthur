@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit
 class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
+    public static final int PARSE_FILES_PER_PROJECT = 1000
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()
@@ -26,7 +27,7 @@ class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
         def observedLanguages = new ArrayList<ObservedLanguage>()
         SourceLanguage.values().each {
             if (it != SourceLanguage.OmniSRC) {
-                observedLanguages.add(schemaGenerator.observeLanguage(it, PARSE_PROJECTS_PER_LANGUAGE))
+                observedLanguages.add(schemaGenerator.observeLanguage(it, PARSE_PROJECTS_PER_LANGUAGE, PARSE_FILES_PER_PROJECT))
             }
         }
 

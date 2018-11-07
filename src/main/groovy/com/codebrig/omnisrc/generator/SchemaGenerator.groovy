@@ -65,6 +65,10 @@ class SchemaGenerator {
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount) {
+        return observeLanguage(language, parseProjectCount, Integer.MAX_VALUE)
+    }
+
+    ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount, int parseFilesPerProject) {
         def observedLanguage = new ObservedLanguage(language)
         int parsedProjects = 0
         GitHub.connectAnonymously().searchRepositories()
@@ -74,7 +78,7 @@ class SchemaGenerator {
                 .list().iterator().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
-            parseGithubRepository(it.fullName, observedLanguage)
+            parseGithubRepository(it.fullName, observedLanguage, parseFilesPerProject)
             return false
         }
         return observedLanguage
@@ -87,6 +91,10 @@ class SchemaGenerator {
     }
 
     void parseGithubRepository(String repoName, ObservedLanguage observedLanguage) {
+        parseGithubRepository(repoName, observedLanguage, Integer.MAX_VALUE)
+    }
+
+    void parseGithubRepository(String repoName, ObservedLanguage observedLanguage, int parseFileLimit) {
         def outputFolder = new File("/tmp/omnisrc/out/$repoName")
         if (new File(outputFolder, "cloned.omnisrc").exists()) {
             println "$repoName already exists. Repository cloning skipped."
@@ -95,7 +103,7 @@ class SchemaGenerator {
             outputFolder.mkdirs()
             cloneRepo(repoName, outputFolder)
         }
-        parseLocalRepo(outputFolder, observedLanguage)
+        parseLocalRepo(outputFolder, observedLanguage, parseFileLimit)
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage) {
