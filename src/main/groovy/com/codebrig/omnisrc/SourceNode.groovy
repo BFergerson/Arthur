@@ -1,5 +1,6 @@
 package com.codebrig.omnisrc
 
+import com.codebrig.omnisrc.structure.StructureName
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator
@@ -32,6 +33,14 @@ class SourceNode {
 
     String getInternalType() {
         return underlyingNode.internalType()
+    }
+
+    String getQualifiedName() {
+        return StructureName.getNodeName(this)
+    }
+
+    String getToken() {
+        return underlyingNode.token()
     }
 
     Iterator<SourceNode> getChildren() {
