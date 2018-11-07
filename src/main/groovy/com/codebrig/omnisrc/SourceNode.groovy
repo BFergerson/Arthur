@@ -16,15 +16,25 @@ import scala.collection.JavaConverters
 class SourceNode {
 
     private final SourceLanguage language
+    private final Node rootNode
     private final Node underlyingNode
 
     SourceNode(SourceLanguage language, Node underlyingNode) {
+        this(language, underlyingNode, underlyingNode)
+    }
+
+    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
         this.language = Objects.requireNonNull(language)
+        this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
     }
 
     SourceLanguage getLanguage() {
         return language
+    }
+
+    SourceNode getRootSourceNode() {
+        return new SourceNode(language, rootNode)
     }
 
     Node getUnderlyingNode() {
@@ -49,7 +59,7 @@ class SourceNode {
             if (node == null) {
                 return null
             }
-            return new SourceNode(language, node)
+            return new SourceNode(language, this.rootNode, node)
         })
     }
 

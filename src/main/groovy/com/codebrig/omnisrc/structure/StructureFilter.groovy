@@ -32,7 +32,7 @@ trait StructureFilter implements Predicate<SourceNode> {
             if (node == null) {
                 return null
             }
-            return new SourceNode(sourceNode.language, node)
+            return new SourceNode(sourceNode.language, sourceNode.underlyingNode, node)
         })
         return new FilterIterator(transformItr, this)
     }

@@ -9,6 +9,13 @@ class JavaName {
         switch (Objects.requireNonNull(node).internalType) {
             case "CompilationUnit":
                 return getCompilationUnitName(node)
+            case "MethodDeclaration":
+                def packageName = getCompilationUnitName(node.rootSourceNode)
+                if (packageName.isEmpty()) {
+                    return getMethodDeclarationName(node)
+                } else {
+                    return packageName + "." + getMethodDeclarationName(node)
+                }
             case "TypeDeclaration":
                 return getTypeDeclarationName(node)
             default:
@@ -24,6 +31,14 @@ class JavaName {
             } else if (it.internalType == "TypeDeclaration") {
                 name += getTypeDeclarationName(it)
             }
+        }
+        return name
+    }
+
+    static String getMethodDeclarationName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
+            name += it.token
         }
         return name
     }
