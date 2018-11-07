@@ -1,6 +1,7 @@
 package com.codebrig.omnisrc.structure.filter
 
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
+import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.structure.StructureFilter
 
 /**
  * todo: description
@@ -26,8 +27,8 @@ class TypeFilter implements StructureFilter {
     }
 
     @Override
-    boolean evaluate(Node node) {
-        return acceptedTypes.contains(node?.internalType())
+    boolean evaluate(SourceNode node) {
+        return acceptedTypes.contains(node?.internalType)
 
     }
 }

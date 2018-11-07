@@ -14,11 +14,11 @@ class TypeFilterTest_Java extends OmniSRCTest {
     void onlyMethodsFilter() {
         def methodFilter = new TypeFilter("MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key(), Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
 
         boolean foundMethod = false
-        methodFilter.getFilteredNodes(resp.uast).each {
-            assertEquals("MethodDeclaration", it.internalType())
+        methodFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            assertEquals("MethodDeclaration", it.internalType)
             foundMethod = true
         }
         assertTrue(foundMethod)
@@ -32,9 +32,9 @@ class TypeFilterTest_Java extends OmniSRCTest {
 
         boolean foundCompilationUnit = false
         boolean foundMethod = false
-        filter.getFilteredNodes(resp.uast).each {
-            assertTrue(["CompilationUnit", "MethodDeclaration"].contains(it.internalType()))
-            switch (it.internalType()) {
+        filter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            assertTrue(["CompilationUnit", "MethodDeclaration"].contains(it.internalType))
+            switch (it.internalType) {
                 case "CompilationUnit":
                     foundCompilationUnit = true
                     break

@@ -1,8 +1,8 @@
 package com.codebrig.omnisrc.observations
 
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.SourceNode
 import com.google.common.base.CaseFormat
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 
 import java.util.stream.Collectors
@@ -51,34 +51,34 @@ class ObservedLanguage {
         attributes.get(entity).observe(cleanedAttributes)
     }
 
-    void observeParentChildRelation(String entity, Node child) {
+    void observeParentChildRelation(String entity, SourceNode child) {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
-        if (child.properties().get("internalRole").isDefined()
-                && !child.internalType().isEmpty()) { //todo: understand this clause
+        if (!child.properties.get("internalRole")?.isEmpty()
+                && !child.internalType.isEmpty()) { //todo: understand this clause
             //parent is parent
             relations.get(entity).observeIs("parent")
 
             //child is child
-            def childEntity = toValidEntity(child.internalType())
+            def childEntity = toValidEntity(child.internalType)
             relations.putIfAbsent(childEntity, new ObservedRelations())
             relations.get(childEntity).observeIs("child")
         }
     }
 
-    void observeRelations(String entity, Iterator<Node> entityChildren) {
+    void observeRelations(String entity, Iterator<SourceNode> entityChildren) {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
         entityChildren.each { child ->
-            if (child.properties().get("internalRole").isDefined()
-                    && !child.internalType().isEmpty()) { //todo: understand this clause
+            if (!child.properties.get("internalRole")?.isEmpty()
+                    && !child.internalType.isEmpty()) { //todo: understand this clause
                 //parent relates to child (has)
-                relations.get(entity).observeHas(toValidRelation(child.properties().get("internalRole").get()))
+                relations.get(entity).observeHas(toValidRelation(child.properties.get("internalRole")))
 
                 //child relates to parent (is)
-                def childEntity = toValidEntity(child.internalType())
+                def childEntity = toValidEntity(child.internalType)
                 relations.putIfAbsent(childEntity, new ObservedRelations())
-                relations.get(childEntity).observeIs(toValidRelation(child.properties().get("internalRole").get()))
+                relations.get(childEntity).observeIs(toValidRelation(child.properties.get("internalRole")))
             }
         }
     }

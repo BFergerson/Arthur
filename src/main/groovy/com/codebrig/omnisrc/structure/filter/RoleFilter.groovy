@@ -1,6 +1,7 @@
 package com.codebrig.omnisrc.structure.filter
 
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
+import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.structure.StructureFilter
 
 /**
  * todo: description
@@ -33,12 +34,12 @@ class RoleFilter implements StructureFilter {
     }
 
     @Override
-    boolean evaluate(Node node) {
+    boolean evaluate(SourceNode node) {
         if (node != null) {
             def roleList = new ArrayList<String>()
             boolean foundReject = false
             boolean foundAccept = false
-            asJavaIterator(node.roles()).each {
+            node.roles.each {
                 roleList.add(it.name())
                 if (acceptedRoles.contains(it.name())) {
                     foundAccept = true

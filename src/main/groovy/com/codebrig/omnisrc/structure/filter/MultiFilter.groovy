@@ -1,6 +1,7 @@
 package com.codebrig.omnisrc.structure.filter
 
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
+import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.structure.StructureFilter
 
 /**
  * todo: description
@@ -26,7 +27,7 @@ class MultiFilter implements StructureFilter {
     }
 
     @Override
-    boolean evaluate(Node object) {
+    boolean evaluate(SourceNode object) {
         return filters.any { it.evaluate(object) }
     }
 }

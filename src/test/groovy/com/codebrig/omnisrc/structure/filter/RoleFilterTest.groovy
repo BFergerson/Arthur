@@ -14,11 +14,12 @@ class RoleFilterTest extends OmniSRCTest {
         def filter = new RoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
         def parseFolder = new File("src/test/resources/same/")
         parseFolder.listFiles().each { file ->
-            def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key(), Encoding.UTF8$.MODULE$)
+            def language = SourceLanguage.getSourceLanguage(file)
+            def resp = client.parse(file.name, file.text, language.key(), Encoding.UTF8$.MODULE$)
 
             boolean foundForStatement = false
-            filter.getFilteredNodes(resp.uast).each {
-                assertTrue(["For", "ForStmt", "ForStatement"].contains(it.internalType()))
+            filter.getFilteredNodes(language, resp.uast).each {
+                assertTrue(["For", "ForStmt", "ForStatement"].contains(it.internalType))
                 foundForStatement = true
             }
             assertTrue(foundForStatement)

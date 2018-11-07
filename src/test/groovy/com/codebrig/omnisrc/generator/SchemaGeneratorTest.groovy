@@ -27,7 +27,7 @@ class SchemaGeneratorTest {
         def pythonLanguage = schemaGenerator.observeLanguage(SourceLanguage.Python, new File("src/test/resources/same/"))
         def omniLanguage = OmniObservedLanguage.makeOmniObservedLanguage(goLanguage, javaLanguage, javascriptLanguage, pythonLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, pythonLanguage)
-        def verifyFile = new File("src/test/resources/same/", "Same_Schema.gql")
+        def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
         assertEquals(verifyFile.text, schemaWriter.getSchemaDefinition())
     }
 
