@@ -14,7 +14,7 @@ class RoleFilterTest extends OmniSRCTest {
         def filter = new RoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
         def parseFolder = new File("src/test/resources/same/")
         parseFolder.listFiles().each { file ->
-            def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLangauge(file).key(), Encoding.UTF8$.MODULE$)
+            def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key(), Encoding.UTF8$.MODULE$)
 
             boolean foundForStatement = false
             filter.getFilteredNodes(resp.uast).each {

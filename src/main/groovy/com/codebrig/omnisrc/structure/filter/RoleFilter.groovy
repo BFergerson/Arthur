@@ -1,8 +1,6 @@
 package com.codebrig.omnisrc.structure.filter
 
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
-import org.apache.commons.collections4.iterators.FilterIterator
-import org.bblfsh.client.BblfshClient
 
 /**
  * todo: description
@@ -14,33 +12,45 @@ import org.bblfsh.client.BblfshClient
 class RoleFilter implements StructureFilter {
 
     private Set<String> acceptedRoles
+    private Set<String> rejectedRoles
 
     RoleFilter() {
         acceptedRoles = new HashSet<>()
+        rejectedRoles = new HashSet<>()
     }
 
     RoleFilter(String... acceptRoles) {
         acceptedRoles = new HashSet<>(Arrays.asList(acceptRoles))
+        rejectedRoles = new HashSet<>()
     }
 
     void acceptRole(String role) {
-        acceptedRoles.add(role)
+        acceptedRoles.add(Objects.requireNonNull(role).toUpperCase())
     }
 
-    @Override
-    Iterator<Node> getFilteredNodes(Node uastNodes) {
-        return new FilterIterator(asJavaIterator(BblfshClient.iterator(uastNodes, BblfshClient.PreOrder())), this)
+    void rejectRole(String role) {
+        rejectedRoles.add(Objects.requireNonNull(role).toUpperCase())
     }
 
     @Override
     boolean evaluate(Node node) {
         if (node != null) {
             def roleList = new ArrayList<String>()
-            boolean foundRole = asJavaIterator(node.roles()).any {
+            boolean foundReject = false
+            boolean foundAccept = false
+            asJavaIterator(node.roles()).each {
                 roleList.add(it.name())
-                return acceptedRoles.contains(it.name())
+                if (acceptedRoles.contains(it.name())) {
+                    foundAccept = true
+                } else if (rejectedRoles.contains(it.name())) {
+                    foundReject = true
+                }
             }
-            if (!foundRole && roleList.size() > 1) {
+            if (foundReject) {
+                return false
+            }
+
+            if (roleList.size() > 1) {
                 roleList.sort(String.CASE_INSENSITIVE_ORDER)
                 def sb = new StringBuilder()
                 for (int i = 0; i < roleList.size(); i++) {
@@ -49,9 +59,9 @@ class RoleFilter implements StructureFilter {
                         sb.append("_")
                     }
                 }
-                return acceptedRoles.contains(sb.toString())
+                return (foundAccept || acceptedRoles.contains(sb.toString())) && !rejectedRoles.contains(sb.toString())
             }
-            return foundRole
+            return foundAccept
         }
         return false
     }

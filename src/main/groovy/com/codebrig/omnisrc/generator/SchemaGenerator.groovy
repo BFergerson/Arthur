@@ -3,8 +3,11 @@ package com.codebrig.omnisrc.generator
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observations.ObservedLanguage
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
+import com.codebrig.omnisrc.structure.filter.StructureFilter
+import com.codebrig.omnisrc.structure.filter.WildcardFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
+import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import groovy.io.FileType
 import groovyx.gpars.GParsPool
 import org.bblfsh.client.BblfshClient
@@ -29,6 +32,7 @@ import static com.google.common.io.Files.getFileExtension
 class SchemaGenerator {
 
     private final BblfshClient client
+    private StructureFilter filter
 
     SchemaGenerator() {
         this(new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE))
@@ -36,6 +40,11 @@ class SchemaGenerator {
 
     SchemaGenerator(BblfshClient client) {
         this.client = client
+        this.filter = new WildcardFilter()
+    }
+
+    void setFilter(StructureFilter filter) {
+        this.filter = Objects.requireNonNull(filter)
     }
 
     void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
@@ -115,15 +124,22 @@ class SchemaGenerator {
                 System.err.println "Got null parse response"
                 //todo: understand this
             } else {
-                asJavaIterator(BblfshClient.iterator(resp.uast, BblfshClient.PreOrder())).each {
+                Node parentNode
+                filter.getFilteredNodes(resp.uast).each {
                     if (it != null && !it.internalType().isEmpty()) {
                         //attributes
                         observedLanguage.observeAttributes(it.internalType(), asJavaMap(it.properties()))
                         //relations
-                        observedLanguage.observeRelations(it.internalType(), asJavaIterator(it.children()))
+                        observedLanguage.observeRelations(it.internalType(), filter.getFilteredNodes(it.children()))
                         //roles
                         observedLanguage.observeRoles(it.internalType(), asJavaIterator(it.roles()))
+
+                        //parent and child don't relate in any way besides parent/child
+                        if (parentNode != null && !parentNode.children().contains(it)) {
+                            observedLanguage.observeParentChildRelation(parentNode.internalType(), it)
+                        }
                     }
+                    parentNode = it
                 }
             }
         }
@@ -140,10 +156,6 @@ class SchemaGenerator {
                 .call()
         new File(outputDirectory, "cloned.omnisrc").createNewFile()
         println "Cloned: $githubRepository"
-    }
-
-    static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
-        return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()
     }
 
     static <T> Iterator<T> asJavaIterator(scala.collection.Iterable<T> scalaIterator) {

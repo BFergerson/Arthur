@@ -1,8 +1,6 @@
 package com.codebrig.omnisrc.structure.filter
 
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
-import org.apache.commons.collections4.iterators.FilterIterator
-import org.bblfsh.client.BblfshClient
 
 /**
  * todo: description
@@ -25,11 +23,6 @@ class TypeFilter implements StructureFilter {
 
     void acceptType(String internalType) {
         acceptedTypes.add(internalType)
-    }
-
-    @Override
-    Iterator<Node> getFilteredNodes(Node uastNodes) {
-        return new FilterIterator(asJavaIterator(BblfshClient.iterator(uastNodes, BblfshClient.PreOrder())), this)
     }
 
     @Override

@@ -51,6 +51,21 @@ class ObservedLanguage {
         attributes.get(entity).observe(cleanedAttributes)
     }
 
+    void observeParentChildRelation(String entity, Node child) {
+        entity = toValidEntity(entity)
+        relations.putIfAbsent(entity, new ObservedRelations())
+        if (child.properties().get("internalRole").isDefined()
+                && !child.internalType().isEmpty()) { //todo: understand this clause
+            //parent is parent
+            relations.get(entity).observeIs("parent")
+
+            //child is child
+            def childEntity = toValidEntity(child.internalType())
+            relations.putIfAbsent(childEntity, new ObservedRelations())
+            relations.get(childEntity).observeIs("child")
+        }
+    }
+
     void observeRelations(String entity, Iterator<Node> entityChildren) {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
@@ -111,7 +126,7 @@ class ObservedLanguage {
     }
 
     String getRelation(String relation, boolean multilingual) {
-        if (isOmnilingual() || !multilingual) {
+        if (isOmnilingual() || !multilingual || relation == "parent" || relation == "child") {
             return relation
         }
         return language.key() + "_" + relation

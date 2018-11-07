@@ -55,7 +55,9 @@ class GraknSchemaWriter {
             outputAttributes(sb, rootLanguage)
         }
         observedLanguages.each { observedLanguage ->
-            outputAttributes(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputAttributes(sb, observedLanguage)
+            }
         }
     }
 
@@ -82,7 +84,9 @@ class GraknSchemaWriter {
             outputStructuralRelationships(sb, rootLanguage)
         }
         observedLanguages.each { observedLanguage ->
-            outputStructuralRelationships(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputStructuralRelationships(sb, observedLanguage)
+            }
         }
     }
 
@@ -91,6 +95,10 @@ class GraknSchemaWriter {
         def observedRelations = observedLanguage.getObservedRelations(naturalOrdering)
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
+            if (relation == "parent" || relation == "child") {
+                continue //already defined
+            }
+
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
             def isRole = "is_$fullRelation"
             def hasRole = "has_$fullRelation"
@@ -123,7 +131,9 @@ class GraknSchemaWriter {
             outputEntities(sb, rootLanguage)
         }
         observedLanguages.each { observedLanguage ->
-            outputEntities(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputEntities(sb, observedLanguage)
+            }
         }
     }
 

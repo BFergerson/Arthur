@@ -2,6 +2,8 @@ package com.codebrig.omnisrc.structure.filter
 
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import org.apache.commons.collections4.Predicate
+import org.apache.commons.collections4.iterators.FilterIterator
+import org.bblfsh.client.BblfshClient
 import scala.collection.JavaConverters
 
 /**
@@ -13,7 +15,13 @@ import scala.collection.JavaConverters
  */
 trait StructureFilter implements Predicate<Node> {
 
-    abstract Iterator<Node> getFilteredNodes(Node uastNodes)
+    Iterator<Node> getFilteredNodes(scala.collection.Iterable<Node> uastNodes) {
+        return new FilterIterator(asJavaIterator(uastNodes), this)
+    }
+
+    Iterator<Node> getFilteredNodes(Node uastNode) {
+        return new FilterIterator(asJavaIterator(BblfshClient.iterator(uastNode, BblfshClient.PreOrder())), this)
+    }
 
     static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
         return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()

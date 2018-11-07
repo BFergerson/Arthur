@@ -62,7 +62,7 @@ enum SourceLanguage {
         return values().any { it.isValidExtension(fileExtension) }
     }
 
-    static SourceLanguage getSourceLangauge(File file) {
+    static SourceLanguage getSourceLanguage(File file) {
         def sourceLanguage
         def fileExtension = Files.getFileExtension(file.name)
         values().each {
