@@ -1,6 +1,6 @@
 package com.codebrig.omnisrc
 
-import com.codebrig.omnisrc.structure.StructureName
+import com.codebrig.omnisrc.structure.StructureNaming
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator
@@ -18,6 +18,7 @@ class SourceNode {
     private final SourceLanguage language
     private final Node rootNode
     private final Node underlyingNode
+    private final StructureNaming naming
 
     SourceNode(SourceLanguage language, Node underlyingNode) {
         this(language, underlyingNode, underlyingNode)
@@ -27,6 +28,7 @@ class SourceNode {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
+        this.naming = language.structureNaming
     }
 
     SourceLanguage getLanguage() {
@@ -46,7 +48,7 @@ class SourceNode {
     }
 
     String getQualifiedName() {
-        return StructureName.getNodeName(this)
+        return naming.getNodeName(this)
     }
 
     String getToken() {

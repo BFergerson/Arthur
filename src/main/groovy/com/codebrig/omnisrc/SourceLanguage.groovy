@@ -1,5 +1,7 @@
 package com.codebrig.omnisrc
 
+import com.codebrig.omnisrc.structure.StructureNaming
+import com.codebrig.omnisrc.structure.naming.JavaNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
@@ -55,6 +57,15 @@ enum SourceLanguage {
 
     boolean isValidExtension(String extension) {
         return fileExtensions.contains(extension.toLowerCase())
+    }
+
+    StructureNaming getStructureNaming() {
+        switch (this) {
+            case Java:
+                return new JavaNaming()
+            default:
+                throw new IllegalStateException("Unsupported language: " + this)
+        }
     }
 
     static boolean isSourceLanguageKnown(File file) {

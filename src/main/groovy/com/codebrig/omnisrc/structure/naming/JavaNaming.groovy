@@ -1,11 +1,21 @@
-package com.codebrig.omnisrc.structure.name
+package com.codebrig.omnisrc.structure.naming
 
 import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.structure.StructureNaming
+import com.codebrig.omnisrc.structure.filter.InternalRoleFilter
 import com.codebrig.omnisrc.structure.filter.TypeFilter
 
-class JavaName {
+/**
+ * todo: description
+ *
+ * @version 0.2
+ * @since 0.2
+ * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ */
+class JavaNaming implements StructureNaming {
 
-    static String getNodeName(SourceNode node) {
+    @Override
+    String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "CompilationUnit":
                 return getCompilationUnitName(node)
@@ -40,7 +50,15 @@ class JavaName {
         new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
             name += it.token
         }
-        return name
+
+        name += "("
+        new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
+            name += getSingleVariableDeclarationName(it) + ","
+        }
+        if (name.endsWith(",")) {
+            name = name.substring(0, name.length() - 1)
+        }
+        return name + ")"
     }
 
     static String getTypeDeclarationName(SourceNode node) {
@@ -57,5 +75,28 @@ class JavaName {
             name += it.token + "."
         }
         return name
+    }
+
+    private static String getSingleVariableDeclarationName(SourceNode node) {
+        def type = ""
+        new InternalRoleFilter("type").getFilteredNodes(node.children).each {
+            if (it.internalType == "PrimitiveType") {
+                type = it.token
+            } else {
+                type = getJavaQualifiedName(new InternalRoleFilter("name").getFilteredNodes(it.children).next().token)
+            }
+        }
+        return type
+    }
+
+
+    private static String getJavaQualifiedName(String object) {
+        switch (object) {
+            case "String":
+            case "Object":
+                return "java.lang." + object
+            default:
+                return object
+        }
     }
 }
