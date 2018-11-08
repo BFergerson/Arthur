@@ -5,9 +5,9 @@ import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.structure.filter.RoleFilter
 import com.codebrig.omnisrc.structure.filter.TypeFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
-import org.junit.Assert
 import org.junit.Test
 
+import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
 
 class JavaNamingTest extends OmniSRCTest {
@@ -19,7 +19,7 @@ class JavaNamingTest extends OmniSRCTest {
         def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            Assert.assertEquals("ForStmt", it.qualifiedName)
+            assertEquals("ForStmt", it.qualifiedName)
         }
     }
 
@@ -30,7 +30,7 @@ class JavaNamingTest extends OmniSRCTest {
         def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            Assert.assertEquals("com.company.ForStmt", it.qualifiedName)
+            assertEquals("com.company.ForStmt", it.qualifiedName)
         }
     }
 
@@ -41,7 +41,7 @@ class JavaNamingTest extends OmniSRCTest {
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            Assert.assertEquals("ForStmt.method()", it.qualifiedName)
+            assertEquals("ForStmt.method()", it.qualifiedName)
         }
     }
 
@@ -52,7 +52,7 @@ class JavaNamingTest extends OmniSRCTest {
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            Assert.assertEquals("com.company.ForStmt.method()", it.qualifiedName)
+            assertEquals("com.company.ForStmt.method()", it.qualifiedName)
         }
     }
 
@@ -112,5 +112,53 @@ class JavaNamingTest extends OmniSRCTest {
         assertTrue(foundMethod3)
         assertTrue(foundMethod4)
         assertTrue(foundMethod5)
+    }
+
+    @Test
+    void methodQualifiedName_importQualified_noPackage() {
+        def file = new File("src/test/resources/java/ImportQualifiedName.java")
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
+        def functionFilter = new TypeFilter("MethodDeclaration")
+
+        boolean foundSetMethod = false
+        boolean foundMapMethod = false
+        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            switch (it.qualifiedName) {
+                case "ImportQualifiedName.acceptGuavaSet(com.google.common.collect.ImmutableSet<java.lang.Boolean>)":
+                    foundSetMethod = true
+                    break
+                case "ImportQualifiedName.acceptGuavaMap(com.google.common.collect.ImmutableMap<java.lang.Boolean,java.lang.Integer>)":
+                    foundMapMethod = true
+                    break
+                default:
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+            }
+        }
+        assertTrue(foundSetMethod)
+        assertTrue(foundMapMethod)
+    }
+
+    @Test
+    void methodQualifiedName_importQualified_withPackage() {
+        def file = new File("src/test/resources/java/com/company/ImportQualifiedName.java")
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
+        def functionFilter = new TypeFilter("MethodDeclaration")
+
+        boolean foundSetMethod = false
+        boolean foundMapMethod = false
+        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            switch (it.qualifiedName) {
+                case "com.company.ImportQualifiedName.acceptGuavaSet(com.google.common.collect.ImmutableSet<java.lang.Boolean>)":
+                    foundSetMethod = true
+                    break
+                case "com.company.ImportQualifiedName.acceptGuavaMap(com.google.common.collect.ImmutableMap<java.lang.Boolean,java.lang.Integer>)":
+                    foundMapMethod = true
+                    break
+                default:
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+            }
+        }
+        assertTrue(foundSetMethod)
+        assertTrue(foundMapMethod)
     }
 }

@@ -80,18 +80,70 @@ class JavaNaming implements StructureNaming {
     private static String getSingleVariableDeclarationName(SourceNode node) {
         def type = ""
         new InternalRoleFilter("type").getFilteredNodes(node.children).each {
-            if (it.internalType == "PrimitiveType") {
-                type = it.token
-            } else {
-                type = getJavaQualifiedName(new InternalRoleFilter("name").getFilteredNodes(it.children).next().token)
+            switch (it.internalType) {
+                case "PrimitiveType":
+                    type = it.token
+                    break
+                case "ParameterizedType":
+                    type = getParameterizedTypeName(it)
+                    break
+                case "SimpleType":
+                    type = getSimpleTypeName(it)
+                    break
+                default:
+                    throw new IllegalStateException("Unsupported type: " + it.internalType)
             }
         }
         return type
     }
 
+    private static String getParameterizedTypeName(SourceNode node) {
+        def type = getSimpleTypeName(new InternalRoleFilter("type").getFilteredNodes(node.children).next())
+        def paramTypes = ""
+        new InternalRoleFilter("typeArguments").getFilteredNodes(node.children).each {
+            paramTypes += getSimpleTypeName(it) + ","
+        }
+        if (paramTypes.endsWith(",")) {
+            paramTypes = paramTypes.substring(0, paramTypes.length() - 1)
+        }
+
+        if (paramTypes.isEmpty()) {
+            return type
+        } else {
+            return type + "<" + paramTypes + ">"
+        }
+    }
+
+    private static String getSimpleTypeName(SourceNode node) {
+        def name = getJavaQualifiedName(new InternalRoleFilter("name").getFilteredNodes(node.children).next().token)
+        getImports(node.rootSourceNode).each {
+            if (it.endsWith(name)) {
+                name = it
+            }
+        }
+        return name
+    }
+
+    private static List<String> getImports(SourceNode rootNode) {
+        def importList = new ArrayList<String>()
+        new InternalRoleFilter("imports").getFilteredNodes(rootNode.children).each {
+            def importStr = ""
+            new TypeFilter("SimpleName").getFilteredNodes(it).each {
+                importStr += it.token + "."
+            }
+            if (importStr.endsWith(".")) {
+                importStr = importStr.substring(0, importStr.length() - 1)
+            }
+
+            importList.add(importStr)
+        }
+        return importList
+    }
 
     private static String getJavaQualifiedName(String object) {
         switch (object) {
+            case "Boolean":
+            case "Integer":
             case "String":
             case "Object":
                 return "java.lang." + object
