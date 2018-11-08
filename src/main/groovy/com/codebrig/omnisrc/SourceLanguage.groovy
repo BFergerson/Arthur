@@ -64,7 +64,7 @@ enum SourceLanguage {
             case Java:
                 return new JavaNaming()
             default:
-                throw new IllegalStateException("Unsupported language: " + this)
+                return null //todo: implement rest
         }
     }
 
