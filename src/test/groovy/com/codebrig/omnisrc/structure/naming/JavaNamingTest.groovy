@@ -57,7 +57,7 @@ class JavaNamingTest extends OmniSRCTest {
     }
 
     @Test
-    void methodQualifiedName_variousStuff() {
+    void methodQualifiedName_variousStuff_noPackage() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
         def functionFilter = new TypeFilter("MethodDeclaration")
@@ -74,6 +74,35 @@ class JavaNamingTest extends OmniSRCTest {
                     foundMethod4 = true
                     break
                 case "VariousStuff.method_5_args(byte,java.lang.String,int,java.lang.Object,char)":
+                    foundMethod5 = true
+                    break
+                default:
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+            }
+        }
+        assertTrue(foundMethod3)
+        assertTrue(foundMethod4)
+        assertTrue(foundMethod5)
+    }
+
+    @Test
+    void methodQualifiedName_variousStuff_withPackage() {
+        def file = new File("src/test/resources/java/com/company/VariousStuff.java")
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
+        def functionFilter = new TypeFilter("MethodDeclaration")
+
+        boolean foundMethod3 = false
+        boolean foundMethod4 = false
+        boolean foundMethod5 = false
+        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            switch (it.qualifiedName) {
+                case "com.company.VariousStuff.method_3_args(java.lang.String,int,java.lang.Object)":
+                    foundMethod3 = true
+                    break
+                case "com.company.VariousStuff.method_4_args(byte,java.lang.String,int,java.lang.Object)":
+                    foundMethod4 = true
+                    break
+                case "com.company.VariousStuff.method_5_args(byte,java.lang.String,int,java.lang.Object,char)":
                     foundMethod5 = true
                     break
                 default:
