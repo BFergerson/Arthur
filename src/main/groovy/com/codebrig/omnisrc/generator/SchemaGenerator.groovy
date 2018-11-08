@@ -131,7 +131,7 @@ class SchemaGenerator {
                 System.err.println "Got null parse response"
                 //todo: understand this
             } else {
-                def rootSourceNode = SourceNode.getSourceNode(observedLanguage.language, resp.uast)
+                def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
                 if (filter.evaluate(rootSourceNode)) {
                     observeSourceNode(observedLanguage, rootSourceNode)
                 }

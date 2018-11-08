@@ -23,7 +23,7 @@ trait StructureFilter implements Predicate<SourceNode> {
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node) {
-        return getFilteredNodes(SourceNode.getSourceNode(language, node))
+        return getFilteredNodes(new SourceNode(language, node))
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
@@ -36,7 +36,7 @@ trait StructureFilter implements Predicate<SourceNode> {
             if (node == null) {
                 return null
             }
-            return SourceNode.getSourceNode(sourceNode.language, sourceNode.underlyingNode, node)
+            return new SourceNode(sourceNode.language, sourceNode.underlyingNode, node)
         })
         return new FilterIterator(transformItr, this)
     }
