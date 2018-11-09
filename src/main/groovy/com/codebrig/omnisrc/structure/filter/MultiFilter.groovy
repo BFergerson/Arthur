@@ -10,16 +10,27 @@ import com.codebrig.omnisrc.structure.StructureFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class MultiFilter implements StructureFilter {
+class MultiFilter extends StructureFilter {
 
     private final List<StructureFilter> filters
+    private MatchStyle matchStyle
 
     MultiFilter() {
         this.filters = new ArrayList<>()
+        this.matchStyle = MatchStyle.ANY
     }
 
     MultiFilter(StructureFilter... filters) {
         this.filters = Arrays.asList(filters)
+        this.matchStyle = MatchStyle.ANY
+    }
+
+    void setMatchStyle(MatchStyle matchStyle) {
+        this.matchStyle = Objects.requireNonNull(matchStyle)
+    }
+
+    MatchStyle getMatchStyle() {
+        return matchStyle
     }
 
     void acceptFilter(StructureFilter filter) {
@@ -28,6 +39,15 @@ class MultiFilter implements StructureFilter {
 
     @Override
     boolean evaluate(SourceNode object) {
-        return filters.any { it.evaluate(object) }
+        if (matchStyle == MatchStyle.ANY) {
+            return filters.any { it.evaluate(object) }
+        } else {
+            return filters.every { it.evaluate(object) }
+        }
+    }
+
+    static enum MatchStyle {
+        ANY,
+        ALL
     }
 }

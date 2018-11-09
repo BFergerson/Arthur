@@ -10,7 +10,7 @@ import com.codebrig.omnisrc.structure.StructureFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class InternalRoleFilter implements StructureFilter {
+class InternalRoleFilter extends StructureFilter {
 
     private Set<String> acceptedRoles
     private Set<String> rejectedRoles

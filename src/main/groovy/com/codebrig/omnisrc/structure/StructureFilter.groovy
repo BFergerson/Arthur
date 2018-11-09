@@ -1,9 +1,9 @@
 package com.codebrig.omnisrc.structure
 
+import com.codebrig.omnisrc.SourceFilter
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
-import org.apache.commons.collections4.Predicate
 import org.apache.commons.collections4.iterators.FilterIterator
 import org.apache.commons.collections4.iterators.TransformIterator
 import org.bblfsh.client.BblfshClient
@@ -16,7 +16,7 @@ import scala.collection.JavaConverters
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-trait StructureFilter implements Predicate<SourceNode> {
+abstract class StructureFilter extends SourceFilter {
 
     Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes, this)
