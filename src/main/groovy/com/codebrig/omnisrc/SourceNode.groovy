@@ -35,6 +35,10 @@ class SourceNode {
         return language
     }
 
+    Node getRootNode() {
+        return rootNode
+    }
+
     SourceNode getRootSourceNode() {
         return new SourceNode(language, rootNode)
     }
