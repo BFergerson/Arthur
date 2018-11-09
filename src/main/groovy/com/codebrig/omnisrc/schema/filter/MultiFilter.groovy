@@ -1,7 +1,7 @@
-package com.codebrig.omnisrc.schema.structure.filter
+package com.codebrig.omnisrc.schema.filter
 
+import com.codebrig.omnisrc.SourceFilter
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.schema.structure.StructureFilter
 
 /**
  * todo: description
@@ -10,9 +10,9 @@ import com.codebrig.omnisrc.schema.structure.StructureFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class MultiFilter extends StructureFilter {
+class MultiFilter extends SourceFilter {
 
-    private final List<StructureFilter> filters
+    private final List<SourceFilter> filters
     private MatchStyle matchStyle
 
     MultiFilter() {
@@ -20,7 +20,7 @@ class MultiFilter extends StructureFilter {
         this.matchStyle = MatchStyle.ANY
     }
 
-    MultiFilter(StructureFilter... filters) {
+    MultiFilter(SourceFilter... filters) {
         this.filters = Arrays.asList(filters)
         this.matchStyle = MatchStyle.ANY
     }
@@ -33,7 +33,7 @@ class MultiFilter extends StructureFilter {
         return matchStyle
     }
 
-    void acceptFilter(StructureFilter filter) {
+    void acceptFilter(SourceFilter filter) {
         filters.add(Objects.requireNonNull(filter))
     }
 
