@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.schema.io.grakn
+package com.codebrig.omnisrc.output.grakn
 
 import com.codebrig.omnisrc.observations.ObservedLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage

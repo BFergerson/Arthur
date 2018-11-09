@@ -4,8 +4,8 @@ import com.codebrig.omnisrc.SourceFilter
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.observations.ObservedLanguage
+import com.codebrig.omnisrc.output.grakn.GraknSchemaWriter
 import com.codebrig.omnisrc.schema.filter.WildcardFilter
-import com.codebrig.omnisrc.schema.io.grakn.GraknSchemaWriter
 import com.codebrig.omnisrc.schema.structure.StructureFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
