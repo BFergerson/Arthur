@@ -4,7 +4,7 @@ import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.generator.SchemaGenerator
 import com.codebrig.omnisrc.observations.ObservedLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage
-import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
+import com.codebrig.omnisrc.schema.io.grakn.GraknSchemaWriter
 
 import java.util.concurrent.TimeUnit
 

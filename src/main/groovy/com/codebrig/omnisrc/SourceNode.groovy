@@ -1,6 +1,6 @@
 package com.codebrig.omnisrc
 
-import com.codebrig.omnisrc.structure.StructureNaming
+import com.codebrig.omnisrc.schema.structure.StructureNaming
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator

@@ -2,10 +2,10 @@ package com.codebrig.omnisrc.generator
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage
-import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
-import com.codebrig.omnisrc.structure.filter.MultiFilter
-import com.codebrig.omnisrc.structure.filter.RoleFilter
-import com.codebrig.omnisrc.structure.filter.TypeFilter
+import com.codebrig.omnisrc.schema.io.grakn.GraknSchemaWriter
+import com.codebrig.omnisrc.schema.structure.filter.MultiFilter
+import com.codebrig.omnisrc.schema.structure.filter.RoleFilter
+import com.codebrig.omnisrc.schema.structure.filter.TypeFilter
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals

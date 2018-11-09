@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.structure
+package com.codebrig.omnisrc.schema.structure
 
 import com.codebrig.omnisrc.SourceNode
 

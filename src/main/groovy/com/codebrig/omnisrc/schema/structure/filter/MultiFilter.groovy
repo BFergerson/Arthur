@@ -1,7 +1,7 @@
-package com.codebrig.omnisrc.structure.filter
+package com.codebrig.omnisrc.schema.structure.filter
 
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.structure.StructureFilter
+import com.codebrig.omnisrc.schema.structure.StructureFilter
 
 /**
  * todo: description

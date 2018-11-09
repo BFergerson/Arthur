@@ -1,7 +1,7 @@
-package com.codebrig.omnisrc.structure.filter
+package com.codebrig.omnisrc.schema.filter
 
+import com.codebrig.omnisrc.SourceFilter
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.structure.StructureFilter
 
 /**
  * todo: description
@@ -10,7 +10,7 @@ import com.codebrig.omnisrc.structure.StructureFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class WildcardFilter extends StructureFilter {
+class WildcardFilter extends SourceFilter {
     @Override
     boolean evaluate(SourceNode object) {
         return true

@@ -1,7 +1,7 @@
 package com.codebrig.omnisrc
 
-import com.codebrig.omnisrc.structure.StructureNaming
-import com.codebrig.omnisrc.structure.naming.JavaNaming
+import com.codebrig.omnisrc.schema.structure.StructureNaming
+import com.codebrig.omnisrc.schema.structure.naming.JavaNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources

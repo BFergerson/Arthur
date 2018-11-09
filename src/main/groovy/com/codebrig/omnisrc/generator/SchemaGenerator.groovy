@@ -1,11 +1,12 @@
 package com.codebrig.omnisrc.generator
 
+import com.codebrig.omnisrc.SourceFilter
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.observations.ObservedLanguage
-import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
-import com.codebrig.omnisrc.structure.StructureFilter
-import com.codebrig.omnisrc.structure.filter.WildcardFilter
+import com.codebrig.omnisrc.schema.filter.WildcardFilter
+import com.codebrig.omnisrc.schema.io.grakn.GraknSchemaWriter
+import com.codebrig.omnisrc.schema.structure.StructureFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
 import groovy.io.FileType
@@ -31,7 +32,7 @@ import static com.google.common.io.Files.getFileExtension
 class SchemaGenerator {
 
     private final BblfshClient client
-    private StructureFilter filter
+    private SourceFilter filter
 
     SchemaGenerator() {
         this(new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE))

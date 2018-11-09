@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.structure.filter
+package com.codebrig.omnisrc.schema.structure.filter
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
