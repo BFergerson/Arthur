@@ -1,8 +1,7 @@
-package com.codebrig.omnisrc.schema.structure.filter
+package com.codebrig.omnisrc.schema.filter
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
-import com.codebrig.omnisrc.schema.filter.TypeFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 

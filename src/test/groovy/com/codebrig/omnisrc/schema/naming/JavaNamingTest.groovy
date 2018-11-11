@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.schema.structure.naming
+package com.codebrig.omnisrc.schema.naming
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage

@@ -17,6 +17,10 @@ class JavaNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
+            case "SimpleName":
+                return getSimpleNameName(node)
+            case "QualifiedName":
+                return getQualifiedNameName(node)
             case "CompilationUnit":
                 return getCompilationUnitName(node)
             case "MethodDeclaration":
@@ -73,6 +77,25 @@ class JavaNaming implements StructureNaming {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node).each {
             name += it.token + "."
+        }
+        return name
+    }
+
+    private static String getSimpleNameName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+            name += it.token
+        }
+        return name
+    }
+
+    private static String getQualifiedNameName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+            name += it.token + "."
+        }
+        if (name.endsWith(".")) {
+            name = name.substring(0, name.length() - 1)
         }
         return name
     }
