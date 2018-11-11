@@ -2,17 +2,17 @@ package com.codebrig.omnisrc.schema.structure.filter
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
-import com.codebrig.omnisrc.schema.filter.RoleFilter
+import com.codebrig.omnisrc.schema.filter.WhitelistRoleFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
 import static org.junit.Assert.assertTrue
 
-class RoleFilterTest extends OmniSRCTest {
+class WhitelistRoleFilterTest extends OmniSRCTest {
 
     @Test
     void onlyForStatementsFilter() {
-        def filter = new RoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
+        def filter = new WhitelistRoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
         def parseFolder = new File("src/test/resources/same/")
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)

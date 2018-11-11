@@ -29,6 +29,5 @@ class TypeFilter extends SourceFilter {
     @Override
     boolean evaluate(SourceNode node) {
         return acceptedTypes.contains(node?.internalType)
-
     }
 }

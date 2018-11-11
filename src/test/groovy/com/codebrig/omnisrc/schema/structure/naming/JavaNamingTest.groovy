@@ -2,8 +2,8 @@ package com.codebrig.omnisrc.schema.structure.naming
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
-import com.codebrig.omnisrc.schema.filter.RoleFilter
 import com.codebrig.omnisrc.schema.filter.TypeFilter
+import com.codebrig.omnisrc.schema.filter.WhitelistRoleFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
@@ -16,7 +16,7 @@ class JavaNamingTest extends OmniSRCTest {
     void fileQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
-        def fileFilter = new RoleFilter("FILE")
+        def fileFilter = new WhitelistRoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             assertEquals("ForStmt", it.qualifiedName)
@@ -27,7 +27,7 @@ class JavaNamingTest extends OmniSRCTest {
     void fileQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key(), Encoding.UTF8$.MODULE$)
-        def fileFilter = new RoleFilter("FILE")
+        def fileFilter = new WhitelistRoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             assertEquals("com.company.ForStmt", it.qualifiedName)

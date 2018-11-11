@@ -4,8 +4,8 @@ import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observations.OmniObservedLanguage
 import com.codebrig.omnisrc.output.grakn.GraknSchemaWriter
 import com.codebrig.omnisrc.schema.filter.MultiFilter
-import com.codebrig.omnisrc.schema.filter.RoleFilter
 import com.codebrig.omnisrc.schema.filter.TypeFilter
+import com.codebrig.omnisrc.schema.filter.WhitelistRoleFilter
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -16,7 +16,7 @@ class SchemaGeneratorTest {
     void fileAndFunctionOnlySchema() {
         def schemaGenerator = new SchemaGenerator()
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
-        def roleFilter = new RoleFilter("FILE", "DECLARATION_FUNCTION")
+        def roleFilter = new WhitelistRoleFilter("FILE", "DECLARATION_FUNCTION")
         multiFilter.acceptFilter(roleFilter)
         multiFilter.acceptFilter(new TypeFilter("MethodDeclaration"))
         schemaGenerator.filter = multiFilter
