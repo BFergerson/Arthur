@@ -15,7 +15,7 @@ class SchemaGeneratorTest {
     @Test
     void fileAndFunctionOnlySchema() {
         def schemaGenerator = new SchemaGenerator()
-        def multiFilter = new MultiFilter()
+        def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         def roleFilter = new RoleFilter("FILE", "DECLARATION_FUNCTION")
         multiFilter.acceptFilter(roleFilter)
         multiFilter.acceptFilter(new TypeFilter("MethodDeclaration"))

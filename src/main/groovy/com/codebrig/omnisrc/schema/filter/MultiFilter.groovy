@@ -12,21 +12,17 @@ import com.codebrig.omnisrc.SourceNode
  */
 class MultiFilter extends SourceFilter {
 
+    private final MatchStyle matchStyle
     private final List<SourceFilter> filters
-    private MatchStyle matchStyle
 
-    MultiFilter() {
-        this.filters = new ArrayList<>()
-        this.matchStyle = MatchStyle.ANY
-    }
-
-    MultiFilter(SourceFilter... filters) {
-        this.filters = Arrays.asList(filters)
-        this.matchStyle = MatchStyle.ANY
-    }
-
-    void setMatchStyle(MatchStyle matchStyle) {
+    MultiFilter(MatchStyle matchStyle) {
         this.matchStyle = Objects.requireNonNull(matchStyle)
+        this.filters = new ArrayList<>()
+    }
+
+    MultiFilter(MatchStyle matchStyle, SourceFilter... filters) {
+        this.matchStyle = Objects.requireNonNull(matchStyle)
+        this.filters = Arrays.asList(filters)
     }
 
     MatchStyle getMatchStyle() {
