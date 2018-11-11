@@ -12,6 +12,14 @@ import com.codebrig.omnisrc.SourceNode
  */
 class MultiFilter extends SourceFilter {
 
+    static MultiFilter matchAny(SourceFilter... filters) {
+        return new MultiFilter(MatchStyle.ANY, filters)
+    }
+
+    static MultiFilter matchAll(SourceFilter... filters) {
+        return new MultiFilter(MatchStyle.ALL, filters)
+    }
+
     private final MatchStyle matchStyle
     private final List<SourceFilter> filters
 
