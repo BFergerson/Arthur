@@ -10,10 +10,19 @@ import com.codebrig.omnisrc.SourceNode
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class WildcardFilter extends SourceFilter {
+class TokenFilter extends SourceFilter {
+
+    private final String token
+
+    TokenFilter(String token) {
+        this.token = token
+    }
 
     @Override
-    boolean evaluate(SourceNode object) {
-        return true
+    boolean evaluate(SourceNode node) {
+        if (node != null) {
+            return node.token == token
+        }
+        return false
     }
 }
