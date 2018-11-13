@@ -1,6 +1,6 @@
-package com.codebrig.omnisrc.schema.filter
+package com.codebrig.omnisrc.observe.filter
 
-import com.codebrig.omnisrc.SourceFilter
+import com.codebrig.omnisrc.SourceNodeFilter
 import com.codebrig.omnisrc.SourceNode
 
 /**
@@ -10,25 +10,25 @@ import com.codebrig.omnisrc.SourceNode
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class MultiFilter extends SourceFilter {
+class MultiFilter extends SourceNodeFilter {
 
-    static MultiFilter matchAny(SourceFilter... filters) {
+    static MultiFilter matchAny(SourceNodeFilter... filters) {
         return new MultiFilter(MatchStyle.ANY, filters)
     }
 
-    static MultiFilter matchAll(SourceFilter... filters) {
+    static MultiFilter matchAll(SourceNodeFilter... filters) {
         return new MultiFilter(MatchStyle.ALL, filters)
     }
 
     private final MatchStyle matchStyle
-    private final List<SourceFilter> filters
+    private final List<SourceNodeFilter> filters
 
     MultiFilter(MatchStyle matchStyle) {
         this.matchStyle = Objects.requireNonNull(matchStyle)
         this.filters = new ArrayList<>()
     }
 
-    MultiFilter(MatchStyle matchStyle, SourceFilter... filters) {
+    MultiFilter(MatchStyle matchStyle, SourceNodeFilter... filters) {
         this.matchStyle = Objects.requireNonNull(matchStyle)
         this.filters = Arrays.asList(filters)
     }
@@ -37,7 +37,7 @@ class MultiFilter extends SourceFilter {
         return matchStyle
     }
 
-    void acceptFilter(SourceFilter filter) {
+    void acceptFilter(SourceNodeFilter filter) {
         filters.add(Objects.requireNonNull(filter))
     }
 

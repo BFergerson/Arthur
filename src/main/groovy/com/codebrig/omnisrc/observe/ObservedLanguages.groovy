@@ -1,6 +1,7 @@
-package com.codebrig.omnisrc.observations
+package com.codebrig.omnisrc.observe
 
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.observe.observations.ObservedRoles
 
 /**
  * todo: description
@@ -9,14 +10,14 @@ import com.codebrig.omnisrc.SourceLanguage
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class OmniObservedLanguage extends ObservedLanguage {
+class ObservedLanguages extends ObservedLanguage {
 
-    static OmniObservedLanguage makeOmniObservedLanguage(ObservedLanguage... observedLanguages) {
-        return makeOmniObservedLanguage(Arrays.asList(observedLanguages))
+    static ObservedLanguages mergeLanguages(ObservedLanguage... observedLanguages) {
+        return mergeLanguages(Arrays.asList(observedLanguages))
     }
 
-    static OmniObservedLanguage makeOmniObservedLanguage(List<ObservedLanguage> observedLanguages) {
-        def omniLanguage = new OmniObservedLanguage()
+    static ObservedLanguages mergeLanguages(List<ObservedLanguage> observedLanguages) {
+        def omniLanguage = new ObservedLanguages()
         observedLanguages.each { lang ->
             lang.observedEntities.each { entity ->
                 observedLanguages.stream().each {
@@ -74,7 +75,7 @@ class OmniObservedLanguage extends ObservedLanguage {
     public final Set<String> globalRelations
     public final Set<String> globalRoles
 
-    private OmniObservedLanguage() {
+    private ObservedLanguages() {
         super(SourceLanguage.OmniSRC)
         this.globalEntities = new HashSet<>()
         this.globalAttributes = new HashSet<>()

@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.schema.filter
+package com.codebrig.omnisrc.observe.filter
 
 /**
  * todo: description

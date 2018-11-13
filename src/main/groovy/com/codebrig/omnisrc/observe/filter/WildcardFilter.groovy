@@ -1,6 +1,6 @@
-package com.codebrig.omnisrc.schema.filter
+package com.codebrig.omnisrc.observe.filter
 
-import com.codebrig.omnisrc.SourceFilter
+import com.codebrig.omnisrc.SourceNodeFilter
 import com.codebrig.omnisrc.SourceNode
 
 /**
@@ -10,7 +10,7 @@ import com.codebrig.omnisrc.SourceNode
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class WildcardFilter extends SourceFilter {
+class WildcardFilter extends SourceNodeFilter {
 
     @Override
     boolean evaluate(SourceNode object) {

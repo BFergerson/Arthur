@@ -2,9 +2,9 @@ package com.codebrig.omnisrc.generator.local
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.generator.SchemaGenerator
-import com.codebrig.omnisrc.observations.ObservedLanguage
-import com.codebrig.omnisrc.observations.OmniObservedLanguage
-import com.codebrig.omnisrc.output.grakn.GraknSchemaWriter
+import com.codebrig.omnisrc.observe.ObservedLanguage
+import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +28,7 @@ class OmnilingualLocalSchemaGenerator extends SchemaGenerator {
             }
         }
 
-        def omniLanguage = OmniObservedLanguage.makeOmniObservedLanguage(observedLanguages)
+        def omniLanguage = ObservedLanguages.mergeLanguages(observedLanguages)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, observedLanguages.toArray(new ObservedLanguage[0]))
         def outputFile = new File("src/main/resources/schema/omnilingual/OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Schema.gql")
         if (outputFile.exists()) outputFile.delete()

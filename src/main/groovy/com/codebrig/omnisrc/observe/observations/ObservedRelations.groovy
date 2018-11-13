@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.observations
+package com.codebrig.omnisrc.observe.observations
 
 import java.util.concurrent.atomic.AtomicInteger
 

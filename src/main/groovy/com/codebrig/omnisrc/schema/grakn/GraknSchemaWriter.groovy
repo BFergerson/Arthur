@@ -1,7 +1,8 @@
-package com.codebrig.omnisrc.output.grakn
+package com.codebrig.omnisrc.schema.grakn
 
-import com.codebrig.omnisrc.observations.ObservedLanguage
-import com.codebrig.omnisrc.observations.OmniObservedLanguage
+
+import com.codebrig.omnisrc.observe.ObservedLanguage
+import com.codebrig.omnisrc.observe.ObservedLanguages
 import com.google.common.base.CaseFormat
 
 /**
@@ -18,12 +19,12 @@ class GraknSchemaWriter {
     private boolean naturalOrdering = true
 
     GraknSchemaWriter(ObservedLanguage observedLanguage) {
-        this.observedLanguages = Collections.singletonList(Objects.requireNonNull(observedLanguage))
-        this.rootLanguage = observedLanguage
+        this.rootLanguage = Objects.requireNonNull(observedLanguage)
+        this.observedLanguages = Collections.singletonList(observedLanguage)
     }
 
-    GraknSchemaWriter(OmniObservedLanguage rootLanguage, ObservedLanguage... observedLanguages) {
-        this.rootLanguage = rootLanguage
+    GraknSchemaWriter(ObservedLanguages rootLanguage, ObservedLanguage... observedLanguages) {
+        this.rootLanguage = Objects.requireNonNull(rootLanguage)
         this.observedLanguages = Arrays.asList(observedLanguages)
     }
 
@@ -48,8 +49,6 @@ class GraknSchemaWriter {
     private void doAttributes(StringBuilder sb) {
         println "Writing attributes"
         sb.append("\n##########---------- Attributes ----------##########\n")
-
-        //todo: smarter and dynamic
         sb.append("token sub attribute datatype string;\n")
 
         if (rootLanguage.isOmnilingual()) {
@@ -77,8 +76,6 @@ class GraknSchemaWriter {
     private void doStructuralRelationships(StringBuilder sb) {
         println "Writing structural relationships"
         sb.append("\n##########---------- Structural Relationships ----------##########\n")
-
-        //todo: smarter and dynamic
         sb.append("parent_child_relation sub relationship\n" +
                 "\trelates is_parent, relates is_child;\n" +
                 "is_parent sub role;\n" +

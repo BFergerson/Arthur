@@ -1,7 +1,10 @@
-package com.codebrig.omnisrc.observations
+package com.codebrig.omnisrc.observe
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.observe.observations.ObservedAttributes
+import com.codebrig.omnisrc.observe.observations.ObservedRelations
+import com.codebrig.omnisrc.observe.observations.ObservedRoles
 import com.google.common.base.CaseFormat
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 

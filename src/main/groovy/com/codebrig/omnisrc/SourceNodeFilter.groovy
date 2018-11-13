@@ -14,7 +14,7 @@ import scala.collection.JavaConverters
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-abstract class SourceFilter implements Predicate<SourceNode> {
+abstract class SourceNodeFilter implements Predicate<SourceNode> {
 
     Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes, this)

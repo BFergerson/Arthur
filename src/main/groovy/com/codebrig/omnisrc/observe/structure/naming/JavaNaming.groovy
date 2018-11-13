@@ -1,9 +1,9 @@
-package com.codebrig.omnisrc.schema.structure.naming
+package com.codebrig.omnisrc.observe.structure.naming
 
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.schema.structure.StructureNaming
-import com.codebrig.omnisrc.schema.filter.InternalRoleFilter
-import com.codebrig.omnisrc.schema.filter.TypeFilter
+import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
+import com.codebrig.omnisrc.observe.filter.TypeFilter
+import com.codebrig.omnisrc.observe.structure.StructureNaming
 
 /**
  * todo: description

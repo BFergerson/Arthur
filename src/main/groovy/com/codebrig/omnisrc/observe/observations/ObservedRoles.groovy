@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.observations
+package com.codebrig.omnisrc.observe.observations
 
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -9,26 +9,43 @@ import java.util.concurrent.atomic.AtomicInteger
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class ObservedAttributes {
+class ObservedRoles {
 
     public Map<String, AtomicInteger> observations = new HashMap<>()
 
-    void observe(Map<String, String> attributes) {
-        attributes.keySet().stream().each {
+    void observe(Iterator<String> roles) {
+        def roleList = roles.toList()
+        roleList.each {
             observations.putIfAbsent(it, new AtomicInteger())
             observations.get(it).incrementAndGet()
         }
+
+        if (roleList.size() > 1) {
+            //add merged super role
+            def sb = new StringBuilder()
+            def alphaSortRoles = new ArrayList<String>(roleList)
+            alphaSortRoles.sort(String.CASE_INSENSITIVE_ORDER)
+            for (int i = 0; i < alphaSortRoles.size(); i++) {
+                sb.append(alphaSortRoles.get(i))
+                if ((i + 1) < alphaSortRoles.size()) {
+                    sb.append("_")
+                }
+            }
+            def superRole = sb.toString()
+            observations.putIfAbsent(superRole, new AtomicInteger())
+            observations.get(superRole).incrementAndGet()
+        }
     }
 
-    void removeObservation(String attribute) {
-        observations.remove(attribute)
+    void removeObservation(String role) {
+        observations.remove(role)
     }
 
-    List<String> getAttributes() {
+    List<String> getRoles() {
         return observations.keySet().toList()
     }
 
-    List<String> getRankedAttributes() {
+    List<String> getRankedRoles() {
         return entriesSortedByValues(observations).keySet().toList()
     }
 

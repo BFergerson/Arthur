@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.schema.filter
+package com.codebrig.omnisrc.observe.filter
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
