@@ -43,8 +43,11 @@ class GraknSchemaWriter implements SchemaWriter {
                         true, false, false))
             }
             if (actualRoles) {
-                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
-                        false, true, false))
+                //get from observed languages directly; root language won't know
+                observedLanguages.each {
+                    observedRoles.addAll(it.getObservedRoles(naturalOrdering,
+                            false, true, false))
+                }
             }
             if (possibleRoles) {
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,

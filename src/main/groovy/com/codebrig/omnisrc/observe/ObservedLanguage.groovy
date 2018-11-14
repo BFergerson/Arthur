@@ -29,7 +29,7 @@ class ObservedLanguage {
     final HashMap<String, String> relationExtends
 
     ObservedLanguage(SourceLanguage language) {
-        this(language, ObservationConfig.baseStructureWithIndividualSemanticRoles())
+        this(language, ObservationConfig.baseStructure())
     }
 
     ObservedLanguage(SourceLanguage language, ObservationConfig config) {
