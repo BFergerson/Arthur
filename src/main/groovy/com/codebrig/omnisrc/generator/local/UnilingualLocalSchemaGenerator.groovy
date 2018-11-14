@@ -19,7 +19,7 @@ class UnilingualLocalSchemaGenerator extends SchemaGenerator {
         def inputDirectory = args[1] as File
         long startTime = System.currentTimeMillis()
         new SchemaGenerator().generateUnilingualSchema(language, inputDirectory,
-                new File("src/main/resources/schema/unilingual/" + language.key(), language.getSchemaDefinitionName() + ".gql"))
+                new File("src/main/resources/schema/unilingual/" + language.key, language.getSchemaDefinitionName() + ".gql"))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

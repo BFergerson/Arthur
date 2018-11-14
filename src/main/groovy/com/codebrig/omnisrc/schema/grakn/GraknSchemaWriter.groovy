@@ -1,8 +1,9 @@
 package com.codebrig.omnisrc.schema.grakn
 
-
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.schema.SchemaWriter
+import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
 import com.google.common.base.CaseFormat
 
 /**
@@ -12,7 +13,7 @@ import com.google.common.base.CaseFormat
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class GraknSchemaWriter {
+class GraknSchemaWriter implements SchemaWriter {
 
     private final ObservedLanguage rootLanguage
     private final List<ObservedLanguage> observedLanguages
@@ -215,6 +216,17 @@ class GraknSchemaWriter {
         this.naturalOrdering = naturalOrdering
     }
 
+    @Override
+    void storeFullSchemaDefinition(File outputFile) {
+        println "todo: this" //todo: this
+    }
+
+    @Override
+    void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
+        println "todo: this" //todo: this
+    }
+
+    @Override
     String getSchemaDefinition() {
         def sb = new StringBuilder()
         sb.append("define\n")

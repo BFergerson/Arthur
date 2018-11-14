@@ -30,7 +30,7 @@ enum SourceLanguage {
         this.fileExtensions = new HashSet<>(fileExtensions)
     }
 
-    String key() {
+    String getKey() {
         return name().toLowerCase()
     }
 
@@ -38,7 +38,7 @@ enum SourceLanguage {
         if (this == OmniSRC) {
             return "Omnilingual"
         }
-        return key().substring(0, 1).toUpperCase() + key().substring(1)
+        return key.substring(0, 1).toUpperCase() + key.substring(1)
     }
 
     String getSchemaDefinitionName() {
@@ -51,7 +51,7 @@ enum SourceLanguage {
                     "schema/omnilingual/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
         } else {
             return Resources.toString(Resources.getResource(
-                    "schema/unilingual/" + key() + "/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
+                    "schema/unilingual/$key/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
         }
     }
 

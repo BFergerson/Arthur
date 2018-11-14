@@ -1,6 +1,7 @@
 package com.codebrig.omnisrc.generator
 
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguages
 import com.codebrig.omnisrc.observe.filter.MultiFilter
 import com.codebrig.omnisrc.observe.filter.TypeFilter
@@ -14,7 +15,7 @@ class SchemaGeneratorTest {
 
     @Test
     void fileAndFunctionOnlySchema() {
-        def schemaGenerator = new SchemaGenerator()
+        def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithIndividualAndActualSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         def roleFilter = new WhitelistRoleFilter("FILE", "DECLARATION_FUNCTION")
         multiFilter.acceptFilter(roleFilter)

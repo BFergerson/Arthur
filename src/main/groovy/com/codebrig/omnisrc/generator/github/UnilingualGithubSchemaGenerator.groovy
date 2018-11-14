@@ -19,7 +19,7 @@ class UnilingualGithubSchemaGenerator extends SchemaGenerator {
         def parseProjectsCount = args[1] as int
         long startTime = System.currentTimeMillis()
         new SchemaGenerator().generateUnilingualSchema(language, parseProjectsCount,
-                new File("src/main/resources/schema/unilingual/" + language.key(), language.getSchemaDefinitionName() + ".gql"))
+                new File("src/main/resources/schema/unilingual/" + language.key, language.getSchemaDefinitionName() + ".gql"))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

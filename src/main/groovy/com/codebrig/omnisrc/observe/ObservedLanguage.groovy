@@ -12,7 +12,6 @@ import java.util.stream.Collectors
 
 /**
  * todo: description
- * todo: ranked over all globalEntities
  *
  * @version 0.2
  * @since 0.1
@@ -20,16 +19,18 @@ import java.util.stream.Collectors
  */
 class ObservedLanguage {
 
-    public final SourceLanguage language
-    public final HashMap<String, ObservedAttributes> attributes
-    public final HashMap<String, ObservedRelations> relations
-    public final HashMap<String, ObservedRoles> roles
-    public final HashMap<String, String> entityExtends
-    public final HashMap<String, String> attributeExtends
-    public final HashMap<String, String> relationExtends
+    final SourceLanguage language
+    final ObservationConfig config
+    final HashMap<String, ObservedAttributes> attributes
+    final HashMap<String, ObservedRelations> relations
+    final HashMap<String, ObservedRoles> roles
+    final HashMap<String, String> entityExtends
+    final HashMap<String, String> attributeExtends
+    final HashMap<String, String> relationExtends
 
-    ObservedLanguage(SourceLanguage language) {
-        this.language = language
+    ObservedLanguage(SourceLanguage language, ObservationConfig config) {
+        this.language = Objects.requireNonNull(language)
+        this.config = Objects.requireNonNull(config)
         this.attributes = new HashMap<>()
         this.relations = new HashMap<>()
         this.roles = new HashMap<>()
@@ -91,7 +92,7 @@ class ObservedLanguage {
         roles.putIfAbsent(entity, new ObservedRoles())
         roles.get(entity).observe(entityRoles.toList().stream()
                 .map({ it -> it.name() })
-                .collect(Collectors.toList()).iterator())
+                .collect(Collectors.toList()).iterator(), config.observingActualSemanticRoles())
     }
 
     void addEntityExtends(String entity) {
@@ -110,14 +111,14 @@ class ObservedLanguage {
     }
 
     void addAttributeExtends(String attribute) {
-        attributeExtends.put(language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute), attribute)
+        attributeExtends.put(language.key + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute), attribute)
     }
 
     String getAttribute(String attribute, boolean multilingual) {
         if (isOmnilingual() || !multilingual) {
             return attribute
         }
-        return language.key() + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute)
+        return language.key + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute)
     }
 
     String getAttributeExtends(String attribute) {
@@ -125,14 +126,14 @@ class ObservedLanguage {
     }
 
     void addRelationExtends(String relation) {
-        relationExtends.put(language.key() + "_" + relation, relation)
+        relationExtends.put(language.key + "_" + relation, relation)
     }
 
     String getRelation(String relation, boolean multilingual) {
         if (isOmnilingual() || !multilingual || relation == "parent" || relation == "child") {
             return relation
         }
-        return language.key() + "_" + relation
+        return language.key + "_" + relation
     }
 
     String getRelationExtends(String relation) {
@@ -175,12 +176,12 @@ class ObservedLanguage {
 
     List<String> getObservedRoles(boolean naturalOrdering) {
         if (naturalOrdering) {
-            def rtnRoles = roles.values().collect { it.roles }
+            def rtnRoles = roles.values().collect { it.getRoles(config.observingPossibleSemanticRoles()) }
                     .flatten().toSet().toList() as List<String>
             rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
             return rtnRoles
         } else {
-            return roles.values().collect { it.rankedRoles }
+            return roles.values().collect { it.getRankedRoles(config.observingPossibleSemanticRoles()) }
                     .flatten().toSet().toList() as List<String>
         }
     }
@@ -249,11 +250,11 @@ class ObservedLanguage {
 
     List<String> getEntityObservedRoles(String entity, boolean naturalOrdering) {
         if (naturalOrdering) {
-            def rtnRoles = roles.get(entity).roles
+            def rtnRoles = roles.get(entity).getRoles(config.observingPossibleSemanticRoles())
             rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
             return rtnRoles
         } else {
-            return roles.get(entity).rankedRoles
+            return roles.get(entity).getRankedRoles(config.observingPossibleSemanticRoles())
         }
     }
 
@@ -264,7 +265,7 @@ class ObservedLanguage {
     List<String> getEntitiesWithRole(String role, boolean naturalOrdering) {
         def rtnRoles = new ArrayList<String>()
         this.roles.each {
-            if (it.value.roles.contains(role)) {
+            if (it.value.getRoles(config.observingPossibleSemanticRoles()).contains(role)) {
                 rtnRoles.add(it.key)
             }
         }
@@ -290,7 +291,7 @@ class ObservedLanguage {
         if (!roles.containsKey(entity)) {
             return false
         }
-        return roles.get(entity).rankedRoles.contains(role)
+        return roles.get(entity).getRoles(config.observingPossibleSemanticRoles()).contains(role)
     }
 
     boolean isOmnilingual() {

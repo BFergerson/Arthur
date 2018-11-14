@@ -15,7 +15,7 @@ class WhitelistRoleFilterTest extends OmniSRCTest {
         def parseFolder = new File("src/test/resources/same/")
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
-            def resp = client.parse(file.name, file.text, language.key(), Encoding.UTF8$.MODULE$)
+            def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
             boolean foundForStatement = false
             filter.getFilteredNodes(language, resp.uast).each {

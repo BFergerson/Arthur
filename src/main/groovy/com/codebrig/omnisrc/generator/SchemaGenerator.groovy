@@ -1,10 +1,12 @@
 package com.codebrig.omnisrc.generator
 
-import com.codebrig.omnisrc.SourceNodeFilter
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
+import com.codebrig.omnisrc.SourceNodeFilter
+import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.filter.WildcardFilter
+import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
@@ -32,18 +34,34 @@ class SchemaGenerator {
 
     private final BblfshClient client
     private SourceNodeFilter filter
+    private final ObservationConfig config
 
     SchemaGenerator() {
         this(new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE))
     }
 
+    SchemaGenerator(ObservationConfig observationConfig) {
+        this(new BblfshClient("0.0.0.0", 9432, Integer.MAX_VALUE), observationConfig)
+    }
+
     SchemaGenerator(BblfshClient client) {
+        this(client, ObservationConfig.baseStructureWithIndividualSemanticRoles())
+    }
+
+    SchemaGenerator(BblfshClient client, ObservationConfig observationConfig) {
         this.client = client
         this.filter = new WildcardFilter()
+        this.config = observationConfig
     }
 
     void setFilter(SourceNodeFilter filter) {
         this.filter = Objects.requireNonNull(filter)
+    }
+
+    void generateUnilingualSchema(SourceLanguage language, int parseProjectCount,
+                                  SegmentedSchemaConfig segmentedSchemaConfig) {
+        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, parseProjectCount))
+        schemaWriter.storeSegmentedSchemaDefinition(segmentedSchemaConfig)
     }
 
     void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
@@ -69,13 +87,13 @@ class SchemaGenerator {
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount, int parseFilesPerProject) {
-        def observedLanguage = new ObservedLanguage(language)
+        def observedLanguage = new ObservedLanguage(language, config)
         int parsedProjects = 0
         GitHub.connectAnonymously().searchRepositories()
                 .sort(GHRepositorySearchBuilder.Sort.STARS)
                 .order(GHDirection.DESC)
-                .language(language.key())
-                .list().iterator().find {
+                .language(language.key)
+                .list().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
             parseGithubRepository(it.fullName, observedLanguage, parseFilesPerProject)
@@ -85,7 +103,7 @@ class SchemaGenerator {
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language, File inputDirectory) {
-        def observedLanguage = new ObservedLanguage(language)
+        def observedLanguage = new ObservedLanguage(language, config)
         parseLocalRepo(inputDirectory, observedLanguage)
         return observedLanguage
     }
@@ -121,7 +139,7 @@ class SchemaGenerator {
         GParsPool.withPool {
             sourceFiles.stream().limit(parseFileLimit).collect(Collectors.toList()).eachParallel {
                 println "Parsing: " + it
-                responseList.add(client.parse(it.name, it.text, observedLanguage.language.key(), Encoding.UTF8$.MODULE$))
+                responseList.add(client.parse(it.name, it.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$))
             }
         }
 
