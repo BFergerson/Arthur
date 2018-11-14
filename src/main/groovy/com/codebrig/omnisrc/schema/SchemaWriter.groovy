@@ -19,7 +19,15 @@ trait SchemaWriter {
         outputFile << fullSchemaDefinition
     }
 
-    abstract void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig)
+    void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
+        //todo: this
+        segmentConfig.fileOutputs.each {
+            println 'here'
+        }
+        println "todo: this" //todo: this
+    }
+
+    abstract String getSegmentedSchemaDefinition(SchemaSegment... segments)
 
     abstract String getFullSchemaDefinition()
 }

@@ -72,18 +72,31 @@ class ObservedRoles {
         return actualObservations.keySet().toList()
     }
 
-    List<String> getRoles(boolean includePossibleRoles) {
-        def rtnList = individualSemanticRoles + actualSemanticRoles
+    List<String> getRoles(boolean includeIndividualRoles, boolean includeActualRoles, boolean includePossibleRoles) {
+        def rtnList = new ArrayList<String>()
+        if (includeIndividualRoles) {
+            rtnList.addAll(individualSemanticRoles)
+        }
+        if (includeActualRoles) {
+            rtnList.addAll(actualSemanticRoles)
+        }
         if (includePossibleRoles) {
-            return rtnList + possibleSemanticRoles
+            rtnList.addAll(possibleSemanticRoles)
         }
         return rtnList
     }
 
-    List<String> getRankedRoles(boolean includePossibleRoles) {
-        def rtnList = entriesSortedByValues(individualObservations + actualObservations).keySet().toList()
+    List<String> getRankedRoles(boolean includeIndividualRoles, boolean includeActualRoles, boolean includePossibleRoles) {
+        //todo: need to combine and rank then filter?
+        def rtnList = new ArrayList<String>()
+        if (includeIndividualRoles) {
+            rtnList.addAll(entriesSortedByValues(individualObservations).keySet().toList())
+        }
+        if (includeActualRoles) {
+            rtnList.addAll(entriesSortedByValues(actualObservations).keySet().toList())
+        }
         if (includePossibleRoles) {
-            return rtnList + possibleSemanticRoles
+            rtnList.addAll(possibleSemanticRoles)
         }
         return rtnList
     }

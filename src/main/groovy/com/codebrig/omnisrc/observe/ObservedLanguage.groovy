@@ -187,14 +187,22 @@ class ObservedLanguage {
     }
 
     List<String> getObservedRoles(boolean naturalOrdering) {
+        return getObservedRoles(naturalOrdering, config.observingIndividualSemanticRoles(),
+                config.observingActualSemanticRoles(), config.observingPossibleSemanticRoles())
+    }
+
+    List<String> getObservedRoles(boolean naturalOrdering, boolean includeIndividual, boolean includeActual,
+                                  boolean includePossible) {
         if (naturalOrdering) {
-            def rtnRoles = roles.values().collect { it.getRoles(config.observingPossibleSemanticRoles()) }
-                    .flatten().toSet().toList() as List<String>
+            def rtnRoles = roles.values().collect {
+                it.getRoles(includeIndividual, includeActual, includePossible)
+            }.flatten().toSet().toList() as List<String>
             rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
             return rtnRoles
         } else {
-            return roles.values().collect { it.getRankedRoles(config.observingPossibleSemanticRoles()) }
-                    .flatten().toSet().toList() as List<String>
+            return roles.values().collect {
+                it.getRankedRoles(includeIndividual, includeActual, includePossible)
+            }.flatten().toSet().toList() as List<String>
         }
     }
 
@@ -261,12 +269,19 @@ class ObservedLanguage {
     }
 
     List<String> getEntityObservedRoles(String entity, boolean naturalOrdering) {
+        return getEntityObservedRoles(entity, naturalOrdering,
+                config.observingIndividualSemanticRoles(), config.observingActualSemanticRoles(),
+                config.observingPossibleSemanticRoles())
+    }
+
+    List<String> getEntityObservedRoles(String entity, boolean naturalOrdering,
+                                        boolean includeIndividual, boolean includeActual, boolean includePossible) {
         if (naturalOrdering) {
-            def rtnRoles = roles.get(entity).getRoles(config.observingPossibleSemanticRoles())
+            def rtnRoles = roles.get(entity).getRoles(includeIndividual, includeActual, includePossible)
             rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
             return rtnRoles
         } else {
-            return roles.get(entity).getRankedRoles(config.observingPossibleSemanticRoles())
+            return roles.get(entity).getRankedRoles(includeIndividual, includeActual, includePossible)
         }
     }
 
@@ -277,7 +292,8 @@ class ObservedLanguage {
     List<String> getEntitiesWithRole(String role, boolean naturalOrdering) {
         def rtnRoles = new ArrayList<String>()
         this.roles.each {
-            if (it.value.getRoles(config.observingPossibleSemanticRoles()).contains(role)) {
+            if (it.value.getRoles(config.observingIndividualSemanticRoles(), config.observingActualSemanticRoles(),
+                    config.observingPossibleSemanticRoles()).contains(role)) {
                 rtnRoles.add(it.key)
             }
         }
@@ -303,7 +319,8 @@ class ObservedLanguage {
         if (!roles.containsKey(entity)) {
             return false
         }
-        return roles.get(entity).getRoles(config.observingPossibleSemanticRoles()).contains(role)
+        return roles.get(entity).getRoles(config.observingIndividualSemanticRoles(),
+                config.observingActualSemanticRoles(), config.observingPossibleSemanticRoles()).contains(role)
     }
 
     boolean isOmnilingual() {

@@ -23,6 +23,10 @@ class ObservationConfig {
         }
     }
 
+    SchemaSegment[] asArray() {
+        return observedSegments.toArray(new SchemaSegment[0])
+    }
+
     boolean observingIndividualSemanticRoles() {
         return INDIVIDUAL_SEMANTIC_ROLES in observedSegments
     }

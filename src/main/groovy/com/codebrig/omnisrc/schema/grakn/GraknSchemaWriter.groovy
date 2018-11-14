@@ -2,9 +2,11 @@ package com.codebrig.omnisrc.schema.grakn
 
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.schema.SchemaSegment
 import com.codebrig.omnisrc.schema.SchemaWriter
-import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
 import com.google.common.base.CaseFormat
+
+import static com.codebrig.omnisrc.schema.SchemaSegment.*
 
 /**
  * todo: description
@@ -29,9 +31,27 @@ class GraknSchemaWriter implements SchemaWriter {
         this.observedLanguages = Arrays.asList(observedLanguages)
     }
 
-    private void doSemanticRoles(Writer output) {
+    private void writeSemanticRoles(Writer output, boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
         println "Writing semantic roles"
-        def observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
+        def observedRoles
+        if (individualRoles && actualRoles && possibleRoles) {
+            observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
+        } else {
+            observedRoles = new ArrayList<String>()
+            if (individualRoles) {
+                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
+                        true, false, false))
+            }
+            if (actualRoles) {
+                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
+                        false, true, false))
+            }
+            if (possibleRoles) {
+                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
+                        false, false, true))
+            }
+        }
+
         if (!observedRoles.isEmpty()) {
             output.append("\n##########---------- Semantic Roles ----------##########\n")
         }
@@ -47,7 +67,7 @@ class GraknSchemaWriter implements SchemaWriter {
         }
     }
 
-    private void doAttributes(Writer output) {
+    private void writeAttributes(Writer output) {
         println "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
         output.append("token sub attribute datatype string;\n")
@@ -74,7 +94,7 @@ class GraknSchemaWriter implements SchemaWriter {
         }
     }
 
-    private void doStructuralRelationships(Writer output) {
+    private void writeStructuralRelationships(Writer output) {
         println "Writing structural relationships"
         output.append("\n##########---------- Structural Relationships ----------##########\n")
         output.append("parent_child_relation sub relationship\n" +
@@ -124,23 +144,30 @@ class GraknSchemaWriter implements SchemaWriter {
         }
     }
 
-    private void doEntities(Writer output) {
+    private void writeEntities(Writer output, boolean includeAttributes, boolean includeStructure,
+                               boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
         println "Writing entities"
         output.append("\n##########---------- Entities ----------##########\n")
-        output.append("SourceArtifact sub entity\n")
-                .append("\thas token;\n")
+        if (includeAttributes) {
+            output.append("SourceArtifact sub entity\n")
+                    .append("\thas token;\n")
+        }
 
         if (rootLanguage.isOmnilingual()) {
-            outputEntities(output, rootLanguage)
+            outputEntities(output, rootLanguage, includeAttributes, includeStructure,
+                    individualRoles, actualRoles, possibleRoles)
         }
         observedLanguages.each { observedLanguage ->
             if (!observedLanguage.isOmnilingual()) {
-                outputEntities(output, observedLanguage)
+                outputEntities(output, observedLanguage, includeAttributes, includeStructure,
+                        individualRoles, actualRoles, possibleRoles)
             }
         }
     }
 
-    private void outputEntities(Writer output, ObservedLanguage observedLanguage) {
+    private void outputEntities(Writer output, ObservedLanguage observedLanguage,
+                                boolean includeAttributes, boolean includeStructure,
+                                boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
         output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         output.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
 
@@ -151,7 +178,7 @@ class GraknSchemaWriter implements SchemaWriter {
             output.append(fullEntity).append(" sub ").append(observedLanguage.getEntityExtends(fullEntity))
 
             //has
-            if (observedLanguage.attributes.containsKey(entity)) {
+            if (includeAttributes && observedLanguage.attributes.containsKey(entity)) {
                 def attrList = observedLanguage.getEntityObservedAttributes(entity, naturalOrdering)
                 if (!attrList.isEmpty()) output.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
@@ -165,7 +192,7 @@ class GraknSchemaWriter implements SchemaWriter {
             }
 
             //plays (UAST structure)
-            if (observedLanguage.relations.containsKey(entity)) {
+            if (includeStructure && observedLanguage.relations.containsKey(entity)) {
                 def isRelations = observedLanguage.getEntityObservedIsRelations(entity, naturalOrdering)
                 def hasRelations = observedLanguage.getEntityObservedHasRelations(entity, naturalOrdering)
                 if (!isRelations.isEmpty() || !hasRelations.isEmpty()) output.append("\n\t# Structural\n")
@@ -189,7 +216,25 @@ class GraknSchemaWriter implements SchemaWriter {
 
             //plays (semantic roles)
             if (observedLanguage.roles.containsKey(entity)) {
-                def roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
+                def roleList
+                if (individualRoles && actualRoles && possibleRoles) {
+                    roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
+                } else {
+                    roleList = new ArrayList<String>()
+                    if (individualRoles) {
+                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
+                                true, false, false))
+                    }
+                    if (actualRoles) {
+                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
+                                false, true, false))
+                    }
+                    if (possibleRoles) {
+                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
+                                false, false, true))
+                    }
+                }
+
                 if (!roleList.isEmpty()) {
                     output.append("\n\t# Semantic\n")
                     for (int z = 0; z < roleList.size(); z++) {
@@ -218,18 +263,45 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     @Override
-    void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
-        println "todo: this" //todo: this
+    String getSegmentedSchemaDefinition(SchemaSegment... segments) {
+        def sb = new StringWriter()
+        sb.append("define\n")
+        if (ATTRIBUTES in segments) {
+            writeAttributes(sb)
+        }
+        if (ENTITIES in segments
+                || INDIVIDUAL_SEMANTIC_ROLES in segments
+                || ACTUAL_SEMANTIC_ROLES in segments
+                || POSSIBLE_SEMANTIC_ROLES in segments) {
+            def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
+            def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
+            def possibleRoles = (POSSIBLE_SEMANTIC_ROLES in segments)
+            def includeAttributes = ATTRIBUTES in segments
+            def includeStructure = RELATIONSHIPS in segments
+            writeEntities(sb, includeAttributes, includeStructure, individualRoles, actualRoles, possibleRoles)
+        }
+        if (RELATIONSHIPS in segments) {
+            writeStructuralRelationships(sb)
+        }
+        if (INDIVIDUAL_SEMANTIC_ROLES in segments
+                || ACTUAL_SEMANTIC_ROLES in segments
+                || POSSIBLE_SEMANTIC_ROLES in segments) {
+            def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
+            def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
+            def possibleRoles = (POSSIBLE_SEMANTIC_ROLES in segments)
+            writeSemanticRoles(sb, individualRoles, actualRoles, possibleRoles)
+        }
+        return sb.toString()
     }
 
     @Override
     String getFullSchemaDefinition() {
         def sb = new StringWriter()
         sb.append("define\n")
-        doAttributes(sb)
-        doEntities(sb)
-        doStructuralRelationships(sb)
-        doSemanticRoles(sb)
+        writeAttributes(sb)
+        writeEntities(sb, true, true, true, true, true)
+        writeStructuralRelationships(sb)
+        writeSemanticRoles(sb, true, true, true)
         return sb.toString()
     }
 }
