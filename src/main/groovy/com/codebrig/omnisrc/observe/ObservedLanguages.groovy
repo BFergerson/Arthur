@@ -2,6 +2,7 @@ package com.codebrig.omnisrc.observe
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observe.observations.ObservedRoles
+import com.codebrig.omnisrc.schema.SchemaSegment
 
 /**
  * todo: description
@@ -17,7 +18,11 @@ class ObservedLanguages extends ObservedLanguage {
     }
 
     static ObservedLanguages mergeLanguages(List<ObservedLanguage> observedLanguages) {
-        def omniLanguage = new ObservedLanguages()
+        def segments = new HashSet<SchemaSegment>()
+        observedLanguages.each {
+            segments.addAll(it.config.observedSegments)
+        }
+        def omniLanguage = new ObservedLanguages(new ObservationConfig(segments.toArray(new SchemaSegment[0])))
         observedLanguages.each { lang ->
             lang.observedEntities.each { entity ->
                 observedLanguages.stream().each {
@@ -75,8 +80,8 @@ class ObservedLanguages extends ObservedLanguage {
     public final Set<String> globalRelations
     public final Set<String> globalRoles
 
-    private ObservedLanguages() {
-        super(SourceLanguage.OmniSRC, ObservationConfig.fullStructure())
+    private ObservedLanguages(ObservationConfig observationConfig) {
+        super(SourceLanguage.OmniSRC, observationConfig)
         this.globalEntities = new HashSet<>()
         this.globalAttributes = new HashSet<>()
         this.globalRelations = new HashSet<>()

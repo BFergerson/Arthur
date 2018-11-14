@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class UnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     static void main(String[] args) {
-        def language = SourceLanguage.valueOf(args[0])
+        def language = SourceLanguage.getSourceLanguageByName(args[0])
         def parseProjectsCount = args[1] as int
         long startTime = System.currentTimeMillis()
         new SchemaGenerator().generateUnilingualSchema(language, parseProjectsCount,
