@@ -125,7 +125,7 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     private void doEntities(StringBuilder sb) {
-        println "Writing globalEntities"
+        println "Writing entities"
         sb.append("\n##########---------- Entities ----------##########\n")
         sb.append("SourceArtifact sub entity\n")
                 .append("\thas token;\n")
