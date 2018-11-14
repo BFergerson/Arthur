@@ -9,7 +9,6 @@ import com.codebrig.omnisrc.observe.filter.WildcardFilter
 import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
 import groovy.io.FileType
 import groovyx.gpars.GParsPool
 import org.bblfsh.client.BblfshClient
@@ -19,6 +18,7 @@ import org.kohsuke.github.GHRepositorySearchBuilder
 import org.kohsuke.github.GitHub
 
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 
 import static com.google.common.io.Files.getFileExtension
@@ -135,32 +135,30 @@ class SchemaGenerator {
                 sourceFiles.add(it)
             }
         }
-        def responseList = new ArrayList<ParseResponse>()
+
+        def parseCount = new AtomicInteger(0)
         GParsPool.withPool {
             sourceFiles.stream().limit(parseFileLimit).collect(Collectors.toList()).eachParallel {
                 println "Parsing: " + it
-                responseList.add(client.parse(it.name, it.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$))
-            }
-        }
-
-        println "Extracting observed attributes, relations, and roles"
-        responseList.each { resp ->
-            if (resp == null) {
-                System.err.println "Got null parse response"
-                //todo: understand this
-            } else {
-                def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
-                if (filter.evaluate(rootSourceNode)) {
-                    observeSourceNode(observedLanguage, rootSourceNode)
+                def resp = client.parse(it.name, it.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
+                if (resp == null) {
+                    System.err.println "Got null parse response"
+                    //todo: understand this
+                } else {
+                    def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
+                    if (filter.evaluate(rootSourceNode)) {
+                        observeSourceNode(observedLanguage, rootSourceNode)
+                    }
+                    extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
+                    parseCount.getAndIncrement()
                 }
-                extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
             }
         }
-        println "Parsed " + responseList.size() + " " + observedLanguage.language.qualifiedName + " files"
+        println "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
     }
 
-    private void extractSchema(ObservedLanguage observedLanguage,
-                               SourceNode parentNode, Iterator<SourceNode> childNodes) {
+    private void extractSchema(ObservedLanguage observedLanguage, SourceNode parentNode,
+                               Iterator<SourceNode> childNodes) {
         childNodes.each {
             if (filter.evaluate(it)) {
                 extractSchema(observedLanguage, it, it.children)
