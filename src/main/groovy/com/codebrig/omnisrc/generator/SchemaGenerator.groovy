@@ -68,14 +68,14 @@ class SchemaGenerator {
         def schemaWriter = new GraknSchemaWriter(observeLanguage(language, parseProjectCount))
         if (outputFile.exists()) outputFile.delete()
         outputFile.createNewFile()
-        outputFile.write(schemaWriter.getSchemaDefinition())
+        outputFile << schemaWriter.fullSchemaDefinition
     }
 
     void generateUnilingualSchema(SourceLanguage language, File inputDirectory, File outputFile) {
         def schemaWriter = new GraknSchemaWriter(observeLanguage(language, inputDirectory))
         if (outputFile.exists()) outputFile.delete()
         outputFile.createNewFile()
-        outputFile.write(schemaWriter.getSchemaDefinition())
+        outputFile << schemaWriter.fullSchemaDefinition
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language) {

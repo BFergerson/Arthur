@@ -217,17 +217,12 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     @Override
-    void storeFullSchemaDefinition(File outputFile) {
-        println "todo: this" //todo: this
-    }
-
-    @Override
     void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
         println "todo: this" //todo: this
     }
 
     @Override
-    String getSchemaDefinition() {
+    String getFullSchemaDefinition() {
         def sb = new StringBuilder()
         sb.append("define\n")
         doAttributes(sb)

@@ -33,7 +33,7 @@ class OmnilingualLocalSchemaGenerator extends SchemaGenerator {
         def outputFile = new File("src/main/resources/schema/omnilingual/OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Schema.gql")
         if (outputFile.exists()) outputFile.delete()
         outputFile.createNewFile()
-        outputFile.write(schemaWriter.getSchemaDefinition())
+        outputFile << schemaWriter.fullSchemaDefinition
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

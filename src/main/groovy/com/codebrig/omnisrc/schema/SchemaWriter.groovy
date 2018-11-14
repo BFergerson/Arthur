@@ -1,5 +1,7 @@
 package com.codebrig.omnisrc.schema
 
+import java.nio.file.FileAlreadyExistsException
+
 /**
  * todo: description
  *
@@ -7,10 +9,19 @@ package com.codebrig.omnisrc.schema
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-interface SchemaWriter {
-    void storeFullSchemaDefinition(File outputFile)
+trait SchemaWriter {
 
-    void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig)
+    void storeFullSchemaDefinition(File outputFile) {
+        if (outputFile.exists()) {
+            throw new FileAlreadyExistsException("Output file already exists: " + outputFile)
+        } else {
+            outputFile.mkdirs()
+            outputFile.createNewFile()
+        }
+        outputFile << fullSchemaDefinition
+    }
 
-    String getSchemaDefinition()
+    abstract void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig)
+
+    abstract String getFullSchemaDefinition()
 }
