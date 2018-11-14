@@ -76,7 +76,7 @@ class ObservedLanguages extends ObservedLanguage {
     public final Set<String> globalRoles
 
     private ObservedLanguages() {
-        super(SourceLanguage.OmniSRC)
+        super(SourceLanguage.OmniSRC, ObservationConfig.fullStructure())
         this.globalEntities = new HashSet<>()
         this.globalAttributes = new HashSet<>()
         this.globalRelations = new HashSet<>()
@@ -85,7 +85,7 @@ class ObservedLanguages extends ObservedLanguage {
 
     void addEntityRole(String entity, String role) {
         roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe([role].iterator())
+        roles.get(entity).observe([role].iterator(), true)
     }
 
     void observeGlobalEntity(String entity) {
