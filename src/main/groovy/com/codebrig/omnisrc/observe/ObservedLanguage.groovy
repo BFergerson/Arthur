@@ -129,6 +129,14 @@ class ObservedLanguage {
         relationExtends.put(language.key + "_" + relation, relation)
     }
 
+    String getRelationRole(String relation, boolean multilingual) {
+        def relationRole = getRelation(relation, multilingual)
+        if (relationRole.endsWith("_relation")) {
+            return relationRole.substring(0, relationRole.length() - 8) + "role"
+        }
+        return relationRole
+    }
+
     String getRelation(String relation, boolean multilingual) {
         if (isOmnilingual() || !multilingual || relation == "parent" || relation == "child") {
             return relation

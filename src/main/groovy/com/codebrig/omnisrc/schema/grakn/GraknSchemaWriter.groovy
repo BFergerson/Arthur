@@ -102,8 +102,9 @@ class GraknSchemaWriter implements SchemaWriter {
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
-            def isRole = "is_$fullRelation"
-            def hasRole = "has_$fullRelation"
+            def relationRole = observedLanguage.getRelationRole(relation, rootLanguage.isOmnilingual())
+            def isRole = "is_$relationRole"
+            def hasRole = "has_$relationRole"
             def subType = observedLanguage.getRelationExtends(fullRelation)
 
             sb.append(fullRelation).append(" sub ").append(subType).append("\n")
@@ -169,7 +170,7 @@ class GraknSchemaWriter implements SchemaWriter {
                 def hasRelations = observedLanguage.getEntityObservedHasRelations(entity, naturalOrdering)
                 if (!isRelations.isEmpty() || !hasRelations.isEmpty()) sb.append("\n\t# Structural\n")
                 for (int z = 0; z < isRelations.size(); z++) {
-                    sb.append("\tplays is_").append(observedLanguage.getRelation(
+                    sb.append("\tplays is_").append(observedLanguage.getRelationRole(
                             isRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < isRelations.size() || !hasRelations.isEmpty()) {
@@ -177,7 +178,7 @@ class GraknSchemaWriter implements SchemaWriter {
                     }
                 }
                 for (int z = 0; z < hasRelations.size(); z++) {
-                    sb.append("\tplays has_").append(observedLanguage.getRelation(
+                    sb.append("\tplays has_").append(observedLanguage.getRelationRole(
                             hasRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < hasRelations.size()) {
