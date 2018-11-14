@@ -1,7 +1,5 @@
 package com.codebrig.omnisrc.schema
 
-import java.nio.file.FileAlreadyExistsException
-
 /**
  * todo: description
  *
@@ -13,11 +11,11 @@ trait SchemaWriter {
 
     void storeFullSchemaDefinition(File outputFile) {
         if (outputFile.exists()) {
-            throw new FileAlreadyExistsException("Output file already exists: " + outputFile)
+            outputFile.delete()
         } else {
             outputFile.mkdirs()
-            outputFile.createNewFile()
         }
+        outputFile.createNewFile()
         outputFile << fullSchemaDefinition
     }
 
