@@ -20,11 +20,9 @@ trait SchemaWriter {
     }
 
     void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
-        //todo: this
-        segmentConfig.fileOutputs.each {
-            println 'here'
+        Objects.requireNonNull(segmentConfig).schemaSegmentsByFile.each {
+            it.key << getSegmentedSchemaDefinition(it.value.toArray(new SchemaSegment[0]))
         }
-        println "todo: this" //todo: this
     }
 
     abstract String getSegmentedSchemaDefinition(SchemaSegment... segments)

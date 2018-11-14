@@ -11,6 +11,7 @@ import groovy.transform.Canonical
  */
 @Canonical
 class SegmentedSchemaConfig {
+
     Map<SchemaSegment, File> fileOutputs = new HashMap<>()
 
     SegmentedSchemaConfig withFileSegment(File outputFile, SchemaSegment... segments) {
@@ -18,5 +19,14 @@ class SegmentedSchemaConfig {
             fileOutputs.put(it, Objects.requireNonNull(outputFile))
         }
         return this
+    }
+
+    Map<File, Set<SchemaSegment>> getSchemaSegmentsByFile() {
+        def rtnMap = new HashMap<File, Set<SchemaSegment>>()
+        fileOutputs.each {
+            rtnMap.putIfAbsent(it.value, new HashSet<SchemaSegment>())
+            rtnMap.get(it.value).add(it.key)
+        }
+        return rtnMap
     }
 }
