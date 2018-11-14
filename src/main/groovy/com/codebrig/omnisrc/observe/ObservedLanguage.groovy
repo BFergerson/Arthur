@@ -28,6 +28,10 @@ class ObservedLanguage {
     final HashMap<String, String> attributeExtends
     final HashMap<String, String> relationExtends
 
+    ObservedLanguage(SourceLanguage language) {
+        this(language, ObservationConfig.baseStructureWithIndividualSemanticRoles())
+    }
+
     ObservedLanguage(SourceLanguage language, ObservationConfig config) {
         this.language = Objects.requireNonNull(language)
         this.config = Objects.requireNonNull(config)
