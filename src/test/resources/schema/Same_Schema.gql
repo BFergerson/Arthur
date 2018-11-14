@@ -22,11 +22,11 @@ GoSourceArtifact sub SourceArtifact;
 
 GoFileArtifact sub FileArtifact
 	# Structural
-	plays has_go_decls_relation;
+	plays has_go_decls_role;
 
 GoFuncDeclArtifact sub GoSourceArtifact
 	# Structural
-	plays is_go_decls_relation
+	plays is_go_decls_role
 	# Semantic
 	plays IS_DECLARATION
 	plays IS_DECLARATION_FUNCTION
@@ -75,9 +75,9 @@ is_child sub role;
 
 #####----- Go -----#####
 go_decls_relation sub parent_child_relation
-	relates is_go_decls_relation, relates has_go_decls_relation;
-is_go_decls_relation sub is_child;
-has_go_decls_relation sub is_parent;
+	relates is_go_decls_role, relates has_go_decls_role;
+is_go_decls_role sub is_child;
+has_go_decls_role sub is_parent;
 
 ##########---------- Semantic Roles ----------##########
 DECLARATION sub relationship
