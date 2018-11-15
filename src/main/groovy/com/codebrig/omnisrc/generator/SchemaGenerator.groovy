@@ -117,8 +117,14 @@ class SchemaGenerator {
         def parseCount = new AtomicInteger(0)
         GParsPool.withPool {
             sourceFiles.stream().limit(parseFileLimit).collect(Collectors.toList()).eachParallel {
-                println "Parsing: " + it
-                def resp = client.parse(it.name, it.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
+                def file = it as File
+                if (!file.exists()) {
+                    System.err.println("Skipping non-existent file: " + file)
+                    return
+                }
+
+                println "Parsing: " + file
+                def resp = client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
                 if (resp == null) {
                     System.err.println "Got null parse response"
                     //todo: understand this
