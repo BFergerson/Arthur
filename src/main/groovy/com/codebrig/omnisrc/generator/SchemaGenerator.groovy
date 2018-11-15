@@ -138,7 +138,6 @@ class SchemaGenerator {
                         }
                         extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
                         parseCount.getAndIncrement()
-                        println "Parsed: " + file
                     } else {
                         System.err.println("Failed to parse: " + file + " - Reason: " + resp.errors().toList().toString())
                         failCount.getAndIncrement()
