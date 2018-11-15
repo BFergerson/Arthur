@@ -6,8 +6,6 @@ import com.codebrig.omnisrc.SourceNodeFilter
 import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.filter.WildcardFilter
-import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
-import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import groovy.io.FileType
 import groovyx.gpars.GParsPool
