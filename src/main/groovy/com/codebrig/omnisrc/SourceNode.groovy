@@ -7,7 +7,7 @@ import org.apache.commons.collections4.iterators.TransformIterator
 import scala.collection.JavaConverters
 
 /**
- * todo: description
+ * Represents a single UAST unit extracted from source code.
  *
  * @version 0.2
  * @since 0.2

@@ -6,12 +6,14 @@ import com.codebrig.omnisrc.observe.observations.ObservedAttributes
 import com.codebrig.omnisrc.observe.observations.ObservedRelations
 import com.codebrig.omnisrc.observe.observations.ObservedRoles
 import com.google.common.base.CaseFormat
+import com.google.common.collect.Maps
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
 
 import java.util.stream.Collectors
 
 /**
- * todo: description
+ * Extracts the useful information necessary to create
+ * a valid schema based on the observed source code.
  *
  * @version 0.2
  * @since 0.1
@@ -21,12 +23,12 @@ class ObservedLanguage {
 
     final SourceLanguage language
     final ObservationConfig config
-    final HashMap<String, ObservedAttributes> attributes
-    final HashMap<String, ObservedRelations> relations
-    final HashMap<String, ObservedRoles> roles
-    final HashMap<String, String> entityExtends
-    final HashMap<String, String> attributeExtends
-    final HashMap<String, String> relationExtends
+    final Map<String, ObservedAttributes> attributes
+    final Map<String, ObservedRelations> relations
+    final Map<String, ObservedRoles> roles
+    final Map<String, String> entityExtends
+    final Map<String, String> attributeExtends
+    final Map<String, String> relationExtends
 
     ObservedLanguage(SourceLanguage language) {
         this(language, ObservationConfig.baseStructure())
@@ -35,12 +37,12 @@ class ObservedLanguage {
     ObservedLanguage(SourceLanguage language, ObservationConfig config) {
         this.language = Objects.requireNonNull(language)
         this.config = Objects.requireNonNull(config)
-        this.attributes = new HashMap<>()
-        this.relations = new HashMap<>()
-        this.roles = new HashMap<>()
-        this.entityExtends = new HashMap<>()
-        this.attributeExtends = new HashMap<>()
-        this.relationExtends = new HashMap<>()
+        this.attributes = Maps.newConcurrentMap()
+        this.relations = Maps.newConcurrentMap()
+        this.roles = Maps.newConcurrentMap()
+        this.entityExtends = Maps.newConcurrentMap()
+        this.attributeExtends = Maps.newConcurrentMap()
+        this.relationExtends = Maps.newConcurrentMap()
     }
 
     void removeEntityRole(String entity, String role) {

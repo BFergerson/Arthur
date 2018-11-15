@@ -6,7 +6,7 @@ import groovy.transform.Canonical
 import static com.codebrig.omnisrc.schema.SchemaSegment.*
 
 /**
- * todo: description
+ * Used to configure the schema segments which will be observed
  *
  * @version 0.2
  * @since 0.2

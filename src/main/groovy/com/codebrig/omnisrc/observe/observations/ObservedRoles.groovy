@@ -1,9 +1,11 @@
 package com.codebrig.omnisrc.observe.observations
 
+import com.google.common.collect.Maps
+
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * todo: description
+ * Semantic roles observed during source code parsing
  *
  * @version 0.2
  * @since 0.1
@@ -11,8 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class ObservedRoles {
 
-    final Map<String, AtomicInteger> individualObservations = new HashMap<>()
-    final Map<String, AtomicInteger> actualObservations = new HashMap<>()
+    final Map<String, AtomicInteger> individualObservations = Maps.newConcurrentMap()
+    final Map<String, AtomicInteger> actualObservations = Maps.newConcurrentMap()
 
     void observe(Iterator<String> roles, boolean observeActual) {
         def roleList = roles.toList()

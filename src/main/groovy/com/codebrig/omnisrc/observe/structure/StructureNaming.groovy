@@ -3,7 +3,7 @@ package com.codebrig.omnisrc.observe.structure
 import com.codebrig.omnisrc.SourceNode
 
 /**
- * todo: description
+ * Used to get the names/qualified names of UAST units
  *
  * @version 0.2
  * @since 0.2

@@ -1,7 +1,7 @@
 package com.codebrig.omnisrc.observe.filter
 
 /**
- * todo: description
+ * Match by the simple name
  *
  * @version 0.2
  * @since 0.2

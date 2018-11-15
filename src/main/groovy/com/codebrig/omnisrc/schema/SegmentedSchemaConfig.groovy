@@ -3,7 +3,7 @@ package com.codebrig.omnisrc.schema
 import groovy.transform.Canonical
 
 /**
- * todo: description
+ * Allows for segmenting the generated schema into multiple files by SchemaSegment
  *
  * @version 0.2
  * @since 0.2

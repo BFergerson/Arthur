@@ -8,7 +8,7 @@ import org.bblfsh.client.BblfshClient
 import scala.collection.JavaConverters
 
 /**
- * todo: description
+ * Used to filter through SourceNodes
  *
  * @version 0.2
  * @since 0.2

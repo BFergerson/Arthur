@@ -24,7 +24,7 @@ import java.util.stream.Collectors
 import static com.google.common.io.Files.getFileExtension
 
 /**
- * todo: description
+ * Used to observe a source code language and generate the resulting schema
  *
  * @version 0.2
  * @since 0.2
@@ -45,7 +45,7 @@ class SchemaGenerator {
     }
 
     SchemaGenerator(BblfshClient client) {
-        this(client, ObservationConfig.baseStructureWithIndividualSemanticRoles())
+        this(client, ObservationConfig.baseStructure())
     }
 
     SchemaGenerator(BblfshClient client, ObservationConfig observationConfig) {
@@ -56,26 +56,6 @@ class SchemaGenerator {
 
     void setFilter(SourceNodeFilter filter) {
         this.filter = Objects.requireNonNull(filter)
-    }
-
-    void generateUnilingualSchema(SourceLanguage language, int parseProjectCount,
-                                  SegmentedSchemaConfig segmentedSchemaConfig) {
-        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, parseProjectCount))
-        schemaWriter.storeSegmentedSchemaDefinition(segmentedSchemaConfig)
-    }
-
-    void generateUnilingualSchema(SourceLanguage language, int parseProjectCount, File outputFile) {
-        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, parseProjectCount))
-        if (outputFile.exists()) outputFile.delete()
-        outputFile.createNewFile()
-        outputFile << schemaWriter.fullSchemaDefinition
-    }
-
-    void generateUnilingualSchema(SourceLanguage language, File inputDirectory, File outputFile) {
-        def schemaWriter = new GraknSchemaWriter(observeLanguage(language, inputDirectory))
-        if (outputFile.exists()) outputFile.delete()
-        outputFile.createNewFile()
-        outputFile << schemaWriter.fullSchemaDefinition
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language) {

@@ -2,14 +2,17 @@ package com.codebrig.omnisrc.generator.github
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.generator.SchemaGenerator
+import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.schema.SchemaSegment
+import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 
 import java.util.concurrent.TimeUnit
 
 /**
- * todo: description
+ * Generate a multi-language schema by observing source code on GitHub
  *
  * @version 0.2
  * @since 0.1
@@ -22,8 +25,7 @@ class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()
-
-        def schemaGenerator = new SchemaGenerator()
+        def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
         def observedLanguages = new ArrayList<ObservedLanguage>()
         SourceLanguage.values().each {
             if (it != SourceLanguage.OmniSRC) {
@@ -33,10 +35,15 @@ class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
         def omniLanguage = ObservedLanguages.mergeLanguages(observedLanguages)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, observedLanguages.toArray(new ObservedLanguage[0]))
-        def outputFile = new File("src/main/resources/schema/omnilingual/OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Schema.gql")
-        if (outputFile.exists()) outputFile.delete()
-        outputFile.createNewFile()
-        outputFile << schemaWriter.fullSchemaDefinition
+        schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Base_Structure.gql"), ObservationConfig.baseStructure().asArray())
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Individual_Semantic_Roles.gql"), SchemaSegment.INDIVIDUAL_SEMANTIC_ROLES)
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES)
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Possible_Semantic_Roles.gql"), SchemaSegment.POSSIBLE_SEMANTIC_ROLES))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

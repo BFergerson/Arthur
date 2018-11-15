@@ -7,7 +7,7 @@ import com.google.common.io.Files
 import com.google.common.io.Resources
 
 /**
- * todo: description
+ * The supported source code languages
  *
  * @version 0.2
  * @since 0.1
@@ -39,10 +39,6 @@ enum SourceLanguage {
             return "Omnilingual"
         }
         return key.substring(0, 1).toUpperCase() + key.substring(1)
-    }
-
-    String getSchemaDefinitionName() {
-        return "OmniSRC_" + qualifiedName + "_Schema"
     }
 
     String getFullSchemaDefinition(String version) {

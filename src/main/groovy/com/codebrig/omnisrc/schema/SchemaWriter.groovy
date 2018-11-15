@@ -1,7 +1,7 @@
 package com.codebrig.omnisrc.schema
 
 /**
- * todo: description
+ * Used to output an ObservedLanguage as a viable schema
  *
  * @version 0.2
  * @since 0.2
@@ -13,7 +13,7 @@ trait SchemaWriter {
         if (outputFile.exists()) {
             outputFile.delete()
         } else {
-            outputFile.mkdirs()
+            outputFile.parentFile.mkdirs()
         }
         outputFile.createNewFile()
         outputFile << fullSchemaDefinition
@@ -21,6 +21,11 @@ trait SchemaWriter {
 
     void storeSegmentedSchemaDefinition(SegmentedSchemaConfig segmentConfig) {
         Objects.requireNonNull(segmentConfig).schemaSegmentsByFile.each {
+            if (it.key.exists()) {
+                it.key.delete()
+            } else {
+                it.key.parentFile.mkdirs()
+            }
             it.key << getSegmentedSchemaDefinition(it.value.toArray(new SchemaSegment[0]))
         }
     }

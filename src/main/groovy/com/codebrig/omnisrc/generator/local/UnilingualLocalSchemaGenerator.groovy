@@ -2,11 +2,15 @@ package com.codebrig.omnisrc.generator.local
 
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.generator.SchemaGenerator
+import com.codebrig.omnisrc.observe.ObservationConfig
+import com.codebrig.omnisrc.schema.SchemaSegment
+import com.codebrig.omnisrc.schema.SegmentedSchemaConfig
+import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 
 import java.util.concurrent.TimeUnit
 
 /**
- * todo: description
+ * Generate a single language schema by observing local source code
  *
  * @version 0.2
  * @since 0.1
@@ -18,8 +22,18 @@ class UnilingualLocalSchemaGenerator extends SchemaGenerator {
         def language = SourceLanguage.getSourceLanguageByName(args[0])
         def inputDirectory = args[1] as File
         long startTime = System.currentTimeMillis()
-        new SchemaGenerator().generateUnilingualSchema(language, inputDirectory,
-                new File("src/main/resources/schema/unilingual/" + language.key, language.getSchemaDefinitionName() + ".gql"))
+
+        def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
+        def schemaWriter = new GraknSchemaWriter(schemaGenerator.observeLanguage(language, inputDirectory))
+        schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
+                .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
+                "OmniSRC_" + language.qualifiedName + "_Base_Structure.gql"), ObservationConfig.baseStructure().asArray())
+                .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
+                "OmniSRC_" + language.qualifiedName + "_Individual_Semantic_Roles.gql"), SchemaSegment.INDIVIDUAL_SEMANTIC_ROLES)
+                .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
+                "OmniSRC_" + language.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES)
+                .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
+                "OmniSRC_" + language.qualifiedName + "_Possible_Semantic_Roles.gql"), SchemaSegment.POSSIBLE_SEMANTIC_ROLES))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

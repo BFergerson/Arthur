@@ -5,7 +5,7 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
 
 /**
- * todo: description
+ * Match by the source code language
  *
  * @version 0.2
  * @since 0.2

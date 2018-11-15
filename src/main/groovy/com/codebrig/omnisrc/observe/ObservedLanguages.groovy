@@ -5,7 +5,7 @@ import com.codebrig.omnisrc.observe.observations.ObservedRoles
 import com.codebrig.omnisrc.schema.SchemaSegment
 
 /**
- * todo: description
+ * Represents multiple observed languages
  *
  * @version 0.2
  * @since 0.1

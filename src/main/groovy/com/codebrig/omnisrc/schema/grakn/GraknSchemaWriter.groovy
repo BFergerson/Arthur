@@ -9,7 +9,7 @@ import com.google.common.base.CaseFormat
 import static com.codebrig.omnisrc.schema.SchemaSegment.*
 
 /**
- * todo: description
+ * Used to create Grakn compatible OmniSRC schemas
  *
  * @version 0.2
  * @since 0.1

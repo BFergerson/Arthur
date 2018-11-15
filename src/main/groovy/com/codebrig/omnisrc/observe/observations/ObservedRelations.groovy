@@ -1,9 +1,11 @@
 package com.codebrig.omnisrc.observe.observations
 
+import com.google.common.collect.Maps
+
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * todo: description
+ * Structural relationships observed during source code parsing
  *
  * @version 0.2
  * @since 0.1
@@ -11,8 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class ObservedRelations {
 
-    private Map<String, AtomicInteger> hasObservations = new HashMap<>()
-    private Map<String, AtomicInteger> isObservations = new HashMap<>()
+    final Map<String, AtomicInteger> hasObservations = Maps.newConcurrentMap()
+    final Map<String, AtomicInteger> isObservations = Maps.newConcurrentMap()
 
     void observeHas(String relation) {
         hasObservations.putIfAbsent(relation, new AtomicInteger())

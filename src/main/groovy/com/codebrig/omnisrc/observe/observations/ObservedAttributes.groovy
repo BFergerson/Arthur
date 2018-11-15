@@ -1,9 +1,11 @@
 package com.codebrig.omnisrc.observe.observations
 
+import com.google.common.collect.Maps
+
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * todo: description
+ * Attributes observed during source code parsing
  *
  * @version 0.2
  * @since 0.1
@@ -11,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class ObservedAttributes {
 
-    public Map<String, AtomicInteger> observations = new HashMap<>()
+    final Map<String, AtomicInteger> observations = Maps.newConcurrentMap()
 
     void observe(Map<String, String> attributes) {
         attributes.keySet().stream().each {
