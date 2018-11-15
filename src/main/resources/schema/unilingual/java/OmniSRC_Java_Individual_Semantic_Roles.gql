@@ -1,0 +1,1436 @@
+define
+
+##########---------- Entities ----------##########
+
+#####----- Java -----#####
+JavaSourceArtifact sub SourceArtifact;
+
+AnnotationTypeDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_DECLARATION
+	plays IS_TYPE;
+
+AnnotationTypeMemberDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_TYPE;
+
+AnonymousClassDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANONYMOUS
+	plays IS_DECLARATION
+	plays IS_EXPRESSION
+	plays IS_TYPE;
+
+ArrayAccessArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+ArrayCreationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+ArrayInitializerArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_LIST
+	plays IS_LITERAL;
+
+ArrayTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_LIST
+	plays IS_PRIMITIVE
+	plays IS_TYPE;
+
+AssertStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ASSERT
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+AssignmentArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DIVIDE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INITIALIZATION
+	plays IS_LEFT_SHIFT
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_RIGHT_SHIFT
+	plays IS_SUBSTRACT
+	plays IS_THEN
+	plays IS_UNSIGNED
+	plays IS_UPDATE
+	plays IS_XOR;
+
+BlockArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_FINALLY
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_SCOPE
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_TRY
+	plays IS_WHILE;
+
+BlockCommentArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_COMMENT;
+
+BooleanLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_WHILE;
+
+BreakStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_BREAK
+	plays IS_CASE
+	plays IS_IF
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+CastExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+CatchClauseArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_CATCH
+	plays IS_TRY
+	plays IS_UNANNOTATED;
+
+CharacterLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CHARACTER
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+ClassInstanceCreationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INSTANCE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_THEN;
+
+CompilationUnitArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_FILE;
+
+ConditionalExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+ConstructorInvocationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+ContinueStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_IF
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_UNANNOTATED;
+
+CreationReferenceArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_POSITIONAL
+	plays IS_THEN;
+
+DimensionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_TYPE;
+
+DoStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_DO_WHILE
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+EmptyStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_STATEMENT
+	plays IS_WHILE;
+
+EnhancedForStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_FOR
+	plays IS_ITERATOR
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+EnumConstantDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_ENUMERATION;
+
+EnumDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_ENUMERATION
+	plays IS_TYPE;
+
+ExpressionMethodReferenceArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+ExpressionStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_ELSE
+	plays IS_FOR
+	plays IS_IF
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+FieldAccessArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_UNANNOTATED;
+
+FieldDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_VARIABLE;
+
+ForStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_FOR
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_UNANNOTATED;
+
+IfStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_ELSE
+	plays IS_FOR
+	plays IS_IF
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+ImportDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_IMPORT;
+
+InfixExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_DIVIDE
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_EQUAL
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_GREATER_THAN
+	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LEFT_SHIFT
+	plays IS_LESS_THAN
+	plays IS_LESS_THAN_OR_EQUAL
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_POSITIONAL
+	plays IS_RELATIONAL
+	plays IS_RIGHT
+	plays IS_RIGHT_SHIFT
+	plays IS_SUBSTRACT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_UNSIGNED
+	plays IS_WHILE
+	plays IS_XOR;
+
+InitializerArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_BODY
+	plays IS_INCOMPLETE
+	plays IS_INITIALIZATION;
+
+InstanceofExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_UNANNOTATED
+	plays IS_WHILE;
+
+JavadocArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_COMMENT
+	plays IS_DOCUMENTATION;
+
+LabeledStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+LambdaExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANONYMOUS
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DECLARATION
+	plays IS_ELSE
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+LineCommentArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_COMMENT;
+
+MarkerAnnotationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
+MemberRefArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DOCUMENTATION
+	plays IS_INCOMPLETE
+	plays IS_VARIABLE;
+
+MemberValuePairArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
+MethodDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_PACKAGE
+	plays IS_SUBTYPE
+	plays IS_TYPE
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
+MethodInvocationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_WHILE;
+
+MethodRefArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DOCUMENTATION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE;
+
+MethodRefParameterArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DOCUMENTATION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE;
+
+ModifierArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_INSTANCE
+	plays IS_SUBTYPE
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
+NormalAnnotationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
+NullLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_NULL
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+NumberLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_NUMBER
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+OperatorArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BOOLEAN
+	plays IS_DECREMENT
+	plays IS_DIVIDE
+	plays IS_EQUAL
+	plays IS_EXPRESSION
+	plays IS_GREATER_THAN
+	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_INCREMENT
+	plays IS_LEFT_SHIFT
+	plays IS_LESS_THAN
+	plays IS_LESS_THAN_OR_EQUAL
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_NEGATIVE
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_POSITIVE
+	plays IS_POSTFIX
+	plays IS_RELATIONAL
+	plays IS_RIGHT_SHIFT
+	plays IS_SUBSTRACT
+	plays IS_UNARY
+	plays IS_UNSIGNED
+	plays IS_XOR;
+
+PackageDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_PACKAGE;
+
+ParameterizedTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_RETURN
+	plays IS_TYPE;
+
+ParenthesizedExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_WHILE;
+
+PostfixExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DECREMENT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCREMENT
+	plays IS_LEFT
+	plays IS_OPERATOR
+	plays IS_POSITIONAL
+	plays IS_POSTFIX
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_UNARY
+	plays IS_UPDATE;
+
+PrefixExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_DECREMENT
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCREMENT
+	plays IS_LEFT
+	plays IS_NEGATIVE
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_POSITIONAL
+	plays IS_POSITIVE
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_UNARY
+	plays IS_UPDATE
+	plays IS_WHILE;
+
+PrimitiveTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BOOLEAN
+	plays IS_BYTE
+	plays IS_CHARACTER
+	plays IS_NUMBER
+	plays IS_PRIMITIVE
+	plays IS_TYPE;
+
+QualifiedNameArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_IMPORT
+	plays IS_LEFT
+	plays IS_PATHNAME
+	plays IS_POSITIONAL
+	plays IS_QUALIFIED
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+QualifiedTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_QUALIFIED
+	plays IS_TYPE;
+
+ReturnStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_ELSE
+	plays IS_IF
+	plays IS_RETURN
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+SimpleNameArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_WHILE;
+
+SimpleTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_TYPE;
+
+SingleMemberAnnotationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
+SingleVariableDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGS_LIST
+	plays IS_ARGUMENT
+	plays IS_DECLARATION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_ITERATOR
+	plays IS_VARIABLE;
+
+StringLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CASE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_STRING
+	plays IS_SWITCH
+	plays IS_THEN;
+
+SuperConstructorInvocationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BASE
+	plays IS_CALL
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT
+	plays IS_UNANNOTATED;
+
+SuperFieldAccessArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_UNANNOTATED;
+
+SuperMethodInvocationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BASE
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_THEN;
+
+SuperMethodReferenceArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_POSITIONAL;
+
+SwitchCaseArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_CASE
+	plays IS_DEFAULT
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+SwitchStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+SynchronizedStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+TagElementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DOCUMENTATION
+	plays IS_INCOMPLETE;
+
+TextElementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DOCUMENTATION
+	plays IS_INCOMPLETE;
+
+ThisExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_THIS;
+
+ThrowStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_IF
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN
+	plays IS_THROW;
+
+TryStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_TRY
+	plays IS_UNANNOTATED;
+
+TypeDeclarationArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_PACKAGE
+	plays IS_SUBTYPE
+	plays IS_TYPE
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
+TypeDeclarationStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_STATEMENT
+	plays IS_TYPE;
+
+TypeLiteralArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_TYPE;
+
+TypeMethodReferenceArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_POSITIONAL;
+
+TypeParameterArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_TYPE;
+
+UnionTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_OR
+	plays IS_TYPE;
+
+VariableDeclarationExpressionArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_INITIALIZATION
+	plays IS_VARIABLE;
+
+VariableDeclarationFragmentArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_VARIABLE;
+
+VariableDeclarationStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_DECLARATION
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_VARIABLE;
+
+WhileStatementArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_WHILE;
+
+WildcardTypeArtifact sub JavaSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_TYPE;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSERT sub relationship
+	relates IS_ASSERT;
+IS_ASSERT sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BREAK sub relationship
+	relates IS_BREAK;
+IS_BREAK sub role;
+
+BYTE sub relationship
+	relates IS_BYTE;
+IS_BYTE sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CATCH sub relationship
+	relates IS_CATCH;
+IS_CATCH sub role;
+
+CHARACTER sub relationship
+	relates IS_CHARACTER;
+IS_CHARACTER sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+DO_WHILE sub relationship
+	relates IS_DO_WHILE;
+IS_DO_WHILE sub role;
+
+DOCUMENTATION sub relationship
+	relates IS_DOCUMENTATION;
+IS_DOCUMENTATION sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+ENUMERATION sub relationship
+	relates IS_ENUMERATION;
+IS_ENUMERATION sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+INSTANCE sub relationship
+	relates IS_INSTANCE;
+IS_INSTANCE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NULL sub relationship
+	relates IS_NULL;
+IS_NULL sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PACKAGE sub relationship
+	relates IS_PACKAGE;
+IS_PACKAGE sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+POSTFIX sub relationship
+	relates IS_POSTFIX;
+IS_POSTFIX sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SUBTYPE sub relationship
+	relates IS_SUBTYPE;
+IS_SUBTYPE sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+THIS sub relationship
+	relates IS_THIS;
+IS_THIS sub role;
+
+THROW sub relationship
+	relates IS_THROW;
+IS_THROW sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UNSIGNED sub relationship
+	relates IS_UNSIGNED;
+IS_UNSIGNED sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
