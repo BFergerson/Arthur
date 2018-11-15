@@ -1,58 +1,19 @@
 define
 
-##########---------- Attributes ----------##########
-token sub attribute datatype string;
-
-#####----- Ruby -----#####
-colAttribute sub attribute datatype string;
-documentationAttribute sub attribute datatype string;
-inlineAttribute sub attribute datatype string;
-lineAttribute sub attribute datatype string;
-nameAttribute sub attribute datatype string;
-offsetAttribute sub attribute datatype string;
-selectorAttribute sub attribute datatype string;
-
 ##########---------- Entities ----------##########
-SourceArtifact sub entity
-	has token;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
 AliasArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_1_relation
-	plays has_2_relation
 	# Semantic
-	plays IS_ALIAS
 	plays IS_ALIAS_BODY_EXPRESSION_STATEMENT_THEN
 	plays IS_ALIAS_BODY_STATEMENT
-	plays IS_ALIAS_STATEMENT
-	plays IS_BODY
-	plays IS_EXPRESSION
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_ALIAS_ELSE_EXPRESSION_STATEMENT
+	plays IS_ALIAS_STATEMENT;
 
 AndArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_left_relation
-	plays has_right_relation
 	# Semantic
-	plays IS_AND
 	plays IS_AND_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR
 	plays IS_AND_ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_OPERATOR_RIGHT
 	plays IS_AND_BINARY_BODY_BOOLEAN_EXPRESSION_OPERATOR
@@ -62,170 +23,57 @@ AndArtifact sub RubySourceArtifact
 	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_LEFT_OPERATOR
 	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR
 	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR_RIGHT
-	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR_TUPLE_VALUE
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR_TUPLE_VALUE;
 
 AndAsgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_else_relation
-	plays has_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_AND
 	plays IS_AND_BITWISE_BODY_EXPRESSION_OPERATOR
 	plays IS_AND_BITWISE_BODY_EXPRESSION_OPERATOR_THEN
 	plays IS_AND_BITWISE_ELSE_EXPRESSION_OPERATOR
-	plays IS_AND_BITWISE_EXPRESSION_OPERATOR
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_OPERATOR
-	plays IS_THEN;
+	plays IS_AND_BITWISE_EXPRESSION_OPERATOR;
 
 ArgArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_NAME
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_NAME;
+	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_NAME;
 
 ArgsArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE;
+	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE;
 
 ArrayArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_exceptions_relation
-	plays is_iterated_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_contents_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LIST_LITERAL_PRIMITIVE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LIST_LITERAL_PRIMITIVE
 	plays IS_BODY_EXPRESSION_LIST_LITERAL_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LIST_LITERAL_PRIMITIVE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_UPDATE
 	plays IS_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE
 	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE
 	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE_TUPLE_VALUE;
 
 BackRefArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ASSIGNMENT
+	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_REGEXP
 	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_REGEXP_RIGHT
-	plays IS_BINARY
+	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_REGEXP
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_REGEXP_RIGHT
-	plays IS_EXPRESSION
+	plays IS_BODY_EXPRESSION_INCOMPLETE_REGEXP
+	plays IS_BODY_EXPRESSION_INCOMPLETE_REGEXP_THEN
+	plays IS_EXPRESSION_INCOMPLETE_LEFT_REGEXP
 	plays IS_EXPRESSION_INCOMPLETE_REGEXP
 	plays IS_EXPRESSION_INCOMPLETE_REGEXP_RIGHT
-	plays IS_INCOMPLETE
-	plays IS_REGEXP
-	plays IS_RIGHT;
+	plays IS_EXPRESSION_INCOMPLETE_REGEXP_TUPLE_VALUE;
 
 BeginArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_options_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_text_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_body_relation
-	plays has_comments_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BLOCK_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BLOCK_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_BLOCK_LEFT
 	plays IS_BINARY_BLOCK_RIGHT
-	plays IS_BLOCK
 	plays IS_BLOCK_BODY
 	plays IS_BLOCK_BODY_EXPRESSION_FOR
 	plays IS_BLOCK_BODY_EXPRESSION_THEN
@@ -234,1180 +82,378 @@ BeginArtifact sub RubySourceArtifact
 	plays IS_BLOCK_EXPRESSION_FOR_UPDATE
 	plays IS_BLOCK_LEFT
 	plays IS_BLOCK_RIGHT
-	plays IS_BLOCK_TUPLE_VALUE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_BLOCK_TUPLE_VALUE;
 
-BlockargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
-	# Semantic
-	plays IS_UNANNOTATED;
+BlockargArtifact sub RubySourceArtifact;
 
 BlockArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_args_relation
-	plays has_blockdata_relation
-	plays has_body_relation
-	plays has_comments_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BLOCK_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BLOCK_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_BLOCK_LEFT
 	plays IS_BINARY_BLOCK_RIGHT
-	plays IS_BLOCK
 	plays IS_BLOCK_BODY
 	plays IS_BLOCK_BODY_EXPRESSION_FOR
 	plays IS_BLOCK_BODY_EXPRESSION_THEN
 	plays IS_BLOCK_CONDITION_EXPRESSION
 	plays IS_BLOCK_ELSE_EXPRESSION
+	plays IS_BLOCK_EXPRESSION_FOR_UPDATE
 	plays IS_BLOCK_LEFT
 	plays IS_BLOCK_RIGHT
-	plays IS_BLOCK_TUPLE_VALUE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_BLOCK_TUPLE_VALUE;
 
 BlockPassArtifact sub RubySourceArtifact
-	# Structural
-	plays is_children_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_UNANNOTATED;
+	plays IS_ARGUMENT_CALL_FUNCTION;
 
 BreakArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_BREAK_EXPRESSION_STATEMENT_THEN
 	plays IS_BODY_BREAK_STATEMENT
-	plays IS_BREAK
 	plays IS_BREAK_ELSE_EXPRESSION_STATEMENT
 	plays IS_BREAK_RIGHT_STATEMENT
-	plays IS_BREAK_STATEMENT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_BREAK_STATEMENT;
 
 CaseArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_casevar_relation
-	plays has_else_relation
-	plays has_when_clauses_relation
 	# Semantic
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT_STATEMENT_SWITCH
-	plays IS_BINARY
 	plays IS_BINARY_RIGHT_STATEMENT_SWITCH
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_FOR_STATEMENT_SWITCH
 	plays IS_BODY_EXPRESSION_STATEMENT_SWITCH_THEN
 	plays IS_BODY_STATEMENT_SWITCH
-	plays IS_ELSE
+	plays IS_CONDITION_EXPRESSION_STATEMENT_SWITCH
 	plays IS_ELSE_EXPRESSION_STATEMENT_SWITCH
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_LEFT
 	plays IS_LEFT_STATEMENT_SWITCH
-	plays IS_RIGHT
 	plays IS_RIGHT_STATEMENT_SWITCH
-	plays IS_STATEMENT
-	plays IS_STATEMENT_SWITCH
-	plays IS_SWITCH
-	plays IS_THEN;
+	plays IS_STATEMENT_SWITCH;
 
 CasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_alias_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_file_relation
-	plays is_iterators_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_comments_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT_THEN
 	plays IS_ASSIGNMENT_BINARY_ELSE_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT;
 
 CbaseArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_QUALIFIED
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_QUALIFIED;
+	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_QUALIFIED;
 
 ClassArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_right_relation
-	plays has_body_relation
-	plays has_comments_relation
-	plays has_parent_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_DECLARATION_EXPRESSION_IDENTIFIER_STATEMENT_THEN_TYPE
 	plays IS_BODY_DECLARATION_IDENTIFIER_STATEMENT_TYPE
-	plays IS_DECLARATION
 	plays IS_DECLARATION_ELSE_EXPRESSION_IDENTIFIER_STATEMENT_TYPE
 	plays IS_DECLARATION_IDENTIFIER_RIGHT_STATEMENT_TYPE
-	plays IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_TYPE;
+	plays IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE;
 
 CommentArtifact sub RubySourceArtifact
-	# Attributes
-	has documentationAttribute
-	has inlineAttribute
-	# Structural
-	plays is_comments_relation
-	plays has_end_relation
-	plays has_start_relation
 	# Semantic
-	plays IS_COMMENT
-	plays IS_COMMENT_NOOP
-	plays IS_NOOP;
+	plays IS_COMMENT_NOOP;
 
 ComplexArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
 	# Semantic
-	plays IS_EXPRESSION
+	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE
-	plays IS_INCOMPLETE
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE;
+	plays IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT;
 
 ConstArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_INCOMPLETE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_INCOMPLETE_LEFT
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_INCOMPLETE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER_INCOMPLETE
 	plays IS_BODY_EXPRESSION_IDENTIFIER_INCOMPLETE_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_INCOMPLETE
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER_INCOMPLETE
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION_FOR_IDENTIFIER_INCOMPLETE_UPDATE
 	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE
 	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_LEFT
 	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_RIGHT
-	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_TUPLE_VALUE;
 
 CvarArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_TYPE_VISIBILITY
-	plays IS_BINARY
+	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY
+	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_TYPE_VISIBILITY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER_THEN_TYPE_VISIBILITY
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_BODY_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY
-	plays IS_EXPRESSION
+	plays IS_ELSE_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_LEFT_TYPE_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_TUPLE_TYPE_VALUE_VISIBILITY
-	plays IS_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_TYPE
-	plays IS_VALUE
-	plays IS_VISIBILITY;
+	plays IS_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY;
 
 CvasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_ensure_body_relation
-	plays is_iterators_relation
-	plays is_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ASSIGNMENT
+	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT_THEN
+	plays IS_ASSIGNMENT_BINARY_ELSE_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_THEN;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT;
 
 DefArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_else_relation
-	plays is_file_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_args_relation
-	plays has_body_relation
-	plays has_comments_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_DECLARATION_FUNCTION_IDENTIFIER_RIGHT_STATEMENT
-	plays IS_BODY
 	plays IS_BODY_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT_THEN
 	plays IS_BODY_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT
-	plays IS_DECLARATION
+	plays IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT
 	plays IS_DECLARATION_ELSE_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT
-	plays IS_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT;
 
 DefinedArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_default_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_BINARY
+	plays IS_ASSIGNMENT_RIGHT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_TUPLE
-	plays IS_TUPLE_VALUE
-	plays IS_UNANNOTATED
-	plays IS_VALUE;
+	plays IS_TUPLE_VALUE;
 
 DefsArtifact sub RubySourceArtifact
-	# Structural
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_else_relation
-	plays is_values_relation
-	plays has_args_relation
-	plays has_base_relation
-	plays has_class_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT_THEN
 	plays IS_BODY_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT
-	plays IS_DECLARATION
+	plays IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT
 	plays IS_DECLARATION_ELSE_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT
-	plays IS_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT;
 
 DstrArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_TUPLE_VALUE
-	plays IS_UNANNOTATED
-	plays IS_VALUE;
+	plays IS_TUPLE_VALUE;
 
 DsymArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_contents_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_STRING
-	plays IS_BINARY
+	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_STRING
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_STRING
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_STRING
-	plays IS_CALL
-	plays IS_EXPRESSION
+	plays IS_BODY_EXPRESSION_INCOMPLETE_STRING
 	plays IS_EXPRESSION_INCOMPLETE_RIGHT_STRING
 	plays IS_EXPRESSION_INCOMPLETE_STRING
-	plays IS_EXPRESSION_INCOMPLETE_STRING_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STRING
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_INCOMPLETE_STRING_TUPLE_VALUE;
 
 EnsureArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_class_relation
-	plays has_body_relation
-	plays has_ensure_body_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_FINALLY
-	plays IS_FINALLY;
+	plays IS_EXPRESSION_FINALLY;
 
 ErangeArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_body_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_1_relation
-	plays has_2_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_TUPLE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_TUPLE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_TUPLE
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_INCOMPLETE_THEN_TUPLE
-	plays IS_CALL
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION_FOR_INCOMPLETE_TUPLE_UPDATE
 	plays IS_EXPRESSION_INCOMPLETE_TUPLE
-	plays IS_EXPRESSION_INCOMPLETE_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_INCOMPLETE_TUPLE_VALUE;
 
 FalseArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BOOLEAN_CALL_EXPRESSION_FUNCTION_LITERAL
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BODY
 	plays IS_BODY_BOOLEAN_EXPRESSION_LITERAL
 	plays IS_BODY_BOOLEAN_EXPRESSION_LITERAL_THEN
-	plays IS_BOOLEAN
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_ELSE_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LEFT_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE;
 
 FloatArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BODY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_TUPLE_VALUE;
 
 ForArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_condition_relation
-	plays has_body_relation
-	plays has_iterated_relation
-	plays has_iterators_relation
 	# Semantic
-	plays IS_BODY
+	plays IS_BODY_EXPRESSION_FOR_STATEMENT
 	plays IS_BODY_EXPRESSION_FOR_STATEMENT_THEN
 	plays IS_BODY_FOR_STATEMENT
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_FOR_STATEMENT
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FOR_STATEMENT
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_ELSE_EXPRESSION_FOR_STATEMENT
+	plays IS_FOR_STATEMENT;
 
 GvarArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_VISIBILITY_WORLD
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_VISIBILITY_WORLD
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER_THEN_VISIBILITY_WORLD
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_BODY_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE_VISIBILITY_WORLD
 	plays IS_EXPRESSION_IDENTIFIER_LEFT_VISIBILITY_WORLD
 	plays IS_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD
 	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE_VISIBILITY_WORLD
-	plays IS_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE
-	plays IS_VISIBILITY
-	plays IS_WORLD;
+	plays IS_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD;
 
 GvasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_children_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
-	plays has_comments_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ELSE_EXPRESSION;
 
 HashArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_file_relation
-	plays is_iterated_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_comments_relation
-	plays has_contents_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_MAP_PRIMITIVE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LITERAL_MAP_PRIMITIVE
 	plays IS_BODY_EXPRESSION_LITERAL_MAP_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LITERAL_MAP_PRIMITIVE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LITERAL_MAP_PRIMITIVE_UPDATE
+	plays IS_EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_TUPLE_VALUE;
 
-IdentifierArtifact sub RubySourceArtifact
-	# Attributes
-	has nameAttribute
-	# Structural
-	plays is_qnames_relation;
+IdentifierArtifact sub RubySourceArtifact;
 
 IfArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_body_relation
-	plays has_comments_relation
-	plays has_condition_relation
-	plays has_else_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_IF_STATEMENT
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_IF_RIGHT_STATEMENT
-	plays IS_BINARY
 	plays IS_BINARY_IF_LEFT_STATEMENT
 	plays IS_BINARY_IF_RIGHT_STATEMENT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_FOR_IF_STATEMENT
 	plays IS_BODY_EXPRESSION_IF_STATEMENT_THEN
 	plays IS_BODY_IF_STATEMENT
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IF_STATEMENT
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IF_STATEMENT
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
 	plays IS_IF_LEFT_STATEMENT
 	plays IS_IF_RIGHT_STATEMENT
 	plays IS_IF_STATEMENT
-	plays IS_IF_STATEMENT_TUPLE_VALUE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_IF_STATEMENT_TUPLE_VALUE;
 
 IntArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BODY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_TUPLE_VALUE;
 
 IrangeArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_body_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_iterated_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_1_relation
-	plays has_2_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_TUPLE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_TUPLE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_TUPLE
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_TUPLE
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_INCOMPLETE_THEN_TUPLE
 	plays IS_BODY_EXPRESSION_INCOMPLETE_TUPLE
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_INCOMPLETE_TUPLE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_INCOMPLETE_TUPLE_UPDATE
 	plays IS_EXPRESSION_INCOMPLETE_TUPLE
-	plays IS_EXPRESSION_INCOMPLETE_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_INCOMPLETE_TUPLE_VALUE;
 
 IvarArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_INSTANCE_VISIBILITY
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_INSTANCE_RIGHT_VISIBILITY
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_INSTANCE_LEFT_VISIBILITY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_INSTANCE_RIGHT_VISIBILITY
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER_INSTANCE_THEN_VISIBILITY
 	plays IS_BODY_EXPRESSION_IDENTIFIER_INSTANCE_VISIBILITY
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_INSTANCE_VISIBILITY
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER_INSTANCE_VISIBILITY
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION_FOR_IDENTIFIER_INSTANCE_UPDATE_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_INSTANCE_LEFT_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_INSTANCE_RIGHT_VISIBILITY
 	plays IS_EXPRESSION_IDENTIFIER_INSTANCE_TUPLE_VALUE_VISIBILITY
-	plays IS_EXPRESSION_IDENTIFIER_INSTANCE_VISIBILITY
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INSTANCE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE
-	plays IS_VISIBILITY;
+	plays IS_EXPRESSION_IDENTIFIER_INSTANCE_VISIBILITY;
 
 IvasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_alias_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_iterators_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTIFIER_LEFT
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT_THEN
 	plays IS_ASSIGNMENT_BINARY_CONDITION_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_ELSE_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT;
 
 KwargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_MAP_NAME
-	plays IS_EXPRESSION
-	plays IS_MAP
-	plays IS_NAME;
+	plays IS_ARGUMENT_EXPRESSION_MAP_NAME;
 
 KwbeginArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_body_relation
 	# Semantic
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BLOCK_EXPRESSION_RIGHT
-	plays IS_BINARY
+	plays IS_BINARY_BLOCK_EXPRESSION_LEFT
 	plays IS_BINARY_BLOCK_EXPRESSION_RIGHT
-	plays IS_BLOCK
 	plays IS_BLOCK_BODY_EXPRESSION
+	plays IS_BLOCK_BODY_EXPRESSION_FOR
 	plays IS_BLOCK_BODY_EXPRESSION_THEN
 	plays IS_BLOCK_ELSE_EXPRESSION
 	plays IS_BLOCK_EXPRESSION
 	plays IS_BLOCK_EXPRESSION_LEFT
 	plays IS_BLOCK_EXPRESSION_RIGHT
-	plays IS_BLOCK_EXPRESSION_TUPLE_VALUE
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_BLOCK_EXPRESSION_TUPLE_VALUE;
 
 KwoptargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
-	plays has_default_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE_NAME
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_NAME;
+	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE_NAME;
 
 KwrestargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_INCOMPLETE
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE;
+	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_INCOMPLETE;
 
 KwsplatArtifact sub RubySourceArtifact
-	# Structural
-	plays is_contents_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_INCOMPLETE;
 
 LvarArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER
 	plays IS_BODY_EXPRESSION_IDENTIFIER_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE
 	plays IS_EXPRESSION_IDENTIFIER
 	plays IS_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE;
 
 LvasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_alias_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_iterated_relation
-	plays is_iterators_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTIFIER_LEFT
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_IDENTIFIER_LEFT_THEN
@@ -1416,183 +462,56 @@ LvasgnArtifact sub RubySourceArtifact
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_ITERATOR_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_FOR_IDENTIFIER_LEFT_UPDATE
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UPDATE;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT_RIGHT;
 
 MasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays has_targets_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BODY_EXPRESSION_INCOMPLETE
 	plays IS_ASSIGNMENT_BODY_EXPRESSION_INCOMPLETE_THEN
 	plays IS_ASSIGNMENT_ELSE_EXPRESSION_INCOMPLETE
-	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_THEN;
+	plays IS_ASSIGNMENT_EXPRESSION_INCOMPLETE;
 
 MatchWithLvasgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_condition_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_CONDITION_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_UNANNOTATED;
-
-MlhsArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
-	plays is_iterators_relation
-	plays is_targets_relation
-	plays has_children_relation
-	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_FOR_INCOMPLETE_ITERATOR_LEFT
-	plays IS_FOR
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_LEFT
-	plays IS_ITERATOR
-	plays IS_LEFT;
-
-ModuleArtifact sub RubySourceArtifact
-	# Structural
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_else_relation
-	plays is_file_relation
-	plays has_begin_relation
-	plays has_comments_relation
-	plays has_file_relation
-	# Semantic
-	plays IS_BODY
-	plays IS_BODY_EXPRESSION_IDENTIFIER_MODULE_STATEMENT_THEN
-	plays IS_BODY_IDENTIFIER_MODULE_STATEMENT
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION_IDENTIFIER_MODULE_STATEMENT
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_IDENTIFIER_MODULE_STATEMENT
-	plays IS_MODULE
-	plays IS_STATEMENT
-	plays IS_THEN;
-
-NextArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays has_target_relation
-	# Semantic
-	plays IS_BODY
-	plays IS_BODY_EXPRESSION_THEN
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
-
-NilArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_CONDITION_EXPRESSION;
+
+MlhsArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_EXPRESSION_FOR_INCOMPLETE_ITERATOR_LEFT
+	plays IS_INCOMPLETE_LEFT;
+
+ModuleArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_BODY_EXPRESSION_IDENTIFIER_MODULE_STATEMENT_THEN
+	plays IS_BODY_IDENTIFIER_MODULE_STATEMENT
+	plays IS_ELSE_EXPRESSION_IDENTIFIER_MODULE_STATEMENT
+	plays IS_IDENTIFIER_MODULE_STATEMENT;
+
+NextArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_BODY_EXPRESSION_THEN
+	plays IS_ELSE_EXPRESSION;
+
+NilArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_ARGUMENT_CALL_FUNCTION
+	plays IS_ASSIGNMENT_RIGHT
+	plays IS_BINARY_LEFT
+	plays IS_BINARY_RIGHT
+	plays IS_BODY_EXPRESSION_THEN
 	plays IS_CONDITION_EXPRESSION
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_TUPLE_VALUE
-	plays IS_UNANNOTATED
-	plays IS_VALUE;
+	plays IS_TUPLE_VALUE;
 
 NilNodeArtifact sub RubySourceArtifact
-	# Structural
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_else_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_NULL
-	plays IS_NULL;
+	plays IS_BODY_NULL;
 
 OpAsgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_comments_relation
-	plays has_operator_relation
-	plays has_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ADD
 	plays IS_ADD_ARGUMENT_ARITHMETIC_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_OPERATOR
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_OPERATOR
@@ -1600,12 +519,13 @@ OpAsgnArtifact sub RubySourceArtifact
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_RIGHT
-	plays IS_AND
+	plays IS_AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR
 	plays IS_AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN
 	plays IS_AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR
-	plays IS_ARGUMENT
-	plays IS_ARITHMETIC
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_OPERATOR_SUBSTRACT
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MODULO_OPERATOR_THEN
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR_THEN
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT
@@ -1614,105 +534,50 @@ OpAsgnArtifact sub RubySourceArtifact
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_MULTIPLY_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_OPERATOR_SUBSTRACT
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_INCOMPLETE_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR_RIGHT
+	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_RIGHT_SUBSTRACT
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT
-	plays IS_ASSIGNMENT
+	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_OR
+	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_XOR
+	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR_THEN
 	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN
 	plays IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR
+	plays IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_XOR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT
+	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_RIGHT_SHIFT
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_DIVIDE
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LEFT_SHIFT
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
-	plays IS_THEN
-	plays IS_XOR;
+	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
 
 OperatorArtifact sub RubySourceArtifact
-	# Structural
-	plays is_operator_relation
 	# Semantic
-	plays IS_ADD
 	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR
-	plays IS_AND
 	plays IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR
+	plays IS_ARITHMETIC_BINARY_EXPRESSION_INCOMPLETE_OPERATOR
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_MODULO_OPERATOR
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_MULTIPLY_OPERATOR
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_OR
 	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT
-	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR
-	plays IS_BITWISE
-	plays IS_DIVIDE
-	plays IS_EXPRESSION
-	plays IS_LEFT_SHIFT
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
-	plays IS_XOR;
+	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
 
 OptargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
-	plays has_default_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_DEFAULT_EXPRESSION_NAME
-	plays IS_DEFAULT
-	plays IS_EXPRESSION
-	plays IS_NAME;
+	plays IS_ARGUMENT_DEFAULT_EXPRESSION_NAME;
 
 OrArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_left_relation
-	plays has_right_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR_OR
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_BODY_BOOLEAN_EXPRESSION_OPERATOR_OR
 	plays IS_BINARY_BODY_BOOLEAN_EXPRESSION_OPERATOR_OR_THEN
 	plays IS_BINARY_BOOLEAN_CONDITION_EXPRESSION_OPERATOR_OR
@@ -1720,399 +585,134 @@ OrArtifact sub RubySourceArtifact
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_OPERATOR_OR
 	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR
 	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR_RIGHT
-	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR_TUPLE_VALUE
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR_TUPLE_VALUE;
 
 OrAsgnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_else_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR
-	plays IS_BINARY
+	plays IS_ASSIGNMENT_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_OR
 	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT
-	plays IS_BITWISE
 	plays IS_BITWISE_BODY_EXPRESSION_OPERATOR_OR
 	plays IS_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN
 	plays IS_BITWISE_CONDITION_EXPRESSION_OPERATOR_OR
 	plays IS_BITWISE_ELSE_EXPRESSION_OPERATOR_OR
 	plays IS_BITWISE_EXPRESSION_OPERATOR_OR
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
-	plays IS_THEN;
+	plays IS_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT;
 
 PairArtifact sub RubySourceArtifact
-	# Structural
-	plays is_contents_relation
-	plays has_1_relation
-	plays has_2_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_TUPLE
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
-	plays IS_TUPLE;
+	plays IS_EXPRESSION_LITERAL_PRIMITIVE_TUPLE;
 
-PositionArtifact sub RubySourceArtifact
-	# Attributes
-	has colAttribute
-	has lineAttribute
-	has offsetAttribute
-	# Structural
-	plays is_end_relation
-	plays is_start_relation;
+PositionArtifact sub RubySourceArtifact;
 
-PreexeArtifact sub RubySourceArtifact
-	# Structural
-	plays is_file_relation
-	plays has_body_relation
-	# Semantic
-	plays IS_UNANNOTATED;
+PostexeArtifact sub RubySourceArtifact;
+
+PreexeArtifact sub RubySourceArtifact;
 
 RationalArtifact sub RubySourceArtifact
-	# Structural
-	plays is_value_relation
 	# Semantic
-	plays IS_BINARY
+	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
-	plays IS_RIGHT;
+	plays IS_EXPRESSION_INCOMPLETE_LEFT_LITERAL_NUMBER_PRIMITIVE
+	plays IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE
+	plays IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT;
 
 RedoArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_EXPRESSION
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ELSE_EXPRESSION;
 
 RegexpArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_options_relation
-	plays has_text_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_REGEXP
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_REGEXP_RIGHT
-	plays IS_BINARY
+	plays IS_BINARY_EXPRESSION_LEFT_REGEXP
 	plays IS_BINARY_EXPRESSION_REGEXP_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_REGEXP
 	plays IS_BODY_EXPRESSION_REGEXP_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_REGEXP
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_LEFT_REGEXP
 	plays IS_EXPRESSION_REGEXP
 	plays IS_EXPRESSION_REGEXP_RIGHT
-	plays IS_EXPRESSION_REGEXP_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_REGEXP
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_REGEXP_TUPLE_VALUE;
 
 RegoptArtifact sub RubySourceArtifact
-	# Structural
-	plays is_options_relation
-	plays is_text_relation
-	plays has_options_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE_REGEXP
-	plays IS_INCOMPLETE
-	plays IS_REGEXP;
+	plays IS_EXPRESSION_INCOMPLETE_REGEXP;
 
 ResbodyArtifact sub RubySourceArtifact
-	# Structural
-	plays is_handlers_relation
-	plays has_alias_relation
-	plays has_body_relation
-	plays has_exceptions_relation
 	# Semantic
-	plays IS_CATCH
-	plays IS_CATCH_EXPRESSION
-	plays IS_EXPRESSION;
+	plays IS_CATCH_EXPRESSION;
 
 RescueArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_class_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_body_relation
-	plays has_else_relation
-	plays has_handlers_relation
 	# Semantic
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BODY_EXPRESSION_RIGHT_TRY
-	plays IS_BINARY
 	plays IS_BINARY_BODY_EXPRESSION_RIGHT_TRY
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_TRY
 	plays IS_BODY_EXPRESSION_THEN_TRY
-	plays IS_BODY_EXPRESSION_TRY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TRY;
+	plays IS_BODY_EXPRESSION_TRY;
 
 RestargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_children_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_LIST
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_LIST;
+	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_LIST;
 
 RetryArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_else_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT
 	plays IS_BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT_THEN
-	plays IS_CALL
 	plays IS_CALL_ELSE_EXPRESSION_INCOMPLETE_STATEMENT
-	plays IS_CALL_EXPRESSION_INCOMPLETE_STATEMENT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_CALL_EXPRESSION_INCOMPLETE_STATEMENT;
 
 ReturnArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_class_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_right_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_RETURN_STATEMENT_THEN
 	plays IS_BODY_RETURN_STATEMENT
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_RETURN_STATEMENT
-	plays IS_EXPRESSION
-	plays IS_RETURN
 	plays IS_RETURN_RIGHT_STATEMENT
-	plays IS_RETURN_STATEMENT
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_RETURN_STATEMENT;
 
 SclassArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_value_relation
-	plays has_body_relation
-	plays has_object_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_DECLARATION_EXPRESSION_INCOMPLETE_RIGHT_TYPE
-	plays IS_BODY
 	plays IS_BODY_DECLARATION_EXPRESSION_INCOMPLETE_THEN_TYPE
 	plays IS_BODY_DECLARATION_EXPRESSION_INCOMPLETE_TYPE
-	plays IS_DECLARATION
-	plays IS_DECLARATION_EXPRESSION_INCOMPLETE_TYPE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TYPE;
+	plays IS_DECLARATION_EXPRESSION_INCOMPLETE_RIGHT_TYPE
+	plays IS_DECLARATION_EXPRESSION_INCOMPLETE_TYPE;
 
 SelfArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_iterated_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LEFT_THIS
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LEFT_RIGHT_THIS
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_RIGHT_THIS
 	plays IS_BINARY_EXPRESSION_LEFT_THIS
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LEFT_THEN_THIS
 	plays IS_BODY_EXPRESSION_LEFT_THIS
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LEFT_THIS
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LEFT_THIS_UPDATE
 	plays IS_EXPRESSION_LEFT_RIGHT_THIS
 	plays IS_EXPRESSION_LEFT_THIS
-	plays IS_EXPRESSION_LEFT_THIS_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_THIS
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LEFT_THIS_TUPLE_VALUE;
 
 SendArrayArtifact sub RubySourceArtifact
-	# Attributes
-	has selectorAttribute
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LIST
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LIST_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LIST
 	plays IS_BINARY_EXPRESSION_LIST_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_LIST
 	plays IS_BODY_EXPRESSION_LIST_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_LIST
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LIST
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LIST_UPDATE
 	plays IS_EXPRESSION_LEFT_LIST
 	plays IS_EXPRESSION_LIST
 	plays IS_EXPRESSION_LIST_RIGHT
-	plays IS_EXPRESSION_LIST_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LIST_TUPLE_VALUE;
 
 SendAssignArtifact sub RubySourceArtifact
-	# Attributes
-	has selectorAttribute
-	# Structural
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_comments_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ASSIGNMENT
+	plays IS_ARGUMENT_ASSIGNMENT_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_LEFT
 	plays IS_ASSIGNMENT_BINARY_EXPRESSION_LEFT_RIGHT
 	plays IS_ASSIGNMENT_BODY_EXPRESSION_FOR_LEFT
@@ -2121,174 +721,54 @@ SendAssignArtifact sub RubySourceArtifact
 	plays IS_ASSIGNMENT_CONDITION_EXPRESSION_LEFT
 	plays IS_ASSIGNMENT_ELSE_EXPRESSION_LEFT
 	plays IS_ASSIGNMENT_EXPRESSION_LEFT
-	plays IS_ASSIGNMENT_EXPRESSION_LEFT_RIGHT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN;
+	plays IS_ASSIGNMENT_EXPRESSION_LEFT_RIGHT;
 
 SendCallArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_comments_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_CALL_EXPRESSION_FUNCTION_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_BINARY_CALL_EXPRESSION_FUNCTION_RIGHT
-	plays IS_BODY
+	plays IS_BODY_CALL_EXPRESSION_FOR_FUNCTION
 	plays IS_BODY_CALL_EXPRESSION_FUNCTION
 	plays IS_BODY_CALL_EXPRESSION_FUNCTION_THEN
-	plays IS_CALL
 	plays IS_CALL_CONDITION_EXPRESSION_FUNCTION
 	plays IS_CALL_ELSE_EXPRESSION_FUNCTION
 	plays IS_CALL_EXPRESSION_FOR_FUNCTION_UPDATE
 	plays IS_CALL_EXPRESSION_FUNCTION
 	plays IS_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_CALL_EXPRESSION_FUNCTION_RIGHT
-	plays IS_CALL_EXPRESSION_FUNCTION_TUPLE_VALUE
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_CALL_EXPRESSION_FUNCTION_TUPLE_VALUE;
 
 SendIdentifierArtifact sub RubySourceArtifact
-	# Attributes
-	has selectorAttribute
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_comments_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_FOR_IDENTIFIER
 	plays IS_BODY_EXPRESSION_IDENTIFIER
 	plays IS_BODY_EXPRESSION_IDENTIFIER_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE
 	plays IS_EXPRESSION_IDENTIFIER
 	plays IS_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE;
 
 SendOperatorArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ADD
 	plays IS_ADD_ARGUMENT_ARITHMETIC_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR
 	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_RIGHT
 	plays IS_ADD_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_THEN
+	plays IS_ADD_ARITHMETIC_BINARY_CONDITION_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_BINARY_ELSE_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_LEFT_OPERATOR
 	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR
 	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_RIGHT
 	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_TUPLE_VALUE
-	plays IS_AND
 	plays IS_AND_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR
 	plays IS_AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT
 	plays IS_AND_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR
@@ -2298,7 +778,6 @@ SendOperatorArtifact sub RubySourceArtifact
 	plays IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR
 	plays IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT
 	plays IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR_TUPLE_VALUE
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_ARITHMETIC_BINARY_CALL_DIVIDE_EXPRESSION_FUNCTION_OPERATOR
 	plays IS_ARGUMENT_ARITHMETIC_BINARY_CALL_EXPRESSION_FUNCTION_INCOMPLETE_OPERATOR
 	plays IS_ARGUMENT_ARITHMETIC_BINARY_CALL_EXPRESSION_FUNCTION_MODULO_OPERATOR
@@ -2306,25 +785,28 @@ SendOperatorArtifact sub RubySourceArtifact
 	plays IS_ARGUMENT_ARITHMETIC_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR_SUBSTRACT
 	plays IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_LEFT_SHIFT_OPERATOR
 	plays IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR
+	plays IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_XOR
 	plays IS_ARGUMENT_BINARY_CALL_EQUAL_EXPRESSION_FUNCTION_NOT_OPERATOR_RELATIONAL
 	plays IS_ARGUMENT_BINARY_CALL_EQUAL_EXPRESSION_FUNCTION_OPERATOR_RELATIONAL
 	plays IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL
 	plays IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTICAL_OPERATOR_RELATIONAL
 	plays IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL
+	plays IS_ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_INCOMPLETE_OPERATOR_UNARY
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_NOT_OPERATOR_RELATIONAL_UNARY
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR_RIGHT
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR_RIGHT
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR_RIGHT
 	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_RIGHT_SUBSTRACT
 	plays IS_ARITHMETIC_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR
 	plays IS_ARITHMETIC_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN
+	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_INCOMPLETE_OPERATOR
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MODULO_OPERATOR
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MODULO_OPERATOR_THEN
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR_THEN
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT
 	plays IS_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT_THEN
+	plays IS_ARITHMETIC_BINARY_CONDITION_EXPRESSION_MODULO_OPERATOR
 	plays IS_ARITHMETIC_BINARY_DIVIDE_ELSE_EXPRESSION_OPERATOR
 	plays IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_LEFT_OPERATOR
 	plays IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR
@@ -2349,28 +831,30 @@ SendOperatorArtifact sub RubySourceArtifact
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_RIGHT_SUBSTRACT
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT
 	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT_TUPLE_VALUE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR_RIGHT
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT
+	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_RIGHT_SHIFT
 	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_XOR
 	plays IS_ASSIGNMENT_BINARY_EQUAL_EXPRESSION_NOT_OPERATOR_RELATIONAL_RIGHT
 	plays IS_ASSIGNMENT_BINARY_EQUAL_EXPRESSION_OPERATOR_RELATIONAL_RIGHT
 	plays IS_ASSIGNMENT_EXPRESSION_NOT_OPERATOR_RELATIONAL_RIGHT_UNARY
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_FOR_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR_THEN
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN
+	plays IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_RIGHT_SHIFT
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR
 	plays IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_XOR
 	plays IS_BINARY_BITWISE_CONDITION_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_CONDITION_EXPRESSION_OPERATOR_XOR
 	plays IS_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR
+	plays IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR
 	plays IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_XOR
 	plays IS_BINARY_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_RIGHT_UNARY
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_OR
+	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_RIGHT_SHIFT
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_XOR
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR
 	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR_RIGHT
@@ -2424,823 +908,227 @@ SendOperatorArtifact sub RubySourceArtifact
 	plays IS_BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL
 	plays IS_BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL_RIGHT
 	plays IS_BINARY_EXPRESSION_NOT_OPERATOR_RELATIONAL_RIGHT_UNARY
-	plays IS_BITWISE
+	plays IS_BITWISE_BODY_EXPRESSION_INCOMPLETE_OPERATOR_UNARY
 	plays IS_BITWISE_EXPRESSION_INCOMPLETE_LEFT_OPERATOR_UNARY
 	plays IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_RIGHT_UNARY
+	plays IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_TUPLE_UNARY_VALUE
 	plays IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_UNARY
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_UNARY
 	plays IS_BODY_EXPRESSION_NOT_OPERATOR_RELATIONAL_THEN_UNARY
 	plays IS_BODY_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_CONDITION_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_UNARY
 	plays IS_CONDITION_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY
-	plays IS_DIVIDE
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY
-	plays IS_EQUAL
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_IDENTICAL_LEFT_OPERATOR_RELATIONAL_UNARY
+	plays IS_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_RIGHT_UNARY
 	plays IS_EXPRESSION_LEFT_NOT_OPERATOR_RELATIONAL_UNARY
 	plays IS_EXPRESSION_NOT_OPERATOR_RELATIONAL_RIGHT_UNARY
 	plays IS_EXPRESSION_NOT_OPERATOR_RELATIONAL_TUPLE_UNARY_VALUE
-	plays IS_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_IDENTICAL
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LEFT_SHIFT
-	plays IS_LESS_THAN_OR_EQUAL
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RELATIONAL
-	plays IS_RIGHT
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNARY
-	plays IS_VALUE
-	plays IS_XOR;
+	plays IS_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY;
 
 SendQualifiedArtifact sub RubySourceArtifact
-	# Attributes
-	has selectorAttribute
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_iterated_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_parent_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_comments_relation
-	plays has_qnames_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_QUALIFIED
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_FOR_IDENTIFIER_QUALIFIED
 	plays IS_BODY_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_BODY_EXPRESSION_IDENTIFIER_QUALIFIED_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_QUALIFIED
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER_QUALIFIED
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED_UPDATE
 	plays IS_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
-	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_TUPLE_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_QUALIFIED
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_TUPLE_VALUE;
 
 SendRequireArtifact sub RubySourceArtifact
-	# Attributes
-	has selectorAttribute
-	# Structural
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_else_relation
-	plays is_file_relation
-	plays is_left_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_comments_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IMPORT_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IMPORT
 	plays IS_BODY_EXPRESSION_IMPORT_THEN
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IMPORT
-	plays IS_ELSE
+	plays IS_ELSE_EXPRESSION
 	plays IS_ELSE_EXPRESSION_IMPORT
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_IMPORT
 	plays IS_EXPRESSION_IMPORT_LEFT
-	plays IS_IMPORT
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_EXPRESSION_IMPORT_RIGHT
+	plays IS_EXPRESSION_IMPORT_TUPLE_VALUE;
 
 SendStatementArtifact sub RubySourceArtifact
-	# Structural
-	plays is_2_relation
-	plays is_base_relation
-	plays is_begin_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_base_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ANONYMOUS
+	plays IS_ANONYMOUS_BINARY_DECLARATION_EXPRESSION_FUNCTION_RIGHT
 	plays IS_ANONYMOUS_BODY_DECLARATION_EXPRESSION_FUNCTION
 	plays IS_ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION
 	plays IS_ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION_TUPLE_VALUE
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FOR_FUNCTION_ITERATOR_STATEMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_INSTANCE_STATEMENT_VISIBILITY
 	plays IS_ARGUMENT_CALL_FUNCTION_STATEMENT_VISIBILITY_WORLD
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT_STATEMENT_VISIBILITY_WORLD
-	plays IS_BINARY
 	plays IS_BINARY_FOR_ITERATOR_LEFT_STATEMENT
 	plays IS_BINARY_FOR_ITERATOR_RIGHT_STATEMENT
 	plays IS_BINARY_INSTANCE_RIGHT_STATEMENT_VISIBILITY
 	plays IS_BINARY_RIGHT_STATEMENT_VISIBILITY_WORLD
-	plays IS_BODY
+	plays IS_BODY_CONTINUE_EXPRESSION_STATEMENT_THEN
 	plays IS_BODY_EXPRESSION_FOR_ITERATOR_STATEMENT_THEN
+	plays IS_BODY_EXPRESSION_INSTANCE_STATEMENT_THEN_VISIBILITY
+	plays IS_BODY_EXPRESSION_STATEMENT_THEN_VISIBILITY_WORLD
 	plays IS_BODY_FOR_ITERATOR_STATEMENT
 	plays IS_BODY_INSTANCE_STATEMENT_VISIBILITY
+	plays IS_BODY_STATEMENT_SUBTYPE_VISIBILITY
 	plays IS_BODY_STATEMENT_VISIBILITY_WORLD
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_CONDITION_EXPRESSION_INSTANCE_STATEMENT_VISIBILITY
 	plays IS_CONDITION_EXPRESSION_STATEMENT_VISIBILITY_WORLD
-	plays IS_CONTINUE
 	plays IS_CONTINUE_STATEMENT
-	plays IS_DECLARATION
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_FOR_ITERATOR_STATEMENT
 	plays IS_ELSE_EXPRESSION_INSTANCE_STATEMENT_VISIBILITY
-	plays IS_EXPRESSION
-	plays IS_FOR
+	plays IS_ELSE_EXPRESSION_STATEMENT_VISIBILITY_WORLD
 	plays IS_FOR_ITERATOR_STATEMENT
-	plays IS_FUNCTION
-	plays IS_INSTANCE
+	plays IS_INSTANCE_LEFT_STATEMENT_VISIBILITY
+	plays IS_INSTANCE_RIGHT_STATEMENT_VISIBILITY
 	plays IS_INSTANCE_STATEMENT_TUPLE_VALUE_VISIBILITY
 	plays IS_INSTANCE_STATEMENT_VISIBILITY
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STATEMENT
+	plays IS_LEFT_STATEMENT_VISIBILITY_WORLD
+	plays IS_RIGHT_STATEMENT_VISIBILITY_WORLD
 	plays IS_STATEMENT_SUBTYPE_VISIBILITY
 	plays IS_STATEMENT_TUPLE_VALUE_VISIBILITY_WORLD
-	plays IS_STATEMENT_VISIBILITY_WORLD
-	plays IS_SUBTYPE
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE
-	plays IS_VISIBILITY
-	plays IS_WORLD;
+	plays IS_STATEMENT_VISIBILITY_WORLD;
 
-ShadowargArtifact sub RubySourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_children_relation
-	# Semantic
-	plays IS_UNANNOTATED;
+ShadowargArtifact sub RubySourceArtifact;
 
 SplatArtifact sub RubySourceArtifact
-	# Structural
-	plays is_children_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_target_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_INCOMPLETE_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_INCOMPLETE_LEFT
-	plays IS_CALL
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT;
+	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE_RIGHT;
 
 StrArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_options_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_text_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_PRIMITIVE_STRING
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_BODY
+	plays IS_BODY_EXPRESSION_FOR_LITERAL_PRIMITIVE_STRING
 	plays IS_BODY_EXPRESSION_LITERAL_PRIMITIVE_STRING
 	plays IS_BODY_EXPRESSION_LITERAL_PRIMITIVE_STRING_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_LITERAL_PRIMITIVE_STRING
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
 	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STRING
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING_TUPLE_VALUE;
 
 SuperArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_TUPLE_VALUE;
 
 SymArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_IDENTIFIER
 	plays IS_BODY_EXPRESSION_IDENTIFIER_THEN
-	plays IS_CALL
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_IDENTIFIER
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_IDENTIFIER
 	plays IS_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_IDENTIFIER_TUPLE_VALUE;
 
 SymbolArtifact sub RubySourceArtifact
-	# Structural
-	plays is_children_relation
-	plays is_options_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IDENTIFIER
-	plays IS_IDENTIFIER;
+	plays IS_EXPRESSION_IDENTIFIER;
 
 TrueArtifact sub RubySourceArtifact
-	# Structural
-	plays is_1_relation
-	plays is_2_relation
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_children_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_conditions_relation
-	plays is_contents_relation
-	plays is_default_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_object_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BOOLEAN_CALL_EXPRESSION_FUNCTION_LITERAL
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BODY
 	plays IS_BODY_BOOLEAN_EXPRESSION_LITERAL
 	plays IS_BODY_BOOLEAN_EXPRESSION_LITERAL_THEN
-	plays IS_BOOLEAN
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_ELSE_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LEFT_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_LITERAL_RIGHT
-	plays IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE;
+	plays IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE;
 
 UndefArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_INCOMPLETE_STATEMENT_THEN
 	plays IS_BODY_INCOMPLETE_STATEMENT
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_STATEMENT
-	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_INCOMPLETE_STATEMENT;
 
 UntilArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays has_body_relation
-	plays has_condition_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_STATEMENT_WHILE
-	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
-	plays IS_WHILE;
-
-UntilPostArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_relation
-	plays has_condition_relation
-	# Semantic
-	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
-	plays IS_WHILE;
-
-WhenArtifact sub RubySourceArtifact
-	# Structural
-	plays is_when_clauses_relation
-	plays has_body_relation
-	plays has_conditions_relation
-	# Semantic
-	plays IS_CASE
-	plays IS_CASE_EXPRESSION
-	plays IS_EXPRESSION;
-
-WhileArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_else_relation
-	plays is_ensure_body_relation
-	plays is_file_relation
-	plays is_value_relation
-	plays has_body_relation
-	plays has_comments_relation
-	plays has_condition_relation
-	# Semantic
-	plays IS_BINARY
-	plays IS_BINARY_RIGHT_STATEMENT_WHILE
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_STATEMENT_THEN_WHILE
 	plays IS_BODY_STATEMENT_WHILE
-	plays IS_ELSE
 	plays IS_ELSE_EXPRESSION_STATEMENT_WHILE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
-	plays IS_THEN
-	plays IS_WHILE;
+	plays IS_STATEMENT_WHILE;
+
+UntilPostArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_STATEMENT_WHILE;
+
+WhenArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_CASE_EXPRESSION;
+
+WhileArtifact sub RubySourceArtifact
+	# Semantic
+	plays IS_BINARY_RIGHT_STATEMENT_WHILE
+	plays IS_BODY_EXPRESSION_STATEMENT_THEN_WHILE
+	plays IS_BODY_STATEMENT_WHILE
+	plays IS_ELSE_EXPRESSION_STATEMENT_WHILE
+	plays IS_STATEMENT_WHILE;
 
 WhilePostArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_relation
-	plays has_condition_relation
 	# Semantic
-	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
-	plays IS_WHILE;
+	plays IS_BODY_STATEMENT_WHILE
+	plays IS_STATEMENT_WHILE;
 
 XstrArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_else_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_children_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_BINARY
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_CONDITION_EXPRESSION
+	plays IS_ELSE_EXPRESSION;
 
 YieldArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_body_relation
-	plays is_casevar_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
+	plays IS_BODY_EXPRESSION_FOR
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ELSE_EXPRESSION;
 
 ZsuperArtifact sub RubySourceArtifact
-	# Structural
-	plays is_base_relation
-	plays is_blockdata_relation
-	plays is_body_relation
-	plays is_class_relation
-	plays is_condition_relation
-	plays is_contents_relation
-	plays is_else_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_value_relation
-	plays is_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION
-	plays IS_ASSIGNMENT
 	plays IS_ASSIGNMENT_RIGHT
-	plays IS_BINARY
 	plays IS_BINARY_LEFT
 	plays IS_BINARY_RIGHT
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION
-	plays IS_ELSE
-	plays IS_ELSE_EXPRESSION
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
-
-##########---------- Structural Relationships ----------##########
-parent_child_relation sub relationship
-	relates is_parent, relates is_child;
-is_parent sub role;
-is_child sub role;
-
-#####----- Ruby -----#####
-1_relation sub parent_child_relation
-	relates is_1_relation, relates has_1_relation;
-is_1_relation sub is_child;
-has_1_relation sub is_parent;
-
-2_relation sub parent_child_relation
-	relates is_2_relation, relates has_2_relation;
-is_2_relation sub is_child;
-has_2_relation sub is_parent;
-
-alias_relation sub parent_child_relation
-	relates is_alias_relation, relates has_alias_relation;
-is_alias_relation sub is_child;
-has_alias_relation sub is_parent;
-
-args_relation sub parent_child_relation
-	relates is_args_relation, relates has_args_relation;
-is_args_relation sub is_child;
-has_args_relation sub is_parent;
-
-base_relation sub parent_child_relation
-	relates is_base_relation, relates has_base_relation;
-is_base_relation sub is_child;
-has_base_relation sub is_parent;
-
-begin_relation sub parent_child_relation
-	relates is_begin_relation, relates has_begin_relation;
-is_begin_relation sub is_child;
-has_begin_relation sub is_parent;
-
-blockdata_relation sub parent_child_relation
-	relates is_blockdata_relation, relates has_blockdata_relation;
-is_blockdata_relation sub is_child;
-has_blockdata_relation sub is_parent;
-
-body_relation sub parent_child_relation
-	relates is_body_relation, relates has_body_relation;
-is_body_relation sub is_child;
-has_body_relation sub is_parent;
-
-casevar_relation sub parent_child_relation
-	relates is_casevar_relation, relates has_casevar_relation;
-is_casevar_relation sub is_child;
-has_casevar_relation sub is_parent;
-
-children_relation sub parent_child_relation
-	relates is_children_relation, relates has_children_relation;
-is_children_relation sub is_child;
-has_children_relation sub is_parent;
-
-class_relation sub parent_child_relation
-	relates is_class_relation, relates has_class_relation;
-is_class_relation sub is_child;
-has_class_relation sub is_parent;
-
-comments_relation sub parent_child_relation
-	relates is_comments_relation, relates has_comments_relation;
-is_comments_relation sub is_child;
-has_comments_relation sub is_parent;
-
-condition_relation sub parent_child_relation
-	relates is_condition_relation, relates has_condition_relation;
-is_condition_relation sub is_child;
-has_condition_relation sub is_parent;
-
-conditions_relation sub parent_child_relation
-	relates is_conditions_relation, relates has_conditions_relation;
-is_conditions_relation sub is_child;
-has_conditions_relation sub is_parent;
-
-contents_relation sub parent_child_relation
-	relates is_contents_relation, relates has_contents_relation;
-is_contents_relation sub is_child;
-has_contents_relation sub is_parent;
-
-default_relation sub parent_child_relation
-	relates is_default_relation, relates has_default_relation;
-is_default_relation sub is_child;
-has_default_relation sub is_parent;
-
-else_relation sub parent_child_relation
-	relates is_else_relation, relates has_else_relation;
-is_else_relation sub is_child;
-has_else_relation sub is_parent;
-
-end_relation sub parent_child_relation
-	relates is_end_relation, relates has_end_relation;
-is_end_relation sub is_child;
-has_end_relation sub is_parent;
-
-ensure_body_relation sub parent_child_relation
-	relates is_ensure_body_relation, relates has_ensure_body_relation;
-is_ensure_body_relation sub is_child;
-has_ensure_body_relation sub is_parent;
-
-exceptions_relation sub parent_child_relation
-	relates is_exceptions_relation, relates has_exceptions_relation;
-is_exceptions_relation sub is_child;
-has_exceptions_relation sub is_parent;
-
-file_relation sub parent_child_relation
-	relates is_file_relation, relates has_file_relation;
-is_file_relation sub is_child;
-has_file_relation sub is_parent;
-
-handlers_relation sub parent_child_relation
-	relates is_handlers_relation, relates has_handlers_relation;
-is_handlers_relation sub is_child;
-has_handlers_relation sub is_parent;
-
-iterated_relation sub parent_child_relation
-	relates is_iterated_relation, relates has_iterated_relation;
-is_iterated_relation sub is_child;
-has_iterated_relation sub is_parent;
-
-iterators_relation sub parent_child_relation
-	relates is_iterators_relation, relates has_iterators_relation;
-is_iterators_relation sub is_child;
-has_iterators_relation sub is_parent;
-
-left_relation sub parent_child_relation
-	relates is_left_relation, relates has_left_relation;
-is_left_relation sub is_child;
-has_left_relation sub is_parent;
-
-object_relation sub parent_child_relation
-	relates is_object_relation, relates has_object_relation;
-is_object_relation sub is_child;
-has_object_relation sub is_parent;
-
-operator_relation sub parent_child_relation
-	relates is_operator_relation, relates has_operator_relation;
-is_operator_relation sub is_child;
-has_operator_relation sub is_parent;
-
-options_relation sub parent_child_relation
-	relates is_options_relation, relates has_options_relation;
-is_options_relation sub is_child;
-has_options_relation sub is_parent;
-
-parent_relation sub parent_child_relation
-	relates is_parent_relation, relates has_parent_relation;
-is_parent_relation sub is_child;
-has_parent_relation sub is_parent;
-
-qnames_relation sub parent_child_relation
-	relates is_qnames_relation, relates has_qnames_relation;
-is_qnames_relation sub is_child;
-has_qnames_relation sub is_parent;
-
-right_relation sub parent_child_relation
-	relates is_right_relation, relates has_right_relation;
-is_right_relation sub is_child;
-has_right_relation sub is_parent;
-
-start_relation sub parent_child_relation
-	relates is_start_relation, relates has_start_relation;
-is_start_relation sub is_child;
-has_start_relation sub is_parent;
-
-target_relation sub parent_child_relation
-	relates is_target_relation, relates has_target_relation;
-is_target_relation sub is_child;
-has_target_relation sub is_parent;
-
-targets_relation sub parent_child_relation
-	relates is_targets_relation, relates has_targets_relation;
-is_targets_relation sub is_child;
-has_targets_relation sub is_parent;
-
-text_relation sub parent_child_relation
-	relates is_text_relation, relates has_text_relation;
-is_text_relation sub is_child;
-has_text_relation sub is_parent;
-
-value_relation sub parent_child_relation
-	relates is_value_relation, relates has_value_relation;
-is_value_relation sub is_child;
-has_value_relation sub is_parent;
-
-values_relation sub parent_child_relation
-	relates is_values_relation, relates has_values_relation;
-is_values_relation sub is_child;
-has_values_relation sub is_parent;
-
-when_clauses_relation sub parent_child_relation
-	relates is_when_clauses_relation, relates has_when_clauses_relation;
-is_when_clauses_relation sub is_child;
-has_when_clauses_relation sub is_parent;
+	plays IS_ELSE_EXPRESSION;
 
 ##########---------- Semantic Roles ----------##########
-ADD sub relationship
-	relates IS_ADD;
-IS_ADD sub role;
-
 ADD_ARGUMENT_ARITHMETIC_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR sub relationship
 	relates IS_ADD_ARGUMENT_ARITHMETIC_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR;
 IS_ADD_ARGUMENT_ARITHMETIC_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_OPERATOR sub role;
@@ -3281,6 +1169,10 @@ ADD_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_THEN sub relationship
 	relates IS_ADD_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_THEN;
 IS_ADD_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_THEN sub role;
 
+ADD_ARITHMETIC_BINARY_CONDITION_EXPRESSION_OPERATOR sub relationship
+	relates IS_ADD_ARITHMETIC_BINARY_CONDITION_EXPRESSION_OPERATOR;
+IS_ADD_ARITHMETIC_BINARY_CONDITION_EXPRESSION_OPERATOR sub role;
+
 ADD_ARITHMETIC_BINARY_ELSE_EXPRESSION_OPERATOR sub relationship
 	relates IS_ADD_ARITHMETIC_BINARY_ELSE_EXPRESSION_OPERATOR;
 IS_ADD_ARITHMETIC_BINARY_ELSE_EXPRESSION_OPERATOR sub role;
@@ -3301,10 +1193,6 @@ ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_TUPLE_VALUE sub relationship
 	relates IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_TUPLE_VALUE;
 IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_TUPLE_VALUE sub role;
 
-ALIAS sub relationship
-	relates IS_ALIAS;
-IS_ALIAS sub role;
-
 ALIAS_BODY_EXPRESSION_STATEMENT_THEN sub relationship
 	relates IS_ALIAS_BODY_EXPRESSION_STATEMENT_THEN;
 IS_ALIAS_BODY_EXPRESSION_STATEMENT_THEN sub role;
@@ -3313,13 +1201,13 @@ ALIAS_BODY_STATEMENT sub relationship
 	relates IS_ALIAS_BODY_STATEMENT;
 IS_ALIAS_BODY_STATEMENT sub role;
 
+ALIAS_ELSE_EXPRESSION_STATEMENT sub relationship
+	relates IS_ALIAS_ELSE_EXPRESSION_STATEMENT;
+IS_ALIAS_ELSE_EXPRESSION_STATEMENT sub role;
+
 ALIAS_STATEMENT sub relationship
 	relates IS_ALIAS_STATEMENT;
 IS_ALIAS_STATEMENT sub role;
-
-AND sub relationship
-	relates IS_AND;
-IS_AND sub role;
 
 AND_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR sub relationship
 	relates IS_AND_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR;
@@ -3328,6 +1216,10 @@ IS_AND_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR sub role;
 AND_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR sub relationship
 	relates IS_AND_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR;
 IS_AND_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR sub role;
+
+AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR sub relationship
+	relates IS_AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR;
+IS_AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR sub role;
 
 AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN sub relationship
 	relates IS_AND_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN;
@@ -3421,9 +1313,9 @@ AND_BITWISE_EXPRESSION_OPERATOR sub relationship
 	relates IS_AND_BITWISE_EXPRESSION_OPERATOR;
 IS_AND_BITWISE_EXPRESSION_OPERATOR sub role;
 
-ANONYMOUS sub relationship
-	relates IS_ANONYMOUS;
-IS_ANONYMOUS sub role;
+ANONYMOUS_BINARY_DECLARATION_EXPRESSION_FUNCTION_RIGHT sub relationship
+	relates IS_ANONYMOUS_BINARY_DECLARATION_EXPRESSION_FUNCTION_RIGHT;
+IS_ANONYMOUS_BINARY_DECLARATION_EXPRESSION_FUNCTION_RIGHT sub role;
 
 ANONYMOUS_BODY_DECLARATION_EXPRESSION_FUNCTION sub relationship
 	relates IS_ANONYMOUS_BODY_DECLARATION_EXPRESSION_FUNCTION;
@@ -3436,10 +1328,6 @@ IS_ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION sub role;
 ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION_TUPLE_VALUE sub relationship
 	relates IS_ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION_TUPLE_VALUE;
 IS_ANONYMOUS_DECLARATION_EXPRESSION_FUNCTION_TUPLE_VALUE sub role;
-
-ARGUMENT sub relationship
-	relates IS_ARGUMENT;
-IS_ARGUMENT sub role;
 
 ARGUMENT_ARITHMETIC_BINARY_CALL_DIVIDE_EXPRESSION_FUNCTION_OPERATOR sub relationship
 	relates IS_ARGUMENT_ARITHMETIC_BINARY_CALL_DIVIDE_EXPRESSION_FUNCTION_OPERATOR;
@@ -3465,6 +1353,10 @@ ARGUMENT_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTIFIER_LEFT sub relation
 	relates IS_ARGUMENT_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTIFIER_LEFT;
 IS_ARGUMENT_ASSIGNMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTIFIER_LEFT sub role;
 
+ARGUMENT_ASSIGNMENT_CALL_EXPRESSION_FUNCTION_LEFT sub relationship
+	relates IS_ARGUMENT_ASSIGNMENT_CALL_EXPRESSION_FUNCTION_LEFT;
+IS_ARGUMENT_ASSIGNMENT_CALL_EXPRESSION_FUNCTION_LEFT sub role;
+
 ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_LEFT_SHIFT_OPERATOR sub relationship
 	relates IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_LEFT_SHIFT_OPERATOR;
 IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_LEFT_SHIFT_OPERATOR sub role;
@@ -3472,6 +1364,10 @@ IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_LEFT_SHIFT_OPERATOR sub role
 ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR sub relationship
 	relates IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR;
 IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR sub role;
+
+ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_XOR sub relationship
+	relates IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_XOR;
+IS_ARGUMENT_BINARY_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_XOR sub role;
 
 ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR_OR sub relationship
 	relates IS_ARGUMENT_BINARY_BOOLEAN_CALL_EXPRESSION_FUNCTION_OPERATOR_OR;
@@ -3496,6 +1392,10 @@ IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_IDENTICAL_OPERATOR_RELATIONAL sub ro
 ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relationship
 	relates IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub role;
+
+ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_INCOMPLETE_OPERATOR_UNARY sub relationship
+	relates IS_ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_INCOMPLETE_OPERATOR_UNARY;
+IS_ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_INCOMPLETE_OPERATOR_UNARY sub role;
 
 ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR sub relationship
 	relates IS_ARGUMENT_BITWISE_CALL_EXPRESSION_FUNCTION_OPERATOR_OR;
@@ -3536,6 +1436,14 @@ IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_TYPE_VISIBILITY sub role;
 ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_VISIBILITY_WORLD sub relationship
 	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_VISIBILITY_WORLD;
 IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_VISIBILITY_WORLD sub role;
+
+ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE sub relationship
+	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE;
+IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE sub role;
+
+ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_REGEXP sub relationship
+	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_REGEXP;
+IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_REGEXP sub role;
 
 ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_STRING sub relationship
 	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_STRING;
@@ -3625,13 +1533,21 @@ ARGUMENT_EXPRESSION_MAP_NAME sub relationship
 	relates IS_ARGUMENT_EXPRESSION_MAP_NAME;
 IS_ARGUMENT_EXPRESSION_MAP_NAME sub role;
 
-ARITHMETIC sub relationship
-	relates IS_ARITHMETIC;
-IS_ARITHMETIC sub role;
+ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR sub relationship
+	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR;
+IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR sub role;
 
 ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN sub relationship
 	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN;
 IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN sub role;
+
+ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_OPERATOR_SUBSTRACT sub relationship
+	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_OPERATOR_SUBSTRACT;
+IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_OPERATOR_SUBSTRACT sub role;
+
+ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MODULO_OPERATOR_THEN sub relationship
+	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MODULO_OPERATOR_THEN;
+IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MODULO_OPERATOR_THEN sub role;
 
 ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR sub relationship
 	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_BODY_EXPRESSION_MULTIPLY_OPERATOR;
@@ -3669,6 +1585,10 @@ ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_OPERATOR_SUBSTRACT sub relationship
 	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_OPERATOR_SUBSTRACT;
 IS_ARITHMETIC_ASSIGNMENT_BINARY_ELSE_EXPRESSION_OPERATOR_SUBSTRACT sub role;
 
+ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_INCOMPLETE_OPERATOR sub relationship
+	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_INCOMPLETE_OPERATOR;
+IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_INCOMPLETE_OPERATOR sub role;
+
 ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR sub relationship
 	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR;
 IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR sub role;
@@ -3701,6 +1621,10 @@ ARITHMETIC_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN sub relationship
 	relates IS_ARITHMETIC_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN;
 IS_ARITHMETIC_BINARY_BODY_DIVIDE_EXPRESSION_OPERATOR_THEN sub role;
 
+ARITHMETIC_BINARY_BODY_EXPRESSION_INCOMPLETE_OPERATOR sub relationship
+	relates IS_ARITHMETIC_BINARY_BODY_EXPRESSION_INCOMPLETE_OPERATOR;
+IS_ARITHMETIC_BINARY_BODY_EXPRESSION_INCOMPLETE_OPERATOR sub role;
+
 ARITHMETIC_BINARY_BODY_EXPRESSION_MODULO_OPERATOR sub relationship
 	relates IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MODULO_OPERATOR;
 IS_ARITHMETIC_BINARY_BODY_EXPRESSION_MODULO_OPERATOR sub role;
@@ -3724,6 +1648,10 @@ IS_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT sub role;
 ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT_THEN sub relationship
 	relates IS_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT_THEN;
 IS_ARITHMETIC_BINARY_BODY_EXPRESSION_OPERATOR_SUBSTRACT_THEN sub role;
+
+ARITHMETIC_BINARY_CONDITION_EXPRESSION_MODULO_OPERATOR sub relationship
+	relates IS_ARITHMETIC_BINARY_CONDITION_EXPRESSION_MODULO_OPERATOR;
+IS_ARITHMETIC_BINARY_CONDITION_EXPRESSION_MODULO_OPERATOR sub role;
 
 ARITHMETIC_BINARY_DIVIDE_ELSE_EXPRESSION_OPERATOR sub relationship
 	relates IS_ARITHMETIC_BINARY_DIVIDE_ELSE_EXPRESSION_OPERATOR;
@@ -3821,9 +1749,17 @@ ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT_TUPLE_VALUE sub relationship
 	relates IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT_TUPLE_VALUE;
 IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT_TUPLE_VALUE sub role;
 
-ASSIGNMENT sub relationship
-	relates IS_ASSIGNMENT;
-IS_ASSIGNMENT sub role;
+ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_OR sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_OR;
+IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_OR sub role;
+
+ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_XOR sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_XOR;
+IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_FOR_OPERATOR_XOR sub role;
+
+ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR_THEN sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR_THEN;
+IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_LEFT_SHIFT_OPERATOR_THEN sub role;
 
 ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR;
@@ -3836,6 +1772,10 @@ IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN sub role;
 ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR;
 IS_ASSIGNMENT_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR sub role;
+
+ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR;
+IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR sub role;
 
 ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR;
@@ -3861,6 +1801,10 @@ ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT;
 IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub role;
 
+ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_RIGHT_SHIFT sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_RIGHT_SHIFT;
+IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_RIGHT_SHIFT sub role;
+
 ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT;
 IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub role;
@@ -3868,6 +1812,10 @@ IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub role;
 ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_XOR sub relationship
 	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_XOR;
 IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_XOR sub role;
+
+ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub relationship
+	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
+IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub role;
 
 ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_IDENTIFIER_LEFT sub relationship
 	relates IS_ASSIGNMENT_BINARY_BODY_EXPRESSION_FOR_IDENTIFIER_LEFT;
@@ -3924,6 +1872,10 @@ IS_ASSIGNMENT_BINARY_EXPRESSION_LEFT sub role;
 ASSIGNMENT_BINARY_EXPRESSION_LEFT_RIGHT sub relationship
 	relates IS_ASSIGNMENT_BINARY_EXPRESSION_LEFT_RIGHT;
 IS_ASSIGNMENT_BINARY_EXPRESSION_LEFT_RIGHT sub role;
+
+ASSIGNMENT_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub relationship
+	relates IS_ASSIGNMENT_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT;
+IS_ASSIGNMENT_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub role;
 
 ASSIGNMENT_BLOCK_EXPRESSION_RIGHT sub relationship
 	relates IS_ASSIGNMENT_BLOCK_EXPRESSION_RIGHT;
@@ -3993,6 +1945,10 @@ ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT sub relationship
 	relates IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT;
 IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT sub role;
 
+ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY sub relationship
+	relates IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY;
+IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_TYPE_VISIBILITY sub role;
+
 ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD sub relationship
 	relates IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD;
 IS_ASSIGNMENT_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD sub role;
@@ -4004,6 +1960,10 @@ IS_ASSIGNMENT_EXPRESSION_INCOMPLETE sub role;
 ASSIGNMENT_EXPRESSION_INCOMPLETE_REGEXP_RIGHT sub relationship
 	relates IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_REGEXP_RIGHT;
 IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_REGEXP_RIGHT sub role;
+
+ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_STRING sub relationship
+	relates IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_STRING;
+IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_STRING sub role;
 
 ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_TUPLE sub relationship
 	relates IS_ASSIGNMENT_EXPRESSION_INCOMPLETE_RIGHT_TUPLE;
@@ -4065,10 +2025,6 @@ ASSIGNMENT_RIGHT_STATEMENT_VISIBILITY_WORLD sub relationship
 	relates IS_ASSIGNMENT_RIGHT_STATEMENT_VISIBILITY_WORLD;
 IS_ASSIGNMENT_RIGHT_STATEMENT_VISIBILITY_WORLD sub role;
 
-BINARY sub relationship
-	relates IS_BINARY;
-IS_BINARY sub role;
-
 BINARY_BITWISE_BODY_EXPRESSION_FOR_LEFT_SHIFT_OPERATOR sub relationship
 	relates IS_BINARY_BITWISE_BODY_EXPRESSION_FOR_LEFT_SHIFT_OPERATOR;
 IS_BINARY_BITWISE_BODY_EXPRESSION_FOR_LEFT_SHIFT_OPERATOR sub role;
@@ -4088,6 +2044,10 @@ IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR sub role;
 BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN sub relationship
 	relates IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN;
 IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_OR_THEN sub role;
+
+BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_RIGHT_SHIFT sub relationship
+	relates IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_RIGHT_SHIFT;
+IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_RIGHT_SHIFT sub role;
 
 BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR sub relationship
 	relates IS_BINARY_BITWISE_BODY_EXPRESSION_OPERATOR_THEN_XOR;
@@ -4109,6 +2069,10 @@ BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR sub relationship
 	relates IS_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR;
 IS_BINARY_BITWISE_ELSE_EXPRESSION_LEFT_SHIFT_OPERATOR sub role;
 
+BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR sub relationship
+	relates IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR;
+IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_OR sub role;
+
 BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_XOR sub relationship
 	relates IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_XOR;
 IS_BINARY_BITWISE_ELSE_EXPRESSION_OPERATOR_XOR sub role;
@@ -4124,6 +2088,10 @@ IS_BINARY_BITWISE_EXPRESSION_LEFT_LEFT_SHIFT_OPERATOR sub role;
 BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_OR sub relationship
 	relates IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_OR;
 IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_OR sub role;
+
+BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_RIGHT_SHIFT sub relationship
+	relates IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_RIGHT_SHIFT;
+IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_RIGHT_SHIFT sub role;
 
 BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_XOR sub relationship
 	relates IS_BINARY_BITWISE_EXPRESSION_LEFT_OPERATOR_XOR;
@@ -4172,6 +2140,10 @@ IS_BINARY_BITWISE_EXPRESSION_OPERATOR_TUPLE_VALUE_XOR sub role;
 BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub relationship
 	relates IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
 IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub role;
+
+BINARY_BLOCK_EXPRESSION_LEFT sub relationship
+	relates IS_BINARY_BLOCK_EXPRESSION_LEFT;
+IS_BINARY_BLOCK_EXPRESSION_LEFT sub role;
 
 BINARY_BLOCK_EXPRESSION_RIGHT sub relationship
 	relates IS_BINARY_BLOCK_EXPRESSION_RIGHT;
@@ -4413,6 +2385,10 @@ BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED sub relationship
 	relates IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED;
 IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED sub role;
 
+BINARY_EXPRESSION_IDENTIFIER_LEFT_TYPE_VISIBILITY sub relationship
+	relates IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_TYPE_VISIBILITY;
+IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_TYPE_VISIBILITY sub role;
+
 BINARY_EXPRESSION_IDENTIFIER_LEFT_VISIBILITY_WORLD sub relationship
 	relates IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_VISIBILITY_WORLD;
 IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_VISIBILITY_WORLD sub role;
@@ -4436,6 +2412,10 @@ IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT_VISIBILITY_WORLD sub role;
 BINARY_EXPRESSION_IMPORT_RIGHT sub relationship
 	relates IS_BINARY_EXPRESSION_IMPORT_RIGHT;
 IS_BINARY_EXPRESSION_IMPORT_RIGHT sub role;
+
+BINARY_EXPRESSION_INCOMPLETE_LEFT_REGEXP sub relationship
+	relates IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_REGEXP;
+IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_REGEXP sub role;
 
 BINARY_EXPRESSION_INCOMPLETE_LEFT_STRING sub relationship
 	relates IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_STRING;
@@ -4488,6 +2468,10 @@ IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING sub role;
 BINARY_EXPRESSION_LEFT_NOT_OPERATOR_RELATIONAL_UNARY sub relationship
 	relates IS_BINARY_EXPRESSION_LEFT_NOT_OPERATOR_RELATIONAL_UNARY;
 IS_BINARY_EXPRESSION_LEFT_NOT_OPERATOR_RELATIONAL_UNARY sub role;
+
+BINARY_EXPRESSION_LEFT_REGEXP sub relationship
+	relates IS_BINARY_EXPRESSION_LEFT_REGEXP;
+IS_BINARY_EXPRESSION_LEFT_REGEXP sub role;
 
 BINARY_EXPRESSION_LEFT_RIGHT_THIS sub relationship
 	relates IS_BINARY_EXPRESSION_LEFT_RIGHT_THIS;
@@ -4573,9 +2557,9 @@ BINARY_RIGHT_STATEMENT_WHILE sub relationship
 	relates IS_BINARY_RIGHT_STATEMENT_WHILE;
 IS_BINARY_RIGHT_STATEMENT_WHILE sub role;
 
-BITWISE sub relationship
-	relates IS_BITWISE;
-IS_BITWISE sub role;
+BITWISE_BODY_EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub relationship
+	relates IS_BITWISE_BODY_EXPRESSION_INCOMPLETE_OPERATOR_UNARY;
+IS_BITWISE_BODY_EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub role;
 
 BITWISE_BODY_EXPRESSION_OPERATOR_OR sub relationship
 	relates IS_BITWISE_BODY_EXPRESSION_OPERATOR_OR;
@@ -4601,6 +2585,10 @@ BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_RIGHT_UNARY sub relationship
 	relates IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_RIGHT_UNARY;
 IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_RIGHT_UNARY sub role;
 
+BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_TUPLE_UNARY_VALUE sub relationship
+	relates IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_TUPLE_UNARY_VALUE;
+IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_TUPLE_UNARY_VALUE sub role;
+
 BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub relationship
 	relates IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_UNARY;
 IS_BITWISE_EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub role;
@@ -4609,9 +2597,9 @@ BITWISE_EXPRESSION_OPERATOR_OR sub relationship
 	relates IS_BITWISE_EXPRESSION_OPERATOR_OR;
 IS_BITWISE_EXPRESSION_OPERATOR_OR sub role;
 
-BLOCK sub relationship
-	relates IS_BLOCK;
-IS_BLOCK sub role;
+BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub relationship
+	relates IS_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT;
+IS_BITWISE_EXPRESSION_OPERATOR_OR_RIGHT sub role;
 
 BLOCK_BODY sub relationship
 	relates IS_BLOCK_BODY;
@@ -4669,10 +2657,6 @@ BLOCK_TUPLE_VALUE sub relationship
 	relates IS_BLOCK_TUPLE_VALUE;
 IS_BLOCK_TUPLE_VALUE sub role;
 
-BODY sub relationship
-	relates IS_BODY;
-IS_BODY sub role;
-
 BODY_BOOLEAN_EXPRESSION_LITERAL sub relationship
 	relates IS_BODY_BOOLEAN_EXPRESSION_LITERAL;
 IS_BODY_BOOLEAN_EXPRESSION_LITERAL sub role;
@@ -4689,6 +2673,10 @@ BODY_BREAK_STATEMENT sub relationship
 	relates IS_BODY_BREAK_STATEMENT;
 IS_BODY_BREAK_STATEMENT sub role;
 
+BODY_CALL_EXPRESSION_FOR_FUNCTION sub relationship
+	relates IS_BODY_CALL_EXPRESSION_FOR_FUNCTION;
+IS_BODY_CALL_EXPRESSION_FOR_FUNCTION sub role;
+
 BODY_CALL_EXPRESSION_FUNCTION sub relationship
 	relates IS_BODY_CALL_EXPRESSION_FUNCTION;
 IS_BODY_CALL_EXPRESSION_FUNCTION sub role;
@@ -4704,6 +2692,10 @@ IS_BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT sub role;
 BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT_THEN sub relationship
 	relates IS_BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT_THEN;
 IS_BODY_CALL_EXPRESSION_INCOMPLETE_STATEMENT_THEN sub role;
+
+BODY_CONTINUE_EXPRESSION_STATEMENT_THEN sub relationship
+	relates IS_BODY_CONTINUE_EXPRESSION_STATEMENT_THEN;
+IS_BODY_CONTINUE_EXPRESSION_STATEMENT_THEN sub role;
 
 BODY_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT_THEN sub relationship
 	relates IS_BODY_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT_THEN;
@@ -4741,6 +2733,10 @@ BODY_ELSE_EXPRESSION_TRY sub relationship
 	relates IS_BODY_ELSE_EXPRESSION_TRY;
 IS_BODY_ELSE_EXPRESSION_TRY sub role;
 
+BODY_EXPRESSION_FOR sub relationship
+	relates IS_BODY_EXPRESSION_FOR;
+IS_BODY_EXPRESSION_FOR sub role;
+
 BODY_EXPRESSION_FOR_IDENTIFIER sub relationship
 	relates IS_BODY_EXPRESSION_FOR_IDENTIFIER;
 IS_BODY_EXPRESSION_FOR_IDENTIFIER sub role;
@@ -4756,6 +2752,14 @@ IS_BODY_EXPRESSION_FOR_IF_STATEMENT sub role;
 BODY_EXPRESSION_FOR_ITERATOR_STATEMENT_THEN sub relationship
 	relates IS_BODY_EXPRESSION_FOR_ITERATOR_STATEMENT_THEN;
 IS_BODY_EXPRESSION_FOR_ITERATOR_STATEMENT_THEN sub role;
+
+BODY_EXPRESSION_FOR_LITERAL_PRIMITIVE_STRING sub relationship
+	relates IS_BODY_EXPRESSION_FOR_LITERAL_PRIMITIVE_STRING;
+IS_BODY_EXPRESSION_FOR_LITERAL_PRIMITIVE_STRING sub role;
+
+BODY_EXPRESSION_FOR_STATEMENT sub relationship
+	relates IS_BODY_EXPRESSION_FOR_STATEMENT;
+IS_BODY_EXPRESSION_FOR_STATEMENT sub role;
 
 BODY_EXPRESSION_FOR_STATEMENT_SWITCH sub relationship
 	relates IS_BODY_EXPRESSION_FOR_STATEMENT_SWITCH;
@@ -4813,6 +2817,14 @@ BODY_EXPRESSION_IDENTIFIER_THEN_VISIBILITY_WORLD sub relationship
 	relates IS_BODY_EXPRESSION_IDENTIFIER_THEN_VISIBILITY_WORLD;
 IS_BODY_EXPRESSION_IDENTIFIER_THEN_VISIBILITY_WORLD sub role;
 
+BODY_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY sub relationship
+	relates IS_BODY_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY;
+IS_BODY_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY sub role;
+
+BODY_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD sub relationship
+	relates IS_BODY_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD;
+IS_BODY_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD sub role;
+
 BODY_EXPRESSION_IF_STATEMENT_THEN sub relationship
 	relates IS_BODY_EXPRESSION_IF_STATEMENT_THEN;
 IS_BODY_EXPRESSION_IF_STATEMENT_THEN sub role;
@@ -4825,9 +2837,21 @@ BODY_EXPRESSION_IMPORT_THEN sub relationship
 	relates IS_BODY_EXPRESSION_IMPORT_THEN;
 IS_BODY_EXPRESSION_IMPORT_THEN sub role;
 
+BODY_EXPRESSION_INCOMPLETE_REGEXP sub relationship
+	relates IS_BODY_EXPRESSION_INCOMPLETE_REGEXP;
+IS_BODY_EXPRESSION_INCOMPLETE_REGEXP sub role;
+
+BODY_EXPRESSION_INCOMPLETE_REGEXP_THEN sub relationship
+	relates IS_BODY_EXPRESSION_INCOMPLETE_REGEXP_THEN;
+IS_BODY_EXPRESSION_INCOMPLETE_REGEXP_THEN sub role;
+
 BODY_EXPRESSION_INCOMPLETE_STATEMENT_THEN sub relationship
 	relates IS_BODY_EXPRESSION_INCOMPLETE_STATEMENT_THEN;
 IS_BODY_EXPRESSION_INCOMPLETE_STATEMENT_THEN sub role;
+
+BODY_EXPRESSION_INCOMPLETE_STRING sub relationship
+	relates IS_BODY_EXPRESSION_INCOMPLETE_STRING;
+IS_BODY_EXPRESSION_INCOMPLETE_STRING sub role;
 
 BODY_EXPRESSION_INCOMPLETE_THEN_TUPLE sub relationship
 	relates IS_BODY_EXPRESSION_INCOMPLETE_THEN_TUPLE;
@@ -4836,6 +2860,10 @@ IS_BODY_EXPRESSION_INCOMPLETE_THEN_TUPLE sub role;
 BODY_EXPRESSION_INCOMPLETE_TUPLE sub relationship
 	relates IS_BODY_EXPRESSION_INCOMPLETE_TUPLE;
 IS_BODY_EXPRESSION_INCOMPLETE_TUPLE sub role;
+
+BODY_EXPRESSION_INSTANCE_STATEMENT_THEN_VISIBILITY sub relationship
+	relates IS_BODY_EXPRESSION_INSTANCE_STATEMENT_THEN_VISIBILITY;
+IS_BODY_EXPRESSION_INSTANCE_STATEMENT_THEN_VISIBILITY sub role;
 
 BODY_EXPRESSION_LEFT_THEN_THIS sub relationship
 	relates IS_BODY_EXPRESSION_LEFT_THEN_THIS;
@@ -4909,6 +2937,10 @@ BODY_EXPRESSION_STATEMENT_SWITCH_THEN sub relationship
 	relates IS_BODY_EXPRESSION_STATEMENT_SWITCH_THEN;
 IS_BODY_EXPRESSION_STATEMENT_SWITCH_THEN sub role;
 
+BODY_EXPRESSION_STATEMENT_THEN_VISIBILITY_WORLD sub relationship
+	relates IS_BODY_EXPRESSION_STATEMENT_THEN_VISIBILITY_WORLD;
+IS_BODY_EXPRESSION_STATEMENT_THEN_VISIBILITY_WORLD sub role;
+
 BODY_EXPRESSION_STATEMENT_THEN_WHILE sub relationship
 	relates IS_BODY_EXPRESSION_STATEMENT_THEN_WHILE;
 IS_BODY_EXPRESSION_STATEMENT_THEN_WHILE sub role;
@@ -4957,6 +2989,10 @@ BODY_RETURN_STATEMENT sub relationship
 	relates IS_BODY_RETURN_STATEMENT;
 IS_BODY_RETURN_STATEMENT sub role;
 
+BODY_STATEMENT_SUBTYPE_VISIBILITY sub relationship
+	relates IS_BODY_STATEMENT_SUBTYPE_VISIBILITY;
+IS_BODY_STATEMENT_SUBTYPE_VISIBILITY sub role;
+
 BODY_STATEMENT_SWITCH sub relationship
 	relates IS_BODY_STATEMENT_SWITCH;
 IS_BODY_STATEMENT_SWITCH sub role;
@@ -4968,10 +3004,6 @@ IS_BODY_STATEMENT_VISIBILITY_WORLD sub role;
 BODY_STATEMENT_WHILE sub relationship
 	relates IS_BODY_STATEMENT_WHILE;
 IS_BODY_STATEMENT_WHILE sub role;
-
-BOOLEAN sub relationship
-	relates IS_BOOLEAN;
-IS_BOOLEAN sub role;
 
 BOOLEAN_CONDITION_EXPRESSION_LITERAL sub relationship
 	relates IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL;
@@ -4997,10 +3029,6 @@ BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE sub relationship
 	relates IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE;
 IS_BOOLEAN_EXPRESSION_LITERAL_TUPLE_VALUE sub role;
 
-BREAK sub relationship
-	relates IS_BREAK;
-IS_BREAK sub role;
-
 BREAK_ELSE_EXPRESSION_STATEMENT sub relationship
 	relates IS_BREAK_ELSE_EXPRESSION_STATEMENT;
 IS_BREAK_ELSE_EXPRESSION_STATEMENT sub role;
@@ -5012,10 +3040,6 @@ IS_BREAK_RIGHT_STATEMENT sub role;
 BREAK_STATEMENT sub relationship
 	relates IS_BREAK_STATEMENT;
 IS_BREAK_STATEMENT sub role;
-
-CALL sub relationship
-	relates IS_CALL;
-IS_CALL sub role;
 
 CALL_CONDITION_EXPRESSION_FUNCTION sub relationship
 	relates IS_CALL_CONDITION_EXPRESSION_FUNCTION;
@@ -5053,33 +3077,25 @@ CALL_EXPRESSION_INCOMPLETE_STATEMENT sub relationship
 	relates IS_CALL_EXPRESSION_INCOMPLETE_STATEMENT;
 IS_CALL_EXPRESSION_INCOMPLETE_STATEMENT sub role;
 
-CASE sub relationship
-	relates IS_CASE;
-IS_CASE sub role;
-
 CASE_EXPRESSION sub relationship
 	relates IS_CASE_EXPRESSION;
 IS_CASE_EXPRESSION sub role;
-
-CATCH sub relationship
-	relates IS_CATCH;
-IS_CATCH sub role;
 
 CATCH_EXPRESSION sub relationship
 	relates IS_CATCH_EXPRESSION;
 IS_CATCH_EXPRESSION sub role;
 
-COMMENT sub relationship
-	relates IS_COMMENT;
-IS_COMMENT sub role;
-
 COMMENT_NOOP sub relationship
 	relates IS_COMMENT_NOOP;
 IS_COMMENT_NOOP sub role;
 
-CONDITION sub relationship
-	relates IS_CONDITION;
-IS_CONDITION sub role;
+CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT sub relationship
+	relates IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT;
+IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT sub role;
+
+CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT sub relationship
+	relates IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT;
+IS_CONDITION_DECLARATION_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT sub role;
 
 CONDITION_EXPRESSION sub relationship
 	relates IS_CONDITION_EXPRESSION;
@@ -5088,6 +3104,10 @@ IS_CONDITION_EXPRESSION sub role;
 CONDITION_EXPRESSION_FOR_STATEMENT sub relationship
 	relates IS_CONDITION_EXPRESSION_FOR_STATEMENT;
 IS_CONDITION_EXPRESSION_FOR_STATEMENT sub role;
+
+CONDITION_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_UNARY sub relationship
+	relates IS_CONDITION_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_UNARY;
+IS_CONDITION_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_UNARY sub role;
 
 CONDITION_EXPRESSION_IDENTIFIER sub relationship
 	relates IS_CONDITION_EXPRESSION_IDENTIFIER;
@@ -5121,6 +3141,10 @@ CONDITION_EXPRESSION_IMPORT sub relationship
 	relates IS_CONDITION_EXPRESSION_IMPORT;
 IS_CONDITION_EXPRESSION_IMPORT sub role;
 
+CONDITION_EXPRESSION_INSTANCE_STATEMENT_VISIBILITY sub relationship
+	relates IS_CONDITION_EXPRESSION_INSTANCE_STATEMENT_VISIBILITY;
+IS_CONDITION_EXPRESSION_INSTANCE_STATEMENT_VISIBILITY sub role;
+
 CONDITION_EXPRESSION_LIST sub relationship
 	relates IS_CONDITION_EXPRESSION_LIST;
 IS_CONDITION_EXPRESSION_LIST sub role;
@@ -5133,21 +3157,17 @@ CONDITION_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY sub relationship
 	relates IS_CONDITION_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY;
 IS_CONDITION_EXPRESSION_NOT_OPERATOR_RELATIONAL_UNARY sub role;
 
+CONDITION_EXPRESSION_STATEMENT_SWITCH sub relationship
+	relates IS_CONDITION_EXPRESSION_STATEMENT_SWITCH;
+IS_CONDITION_EXPRESSION_STATEMENT_SWITCH sub role;
+
 CONDITION_EXPRESSION_STATEMENT_VISIBILITY_WORLD sub relationship
 	relates IS_CONDITION_EXPRESSION_STATEMENT_VISIBILITY_WORLD;
 IS_CONDITION_EXPRESSION_STATEMENT_VISIBILITY_WORLD sub role;
 
-CONTINUE sub relationship
-	relates IS_CONTINUE;
-IS_CONTINUE sub role;
-
 CONTINUE_STATEMENT sub relationship
 	relates IS_CONTINUE_STATEMENT;
 IS_CONTINUE_STATEMENT sub role;
-
-DECLARATION sub relationship
-	relates IS_DECLARATION;
-IS_DECLARATION sub role;
 
 DECLARATION_ELSE_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT sub relationship
 	relates IS_DECLARATION_ELSE_EXPRESSION_FUNCTION_IDENTIFIER_INCOMPLETE_STATEMENT;
@@ -5160,6 +3180,10 @@ IS_DECLARATION_ELSE_EXPRESSION_FUNCTION_IDENTIFIER_STATEMENT sub role;
 DECLARATION_ELSE_EXPRESSION_IDENTIFIER_STATEMENT_TYPE sub relationship
 	relates IS_DECLARATION_ELSE_EXPRESSION_IDENTIFIER_STATEMENT_TYPE;
 IS_DECLARATION_ELSE_EXPRESSION_IDENTIFIER_STATEMENT_TYPE sub role;
+
+DECLARATION_EXPRESSION_INCOMPLETE_RIGHT_TYPE sub relationship
+	relates IS_DECLARATION_EXPRESSION_INCOMPLETE_RIGHT_TYPE;
+IS_DECLARATION_EXPRESSION_INCOMPLETE_RIGHT_TYPE sub role;
 
 DECLARATION_EXPRESSION_INCOMPLETE_TYPE sub relationship
 	relates IS_DECLARATION_EXPRESSION_INCOMPLETE_TYPE;
@@ -5181,18 +3205,6 @@ DECLARATION_IDENTIFIER_STATEMENT_TYPE sub relationship
 	relates IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE;
 IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE sub role;
 
-DEFAULT sub relationship
-	relates IS_DEFAULT;
-IS_DEFAULT sub role;
-
-DIVIDE sub relationship
-	relates IS_DIVIDE;
-IS_DIVIDE sub role;
-
-ELSE sub relationship
-	relates IS_ELSE;
-IS_ELSE sub role;
-
 ELSE_EXPRESSION sub relationship
 	relates IS_ELSE_EXPRESSION;
 IS_ELSE_EXPRESSION sub role;
@@ -5200,6 +3212,10 @@ IS_ELSE_EXPRESSION sub role;
 ELSE_EXPRESSION_FOR_ITERATOR_STATEMENT sub relationship
 	relates IS_ELSE_EXPRESSION_FOR_ITERATOR_STATEMENT;
 IS_ELSE_EXPRESSION_FOR_ITERATOR_STATEMENT sub role;
+
+ELSE_EXPRESSION_FOR_STATEMENT sub relationship
+	relates IS_ELSE_EXPRESSION_FOR_STATEMENT;
+IS_ELSE_EXPRESSION_FOR_STATEMENT sub role;
 
 ELSE_EXPRESSION_IDENTIFIER sub relationship
 	relates IS_ELSE_EXPRESSION_IDENTIFIER;
@@ -5220,6 +3236,10 @@ IS_ELSE_EXPRESSION_IDENTIFIER_MODULE_STATEMENT sub role;
 ELSE_EXPRESSION_IDENTIFIER_QUALIFIED sub relationship
 	relates IS_ELSE_EXPRESSION_IDENTIFIER_QUALIFIED;
 IS_ELSE_EXPRESSION_IDENTIFIER_QUALIFIED sub role;
+
+ELSE_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY sub relationship
+	relates IS_ELSE_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY;
+IS_ELSE_EXPRESSION_IDENTIFIER_TYPE_VISIBILITY sub role;
 
 ELSE_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD sub relationship
 	relates IS_ELSE_EXPRESSION_IDENTIFIER_VISIBILITY_WORLD;
@@ -5281,21 +3301,25 @@ ELSE_EXPRESSION_STATEMENT_SWITCH sub relationship
 	relates IS_ELSE_EXPRESSION_STATEMENT_SWITCH;
 IS_ELSE_EXPRESSION_STATEMENT_SWITCH sub role;
 
+ELSE_EXPRESSION_STATEMENT_VISIBILITY_WORLD sub relationship
+	relates IS_ELSE_EXPRESSION_STATEMENT_VISIBILITY_WORLD;
+IS_ELSE_EXPRESSION_STATEMENT_VISIBILITY_WORLD sub role;
+
 ELSE_EXPRESSION_STATEMENT_WHILE sub relationship
 	relates IS_ELSE_EXPRESSION_STATEMENT_WHILE;
 IS_ELSE_EXPRESSION_STATEMENT_WHILE sub role;
 
-EQUAL sub relationship
-	relates IS_EQUAL;
-IS_EQUAL sub role;
-
-EXPRESSION sub relationship
-	relates IS_EXPRESSION;
-IS_EXPRESSION sub role;
-
 EXPRESSION_FINALLY sub relationship
 	relates IS_EXPRESSION_FINALLY;
 IS_EXPRESSION_FINALLY sub role;
+
+EXPRESSION_FOR_IDENTIFIER_INCOMPLETE_UPDATE sub relationship
+	relates IS_EXPRESSION_FOR_IDENTIFIER_INCOMPLETE_UPDATE;
+IS_EXPRESSION_FOR_IDENTIFIER_INCOMPLETE_UPDATE sub role;
+
+EXPRESSION_FOR_IDENTIFIER_INSTANCE_UPDATE_VISIBILITY sub relationship
+	relates IS_EXPRESSION_FOR_IDENTIFIER_INSTANCE_UPDATE_VISIBILITY;
+IS_EXPRESSION_FOR_IDENTIFIER_INSTANCE_UPDATE_VISIBILITY sub role;
 
 EXPRESSION_FOR_IDENTIFIER_QUALIFIED_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED_UPDATE;
@@ -5304,6 +3328,10 @@ IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED_UPDATE sub role;
 EXPRESSION_FOR_IDENTIFIER_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_IDENTIFIER_UPDATE;
 IS_EXPRESSION_FOR_IDENTIFIER_UPDATE sub role;
+
+EXPRESSION_FOR_IDENTIFIER_UPDATE_VISIBILITY_WORLD sub relationship
+	relates IS_EXPRESSION_FOR_IDENTIFIER_UPDATE_VISIBILITY_WORLD;
+IS_EXPRESSION_FOR_IDENTIFIER_UPDATE_VISIBILITY_WORLD sub role;
 
 EXPRESSION_FOR_INCOMPLETE_ITERATOR_LEFT sub relationship
 	relates IS_EXPRESSION_FOR_INCOMPLETE_ITERATOR_LEFT;
@@ -5332,6 +3360,10 @@ IS_EXPRESSION_FOR_LITERAL_MAP_PRIMITIVE_UPDATE sub role;
 EXPRESSION_IDENTICAL_LEFT_OPERATOR_RELATIONAL_UNARY sub relationship
 	relates IS_EXPRESSION_IDENTICAL_LEFT_OPERATOR_RELATIONAL_UNARY;
 IS_EXPRESSION_IDENTICAL_LEFT_OPERATOR_RELATIONAL_UNARY sub role;
+
+EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_RIGHT_UNARY sub relationship
+	relates IS_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_RIGHT_UNARY;
+IS_EXPRESSION_IDENTICAL_OPERATOR_RELATIONAL_RIGHT_UNARY sub role;
 
 EXPRESSION_IDENTIFIER sub relationship
 	relates IS_EXPRESSION_IDENTIFIER;
@@ -5441,13 +3473,33 @@ EXPRESSION_IMPORT_LEFT sub relationship
 	relates IS_EXPRESSION_IMPORT_LEFT;
 IS_EXPRESSION_IMPORT_LEFT sub role;
 
+EXPRESSION_IMPORT_RIGHT sub relationship
+	relates IS_EXPRESSION_IMPORT_RIGHT;
+IS_EXPRESSION_IMPORT_RIGHT sub role;
+
+EXPRESSION_IMPORT_TUPLE_VALUE sub relationship
+	relates IS_EXPRESSION_IMPORT_TUPLE_VALUE;
+IS_EXPRESSION_IMPORT_TUPLE_VALUE sub role;
+
 EXPRESSION_INCOMPLETE sub relationship
 	relates IS_EXPRESSION_INCOMPLETE;
 IS_EXPRESSION_INCOMPLETE sub role;
 
+EXPRESSION_INCOMPLETE_LEFT_LITERAL_NUMBER_PRIMITIVE sub relationship
+	relates IS_EXPRESSION_INCOMPLETE_LEFT_LITERAL_NUMBER_PRIMITIVE;
+IS_EXPRESSION_INCOMPLETE_LEFT_LITERAL_NUMBER_PRIMITIVE sub role;
+
+EXPRESSION_INCOMPLETE_LEFT_REGEXP sub relationship
+	relates IS_EXPRESSION_INCOMPLETE_LEFT_REGEXP;
+IS_EXPRESSION_INCOMPLETE_LEFT_REGEXP sub role;
+
 EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE sub relationship
 	relates IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE;
 IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE sub role;
+
+EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT sub relationship
+	relates IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT;
+IS_EXPRESSION_INCOMPLETE_LITERAL_NUMBER_PRIMITIVE_RIGHT sub role;
 
 EXPRESSION_INCOMPLETE_REGEXP sub relationship
 	relates IS_EXPRESSION_INCOMPLETE_REGEXP;
@@ -5456,6 +3508,10 @@ IS_EXPRESSION_INCOMPLETE_REGEXP sub role;
 EXPRESSION_INCOMPLETE_REGEXP_RIGHT sub relationship
 	relates IS_EXPRESSION_INCOMPLETE_REGEXP_RIGHT;
 IS_EXPRESSION_INCOMPLETE_REGEXP_RIGHT sub role;
+
+EXPRESSION_INCOMPLETE_REGEXP_TUPLE_VALUE sub relationship
+	relates IS_EXPRESSION_INCOMPLETE_REGEXP_TUPLE_VALUE;
+IS_EXPRESSION_INCOMPLETE_REGEXP_TUPLE_VALUE sub role;
 
 EXPRESSION_INCOMPLETE_RIGHT_STRING sub relationship
 	relates IS_EXPRESSION_INCOMPLETE_RIGHT_STRING;
@@ -5484,6 +3540,10 @@ IS_EXPRESSION_LEFT_LIST sub role;
 EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE sub relationship
 	relates IS_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE;
 IS_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE sub role;
+
+EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE sub relationship
+	relates IS_EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE;
+IS_EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE sub role;
 
 EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE sub relationship
 	relates IS_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE;
@@ -5601,14 +3661,6 @@ EXPRESSION_REGEXP_TUPLE_VALUE sub relationship
 	relates IS_EXPRESSION_REGEXP_TUPLE_VALUE;
 IS_EXPRESSION_REGEXP_TUPLE_VALUE sub role;
 
-FINALLY sub relationship
-	relates IS_FINALLY;
-IS_FINALLY sub role;
-
-FOR sub relationship
-	relates IS_FOR;
-IS_FOR sub role;
-
 FOR_ITERATOR_STATEMENT sub relationship
 	relates IS_FOR_ITERATOR_STATEMENT;
 IS_FOR_ITERATOR_STATEMENT sub role;
@@ -5617,29 +3669,9 @@ FOR_STATEMENT sub relationship
 	relates IS_FOR_STATEMENT;
 IS_FOR_STATEMENT sub role;
 
-FUNCTION sub relationship
-	relates IS_FUNCTION;
-IS_FUNCTION sub role;
-
-GREATER_THAN_OR_EQUAL sub relationship
-	relates IS_GREATER_THAN_OR_EQUAL;
-IS_GREATER_THAN_OR_EQUAL sub role;
-
-IDENTICAL sub relationship
-	relates IS_IDENTICAL;
-IS_IDENTICAL sub role;
-
-IDENTIFIER sub relationship
-	relates IS_IDENTIFIER;
-IS_IDENTIFIER sub role;
-
 IDENTIFIER_MODULE_STATEMENT sub relationship
 	relates IS_IDENTIFIER_MODULE_STATEMENT;
 IS_IDENTIFIER_MODULE_STATEMENT sub role;
-
-IF sub relationship
-	relates IS_IF;
-IS_IF sub role;
 
 IF_LEFT_STATEMENT sub relationship
 	relates IS_IF_LEFT_STATEMENT;
@@ -5657,14 +3689,6 @@ IF_STATEMENT_TUPLE_VALUE sub relationship
 	relates IS_IF_STATEMENT_TUPLE_VALUE;
 IS_IF_STATEMENT_TUPLE_VALUE sub role;
 
-IMPORT sub relationship
-	relates IS_IMPORT;
-IS_IMPORT sub role;
-
-INCOMPLETE sub relationship
-	relates IS_INCOMPLETE;
-IS_INCOMPLETE sub role;
-
 INCOMPLETE_LEFT sub relationship
 	relates IS_INCOMPLETE_LEFT;
 IS_INCOMPLETE_LEFT sub role;
@@ -5673,9 +3697,13 @@ INCOMPLETE_STATEMENT sub relationship
 	relates IS_INCOMPLETE_STATEMENT;
 IS_INCOMPLETE_STATEMENT sub role;
 
-INSTANCE sub relationship
-	relates IS_INSTANCE;
-IS_INSTANCE sub role;
+INSTANCE_LEFT_STATEMENT_VISIBILITY sub relationship
+	relates IS_INSTANCE_LEFT_STATEMENT_VISIBILITY;
+IS_INSTANCE_LEFT_STATEMENT_VISIBILITY sub role;
+
+INSTANCE_RIGHT_STATEMENT_VISIBILITY sub relationship
+	relates IS_INSTANCE_RIGHT_STATEMENT_VISIBILITY;
+IS_INSTANCE_RIGHT_STATEMENT_VISIBILITY sub role;
 
 INSTANCE_STATEMENT_TUPLE_VALUE_VISIBILITY sub relationship
 	relates IS_INSTANCE_STATEMENT_TUPLE_VALUE_VISIBILITY;
@@ -5685,97 +3713,13 @@ INSTANCE_STATEMENT_VISIBILITY sub relationship
 	relates IS_INSTANCE_STATEMENT_VISIBILITY;
 IS_INSTANCE_STATEMENT_VISIBILITY sub role;
 
-ITERATOR sub relationship
-	relates IS_ITERATOR;
-IS_ITERATOR sub role;
-
-LEFT sub relationship
-	relates IS_LEFT;
-IS_LEFT sub role;
-
-LEFT_SHIFT sub relationship
-	relates IS_LEFT_SHIFT;
-IS_LEFT_SHIFT sub role;
-
 LEFT_STATEMENT_SWITCH sub relationship
 	relates IS_LEFT_STATEMENT_SWITCH;
 IS_LEFT_STATEMENT_SWITCH sub role;
 
-LESS_THAN_OR_EQUAL sub relationship
-	relates IS_LESS_THAN_OR_EQUAL;
-IS_LESS_THAN_OR_EQUAL sub role;
-
-LIST sub relationship
-	relates IS_LIST;
-IS_LIST sub role;
-
-LITERAL sub relationship
-	relates IS_LITERAL;
-IS_LITERAL sub role;
-
-MAP sub relationship
-	relates IS_MAP;
-IS_MAP sub role;
-
-MODULE sub relationship
-	relates IS_MODULE;
-IS_MODULE sub role;
-
-MODULO sub relationship
-	relates IS_MODULO;
-IS_MODULO sub role;
-
-MULTIPLY sub relationship
-	relates IS_MULTIPLY;
-IS_MULTIPLY sub role;
-
-NAME sub relationship
-	relates IS_NAME;
-IS_NAME sub role;
-
-NOOP sub relationship
-	relates IS_NOOP;
-IS_NOOP sub role;
-
-NOT sub relationship
-	relates IS_NOT;
-IS_NOT sub role;
-
-NULL sub relationship
-	relates IS_NULL;
-IS_NULL sub role;
-
-NUMBER sub relationship
-	relates IS_NUMBER;
-IS_NUMBER sub role;
-
-OPERATOR sub relationship
-	relates IS_OPERATOR;
-IS_OPERATOR sub role;
-
-OR sub relationship
-	relates IS_OR;
-IS_OR sub role;
-
-PRIMITIVE sub relationship
-	relates IS_PRIMITIVE;
-IS_PRIMITIVE sub role;
-
-QUALIFIED sub relationship
-	relates IS_QUALIFIED;
-IS_QUALIFIED sub role;
-
-REGEXP sub relationship
-	relates IS_REGEXP;
-IS_REGEXP sub role;
-
-RELATIONAL sub relationship
-	relates IS_RELATIONAL;
-IS_RELATIONAL sub role;
-
-RETURN sub relationship
-	relates IS_RETURN;
-IS_RETURN sub role;
+LEFT_STATEMENT_VISIBILITY_WORLD sub relationship
+	relates IS_LEFT_STATEMENT_VISIBILITY_WORLD;
+IS_LEFT_STATEMENT_VISIBILITY_WORLD sub role;
 
 RETURN_RIGHT_STATEMENT sub relationship
 	relates IS_RETURN_RIGHT_STATEMENT;
@@ -5785,21 +3729,13 @@ RETURN_STATEMENT sub relationship
 	relates IS_RETURN_STATEMENT;
 IS_RETURN_STATEMENT sub role;
 
-RIGHT sub relationship
-	relates IS_RIGHT;
-IS_RIGHT sub role;
-
-RIGHT_SHIFT sub relationship
-	relates IS_RIGHT_SHIFT;
-IS_RIGHT_SHIFT sub role;
-
 RIGHT_STATEMENT_SWITCH sub relationship
 	relates IS_RIGHT_STATEMENT_SWITCH;
 IS_RIGHT_STATEMENT_SWITCH sub role;
 
-STATEMENT sub relationship
-	relates IS_STATEMENT;
-IS_STATEMENT sub role;
+RIGHT_STATEMENT_VISIBILITY_WORLD sub relationship
+	relates IS_RIGHT_STATEMENT_VISIBILITY_WORLD;
+IS_RIGHT_STATEMENT_VISIBILITY_WORLD sub role;
 
 STATEMENT_SUBTYPE_VISIBILITY sub relationship
 	relates IS_STATEMENT_SUBTYPE_VISIBILITY;
@@ -5821,74 +3757,6 @@ STATEMENT_WHILE sub relationship
 	relates IS_STATEMENT_WHILE;
 IS_STATEMENT_WHILE sub role;
 
-STRING sub relationship
-	relates IS_STRING;
-IS_STRING sub role;
-
-SUBSTRACT sub relationship
-	relates IS_SUBSTRACT;
-IS_SUBSTRACT sub role;
-
-SUBTYPE sub relationship
-	relates IS_SUBTYPE;
-IS_SUBTYPE sub role;
-
-SWITCH sub relationship
-	relates IS_SWITCH;
-IS_SWITCH sub role;
-
-THEN sub relationship
-	relates IS_THEN;
-IS_THEN sub role;
-
-THIS sub relationship
-	relates IS_THIS;
-IS_THIS sub role;
-
-TRY sub relationship
-	relates IS_TRY;
-IS_TRY sub role;
-
-TUPLE sub relationship
-	relates IS_TUPLE;
-IS_TUPLE sub role;
-
 TUPLE_VALUE sub relationship
 	relates IS_TUPLE_VALUE;
 IS_TUPLE_VALUE sub role;
-
-TYPE sub relationship
-	relates IS_TYPE;
-IS_TYPE sub role;
-
-UNANNOTATED sub relationship
-	relates IS_UNANNOTATED;
-IS_UNANNOTATED sub role;
-
-UNARY sub relationship
-	relates IS_UNARY;
-IS_UNARY sub role;
-
-UPDATE sub relationship
-	relates IS_UPDATE;
-IS_UPDATE sub role;
-
-VALUE sub relationship
-	relates IS_VALUE;
-IS_VALUE sub role;
-
-VISIBILITY sub relationship
-	relates IS_VISIBILITY;
-IS_VISIBILITY sub role;
-
-WHILE sub relationship
-	relates IS_WHILE;
-IS_WHILE sub role;
-
-WORLD sub relationship
-	relates IS_WORLD;
-IS_WORLD sub role;
-
-XOR sub relationship
-	relates IS_XOR;
-IS_XOR sub role;

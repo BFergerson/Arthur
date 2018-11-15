@@ -1,0 +1,2079 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+
+#####----- Javascript -----#####
+asyncAttribute sub attribute datatype string;
+awaitAttribute sub attribute datatype string;
+computedAttribute sub attribute datatype string;
+delegateAttribute sub attribute datatype string;
+exactAttribute sub attribute datatype string;
+exportKindAttribute sub attribute datatype string;
+flagsAttribute sub attribute datatype string;
+generatorAttribute sub attribute datatype string;
+importKindAttribute sub attribute datatype string;
+kindAttribute sub attribute datatype string;
+methodAttribute sub attribute datatype string;
+nameAttribute sub attribute datatype string;
+optionalAttribute sub attribute datatype string;
+prefixAttribute sub attribute datatype string;
+selfClosingAttribute sub attribute datatype string;
+shorthandAttribute sub attribute datatype string;
+sourceTypeAttribute sub attribute datatype string;
+staticAttribute sub attribute datatype string;
+tailAttribute sub attribute datatype string;
+valueAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token;
+
+#####----- Javascript -----#####
+JavascriptSourceArtifact sub SourceArtifact;
+
+AnyTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_element_type_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+ArrayExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_tag_role
+	plays is_value_role
+	plays has_elements_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+ArrayPatternArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_elements_role
+	plays is_id_role
+	plays is_left_role
+	plays is_param_role
+	plays is_params_role
+	plays is_value_role
+	plays has_elements_role
+	plays has_leading_comments_role
+	plays has_type_annotation_role;
+
+ArrayTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_element_type_role;
+
+ArrowFunctionExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has asyncAttribute
+	has generatorAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_init_role
+	plays is_object_role
+	plays is_right_role
+	plays is_value_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_params_role
+	plays has_return_type_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+AssignmentExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_discriminant_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_operator_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+AssignmentPatternArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_elements_role
+	plays is_params_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+AwaitExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_argument_role;
+
+BigIntLiteralArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_elements_role
+	plays is_init_role
+	plays is_left_role
+	plays is_right_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+BinaryExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_operator_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+BindExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_callee_role
+	plays is_expression_role
+	plays has_callee_role
+	plays has_object_role;
+
+BlockStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_block_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_finalizer_role
+	plays has_body_role
+	plays has_directives_role
+	plays has_inner_comments_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+BooleanLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+BooleanLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+BooleanTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_return_type_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+BreakStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_label_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+CallExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_tag_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_arguments_role
+	plays has_callee_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+CatchClauseArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_handler_role
+	plays has_body_role
+	plays has_param_role;
+
+ClassBodyArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_role;
+
+ClassDeclarationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_declaration_role
+	plays has_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_super_class_role
+	plays has_super_type_parameters_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+ClassExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_value_role
+	plays has_body_role
+	plays has_id_role
+	plays has_implements_role
+	plays has_super_class_role
+	plays has_super_type_parameters_role;
+
+ClassImplementsArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_implements_role
+	plays has_id_role;
+
+ClassMethodArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has asyncAttribute
+	has computedAttribute
+	has generatorAttribute
+	has kindAttribute
+	has staticAttribute
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_params_role
+	plays has_return_type_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+ClassPrivatePropertyArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has staticAttribute
+	# Structural
+	plays is_body_role
+	plays has_key_role
+	plays has_value_role;
+
+ClassPropertyArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has computedAttribute
+	has staticAttribute
+	# Structural
+	plays is_body_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_annotation_role
+	plays has_value_role;
+
+CommentBlockArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_comments_role
+	plays is_inner_comments_role
+	plays is_leading_comments_role
+	plays is_trailing_comments_role;
+
+CommentLineArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_comments_role
+	plays is_inner_comments_role
+	plays is_leading_comments_role
+	plays is_trailing_comments_role;
+
+ConditionalExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_alternate_role
+	plays has_consequent_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role;
+
+ContinueStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_label_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+DebuggerStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_consequent_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+DeclareClassArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_extends_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+DeclareFunctionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+DeclareInterfaceArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_id_role;
+
+DeclareModuleArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has kindAttribute
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+DeclareModuleExportsArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_type_annotation_role;
+
+DeclareTypeAliasArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+DeclareVariableArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+DirectiveArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_directives_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_value_role;
+
+DirectiveLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_value_role;
+
+DoExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_right_role
+	plays has_body_role;
+
+DoWhileStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role;
+
+EmptyStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+EmptyTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_type_annotation_role
+	plays is_value_role;
+
+ExistsTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_type_annotation_role;
+
+ExportAllDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has exportKindAttribute
+	# Structural
+	plays is_body_role
+	plays has_leading_comments_role
+	plays has_source_role
+	plays has_trailing_comments_role;
+
+ExportDefaultDeclarationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_declaration_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+ExportNamedDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has exportKindAttribute
+	# Structural
+	plays is_body_role
+	plays has_declaration_role
+	plays has_leading_comments_role
+	plays has_source_role
+	plays has_specifiers_role
+	plays has_trailing_comments_role;
+
+ExportSpecifierArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_specifiers_role
+	plays has_exported_role
+	plays has_leading_comments_role
+	plays has_local_role;
+
+ExpressionStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_expression_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+FileArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays has_comments_role
+	plays has_program_role;
+
+ForInStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+ForOfStatementArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has awaitAttribute
+	# Structural
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+ForStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_init_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role
+	plays has_update_role;
+
+FunctionDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has asyncAttribute
+	has generatorAttribute
+	# Structural
+	plays is_body_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays has_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_params_role
+	plays has_predicate_role
+	plays has_return_type_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+FunctionExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has asyncAttribute
+	has generatorAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_tag_role
+	plays is_value_role
+	plays has_body_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_params_role
+	plays has_return_type_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+FunctionTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_params_role
+	plays has_rest_role
+	plays has_return_type_role
+	plays has_type_parameters_role;
+
+FunctionTypeParamArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has optionalAttribute
+	# Structural
+	plays is_params_role
+	plays is_rest_role
+	plays has_name_role
+	plays has_type_annotation_role;
+
+GenericTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_default_role
+	plays is_element_type_role
+	plays is_key_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+IdentifierArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has optionalAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_exported_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_id_role
+	plays is_imported_role
+	plays is_init_role
+	plays is_key_role
+	plays is_label_role
+	plays is_left_role
+	plays is_local_role
+	plays is_meta_role
+	plays is_name_role
+	plays is_object_role
+	plays is_param_role
+	plays is_params_role
+	plays is_property_role
+	plays is_qualification_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_tag_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_annotation_role;
+
+IfStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_alternate_role
+	plays has_consequent_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role;
+
+ImportArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_callee_role;
+
+ImportDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has importKindAttribute
+	# Structural
+	plays is_body_role
+	plays has_leading_comments_role
+	plays has_source_role
+	plays has_specifiers_role
+	plays has_trailing_comments_role;
+
+ImportDefaultSpecifierArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_specifiers_role
+	plays has_local_role;
+
+ImportNamespaceSpecifierArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_specifiers_role
+	plays has_local_role;
+
+ImportSpecifierArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_specifiers_role
+	plays has_imported_role
+	plays has_leading_comments_role
+	plays has_local_role
+	plays has_trailing_comments_role;
+
+InferredPredicateArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_predicate_role;
+
+InterfaceDeclarationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_id_role
+	plays has_trailing_comments_role;
+
+InterfaceExtendsArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_extends_role
+	plays has_id_role
+	plays has_type_parameters_role;
+
+IntersectionTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_types_role;
+
+JSXAttributeArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_attributes_role
+	plays has_leading_comments_role
+	plays has_name_role
+	plays has_trailing_comments_role
+	plays has_value_role;
+
+JSXClosingElementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_closing_element_role
+	plays has_name_role;
+
+JSXClosingFragmentArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_closing_fragment_role;
+
+JSXElementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_children_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_init_role
+	plays is_object_role
+	plays is_right_role
+	plays is_value_role
+	plays has_children_role
+	plays has_closing_element_role
+	plays has_leading_comments_role
+	plays has_opening_element_role
+	plays has_trailing_comments_role;
+
+JSXEmptyExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_expression_role
+	plays has_inner_comments_role;
+
+JSXExpressionContainerArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_children_role
+	plays is_value_role
+	plays has_expression_role;
+
+JSXFragmentArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays has_children_role
+	plays has_closing_fragment_role
+	plays has_opening_fragment_role;
+
+JSXIdentifierArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has nameAttribute
+	# Structural
+	plays is_name_role
+	plays is_object_role
+	plays is_property_role
+	plays has_trailing_comments_role;
+
+JSXMemberExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_name_role
+	plays is_object_role
+	plays has_object_role
+	plays has_property_role
+	plays has_trailing_comments_role;
+
+JSXOpeningElementArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has selfClosingAttribute
+	# Structural
+	plays is_opening_element_role
+	plays has_attributes_role
+	plays has_name_role;
+
+JSXOpeningFragmentArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_opening_fragment_role;
+
+JSXSpreadAttributeArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_attributes_role
+	plays has_argument_role
+	plays has_trailing_comments_role;
+
+JSXTextArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_children_role;
+
+LabeledStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_label_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+LogicalExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_left_role
+	plays has_operator_role
+	plays has_right_role
+	plays has_trailing_comments_role;
+
+MemberExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has computedAttribute
+	has optionalAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_tag_role
+	plays is_test_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_object_role
+	plays has_property_role
+	plays has_trailing_comments_role;
+
+MetaPropertyArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_declaration_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_right_role
+	plays is_tag_role
+	plays is_test_role
+	plays is_value_role
+	plays has_meta_role
+	plays has_property_role;
+
+MixedTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_impltype_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+NewExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_test_role
+	plays is_value_role
+	plays has_arguments_role
+	plays has_callee_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+NullableTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_return_type_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_annotation_role;
+
+NullLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_test_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+NullLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_params_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+NumberLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_right_role
+	plays is_types_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+NumberTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_element_type_role
+	plays is_key_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+NumericLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+ObjectExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_inner_comments_role
+	plays has_leading_comments_role
+	plays has_properties_role
+	plays has_trailing_comments_role;
+
+ObjectMethodArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has asyncAttribute
+	has computedAttribute
+	has generatorAttribute
+	has kindAttribute
+	has methodAttribute
+	# Structural
+	plays is_properties_role
+	plays has_body_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_params_role
+	plays has_return_type_role
+	plays has_type_parameters_role;
+
+ObjectPatternArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_elements_role
+	plays is_id_role
+	plays is_left_role
+	plays is_param_role
+	plays is_params_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_properties_role
+	plays has_type_annotation_role;
+
+ObjectPropertyArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has computedAttribute
+	has methodAttribute
+	has shorthandAttribute
+	# Structural
+	plays is_properties_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_value_role;
+
+ObjectTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has exactAttribute
+	# Structural
+	plays is_body_role
+	plays is_impltype_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_call_properties_role
+	plays has_indexers_role
+	plays has_leading_comments_role
+	plays has_properties_role
+	plays has_trailing_comments_role;
+
+ObjectTypeCallPropertyArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has staticAttribute
+	# Structural
+	plays is_call_properties_role
+	plays has_leading_comments_role
+	plays has_value_role;
+
+ObjectTypeIndexerArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has staticAttribute
+	# Structural
+	plays is_indexers_role
+	plays has_id_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_value_role
+	plays has_variance_role;
+
+ObjectTypePropertyArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has kindAttribute
+	has optionalAttribute
+	has staticAttribute
+	# Structural
+	plays is_properties_role
+	plays has_key_role
+	plays has_leading_comments_role
+	plays has_value_role
+	plays has_variance_role;
+
+ObjectTypeSpreadPropertyArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_properties_role
+	plays has_argument_role
+	plays has_leading_comments_role;
+
+OpaqueTypeArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_declaration_role
+	plays has_id_role
+	plays has_impltype_role
+	plays has_trailing_comments_role;
+
+OperatorArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_operator_role;
+
+PrivateNameArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_key_role
+	plays is_property_role
+	plays has_id_role;
+
+ProgramArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has sourceTypeAttribute
+	# Structural
+	plays is_program_role
+	plays has_body_role
+	plays has_directives_role
+	plays has_inner_comments_role;
+
+QualifiedTypeIdentifierArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_id_role
+	plays is_qualification_role
+	plays has_id_role
+	plays has_qualification_role;
+
+RegExpLiteralArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has flagsAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_init_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+RestElementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_elements_role
+	plays is_params_role
+	plays is_properties_role
+	plays has_argument_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role
+	plays has_type_annotation_role;
+
+ReturnStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_argument_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+SequenceExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_expressions_role;
+
+SpreadElementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_arguments_role
+	plays is_elements_role
+	plays is_properties_role
+	plays has_argument_role
+	plays has_leading_comments_role;
+
+StringLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_id_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_source_role
+	plays is_test_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+StringLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_params_role
+	plays is_types_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+StringTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_default_role
+	plays is_element_type_role
+	plays is_impltype_role
+	plays is_key_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_trailing_comments_role;
+
+SuperArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_callee_role
+	plays is_object_role;
+
+SwitchCaseArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_cases_role
+	plays has_consequent_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role;
+
+SwitchStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_consequent_role
+	plays has_cases_role
+	plays has_discriminant_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+TaggedTemplateExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_right_role
+	plays is_tag_role
+	plays is_value_role
+	plays has_quasi_role
+	plays has_tag_role;
+
+TemplateElementArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has tailAttribute
+	# Structural
+	plays is_quasis_role
+	plays has_leading_comments_role;
+
+TemplateLiteralArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_quasi_role
+	plays is_right_role
+	plays is_value_role
+	plays has_expressions_role
+	plays has_leading_comments_role
+	plays has_quasis_role
+	plays has_trailing_comments_role;
+
+ThisExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays has_trailing_comments_role;
+
+ThrowStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_argument_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+TryStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_block_role
+	plays has_finalizer_role
+	plays has_handler_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+TupleTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_element_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_types_role;
+
+TypeAliasArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_declaration_role
+	plays has_id_role
+	plays has_leading_comments_role
+	plays has_right_role
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
+
+TypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_bound_role
+	plays is_return_type_role
+	plays is_type_annotation_role
+	plays has_leading_comments_role
+	plays has_type_annotation_role;
+
+TypeCastExpressionArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_callee_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_value_role
+	plays has_expression_role
+	plays has_leading_comments_role
+	plays has_type_annotation_role;
+
+TypeofTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_params_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_argument_role;
+
+TypeParameterArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has nameAttribute
+	# Structural
+	plays is_params_role
+	plays has_bound_role
+	plays has_default_role
+	plays has_variance_role;
+
+TypeParameterDeclarationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_type_parameters_role
+	plays has_params_role;
+
+TypeParameterInstantiationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_super_type_parameters_role
+	plays is_type_parameters_role
+	plays has_params_role;
+
+UnaryExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has prefixAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_elements_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_argument_role
+	plays has_leading_comments_role
+	plays has_operator_role
+	plays has_trailing_comments_role;
+
+UnionTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_argument_role
+	plays is_impltype_role
+	plays is_key_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role
+	plays has_leading_comments_role
+	plays has_types_role;
+
+UpdateExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has prefixAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_argument_role
+	plays is_arguments_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_discriminant_role
+	plays is_expression_role
+	plays is_expressions_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_object_role
+	plays is_property_role
+	plays is_right_role
+	plays is_test_role
+	plays is_update_role
+	plays is_value_role
+	plays has_argument_role
+	plays has_leading_comments_role
+	plays has_operator_role;
+
+VariableDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has kindAttribute
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays is_declaration_role
+	plays is_init_role
+	plays is_left_role
+	plays has_declarations_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+VariableDeclaratorArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_declarations_role
+	plays has_id_role
+	plays has_init_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
+VarianceArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has kindAttribute
+	# Structural
+	plays is_variance_role;
+
+VoidTypeAnnotationArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_default_role
+	plays is_params_role
+	plays is_return_type_role
+	plays is_right_role
+	plays is_type_annotation_role
+	plays is_types_role
+	plays is_value_role;
+
+WhileStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_alternate_role
+	plays is_body_role
+	plays is_consequent_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_test_role
+	plays has_trailing_comments_role;
+
+WithStatementArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_role
+	plays has_leading_comments_role
+	plays has_object_role
+	plays has_trailing_comments_role;
+
+YieldExpressionArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has delegateAttribute
+	# Structural
+	plays is_argument_role
+	plays is_expression_role
+	plays is_init_role
+	plays is_key_role
+	plays is_left_role
+	plays is_right_role
+	plays is_super_class_role
+	plays is_value_role
+	plays has_argument_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
+
+#####----- Javascript -----#####
+alternate_relation sub parent_child_relation
+	relates is_alternate_role, relates has_alternate_role;
+is_alternate_role sub is_child;
+has_alternate_role sub is_parent;
+
+argument_relation sub parent_child_relation
+	relates is_argument_role, relates has_argument_role;
+is_argument_role sub is_child;
+has_argument_role sub is_parent;
+
+arguments_relation sub parent_child_relation
+	relates is_arguments_role, relates has_arguments_role;
+is_arguments_role sub is_child;
+has_arguments_role sub is_parent;
+
+attributes_relation sub parent_child_relation
+	relates is_attributes_role, relates has_attributes_role;
+is_attributes_role sub is_child;
+has_attributes_role sub is_parent;
+
+block_relation sub parent_child_relation
+	relates is_block_role, relates has_block_role;
+is_block_role sub is_child;
+has_block_role sub is_parent;
+
+body_relation sub parent_child_relation
+	relates is_body_role, relates has_body_role;
+is_body_role sub is_child;
+has_body_role sub is_parent;
+
+bound_relation sub parent_child_relation
+	relates is_bound_role, relates has_bound_role;
+is_bound_role sub is_child;
+has_bound_role sub is_parent;
+
+call_properties_relation sub parent_child_relation
+	relates is_call_properties_role, relates has_call_properties_role;
+is_call_properties_role sub is_child;
+has_call_properties_role sub is_parent;
+
+callee_relation sub parent_child_relation
+	relates is_callee_role, relates has_callee_role;
+is_callee_role sub is_child;
+has_callee_role sub is_parent;
+
+cases_relation sub parent_child_relation
+	relates is_cases_role, relates has_cases_role;
+is_cases_role sub is_child;
+has_cases_role sub is_parent;
+
+children_relation sub parent_child_relation
+	relates is_children_role, relates has_children_role;
+is_children_role sub is_child;
+has_children_role sub is_parent;
+
+closing_element_relation sub parent_child_relation
+	relates is_closing_element_role, relates has_closing_element_role;
+is_closing_element_role sub is_child;
+has_closing_element_role sub is_parent;
+
+closing_fragment_relation sub parent_child_relation
+	relates is_closing_fragment_role, relates has_closing_fragment_role;
+is_closing_fragment_role sub is_child;
+has_closing_fragment_role sub is_parent;
+
+comments_relation sub parent_child_relation
+	relates is_comments_role, relates has_comments_role;
+is_comments_role sub is_child;
+has_comments_role sub is_parent;
+
+consequent_relation sub parent_child_relation
+	relates is_consequent_role, relates has_consequent_role;
+is_consequent_role sub is_child;
+has_consequent_role sub is_parent;
+
+declaration_relation sub parent_child_relation
+	relates is_declaration_role, relates has_declaration_role;
+is_declaration_role sub is_child;
+has_declaration_role sub is_parent;
+
+declarations_relation sub parent_child_relation
+	relates is_declarations_role, relates has_declarations_role;
+is_declarations_role sub is_child;
+has_declarations_role sub is_parent;
+
+default_relation sub parent_child_relation
+	relates is_default_role, relates has_default_role;
+is_default_role sub is_child;
+has_default_role sub is_parent;
+
+directives_relation sub parent_child_relation
+	relates is_directives_role, relates has_directives_role;
+is_directives_role sub is_child;
+has_directives_role sub is_parent;
+
+discriminant_relation sub parent_child_relation
+	relates is_discriminant_role, relates has_discriminant_role;
+is_discriminant_role sub is_child;
+has_discriminant_role sub is_parent;
+
+element_type_relation sub parent_child_relation
+	relates is_element_type_role, relates has_element_type_role;
+is_element_type_role sub is_child;
+has_element_type_role sub is_parent;
+
+elements_relation sub parent_child_relation
+	relates is_elements_role, relates has_elements_role;
+is_elements_role sub is_child;
+has_elements_role sub is_parent;
+
+exported_relation sub parent_child_relation
+	relates is_exported_role, relates has_exported_role;
+is_exported_role sub is_child;
+has_exported_role sub is_parent;
+
+expression_relation sub parent_child_relation
+	relates is_expression_role, relates has_expression_role;
+is_expression_role sub is_child;
+has_expression_role sub is_parent;
+
+expressions_relation sub parent_child_relation
+	relates is_expressions_role, relates has_expressions_role;
+is_expressions_role sub is_child;
+has_expressions_role sub is_parent;
+
+extends_relation sub parent_child_relation
+	relates is_extends_role, relates has_extends_role;
+is_extends_role sub is_child;
+has_extends_role sub is_parent;
+
+finalizer_relation sub parent_child_relation
+	relates is_finalizer_role, relates has_finalizer_role;
+is_finalizer_role sub is_child;
+has_finalizer_role sub is_parent;
+
+handler_relation sub parent_child_relation
+	relates is_handler_role, relates has_handler_role;
+is_handler_role sub is_child;
+has_handler_role sub is_parent;
+
+id_relation sub parent_child_relation
+	relates is_id_role, relates has_id_role;
+is_id_role sub is_child;
+has_id_role sub is_parent;
+
+implements_relation sub parent_child_relation
+	relates is_implements_role, relates has_implements_role;
+is_implements_role sub is_child;
+has_implements_role sub is_parent;
+
+impltype_relation sub parent_child_relation
+	relates is_impltype_role, relates has_impltype_role;
+is_impltype_role sub is_child;
+has_impltype_role sub is_parent;
+
+imported_relation sub parent_child_relation
+	relates is_imported_role, relates has_imported_role;
+is_imported_role sub is_child;
+has_imported_role sub is_parent;
+
+indexers_relation sub parent_child_relation
+	relates is_indexers_role, relates has_indexers_role;
+is_indexers_role sub is_child;
+has_indexers_role sub is_parent;
+
+init_relation sub parent_child_relation
+	relates is_init_role, relates has_init_role;
+is_init_role sub is_child;
+has_init_role sub is_parent;
+
+inner_comments_relation sub parent_child_relation
+	relates is_inner_comments_role, relates has_inner_comments_role;
+is_inner_comments_role sub is_child;
+has_inner_comments_role sub is_parent;
+
+key_relation sub parent_child_relation
+	relates is_key_role, relates has_key_role;
+is_key_role sub is_child;
+has_key_role sub is_parent;
+
+label_relation sub parent_child_relation
+	relates is_label_role, relates has_label_role;
+is_label_role sub is_child;
+has_label_role sub is_parent;
+
+leading_comments_relation sub parent_child_relation
+	relates is_leading_comments_role, relates has_leading_comments_role;
+is_leading_comments_role sub is_child;
+has_leading_comments_role sub is_parent;
+
+left_relation sub parent_child_relation
+	relates is_left_role, relates has_left_role;
+is_left_role sub is_child;
+has_left_role sub is_parent;
+
+local_relation sub parent_child_relation
+	relates is_local_role, relates has_local_role;
+is_local_role sub is_child;
+has_local_role sub is_parent;
+
+meta_relation sub parent_child_relation
+	relates is_meta_role, relates has_meta_role;
+is_meta_role sub is_child;
+has_meta_role sub is_parent;
+
+name_relation sub parent_child_relation
+	relates is_name_role, relates has_name_role;
+is_name_role sub is_child;
+has_name_role sub is_parent;
+
+object_relation sub parent_child_relation
+	relates is_object_role, relates has_object_role;
+is_object_role sub is_child;
+has_object_role sub is_parent;
+
+opening_element_relation sub parent_child_relation
+	relates is_opening_element_role, relates has_opening_element_role;
+is_opening_element_role sub is_child;
+has_opening_element_role sub is_parent;
+
+opening_fragment_relation sub parent_child_relation
+	relates is_opening_fragment_role, relates has_opening_fragment_role;
+is_opening_fragment_role sub is_child;
+has_opening_fragment_role sub is_parent;
+
+operator_relation sub parent_child_relation
+	relates is_operator_role, relates has_operator_role;
+is_operator_role sub is_child;
+has_operator_role sub is_parent;
+
+param_relation sub parent_child_relation
+	relates is_param_role, relates has_param_role;
+is_param_role sub is_child;
+has_param_role sub is_parent;
+
+params_relation sub parent_child_relation
+	relates is_params_role, relates has_params_role;
+is_params_role sub is_child;
+has_params_role sub is_parent;
+
+predicate_relation sub parent_child_relation
+	relates is_predicate_role, relates has_predicate_role;
+is_predicate_role sub is_child;
+has_predicate_role sub is_parent;
+
+program_relation sub parent_child_relation
+	relates is_program_role, relates has_program_role;
+is_program_role sub is_child;
+has_program_role sub is_parent;
+
+properties_relation sub parent_child_relation
+	relates is_properties_role, relates has_properties_role;
+is_properties_role sub is_child;
+has_properties_role sub is_parent;
+
+property_relation sub parent_child_relation
+	relates is_property_role, relates has_property_role;
+is_property_role sub is_child;
+has_property_role sub is_parent;
+
+qualification_relation sub parent_child_relation
+	relates is_qualification_role, relates has_qualification_role;
+is_qualification_role sub is_child;
+has_qualification_role sub is_parent;
+
+quasi_relation sub parent_child_relation
+	relates is_quasi_role, relates has_quasi_role;
+is_quasi_role sub is_child;
+has_quasi_role sub is_parent;
+
+quasis_relation sub parent_child_relation
+	relates is_quasis_role, relates has_quasis_role;
+is_quasis_role sub is_child;
+has_quasis_role sub is_parent;
+
+rest_relation sub parent_child_relation
+	relates is_rest_role, relates has_rest_role;
+is_rest_role sub is_child;
+has_rest_role sub is_parent;
+
+return_type_relation sub parent_child_relation
+	relates is_return_type_role, relates has_return_type_role;
+is_return_type_role sub is_child;
+has_return_type_role sub is_parent;
+
+right_relation sub parent_child_relation
+	relates is_right_role, relates has_right_role;
+is_right_role sub is_child;
+has_right_role sub is_parent;
+
+source_relation sub parent_child_relation
+	relates is_source_role, relates has_source_role;
+is_source_role sub is_child;
+has_source_role sub is_parent;
+
+specifiers_relation sub parent_child_relation
+	relates is_specifiers_role, relates has_specifiers_role;
+is_specifiers_role sub is_child;
+has_specifiers_role sub is_parent;
+
+super_class_relation sub parent_child_relation
+	relates is_super_class_role, relates has_super_class_role;
+is_super_class_role sub is_child;
+has_super_class_role sub is_parent;
+
+super_type_parameters_relation sub parent_child_relation
+	relates is_super_type_parameters_role, relates has_super_type_parameters_role;
+is_super_type_parameters_role sub is_child;
+has_super_type_parameters_role sub is_parent;
+
+tag_relation sub parent_child_relation
+	relates is_tag_role, relates has_tag_role;
+is_tag_role sub is_child;
+has_tag_role sub is_parent;
+
+test_relation sub parent_child_relation
+	relates is_test_role, relates has_test_role;
+is_test_role sub is_child;
+has_test_role sub is_parent;
+
+trailing_comments_relation sub parent_child_relation
+	relates is_trailing_comments_role, relates has_trailing_comments_role;
+is_trailing_comments_role sub is_child;
+has_trailing_comments_role sub is_parent;
+
+type_annotation_relation sub parent_child_relation
+	relates is_type_annotation_role, relates has_type_annotation_role;
+is_type_annotation_role sub is_child;
+has_type_annotation_role sub is_parent;
+
+type_parameters_relation sub parent_child_relation
+	relates is_type_parameters_role, relates has_type_parameters_role;
+is_type_parameters_role sub is_child;
+has_type_parameters_role sub is_parent;
+
+types_relation sub parent_child_relation
+	relates is_types_role, relates has_types_role;
+is_types_role sub is_child;
+has_types_role sub is_parent;
+
+update_relation sub parent_child_relation
+	relates is_update_role, relates has_update_role;
+is_update_role sub is_child;
+has_update_role sub is_parent;
+
+value_relation sub parent_child_relation
+	relates is_value_role, relates has_value_role;
+is_value_role sub is_child;
+has_value_role sub is_parent;
+
+variance_relation sub parent_child_relation
+	relates is_variance_role, relates has_variance_role;
+is_variance_role sub is_child;
+has_variance_role sub is_parent;

@@ -1,283 +1,88 @@
 define
 
-##########---------- Attributes ----------##########
-token sub attribute datatype string;
-
-#####----- Python -----#####
-conversionAttribute sub attribute datatype string;
-ctxAttribute sub attribute datatype string;
-encodingAttribute sub attribute datatype string;
-isAsyncAttribute sub attribute datatype string;
-literalValueAttribute sub attribute datatype string;
-nlAttribute sub attribute datatype string;
-numLevelAttribute sub attribute datatype string;
-simpleAttribute sub attribute datatype string;
-valueAttribute sub attribute datatype string;
-
 ##########---------- Entities ----------##########
-SourceArtifact sub entity
-	has token;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
 AddArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ADD
 	plays IS_ADD_ARITHMETIC_BINARY_OPERATOR
-	plays IS_ADD_ARITHMETIC_OPERATOR
-	plays IS_ARITHMETIC
-	plays IS_BINARY
-	plays IS_OPERATOR;
+	plays IS_ADD_ARITHMETIC_OPERATOR;
 
 AliasArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_name_list_relation
-	plays has_asname_relation
 	# Semantic
-	plays IS_IDENTIFIER
-	plays IS_IDENTIFIER_IMPORT_PATHNAME
-	plays IS_IMPORT
-	plays IS_PATHNAME;
+	plays IS_IDENTIFIER_IMPORT_PATHNAME;
 
 AliasAsnameArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_asname_relation
 	# Semantic
-	plays IS_ALIAS
-	plays IS_ALIAS_IDENTIFIER_IMPORT_PATHNAME
-	plays IS_IDENTIFIER
-	plays IS_IMPORT
-	plays IS_PATHNAME;
+	plays IS_ALIAS_IDENTIFIER_IMPORT_PATHNAME;
 
 AndArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_AND
-	plays IS_AND_BOOLEAN_OPERATOR
-	plays IS_BOOLEAN
-	plays IS_OPERATOR;
+	plays IS_AND_BOOLEAN_OPERATOR;
 
 AnnAssignArtifact sub PythonSourceArtifact
-	# Attributes
-	has simpleAttribute
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays has_annotation_relation
-	plays has_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_OPERATOR
-	plays IS_BINARY
-	plays IS_OPERATOR;
+	plays IS_ASSIGNMENT_BINARY_OPERATOR;
 
 ArgArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_args_relation
-	plays has_annotation_relation
-	plays has_default_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_DECLARATION_FUNCTION_NAME
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_NAME;
+	plays IS_ARGUMENT_DECLARATION_FUNCTION_NAME;
 
 ArgumentsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_args_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE;
+	plays IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE;
 
 AssertArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_msg_relation
-	plays has_test_relation
 	# Semantic
-	plays IS_ASSERT
-	plays IS_ASSERT_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_ASSERT_STATEMENT;
 
 AssignArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_finalbody_relation
-	plays is_orelse_relation
-	plays has_targets_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION
-	plays IS_BINARY
-	plays IS_EXPRESSION;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION;
 
 AsyncForArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_stmts_relation
-	plays has_body_relation
-	plays has_iter_relation
-	plays has_orelse_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_FOR
-	plays IS_FOR_INCOMPLETE_ITERATOR_STATEMENT
-	plays IS_INCOMPLETE
-	plays IS_ITERATOR
-	plays IS_STATEMENT;
+	plays IS_FOR_INCOMPLETE_ITERATOR_STATEMENT;
 
 AsyncFunctionDefArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays has_args_relation
-	plays has_body_relation
-	plays has_decorator_list_relation
-	plays has_returns_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_NAME
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_NAME;
+	plays IS_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_NAME;
 
 AsyncWithArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_stmts_relation
-	plays has_body_relation
-	plays has_items_relation
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BLOCK_SCOPE_STATEMENT
-	plays IS_SCOPE
-	plays IS_STATEMENT;
+	plays IS_BLOCK_SCOPE_STATEMENT;
 
 AttributeArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_identifiers_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IDENTIFIER
-	plays IS_IDENTIFIER;
+	plays IS_EXPRESSION_IDENTIFIER;
 
 AugAssignArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_op_relation
-	plays has_target_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR
-	plays IS_BINARY
-	plays IS_EXPRESSION
-	plays IS_OPERATOR;
+	plays IS_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR;
 
 AwaitArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_comparators_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_iter_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_INCOMPLETE_NAME_POSITIONAL_STATEMENT
-	plays IS_CALL
-	plays IS_CONDITION
+	plays IS_ARGUMENT_INCOMPLETE_STATEMENT_VALUE
+	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_STATEMENT
+	plays IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_STATEMENT
 	plays IS_CONDITION_IF_INCOMPLETE_STATEMENT
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_INCOMPLETE_STATEMENT
 	plays IS_EXPRESSION_INCOMPLETE_LEFT_STATEMENT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_INCOMPLETE
+	plays IS_FOR_INCOMPLETE_STATEMENT_UPDATE
+	plays IS_INCOMPLETE_LEFT_STATEMENT
+	plays IS_INCOMPLETE_MAP_STATEMENT_VALUE
 	plays IS_INCOMPLETE_RIGHT_STATEMENT
-	plays IS_INCOMPLETE_STATEMENT
-	plays IS_LEFT
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT;
+	plays IS_INCOMPLETE_STATEMENT;
 
 BinOpArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_starargs_relation
-	plays is_step_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_left_relation
-	plays has_op_relation
-	plays has_right_relation
 	# Semantic
-	plays IS_ANNOTATION
-	plays IS_ANNOTATION_BINARY_EXPRESSION_NOOP
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BINARY_CALL_EXPRESSION_FUNCTION_NAME_POSITIONAL
 	plays IS_ARGUMENT_BINARY_CALL_EXPRESSION_POSITIONAL
 	plays IS_ARGUMENT_BINARY_DEFAULT_EXPRESSION
 	plays IS_ARGUMENT_BINARY_EXPRESSION_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_BODY_ELSE_EXPRESSION_IF
 	plays IS_BINARY_BODY_EXPRESSION_IF_THEN
 	plays IS_BINARY_CALL_CALLEE_EXPRESSION
@@ -290,310 +95,90 @@ BinOpArtifact sub PythonSourceArtifact
 	plays IS_BINARY_EXPRESSION_KEY_MAP
 	plays IS_BINARY_EXPRESSION_LEFT
 	plays IS_BINARY_EXPRESSION_MAP_VALUE
-	plays IS_BINARY_EXPRESSION_RIGHT
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_CONDITION
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_BINARY_EXPRESSION_RIGHT;
 
 BitAndArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_AND
 	plays IS_AND_BINARY_BITWISE_OPERATOR
-	plays IS_AND_BITWISE_OPERATOR
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_OPERATOR;
+	plays IS_AND_BITWISE_OPERATOR;
 
 BitOrArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_OPERATOR_OR
-	plays IS_BITWISE
-	plays IS_BITWISE_OPERATOR_OR
-	plays IS_OPERATOR
-	plays IS_OR;
+	plays IS_BITWISE_OPERATOR_OR;
 
 BitXorArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_OPERATOR_XOR
-	plays IS_BITWISE
-	plays IS_BITWISE_OPERATOR_XOR
-	plays IS_OPERATOR
-	plays IS_XOR;
+	plays IS_BITWISE_OPERATOR_XOR;
 
 BoolLiteralArtifact sub PythonSourceArtifact
-	# Attributes
-	has valueAttribute
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BOOLEAN_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_BOOLEAN_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE
 	plays IS_ARGUMENT_BOOLEAN_EXPRESSION_LITERAL_PRIMITIVE_VALUE
-	plays IS_BINARY
-	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL_PRIMITIVE
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_BOOLEAN_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE
 	plays IS_BODY_BOOLEAN_EXPRESSION_IF_LITERAL_PRIMITIVE_THEN
-	plays IS_BOOLEAN
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_IF_LITERAL_PRIMITIVE
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL_PRIMITIVE_WHILE
 	plays IS_BOOLEAN_EXPRESSION_KEY_LITERAL_MAP_PRIMITIVE
 	plays IS_BOOLEAN_EXPRESSION_LEFT_LITERAL_PRIMITIVE
 	plays IS_BOOLEAN_EXPRESSION_LITERAL_MAP_PRIMITIVE_VALUE
 	plays IS_BOOLEAN_EXPRESSION_LITERAL_PRIMITIVE
-	plays IS_BOOLEAN_EXPRESSION_LITERAL_PRIMITIVE_RIGHT
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_BOOLEAN_EXPRESSION_LITERAL_PRIMITIVE_RIGHT;
 
 BoolOpArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_iter_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_op_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BOOLEAN_CALL_FUNCTION_INCOMPLETE_LITERAL_NAME_POSITIONAL
 	plays IS_ARGUMENT_BOOLEAN_INCOMPLETE_LITERAL_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LEFT_LITERAL
 	plays IS_BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LITERAL_RIGHT
-	plays IS_BODY
 	plays IS_BODY_BOOLEAN_ELSE_IF_INCOMPLETE_LITERAL
 	plays IS_BODY_BOOLEAN_IF_INCOMPLETE_LITERAL_THEN
-	plays IS_BOOLEAN
 	plays IS_BOOLEAN_CALL_CALLEE_INCOMPLETE_LITERAL
 	plays IS_BOOLEAN_CONDITION_IF_INCOMPLETE_LITERAL
 	plays IS_BOOLEAN_CONDITION_INCOMPLETE_LITERAL_WHILE
 	plays IS_BOOLEAN_EXPRESSION_FOR_INCOMPLETE_LITERAL
 	plays IS_BOOLEAN_EXPRESSION_INCOMPLETE_LEFT_LITERAL
 	plays IS_BOOLEAN_FOR_INCOMPLETE_LITERAL_STATEMENT_UPDATE
+	plays IS_BOOLEAN_INCOMPLETE_KEY_LITERAL_MAP
 	plays IS_BOOLEAN_INCOMPLETE_LEFT_LITERAL
 	plays IS_BOOLEAN_INCOMPLETE_LITERAL
 	plays IS_BOOLEAN_INCOMPLETE_LITERAL_MAP_VALUE
-	plays IS_BOOLEAN_INCOMPLETE_LITERAL_RIGHT
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_BOOLEAN_INCOMPLETE_LITERAL_RIGHT;
 
 BreakArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_orelse_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_BREAK
-	plays IS_BREAK_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_BREAK_STATEMENT;
 
 BytesArtifact sub PythonSourceArtifact
-	# Attributes
-	has encodingAttribute
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_iter_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BYTE_STRING_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_BYTE_STRING_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE
 	plays IS_ARGUMENT_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_BYTE_STRING_EXPRESSION_LEFT_LITERAL_PRIMITIVE
 	plays IS_BINARY_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_BYTE_STRING_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE
 	plays IS_BODY_BYTE_STRING_EXPRESSION_IF_LITERAL_PRIMITIVE_THEN
-	plays IS_BYTE_STRING
 	plays IS_BYTE_STRING_EXPRESSION_FOR_LITERAL_PRIMITIVE
 	plays IS_BYTE_STRING_EXPRESSION_FOR_LITERAL_PRIMITIVE_STATEMENT_UPDATE
 	plays IS_BYTE_STRING_EXPRESSION_KEY_LITERAL_MAP_PRIMITIVE
 	plays IS_BYTE_STRING_EXPRESSION_LEFT_LITERAL_PRIMITIVE
 	plays IS_BYTE_STRING_EXPRESSION_LITERAL_MAP_PRIMITIVE_VALUE
 	plays IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE
-	plays IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT
-	plays IS_CALL
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT;
 
 CallArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_bases_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_context_expr_relation
-	plays is_decorators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_args_relation
-	plays has_func_relation
-	plays has_keywords_relation
-	plays has_kwargs_relation
-	plays has_starargs_relation
 	# Semantic
-	plays IS_ANNOTATION
-	plays IS_ANNOTATION_CALL_EXPRESSION_FUNCTION_NOOP
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_DEFAULT_EXPRESSION_FUNCTION
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_NAME_POSITIONAL
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_POSITIONAL
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_BINARY_CALL_EXPRESSION_FUNCTION_RIGHT
-	plays IS_BODY
 	plays IS_BODY_CALL_ELSE_EXPRESSION_FUNCTION_IF
 	plays IS_BODY_CALL_EXPRESSION_FUNCTION_IF_THEN
-	plays IS_CALL
 	plays IS_CALL_CALLEE_EXPRESSION_FUNCTION
 	plays IS_CALL_CONDITION_EXPRESSION_FUNCTION_IF
 	plays IS_CALL_CONDITION_EXPRESSION_FUNCTION_WHILE
@@ -603,103 +188,29 @@ CallArtifact sub PythonSourceArtifact
 	plays IS_CALL_EXPRESSION_FUNCTION_KEY_MAP
 	plays IS_CALL_EXPRESSION_FUNCTION_LEFT
 	plays IS_CALL_EXPRESSION_FUNCTION_MAP_VALUE
-	plays IS_CALL_EXPRESSION_FUNCTION_RIGHT
-	plays IS_CALLEE
-	plays IS_CONDITION
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_CALL_EXPRESSION_FUNCTION_RIGHT;
 
 ClassDefArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_orelse_relation
-	plays has_bases_relation
-	plays has_body_relation
-	plays has_decorator_list_relation
-	plays has_keywords_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE
-	plays IS_IDENTIFIER
-	plays IS_STATEMENT
-	plays IS_TYPE;
+	plays IS_DECLARATION_IDENTIFIER_STATEMENT_TYPE;
 
 ClassDefBasesArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_bases_relation
-	plays has_bases_relation
 	# Semantic
-	plays IS_BASE
-	plays IS_BASE_DECLARATION_TYPE
-	plays IS_DECLARATION
-	plays IS_TYPE;
+	plays IS_BASE_DECLARATION_TYPE;
 
 ClassDefBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_DECLARATION_TYPE
-	plays IS_DECLARATION
-	plays IS_TYPE;
+	plays IS_BODY_DECLARATION_TYPE;
 
 ClassDefDecoratorListArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_decorator_list_relation
-	plays has_decorators_relation
 	# Semantic
-	plays IS_CALL
-	plays IS_CALL_DECLARATION_INCOMPLETE_TYPE
-	plays IS_DECLARATION
-	plays IS_INCOMPLETE
-	plays IS_TYPE;
+	plays IS_CALL_DECLARATION_INCOMPLETE_TYPE;
 
 CompareArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_comparators_relation
-	plays has_left_relation
-	plays has_ops_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BINARY_CALL_CONDITION_EXPRESSION_FUNCTION_NAME_POSITIONAL
 	plays IS_ARGUMENT_BINARY_CALL_CONDITION_EXPRESSION_POSITIONAL
 	plays IS_ARGUMENT_BINARY_CONDITION_EXPRESSION_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_BODY_CONDITION_ELSE_EXPRESSION_IF
 	plays IS_BINARY_BODY_CONDITION_EXPRESSION_IF_THEN
 	plays IS_BINARY_CONDITION_EXPRESSION
@@ -707,1010 +218,321 @@ CompareArtifact sub PythonSourceArtifact
 	plays IS_BINARY_CONDITION_EXPRESSION_LEFT
 	plays IS_BINARY_CONDITION_EXPRESSION_MAP_VALUE
 	plays IS_BINARY_CONDITION_EXPRESSION_RIGHT
-	plays IS_BINARY_CONDITION_EXPRESSION_WHILE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_BINARY_CONDITION_EXPRESSION_WHILE;
 
 CompareComparatorsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_comparators_relation
-	plays has_comparators_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_RIGHT
-	plays IS_RIGHT;
+	plays IS_EXPRESSION_RIGHT;
 
-CompareOpsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
-	plays has_ops_relation
-	# Semantic
-	plays IS_EXPRESSION;
+CompareOpsArtifact sub PythonSourceArtifact;
 
 ComprehensionArtifact sub PythonSourceArtifact
-	# Attributes
-	has isAsyncAttribute
-	# Structural
-	plays is_generators_relation
-	plays has_ifs_relation
-	plays has_iter_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_FOR_INCOMPLETE_ITERATOR
-	plays IS_FOR
-	plays IS_INCOMPLETE
-	plays IS_ITERATOR;
+	plays IS_EXPRESSION_FOR_INCOMPLETE_ITERATOR;
 
 ContinueArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_CONTINUE
-	plays IS_CONTINUE_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_CONTINUE_STATEMENT;
 
 DeleteArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_targets_relation
 	# Semantic
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_INCOMPLETE_STATEMENT;
 
 DictArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_keys_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_MAP_NAME_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_MAP_PRIMITIVE
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_MAP_PRIMITIVE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_LITERAL_MAP_PRIMITIVE
 	plays IS_BODY_EXPRESSION_IF_LITERAL_MAP_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_LEFT_LITERAL_MAP_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT
-	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_VALUE
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_VALUE;
 
 DictCompArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_comparators_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_generators_relation
-	plays has_key_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FOR_FUNCTION_MAP_NAME_POSITIONAL
 	plays IS_ARGUMENT_EXPRESSION_FOR_MAP_VALUE
-	plays IS_BODY
 	plays IS_BODY_EXPRESSION_FOR_IF_MAP_THEN
-	plays IS_CALL
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_MAP
 	plays IS_EXPRESSION_FOR_MAP_RIGHT
-	plays IS_EXPRESSION_FOR_MAP_VALUE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE;
+	plays IS_EXPRESSION_FOR_MAP_VALUE;
 
 DivArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_DIVIDE_OPERATOR
-	plays IS_ARITHMETIC_DIVIDE_OPERATOR
-	plays IS_BINARY
-	plays IS_DIVIDE
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_DIVIDE_OPERATOR;
 
 EllipsisArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_elts_relation
-	plays is_value_relation
-	plays has_noops_previous_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_IDENTIFIER_INCOMPLETE_NAME_POSITIONAL
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
+	plays IS_ARGUMENT_DEFAULT_IDENTIFIER_INCOMPLETE
+	plays IS_BODY_IDENTIFIER_IF_INCOMPLETE_THEN
 	plays IS_IDENTIFIER_INCOMPLETE
-	plays IS_INCOMPLETE
-	plays IS_NAME
-	plays IS_POSITIONAL;
+	plays IS_IDENTIFIER_INCOMPLETE_RIGHT;
 
 EqArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_EQUAL
-	plays IS_EQUAL_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_EQUAL_OPERATOR_RELATIONAL;
 
 ExceptHandlerArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_handlers_relation
-	plays has_body_relation
-	plays has_noops_sameline_relation
-	plays has_type_relation
 	# Semantic
-	plays IS_CATCH
-	plays IS_CATCH_IDENTIFIER_TRY
-	plays IS_IDENTIFIER
-	plays IS_TRY;
+	plays IS_CATCH_IDENTIFIER_TRY;
 
-ExecArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_relation
-	plays has_globals_relation
-	# Semantic
-	plays IS_UNANNOTATED;
+ExecArtifact sub PythonSourceArtifact;
 
-ExprArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_finalbody_relation
-	plays is_orelse_relation
-	plays has_value_relation
-	# Semantic
-	plays IS_EXPRESSION;
+ExprArtifact sub PythonSourceArtifact;
 
 ExtSliceArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_slice_relation
-	plays has_dims_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_INCOMPLETE;
 
 FloorDivArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_DIVIDE_INCOMPLETE_OPERATOR
-	plays IS_ARITHMETIC_DIVIDE_INCOMPLETE_OPERATOR
-	plays IS_BINARY
-	plays IS_DIVIDE
-	plays IS_INCOMPLETE
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_DIVIDE_INCOMPLETE_OPERATOR;
 
 ForArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_finalbody_relation
-	plays is_orelse_relation
-	plays has_body_relation
-	plays has_iter_relation
-	plays has_orelse_relation
-	plays has_target_relation
 	# Semantic
-	plays IS_FOR
-	plays IS_FOR_ITERATOR_STATEMENT
-	plays IS_ITERATOR
-	plays IS_STATEMENT;
+	plays IS_FOR_ITERATOR_STATEMENT;
 
 ForBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_FOR_THEN
-	plays IS_BODY_THEN_WHILE
-	plays IS_FOR
-	plays IS_THEN
-	plays IS_WHILE;
+	plays IS_BODY_THEN_WHILE;
 
 FormattedValueArtifact sub PythonSourceArtifact
-	# Attributes
-	has conversionAttribute
-	# Structural
-	plays is_values_relation
-	plays has_format_spec_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_INCOMPLETE;
 
 ForOrelseArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_orelse_relation
-	plays has_else_stmts_relation
 	# Semantic
-	plays IS_BODY
 	plays IS_BODY_ELSE_FOR
-	plays IS_BODY_ELSE_WHILE
-	plays IS_ELSE
-	plays IS_FOR
-	plays IS_WHILE;
+	plays IS_BODY_ELSE_WHILE;
 
 FunctionDefArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_orelse_relation
-	plays has_args_relation
-	plays has_body_relation
-	plays has_decorator_list_relation
-	plays has_noops_sameline_relation
-	plays has_returns_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_FUNCTION_IDENTIFIER_NAME
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_NAME;
+	plays IS_DECLARATION_FUNCTION_IDENTIFIER_NAME;
 
 FunctionDefBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_DECLARATION_FUNCTION
-	plays IS_DECLARATION
-	plays IS_FUNCTION;
+	plays IS_BODY_DECLARATION_FUNCTION;
 
 FunctionDefDecoratorsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_decorator_list_relation
-	plays has_decorators_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_FUNCTION_INCOMPLETE
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE;
+	plays IS_DECLARATION_FUNCTION_INCOMPLETE;
 
 GeneratorExpArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_comparators_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_iter_relation
-	plays is_value_relation
-	plays has_elt_relation
-	plays has_generators_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_NAME_POSITIONAL
 	plays IS_ARGUMENT_VALUE
-	plays IS_BODY
+	plays IS_BODY_ELSE_IF
 	plays IS_BODY_IF_THEN
-	plays IS_CALL
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR
-	plays IS_FOR
-	plays IS_FOR_STATEMENT_UPDATE
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UNANNOTATED
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_FOR_STATEMENT_UPDATE;
 
 GlobalArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays has_names_relation
 	# Semantic
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_STATEMENT_VISIBILITY_WORLD
-	plays IS_STATEMENT
-	plays IS_VISIBILITY
-	plays IS_WORLD;
+	plays IS_INCOMPLETE_STATEMENT_VISIBILITY_WORLD;
 
 GtArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_GREATER_THAN
-	plays IS_GREATER_THAN_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_GREATER_THAN_OPERATOR_RELATIONAL;
 
 GtEArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 
 IfArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_finalbody_relation
-	plays is_orelse_relation
-	plays has_body_relation
-	plays has_noops_sameline_relation
-	plays has_orelse_relation
-	plays has_test_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IF
-	plays IS_IF;
+	plays IS_EXPRESSION_IF;
 
 IfBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_IF_THEN
-	plays IS_IF
-	plays IS_THEN;
+	plays IS_BODY_IF_THEN;
 
 IfExpArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_bases_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_context_expr_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_body_relation
-	plays has_orelse_relation
-	plays has_test_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IF_NAME_POSITIONAL
 	plays IS_ARGUMENT_EXPRESSION_IF_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IF_LEFT
 	plays IS_BINARY_EXPRESSION_IF_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF
-	plays IS_CALL
 	plays IS_CALL_CALLEE_EXPRESSION_IF
 	plays IS_CALL_EXPRESSION_IF
-	plays IS_CALLEE
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IF
 	plays IS_CONDITION_EXPRESSION_IF_WHILE
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IF
 	plays IS_EXPRESSION_FOR_IF_STATEMENT_UPDATE
 	plays IS_EXPRESSION_IF
 	plays IS_EXPRESSION_IF_LEFT
 	plays IS_EXPRESSION_IF_MAP_VALUE
-	plays IS_EXPRESSION_IF_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_EXPRESSION_IF_RIGHT;
 
 IfOrelseArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_orelse_relation
-	plays has_else_stmts_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_ELSE_IF
-	plays IS_ELSE
-	plays IS_IF;
+	plays IS_BODY_ELSE_IF;
 
 ImportArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays has_names_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_IMPORT_STATEMENT
-	plays IS_IMPORT
-	plays IS_STATEMENT;
+	plays IS_DECLARATION_IMPORT_STATEMENT;
 
 ImportFromArtifact sub PythonSourceArtifact
-	# Attributes
-	has numLevelAttribute
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays has_level_relation
-	plays has_module_relation
-	plays has_names_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_IMPORT_STATEMENT
-	plays IS_IMPORT
-	plays IS_STATEMENT;
+	plays IS_DECLARATION_IMPORT_STATEMENT;
 
 ImportFromLevelArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_level_relation
 	# Semantic
-	plays IS_IMPORT
-	plays IS_IMPORT_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_IMPORT_INCOMPLETE;
 
 ImportFromModuleArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_module_relation
 	# Semantic
-	plays IS_IDENTIFIER
-	plays IS_IDENTIFIER_IMPORT_PATHNAME
-	plays IS_IMPORT
-	plays IS_PATHNAME;
+	plays IS_IDENTIFIER_IMPORT_PATHNAME;
 
 ImportFromNamesArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_names_relation
-	plays has_name_list_relation
 	# Semantic
-	plays IS_IDENTIFIER
-	plays IS_IDENTIFIER_IMPORT_INCOMPLETE_PATHNAME
-	plays IS_IMPORT
-	plays IS_INCOMPLETE
-	plays IS_PATHNAME;
+	plays IS_IDENTIFIER_IMPORT_INCOMPLETE_PATHNAME;
 
 InArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_CONTAINS
-	plays IS_CONTAINS_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_CONTAINS_OPERATOR_RELATIONAL;
 
 IndexArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_dims_relation
-	plays is_slice_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_INCOMPLETE;
 
 InvertArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BITWISE
-	plays IS_BITWISE_NOT_OPERATOR_UNARY
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_UNARY;
+	plays IS_BITWISE_NOT_OPERATOR_UNARY;
 
 IsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_IDENTICAL
-	plays IS_IDENTICAL_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_IDENTICAL_OPERATOR_RELATIONAL;
 
 IsNotArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_IDENTICAL
-	plays IS_IDENTICAL_NOT_OPERATOR_RELATIONAL
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_IDENTICAL_NOT_OPERATOR_RELATIONAL;
 
 JoinedStrArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_format_spec_relation
-	plays is_identifiers_relation
-	plays is_key_relation
-	plays is_left_relation
-	plays is_msg_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_LITERAL_NAME_POSITIONAL_PRIMITIVE_STRING
 	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_STRING_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_INCOMPLETE_LITERAL_PRIMITIVE_STRING
 	plays IS_BODY_EXPRESSION_IF_INCOMPLETE_LITERAL_PRIMITIVE_STRING_THEN
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_INCOMPLETE_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_EXPRESSION_INCOMPLETE_LITERAL_MAP_PRIMITIVE_STRING_VALUE
 	plays IS_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_STRING
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STRING
-	plays IS_THEN
-	plays IS_VALUE;
+	plays IS_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_STRING;
 
 KeywordArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_keywords_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_NAME
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_NAME
-	plays IS_NAME;
+	plays IS_INCOMPLETE_NAME;
 
 KwargArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGS_LIST
-	plays IS_ARGS_LIST_DECLARATION_FUNCTION_MAP_NAME
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_MAP
-	plays IS_NAME;
+	plays IS_ARGS_LIST_DECLARATION_FUNCTION_MAP_NAME;
 
 KwonlyArgArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_annotation_relation
-	plays has_default_relation
-	plays has_noops_previous_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE_NAME
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_NAME;
+	plays IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE_NAME;
 
 LambdaArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_default_relation
-	plays is_elts_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_orelse_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_args_relation
-	plays has_body_relation
 	# Semantic
-	plays IS_ANONYMOUS
 	plays IS_ANONYMOUS_ARGUMENT_CALL_DECLARATION_FUNCTION_NAME_POSITIONAL_VALUE
 	plays IS_ANONYMOUS_ARGUMENT_DECLARATION_DEFAULT_FUNCTION_VALUE
 	plays IS_ANONYMOUS_ARGUMENT_DECLARATION_FUNCTION_VALUE
 	plays IS_ANONYMOUS_BODY_DECLARATION_ELSE_FUNCTION_IF_VALUE
 	plays IS_ANONYMOUS_BODY_DECLARATION_FUNCTION_IF_THEN_VALUE
 	plays IS_ANONYMOUS_CALL_CALLEE_DECLARATION_FUNCTION_VALUE
-	plays IS_ANONYMOUS_CONDITION_DECLARATION_FUNCTION_IF_VALUE
 	plays IS_ANONYMOUS_DECLARATION_FUNCTION_MAP_VALUE
 	plays IS_ANONYMOUS_DECLARATION_FUNCTION_RIGHT_VALUE
-	plays IS_ANONYMOUS_DECLARATION_FUNCTION_VALUE
-	plays IS_ARGUMENT
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_CONDITION
-	plays IS_DECLARATION
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE;
+	plays IS_ANONYMOUS_DECLARATION_FUNCTION_VALUE;
 
 ListArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_iter_relation
-	plays is_left_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_targets_relation
-	plays is_type_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_elts_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGUMENT
+	plays IS_ANNOTATION_EXPRESSION_LIST_LITERAL_NOOP_PRIMITIVE
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LIST_LITERAL_NAME_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LIST_LITERAL_PRIMITIVE
 	plays IS_ARGUMENT_EXPRESSION_LIST_LITERAL_PRIMITIVE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_LIST_LITERAL_PRIMITIVE
 	plays IS_BODY_EXPRESSION_IF_LIST_LITERAL_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE
 	plays IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_STATEMENT_UPDATE
+	plays IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_UPDATE
 	plays IS_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE
 	plays IS_EXPRESSION_LIST_LITERAL_MAP_PRIMITIVE_VALUE
 	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE
-	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LIST_LITERAL_PRIMITIVE_RIGHT;
 
 ListCompArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_iter_relation
-	plays is_left_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_elt_relation
-	plays has_generators_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FOR_FUNCTION_LIST_NAME_POSITIONAL
 	plays IS_ARGUMENT_EXPRESSION_FOR_LIST_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_FOR_LEFT_LIST
 	plays IS_BINARY_EXPRESSION_FOR_LIST_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_FOR_IF_LIST
 	plays IS_BODY_EXPRESSION_FOR_IF_LIST_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_FOR_IF_LIST
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LEFT_LIST
 	plays IS_EXPRESSION_FOR_LIST
 	plays IS_EXPRESSION_FOR_LIST_MAP_VALUE
 	plays IS_EXPRESSION_FOR_LIST_RIGHT
-	plays IS_EXPRESSION_FOR_LIST_STATEMENT_UPDATE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_FOR_LIST_STATEMENT_UPDATE;
 
 LShiftArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_LEFT_SHIFT_OPERATOR
-	plays IS_BITWISE
-	plays IS_BITWISE_LEFT_SHIFT_OPERATOR
-	plays IS_LEFT_SHIFT
-	plays IS_OPERATOR;
+	plays IS_BITWISE_LEFT_SHIFT_OPERATOR;
 
 LtArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_LESS_THAN
-	plays IS_LESS_THAN_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_LESS_THAN_OPERATOR_RELATIONAL;
 
 LtEArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_LESS_THAN_OR_EQUAL
-	plays IS_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 
 MatMultArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_INCOMPLETE_MULTIPLY_OPERATOR
-	plays IS_BINARY
-	plays IS_INCOMPLETE
-	plays IS_MULTIPLY
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_INCOMPLETE_MULTIPLY_OPERATOR;
 
 ModArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_MODULE_OPERATOR
-	plays IS_ARITHMETIC_MODULE_OPERATOR
-	plays IS_BINARY
-	plays IS_MODULE
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_MODULE_OPERATOR;
 
 ModuleArtifact sub PythonSourceArtifact
-	# Structural
-	plays has_body_relation
-	plays has_noops_remainder_relation
 	# Semantic
-	plays IS_FILE
-	plays IS_FILE_MODULE
-	plays IS_MODULE;
+	plays IS_FILE_MODULE;
 
 MultArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_MULTIPLY_OPERATOR
-	plays IS_ARITHMETIC_MULTIPLY_OPERATOR
-	plays IS_BINARY
-	plays IS_MULTIPLY
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_MULTIPLY_OPERATOR;
 
 NameArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_bases_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_cause_relation
-	plays is_comparators_relation
-	plays is_context_expr_relation
-	plays is_decorators_relation
-	plays is_default_relation
-	plays is_dest_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_globals_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_kwargs_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_names_relation
-	plays is_operand_relation
-	plays is_optional_vars_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_starargs_relation
-	plays is_step_relation
-	plays is_target_relation
-	plays is_targets_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ANNOTATION
 	plays IS_ANNOTATION_EXPRESSION_IDENTIFIER_NOOP
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_NAME_POSITIONAL
 	plays IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_IDENTIFIER
 	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IDENTIFIER_IF
 	plays IS_BODY_EXPRESSION_IDENTIFIER_IF_THEN
-	plays IS_CALL
 	plays IS_CALL_CALLEE_EXPRESSION_IDENTIFIER
 	plays IS_CALL_EXPRESSION_IDENTIFIER
-	plays IS_CALLEE
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_IF
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_WHILE
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IDENTIFIER
 	plays IS_EXPRESSION_FOR_IDENTIFIER_STATEMENT_UPDATE
 	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE
@@ -1718,331 +540,101 @@ NameArtifact sub PythonSourceArtifact
 	plays IS_EXPRESSION_IDENTIFIER_KEY_MAP
 	plays IS_EXPRESSION_IDENTIFIER_LEFT
 	plays IS_EXPRESSION_IDENTIFIER_MAP_VALUE
-	plays IS_EXPRESSION_IDENTIFIER_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_EXPRESSION_IDENTIFIER_RIGHT;
 
 NoneLiteralArtifact sub PythonSourceArtifact
-	# Attributes
-	has literalValueAttribute
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_cause_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ANNOTATION
 	plays IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NULL_PRIMITIVE
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NULL_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_NULL_PRIMITIVE
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_NULL_PRIMITIVE_VALUE
-	plays IS_BODY
+	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL_PRIMITIVE
+	plays IS_BINARY_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT
 	plays IS_BODY_ELSE_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE
 	plays IS_BODY_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
+	plays IS_CONDITION_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE
 	plays IS_EXPRESSION_KEY_LITERAL_MAP_NULL_PRIMITIVE
 	plays IS_EXPRESSION_LEFT_LITERAL_NULL_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_NULL_PRIMITIVE_VALUE
 	plays IS_EXPRESSION_LITERAL_NULL_PRIMITIVE
-	plays IS_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_NULL
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT;
 
 NonlocalArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_stmts_relation
-	plays has_names_relation
 	# Semantic
-	plays IS_INCOMPLETE
-	plays IS_INCOMPLETE_MODULE_STATEMENT_VISIBILITY
-	plays IS_MODULE
-	plays IS_STATEMENT
-	plays IS_VISIBILITY;
+	plays IS_INCOMPLETE_MODULE_STATEMENT_VISIBILITY;
 
 NoopLineArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_lines_relation
 	# Semantic
-	plays IS_COMMENT
-	plays IS_COMMENT_NOOP
-	plays IS_NOOP;
+	plays IS_COMMENT_NOOP;
 
 NoopSameLineArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_noop_lines_relation
 	# Semantic
-	plays IS_COMMENT
-	plays IS_COMMENT_NOOP
-	plays IS_NOOP;
+	plays IS_COMMENT_NOOP;
 
 NotArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BOOLEAN
-	plays IS_BOOLEAN_NOT_OPERATOR
-	plays IS_NOT
-	plays IS_OPERATOR;
+	plays IS_BOOLEAN_NOT_OPERATOR;
 
 NotEqArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_EQUAL
-	plays IS_EQUAL_NOT_OPERATOR_RELATIONAL
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_EQUAL_NOT_OPERATOR_RELATIONAL;
 
 NotInArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_ops_relation
 	# Semantic
-	plays IS_CONTAINS
-	plays IS_CONTAINS_NOT_OPERATOR_RELATIONAL
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_RELATIONAL;
+	plays IS_CONTAINS_NOT_OPERATOR_RELATIONAL;
 
 NumArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_cause_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_iter_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_step_relation
-	plays is_test_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGUMENT
+	plays IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NUMBER_PRIMITIVE
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NUMBER_POSITIONAL_PRIMITIVE
-	plays IS_ARGUMENT_CALL_EXPRESSION_LITERAL_NUMBER_POSITIONAL_PRIMITIVE
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE
 	plays IS_BODY_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE_THEN
-	plays IS_CALL
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE
 	plays IS_CONDITION_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_WHILE
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_FOR_LITERAL_NUMBER_PRIMITIVE_STATEMENT_UPDATE
 	plays IS_EXPRESSION_KEY_LITERAL_MAP_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE
 	plays IS_EXPRESSION_LITERAL_MAP_NUMBER_PRIMITIVE_VALUE
 	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE
-	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NUMBER
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT;
 
 OrArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BOOLEAN
-	plays IS_BOOLEAN_OPERATOR_OR
-	plays IS_OPERATOR
-	plays IS_OR;
+	plays IS_BOOLEAN_OPERATOR_OR;
 
 PassArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_finalbody_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_NOOP
-	plays IS_NOOP_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_NOOP_STATEMENT;
 
 PowArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_INCOMPLETE_OPERATOR
-	plays IS_ARITHMETIC_INCOMPLETE_OPERATOR
-	plays IS_BINARY
-	plays IS_INCOMPLETE
-	plays IS_OPERATOR;
+	plays IS_ARITHMETIC_INCOMPLETE_OPERATOR;
 
-PreviousNoopsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_noops_previous_relation
-	plays has_lines_relation
-	# Semantic
-	plays IS_NOOP;
+PreviousNoopsArtifact sub PythonSourceArtifact;
 
 PrintArtifact sub PythonSourceArtifact
-	# Attributes
-	has nlAttribute
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays has_dest_relation
-	plays has_noops_previous_relation
-	plays has_values_relation
 	# Semantic
-	plays IS_CALL
-	plays IS_CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER
-	plays IS_CALLEE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER;
+	plays IS_CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER;
 
 QualifiedIdentifierArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_bases_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_context_expr_relation
-	plays is_decorators_relation
-	plays is_default_relation
-	plays is_dest_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_globals_relation
-	plays is_ifs_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_optional_vars_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_step_relation
-	plays is_target_relation
-	plays is_targets_relation
-	plays is_tback_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_identifiers_relation
 	# Semantic
-	plays IS_ANNOTATION
 	plays IS_ANNOTATION_EXPRESSION_IDENTIFIER_NOOP_QUALIFIED
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_IDENTIFIER_NAME_POSITIONAL_QUALIFIED
 	plays IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL_QUALIFIED
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_ARGUMENT_EXPRESSION_IDENTIFIER_QUALIFIED_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IDENTIFIER_IF_QUALIFIED
 	plays IS_BODY_EXPRESSION_IDENTIFIER_IF_QUALIFIED_THEN
-	plays IS_CALL
 	plays IS_CALL_CALLEE_EXPRESSION_IDENTIFIER_QUALIFIED
 	plays IS_CALL_EXPRESSION_IDENTIFIER_QUALIFIED
-	plays IS_CALLEE
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_IF_QUALIFIED
 	plays IS_CONDITION_EXPRESSION_IDENTIFIER_QUALIFIED_WHILE
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED
 	plays IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED_STATEMENT_UPDATE
 	plays IS_EXPRESSION_FOR_IDENTIFIER_QUALIFIED_UPDATE
@@ -2050,481 +642,149 @@ QualifiedIdentifierArtifact sub PythonSourceArtifact
 	plays IS_EXPRESSION_IDENTIFIER_LEFT_QUALIFIED
 	plays IS_EXPRESSION_IDENTIFIER_MAP_QUALIFIED_VALUE
 	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED
-	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_QUALIFIED
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED_RIGHT;
 
 RaiseArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_cause_relation
-	plays has_exc_relation
-	plays has_inst_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
-	plays has_tback_relation
-	plays has_type_relation
 	# Semantic
-	plays IS_STATEMENT
-	plays IS_STATEMENT_THROW
-	plays IS_THROW;
+	plays IS_STATEMENT_THROW;
 
-RemainderNoopsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_noops_remainder_relation
-	plays has_lines_relation
-	# Semantic
-	plays IS_NOOP;
+RemainderNoopsArtifact sub PythonSourceArtifact;
 
 ReturnArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays is_orelse_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_RETURN
-	plays IS_RETURN_STATEMENT
-	plays IS_STATEMENT;
+	plays IS_RETURN_STATEMENT;
 
 RShiftArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BINARY
 	plays IS_BINARY_BITWISE_OPERATOR_RIGHT_SHIFT
-	plays IS_BITWISE
-	plays IS_BITWISE_OPERATOR_RIGHT_SHIFT
-	plays IS_OPERATOR
-	plays IS_RIGHT_SHIFT;
+	plays IS_BITWISE_OPERATOR_RIGHT_SHIFT;
 
-SameLineNoopsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_noops_sameline_relation
-	plays has_noop_lines_relation
-	# Semantic
-	plays IS_COMMENT;
+SameLineNoopsArtifact sub PythonSourceArtifact;
 
 SetArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_iter_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_elts_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_POSITIONAL_PRIMITIVE_SET
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_SET
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_SET_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_SET
 	plays IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_SET
-	plays IS_CALL
-	plays IS_DEFAULT
-	plays IS_EXPRESSION
+	plays IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_SET_THEN
+	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_SET
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_SET_STATEMENT_UPDATE
 	plays IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_SET
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_SET_VALUE
 	plays IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_SET
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_SET
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_SET
-	plays IS_STATEMENT
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_PRIMITIVE_SET;
 
 SetCompArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_comparators_relation
-	plays is_left_relation
-	plays is_right_relation
-	plays is_value_relation
-	plays has_elt_relation
-	plays has_generators_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FOR_FUNCTION_NAME_POSITIONAL_SET
 	plays IS_ARGUMENT_EXPRESSION_FOR_SET_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_FOR_LEFT_SET
 	plays IS_BINARY_EXPRESSION_FOR_RIGHT_SET
-	plays IS_CALL
-	plays IS_EXPRESSION
+	plays IS_BODY_EXPRESSION_FOR_IF_SET_THEN
 	plays IS_EXPRESSION_FOR_LEFT_SET
+	plays IS_EXPRESSION_FOR_MAP_SET_VALUE
 	plays IS_EXPRESSION_FOR_RIGHT_SET
-	plays IS_EXPRESSION_FOR_SET
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_SET
-	plays IS_VALUE;
+	plays IS_EXPRESSION_FOR_SET;
 
 SliceArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_dims_relation
-	plays is_slice_relation
-	plays has_lower_relation
-	plays has_step_relation
-	plays has_upper_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_INCOMPLETE;
 
 StarredArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_args_relation
-	plays is_elts_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ARGUMENT_CALL_FUNCTION_NAME_POSITIONAL
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_UNANNOTATED;
+	plays IS_ARGUMENT_CALL_FUNCTION_NAME_POSITIONAL;
 
 StrArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_identifiers_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ANNOTATION
 	plays IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_PRIMITIVE_STRING
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_POSITIONAL_PRIMITIVE_STRING
 	plays IS_ARGUMENT_CALL_EXPRESSION_LITERAL_POSITIONAL_PRIMITIVE_STRING
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_STRING
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_STRING_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING
 	plays IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING_THEN
-	plays IS_CALL
 	plays IS_CALL_EXPRESSION_LITERAL_PRIMITIVE_STRING
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_STATEMENT_STRING_UPDATE
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_STRING
 	plays IS_EXPRESSION_KEY_LITERAL_MAP_PRIMITIVE_STRING
 	plays IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_STRING_VALUE
 	plays IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_STRING
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING;
 
 SubArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_ARITHMETIC
 	plays IS_ARITHMETIC_BINARY_OPERATOR_SUBSTRACT
-	plays IS_ARITHMETIC_OPERATOR_SUBSTRACT
-	plays IS_BINARY
-	plays IS_OPERATOR
-	plays IS_SUBSTRACT;
+	plays IS_ARITHMETIC_OPERATOR_SUBSTRACT;
 
 SubscriptArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_annotation_relation
-	plays is_args_relation
-	plays is_bases_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_context_expr_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_func_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_msg_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_returns_relation
-	plays is_right_relation
-	plays is_step_relation
-	plays is_target_relation
-	plays is_targets_relation
-	plays is_tback_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_slice_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ANNOTATION
 	plays IS_ANNOTATION_EXPRESSION_INCOMPLETE_NOOP
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_INCOMPLETE_NAME_POSITIONAL
 	plays IS_ARGUMENT_CALL_EXPRESSION_INCOMPLETE_POSITIONAL
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_INCOMPLETE
 	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_LEFT
 	plays IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_INCOMPLETE
 	plays IS_BODY_EXPRESSION_IF_INCOMPLETE_THEN
-	plays IS_CALL
 	plays IS_CALL_CALLEE_EXPRESSION_INCOMPLETE
 	plays IS_CALL_EXPRESSION_INCOMPLETE
-	plays IS_CALLEE
-	plays IS_CONDITION
 	plays IS_CONDITION_EXPRESSION_IF_INCOMPLETE
 	plays IS_CONDITION_EXPRESSION_INCOMPLETE_WHILE
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_INCOMPLETE
 	plays IS_EXPRESSION_FOR_INCOMPLETE_STATEMENT_UPDATE
+	plays IS_EXPRESSION_FOR_INCOMPLETE_UPDATE
 	plays IS_EXPRESSION_INCOMPLETE
 	plays IS_EXPRESSION_INCOMPLETE_KEY_MAP
 	plays IS_EXPRESSION_INCOMPLETE_LEFT
 	plays IS_EXPRESSION_INCOMPLETE_MAP_VALUE
-	plays IS_EXPRESSION_INCOMPLETE_RIGHT
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_INCOMPLETE
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_NOOP
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_EXPRESSION_INCOMPLETE_RIGHT;
 
 TryArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_body_relation
-	plays has_finalbody_relation
-	plays has_handlers_relation
-	plays has_noops_sameline_relation
-	plays has_orelse_relation
 	# Semantic
-	plays IS_STATEMENT
-	plays IS_STATEMENT_TRY
-	plays IS_TRY;
+	plays IS_STATEMENT_TRY;
 
 TryBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BODY
-	plays IS_BODY_TRY
-	plays IS_TRY;
+	plays IS_BODY_TRY;
 
 TryElseArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_orelse_relation
 	# Semantic
-	plays IS_ELSE
-	plays IS_ELSE_TRY
-	plays IS_TRY;
+	plays IS_ELSE_TRY;
 
 TryExceptArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_finalbody_relation
-	plays is_orelse_relation
-	plays has_body_relation
-	plays has_handlers_relation
-	plays has_orelse_relation
 	# Semantic
-	plays IS_CATCH
-	plays IS_CATCH_STATEMENT_TRY
-	plays IS_STATEMENT
-	plays IS_TRY;
+	plays IS_CATCH_STATEMENT_TRY;
 
 TryFinalbodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_finalbody_relation
-	plays has_final_stmts_relation
 	# Semantic
-	plays IS_FINALLY
-	plays IS_FINALLY_TRY
-	plays IS_TRY;
+	plays IS_FINALLY_TRY;
 
 TryFinallyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays has_body_relation
-	plays has_finalbody_relation
 	# Semantic
-	plays IS_FINALLY
-	plays IS_FINALLY_STATEMENT_TRY
-	plays IS_STATEMENT
-	plays IS_TRY;
+	plays IS_FINALLY_STATEMENT_TRY;
 
 TryHandlersArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_handlers_relation
-	plays has_handlers_relation
 	# Semantic
-	plays IS_CATCH
-	plays IS_CATCH_TRY
-	plays IS_TRY;
+	plays IS_CATCH_TRY;
 
 TupleArtifact sub PythonSourceArtifact
-	# Attributes
-	has ctxAttribute
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_exc_relation
-	plays is_identifiers_relation
-	plays is_inst_relation
-	plays is_iter_relation
-	plays is_key_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_msg_relation
-	plays is_optional_vars_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_target_relation
-	plays is_targets_relation
-	plays is_test_relation
-	plays is_type_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_elts_relation
-	plays has_noops_previous_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_POSITIONAL_PRIMITIVE_TUPLE
 	plays IS_ARGUMENT_CALL_EXPRESSION_LITERAL_POSITIONAL_PRIMITIVE_TUPLE
 	plays IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE
 	plays IS_ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_TUPLE
 	plays IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_TUPLE
-	plays IS_BODY
 	plays IS_BODY_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE_TUPLE
 	plays IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_THEN_TUPLE
-	plays IS_CALL
 	plays IS_CALL_EXPRESSION_LITERAL_PRIMITIVE_TUPLE
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_STATEMENT_TUPLE_UPDATE
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_TUPLE
 	plays IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_TUPLE_UPDATE
@@ -2532,553 +792,71 @@ TupleArtifact sub PythonSourceArtifact
 	plays IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_TUPLE
 	plays IS_EXPRESSION_LITERAL_MAP_PRIMITIVE_TUPLE_VALUE
 	plays IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_TUPLE
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_TUPLE
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
+	plays IS_EXPRESSION_LITERAL_PRIMITIVE_TUPLE;
 
 UAddArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BITWISE
-	plays IS_BITWISE_OPERATOR_POSITIVE_UNARY
-	plays IS_OPERATOR
-	plays IS_POSITIVE
-	plays IS_UNARY;
+	plays IS_BITWISE_OPERATOR_POSITIVE_UNARY;
 
 UnaryOpArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_comparators_relation
-	plays is_default_relation
-	plays is_elt_relation
-	plays is_elts_relation
-	plays is_identifiers_relation
-	plays is_ifs_relation
-	plays is_keys_relation
-	plays is_left_relation
-	plays is_lower_relation
-	plays is_operand_relation
-	plays is_orelse_relation
-	plays is_right_relation
-	plays is_step_relation
-	plays is_test_relation
-	plays is_upper_relation
-	plays is_value_relation
-	plays is_values_relation
-	plays has_op_relation
-	plays has_operand_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_BOOLEAN_CALL_EXPRESSION_FUNCTION_NAME_OPERATOR_POSITIONAL_UNARY
 	plays IS_ARGUMENT_BOOLEAN_DEFAULT_EXPRESSION_OPERATOR_UNARY
 	plays IS_ARGUMENT_BOOLEAN_EXPRESSION_OPERATOR_UNARY_VALUE
-	plays IS_BINARY
 	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_OPERATOR_UNARY
 	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_RIGHT_UNARY
-	plays IS_BODY
 	plays IS_BODY_BOOLEAN_ELSE_EXPRESSION_IF_OPERATOR_UNARY
 	plays IS_BODY_BOOLEAN_EXPRESSION_IF_OPERATOR_THEN_UNARY
-	plays IS_BOOLEAN
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_IF_OPERATOR_UNARY
 	plays IS_BOOLEAN_CONDITION_EXPRESSION_OPERATOR_UNARY_WHILE
 	plays IS_BOOLEAN_EXPRESSION_KEY_MAP_OPERATOR_UNARY
 	plays IS_BOOLEAN_EXPRESSION_LEFT_OPERATOR_UNARY
 	plays IS_BOOLEAN_EXPRESSION_MAP_OPERATOR_UNARY_VALUE
 	plays IS_BOOLEAN_EXPRESSION_OPERATOR_RIGHT_UNARY
-	plays IS_BOOLEAN_EXPRESSION_OPERATOR_UNARY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_DEFAULT
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_KEY
-	plays IS_LEFT
-	plays IS_MAP
-	plays IS_NAME
-	plays IS_OPERATOR
-	plays IS_POSITIONAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNARY
-	plays IS_VALUE
-	plays IS_WHILE;
+	plays IS_BOOLEAN_EXPRESSION_OPERATOR_UNARY;
 
 USubArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_op_relation
 	# Semantic
-	plays IS_BITWISE
-	plays IS_BITWISE_NEGATIVE_OPERATOR_UNARY
-	plays IS_NEGATIVE
-	plays IS_OPERATOR
-	plays IS_UNARY;
+	plays IS_BITWISE_NEGATIVE_OPERATOR_UNARY;
 
 VarargArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
 	# Semantic
-	plays IS_ARGS_LIST
-	plays IS_ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_LIST
-	plays IS_NAME;
+	plays IS_ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME;
 
 WhileArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_body_relation
-	plays has_orelse_relation
-	plays has_test_relation
 	# Semantic
-	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
-	plays IS_WHILE;
+	plays IS_STATEMENT_WHILE;
 
 WithArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays is_body_stmts_relation
-	plays is_else_stmts_relation
-	plays is_final_stmts_relation
-	plays has_body_relation
-	plays has_context_expr_relation
-	plays has_items_relation
-	plays has_optional_vars_relation
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BLOCK_SCOPE_STATEMENT
-	plays IS_SCOPE
-	plays IS_STATEMENT
-	plays IS_UNANNOTATED;
+	plays IS_BLOCK_SCOPE_STATEMENT;
 
 WithBodyArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_body_relation
-	plays has_body_stmts_relation
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BLOCK_BODY_INCOMPLETE_SCOPE
-	plays IS_BODY
-	plays IS_INCOMPLETE
-	plays IS_SCOPE;
+	plays IS_BLOCK_BODY_INCOMPLETE_SCOPE;
 
 WithitemArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_items_relation
-	plays has_context_expr_relation
-	plays has_optional_vars_relation
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE;
+	plays IS_EXPRESSION_IDENTIFIER_INCOMPLETE;
 
 WithItemsArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_items_relation
-	plays has_items_relation
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BLOCK_INCOMPLETE_SCOPE
-	plays IS_INCOMPLETE
-	plays IS_SCOPE;
+	plays IS_BLOCK_INCOMPLETE_SCOPE;
 
 YieldArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_args_relation
-	plays is_body_stmts_relation
-	plays is_value_relation
-	plays has_noops_previous_relation
-	plays has_noops_sameline_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_ARGUMENT
 	plays IS_ARGUMENT_CALL_FUNCTION_INCOMPLETE_NAME_POSITIONAL_RETURN_STATEMENT
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
 	plays IS_INCOMPLETE_RETURN_RIGHT_STATEMENT
-	plays IS_INCOMPLETE_RETURN_STATEMENT
-	plays IS_NAME
-	plays IS_POSITIONAL
-	plays IS_RETURN
-	plays IS_RIGHT
-	plays IS_STATEMENT;
+	plays IS_INCOMPLETE_RETURN_STATEMENT;
 
 YieldFromArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_left_relation
-	plays is_test_relation
-	plays is_value_relation
-	plays has_value_relation
 	# Semantic
-	plays IS_EXPRESSION
+	plays IS_ARGUMENT_CALL_FUNCTION_INCOMPLETE_NAME_POSITIONAL_RETURN_STATEMENT
 	plays IS_EXPRESSION_INCOMPLETE_LEFT_RETURN_STATEMENT
-	plays IS_INCOMPLETE
 	plays IS_INCOMPLETE_RETURN_RIGHT_STATEMENT
-	plays IS_INCOMPLETE_RETURN_STATEMENT
-	plays IS_LEFT
-	plays IS_RETURN
-	plays IS_RIGHT
-	plays IS_STATEMENT;
-
-##########---------- Structural Relationships ----------##########
-parent_child_relation sub relationship
-	relates is_parent, relates is_child;
-is_parent sub role;
-is_child sub role;
-
-#####----- Python -----#####
-annotation_relation sub parent_child_relation
-	relates is_annotation_relation, relates has_annotation_relation;
-is_annotation_relation sub is_child;
-has_annotation_relation sub is_parent;
-
-args_relation sub parent_child_relation
-	relates is_args_relation, relates has_args_relation;
-is_args_relation sub is_child;
-has_args_relation sub is_parent;
-
-asname_relation sub parent_child_relation
-	relates is_asname_relation, relates has_asname_relation;
-is_asname_relation sub is_child;
-has_asname_relation sub is_parent;
-
-bases_relation sub parent_child_relation
-	relates is_bases_relation, relates has_bases_relation;
-is_bases_relation sub is_child;
-has_bases_relation sub is_parent;
-
-body_relation sub parent_child_relation
-	relates is_body_relation, relates has_body_relation;
-is_body_relation sub is_child;
-has_body_relation sub is_parent;
-
-body_stmts_relation sub parent_child_relation
-	relates is_body_stmts_relation, relates has_body_stmts_relation;
-is_body_stmts_relation sub is_child;
-has_body_stmts_relation sub is_parent;
-
-cause_relation sub parent_child_relation
-	relates is_cause_relation, relates has_cause_relation;
-is_cause_relation sub is_child;
-has_cause_relation sub is_parent;
-
-comparators_relation sub parent_child_relation
-	relates is_comparators_relation, relates has_comparators_relation;
-is_comparators_relation sub is_child;
-has_comparators_relation sub is_parent;
-
-context_expr_relation sub parent_child_relation
-	relates is_context_expr_relation, relates has_context_expr_relation;
-is_context_expr_relation sub is_child;
-has_context_expr_relation sub is_parent;
-
-decorator_list_relation sub parent_child_relation
-	relates is_decorator_list_relation, relates has_decorator_list_relation;
-is_decorator_list_relation sub is_child;
-has_decorator_list_relation sub is_parent;
-
-decorators_relation sub parent_child_relation
-	relates is_decorators_relation, relates has_decorators_relation;
-is_decorators_relation sub is_child;
-has_decorators_relation sub is_parent;
-
-default_relation sub parent_child_relation
-	relates is_default_relation, relates has_default_relation;
-is_default_relation sub is_child;
-has_default_relation sub is_parent;
-
-dest_relation sub parent_child_relation
-	relates is_dest_relation, relates has_dest_relation;
-is_dest_relation sub is_child;
-has_dest_relation sub is_parent;
-
-dims_relation sub parent_child_relation
-	relates is_dims_relation, relates has_dims_relation;
-is_dims_relation sub is_child;
-has_dims_relation sub is_parent;
-
-else_stmts_relation sub parent_child_relation
-	relates is_else_stmts_relation, relates has_else_stmts_relation;
-is_else_stmts_relation sub is_child;
-has_else_stmts_relation sub is_parent;
-
-elt_relation sub parent_child_relation
-	relates is_elt_relation, relates has_elt_relation;
-is_elt_relation sub is_child;
-has_elt_relation sub is_parent;
-
-elts_relation sub parent_child_relation
-	relates is_elts_relation, relates has_elts_relation;
-is_elts_relation sub is_child;
-has_elts_relation sub is_parent;
-
-exc_relation sub parent_child_relation
-	relates is_exc_relation, relates has_exc_relation;
-is_exc_relation sub is_child;
-has_exc_relation sub is_parent;
-
-final_stmts_relation sub parent_child_relation
-	relates is_final_stmts_relation, relates has_final_stmts_relation;
-is_final_stmts_relation sub is_child;
-has_final_stmts_relation sub is_parent;
-
-finalbody_relation sub parent_child_relation
-	relates is_finalbody_relation, relates has_finalbody_relation;
-is_finalbody_relation sub is_child;
-has_finalbody_relation sub is_parent;
-
-format_spec_relation sub parent_child_relation
-	relates is_format_spec_relation, relates has_format_spec_relation;
-is_format_spec_relation sub is_child;
-has_format_spec_relation sub is_parent;
-
-func_relation sub parent_child_relation
-	relates is_func_relation, relates has_func_relation;
-is_func_relation sub is_child;
-has_func_relation sub is_parent;
-
-generators_relation sub parent_child_relation
-	relates is_generators_relation, relates has_generators_relation;
-is_generators_relation sub is_child;
-has_generators_relation sub is_parent;
-
-globals_relation sub parent_child_relation
-	relates is_globals_relation, relates has_globals_relation;
-is_globals_relation sub is_child;
-has_globals_relation sub is_parent;
-
-handlers_relation sub parent_child_relation
-	relates is_handlers_relation, relates has_handlers_relation;
-is_handlers_relation sub is_child;
-has_handlers_relation sub is_parent;
-
-identifiers_relation sub parent_child_relation
-	relates is_identifiers_relation, relates has_identifiers_relation;
-is_identifiers_relation sub is_child;
-has_identifiers_relation sub is_parent;
-
-ifs_relation sub parent_child_relation
-	relates is_ifs_relation, relates has_ifs_relation;
-is_ifs_relation sub is_child;
-has_ifs_relation sub is_parent;
-
-inst_relation sub parent_child_relation
-	relates is_inst_relation, relates has_inst_relation;
-is_inst_relation sub is_child;
-has_inst_relation sub is_parent;
-
-items_relation sub parent_child_relation
-	relates is_items_relation, relates has_items_relation;
-is_items_relation sub is_child;
-has_items_relation sub is_parent;
-
-iter_relation sub parent_child_relation
-	relates is_iter_relation, relates has_iter_relation;
-is_iter_relation sub is_child;
-has_iter_relation sub is_parent;
-
-key_relation sub parent_child_relation
-	relates is_key_relation, relates has_key_relation;
-is_key_relation sub is_child;
-has_key_relation sub is_parent;
-
-keys_relation sub parent_child_relation
-	relates is_keys_relation, relates has_keys_relation;
-is_keys_relation sub is_child;
-has_keys_relation sub is_parent;
-
-keywords_relation sub parent_child_relation
-	relates is_keywords_relation, relates has_keywords_relation;
-is_keywords_relation sub is_child;
-has_keywords_relation sub is_parent;
-
-kwargs_relation sub parent_child_relation
-	relates is_kwargs_relation, relates has_kwargs_relation;
-is_kwargs_relation sub is_child;
-has_kwargs_relation sub is_parent;
-
-left_relation sub parent_child_relation
-	relates is_left_relation, relates has_left_relation;
-is_left_relation sub is_child;
-has_left_relation sub is_parent;
-
-level_relation sub parent_child_relation
-	relates is_level_relation, relates has_level_relation;
-is_level_relation sub is_child;
-has_level_relation sub is_parent;
-
-lines_relation sub parent_child_relation
-	relates is_lines_relation, relates has_lines_relation;
-is_lines_relation sub is_child;
-has_lines_relation sub is_parent;
-
-lower_relation sub parent_child_relation
-	relates is_lower_relation, relates has_lower_relation;
-is_lower_relation sub is_child;
-has_lower_relation sub is_parent;
-
-module_relation sub parent_child_relation
-	relates is_module_relation, relates has_module_relation;
-is_module_relation sub is_child;
-has_module_relation sub is_parent;
-
-msg_relation sub parent_child_relation
-	relates is_msg_relation, relates has_msg_relation;
-is_msg_relation sub is_child;
-has_msg_relation sub is_parent;
-
-name_list_relation sub parent_child_relation
-	relates is_name_list_relation, relates has_name_list_relation;
-is_name_list_relation sub is_child;
-has_name_list_relation sub is_parent;
-
-names_relation sub parent_child_relation
-	relates is_names_relation, relates has_names_relation;
-is_names_relation sub is_child;
-has_names_relation sub is_parent;
-
-noop_lines_relation sub parent_child_relation
-	relates is_noop_lines_relation, relates has_noop_lines_relation;
-is_noop_lines_relation sub is_child;
-has_noop_lines_relation sub is_parent;
-
-noops_previous_relation sub parent_child_relation
-	relates is_noops_previous_relation, relates has_noops_previous_relation;
-is_noops_previous_relation sub is_child;
-has_noops_previous_relation sub is_parent;
-
-noops_remainder_relation sub parent_child_relation
-	relates is_noops_remainder_relation, relates has_noops_remainder_relation;
-is_noops_remainder_relation sub is_child;
-has_noops_remainder_relation sub is_parent;
-
-noops_sameline_relation sub parent_child_relation
-	relates is_noops_sameline_relation, relates has_noops_sameline_relation;
-is_noops_sameline_relation sub is_child;
-has_noops_sameline_relation sub is_parent;
-
-op_relation sub parent_child_relation
-	relates is_op_relation, relates has_op_relation;
-is_op_relation sub is_child;
-has_op_relation sub is_parent;
-
-operand_relation sub parent_child_relation
-	relates is_operand_relation, relates has_operand_relation;
-is_operand_relation sub is_child;
-has_operand_relation sub is_parent;
-
-ops_relation sub parent_child_relation
-	relates is_ops_relation, relates has_ops_relation;
-is_ops_relation sub is_child;
-has_ops_relation sub is_parent;
-
-optional_vars_relation sub parent_child_relation
-	relates is_optional_vars_relation, relates has_optional_vars_relation;
-is_optional_vars_relation sub is_child;
-has_optional_vars_relation sub is_parent;
-
-orelse_relation sub parent_child_relation
-	relates is_orelse_relation, relates has_orelse_relation;
-is_orelse_relation sub is_child;
-has_orelse_relation sub is_parent;
-
-returns_relation sub parent_child_relation
-	relates is_returns_relation, relates has_returns_relation;
-is_returns_relation sub is_child;
-has_returns_relation sub is_parent;
-
-right_relation sub parent_child_relation
-	relates is_right_relation, relates has_right_relation;
-is_right_relation sub is_child;
-has_right_relation sub is_parent;
-
-slice_relation sub parent_child_relation
-	relates is_slice_relation, relates has_slice_relation;
-is_slice_relation sub is_child;
-has_slice_relation sub is_parent;
-
-starargs_relation sub parent_child_relation
-	relates is_starargs_relation, relates has_starargs_relation;
-is_starargs_relation sub is_child;
-has_starargs_relation sub is_parent;
-
-step_relation sub parent_child_relation
-	relates is_step_relation, relates has_step_relation;
-is_step_relation sub is_child;
-has_step_relation sub is_parent;
-
-target_relation sub parent_child_relation
-	relates is_target_relation, relates has_target_relation;
-is_target_relation sub is_child;
-has_target_relation sub is_parent;
-
-targets_relation sub parent_child_relation
-	relates is_targets_relation, relates has_targets_relation;
-is_targets_relation sub is_child;
-has_targets_relation sub is_parent;
-
-tback_relation sub parent_child_relation
-	relates is_tback_relation, relates has_tback_relation;
-is_tback_relation sub is_child;
-has_tback_relation sub is_parent;
-
-test_relation sub parent_child_relation
-	relates is_test_relation, relates has_test_relation;
-is_test_relation sub is_child;
-has_test_relation sub is_parent;
-
-type_relation sub parent_child_relation
-	relates is_type_relation, relates has_type_relation;
-is_type_relation sub is_child;
-has_type_relation sub is_parent;
-
-upper_relation sub parent_child_relation
-	relates is_upper_relation, relates has_upper_relation;
-is_upper_relation sub is_child;
-has_upper_relation sub is_parent;
-
-value_relation sub parent_child_relation
-	relates is_value_relation, relates has_value_relation;
-is_value_relation sub is_child;
-has_value_relation sub is_parent;
-
-values_relation sub parent_child_relation
-	relates is_values_relation, relates has_values_relation;
-is_values_relation sub is_child;
-has_values_relation sub is_parent;
+	plays IS_INCOMPLETE_RETURN_STATEMENT;
 
 ##########---------- Semantic Roles ----------##########
-ADD sub relationship
-	relates IS_ADD;
-IS_ADD sub role;
-
 ADD_ARITHMETIC_BINARY_OPERATOR sub relationship
 	relates IS_ADD_ARITHMETIC_BINARY_OPERATOR;
 IS_ADD_ARITHMETIC_BINARY_OPERATOR sub role;
@@ -3087,17 +865,9 @@ ADD_ARITHMETIC_OPERATOR sub relationship
 	relates IS_ADD_ARITHMETIC_OPERATOR;
 IS_ADD_ARITHMETIC_OPERATOR sub role;
 
-ALIAS sub relationship
-	relates IS_ALIAS;
-IS_ALIAS sub role;
-
 ALIAS_IDENTIFIER_IMPORT_PATHNAME sub relationship
 	relates IS_ALIAS_IDENTIFIER_IMPORT_PATHNAME;
 IS_ALIAS_IDENTIFIER_IMPORT_PATHNAME sub role;
-
-AND sub relationship
-	relates IS_AND;
-IS_AND sub role;
 
 AND_BINARY_BITWISE_OPERATOR sub relationship
 	relates IS_AND_BINARY_BITWISE_OPERATOR;
@@ -3111,18 +881,6 @@ AND_BOOLEAN_OPERATOR sub relationship
 	relates IS_AND_BOOLEAN_OPERATOR;
 IS_AND_BOOLEAN_OPERATOR sub role;
 
-ANNOTATION sub relationship
-	relates IS_ANNOTATION;
-IS_ANNOTATION sub role;
-
-ANNOTATION_BINARY_EXPRESSION_NOOP sub relationship
-	relates IS_ANNOTATION_BINARY_EXPRESSION_NOOP;
-IS_ANNOTATION_BINARY_EXPRESSION_NOOP sub role;
-
-ANNOTATION_CALL_EXPRESSION_FUNCTION_NOOP sub relationship
-	relates IS_ANNOTATION_CALL_EXPRESSION_FUNCTION_NOOP;
-IS_ANNOTATION_CALL_EXPRESSION_FUNCTION_NOOP sub role;
-
 ANNOTATION_EXPRESSION_IDENTIFIER_NOOP sub relationship
 	relates IS_ANNOTATION_EXPRESSION_IDENTIFIER_NOOP;
 IS_ANNOTATION_EXPRESSION_IDENTIFIER_NOOP sub role;
@@ -3135,17 +893,21 @@ ANNOTATION_EXPRESSION_INCOMPLETE_NOOP sub relationship
 	relates IS_ANNOTATION_EXPRESSION_INCOMPLETE_NOOP;
 IS_ANNOTATION_EXPRESSION_INCOMPLETE_NOOP sub role;
 
+ANNOTATION_EXPRESSION_LIST_LITERAL_NOOP_PRIMITIVE sub relationship
+	relates IS_ANNOTATION_EXPRESSION_LIST_LITERAL_NOOP_PRIMITIVE;
+IS_ANNOTATION_EXPRESSION_LIST_LITERAL_NOOP_PRIMITIVE sub role;
+
 ANNOTATION_EXPRESSION_LITERAL_NOOP_NULL_PRIMITIVE sub relationship
 	relates IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NULL_PRIMITIVE;
 IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NULL_PRIMITIVE sub role;
 
+ANNOTATION_EXPRESSION_LITERAL_NOOP_NUMBER_PRIMITIVE sub relationship
+	relates IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NUMBER_PRIMITIVE;
+IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_NUMBER_PRIMITIVE sub role;
+
 ANNOTATION_EXPRESSION_LITERAL_NOOP_PRIMITIVE_STRING sub relationship
 	relates IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_PRIMITIVE_STRING;
 IS_ANNOTATION_EXPRESSION_LITERAL_NOOP_PRIMITIVE_STRING sub role;
-
-ANONYMOUS sub relationship
-	relates IS_ANONYMOUS;
-IS_ANONYMOUS sub role;
 
 ANONYMOUS_ARGUMENT_CALL_DECLARATION_FUNCTION_NAME_POSITIONAL_VALUE sub relationship
 	relates IS_ANONYMOUS_ARGUMENT_CALL_DECLARATION_FUNCTION_NAME_POSITIONAL_VALUE;
@@ -3171,10 +933,6 @@ ANONYMOUS_CALL_CALLEE_DECLARATION_FUNCTION_VALUE sub relationship
 	relates IS_ANONYMOUS_CALL_CALLEE_DECLARATION_FUNCTION_VALUE;
 IS_ANONYMOUS_CALL_CALLEE_DECLARATION_FUNCTION_VALUE sub role;
 
-ANONYMOUS_CONDITION_DECLARATION_FUNCTION_IF_VALUE sub relationship
-	relates IS_ANONYMOUS_CONDITION_DECLARATION_FUNCTION_IF_VALUE;
-IS_ANONYMOUS_CONDITION_DECLARATION_FUNCTION_IF_VALUE sub role;
-
 ANONYMOUS_DECLARATION_FUNCTION_MAP_VALUE sub relationship
 	relates IS_ANONYMOUS_DECLARATION_FUNCTION_MAP_VALUE;
 IS_ANONYMOUS_DECLARATION_FUNCTION_MAP_VALUE sub role;
@@ -3187,10 +945,6 @@ ANONYMOUS_DECLARATION_FUNCTION_VALUE sub relationship
 	relates IS_ANONYMOUS_DECLARATION_FUNCTION_VALUE;
 IS_ANONYMOUS_DECLARATION_FUNCTION_VALUE sub role;
 
-ARGS_LIST sub relationship
-	relates IS_ARGS_LIST;
-IS_ARGS_LIST sub role;
-
 ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME sub relationship
 	relates IS_ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME;
 IS_ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME sub role;
@@ -3198,10 +952,6 @@ IS_ARGS_LIST_DECLARATION_FUNCTION_LIST_NAME sub role;
 ARGS_LIST_DECLARATION_FUNCTION_MAP_NAME sub relationship
 	relates IS_ARGS_LIST_DECLARATION_FUNCTION_MAP_NAME;
 IS_ARGS_LIST_DECLARATION_FUNCTION_MAP_NAME sub role;
-
-ARGUMENT sub relationship
-	relates IS_ARGUMENT;
-IS_ARGUMENT sub role;
 
 ARGUMENT_BINARY_CALL_CONDITION_EXPRESSION_FUNCTION_NAME_POSITIONAL sub relationship
 	relates IS_ARGUMENT_BINARY_CALL_CONDITION_EXPRESSION_FUNCTION_NAME_POSITIONAL;
@@ -3363,10 +1113,6 @@ ARGUMENT_CALL_EXPRESSION_INCOMPLETE_POSITIONAL sub relationship
 	relates IS_ARGUMENT_CALL_EXPRESSION_INCOMPLETE_POSITIONAL;
 IS_ARGUMENT_CALL_EXPRESSION_INCOMPLETE_POSITIONAL sub role;
 
-ARGUMENT_CALL_EXPRESSION_LITERAL_NUMBER_POSITIONAL_PRIMITIVE sub relationship
-	relates IS_ARGUMENT_CALL_EXPRESSION_LITERAL_NUMBER_POSITIONAL_PRIMITIVE;
-IS_ARGUMENT_CALL_EXPRESSION_LITERAL_NUMBER_POSITIONAL_PRIMITIVE sub role;
-
 ARGUMENT_CALL_EXPRESSION_LITERAL_POSITIONAL_PRIMITIVE_STRING sub relationship
 	relates IS_ARGUMENT_CALL_EXPRESSION_LITERAL_POSITIONAL_PRIMITIVE_STRING;
 IS_ARGUMENT_CALL_EXPRESSION_LITERAL_POSITIONAL_PRIMITIVE_STRING sub role;
@@ -3447,6 +1193,10 @@ ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE sub relationship
 	relates IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE;
 IS_ARGUMENT_DEFAULT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE sub role;
 
+ARGUMENT_DEFAULT_IDENTIFIER_INCOMPLETE sub relationship
+	relates IS_ARGUMENT_DEFAULT_IDENTIFIER_INCOMPLETE;
+IS_ARGUMENT_DEFAULT_IDENTIFIER_INCOMPLETE sub role;
+
 ARGUMENT_EXPRESSION_FOR_LIST_VALUE sub relationship
 	relates IS_ARGUMENT_EXPRESSION_FOR_LIST_VALUE;
 IS_ARGUMENT_EXPRESSION_FOR_LIST_VALUE sub role;
@@ -3507,13 +1257,13 @@ ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE_VALUE sub relationship
 	relates IS_ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE_VALUE;
 IS_ARGUMENT_EXPRESSION_LITERAL_PRIMITIVE_TUPLE_VALUE sub role;
 
+ARGUMENT_INCOMPLETE_STATEMENT_VALUE sub relationship
+	relates IS_ARGUMENT_INCOMPLETE_STATEMENT_VALUE;
+IS_ARGUMENT_INCOMPLETE_STATEMENT_VALUE sub role;
+
 ARGUMENT_VALUE sub relationship
 	relates IS_ARGUMENT_VALUE;
 IS_ARGUMENT_VALUE sub role;
-
-ARITHMETIC sub relationship
-	relates IS_ARITHMETIC;
-IS_ARITHMETIC sub role;
 
 ARITHMETIC_BINARY_DIVIDE_INCOMPLETE_OPERATOR sub relationship
 	relates IS_ARITHMETIC_BINARY_DIVIDE_INCOMPLETE_OPERATOR;
@@ -3551,6 +1301,10 @@ ARITHMETIC_DIVIDE_OPERATOR sub relationship
 	relates IS_ARITHMETIC_DIVIDE_OPERATOR;
 IS_ARITHMETIC_DIVIDE_OPERATOR sub role;
 
+ARITHMETIC_INCOMPLETE_MULTIPLY_OPERATOR sub relationship
+	relates IS_ARITHMETIC_INCOMPLETE_MULTIPLY_OPERATOR;
+IS_ARITHMETIC_INCOMPLETE_MULTIPLY_OPERATOR sub role;
+
 ARITHMETIC_INCOMPLETE_OPERATOR sub relationship
 	relates IS_ARITHMETIC_INCOMPLETE_OPERATOR;
 IS_ARITHMETIC_INCOMPLETE_OPERATOR sub role;
@@ -3567,17 +1321,9 @@ ARITHMETIC_OPERATOR_SUBSTRACT sub relationship
 	relates IS_ARITHMETIC_OPERATOR_SUBSTRACT;
 IS_ARITHMETIC_OPERATOR_SUBSTRACT sub role;
 
-ASSERT sub relationship
-	relates IS_ASSERT;
-IS_ASSERT sub role;
-
 ASSERT_STATEMENT sub relationship
 	relates IS_ASSERT_STATEMENT;
 IS_ASSERT_STATEMENT sub role;
-
-ASSIGNMENT sub relationship
-	relates IS_ASSIGNMENT;
-IS_ASSIGNMENT sub role;
 
 ASSIGNMENT_BINARY_EXPRESSION sub relationship
 	relates IS_ASSIGNMENT_BINARY_EXPRESSION;
@@ -3591,17 +1337,9 @@ ASSIGNMENT_BINARY_OPERATOR sub relationship
 	relates IS_ASSIGNMENT_BINARY_OPERATOR;
 IS_ASSIGNMENT_BINARY_OPERATOR sub role;
 
-BASE sub relationship
-	relates IS_BASE;
-IS_BASE sub role;
-
 BASE_DECLARATION_TYPE sub relationship
 	relates IS_BASE_DECLARATION_TYPE;
 IS_BASE_DECLARATION_TYPE sub role;
-
-BINARY sub relationship
-	relates IS_BINARY;
-IS_BINARY sub role;
 
 BINARY_BITWISE_LEFT_SHIFT_OPERATOR sub relationship
 	relates IS_BINARY_BITWISE_LEFT_SHIFT_OPERATOR;
@@ -3642,10 +1380,6 @@ IS_BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LEFT_LITERAL sub role;
 BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LITERAL_RIGHT sub relationship
 	relates IS_BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LITERAL_RIGHT;
 IS_BINARY_BOOLEAN_EXPRESSION_INCOMPLETE_LITERAL_RIGHT sub role;
-
-BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL_PRIMITIVE sub relationship
-	relates IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL_PRIMITIVE;
-IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL_PRIMITIVE sub role;
 
 BINARY_BOOLEAN_EXPRESSION_LEFT_OPERATOR_UNARY sub relationship
 	relates IS_BINARY_BOOLEAN_EXPRESSION_LEFT_OPERATOR_UNARY;
@@ -3767,6 +1501,10 @@ BINARY_EXPRESSION_INCOMPLETE_LEFT_LITERAL_PRIMITIVE_STRING sub relationship
 	relates IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_LITERAL_PRIMITIVE_STRING;
 IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_LITERAL_PRIMITIVE_STRING sub role;
 
+BINARY_EXPRESSION_INCOMPLETE_LEFT_STATEMENT sub relationship
+	relates IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_STATEMENT;
+IS_BINARY_EXPRESSION_INCOMPLETE_LEFT_STATEMENT sub role;
+
 BINARY_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING sub relationship
 	relates IS_BINARY_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING;
 IS_BINARY_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING sub role;
@@ -3774,6 +1512,10 @@ IS_BINARY_EXPRESSION_INCOMPLETE_LITERAL_PRIMITIVE_RIGHT_STRING sub role;
 BINARY_EXPRESSION_INCOMPLETE_RIGHT sub relationship
 	relates IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT;
 IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT sub role;
+
+BINARY_EXPRESSION_INCOMPLETE_RIGHT_STATEMENT sub relationship
+	relates IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_STATEMENT;
+IS_BINARY_EXPRESSION_INCOMPLETE_RIGHT_STATEMENT sub role;
 
 BINARY_EXPRESSION_KEY_MAP sub relationship
 	relates IS_BINARY_EXPRESSION_KEY_MAP;
@@ -3786,6 +1528,10 @@ IS_BINARY_EXPRESSION_LEFT sub role;
 BINARY_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE sub relationship
 	relates IS_BINARY_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE;
 IS_BINARY_EXPRESSION_LEFT_LIST_LITERAL_PRIMITIVE sub role;
+
+BINARY_EXPRESSION_LEFT_LITERAL_NULL_PRIMITIVE sub relationship
+	relates IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL_PRIMITIVE;
+IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL_PRIMITIVE sub role;
 
 BINARY_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE sub relationship
 	relates IS_BINARY_EXPRESSION_LEFT_LITERAL_NUMBER_PRIMITIVE;
@@ -3811,6 +1557,10 @@ BINARY_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT sub relationship
 	relates IS_BINARY_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT;
 IS_BINARY_EXPRESSION_LITERAL_MAP_PRIMITIVE_RIGHT sub role;
 
+BINARY_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT sub relationship
+	relates IS_BINARY_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT;
+IS_BINARY_EXPRESSION_LITERAL_NULL_PRIMITIVE_RIGHT sub role;
+
 BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT sub relationship
 	relates IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT;
 IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT sub role;
@@ -3834,10 +1584,6 @@ IS_BINARY_EXPRESSION_MAP_VALUE sub role;
 BINARY_EXPRESSION_RIGHT sub relationship
 	relates IS_BINARY_EXPRESSION_RIGHT;
 IS_BINARY_EXPRESSION_RIGHT sub role;
-
-BITWISE sub relationship
-	relates IS_BITWISE;
-IS_BITWISE sub role;
 
 BITWISE_LEFT_SHIFT_OPERATOR sub relationship
 	relates IS_BITWISE_LEFT_SHIFT_OPERATOR;
@@ -3867,10 +1613,6 @@ BITWISE_OPERATOR_XOR sub relationship
 	relates IS_BITWISE_OPERATOR_XOR;
 IS_BITWISE_OPERATOR_XOR sub role;
 
-BLOCK sub relationship
-	relates IS_BLOCK;
-IS_BLOCK sub role;
-
 BLOCK_BODY_INCOMPLETE_SCOPE sub relationship
 	relates IS_BLOCK_BODY_INCOMPLETE_SCOPE;
 IS_BLOCK_BODY_INCOMPLETE_SCOPE sub role;
@@ -3882,10 +1624,6 @@ IS_BLOCK_INCOMPLETE_SCOPE sub role;
 BLOCK_SCOPE_STATEMENT sub relationship
 	relates IS_BLOCK_SCOPE_STATEMENT;
 IS_BLOCK_SCOPE_STATEMENT sub role;
-
-BODY sub relationship
-	relates IS_BODY;
-IS_BODY sub role;
 
 BODY_BOOLEAN_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE sub relationship
 	relates IS_BODY_BOOLEAN_ELSE_EXPRESSION_IF_LITERAL_PRIMITIVE;
@@ -4003,6 +1741,10 @@ BODY_EXPRESSION_FOR_IF_MAP_THEN sub relationship
 	relates IS_BODY_EXPRESSION_FOR_IF_MAP_THEN;
 IS_BODY_EXPRESSION_FOR_IF_MAP_THEN sub role;
 
+BODY_EXPRESSION_FOR_IF_SET_THEN sub relationship
+	relates IS_BODY_EXPRESSION_FOR_IF_SET_THEN;
+IS_BODY_EXPRESSION_FOR_IF_SET_THEN sub role;
+
 BODY_EXPRESSION_IDENTIFIER_IF_QUALIFIED_THEN sub relationship
 	relates IS_BODY_EXPRESSION_IDENTIFIER_IF_QUALIFIED_THEN;
 IS_BODY_EXPRESSION_IDENTIFIER_IF_QUALIFIED_THEN sub role;
@@ -4035,6 +1777,10 @@ BODY_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE_THEN sub relationship
 	relates IS_BODY_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE_THEN;
 IS_BODY_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE_THEN sub role;
 
+BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_SET_THEN sub relationship
+	relates IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_SET_THEN;
+IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_SET_THEN sub role;
+
 BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING_THEN sub relationship
 	relates IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING_THEN;
 IS_BODY_EXPRESSION_IF_LITERAL_PRIMITIVE_STRING_THEN sub role;
@@ -4047,6 +1793,10 @@ BODY_FOR_THEN sub relationship
 	relates IS_BODY_FOR_THEN;
 IS_BODY_FOR_THEN sub role;
 
+BODY_IDENTIFIER_IF_INCOMPLETE_THEN sub relationship
+	relates IS_BODY_IDENTIFIER_IF_INCOMPLETE_THEN;
+IS_BODY_IDENTIFIER_IF_INCOMPLETE_THEN sub role;
+
 BODY_IF_THEN sub relationship
 	relates IS_BODY_IF_THEN;
 IS_BODY_IF_THEN sub role;
@@ -4058,10 +1808,6 @@ IS_BODY_THEN_WHILE sub role;
 BODY_TRY sub relationship
 	relates IS_BODY_TRY;
 IS_BODY_TRY sub role;
-
-BOOLEAN sub relationship
-	relates IS_BOOLEAN;
-IS_BOOLEAN sub role;
 
 BOOLEAN_CALL_CALLEE_INCOMPLETE_LITERAL sub relationship
 	relates IS_BOOLEAN_CALL_CALLEE_INCOMPLETE_LITERAL;
@@ -4143,6 +1889,10 @@ BOOLEAN_FOR_INCOMPLETE_LITERAL_STATEMENT_UPDATE sub relationship
 	relates IS_BOOLEAN_FOR_INCOMPLETE_LITERAL_STATEMENT_UPDATE;
 IS_BOOLEAN_FOR_INCOMPLETE_LITERAL_STATEMENT_UPDATE sub role;
 
+BOOLEAN_INCOMPLETE_KEY_LITERAL_MAP sub relationship
+	relates IS_BOOLEAN_INCOMPLETE_KEY_LITERAL_MAP;
+IS_BOOLEAN_INCOMPLETE_KEY_LITERAL_MAP sub role;
+
 BOOLEAN_INCOMPLETE_LEFT_LITERAL sub relationship
 	relates IS_BOOLEAN_INCOMPLETE_LEFT_LITERAL;
 IS_BOOLEAN_INCOMPLETE_LEFT_LITERAL sub role;
@@ -4167,17 +1917,9 @@ BOOLEAN_OPERATOR_OR sub relationship
 	relates IS_BOOLEAN_OPERATOR_OR;
 IS_BOOLEAN_OPERATOR_OR sub role;
 
-BREAK sub relationship
-	relates IS_BREAK;
-IS_BREAK sub role;
-
 BREAK_STATEMENT sub relationship
 	relates IS_BREAK_STATEMENT;
 IS_BREAK_STATEMENT sub role;
-
-BYTE_STRING sub relationship
-	relates IS_BYTE_STRING;
-IS_BYTE_STRING sub role;
 
 BYTE_STRING_EXPRESSION_FOR_LITERAL_PRIMITIVE sub relationship
 	relates IS_BYTE_STRING_EXPRESSION_FOR_LITERAL_PRIMITIVE;
@@ -4206,10 +1948,6 @@ IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE sub role;
 BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT sub relationship
 	relates IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT;
 IS_BYTE_STRING_EXPRESSION_LITERAL_PRIMITIVE_RIGHT sub role;
-
-CALL sub relationship
-	relates IS_CALL;
-IS_CALL sub role;
 
 CALL_CALLEE_EXPRESSION_FUNCTION sub relationship
 	relates IS_CALL_CALLEE_EXPRESSION_FUNCTION;
@@ -4299,14 +2037,6 @@ CALL_EXPRESSION_LITERAL_PRIMITIVE_TUPLE sub relationship
 	relates IS_CALL_EXPRESSION_LITERAL_PRIMITIVE_TUPLE;
 IS_CALL_EXPRESSION_LITERAL_PRIMITIVE_TUPLE sub role;
 
-CALLEE sub relationship
-	relates IS_CALLEE;
-IS_CALLEE sub role;
-
-CATCH sub relationship
-	relates IS_CATCH;
-IS_CATCH sub role;
-
 CATCH_IDENTIFIER_TRY sub relationship
 	relates IS_CATCH_IDENTIFIER_TRY;
 IS_CATCH_IDENTIFIER_TRY sub role;
@@ -4319,17 +2049,9 @@ CATCH_TRY sub relationship
 	relates IS_CATCH_TRY;
 IS_CATCH_TRY sub role;
 
-COMMENT sub relationship
-	relates IS_COMMENT;
-IS_COMMENT sub role;
-
 COMMENT_NOOP sub relationship
 	relates IS_COMMENT_NOOP;
 IS_COMMENT_NOOP sub role;
-
-CONDITION sub relationship
-	relates IS_CONDITION;
-IS_CONDITION sub role;
 
 CONDITION_EXPRESSION_FOR_IF_LIST sub relationship
 	relates IS_CONDITION_EXPRESSION_FOR_IF_LIST;
@@ -4359,6 +2081,10 @@ CONDITION_EXPRESSION_IF_INCOMPLETE sub relationship
 	relates IS_CONDITION_EXPRESSION_IF_INCOMPLETE;
 IS_CONDITION_EXPRESSION_IF_INCOMPLETE sub role;
 
+CONDITION_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE sub relationship
+	relates IS_CONDITION_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE;
+IS_CONDITION_EXPRESSION_IF_LITERAL_NULL_PRIMITIVE sub role;
+
 CONDITION_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE sub relationship
 	relates IS_CONDITION_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE;
 IS_CONDITION_EXPRESSION_IF_LITERAL_NUMBER_PRIMITIVE sub role;
@@ -4383,10 +2109,6 @@ CONDITION_IF_INCOMPLETE_STATEMENT sub relationship
 	relates IS_CONDITION_IF_INCOMPLETE_STATEMENT;
 IS_CONDITION_IF_INCOMPLETE_STATEMENT sub role;
 
-CONTAINS sub relationship
-	relates IS_CONTAINS;
-IS_CONTAINS sub role;
-
 CONTAINS_NOT_OPERATOR_RELATIONAL sub relationship
 	relates IS_CONTAINS_NOT_OPERATOR_RELATIONAL;
 IS_CONTAINS_NOT_OPERATOR_RELATIONAL sub role;
@@ -4395,17 +2117,9 @@ CONTAINS_OPERATOR_RELATIONAL sub relationship
 	relates IS_CONTAINS_OPERATOR_RELATIONAL;
 IS_CONTAINS_OPERATOR_RELATIONAL sub role;
 
-CONTINUE sub relationship
-	relates IS_CONTINUE;
-IS_CONTINUE sub role;
-
 CONTINUE_STATEMENT sub relationship
 	relates IS_CONTINUE_STATEMENT;
 IS_CONTINUE_STATEMENT sub role;
-
-DECLARATION sub relationship
-	relates IS_DECLARATION;
-IS_DECLARATION sub role;
 
 DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_NAME sub relationship
 	relates IS_DECLARATION_FUNCTION_IDENTIFIER_INCOMPLETE_NAME;
@@ -4427,25 +2141,9 @@ DECLARATION_IMPORT_STATEMENT sub relationship
 	relates IS_DECLARATION_IMPORT_STATEMENT;
 IS_DECLARATION_IMPORT_STATEMENT sub role;
 
-DEFAULT sub relationship
-	relates IS_DEFAULT;
-IS_DEFAULT sub role;
-
-DIVIDE sub relationship
-	relates IS_DIVIDE;
-IS_DIVIDE sub role;
-
-ELSE sub relationship
-	relates IS_ELSE;
-IS_ELSE sub role;
-
 ELSE_TRY sub relationship
 	relates IS_ELSE_TRY;
 IS_ELSE_TRY sub role;
-
-EQUAL sub relationship
-	relates IS_EQUAL;
-IS_EQUAL sub role;
 
 EQUAL_NOT_OPERATOR_RELATIONAL sub relationship
 	relates IS_EQUAL_NOT_OPERATOR_RELATIONAL;
@@ -4454,10 +2152,6 @@ IS_EQUAL_NOT_OPERATOR_RELATIONAL sub role;
 EQUAL_OPERATOR_RELATIONAL sub relationship
 	relates IS_EQUAL_OPERATOR_RELATIONAL;
 IS_EQUAL_OPERATOR_RELATIONAL sub role;
-
-EXPRESSION sub relationship
-	relates IS_EXPRESSION;
-IS_EXPRESSION sub role;
 
 EXPRESSION_FOR sub relationship
 	relates IS_EXPRESSION_FOR;
@@ -4511,6 +2205,10 @@ EXPRESSION_FOR_INCOMPLETE_STATEMENT_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_INCOMPLETE_STATEMENT_UPDATE;
 IS_EXPRESSION_FOR_INCOMPLETE_STATEMENT_UPDATE sub role;
 
+EXPRESSION_FOR_INCOMPLETE_UPDATE sub relationship
+	relates IS_EXPRESSION_FOR_INCOMPLETE_UPDATE;
+IS_EXPRESSION_FOR_INCOMPLETE_UPDATE sub role;
+
 EXPRESSION_FOR_LEFT_LIST sub relationship
 	relates IS_EXPRESSION_FOR_LEFT_LIST;
 IS_EXPRESSION_FOR_LEFT_LIST sub role;
@@ -4531,6 +2229,10 @@ EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_STATEMENT_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_STATEMENT_UPDATE;
 IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_STATEMENT_UPDATE sub role;
 
+EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_UPDATE sub relationship
+	relates IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_UPDATE;
+IS_EXPRESSION_FOR_LIST_LITERAL_PRIMITIVE_UPDATE sub role;
+
 EXPRESSION_FOR_LIST_MAP_VALUE sub relationship
 	relates IS_EXPRESSION_FOR_LIST_MAP_VALUE;
 IS_EXPRESSION_FOR_LIST_MAP_VALUE sub role;
@@ -4543,9 +2245,9 @@ EXPRESSION_FOR_LIST_STATEMENT_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_LIST_STATEMENT_UPDATE;
 IS_EXPRESSION_FOR_LIST_STATEMENT_UPDATE sub role;
 
-EXPRESSION_FOR_LITERAL_NUMBER_PRIMITIVE_STATEMENT_UPDATE sub relationship
-	relates IS_EXPRESSION_FOR_LITERAL_NUMBER_PRIMITIVE_STATEMENT_UPDATE;
-IS_EXPRESSION_FOR_LITERAL_NUMBER_PRIMITIVE_STATEMENT_UPDATE sub role;
+EXPRESSION_FOR_LITERAL_PRIMITIVE_SET sub relationship
+	relates IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_SET;
+IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_SET sub role;
 
 EXPRESSION_FOR_LITERAL_PRIMITIVE_SET_STATEMENT_UPDATE sub relationship
 	relates IS_EXPRESSION_FOR_LITERAL_PRIMITIVE_SET_STATEMENT_UPDATE;
@@ -4578,6 +2280,10 @@ IS_EXPRESSION_FOR_MAP sub role;
 EXPRESSION_FOR_MAP_RIGHT sub relationship
 	relates IS_EXPRESSION_FOR_MAP_RIGHT;
 IS_EXPRESSION_FOR_MAP_RIGHT sub role;
+
+EXPRESSION_FOR_MAP_SET_VALUE sub relationship
+	relates IS_EXPRESSION_FOR_MAP_SET_VALUE;
+IS_EXPRESSION_FOR_MAP_SET_VALUE sub role;
 
 EXPRESSION_FOR_MAP_VALUE sub relationship
 	relates IS_EXPRESSION_FOR_MAP_VALUE;
@@ -4827,17 +2533,9 @@ EXPRESSION_RIGHT sub relationship
 	relates IS_EXPRESSION_RIGHT;
 IS_EXPRESSION_RIGHT sub role;
 
-FILE sub relationship
-	relates IS_FILE;
-IS_FILE sub role;
-
 FILE_MODULE sub relationship
 	relates IS_FILE_MODULE;
 IS_FILE_MODULE sub role;
-
-FINALLY sub relationship
-	relates IS_FINALLY;
-IS_FINALLY sub role;
 
 FINALLY_STATEMENT_TRY sub relationship
 	relates IS_FINALLY_STATEMENT_TRY;
@@ -4847,13 +2545,13 @@ FINALLY_TRY sub relationship
 	relates IS_FINALLY_TRY;
 IS_FINALLY_TRY sub role;
 
-FOR sub relationship
-	relates IS_FOR;
-IS_FOR sub role;
-
 FOR_INCOMPLETE_ITERATOR_STATEMENT sub relationship
 	relates IS_FOR_INCOMPLETE_ITERATOR_STATEMENT;
 IS_FOR_INCOMPLETE_ITERATOR_STATEMENT sub role;
+
+FOR_INCOMPLETE_STATEMENT_UPDATE sub relationship
+	relates IS_FOR_INCOMPLETE_STATEMENT_UPDATE;
+IS_FOR_INCOMPLETE_STATEMENT_UPDATE sub role;
 
 FOR_ITERATOR_STATEMENT sub relationship
 	relates IS_FOR_ITERATOR_STATEMENT;
@@ -4863,29 +2561,13 @@ FOR_STATEMENT_UPDATE sub relationship
 	relates IS_FOR_STATEMENT_UPDATE;
 IS_FOR_STATEMENT_UPDATE sub role;
 
-FUNCTION sub relationship
-	relates IS_FUNCTION;
-IS_FUNCTION sub role;
-
-GREATER_THAN sub relationship
-	relates IS_GREATER_THAN;
-IS_GREATER_THAN sub role;
-
 GREATER_THAN_OPERATOR_RELATIONAL sub relationship
 	relates IS_GREATER_THAN_OPERATOR_RELATIONAL;
 IS_GREATER_THAN_OPERATOR_RELATIONAL sub role;
 
-GREATER_THAN_OR_EQUAL sub relationship
-	relates IS_GREATER_THAN_OR_EQUAL;
-IS_GREATER_THAN_OR_EQUAL sub role;
-
 GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relationship
 	relates IS_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 IS_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub role;
-
-IDENTICAL sub relationship
-	relates IS_IDENTICAL;
-IS_IDENTICAL sub role;
 
 IDENTICAL_NOT_OPERATOR_RELATIONAL sub relationship
 	relates IS_IDENTICAL_NOT_OPERATOR_RELATIONAL;
@@ -4894,10 +2576,6 @@ IS_IDENTICAL_NOT_OPERATOR_RELATIONAL sub role;
 IDENTICAL_OPERATOR_RELATIONAL sub relationship
 	relates IS_IDENTICAL_OPERATOR_RELATIONAL;
 IS_IDENTICAL_OPERATOR_RELATIONAL sub role;
-
-IDENTIFIER sub relationship
-	relates IS_IDENTIFIER;
-IS_IDENTIFIER sub role;
 
 IDENTIFIER_IMPORT_INCOMPLETE_PATHNAME sub relationship
 	relates IS_IDENTIFIER_IMPORT_INCOMPLETE_PATHNAME;
@@ -4911,21 +2589,21 @@ IDENTIFIER_INCOMPLETE sub relationship
 	relates IS_IDENTIFIER_INCOMPLETE;
 IS_IDENTIFIER_INCOMPLETE sub role;
 
-IF sub relationship
-	relates IS_IF;
-IS_IF sub role;
-
-IMPORT sub relationship
-	relates IS_IMPORT;
-IS_IMPORT sub role;
+IDENTIFIER_INCOMPLETE_RIGHT sub relationship
+	relates IS_IDENTIFIER_INCOMPLETE_RIGHT;
+IS_IDENTIFIER_INCOMPLETE_RIGHT sub role;
 
 IMPORT_INCOMPLETE sub relationship
 	relates IS_IMPORT_INCOMPLETE;
 IS_IMPORT_INCOMPLETE sub role;
 
-INCOMPLETE sub relationship
-	relates IS_INCOMPLETE;
-IS_INCOMPLETE sub role;
+INCOMPLETE_LEFT_STATEMENT sub relationship
+	relates IS_INCOMPLETE_LEFT_STATEMENT;
+IS_INCOMPLETE_LEFT_STATEMENT sub role;
+
+INCOMPLETE_MAP_STATEMENT_VALUE sub relationship
+	relates IS_INCOMPLETE_MAP_STATEMENT_VALUE;
+IS_INCOMPLETE_MAP_STATEMENT_VALUE sub role;
 
 INCOMPLETE_MODULE_STATEMENT_VISIBILITY sub relationship
 	relates IS_INCOMPLETE_MODULE_STATEMENT_VISIBILITY;
@@ -4955,145 +2633,21 @@ INCOMPLETE_STATEMENT_VISIBILITY_WORLD sub relationship
 	relates IS_INCOMPLETE_STATEMENT_VISIBILITY_WORLD;
 IS_INCOMPLETE_STATEMENT_VISIBILITY_WORLD sub role;
 
-ITERATOR sub relationship
-	relates IS_ITERATOR;
-IS_ITERATOR sub role;
-
-KEY sub relationship
-	relates IS_KEY;
-IS_KEY sub role;
-
-LEFT sub relationship
-	relates IS_LEFT;
-IS_LEFT sub role;
-
-LEFT_SHIFT sub relationship
-	relates IS_LEFT_SHIFT;
-IS_LEFT_SHIFT sub role;
-
-LESS_THAN sub relationship
-	relates IS_LESS_THAN;
-IS_LESS_THAN sub role;
-
 LESS_THAN_OPERATOR_RELATIONAL sub relationship
 	relates IS_LESS_THAN_OPERATOR_RELATIONAL;
 IS_LESS_THAN_OPERATOR_RELATIONAL sub role;
-
-LESS_THAN_OR_EQUAL sub relationship
-	relates IS_LESS_THAN_OR_EQUAL;
-IS_LESS_THAN_OR_EQUAL sub role;
 
 LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relationship
 	relates IS_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 IS_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub role;
 
-LIST sub relationship
-	relates IS_LIST;
-IS_LIST sub role;
-
-LITERAL sub relationship
-	relates IS_LITERAL;
-IS_LITERAL sub role;
-
-MAP sub relationship
-	relates IS_MAP;
-IS_MAP sub role;
-
-MODULE sub relationship
-	relates IS_MODULE;
-IS_MODULE sub role;
-
-MULTIPLY sub relationship
-	relates IS_MULTIPLY;
-IS_MULTIPLY sub role;
-
-NAME sub relationship
-	relates IS_NAME;
-IS_NAME sub role;
-
-NEGATIVE sub relationship
-	relates IS_NEGATIVE;
-IS_NEGATIVE sub role;
-
-NOOP sub relationship
-	relates IS_NOOP;
-IS_NOOP sub role;
-
 NOOP_STATEMENT sub relationship
 	relates IS_NOOP_STATEMENT;
 IS_NOOP_STATEMENT sub role;
 
-NOT sub relationship
-	relates IS_NOT;
-IS_NOT sub role;
-
-NULL sub relationship
-	relates IS_NULL;
-IS_NULL sub role;
-
-NUMBER sub relationship
-	relates IS_NUMBER;
-IS_NUMBER sub role;
-
-OPERATOR sub relationship
-	relates IS_OPERATOR;
-IS_OPERATOR sub role;
-
-OR sub relationship
-	relates IS_OR;
-IS_OR sub role;
-
-PATHNAME sub relationship
-	relates IS_PATHNAME;
-IS_PATHNAME sub role;
-
-POSITIONAL sub relationship
-	relates IS_POSITIONAL;
-IS_POSITIONAL sub role;
-
-POSITIVE sub relationship
-	relates IS_POSITIVE;
-IS_POSITIVE sub role;
-
-PRIMITIVE sub relationship
-	relates IS_PRIMITIVE;
-IS_PRIMITIVE sub role;
-
-QUALIFIED sub relationship
-	relates IS_QUALIFIED;
-IS_QUALIFIED sub role;
-
-RELATIONAL sub relationship
-	relates IS_RELATIONAL;
-IS_RELATIONAL sub role;
-
-RETURN sub relationship
-	relates IS_RETURN;
-IS_RETURN sub role;
-
 RETURN_STATEMENT sub relationship
 	relates IS_RETURN_STATEMENT;
 IS_RETURN_STATEMENT sub role;
-
-RIGHT sub relationship
-	relates IS_RIGHT;
-IS_RIGHT sub role;
-
-RIGHT_SHIFT sub relationship
-	relates IS_RIGHT_SHIFT;
-IS_RIGHT_SHIFT sub role;
-
-SCOPE sub relationship
-	relates IS_SCOPE;
-IS_SCOPE sub role;
-
-SET sub relationship
-	relates IS_SET;
-IS_SET sub role;
-
-STATEMENT sub relationship
-	relates IS_STATEMENT;
-IS_STATEMENT sub role;
 
 STATEMENT_THROW sub relationship
 	relates IS_STATEMENT_THROW;
@@ -5106,63 +2660,3 @@ IS_STATEMENT_TRY sub role;
 STATEMENT_WHILE sub relationship
 	relates IS_STATEMENT_WHILE;
 IS_STATEMENT_WHILE sub role;
-
-STRING sub relationship
-	relates IS_STRING;
-IS_STRING sub role;
-
-SUBSTRACT sub relationship
-	relates IS_SUBSTRACT;
-IS_SUBSTRACT sub role;
-
-THEN sub relationship
-	relates IS_THEN;
-IS_THEN sub role;
-
-THROW sub relationship
-	relates IS_THROW;
-IS_THROW sub role;
-
-TRY sub relationship
-	relates IS_TRY;
-IS_TRY sub role;
-
-TUPLE sub relationship
-	relates IS_TUPLE;
-IS_TUPLE sub role;
-
-TYPE sub relationship
-	relates IS_TYPE;
-IS_TYPE sub role;
-
-UNANNOTATED sub relationship
-	relates IS_UNANNOTATED;
-IS_UNANNOTATED sub role;
-
-UNARY sub relationship
-	relates IS_UNARY;
-IS_UNARY sub role;
-
-UPDATE sub relationship
-	relates IS_UPDATE;
-IS_UPDATE sub role;
-
-VALUE sub relationship
-	relates IS_VALUE;
-IS_VALUE sub role;
-
-VISIBILITY sub relationship
-	relates IS_VISIBILITY;
-IS_VISIBILITY sub role;
-
-WHILE sub relationship
-	relates IS_WHILE;
-IS_WHILE sub role;
-
-WORLD sub relationship
-	relates IS_WORLD;
-IS_WORLD sub role;
-
-XOR sub relationship
-	relates IS_XOR;
-IS_XOR sub role;

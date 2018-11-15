@@ -1,0 +1,1161 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+
+#####----- Go -----#####
+colAttribute sub attribute datatype string;
+dirAttribute sub attribute datatype string;
+implicitAttribute sub attribute datatype string;
+incompleteAttribute sub attribute datatype string;
+kindAttribute sub attribute datatype string;
+lineAttribute sub attribute datatype string;
+offsetAttribute sub attribute datatype string;
+slice3Attribute sub attribute datatype string;
+tokAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token;
+
+#####----- Go -----#####
+GoSourceArtifact sub SourceArtifact;
+
+ArrayTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_elt_role
+	plays has_lbrack_role
+	plays has_len_role;
+
+AssignStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_assign_role
+	plays is_body_role
+	plays is_comm_role
+	plays is_init_role
+	plays is_list_role
+	plays is_post_role
+	plays is_stmt_role
+	plays has_lhs_role
+	plays has_op_role
+	plays has_rhs_role
+	plays has_tok_pos_role;
+
+BasicLitArtifact sub GoSourceArtifact
+	# Attributes
+	has kindAttribute
+	# Structural
+	plays is_args_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_len_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_low_role
+	plays is_max_role
+	plays is_path_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_value_pos_role;
+
+BinaryExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_len_role
+	plays is_list_role
+	plays is_low_role
+	plays is_max_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_op_pos_role
+	plays has_op_role
+	plays has_x_role
+	plays has_y_role;
+
+BlockStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_else_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_lbrace_role
+	plays has_list_role
+	plays has_rbrace_role;
+
+BranchStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_label_role
+	plays has_tok_pos_role;
+
+CallExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_call_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_len_role
+	plays is_list_role
+	plays is_low_role
+	plays is_max_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_args_role
+	plays has_ellipsis_role
+	plays has_fun_role
+	plays has_lparen_role
+	plays has_rparen_role;
+
+CaseClauseArtifact sub GoSourceArtifact
+	# Structural
+	plays is_list_role
+	plays has_body_role
+	plays has_case_role
+	plays has_colon_role
+	plays has_list_role;
+
+ChanTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has dirAttribute
+	# Structural
+	plays is_args_role
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_arrow_role
+	plays has_begin_role
+	plays has_value_role;
+
+CommClauseArtifact sub GoSourceArtifact
+	# Structural
+	plays is_list_role
+	plays has_body_role
+	plays has_case_role
+	plays has_colon_role
+	plays has_comm_role;
+
+CommentArtifact sub GoSourceArtifact
+	# Structural
+	plays is_list_role
+	plays has_slash_role;
+
+CommentGroupArtifact sub GoSourceArtifact
+	# Structural
+	plays is_comment_role
+	plays is_comments_role
+	plays is_doc_role
+	plays has_list_role;
+
+CompositeLitArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_elts_role
+	plays is_index_role
+	plays is_key_role
+	plays is_list_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_elts_role
+	plays has_lbrace_role
+	plays has_rbrace_role
+	plays has_type_role;
+
+DeclStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_decl_role;
+
+DeferStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays has_call_role
+	plays has_defer_role;
+
+EllipsisArtifact sub GoSourceArtifact
+	# Structural
+	plays is_len_role
+	plays is_type_role
+	plays has_ellipsis_role
+	plays has_elt_role;
+
+EmptyStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has implicitAttribute
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_semicolon_role;
+
+ExprStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_assign_role
+	plays is_body_role
+	plays is_comm_role
+	plays is_init_role
+	plays is_list_role
+	plays is_post_role
+	plays is_stmt_role
+	plays has_x_role;
+
+FieldArtifact sub GoSourceArtifact
+	# Structural
+	plays is_list_role
+	plays has_comment_role
+	plays has_doc_role
+	plays has_names_role
+	plays has_tag_role
+	plays has_type_role;
+
+FieldListArtifact sub GoSourceArtifact
+	# Structural
+	plays is_fields_role
+	plays is_methods_role
+	plays is_params_role
+	plays is_recv_role
+	plays is_results_role
+	plays has_closing_role
+	plays has_list_role
+	plays has_opening_role;
+
+FileArtifact sub GoSourceArtifact
+	# Structural
+	plays has_comments_role
+	plays has_decls_role
+	plays has_doc_role
+	plays has_imports_role
+	plays has_name_role
+	plays has_package_role;
+
+ForStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_body_role
+	plays has_cond_role
+	plays has_for_role
+	plays has_init_role
+	plays has_post_role;
+
+FuncDeclArtifact sub GoSourceArtifact
+	# Structural
+	plays is_decls_role
+	plays has_body_role
+	plays has_doc_role
+	plays has_name_role
+	plays has_recv_role
+	plays has_type_role;
+
+FuncLitArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays has_body_role
+	plays has_type_role;
+
+FuncTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_func_role
+	plays has_params_role
+	plays has_results_role;
+
+GenDeclArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays is_decl_role
+	plays is_decls_role
+	plays has_doc_role
+	plays has_lparen_role
+	plays has_rparen_role
+	plays has_specs_role
+	plays has_tok_pos_role;
+
+GoStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays has_call_role
+	plays has_go_role;
+
+IdentArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_label_role
+	plays is_len_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_low_role
+	plays is_max_role
+	plays is_name_role
+	plays is_names_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_sel_role
+	plays is_tag_role
+	plays is_type_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_name_pos_role;
+
+IfStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_else_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_body_role
+	plays has_cond_role
+	plays has_else_role
+	plays has_if_role
+	plays has_init_role;
+
+ImportSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays is_imports_role
+	plays is_specs_role
+	plays has_comment_role
+	plays has_doc_role
+	plays has_end_pos_role
+	plays has_name_role
+	plays has_path_role;
+
+IncDecStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_init_role
+	plays is_list_role
+	plays is_post_role
+	plays is_stmt_role
+	plays has_op_role
+	plays has_tok_pos_role
+	plays has_x_role;
+
+IndexExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_low_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_index_role
+	plays has_lbrack_role
+	plays has_rbrack_role
+	plays has_x_role;
+
+InterfaceTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has incompleteAttribute
+	# Structural
+	plays is_args_role
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_interface_role
+	plays has_methods_role;
+
+KeyValueExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_elts_role
+	plays has_colon_role
+	plays has_key_role
+	plays has_value_role;
+
+LabeledStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_colon_role
+	plays has_label_role
+	plays has_stmt_role;
+
+MapTypeArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_key_role
+	plays has_map_role
+	plays has_value_role;
+
+OperatorArtifact sub GoSourceArtifact
+	# Structural
+	plays is_op_role;
+
+ParenExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_low_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_type_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_lparen_role
+	plays has_rparen_role
+	plays has_x_role;
+
+PositionArtifact sub GoSourceArtifact
+	# Attributes
+	has colAttribute
+	has lineAttribute
+	has offsetAttribute
+	# Structural
+	plays is_arrow_role
+	plays is_assign_role
+	plays is_begin_role
+	plays is_case_role
+	plays is_closing_role
+	plays is_colon_role
+	plays is_defer_role
+	plays is_ellipsis_role
+	plays is_end_pos_role
+	plays is_for_role
+	plays is_func_role
+	plays is_go_role
+	plays is_if_role
+	plays is_interface_role
+	plays is_lbrace_role
+	plays is_lbrack_role
+	plays is_lparen_role
+	plays is_map_role
+	plays is_name_pos_role
+	plays is_op_pos_role
+	plays is_opening_role
+	plays is_package_role
+	plays is_rbrace_role
+	plays is_rbrack_role
+	plays is_return_role
+	plays is_rparen_role
+	plays is_select_role
+	plays is_semicolon_role
+	plays is_slash_role
+	plays is_star_role
+	plays is_struct_role
+	plays is_switch_role
+	plays is_tok_pos_role
+	plays is_value_pos_role;
+
+RangeStmtArtifact sub GoSourceArtifact
+	# Attributes
+	has tokAttribute
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_body_role
+	plays has_for_role
+	plays has_key_role
+	plays has_tok_pos_role
+	plays has_value_role
+	plays has_x_role;
+
+ReturnStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_results_role
+	plays has_return_role;
+
+SelectorExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_len_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_low_role
+	plays is_max_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_type_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_sel_role
+	plays has_x_role;
+
+SelectStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_body_role
+	plays has_select_role;
+
+SendStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_comm_role
+	plays is_list_role
+	plays is_post_role
+	plays has_arrow_role
+	plays has_chan_role
+	plays has_value_role;
+
+SliceExprArtifact sub GoSourceArtifact
+	# Attributes
+	has slice3Attribute
+	# Structural
+	plays is_args_role
+	plays is_elts_role
+	plays is_index_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_high_role
+	plays has_lbrack_role
+	plays has_low_role
+	plays has_max_role
+	plays has_rbrack_role
+	plays has_x_role;
+
+StarExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_cond_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_lhs_role
+	plays is_list_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_type_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_star_role
+	plays has_x_role;
+
+StructTypeArtifact sub GoSourceArtifact
+	# Attributes
+	has incompleteAttribute
+	# Structural
+	plays is_args_role
+	plays is_elt_role
+	plays is_fun_role
+	plays is_key_role
+	plays is_list_role
+	plays is_type_role
+	plays is_value_role
+	plays is_x_role
+	plays has_fields_role
+	plays has_struct_role;
+
+SwitchStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_body_role
+	plays has_init_role
+	plays has_switch_role
+	plays has_tag_role;
+
+TypeAssertExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_fun_role
+	plays is_index_role
+	plays is_list_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_lparen_role
+	plays has_rparen_role
+	plays has_type_role
+	plays has_x_role;
+
+TypeSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays is_specs_role
+	plays has_assign_role
+	plays has_comment_role
+	plays has_doc_role
+	plays has_name_role
+	plays has_type_role;
+
+TypeSwitchStmtArtifact sub GoSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_list_role
+	plays is_stmt_role
+	plays has_assign_role
+	plays has_body_role
+	plays has_init_role
+	plays has_switch_role;
+
+UnaryExprArtifact sub GoSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_chan_role
+	plays is_cond_role
+	plays is_elts_role
+	plays is_high_role
+	plays is_index_role
+	plays is_key_role
+	plays is_list_role
+	plays is_low_role
+	plays is_results_role
+	plays is_rhs_role
+	plays is_tag_role
+	plays is_value_role
+	plays is_values_role
+	plays is_x_role
+	plays is_y_role
+	plays has_op_pos_role
+	plays has_op_role
+	plays has_x_role;
+
+ValueSpecArtifact sub GoSourceArtifact
+	# Structural
+	plays is_specs_role
+	plays has_comment_role
+	plays has_doc_role
+	plays has_names_role
+	plays has_type_role
+	plays has_values_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
+
+#####----- Go -----#####
+args_relation sub parent_child_relation
+	relates is_args_role, relates has_args_role;
+is_args_role sub is_child;
+has_args_role sub is_parent;
+
+arrow_relation sub parent_child_relation
+	relates is_arrow_role, relates has_arrow_role;
+is_arrow_role sub is_child;
+has_arrow_role sub is_parent;
+
+assign_relation sub parent_child_relation
+	relates is_assign_role, relates has_assign_role;
+is_assign_role sub is_child;
+has_assign_role sub is_parent;
+
+begin_relation sub parent_child_relation
+	relates is_begin_role, relates has_begin_role;
+is_begin_role sub is_child;
+has_begin_role sub is_parent;
+
+body_relation sub parent_child_relation
+	relates is_body_role, relates has_body_role;
+is_body_role sub is_child;
+has_body_role sub is_parent;
+
+call_relation sub parent_child_relation
+	relates is_call_role, relates has_call_role;
+is_call_role sub is_child;
+has_call_role sub is_parent;
+
+case_relation sub parent_child_relation
+	relates is_case_role, relates has_case_role;
+is_case_role sub is_child;
+has_case_role sub is_parent;
+
+chan_relation sub parent_child_relation
+	relates is_chan_role, relates has_chan_role;
+is_chan_role sub is_child;
+has_chan_role sub is_parent;
+
+closing_relation sub parent_child_relation
+	relates is_closing_role, relates has_closing_role;
+is_closing_role sub is_child;
+has_closing_role sub is_parent;
+
+colon_relation sub parent_child_relation
+	relates is_colon_role, relates has_colon_role;
+is_colon_role sub is_child;
+has_colon_role sub is_parent;
+
+comm_relation sub parent_child_relation
+	relates is_comm_role, relates has_comm_role;
+is_comm_role sub is_child;
+has_comm_role sub is_parent;
+
+comment_relation sub parent_child_relation
+	relates is_comment_role, relates has_comment_role;
+is_comment_role sub is_child;
+has_comment_role sub is_parent;
+
+comments_relation sub parent_child_relation
+	relates is_comments_role, relates has_comments_role;
+is_comments_role sub is_child;
+has_comments_role sub is_parent;
+
+cond_relation sub parent_child_relation
+	relates is_cond_role, relates has_cond_role;
+is_cond_role sub is_child;
+has_cond_role sub is_parent;
+
+decl_relation sub parent_child_relation
+	relates is_decl_role, relates has_decl_role;
+is_decl_role sub is_child;
+has_decl_role sub is_parent;
+
+decls_relation sub parent_child_relation
+	relates is_decls_role, relates has_decls_role;
+is_decls_role sub is_child;
+has_decls_role sub is_parent;
+
+defer_relation sub parent_child_relation
+	relates is_defer_role, relates has_defer_role;
+is_defer_role sub is_child;
+has_defer_role sub is_parent;
+
+doc_relation sub parent_child_relation
+	relates is_doc_role, relates has_doc_role;
+is_doc_role sub is_child;
+has_doc_role sub is_parent;
+
+ellipsis_relation sub parent_child_relation
+	relates is_ellipsis_role, relates has_ellipsis_role;
+is_ellipsis_role sub is_child;
+has_ellipsis_role sub is_parent;
+
+else_relation sub parent_child_relation
+	relates is_else_role, relates has_else_role;
+is_else_role sub is_child;
+has_else_role sub is_parent;
+
+elt_relation sub parent_child_relation
+	relates is_elt_role, relates has_elt_role;
+is_elt_role sub is_child;
+has_elt_role sub is_parent;
+
+elts_relation sub parent_child_relation
+	relates is_elts_role, relates has_elts_role;
+is_elts_role sub is_child;
+has_elts_role sub is_parent;
+
+end_pos_relation sub parent_child_relation
+	relates is_end_pos_role, relates has_end_pos_role;
+is_end_pos_role sub is_child;
+has_end_pos_role sub is_parent;
+
+fields_relation sub parent_child_relation
+	relates is_fields_role, relates has_fields_role;
+is_fields_role sub is_child;
+has_fields_role sub is_parent;
+
+for_relation sub parent_child_relation
+	relates is_for_role, relates has_for_role;
+is_for_role sub is_child;
+has_for_role sub is_parent;
+
+fun_relation sub parent_child_relation
+	relates is_fun_role, relates has_fun_role;
+is_fun_role sub is_child;
+has_fun_role sub is_parent;
+
+func_relation sub parent_child_relation
+	relates is_func_role, relates has_func_role;
+is_func_role sub is_child;
+has_func_role sub is_parent;
+
+go_relation sub parent_child_relation
+	relates is_go_role, relates has_go_role;
+is_go_role sub is_child;
+has_go_role sub is_parent;
+
+high_relation sub parent_child_relation
+	relates is_high_role, relates has_high_role;
+is_high_role sub is_child;
+has_high_role sub is_parent;
+
+if_relation sub parent_child_relation
+	relates is_if_role, relates has_if_role;
+is_if_role sub is_child;
+has_if_role sub is_parent;
+
+imports_relation sub parent_child_relation
+	relates is_imports_role, relates has_imports_role;
+is_imports_role sub is_child;
+has_imports_role sub is_parent;
+
+index_relation sub parent_child_relation
+	relates is_index_role, relates has_index_role;
+is_index_role sub is_child;
+has_index_role sub is_parent;
+
+init_relation sub parent_child_relation
+	relates is_init_role, relates has_init_role;
+is_init_role sub is_child;
+has_init_role sub is_parent;
+
+interface_relation sub parent_child_relation
+	relates is_interface_role, relates has_interface_role;
+is_interface_role sub is_child;
+has_interface_role sub is_parent;
+
+key_relation sub parent_child_relation
+	relates is_key_role, relates has_key_role;
+is_key_role sub is_child;
+has_key_role sub is_parent;
+
+label_relation sub parent_child_relation
+	relates is_label_role, relates has_label_role;
+is_label_role sub is_child;
+has_label_role sub is_parent;
+
+lbrace_relation sub parent_child_relation
+	relates is_lbrace_role, relates has_lbrace_role;
+is_lbrace_role sub is_child;
+has_lbrace_role sub is_parent;
+
+lbrack_relation sub parent_child_relation
+	relates is_lbrack_role, relates has_lbrack_role;
+is_lbrack_role sub is_child;
+has_lbrack_role sub is_parent;
+
+len_relation sub parent_child_relation
+	relates is_len_role, relates has_len_role;
+is_len_role sub is_child;
+has_len_role sub is_parent;
+
+lhs_relation sub parent_child_relation
+	relates is_lhs_role, relates has_lhs_role;
+is_lhs_role sub is_child;
+has_lhs_role sub is_parent;
+
+list_relation sub parent_child_relation
+	relates is_list_role, relates has_list_role;
+is_list_role sub is_child;
+has_list_role sub is_parent;
+
+low_relation sub parent_child_relation
+	relates is_low_role, relates has_low_role;
+is_low_role sub is_child;
+has_low_role sub is_parent;
+
+lparen_relation sub parent_child_relation
+	relates is_lparen_role, relates has_lparen_role;
+is_lparen_role sub is_child;
+has_lparen_role sub is_parent;
+
+map_relation sub parent_child_relation
+	relates is_map_role, relates has_map_role;
+is_map_role sub is_child;
+has_map_role sub is_parent;
+
+max_relation sub parent_child_relation
+	relates is_max_role, relates has_max_role;
+is_max_role sub is_child;
+has_max_role sub is_parent;
+
+methods_relation sub parent_child_relation
+	relates is_methods_role, relates has_methods_role;
+is_methods_role sub is_child;
+has_methods_role sub is_parent;
+
+name_pos_relation sub parent_child_relation
+	relates is_name_pos_role, relates has_name_pos_role;
+is_name_pos_role sub is_child;
+has_name_pos_role sub is_parent;
+
+name_relation sub parent_child_relation
+	relates is_name_role, relates has_name_role;
+is_name_role sub is_child;
+has_name_role sub is_parent;
+
+names_relation sub parent_child_relation
+	relates is_names_role, relates has_names_role;
+is_names_role sub is_child;
+has_names_role sub is_parent;
+
+op_pos_relation sub parent_child_relation
+	relates is_op_pos_role, relates has_op_pos_role;
+is_op_pos_role sub is_child;
+has_op_pos_role sub is_parent;
+
+op_relation sub parent_child_relation
+	relates is_op_role, relates has_op_role;
+is_op_role sub is_child;
+has_op_role sub is_parent;
+
+opening_relation sub parent_child_relation
+	relates is_opening_role, relates has_opening_role;
+is_opening_role sub is_child;
+has_opening_role sub is_parent;
+
+package_relation sub parent_child_relation
+	relates is_package_role, relates has_package_role;
+is_package_role sub is_child;
+has_package_role sub is_parent;
+
+params_relation sub parent_child_relation
+	relates is_params_role, relates has_params_role;
+is_params_role sub is_child;
+has_params_role sub is_parent;
+
+path_relation sub parent_child_relation
+	relates is_path_role, relates has_path_role;
+is_path_role sub is_child;
+has_path_role sub is_parent;
+
+post_relation sub parent_child_relation
+	relates is_post_role, relates has_post_role;
+is_post_role sub is_child;
+has_post_role sub is_parent;
+
+rbrace_relation sub parent_child_relation
+	relates is_rbrace_role, relates has_rbrace_role;
+is_rbrace_role sub is_child;
+has_rbrace_role sub is_parent;
+
+rbrack_relation sub parent_child_relation
+	relates is_rbrack_role, relates has_rbrack_role;
+is_rbrack_role sub is_child;
+has_rbrack_role sub is_parent;
+
+recv_relation sub parent_child_relation
+	relates is_recv_role, relates has_recv_role;
+is_recv_role sub is_child;
+has_recv_role sub is_parent;
+
+results_relation sub parent_child_relation
+	relates is_results_role, relates has_results_role;
+is_results_role sub is_child;
+has_results_role sub is_parent;
+
+return_relation sub parent_child_relation
+	relates is_return_role, relates has_return_role;
+is_return_role sub is_child;
+has_return_role sub is_parent;
+
+rhs_relation sub parent_child_relation
+	relates is_rhs_role, relates has_rhs_role;
+is_rhs_role sub is_child;
+has_rhs_role sub is_parent;
+
+rparen_relation sub parent_child_relation
+	relates is_rparen_role, relates has_rparen_role;
+is_rparen_role sub is_child;
+has_rparen_role sub is_parent;
+
+sel_relation sub parent_child_relation
+	relates is_sel_role, relates has_sel_role;
+is_sel_role sub is_child;
+has_sel_role sub is_parent;
+
+select_relation sub parent_child_relation
+	relates is_select_role, relates has_select_role;
+is_select_role sub is_child;
+has_select_role sub is_parent;
+
+semicolon_relation sub parent_child_relation
+	relates is_semicolon_role, relates has_semicolon_role;
+is_semicolon_role sub is_child;
+has_semicolon_role sub is_parent;
+
+slash_relation sub parent_child_relation
+	relates is_slash_role, relates has_slash_role;
+is_slash_role sub is_child;
+has_slash_role sub is_parent;
+
+specs_relation sub parent_child_relation
+	relates is_specs_role, relates has_specs_role;
+is_specs_role sub is_child;
+has_specs_role sub is_parent;
+
+star_relation sub parent_child_relation
+	relates is_star_role, relates has_star_role;
+is_star_role sub is_child;
+has_star_role sub is_parent;
+
+stmt_relation sub parent_child_relation
+	relates is_stmt_role, relates has_stmt_role;
+is_stmt_role sub is_child;
+has_stmt_role sub is_parent;
+
+struct_relation sub parent_child_relation
+	relates is_struct_role, relates has_struct_role;
+is_struct_role sub is_child;
+has_struct_role sub is_parent;
+
+switch_relation sub parent_child_relation
+	relates is_switch_role, relates has_switch_role;
+is_switch_role sub is_child;
+has_switch_role sub is_parent;
+
+tag_relation sub parent_child_relation
+	relates is_tag_role, relates has_tag_role;
+is_tag_role sub is_child;
+has_tag_role sub is_parent;
+
+tok_pos_relation sub parent_child_relation
+	relates is_tok_pos_role, relates has_tok_pos_role;
+is_tok_pos_role sub is_child;
+has_tok_pos_role sub is_parent;
+
+type_relation sub parent_child_relation
+	relates is_type_role, relates has_type_role;
+is_type_role sub is_child;
+has_type_role sub is_parent;
+
+value_pos_relation sub parent_child_relation
+	relates is_value_pos_role, relates has_value_pos_role;
+is_value_pos_role sub is_child;
+has_value_pos_role sub is_parent;
+
+value_relation sub parent_child_relation
+	relates is_value_role, relates has_value_role;
+is_value_role sub is_child;
+has_value_role sub is_parent;
+
+values_relation sub parent_child_relation
+	relates is_values_role, relates has_values_role;
+is_values_role sub is_child;
+has_values_role sub is_parent;
+
+x_relation sub parent_child_relation
+	relates is_x_role, relates has_x_role;
+is_x_role sub is_child;
+has_x_role sub is_parent;
+
+y_relation sub parent_child_relation
+	relates is_y_role, relates has_y_role;
+is_y_role sub is_child;
+has_y_role sub is_parent;

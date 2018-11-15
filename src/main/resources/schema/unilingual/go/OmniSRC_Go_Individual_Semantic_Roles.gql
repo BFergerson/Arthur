@@ -1,0 +1,884 @@
+define
+
+##########---------- Entities ----------##########
+
+#####----- Go -----#####
+GoSourceArtifact sub SourceArtifact;
+
+ArrayTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_KEY
+	plays IS_LIST
+	plays IS_POSITIONAL
+	plays IS_TYPE;
+
+AssignStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_DECLARATION
+	plays IS_DIVIDE
+	plays IS_FOR
+	plays IS_IF
+	plays IS_INITIALIZATION
+	plays IS_LEFT_SHIFT
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_NEGATIVE
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_RIGHT_SHIFT
+	plays IS_STATEMENT
+	plays IS_SUBSTRACT
+	plays IS_SWITCH
+	plays IS_UPDATE
+	plays IS_XOR;
+
+BasicLitArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CHARACTER
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_IMPORT
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_NUMBER
+	plays IS_PATHNAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STRING
+	plays IS_VALUE;
+
+BinaryExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BOOLEAN
+	plays IS_CONDITION
+	plays IS_DIVIDE
+	plays IS_EQUAL
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_GREATER_THAN
+	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LEFT_SHIFT
+	plays IS_LESS_THAN
+	plays IS_LESS_THAN_OR_EQUAL
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_NEGATIVE
+	plays IS_NOT
+	plays IS_OR
+	plays IS_POSITIONAL
+	plays IS_RELATIONAL
+	plays IS_RIGHT
+	plays IS_RIGHT_SHIFT
+	plays IS_SUBSTRACT
+	plays IS_VALUE
+	plays IS_XOR;
+
+BlockStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_BODY
+	plays IS_ELSE
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_SCOPE
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_THEN;
+
+BranchStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_BREAK
+	plays IS_CONTINUE
+	plays IS_GOTO
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+CallExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+CaseClauseArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_CASE
+	plays IS_STATEMENT;
+
+ChanTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_POSITIONAL
+	plays IS_TYPE;
+
+CommClauseArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_CASE
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+CommentArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_COMMENT;
+
+CommentGroupArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_COMMENT
+	plays IS_LIST;
+
+CompositeLitArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_EXPRESSION
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+DeclStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_STATEMENT;
+
+DeferStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+EllipsisArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_TYPE;
+
+EmptyStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ExprStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_IF
+	plays IS_INITIALIZATION
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_UPDATE;
+
+FieldArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ENTRY
+	plays IS_FUNCTION
+	plays IS_RECEIVER
+	plays IS_RETURN
+	plays IS_UNANNOTATED;
+
+FieldListArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGS_LIST
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_LIST
+	plays IS_RECEIVER
+	plays IS_RETURN;
+
+FileArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_FILE;
+
+ForStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_STATEMENT;
+
+FuncDeclArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_UNANNOTATED;
+
+FuncLitArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_EXPRESSION
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+FuncTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_KEY
+	plays IS_TYPE;
+
+GenDeclArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_INCOMPLETE
+	plays IS_TYPE
+	plays IS_VARIABLE;
+
+GoStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+IdentArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ALIAS
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_IMPORT
+	plays IS_ITERATOR
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_TYPE
+	plays IS_VALUE
+	plays IS_VARIABLE;
+
+IfStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ELSE
+	plays IS_IF
+	plays IS_STATEMENT;
+
+ImportSpecArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_IMPORT;
+
+IncDecStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECREMENT
+	plays IS_FOR
+	plays IS_IF
+	plays IS_INCREMENT
+	plays IS_INITIALIZATION
+	plays IS_STATEMENT
+	plays IS_SWITCH
+	plays IS_UNARY
+	plays IS_UPDATE;
+
+IndexExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_ITERATOR
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+InterfaceTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_POSITIONAL
+	plays IS_TYPE;
+
+KeyValueExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION;
+
+LabeledStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_STATEMENT;
+
+MapTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_KEY
+	plays IS_MAP
+	plays IS_POSITIONAL
+	plays IS_TYPE;
+
+OperatorArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_AND
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BOOLEAN
+	plays IS_DECLARATION
+	plays IS_DECREMENT
+	plays IS_DIVIDE
+	plays IS_EQUAL
+	plays IS_EXPRESSION
+	plays IS_GREATER_THAN
+	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_INCOMPLETE
+	plays IS_INCREMENT
+	plays IS_LEFT_SHIFT
+	plays IS_LESS_THAN
+	plays IS_LESS_THAN_OR_EQUAL
+	plays IS_MODULO
+	plays IS_MULTIPLY
+	plays IS_NEGATIVE
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_POSITIVE
+	plays IS_RELATIONAL
+	plays IS_RIGHT_SHIFT
+	plays IS_SUBSTRACT
+	plays IS_TAKE_ADDRESS
+	plays IS_UNARY
+	plays IS_XOR;
+
+ParenExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_TYPE
+	plays IS_VALUE;
+
+PositionArtifact sub GoSourceArtifact;
+
+RangeStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_ITERATOR
+	plays IS_STATEMENT;
+
+ReturnStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_RETURN
+	plays IS_STATEMENT;
+
+SelectorExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_ITERATOR
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_TYPE
+	plays IS_VALUE;
+
+SelectStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+SendStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT
+	plays IS_UPDATE;
+
+SliceExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_EXPRESSION
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+StarExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CONDITION
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_ITERATOR
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RECEIVER
+	plays IS_RIGHT
+	plays IS_TYPE
+	plays IS_VALUE;
+
+StructTypeArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALLEE
+	plays IS_ENTRY
+	plays IS_EXPRESSION
+	plays IS_KEY
+	plays IS_POSITIONAL
+	plays IS_TYPE;
+
+SwitchStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+TypeAssertExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_VALUE;
+
+TypeSpecArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECLARATION;
+
+TypeSwitchStmtArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT
+	plays IS_SWITCH;
+
+UnaryExprArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_ARITHMETIC
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_BOOLEAN
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_NEGATIVE
+	plays IS_POSITIONAL
+	plays IS_POSITIVE
+	plays IS_RIGHT
+	plays IS_TAKE_ADDRESS
+	plays IS_UNARY
+	plays IS_VALUE;
+
+ValueSpecArtifact sub GoSourceArtifact
+	# Semantic
+	plays IS_DECLARATION;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BREAK sub relationship
+	relates IS_BREAK;
+IS_BREAK sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CHARACTER sub relationship
+	relates IS_CHARACTER;
+IS_CHARACTER sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+ENTRY sub relationship
+	relates IS_ENTRY;
+IS_ENTRY sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GOTO sub relationship
+	relates IS_GOTO;
+IS_GOTO sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+TAKE_ADDRESS sub relationship
+	relates IS_TAKE_ADDRESS;
+IS_TAKE_ADDRESS sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
