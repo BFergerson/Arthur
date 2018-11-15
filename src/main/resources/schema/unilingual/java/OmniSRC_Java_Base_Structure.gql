@@ -36,6 +36,7 @@ AnnotationTypeMemberDeclarationArtifact sub JavaSourceArtifact
 	plays is_body_declarations_role
 	plays has_default_role
 	plays has_javadoc_role
+	plays has_modifiers_role
 	plays has_name_role
 	plays has_type_role;
 
@@ -80,6 +81,7 @@ ArrayCreationArtifact sub JavaSourceArtifact
 
 ArrayInitializerArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_default_role
 	plays is_expressions_role
 	plays is_initializer_role
 	plays is_value_role
@@ -107,6 +109,7 @@ AssignmentArtifact sub JavaSourceArtifact
 	plays is_arguments_role
 	plays is_body_role
 	plays is_expression_role
+	plays is_index_role
 	plays is_initializer_role
 	plays is_initializers_role
 	plays is_right_hand_side_role
@@ -149,6 +152,7 @@ BooleanLiteralArtifact sub JavaSourceArtifact
 BreakStatementArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_else_statement_role
 	plays is_statements_role
 	plays is_then_statement_role
 	plays has_label_role;
@@ -185,6 +189,7 @@ CharacterLiteralArtifact sub JavaSourceArtifact
 	plays is_expression_role
 	plays is_expressions_role
 	plays is_extended_operands_role
+	plays is_index_role
 	plays is_initializer_role
 	plays is_left_operand_role
 	plays is_right_hand_side_role
@@ -224,6 +229,7 @@ ConditionalExpressionArtifact sub JavaSourceArtifact
 	plays is_else_expression_role
 	plays is_expression_role
 	plays is_expressions_role
+	plays is_index_role
 	plays is_initializer_role
 	plays is_right_hand_side_role
 	plays is_then_expression_role
@@ -256,7 +262,8 @@ CreationReferenceArtifact sub JavaSourceArtifact
 DimensionArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_dimensions_role
-	plays is_extra_dimensions2_role;
+	plays is_extra_dimensions2_role
+	plays has_annotations_role;
 
 DoStatementArtifact sub JavaSourceArtifact
 	# Structural
@@ -308,7 +315,8 @@ ExpressionMethodReferenceArtifact sub JavaSourceArtifact
 	plays is_right_hand_side_role
 	plays is_then_expression_role
 	plays has_expression_role
-	plays has_name_role;
+	plays has_name_role
+	plays has_type_arguments_role;
 
 ExpressionStatementArtifact sub JavaSourceArtifact
 	# Structural
@@ -326,6 +334,7 @@ FieldAccessArtifact sub JavaSourceArtifact
 	plays is_dimensions_role
 	plays is_else_expression_role
 	plays is_expression_role
+	plays is_expressions_role
 	plays is_extended_operands_role
 	plays is_index_role
 	plays is_initializer_role
@@ -351,6 +360,7 @@ ForStatementArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_body_role
 	plays is_statements_role
+	plays is_then_statement_role
 	plays has_body_role
 	plays has_expression_role
 	plays has_initializers_role
@@ -423,6 +433,7 @@ JavadocArtifact sub JavaSourceArtifact
 
 LabeledStatementArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_statements_role
 	plays has_body_role
 	plays has_label_role;
@@ -448,7 +459,12 @@ LineCommentArtifact sub JavaSourceArtifact
 
 MarkerAnnotationArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_annotations_role
+	plays is_default_role
+	plays is_expressions_role
 	plays is_modifiers_role
+	plays is_value_role
+	plays is_varargs_annotations_role
 	plays has_type_name_role;
 
 MemberRefArtifact sub JavaSourceArtifact
@@ -495,6 +511,7 @@ MethodInvocationArtifact sub JavaSourceArtifact
 	plays is_right_hand_side_role
 	plays is_right_operand_role
 	plays is_then_expression_role
+	plays is_updaters_role
 	plays has_arguments_role
 	plays has_expression_role
 	plays has_name_role
@@ -512,16 +529,27 @@ MethodRefParameterArtifact sub JavaSourceArtifact
 	has varargsAttribute
 	# Structural
 	plays is_parameters_role
+	plays has_name_role
 	plays has_type_role;
 
 ModifierArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_modifiers_role;
 
+NameQualifiedTypeArtifact sub JavaSourceArtifact
+	# Structural
+	plays is_type_role
+	plays has_annotations_role
+	plays has_name_role
+	plays has_qualifier_role;
+
 NormalAnnotationArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_annotations_role
+	plays is_default_role
 	plays is_expressions_role
 	plays is_modifiers_role
+	plays is_value_role
 	plays has_type_name_role
 	plays has_values_role;
 
@@ -543,6 +571,7 @@ NumberLiteralArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_arguments_role
 	plays is_body_role
+	plays is_default_role
 	plays is_dimensions_role
 	plays is_else_expression_role
 	plays is_expression_role
@@ -564,6 +593,7 @@ OperatorArtifact sub JavaSourceArtifact
 PackageDeclarationArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_package_role
+	plays has_annotations_role
 	plays has_javadoc_role
 	plays has_name_role;
 
@@ -589,6 +619,7 @@ ParenthesizedExpressionArtifact sub JavaSourceArtifact
 	plays is_body_role
 	plays is_else_expression_role
 	plays is_expression_role
+	plays is_expressions_role
 	plays is_extended_operands_role
 	plays is_index_role
 	plays is_initializer_role
@@ -608,6 +639,7 @@ PostfixExpressionArtifact sub JavaSourceArtifact
 	plays is_extended_operands_role
 	plays is_index_role
 	plays is_initializer_role
+	plays is_initializers_role
 	plays is_left_operand_role
 	plays is_right_hand_side_role
 	plays is_right_operand_role
@@ -627,11 +659,14 @@ PrefixExpressionArtifact sub JavaSourceArtifact
 	plays is_extended_operands_role
 	plays is_index_role
 	plays is_initializer_role
+	plays is_initializers_role
 	plays is_left_operand_role
+	plays is_operand_role
 	plays is_right_hand_side_role
 	plays is_right_operand_role
 	plays is_then_expression_role
 	plays is_updaters_role
+	plays is_value_role
 	plays has_operand_role
 	plays has_operator_role;
 
@@ -671,6 +706,7 @@ QualifiedNameArtifact sub JavaSourceArtifact
 
 QualifiedTypeArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_superclass_type_role
 	plays is_type_arguments_role
 	plays is_type_role
 	plays has_name_role
@@ -689,6 +725,7 @@ SimpleNameArtifact sub JavaSourceArtifact
 	plays is_arguments_role
 	plays is_array_role
 	plays is_body_role
+	plays is_default_role
 	plays is_dimensions_role
 	plays is_else_expression_role
 	plays is_expression_role
@@ -723,11 +760,15 @@ SimpleTypeArtifact sub JavaSourceArtifact
 	plays is_type_bounds_role
 	plays is_type_role
 	plays is_types_role
+	plays has_annotations_role
 	plays has_name_role;
 
 SingleMemberAnnotationArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_annotations_role
+	plays is_expressions_role
 	plays is_modifiers_role
+	plays is_value_role
 	plays has_type_name_role
 	plays has_value_role;
 
@@ -741,7 +782,8 @@ SingleVariableDeclarationArtifact sub JavaSourceArtifact
 	plays has_extra_dimensions2_role
 	plays has_modifiers_role
 	plays has_name_role
-	plays has_type_role;
+	plays has_type_role
+	plays has_varargs_annotations_role;
 
 StringLiteralArtifact sub JavaSourceArtifact
 	# Structural
@@ -763,14 +805,17 @@ StringLiteralArtifact sub JavaSourceArtifact
 SuperConstructorInvocationArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_statements_role
-	plays has_arguments_role;
+	plays has_arguments_role
+	plays has_expression_role;
 
 SuperFieldAccessArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_arguments_role
 	plays is_expression_role
+	plays is_initializer_role
 	plays is_left_hand_side_role
 	plays is_right_hand_side_role
+	plays is_right_operand_role
 	plays has_name_role;
 
 SuperMethodInvocationArtifact sub JavaSourceArtifact
@@ -779,6 +824,7 @@ SuperMethodInvocationArtifact sub JavaSourceArtifact
 	plays is_body_role
 	plays is_else_expression_role
 	plays is_expression_role
+	plays is_expressions_role
 	plays is_extended_operands_role
 	plays is_initializer_role
 	plays is_left_operand_role
@@ -794,7 +840,8 @@ SuperMethodInvocationArtifact sub JavaSourceArtifact
 SuperMethodReferenceArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_arguments_role
-	plays has_name_role;
+	plays has_name_role
+	plays has_qualifier_role;
 
 SwitchCaseArtifact sub JavaSourceArtifact
 	# Structural
@@ -811,6 +858,7 @@ SwitchStatementArtifact sub JavaSourceArtifact
 
 SynchronizedStatementArtifact sub JavaSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_statements_role
 	plays has_body_role
 	plays has_expression_role;
@@ -847,6 +895,7 @@ ThisExpressionArtifact sub JavaSourceArtifact
 ThrowStatementArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_else_statement_role
 	plays is_statements_role
 	plays is_then_statement_role
 	plays has_expression_role;
@@ -883,6 +932,7 @@ TypeDeclarationStatementArtifact sub JavaSourceArtifact
 TypeLiteralArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_arguments_role
+	plays is_default_role
 	plays is_else_expression_role
 	plays is_expression_role
 	plays is_expressions_role
@@ -957,6 +1007,11 @@ is_parent sub role;
 is_child sub role;
 
 #####----- Java -----#####
+annotations_relation sub parent_child_relation
+	relates is_annotations_role, relates has_annotations_role;
+is_annotations_role sub is_child;
+has_annotations_role sub is_parent;
+
 anonymous_class_declaration_relation sub parent_child_relation
 	relates is_anonymous_class_declaration_role, relates has_anonymous_class_declaration_role;
 is_anonymous_class_declaration_role sub is_child;
@@ -1251,3 +1306,8 @@ values_relation sub parent_child_relation
 	relates is_values_role, relates has_values_role;
 is_values_role sub is_child;
 has_values_role sub is_parent;
+
+varargs_annotations_relation sub parent_child_relation
+	relates is_varargs_annotations_role, relates has_varargs_annotations_role;
+is_varargs_annotations_role sub is_child;
+has_varargs_annotations_role sub is_parent;
