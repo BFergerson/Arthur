@@ -31,7 +31,10 @@ class OmnilingualLocalSchemaGenerator extends SchemaGenerator {
             }
         }
 
+        println "Merging common language features"
         def omniLanguage = ObservedLanguages.mergeLanguages(observedLanguages)
+
+        println "Writing segmented Grakn schema"
         def schemaWriter = new GraknSchemaWriter(omniLanguage, observedLanguages.toArray(new ObservedLanguage[0]))
         schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
                 .withFileSegment(new File("src/main/resources/schema/omnilingual/",

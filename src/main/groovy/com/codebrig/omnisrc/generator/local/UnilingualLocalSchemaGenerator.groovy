@@ -23,6 +23,7 @@ class UnilingualLocalSchemaGenerator extends SchemaGenerator {
         def inputDirectory = args[1] as File
         long startTime = System.currentTimeMillis()
 
+        println "Writing segmented Grakn schema"
         def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
         def schemaWriter = new GraknSchemaWriter(schemaGenerator.observeLanguage(language, inputDirectory))
         schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()

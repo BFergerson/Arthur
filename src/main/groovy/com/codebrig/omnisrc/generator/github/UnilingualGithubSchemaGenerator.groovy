@@ -23,6 +23,7 @@ class UnilingualGithubSchemaGenerator extends SchemaGenerator {
         def parseProjectsCount = args[1] as int
         long startTime = System.currentTimeMillis()
 
+        println "Writing segmented Grakn schema"
         def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
         def schemaWriter = new GraknSchemaWriter(schemaGenerator.observeLanguage(language, parseProjectsCount))
         schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
