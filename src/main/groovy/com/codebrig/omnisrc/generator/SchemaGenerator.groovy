@@ -7,17 +7,16 @@ import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.filter.WildcardFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
 import groovy.io.FileType
-import groovyx.gpars.GParsPool
 import org.bblfsh.client.BblfshClient
 import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
 import org.kohsuke.github.GHRepositorySearchBuilder
 import org.kohsuke.github.GitHub
 
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.stream.Collectors
 
 import static com.google.common.io.Files.getFileExtension
 
@@ -30,6 +29,7 @@ import static com.google.common.io.Files.getFileExtension
  */
 class SchemaGenerator {
 
+    private static final ExecutorService THREAD_POOL = Executors.newWorkStealingPool()
     private final BblfshClient client
     private SourceNodeFilter filter
     private final ObservationConfig config
@@ -107,38 +107,53 @@ class SchemaGenerator {
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
-        def sourceFiles = new ArrayList<File>()
-        localRoot.eachFileRecurse(FileType.FILES) {
-            if (observedLanguage.language.isValidExtension(getFileExtension(it.name))) {
-                sourceFiles.add(it)
-            }
-        }
-
+        def failCount = new AtomicInteger(0)
         def parseCount = new AtomicInteger(0)
-        GParsPool.withPool {
-            sourceFiles.stream().limit(parseFileLimit).collect(Collectors.toList()).eachParallel {
-                def file = it as File
+        def sourceFiles = new ArrayList<File>()
+
+        localRoot.eachFileRecurse(FileType.FILES) { file ->
+            if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
+                sourceFiles.add(file)
                 if (!file.exists()) {
                     System.err.println("Skipping non-existent file: " + file)
+                    return
+                } else if (parseCount.get() >= parseFileLimit) {
                     return
                 }
 
                 println "Parsing: " + file
-                def resp = client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
-                if (resp == null) {
-                    System.err.println "Got null parse response"
-                    //todo: understand this
-                } else {
-                    def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
-                    if (filter.evaluate(rootSourceNode)) {
-                        observeSourceNode(observedLanguage, rootSourceNode)
+                try {
+                    def resp = timedCall(new Callable<ParseResponse>() {
+                        ParseResponse call() throws Exception {
+                            return client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
+                        }
+                    }, 15, TimeUnit.SECONDS)
+                    if (resp == null) {
+                        System.err.println "Got null parse response"
+                        //todo: understand this
+                    } else if (resp.status().isOk()) {
+                        def rootSourceNode = new SourceNode(observedLanguage.language, resp.uast)
+                        if (filter.evaluate(rootSourceNode)) {
+                            observeSourceNode(observedLanguage, rootSourceNode)
+                        }
+                        extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
+                        parseCount.getAndIncrement()
+                        println "Parsed: " + file
+                    } else {
+                        System.err.println("Failed to parse: " + file + " - Reason: " + resp.errors().toList().toString())
+                        failCount.getAndIncrement()
                     }
-                    extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
-                    parseCount.getAndIncrement()
+                } catch (TimeoutException e) {
+                    System.err.println("Timed out parsing: " + file)
+                    failCount.getAndIncrement()
                 }
             }
         }
+
         println "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
+        if (failCount.get() > 0) {
+            System.err.println("Failed to parse " + failCount.get() + " " + observedLanguage.language.qualifiedName + " files")
+        }
     }
 
     private void extractSchema(ObservedLanguage observedLanguage, SourceNode parentNode,
@@ -177,5 +192,12 @@ class SchemaGenerator {
                 .call()
         new File(outputDirectory, "cloned.omnisrc").createNewFile()
         println "Cloned: $githubRepository"
+    }
+
+    private static <T> T timedCall(Callable<T> c, long timeout, TimeUnit timeUnit)
+            throws InterruptedException, ExecutionException, TimeoutException {
+        FutureTask<T> task = new FutureTask<T>(c)
+        THREAD_POOL.execute(task)
+        return task.get(timeout, timeUnit)
     }
 }
