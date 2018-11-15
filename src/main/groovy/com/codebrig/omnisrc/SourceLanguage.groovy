@@ -41,13 +41,43 @@ enum SourceLanguage {
         return key.substring(0, 1).toUpperCase() + key.substring(1)
     }
 
-    String getFullSchemaDefinition(String version) {
+    String getBaseStructureSchemaDefinition() {
         if (this == OmniSRC) {
             return Resources.toString(Resources.getResource(
-                    "schema/omnilingual/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
+                    "schema/omnilingual/OmniSRC_Omnilingual_Base_Structure.gql"), Charsets.UTF_8)
         } else {
             return Resources.toString(Resources.getResource(
-                    "schema/unilingual/$key/$schemaDefinitionName-$version" + ".gql"), Charsets.UTF_8)
+                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Base_Structure.gql"), Charsets.UTF_8)
+        }
+    }
+
+    String getIndividualSemanticRolesSchemaDefinition() {
+        if (this == OmniSRC) {
+            return Resources.toString(Resources.getResource(
+                    "schema/omnilingual/OmniSRC_Omnilingual_Individual_Semantic_Roles.gql"), Charsets.UTF_8)
+        } else {
+            return Resources.toString(Resources.getResource(
+                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Individual_Semantic_Roles.gql"), Charsets.UTF_8)
+        }
+    }
+
+    String getActualSemanticRolesSchemaDefinition() {
+        if (this == OmniSRC) {
+            return Resources.toString(Resources.getResource(
+                    "schema/omnilingual/OmniSRC_Omnilingual_Actual_Semantic_Roles.gql"), Charsets.UTF_8)
+        } else {
+            return Resources.toString(Resources.getResource(
+                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Actual_Semantic_Roles.gql"), Charsets.UTF_8)
+        }
+    }
+
+    String getPossibleSemanticRolesSchemaDefinition() {
+        if (this == OmniSRC) {
+            return Resources.toString(Resources.getResource(
+                    "schema/omnilingual/OmniSRC_Omnilingual_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
+        } else {
+            return Resources.toString(Resources.getResource(
+                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
         }
     }
 
