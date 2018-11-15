@@ -26,6 +26,11 @@ ConstArtifact sub PhpSourceArtifact
 	plays IS_INCOMPLETE
 	plays IS_VARIABLE;
 
+DeclareStmtsArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_BODY;
+
 ExprArrayArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_DEFAULT
@@ -237,9 +242,11 @@ ExprBinaryOpConcatArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ADD
 	plays IS_BINARY
+	plays IS_CONDITION
 	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_IMPORT
 	plays IS_INCOMPLETE
 	plays IS_LEFT
@@ -395,6 +402,7 @@ ExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_BITWISE
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_LEFT_SHIFT
@@ -641,7 +649,8 @@ ExprIncludeArtifact sub PhpSourceArtifact
 	plays IS_CONDITION
 	plays IS_IF
 	plays IS_IMPORT
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 ExprInstanceofArtifact sub PhpSourceArtifact
 	# Semantic
@@ -757,6 +766,11 @@ ExprPreIncArtifact sub PhpSourceArtifact
 	plays IS_RIGHT
 	plays IS_UNARY
 	plays IS_UPDATE;
+
+ExprPrintArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_STATEMENT;
 
 ExprPropertyFetchArtifact sub PhpSourceArtifact
 	# Semantic
@@ -1079,6 +1093,17 @@ StmtContinueArtifact sub PhpSourceArtifact
 	plays IS_CONTINUE
 	plays IS_STATEMENT;
 
+StmtDeclareArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+StmtDeclareDeclareArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_IDENTIFIER
+	plays IS_LEFT;
+
 StmtDoArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
@@ -1161,6 +1186,8 @@ StmtInterfaceArtifact sub PhpSourceArtifact
 
 StmtLabelArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_GOTO
 	plays IS_INCOMPLETE
 	plays IS_STATEMENT;
@@ -1216,6 +1243,7 @@ StmtSwitchArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
+	plays IS_CATCH
 	plays IS_FOR
 	plays IS_SWITCH;
 
