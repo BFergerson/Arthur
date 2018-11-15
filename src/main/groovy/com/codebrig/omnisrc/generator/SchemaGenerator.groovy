@@ -136,7 +136,7 @@ class SchemaGenerator {
                         if (filter.evaluate(rootSourceNode)) {
                             observeSourceNode(observedLanguage, rootSourceNode)
                         }
-                        extractSchema(observedLanguage, rootSourceNode, rootSourceNode.children)
+                        extractSchema(observedLanguage, rootSourceNode)
                         parseCount.getAndIncrement()
                     } else {
                         System.err.println("Failed to parse: " + file + " - Reason: " + resp.errors().toList().toString())
@@ -155,19 +155,30 @@ class SchemaGenerator {
         }
     }
 
-    private void extractSchema(ObservedLanguage observedLanguage, SourceNode parentNode,
-                               Iterator<SourceNode> childNodes) {
-        childNodes.each {
-            if (filter.evaluate(it)) {
-                extractSchema(observedLanguage, it, it.children)
-                observeSourceNode(observedLanguage, it)
+    private void extractSchema(ObservedLanguage observedLanguage, SourceNode rootSourceNode) {
+        Stack<SourceNode> parentStack = new Stack<>()
+        Stack<Iterator<SourceNode>> childrenStack = new Stack<>()
+        parentStack.push(rootSourceNode)
+        childrenStack.push(rootSourceNode.children)
 
-                //parent and child don't relate in any way besides parent/child
-                if (!parentNode.underlyingNode.children().contains(it.underlyingNode)) {
-                    observedLanguage.observeParentChildRelation(parentNode.internalType, it)
+        while (!parentStack.isEmpty() && !childrenStack.isEmpty()) {
+            def parent = parentStack.pop()
+            def children = childrenStack.pop()
+
+            children.each {
+                if (filter.evaluate(it)) {
+                    parentStack.push(it)
+                    childrenStack.push(it.children)
+                    observeSourceNode(observedLanguage, it)
+
+                    //parent and child don't relate in any way besides parent/child
+                    if (!parent.underlyingNode.children().contains(it.underlyingNode)) {
+                        observedLanguage.observeParentChildRelation(parent.internalType, it)
+                    }
+                } else {
+                    parentStack.push(parent)
+                    childrenStack.push(it.children)
                 }
-            } else {
-                extractSchema(observedLanguage, parentNode, it.children)
             }
         }
     }
