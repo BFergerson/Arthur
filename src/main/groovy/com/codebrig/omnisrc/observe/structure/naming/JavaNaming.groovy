@@ -6,7 +6,7 @@ import com.codebrig.omnisrc.observe.filter.TypeFilter
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 
 /**
- * Used to get the names/qualified names of Java AST units
+ * Used to get the names/qualified names of Java AST nodes
  *
  * @version 0.2
  * @since 0.2

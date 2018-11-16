@@ -1,5 +1,6 @@
 package com.codebrig.omnisrc
 
+import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
@@ -19,6 +20,7 @@ class SourceNode {
     private final Node rootNode
     private final Node underlyingNode
     private final StructureNaming naming
+    private final StructureLiteral literal
 
     SourceNode(SourceLanguage language, Node underlyingNode) {
         this(language, underlyingNode, underlyingNode)
@@ -29,6 +31,7 @@ class SourceNode {
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
         this.naming = language.structureNaming
+        this.literal = language.structureLiteral
     }
 
     SourceLanguage getLanguage() {
@@ -56,6 +59,9 @@ class SourceNode {
     }
 
     String getToken() {
+        if (underlyingNode.properties().contains("token")) {
+            return underlyingNode.properties().get("token").get()
+        }
         return underlyingNode.token()
     }
 
@@ -75,6 +81,18 @@ class SourceNode {
 
     Iterator<Role> getRoles() {
         return asJavaIterator(underlyingNode.roles())
+    }
+
+    boolean isLiteralNode() {
+        return literal.isNodeLiteral(this)
+    }
+
+    String getLiteralAttribute() {
+        return literal.getNodeLiteralAttribute(this)
+    }
+
+    List<String> getPossibleLiteralAttributes() {
+        return literal.getPossibleNodeLiteralAttributes(this)
     }
 
     @Override

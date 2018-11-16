@@ -5,6 +5,7 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.observe.observations.ObservedAttributes
 import com.codebrig.omnisrc.observe.observations.ObservedRelations
 import com.codebrig.omnisrc.observe.observations.ObservedRoles
+import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.google.common.base.CaseFormat
 import com.google.common.collect.Maps
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
@@ -29,6 +30,7 @@ class ObservedLanguage {
     final Map<String, String> entityExtends
     final Map<String, String> attributeExtends
     final Map<String, String> relationExtends
+    final Set<String> literalAttributes
 
     ObservedLanguage(SourceLanguage language) {
         this(language, ObservationConfig.baseStructure())
@@ -43,6 +45,7 @@ class ObservedLanguage {
         this.entityExtends = Maps.newConcurrentMap()
         this.attributeExtends = Maps.newConcurrentMap()
         this.relationExtends = Maps.newConcurrentMap()
+        this.literalAttributes = StructureLiteral.allLiteralAttributes.keySet()
     }
 
     void removeEntityRole(String entity, String role) {
@@ -338,11 +341,14 @@ class ObservedLanguage {
         return entity + "Artifact"
     }
 
-    static String toValidAttribute(String attribute) {
+    String toValidAttribute(String attribute) {
         //ex. attributeName
         attribute = handleBreaker(".", attribute)
         attribute = handleBreaker("_", attribute)
         attribute = attribute.substring(0, 1).toLowerCase() + attribute.substring(1)
+        if (literalAttributes.contains(attribute)) {
+            return attribute
+        }
         return attribute + "Attribute"
     }
 

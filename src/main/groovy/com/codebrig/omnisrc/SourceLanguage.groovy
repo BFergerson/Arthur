@@ -1,6 +1,11 @@
 package com.codebrig.omnisrc
 
+import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
+import com.codebrig.omnisrc.observe.structure.literal.GoLiteral
+import com.codebrig.omnisrc.observe.structure.literal.JavaLiteral
+import com.codebrig.omnisrc.observe.structure.literal.JavascriptLiteral
+import com.codebrig.omnisrc.observe.structure.literal.PythonLiteral
 import com.codebrig.omnisrc.observe.structure.naming.JavaNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
@@ -89,6 +94,21 @@ enum SourceLanguage {
         switch (this) {
             case Java:
                 return new JavaNaming()
+            default:
+                return null //todo: implement rest
+        }
+    }
+
+    StructureLiteral getStructureLiteral() {
+        switch (this) {
+            case Go:
+                return new GoLiteral()
+            case Java:
+                return new JavaLiteral()
+            case Javascript:
+                return new JavascriptLiteral()
+            case Python:
+                return new PythonLiteral()
             default:
                 return null //todo: implement rest
         }

@@ -29,6 +29,7 @@ import static com.google.common.io.Files.getFileExtension
  */
 class SchemaGenerator {
 
+    private static final int MAX_FILE_PARSE_COUNT = Integer.MAX_VALUE
     private static final ExecutorService THREAD_POOL = Executors.newWorkStealingPool()
     private final BblfshClient client
     private SourceNodeFilter filter
@@ -57,11 +58,11 @@ class SchemaGenerator {
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language) {
-        return observeLanguage(language, Integer.MAX_VALUE)
+        return observeLanguage(language, MAX_FILE_PARSE_COUNT)
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount) {
-        return observeLanguage(language, parseProjectCount, Integer.MAX_VALUE)
+        return observeLanguage(language, parseProjectCount, MAX_FILE_PARSE_COUNT)
     }
 
     ObservedLanguage observeLanguage(SourceLanguage language, int parseProjectCount, int parseFilesPerProject) {
@@ -87,7 +88,7 @@ class SchemaGenerator {
     }
 
     void parseGithubRepository(String repoName, ObservedLanguage observedLanguage) {
-        parseGithubRepository(repoName, observedLanguage, Integer.MAX_VALUE)
+        parseGithubRepository(repoName, observedLanguage, MAX_FILE_PARSE_COUNT)
     }
 
     void parseGithubRepository(String repoName, ObservedLanguage observedLanguage, int parseFileLimit) {
@@ -103,7 +104,7 @@ class SchemaGenerator {
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage) {
-        parseLocalRepo(localRoot, observedLanguage, Integer.MAX_VALUE)
+        parseLocalRepo(localRoot, observedLanguage, MAX_FILE_PARSE_COUNT)
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
@@ -187,9 +188,17 @@ class SchemaGenerator {
         if (sourceNode.internalType.isEmpty()) {
             return //todo: understand this
         }
+
         observedLanguage.observeAttributes(sourceNode.internalType, sourceNode.properties)
         observedLanguage.observeRelations(sourceNode.internalType, filter.getFilteredNodes(sourceNode.children))
         observedLanguage.observeRoles(sourceNode.internalType, sourceNode.roles)
+        if (sourceNode.isLiteralNode()) {
+            def literalMap = new HashMap<String, String>()
+            sourceNode.getPossibleLiteralAttributes().each {
+                literalMap.put(it, null)
+            }
+            observedLanguage.observeAttributes(sourceNode.internalType, literalMap)
+        }
     }
 
     static void cloneRepo(String githubRepository, File outputDirectory) {

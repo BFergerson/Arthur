@@ -2,6 +2,7 @@ package com.codebrig.omnisrc.schema.grakn
 
 import com.codebrig.omnisrc.observe.ObservedLanguage
 import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.schema.SchemaSegment
 import com.codebrig.omnisrc.schema.SchemaWriter
 import com.google.common.base.CaseFormat
@@ -74,6 +75,9 @@ class GraknSchemaWriter implements SchemaWriter {
         println "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
         output.append("token sub attribute datatype string;\n")
+        StructureLiteral.allLiteralAttributes.each {
+            output.append(it.key).append(" sub attribute datatype ").append(it.value).append(";\n")
+        }
 
         if (rootLanguage.isOmnilingual()) {
             outputAttributes(output, rootLanguage)
@@ -87,6 +91,9 @@ class GraknSchemaWriter implements SchemaWriter {
 
     private void outputAttributes(Writer output, ObservedLanguage observedLanguage) {
         def observedAttributes = observedLanguage.getObservedAttributes(naturalOrdering)
+        observedAttributes.removeIf({
+            StructureLiteral.allLiteralAttributes.keySet().contains(it.replace("Attribute", ""))
+        })
         if (!observedAttributes.isEmpty()) {
             output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         }
