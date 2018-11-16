@@ -2964,6 +2964,7 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -3325,6 +3326,11 @@ PhpConstArtifact sub ConstArtifact
 	# Semantic
 	plays IS_VARIABLE;
 
+PhpDeclareStmtsArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_BODY;
+
 PhpExprArrayArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_DEFAULT
@@ -3536,9 +3542,11 @@ PhpExprBinaryOpConcatArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ADD
 	plays IS_BINARY
+	plays IS_CONDITION
 	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_IMPORT
 	plays IS_INCOMPLETE
 	plays IS_LEFT
@@ -3710,6 +3718,7 @@ PhpExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_BITWISE
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_LEFT_SHIFT
@@ -3957,7 +3966,8 @@ PhpExprIncludeArtifact sub PhpSourceArtifact
 	plays IS_CONDITION
 	plays IS_IF
 	plays IS_IMPORT
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 PhpExprInstanceofArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4073,6 +4083,11 @@ PhpExprPreIncArtifact sub PhpSourceArtifact
 	plays IS_RIGHT
 	plays IS_UNARY
 	plays IS_UPDATE;
+
+PhpExprPrintArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_STATEMENT;
 
 PhpExprPropertyFetchArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4389,6 +4404,17 @@ PhpStmtContinueArtifact sub PhpSourceArtifact
 	plays IS_CONTINUE
 	plays IS_STATEMENT;
 
+PhpStmtDeclareArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+PhpStmtDeclareDeclareArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_IDENTIFIER
+	plays IS_LEFT;
+
 PhpStmtDoArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
@@ -4472,6 +4498,8 @@ PhpStmtInterfaceArtifact sub PhpSourceArtifact
 
 PhpStmtLabelArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_GOTO
 	plays IS_INCOMPLETE
 	plays IS_STATEMENT;
@@ -4527,6 +4555,7 @@ PhpStmtSwitchArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
+	plays IS_CATCH
 	plays IS_FOR
 	plays IS_SWITCH;
 
