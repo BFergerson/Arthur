@@ -22,6 +22,7 @@ import java.util.stream.Collectors
  */
 class ObservedLanguage {
 
+    static final Set<String> literalAttributes = StructureLiteral.allLiteralAttributes.keySet()
     final SourceLanguage language
     final ObservationConfig config
     final Map<String, ObservedAttributes> attributes
@@ -30,7 +31,6 @@ class ObservedLanguage {
     final Map<String, String> entityExtends
     final Map<String, String> attributeExtends
     final Map<String, String> relationExtends
-    final Set<String> literalAttributes
 
     ObservedLanguage(SourceLanguage language) {
         this(language, ObservationConfig.baseStructure())
@@ -45,7 +45,6 @@ class ObservedLanguage {
         this.entityExtends = Maps.newConcurrentMap()
         this.attributeExtends = Maps.newConcurrentMap()
         this.relationExtends = Maps.newConcurrentMap()
-        this.literalAttributes = StructureLiteral.allLiteralAttributes.keySet()
     }
 
     void removeEntityRole(String entity, String role) {
@@ -341,7 +340,7 @@ class ObservedLanguage {
         return entity + "Artifact"
     }
 
-    String toValidAttribute(String attribute) {
+    static String toValidAttribute(String attribute) {
         //ex. attributeName
         attribute = handleBreaker(".", attribute)
         attribute = handleBreaker("_", attribute)
