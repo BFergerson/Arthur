@@ -2,6 +2,9 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Go -----#####
 colAttribute sub attribute datatype string;
@@ -51,7 +54,9 @@ AssignStmtArtifact sub GoSourceArtifact
 
 BasicLitArtifact sub GoSourceArtifact
 	# Attributes
+	has floatValue
 	has kindAttribute
+	has numberValue
 	# Structural
 	plays is_args_role
 	plays is_cond_role
@@ -638,6 +643,7 @@ SliceExprArtifact sub GoSourceArtifact
 StarExprArtifact sub GoSourceArtifact
 	# Structural
 	plays is_args_role
+	plays is_chan_role
 	plays is_cond_role
 	plays is_elt_role
 	plays is_elts_role
