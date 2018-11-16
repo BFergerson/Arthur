@@ -95,7 +95,14 @@ ExprAssignOpBitwiseAndArtifact sub PhpSourceArtifact
 
 ExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_FOR
 	plays IS_UNANNOTATED;
+
+ExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_FOR;
 
 ExprAssignOpConcatArtifact sub PhpSourceArtifact
 	# Semantic
@@ -117,6 +124,7 @@ ExprAssignOpDivArtifact sub PhpSourceArtifact
 ExprAssignOpMinusArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ASSIGNMENT
+	plays IS_BODY
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_OPERATOR
@@ -177,6 +185,7 @@ ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_BITWISE
+	plays IS_DEFAULT
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_OPERATOR
@@ -196,6 +205,7 @@ ExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_AND
 	plays IS_BINARY
+	plays IS_BODY
 	plays IS_BOOLEAN
 	plays IS_CASE
 	plays IS_CONDITION
@@ -276,7 +286,8 @@ ExprBinaryOpEqualArtifact sub PhpSourceArtifact
 	plays IS_LEFT
 	plays IS_OPERATOR
 	plays IS_RELATIONAL
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 ExprBinaryOpGreaterArtifact sub PhpSourceArtifact
 	# Semantic
@@ -291,11 +302,13 @@ ExprBinaryOpGreaterArtifact sub PhpSourceArtifact
 	plays IS_LEFT
 	plays IS_OPERATOR
 	plays IS_RELATIONAL
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 ExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -313,6 +326,7 @@ ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
 	plays IS_BINARY
 	plays IS_CASE
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_IDENTICAL
 	plays IS_IF
@@ -321,6 +335,20 @@ ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
 	plays IS_RELATIONAL
 	plays IS_RIGHT
 	plays IS_THEN;
+
+ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_OPERATOR
+	plays IS_OR
+	plays IS_RIGHT;
 
 ExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact
 	# Semantic
@@ -377,6 +405,7 @@ ExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_IDENTICAL
@@ -431,7 +460,8 @@ ExprBinaryOpSmallerArtifact sub PhpSourceArtifact
 	plays IS_LESS_THAN
 	plays IS_OPERATOR
 	plays IS_RELATIONAL
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 ExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact
 	# Semantic
@@ -491,8 +521,10 @@ ExprCastArrayArtifact sub PhpSourceArtifact
 ExprCastBoolArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BOOLEAN
+	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_INCOMPLETE
 	plays IS_RIGHT
 	plays IS_THEN;
@@ -522,6 +554,7 @@ ExprCastObjectArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_RIGHT
+	plays IS_THEN
 	plays IS_TYPE;
 
 ExprCastStringArtifact sub PhpSourceArtifact
@@ -582,6 +615,7 @@ ExprConstFetchArtifact sub PhpSourceArtifact
 	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_INCOMPLETE
 	plays IS_LEFT
 	plays IS_RIGHT
@@ -620,8 +654,10 @@ ExprExitArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CATCH
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION
+	plays IS_RIGHT;
 
 ExprFuncCallArtifact sub PhpSourceArtifact
 	# Semantic
@@ -716,6 +752,8 @@ ExprNewArtifact sub PhpSourceArtifact
 
 ExprPostDecArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CATCH
 	plays IS_DECREMENT
 	plays IS_EXPRESSION
 	plays IS_FOR
@@ -728,6 +766,7 @@ ExprPostDecArtifact sub PhpSourceArtifact
 ExprPostIncArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CATCH
 	plays IS_CONDITION
 	plays IS_EXPRESSION
 	plays IS_FOR
@@ -777,6 +816,7 @@ ExprPropertyFetchArtifact sub PhpSourceArtifact
 	plays IS_ARGUMENT
 	plays IS_BODY
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_ENTRY
@@ -797,6 +837,7 @@ ExprPropertyFetchArtifact sub PhpSourceArtifact
 
 ExprShellExecArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_RIGHT
 	plays IS_UNANNOTATED;
 
 ExprStaticCallArtifact sub PhpSourceArtifact
@@ -808,6 +849,7 @@ ExprStaticCallArtifact sub PhpSourceArtifact
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IDENTIFIER
 	plays IS_IF
 	plays IS_LEFT
@@ -837,8 +879,12 @@ ExprTernaryArtifact sub PhpSourceArtifact
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IDENTIFIER
 	plays IS_IF
+	plays IS_IMPORT
 	plays IS_LEFT
+	plays IS_PATHNAME
+	plays IS_RECEIVER
 	plays IS_RIGHT
 	plays IS_THEN;
 
@@ -853,6 +899,12 @@ ExprUnaryMinusArtifact sub PhpSourceArtifact
 	plays IS_LEFT
 	plays IS_RIGHT
 	plays IS_THEN
+	plays IS_UNARY;
+
+ExprUnaryPlusArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
 	plays IS_UNARY;
 
 ExprVariableArtifact sub PhpSourceArtifact
@@ -877,6 +929,7 @@ ExprYieldArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CATCH
+	plays IS_FOR
 	plays IS_INCOMPLETE
 	plays IS_RETURN;
 
@@ -983,7 +1036,8 @@ ScalarMagicConstClassArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_LEFT
-	plays IS_LITERAL;
+	plays IS_LITERAL
+	plays IS_RIGHT;
 
 ScalarMagicConstDirArtifact sub PhpSourceArtifact
 	# Semantic
@@ -1015,14 +1069,16 @@ ScalarMagicConstLineArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_LEFT
-	plays IS_LITERAL;
+	plays IS_LITERAL
+	plays IS_RIGHT;
 
 ScalarMagicConstMethodArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_LEFT
-	plays IS_LITERAL;
+	plays IS_LITERAL
+	plays IS_RIGHT;
 
 ScalarMagicConstNamespaceArtifact sub PhpSourceArtifact
 	# Semantic
@@ -1085,6 +1141,12 @@ StmtClassMethodArtifact sub PhpSourceArtifact
 	plays IS_FUNCTION
 	plays IS_TYPE;
 
+StmtConstArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_VARIABLE;
+
 StmtContinueArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
@@ -1115,6 +1177,7 @@ StmtEchoArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CATCH
 	plays IS_FOR
 	plays IS_STATEMENT;
@@ -1138,6 +1201,7 @@ StmtFinallyArtifact sub PhpSourceArtifact
 StmtForArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_FOR
 	plays IS_STATEMENT;
 
@@ -1276,6 +1340,7 @@ StmtTryCatchArtifact sub PhpSourceArtifact
 	plays IS_BODY
 	plays IS_CASE
 	plays IS_CATCH
+	plays IS_FOR
 	plays IS_STATEMENT
 	plays IS_TRY;
 
@@ -1299,6 +1364,7 @@ StmtWhileArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CATCH
+	plays IS_FOR
 	plays IS_STATEMENT
 	plays IS_WHILE;
 
