@@ -993,6 +993,8 @@ TryStatementArtifact sub JavaSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
+	plays IS_ELSE
+	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
 	plays IS_TRY

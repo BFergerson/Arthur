@@ -2,9 +2,11 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Java -----#####
-booleanValueAttribute sub attribute datatype string;
 constructorAttribute sub attribute datatype string;
 interfaceAttribute sub attribute datatype string;
 onDemandAttribute sub attribute datatype string;
@@ -134,7 +136,7 @@ BlockCommentArtifact sub JavaSourceArtifact
 
 BooleanLiteralArtifact sub JavaSourceArtifact
 	# Attributes
-	has booleanValueAttribute
+	has booleanValue
 	# Structural
 	plays is_arguments_role
 	plays is_body_role
@@ -568,6 +570,8 @@ NullLiteralArtifact sub JavaSourceArtifact
 	plays is_then_expression_role;
 
 NumberLiteralArtifact sub JavaSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_arguments_role
 	plays is_body_role
@@ -903,6 +907,7 @@ ThrowStatementArtifact sub JavaSourceArtifact
 TryStatementArtifact sub JavaSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_else_statement_role
 	plays is_statements_role
 	plays has_body_role
 	plays has_catch_clauses_role
