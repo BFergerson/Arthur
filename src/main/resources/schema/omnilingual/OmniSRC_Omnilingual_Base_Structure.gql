@@ -2,6 +2,9 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Omnilingual -----#####
 colAttribute sub attribute datatype string;
@@ -26,7 +29,6 @@ goSlice3Attribute sub attribute datatype string;
 goTokAttribute sub attribute datatype string;
 
 #####----- Java -----#####
-javaBooleanValueAttribute sub attribute datatype string;
 javaConstructorAttribute sub attribute datatype string;
 javaInterfaceAttribute sub attribute datatype string;
 javaOnDemandAttribute sub attribute datatype string;
@@ -224,7 +226,9 @@ GoAssignStmtArtifact sub GoSourceArtifact
 
 GoBasicLitArtifact sub GoSourceArtifact
 	# Attributes
+	has floatValue
 	has goKindAttribute
+	has numberValue
 	# Structural
 	plays is_go_args_role
 	plays is_go_cond_role
@@ -1042,7 +1046,7 @@ JavaBlockCommentArtifact sub JavaSourceArtifact
 
 JavaBooleanLiteralArtifact sub BooleanLiteralArtifact
 	# Attributes
-	has javaBooleanValueAttribute
+	has booleanValue
 	# Structural
 	plays is_java_arguments_role
 	plays is_java_body_role
@@ -1476,6 +1480,8 @@ JavaNullLiteralArtifact sub NullLiteralArtifact
 	plays is_java_then_expression_role;
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_java_arguments_role
 	plays is_java_body_role
@@ -2987,6 +2993,8 @@ JavascriptNumberTypeAnnotationArtifact sub JavascriptSourceArtifact
 	plays is_javascript_value_role;
 
 JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_javascript_alternate_role
 	plays is_javascript_argument_role
@@ -5876,6 +5884,8 @@ PythonNotInArtifact sub PythonSourceArtifact
 	plays is_python_ops_role;
 
 PythonNumArtifact sub PythonSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_python_annotation_role
 	plays is_python_args_role
