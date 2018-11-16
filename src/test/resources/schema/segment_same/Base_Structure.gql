@@ -2,6 +2,9 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Omnilingual -----#####
 kindAttribute sub attribute datatype string;
@@ -56,7 +59,9 @@ GoAssignStmtArtifact sub GoSourceArtifact
 
 GoBasicLitArtifact sub GoSourceArtifact
 	# Attributes
+	has floatValue
 	has goKindAttribute
+	has numberValue
 	# Structural
 	plays is_go_path_role
 	plays is_go_rhs_role
@@ -257,6 +262,8 @@ JavaModifierArtifact sub JavaSourceArtifact
 	plays is_java_modifiers_role;
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_java_initializer_role
 	plays is_java_right_operand_role;
@@ -380,6 +387,8 @@ JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact
 	plays has_javascript_property_role;
 
 JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_javascript_init_role
 	plays is_javascript_right_role;
@@ -455,6 +464,8 @@ PythonNameArtifact sub PythonSourceArtifact
 	plays is_python_values_role;
 
 PythonNumArtifact sub PythonSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_python_args_role;
 
