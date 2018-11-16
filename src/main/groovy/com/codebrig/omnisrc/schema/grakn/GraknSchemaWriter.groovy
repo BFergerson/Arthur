@@ -145,8 +145,9 @@ class GraknSchemaWriter implements SchemaWriter {
                 output.append(isRole).append(" sub ").append("is_child").append(";\n")
                 output.append(hasRole).append(" sub ").append("is_parent").append(";\n")
             } else {
-                output.append(isRole).append(" sub ").append("is_$relation").append(";\n")
-                output.append(hasRole).append(" sub ").append("has_$relation").append(";\n")
+                def subRole = observedLanguage.getRelationRole(relation, false)
+                output.append(isRole).append(" sub ").append("is_$subRole").append(";\n")
+                output.append(hasRole).append(" sub ").append("has_$subRole").append(";\n")
             }
 
             if ((i + 1) < observedRelations.size()) {
