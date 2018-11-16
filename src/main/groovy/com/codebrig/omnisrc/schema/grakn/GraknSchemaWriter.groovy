@@ -100,7 +100,8 @@ class GraknSchemaWriter implements SchemaWriter {
         observedAttributes.each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             output.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
-                    .append(" datatype string;\n") //todo: dynamic datatype
+                    .append(" datatype ").append(GraknAttributeDatatype.getType(attribute))
+                    .append(";\n")
         }
     }
 
