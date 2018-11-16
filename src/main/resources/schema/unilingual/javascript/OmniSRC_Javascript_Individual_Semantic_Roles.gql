@@ -408,7 +408,9 @@ ConditionalExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_LEFT
 	plays IS_MAP
 	plays IS_RIGHT
+	plays IS_SWITCH
 	plays IS_THEN
+	plays IS_UPDATE
 	plays IS_VALUE
 	plays IS_WHILE;
 
@@ -464,6 +466,11 @@ DeclareVariableArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_UNANNOTATED;
 
+DecoratorArtifact sub JavascriptSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
 DirectiveArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_INCOMPLETE;
@@ -483,6 +490,7 @@ DoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_DO_WHILE
+	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_THEN;
@@ -807,6 +815,7 @@ LogicalExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_DO_WHILE
 	plays IS_ELSE
@@ -1179,6 +1188,7 @@ SequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -1267,11 +1277,13 @@ SwitchCaseArtifact sub JavascriptSourceArtifact
 SwitchStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_ELSE
 	plays IS_FOR
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
-	plays IS_THEN;
+	plays IS_THEN
+	plays IS_WHILE;
 
 TaggedTemplateExpressionArtifact sub JavascriptSourceArtifact
 	# Semantic

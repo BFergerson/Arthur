@@ -2,6 +2,9 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Javascript -----#####
 asyncAttribute sub attribute datatype string;
@@ -100,6 +103,7 @@ ArrowFunctionExpressionArtifact sub JavascriptSourceArtifact
 	plays is_declaration_role
 	plays is_elements_role
 	plays is_expression_role
+	plays is_expressions_role
 	plays is_init_role
 	plays is_object_role
 	plays is_right_role
@@ -121,6 +125,7 @@ AssignmentExpressionArtifact sub JavascriptSourceArtifact
 	plays is_consequent_role
 	plays is_declaration_role
 	plays is_discriminant_role
+	plays is_elements_role
 	plays is_expression_role
 	plays is_expressions_role
 	plays is_init_role
@@ -320,6 +325,7 @@ ClassDeclarationArtifact sub JavascriptSourceArtifact
 	plays is_body_role
 	plays is_declaration_role
 	plays has_body_role
+	plays has_decorators_role
 	plays has_id_role
 	plays has_leading_comments_role
 	plays has_super_class_role
@@ -341,6 +347,7 @@ ClassExpressionArtifact sub JavascriptSourceArtifact
 	plays is_super_class_role
 	plays is_value_role
 	plays has_body_role
+	plays has_decorators_role
 	plays has_id_role
 	plays has_implements_role
 	plays has_super_class_role
@@ -411,6 +418,7 @@ ConditionalExpressionArtifact sub JavascriptSourceArtifact
 	plays is_callee_role
 	plays is_consequent_role
 	plays is_declaration_role
+	plays is_discriminant_role
 	plays is_elements_role
 	plays is_expression_role
 	plays is_expressions_role
@@ -420,6 +428,7 @@ ConditionalExpressionArtifact sub JavascriptSourceArtifact
 	plays is_property_role
 	plays is_right_role
 	plays is_test_role
+	plays is_update_role
 	plays is_value_role
 	plays has_alternate_role
 	plays has_consequent_role
@@ -496,6 +505,11 @@ DeclareVariableArtifact sub JavascriptSourceArtifact
 	plays has_leading_comments_role
 	plays has_trailing_comments_role;
 
+DecoratorArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_decorators_role
+	plays has_expression_role;
+
 DirectiveArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_directives_role
@@ -514,6 +528,7 @@ DoExpressionArtifact sub JavascriptSourceArtifact
 
 DoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_alternate_role
 	plays is_body_role
 	plays is_consequent_role
 	plays has_body_role
@@ -1014,6 +1029,7 @@ NewExpressionArtifact sub JavascriptSourceArtifact
 	plays is_body_role
 	plays is_callee_role
 	plays is_consequent_role
+	plays is_declaration_role
 	plays is_elements_role
 	plays is_expression_role
 	plays is_expressions_role
@@ -1094,6 +1110,8 @@ NumberTypeAnnotationArtifact sub JavascriptSourceArtifact
 	plays is_value_role;
 
 NumericLiteralArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_alternate_role
 	plays is_argument_role
@@ -1405,6 +1423,7 @@ SwitchCaseArtifact sub JavascriptSourceArtifact
 
 SwitchStatementArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_alternate_role
 	plays is_body_role
 	plays is_consequent_role
 	plays has_cases_role
@@ -1807,6 +1826,11 @@ declarations_relation sub parent_child_relation
 	relates is_declarations_role, relates has_declarations_role;
 is_declarations_role sub is_child;
 has_declarations_role sub is_parent;
+
+decorators_relation sub parent_child_relation
+	relates is_decorators_role, relates has_decorators_role;
+is_decorators_role sub is_child;
+has_decorators_role sub is_parent;
 
 default_relation sub parent_child_relation
 	relates is_default_role, relates has_default_role;
