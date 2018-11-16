@@ -119,11 +119,13 @@ class ObservedLanguage {
     }
 
     void addAttributeExtends(String attribute) {
-        attributeExtends.put(language.key + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute), attribute)
+        if (!literalAttributes.contains(attribute)) {
+            attributeExtends.put(language.key + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute), attribute)
+        }
     }
 
     String getAttribute(String attribute, boolean multilingual) {
-        if (isOmnilingual() || !multilingual) {
+        if (isOmnilingual() || !multilingual || literalAttributes.contains(attribute)) {
             return attribute
         }
         return language.key + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, attribute)

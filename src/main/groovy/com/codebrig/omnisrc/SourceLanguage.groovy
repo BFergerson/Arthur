@@ -2,10 +2,7 @@ package com.codebrig.omnisrc
 
 import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
-import com.codebrig.omnisrc.observe.structure.literal.GoLiteral
-import com.codebrig.omnisrc.observe.structure.literal.JavaLiteral
-import com.codebrig.omnisrc.observe.structure.literal.JavascriptLiteral
-import com.codebrig.omnisrc.observe.structure.literal.PythonLiteral
+import com.codebrig.omnisrc.observe.structure.literal.*
 import com.codebrig.omnisrc.observe.structure.naming.JavaNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
@@ -107,8 +104,12 @@ enum SourceLanguage {
                 return new JavaLiteral()
             case Javascript:
                 return new JavascriptLiteral()
+            case Php:
+                return new PhpLiteral()
             case Python:
                 return new PythonLiteral()
+            case Ruby:
+                return new RubyLiteral()
             default:
                 return null //todo: implement rest
         }
