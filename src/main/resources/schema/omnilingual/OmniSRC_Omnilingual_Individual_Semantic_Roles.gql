@@ -7760,6 +7760,10 @@ TRY sub relationship
 	relates IS_TRY;
 IS_TRY sub role;
 
+TUPLE sub relationship
+	relates IS_TUPLE;
+IS_TUPLE sub role;
+
 TYPE sub relationship
 	relates IS_TYPE;
 IS_TYPE sub role;
