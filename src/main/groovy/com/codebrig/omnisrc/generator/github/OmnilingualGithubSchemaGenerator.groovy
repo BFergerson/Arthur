@@ -44,9 +44,7 @@ class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
                 .withFileSegment(new File("src/main/resources/schema/omnilingual/",
                 "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Individual_Semantic_Roles.gql"), SchemaSegment.INDIVIDUAL_SEMANTIC_ROLES)
                 .withFileSegment(new File("src/main/resources/schema/omnilingual/",
-                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES)
-                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
-                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Possible_Semantic_Roles.gql"), SchemaSegment.POSSIBLE_SEMANTIC_ROLES))
+                "OmniSRC_" + SourceLanguage.OmniSRC.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

@@ -33,9 +33,7 @@ class UnilingualLocalSchemaGenerator extends SchemaGenerator {
                 .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
                 "OmniSRC_" + language.qualifiedName + "_Individual_Semantic_Roles.gql"), SchemaSegment.INDIVIDUAL_SEMANTIC_ROLES)
                 .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
-                "OmniSRC_" + language.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES)
-                .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
-                "OmniSRC_" + language.qualifiedName + "_Possible_Semantic_Roles.gql"), SchemaSegment.POSSIBLE_SEMANTIC_ROLES))
+                "OmniSRC_" + language.qualifiedName + "_Actual_Semantic_Roles.gql"), SchemaSegment.ACTUAL_SEMANTIC_ROLES))
         println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }
