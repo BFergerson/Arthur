@@ -7776,6 +7776,10 @@ UNARY sub relationship
 	relates IS_UNARY;
 IS_UNARY sub role;
 
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
 UNANNOTATED sub relationship
 	relates IS_UNANNOTATED;
 IS_UNANNOTATED sub role;
