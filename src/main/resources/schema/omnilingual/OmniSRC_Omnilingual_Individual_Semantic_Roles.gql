@@ -7773,7 +7773,7 @@ UNARY sub relationship
 IS_UNARY sub role;
 
 UNANNOTATED sub relationship
-	relates IS_UNARY;
+	relates IS_UNANNOTATED;
 IS_UNANNOTATED sub role;
 
 UNSIGNED sub relationship
