@@ -7772,6 +7772,10 @@ UNARY sub relationship
 	relates IS_UNARY;
 IS_UNARY sub role;
 
+UNANNOTATED sub relationship
+	relates IS_UNARY;
+IS_UNANNOTATED sub role;
+
 UNSIGNED sub relationship
 	relates IS_UNSIGNED;
 IS_UNSIGNED sub role;
