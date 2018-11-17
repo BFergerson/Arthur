@@ -47,25 +47,6 @@ class ObservedRoles {
         individualObservations.remove(role)
     }
 
-    List<String> getPossibleSemanticRoles() {
-        def rtnList = new ArrayList<String>()
-        def individualRoles = individualSemanticRoles
-        individualRoles.sort(String.CASE_INSENSITIVE_ORDER)
-        for (int i = 0; i < individualRoles.size(); i++) {
-            String s = ""
-            for (int j = i; j < individualRoles.size(); j++) {
-                if (!s.isEmpty()) {
-                    s += "_"
-                }
-                s += individualRoles.get(j)
-                if (!individualObservations.containsKey(s) && !actualObservations.containsKey(s)) {
-                    rtnList.add(s)
-                }
-            }
-        }
-        return rtnList
-    }
-
     List<String> getIndividualSemanticRoles() {
         return individualObservations.keySet().toList()
     }
@@ -74,7 +55,7 @@ class ObservedRoles {
         return actualObservations.keySet().toList()
     }
 
-    List<String> getRoles(boolean includeIndividualRoles, boolean includeActualRoles, boolean includePossibleRoles) {
+    List<String> getRoles(boolean includeIndividualRoles, boolean includeActualRoles) {
         def rtnList = new ArrayList<String>()
         if (includeIndividualRoles) {
             rtnList.addAll(individualSemanticRoles)
@@ -82,13 +63,10 @@ class ObservedRoles {
         if (includeActualRoles) {
             rtnList.addAll(actualSemanticRoles)
         }
-        if (includePossibleRoles) {
-            rtnList.addAll(possibleSemanticRoles)
-        }
         return rtnList
     }
 
-    List<String> getRankedRoles(boolean includeIndividualRoles, boolean includeActualRoles, boolean includePossibleRoles) {
+    List<String> getRankedRoles(boolean includeIndividualRoles, boolean includeActualRoles) {
         //todo: need to combine and rank then filter?
         def rtnList = new ArrayList<String>()
         if (includeIndividualRoles) {
@@ -96,9 +74,6 @@ class ObservedRoles {
         }
         if (includeActualRoles) {
             rtnList.addAll(entriesSortedByValues(actualObservations).keySet().toList())
-        }
-        if (includePossibleRoles) {
-            rtnList.addAll(possibleSemanticRoles)
         }
         return rtnList
     }

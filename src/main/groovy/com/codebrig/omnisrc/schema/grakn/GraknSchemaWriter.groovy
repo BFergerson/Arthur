@@ -32,27 +32,34 @@ class GraknSchemaWriter implements SchemaWriter {
         this.observedLanguages = Arrays.asList(observedLanguages)
     }
 
-    private void writeSemanticRoles(Writer output, boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
+    private void writeSemanticRoles(Writer output, boolean individualRoles, boolean actualRoles) {
         println "Writing semantic roles"
         def observedRoles
-        if (individualRoles && actualRoles && possibleRoles) {
+        if (individualRoles && actualRoles) {
             observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
         } else {
             observedRoles = new ArrayList<String>()
             if (individualRoles) {
+                //common individual semantic roles
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
-                        true, false, false))
-            }
-            if (actualRoles) {
-                //get from observed languages directly; root language won't know
+                        true, false))
+
+                //language-specific individual semantic roles
                 observedLanguages.each {
                     observedRoles.addAll(it.getObservedRoles(naturalOrdering,
-                            false, true, false))
+                            true, false))
                 }
             }
-            if (possibleRoles) {
+            if (actualRoles) {
+                //common actual semantic roles
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
-                        false, false, true))
+                        false, true))
+
+                //language-specific actual semantic roles
+                observedLanguages.each {
+                    observedRoles.addAll(it.getObservedRoles(naturalOrdering,
+                            false, true))
+                }
             }
         }
 
@@ -157,7 +164,7 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     private void writeEntities(Writer output, boolean includeAttributes, boolean includeStructure,
-                               boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
+                               boolean individualRoles, boolean actualRoles) {
         println "Writing entities"
         output.append("\n##########---------- Entities ----------##########\n")
         if (includeAttributes) {
@@ -167,19 +174,19 @@ class GraknSchemaWriter implements SchemaWriter {
 
         if (rootLanguage.isOmnilingual()) {
             outputEntities(output, rootLanguage, includeAttributes, includeStructure,
-                    individualRoles, actualRoles, possibleRoles)
+                    individualRoles, actualRoles)
         }
         observedLanguages.each { observedLanguage ->
             if (!observedLanguage.isOmnilingual()) {
                 outputEntities(output, observedLanguage, includeAttributes, includeStructure,
-                        individualRoles, actualRoles, possibleRoles)
+                        individualRoles, actualRoles)
             }
         }
     }
 
     private void outputEntities(Writer output, ObservedLanguage observedLanguage,
                                 boolean includeAttributes, boolean includeStructure,
-                                boolean individualRoles, boolean actualRoles, boolean possibleRoles) {
+                                boolean individualRoles, boolean actualRoles) {
         output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
         output.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
 
@@ -229,21 +236,17 @@ class GraknSchemaWriter implements SchemaWriter {
             //plays (semantic roles)
             if (observedLanguage.roles.containsKey(entity)) {
                 def roleList
-                if (individualRoles && actualRoles && possibleRoles) {
+                if (individualRoles && actualRoles) {
                     roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
                 } else {
                     roleList = new ArrayList<String>()
                     if (individualRoles) {
                         roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
-                                true, false, false))
+                                true, false))
                     }
                     if (actualRoles) {
                         roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
-                                false, true, false))
-                    }
-                    if (possibleRoles) {
-                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
-                                false, false, true))
+                                false, true))
                     }
                 }
 
@@ -283,25 +286,21 @@ class GraknSchemaWriter implements SchemaWriter {
         }
         if (ENTITIES in segments
                 || INDIVIDUAL_SEMANTIC_ROLES in segments
-                || ACTUAL_SEMANTIC_ROLES in segments
-                || POSSIBLE_SEMANTIC_ROLES in segments) {
+                || ACTUAL_SEMANTIC_ROLES in segments) {
             def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
             def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
-            def possibleRoles = (POSSIBLE_SEMANTIC_ROLES in segments)
             def includeAttributes = ATTRIBUTES in segments
             def includeStructure = RELATIONSHIPS in segments
-            writeEntities(sb, includeAttributes, includeStructure, individualRoles, actualRoles, possibleRoles)
+            writeEntities(sb, includeAttributes, includeStructure, individualRoles, actualRoles)
         }
         if (RELATIONSHIPS in segments) {
             writeStructuralRelationships(sb)
         }
         if (INDIVIDUAL_SEMANTIC_ROLES in segments
-                || ACTUAL_SEMANTIC_ROLES in segments
-                || POSSIBLE_SEMANTIC_ROLES in segments) {
+                || ACTUAL_SEMANTIC_ROLES in segments) {
             def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
             def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
-            def possibleRoles = (POSSIBLE_SEMANTIC_ROLES in segments)
-            writeSemanticRoles(sb, individualRoles, actualRoles, possibleRoles)
+            writeSemanticRoles(sb, individualRoles, actualRoles)
         }
         return sb.toString()
     }
@@ -311,9 +310,9 @@ class GraknSchemaWriter implements SchemaWriter {
         def sb = new StringWriter()
         sb.append("define\n")
         writeAttributes(sb)
-        writeEntities(sb, true, true, true, true, true)
+        writeEntities(sb, true, true, true, true)
         writeStructuralRelationships(sb)
-        writeSemanticRoles(sb, true, true, true)
+        writeSemanticRoles(sb, true, true)
         return sb.toString()
     }
 }

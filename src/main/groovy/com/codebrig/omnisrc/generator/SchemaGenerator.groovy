@@ -29,7 +29,7 @@ import static com.google.common.io.Files.getFileExtension
  */
 class SchemaGenerator {
 
-    private static final int MAX_FILE_PARSE_COUNT = Integer.MAX_VALUE
+    private static final int MAX_FILE_PARSE_COUNT = 100
     private static final ExecutorService THREAD_POOL = Executors.newWorkStealingPool()
     private final BblfshClient client
     private SourceNodeFilter filter

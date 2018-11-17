@@ -35,10 +35,6 @@ class ObservationConfig {
         return ACTUAL_SEMANTIC_ROLES in observedSegments
     }
 
-    boolean observingPossibleSemanticRoles() {
-        return POSSIBLE_SEMANTIC_ROLES in observedSegments
-    }
-
     static ObservationConfig fullStructure() {
         return new ObservationConfig(values())
     }

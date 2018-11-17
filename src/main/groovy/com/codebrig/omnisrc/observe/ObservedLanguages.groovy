@@ -54,11 +54,14 @@ class ObservedLanguages extends ObservedLanguage {
                     }
                 }
             }
-            lang.observedRoles.each { role ->
-                omniLanguage.observeGlobalRole(role)
+            lang.getObservedRoles(true, true, false).each {
+                omniLanguage.observeGlobalIndividualRole(it)
+            }
+            lang.getObservedRoles(true, false, true).each {
+                omniLanguage.observeGlobalActualRole(it)
             }
         }
-        omniLanguage.observedRoles.each { role ->
+        omniLanguage.getObservedRoles(true, true, true).each { role ->
             observedLanguages.each { lang ->
                 lang.getEntitiesWithRole(role).each { entity ->
                     observedLanguages.each {
@@ -75,17 +78,19 @@ class ObservedLanguages extends ObservedLanguage {
     }
 
     //todo: rename to omniEntities?
-    public final Set<String> globalEntities
-    public final Set<String> globalAttributes
-    public final Set<String> globalRelations
-    public final Set<String> globalRoles
+    final Set<String> globalEntities
+    final Set<String> globalAttributes
+    final Set<String> globalRelations
+    final Set<String> globalIndividualRoles
+    final Set<String> globalActualRoles
 
     private ObservedLanguages(ObservationConfig observationConfig) {
         super(SourceLanguage.OmniSRC, observationConfig)
         this.globalEntities = new HashSet<>()
         this.globalAttributes = new HashSet<>()
         this.globalRelations = new HashSet<>()
-        this.globalRoles = new HashSet<>()
+        this.globalIndividualRoles = new HashSet<>()
+        this.globalActualRoles = new HashSet<>()
     }
 
     void addEntityRole(String entity, String role) {
@@ -105,8 +110,12 @@ class ObservedLanguages extends ObservedLanguage {
         globalRelations.add(relation)
     }
 
-    void observeGlobalRole(String role) {
-        globalRoles.add(role)
+    void observeGlobalIndividualRole(String role) {
+        globalIndividualRoles.add(role)
+    }
+
+    void observeGlobalActualRole(String role) {
+        globalActualRoles.add(role)
     }
 
     @Override
@@ -132,7 +141,15 @@ class ObservedLanguages extends ObservedLanguage {
     }
 
     @Override
-    List<String> getObservedRoles(boolean naturalOrdering) {
+    List<String> getObservedRoles(boolean naturalOrdering, boolean includeIndividual, boolean includeActual) {
+        def globalRoles = new HashSet<String>()
+        if (includeIndividual) {
+            globalRoles.addAll(globalIndividualRoles)
+        }
+        if (includeActual) {
+            globalRoles.addAll(globalActualRoles)
+        }
+
         if (naturalOrdering) {
             def rtnRoles = globalRoles.toList()
             rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
