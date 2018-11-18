@@ -255,11 +255,13 @@ FuncLitArtifact sub GoSourceArtifact
 
 FuncTypeArtifact sub GoSourceArtifact
 	# Semantic
+	plays IS_ARGUMENT
 	plays IS_CALLEE
 	plays IS_ENTRY
 	plays IS_EXPRESSION
 	plays IS_FUNCTION
 	plays IS_KEY
+	plays IS_POSITIONAL
 	plays IS_TYPE;
 
 GenDeclArtifact sub GoSourceArtifact
@@ -416,6 +418,7 @@ ParenExprArtifact sub GoSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_INCOMPLETE
+	plays IS_KEY
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RIGHT
@@ -524,6 +527,7 @@ TypeAssertExprArtifact sub GoSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_INCOMPLETE
+	plays IS_KEY
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RIGHT

@@ -205,6 +205,7 @@ CompositeLitArtifact sub GoSourceArtifact
 	plays is_list_role
 	plays is_results_role
 	plays is_rhs_role
+	plays is_tag_role
 	plays is_value_role
 	plays is_values_role
 	plays is_x_role
@@ -319,6 +320,7 @@ FuncLitArtifact sub GoSourceArtifact
 
 FuncTypeArtifact sub GoSourceArtifact
 	# Structural
+	plays is_args_role
 	plays is_elt_role
 	plays is_fun_role
 	plays is_key_role
@@ -496,6 +498,7 @@ ParenExprArtifact sub GoSourceArtifact
 	plays is_fun_role
 	plays is_high_role
 	plays is_index_role
+	plays is_key_role
 	plays is_lhs_role
 	plays is_list_role
 	plays is_low_role
@@ -652,6 +655,7 @@ StarExprArtifact sub GoSourceArtifact
 	plays is_key_role
 	plays is_lhs_role
 	plays is_list_role
+	plays is_low_role
 	plays is_results_role
 	plays is_rhs_role
 	plays is_tag_role
@@ -695,8 +699,11 @@ TypeAssertExprArtifact sub GoSourceArtifact
 	plays is_cond_role
 	plays is_elts_role
 	plays is_fun_role
+	plays is_high_role
 	plays is_index_role
+	plays is_key_role
 	plays is_list_role
+	plays is_low_role
 	plays is_results_role
 	plays is_rhs_role
 	plays is_tag_role

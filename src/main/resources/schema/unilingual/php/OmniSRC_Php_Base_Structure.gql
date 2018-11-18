@@ -12,6 +12,7 @@ byRefAttribute sub attribute datatype string;
 flagsAttribute sub attribute datatype string;
 methodAttribute sub attribute datatype string;
 newModifierAttribute sub attribute datatype string;
+remainingAttribute sub attribute datatype string;
 returnTypeAttribute sub attribute datatype string;
 staticAttribute sub attribute datatype string;
 typeAttribute sub attribute datatype string;
@@ -109,6 +110,7 @@ ExprAssignArtifact sub PhpSourceArtifact
 	plays is_init_role
 	plays is_left_role
 	plays is_loop_role
+	plays is_name_role
 	plays is_right_role
 	plays is_stmts_role
 	plays is_value_role
@@ -135,6 +137,7 @@ ExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact
 ExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_stmts_role
+	plays has_comments_role
 	plays has_expr_role
 	plays has_var_role;
 
@@ -142,7 +145,9 @@ ExprAssignOpConcatArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_body_role
 	plays is_children_role
+	plays is_else_role
 	plays is_expr_role
+	plays is_left_role
 	plays is_right_role
 	plays is_stmts_role
 	plays is_value_role
@@ -161,8 +166,10 @@ ExprAssignOpDivArtifact sub PhpSourceArtifact
 ExprAssignOpMinusArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_expr_role
 	plays is_loop_role
 	plays is_stmts_role
+	plays has_comments_role
 	plays has_expr_role
 	plays has_var_role;
 
@@ -170,12 +177,14 @@ ExprAssignOpModArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_right_role
 	plays is_stmts_role
+	plays has_comments_role
 	plays has_expr_role
 	plays has_var_role;
 
 ExprAssignOpMulArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_stmts_role
+	plays has_comments_role
 	plays has_expr_role
 	plays has_var_role;
 
@@ -184,10 +193,24 @@ ExprAssignOpPlusArtifact sub PhpSourceArtifact
 	plays is_body_role
 	plays is_expr_role
 	plays is_init_role
+	plays is_left_role
 	plays is_loop_role
 	plays is_right_role
 	plays is_stmts_role
+	plays is_value_role
 	plays has_comments_role
+	plays has_expr_role
+	plays has_var_role;
+
+ExprAssignOpShiftLeftArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_stmts_role
+	plays has_expr_role
+	plays has_var_role;
+
+ExprAssignOpShiftRightArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_stmts_role
 	plays has_expr_role
 	plays has_var_role;
 
@@ -205,8 +228,10 @@ ExprAssignRefArtifact sub PhpSourceArtifact
 ExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
+	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_if_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
@@ -217,6 +242,7 @@ ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
 	plays is_default_role
+	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
 	plays is_left_role
@@ -227,7 +253,10 @@ ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 
 ExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_dim_role
 	plays is_expr_role
+	plays is_left_role
+	plays is_right_role
 	plays is_value_role
 	plays has_left_role
 	plays has_right_role;
@@ -250,12 +279,17 @@ ExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact
 
 ExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
+	plays is_children_role
 	plays is_cond_role
+	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
+	plays is_stmts_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -294,7 +328,9 @@ ExprBinaryOpConcatArtifact sub PhpSourceArtifact
 
 ExprBinaryOpDivArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
@@ -311,6 +347,7 @@ ExprBinaryOpEqualArtifact sub PhpSourceArtifact
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -335,6 +372,8 @@ ExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
+	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -354,8 +393,13 @@ ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
 
 ExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_cond_role
 	plays is_expr_role
+	plays is_left_role
+	plays is_right_role
+	plays is_stmts_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -377,11 +421,13 @@ ExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
 	plays is_expr_role
+	plays is_right_role
 	plays has_left_role
 	plays has_right_role;
 
 ExprBinaryOpMinusArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_cond_role
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
@@ -390,6 +436,7 @@ ExprBinaryOpMinusArtifact sub PhpSourceArtifact
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -408,22 +455,29 @@ ExprBinaryOpModArtifact sub PhpSourceArtifact
 
 ExprBinaryOpMulArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_cond_role
+	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
+	plays is_key_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
 ExprBinaryOpNotEqualArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
+	plays is_else_role
 	plays is_expr_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -445,10 +499,18 @@ ExprBinaryOpPlusArtifact sub PhpSourceArtifact
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
+	plays has_left_role
+	plays has_right_role;
+
+ExprBinaryOpPowArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_expr_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -464,9 +526,12 @@ ExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
 
 ExprBinaryOpShiftRightArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_cond_role
+	plays is_dim_role
 	plays is_expr_role
 	plays is_left_role
 	plays is_right_role
+	plays is_value_role
 	plays has_left_role
 	plays has_right_role;
 
@@ -485,16 +550,19 @@ ExprBinaryOpSmallerArtifact sub PhpSourceArtifact
 ExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
+	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
 
 ExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_cond_role
 	plays is_expr_role
 	plays has_left_role
 	plays has_right_role;
@@ -504,6 +572,7 @@ ExprBitwiseNotArtifact sub PhpSourceArtifact
 	plays is_expr_role
 	plays is_left_role
 	plays is_right_role
+	plays is_value_role
 	plays has_expr_role;
 
 ExprBooleanNotArtifact sub PhpSourceArtifact
@@ -515,6 +584,7 @@ ExprBooleanNotArtifact sub PhpSourceArtifact
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprCastArrayArtifact sub PhpSourceArtifact
@@ -522,6 +592,8 @@ ExprCastArrayArtifact sub PhpSourceArtifact
 	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
+	plays is_left_role
+	plays is_right_role
 	plays is_value_role
 	plays has_expr_role;
 
@@ -531,6 +603,7 @@ ExprCastBoolArtifact sub PhpSourceArtifact
 	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
+	plays is_left_role
 	plays is_right_role
 	plays is_value_role
 	plays has_expr_role;
@@ -541,6 +614,7 @@ ExprCastDoubleArtifact sub PhpSourceArtifact
 	plays is_expr_role
 	plays is_if_role
 	plays is_left_role
+	plays is_right_role
 	plays is_value_role
 	plays has_expr_role;
 
@@ -550,15 +624,18 @@ ExprCastIntArtifact sub PhpSourceArtifact
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_key_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprCastObjectArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
 	plays is_value_role
@@ -577,6 +654,7 @@ ExprCastStringArtifact sub PhpSourceArtifact
 	plays is_right_role
 	plays is_stmts_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprClassConstFetchArtifact sub PhpSourceArtifact
@@ -586,12 +664,15 @@ ExprClassConstFetchArtifact sub PhpSourceArtifact
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_key_role
 	plays is_left_role
 	plays is_name_role
 	plays is_right_role
+	plays is_stmts_role
 	plays is_value_role
+	plays is_var_role
 	plays has_class_role
 	plays has_comments_role
 	plays has_name_role;
@@ -658,6 +739,7 @@ ExprEmptyArtifact sub PhpSourceArtifact
 
 ExprErrorSuppressArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_children_role
 	plays is_cond_role
 	plays is_else_role
@@ -675,13 +757,16 @@ ExprEvalArtifact sub PhpSourceArtifact
 	plays is_body_role
 	plays is_children_role
 	plays is_expr_role
+	plays is_if_role
 	plays is_stmts_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprExitArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_children_role
 	plays is_right_role
 	plays is_stmts_role
 	plays has_comments_role
@@ -698,8 +783,10 @@ ExprFuncCallArtifact sub PhpSourceArtifact
 	plays is_expr_role
 	plays is_exprs_role
 	plays is_if_role
+	plays is_init_role
 	plays is_key_role
 	plays is_left_role
+	plays is_loop_role
 	plays is_name_role
 	plays is_right_role
 	plays is_stmts_role
@@ -738,7 +825,9 @@ ExprInstanceofArtifact sub PhpSourceArtifact
 ExprIssetArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_cond_role
+	plays is_else_role
 	plays is_expr_role
+	plays is_if_role
 	plays is_left_role
 	plays is_right_role
 	plays is_stmts_role
@@ -748,6 +837,7 @@ ExprIssetArtifact sub PhpSourceArtifact
 
 ExprListArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_value_role
 	plays is_value_var_role
 	plays is_var_role
 	plays has_comments_role
@@ -781,6 +871,7 @@ ExprMethodCallArtifact sub PhpSourceArtifact
 
 ExprNewArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
@@ -797,20 +888,28 @@ ExprNewArtifact sub PhpSourceArtifact
 ExprPostDecArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_children_role
 	plays is_cond_role
+	plays is_dim_role
+	plays is_else_role
+	plays is_expr_role
 	plays is_left_role
 	plays is_loop_role
 	plays is_right_role
 	plays is_stmts_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_var_role;
 
 ExprPostIncArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
+	plays is_children_role
 	plays is_cond_role
 	plays is_dim_role
 	plays is_expr_role
 	plays is_if_role
+	plays is_init_role
 	plays is_left_role
 	plays is_loop_role
 	plays is_right_role
@@ -835,10 +934,13 @@ ExprPreDecArtifact sub PhpSourceArtifact
 
 ExprPreIncArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_cond_role
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_if_role
+	plays is_init_role
 	plays is_left_role
 	plays is_loop_role
 	plays is_right_role
@@ -849,7 +951,10 @@ ExprPreIncArtifact sub PhpSourceArtifact
 
 ExprPrintArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
+	plays is_children_role
 	plays is_stmts_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprPropertyFetchArtifact sub PhpSourceArtifact
@@ -891,6 +996,7 @@ ExprStaticCallArtifact sub PhpSourceArtifact
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_key_role
 	plays is_left_role
@@ -908,8 +1014,10 @@ ExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_class_role
 	plays is_cond_role
+	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_left_role
 	plays is_right_role
@@ -922,12 +1030,15 @@ ExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 
 ExprTernaryArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
+	plays is_children_role
 	plays is_cond_role
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
 	plays is_exprs_role
 	plays is_if_role
+	plays is_init_role
 	plays is_key_role
 	plays is_left_role
 	plays is_name_role
@@ -952,10 +1063,13 @@ ExprUnaryMinusArtifact sub PhpSourceArtifact
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_expr_role;
 
 ExprUnaryPlusArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_else_role
+	plays is_expr_role
 	plays is_value_role
 	plays has_expr_role;
 
@@ -968,12 +1082,14 @@ ExprVariableArtifact sub PhpSourceArtifact
 	plays is_expr_role
 	plays is_exprs_role
 	plays is_if_role
+	plays is_init_role
 	plays is_key_role
 	plays is_key_var_role
 	plays is_left_role
 	plays is_name_role
 	plays is_parts_role
 	plays is_right_role
+	plays is_stmts_role
 	plays is_value_role
 	plays is_value_var_role
 	plays is_var_role
@@ -1012,6 +1128,7 @@ NameArtifact sub PhpSourceArtifact
 	plays is_class_role
 	plays is_extends_role
 	plays is_implements_role
+	plays is_insteadof_role
 	plays is_name_role
 	plays is_return_type_role
 	plays is_trait_role
@@ -1046,6 +1163,7 @@ ParamArtifact sub PhpSourceArtifact
 	has variadicAttribute
 	# Structural
 	plays is_params_role
+	plays has_comments_role
 	plays has_default_role
 	plays has_name_role
 	plays has_type_role;
@@ -1053,10 +1171,15 @@ ParamArtifact sub PhpSourceArtifact
 ScalarDNumberArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_default_role
+	plays is_dim_role
+	plays is_else_role
 	plays is_expr_role
+	plays is_if_role
+	plays is_key_role
 	plays is_left_role
 	plays is_right_role
-	plays is_value_role;
+	plays is_value_role
+	plays has_comments_role;
 
 ScalarEncapsedArtifact sub PhpSourceArtifact
 	# Structural
@@ -1070,6 +1193,7 @@ ScalarEncapsedArtifact sub PhpSourceArtifact
 	plays is_name_role
 	plays is_right_role
 	plays is_value_role
+	plays has_comments_role
 	plays has_parts_role;
 
 ScalarEncapsedStringPartArtifact sub PhpSourceArtifact
@@ -1083,6 +1207,7 @@ ScalarLNumberArtifact sub PhpSourceArtifact
 	plays is_dim_role
 	plays is_else_role
 	plays is_expr_role
+	plays is_exprs_role
 	plays is_if_role
 	plays is_key_role
 	plays is_left_role
@@ -1094,6 +1219,8 @@ ScalarLNumberArtifact sub PhpSourceArtifact
 
 ScalarMagicConstClassArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_default_role
+	plays is_else_role
 	plays is_expr_role
 	plays is_key_role
 	plays is_left_role
@@ -1106,10 +1233,12 @@ ScalarMagicConstDirArtifact sub PhpSourceArtifact
 	plays is_expr_role
 	plays is_left_role
 	plays is_right_role
-	plays is_value_role;
+	plays is_value_role
+	plays has_comments_role;
 
 ScalarMagicConstFileArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_default_role
 	plays is_else_role
 	plays is_expr_role
 	plays is_if_role
@@ -1121,27 +1250,38 @@ ScalarMagicConstFunctionArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_dim_role
 	plays is_expr_role
+	plays is_left_role
 	plays is_name_role
 	plays is_right_role
 	plays is_value_role;
 
 ScalarMagicConstLineArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_default_role
 	plays is_expr_role
 	plays is_left_role
+	plays is_right_role
 	plays is_value_role;
 
 ScalarMagicConstMethodArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_dim_role
+	plays is_expr_role
+	plays is_exprs_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role;
 
 ScalarMagicConstNamespaceArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_expr_role
 	plays is_left_role
 	plays is_right_role
 	plays is_value_role;
+
+ScalarMagicConstTraitArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_left_role;
 
 ScalarStringArtifact sub PhpSourceArtifact
 	# Structural
@@ -1230,6 +1370,7 @@ StmtContinueArtifact sub PhpSourceArtifact
 StmtDeclareArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_children_role
+	plays is_stmts_role
 	plays has_declares_role
 	plays has_stmts_role;
 
@@ -1301,6 +1442,7 @@ StmtFunctionArtifact sub PhpSourceArtifact
 	# Attributes
 	has byRefAttribute
 	# Structural
+	plays is_body_role
 	plays is_children_role
 	plays is_stmts_role
 	plays has_comments_role
@@ -1309,10 +1451,24 @@ StmtFunctionArtifact sub PhpSourceArtifact
 	plays has_return_type_role
 	plays has_stmts_role;
 
+StmtGlobalArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_children_role
+	plays is_stmts_role
+	plays has_comments_role
+	plays has_vars_role;
+
 StmtGotoArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_stmts_role
 	plays has_name_role;
+
+StmtHaltCompilerArtifact sub PhpSourceArtifact
+	# Attributes
+	has remainingAttribute
+	# Structural
+	plays is_children_role;
 
 StmtIfArtifact sub PhpSourceArtifact
 	# Structural
@@ -1327,11 +1483,13 @@ StmtIfArtifact sub PhpSourceArtifact
 
 StmtInlineHTMLArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_children_role
 	plays is_stmts_role;
 
 StmtInterfaceArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_children_role
 	plays is_stmts_role
 	plays has_comments_role
 	plays has_extends_role
@@ -1412,6 +1570,7 @@ StmtThrowArtifact sub PhpSourceArtifact
 
 StmtTraitArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_children_role
 	plays is_stmts_role
 	plays has_comments_role
 	plays has_name_role
@@ -1423,6 +1582,14 @@ StmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact
 	has newModifierAttribute
 	# Structural
 	plays is_adaptations_role
+	plays has_trait_role;
+
+StmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact
+	# Attributes
+	has methodAttribute
+	# Structural
+	plays is_adaptations_role
+	plays has_insteadof_role
 	plays has_trait_role;
 
 StmtTraitUseArtifact sub PhpSourceArtifact
@@ -1444,6 +1611,7 @@ StmtTryCatchArtifact sub PhpSourceArtifact
 
 StmtUnsetArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_children_role
 	plays is_stmts_role
 	plays has_comments_role
@@ -1591,6 +1759,11 @@ init_relation sub parent_child_relation
 	relates is_init_role, relates has_init_role;
 is_init_role sub is_child;
 has_init_role sub is_parent;
+
+insteadof_relation sub parent_child_relation
+	relates is_insteadof_role, relates has_insteadof_role;
+is_insteadof_role sub is_child;
+has_insteadof_role sub is_parent;
 
 items_relation sub parent_child_relation
 	relates is_items_role, relates has_items_role;
