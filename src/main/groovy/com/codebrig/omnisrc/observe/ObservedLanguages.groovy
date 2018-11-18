@@ -61,12 +61,25 @@ class ObservedLanguages extends ObservedLanguage {
                 omniLanguage.observeGlobalActualRole(it)
             }
         }
-        omniLanguage.getObservedRoles(true, true, true).each { role ->
+        omniLanguage.getObservedRoles(true, true, false).each { role ->
             observedLanguages.each { lang ->
                 lang.getEntitiesWithRole(role).each { entity ->
                     observedLanguages.each {
                         if (lang.language != it.language && it.observedEntityRole(entity, role)) {
-                            omniLanguage.addEntityRole(entity, role)
+                            omniLanguage.addEntityIndividualRole(entity, role)
+                            it.removeEntityRole(entity, role)
+                            lang.removeEntityRole(entity, role)
+                        }
+                    }
+                }
+            }
+        }
+        omniLanguage.getObservedRoles(true, false, true).each { role ->
+            observedLanguages.each { lang ->
+                lang.getEntitiesWithRole(role).each { entity ->
+                    observedLanguages.each {
+                        if (lang.language != it.language && it.observedEntityRole(entity, role)) {
+                            omniLanguage.addEntityActualRole(entity, role)
                             it.removeEntityRole(entity, role)
                             lang.removeEntityRole(entity, role)
                         }
@@ -93,9 +106,14 @@ class ObservedLanguages extends ObservedLanguage {
         this.globalActualRoles = new HashSet<>()
     }
 
-    void addEntityRole(String entity, String role) {
+    void addEntityIndividualRole(String entity, String role) {
         roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe([role].iterator(), true)
+        roles.get(entity).observe([role].iterator(), false)
+    }
+
+    void addEntityActualRole(String entity, String role) {
+        roles.putIfAbsent(entity, new ObservedRoles())
+        roles.get(entity).observeActual(role)
     }
 
     void observeGlobalEntity(String entity) {

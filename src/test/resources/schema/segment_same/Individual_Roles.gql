@@ -16,14 +16,12 @@ FileArtifact sub OmnilingualSourceArtifact
 ForStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_FOR
-	plays IS_FOR_STATEMENT
 	plays IS_STATEMENT;
 
 OperatorArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARITHMETIC
 	plays IS_BINARY
-	plays IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL
 	plays IS_DECREMENT
 	plays IS_EXPRESSION
 	plays IS_GREATER_THAN_OR_EQUAL

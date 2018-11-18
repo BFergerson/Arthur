@@ -9,9 +9,13 @@ ExpressionStatementArtifact sub OmnilingualSourceArtifact;
 
 FileArtifact sub OmnilingualSourceArtifact;
 
-ForStatementArtifact sub OmnilingualSourceArtifact;
+ForStatementArtifact sub OmnilingualSourceArtifact
+	# Semantic
+	plays IS_FOR_STATEMENT;
 
-OperatorArtifact sub OmnilingualSourceArtifact;
+OperatorArtifact sub OmnilingualSourceArtifact
+	# Semantic
+	plays IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;

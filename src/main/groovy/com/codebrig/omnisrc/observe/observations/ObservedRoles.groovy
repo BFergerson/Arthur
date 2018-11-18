@@ -43,6 +43,11 @@ class ObservedRoles {
         }
     }
 
+    void observeActual(String actualRole) {
+        actualObservations.putIfAbsent(actualRole, new AtomicInteger())
+        actualObservations.get(actualRole).incrementAndGet()
+    }
+
     void removeObservation(String role) {
         individualObservations.remove(role)
     }
