@@ -40,26 +40,13 @@ class GraknSchemaWriter implements SchemaWriter {
         } else {
             observedRoles = new ArrayList<String>()
             if (individualRoles) {
-                //common individual semantic roles
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
                         true, false))
-
-                //language-specific individual semantic roles
-                observedLanguages.each {
-                    observedRoles.addAll(it.getObservedRoles(naturalOrdering,
-                            true, false))
-                }
             }
             if (actualRoles) {
                 //common actual semantic roles
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
                         false, true))
-
-                //language-specific actual semantic roles
-                observedLanguages.each {
-                    observedRoles.addAll(it.getObservedRoles(naturalOrdering,
-                            false, true))
-                }
             }
         }
 
