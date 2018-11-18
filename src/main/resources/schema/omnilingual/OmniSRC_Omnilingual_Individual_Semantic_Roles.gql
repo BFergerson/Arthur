@@ -107,7 +107,6 @@ ConditionalExpressionArtifact sub OmnilingualSourceArtifact
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_RIGHT
-	plays IS_SWITCH
 	plays IS_THEN
 	plays IS_WHILE;
 
@@ -433,9 +432,6 @@ ThrowStatementArtifact sub OmnilingualSourceArtifact
 TryStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_ELSE_IF_STATEMENT_TRY
-	plays IS_ELSE
-	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_STATEMENT_TRY
 	plays IS_TRY;
@@ -711,11 +707,13 @@ GoFuncLitArtifact sub GoSourceArtifact
 
 GoFuncTypeArtifact sub GoSourceArtifact
 	# Semantic
+	plays IS_ARGUMENT
 	plays IS_CALLEE
 	plays IS_ENTRY
 	plays IS_EXPRESSION
 	plays IS_FUNCTION
 	plays IS_KEY
+	plays IS_POSITIONAL
 	plays IS_TYPE;
 
 GoGenDeclArtifact sub GoSourceArtifact
@@ -842,6 +840,7 @@ GoParenExprArtifact sub GoSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_INCOMPLETE
+	plays IS_KEY
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RIGHT
@@ -950,6 +949,7 @@ GoTypeAssertExprArtifact sub GoSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_INCOMPLETE
+	plays IS_KEY
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RIGHT
@@ -1199,7 +1199,8 @@ JavaCompilationUnitArtifact sub JavaSourceArtifact
 
 JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	# Semantic
-	plays IS_POSITIONAL;
+	plays IS_POSITIONAL
+	plays IS_SWITCH;
 
 JavaConstructorInvocationArtifact sub JavaSourceArtifact
 	# Semantic
@@ -2267,9 +2268,9 @@ JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	plays IS_CALLEE
 	plays IS_DO_WHILE
 	plays IS_INITIALIZATION
+	plays IS_KEY
 	plays IS_LEFT
 	plays IS_MAP
-	plays IS_UPDATE
 	plays IS_VALUE;
 
 JavascriptContinueStatementArtifact sub ContinueStatementArtifact
@@ -2297,6 +2298,10 @@ JavascriptDeclareClassArtifact sub JavascriptSourceArtifact
 	plays IS_INCOMPLETE
 	plays IS_TYPE;
 
+JavascriptDeclareExportDeclarationArtifact sub JavascriptSourceArtifact
+	# Semantic
+	plays IS_UNANNOTATED;
+
 JavascriptDeclareFunctionArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_UNANNOTATED;
@@ -2321,11 +2326,6 @@ JavascriptDeclareVariableArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_UNANNOTATED;
 
-JavascriptDecoratorArtifact sub JavascriptSourceArtifact
-	# Semantic
-	plays IS_ANNOTATION
-	plays IS_INCOMPLETE;
-
 JavascriptDirectiveArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_INCOMPLETE;
@@ -2345,7 +2345,6 @@ JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_DO_WHILE
-	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_THEN;
@@ -2415,9 +2414,12 @@ JavascriptForInStatementArtifact sub JavascriptSourceArtifact
 
 JavascriptForOfStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
+	plays IS_BODY
 	plays IS_FOR
+	plays IS_IF
 	plays IS_ITERATOR
-	plays IS_STATEMENT;
+	plays IS_STATEMENT
+	plays IS_THEN;
 
 JavascriptForStatementArtifact sub ForStatementArtifact
 	# Semantic
@@ -2642,7 +2644,6 @@ JavascriptLogicalExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
-	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_DO_WHILE
 	plays IS_ELSE
@@ -2964,7 +2965,6 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
-	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -3034,8 +3034,7 @@ JavascriptSwitchStatementArtifact sub SwitchStatementArtifact
 	plays IS_ELSE
 	plays IS_FOR
 	plays IS_IF
-	plays IS_THEN
-	plays IS_WHILE;
+	plays IS_THEN;
 
 JavascriptTaggedTemplateExpressionArtifact sub JavascriptSourceArtifact
 	# Semantic
@@ -3108,6 +3107,8 @@ JavascriptThrowStatementArtifact sub ThrowStatementArtifact
 JavascriptTryStatementArtifact sub TryStatementArtifact
 	# Semantic
 	plays IS_DO_WHILE
+	plays IS_ELSE
+	plays IS_IF
 	plays IS_THEN
 	plays IS_WHILE;
 
@@ -3346,14 +3347,17 @@ PhpExprArrayDimFetchArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_ENTRY
 	plays IS_EXPRESSION
 	plays IS_IDENTIFIER
 	plays IS_IF
+	plays IS_IMPORT
 	plays IS_LEFT
 	plays IS_LIST
+	plays IS_PATHNAME
 	plays IS_RECEIVER
 	plays IS_RIGHT
 	plays IS_THEN
@@ -3390,34 +3394,45 @@ PhpExprAssignArtifact sub PhpSourceArtifact
 
 PhpExprAssignOpBitwiseAndArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_FOR
 	plays IS_RIGHT
 	plays IS_UNANNOTATED;
 
 PhpExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_FOR
 	plays IS_UNANNOTATED;
 
 PhpExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_FOR;
+	plays IS_CASE
+	plays IS_FOR
+	plays IS_UNANNOTATED;
 
 PhpExprAssignOpConcatArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
 	plays IS_CATCH
+	plays IS_ELSE
 	plays IS_FOR
+	plays IS_LEFT
 	plays IS_RIGHT
 	plays IS_UNANNOTATED;
 
 PhpExprAssignOpDivArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ASSIGNMENT
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_DIVIDE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_LEFT
 	plays IS_OPERATOR;
 
@@ -3425,16 +3440,20 @@ PhpExprAssignOpMinusArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ASSIGNMENT
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_OPERATOR
+	plays IS_RIGHT
 	plays IS_SUBSTRACT
 	plays IS_UPDATE;
 
 PhpExprAssignOpModArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ASSIGNMENT
+	plays IS_BODY
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_MODULO
 	plays IS_OPERATOR
 	plays IS_RIGHT;
@@ -3445,6 +3464,7 @@ PhpExprAssignOpMulArtifact sub PhpSourceArtifact
 	plays IS_BODY
 	plays IS_CASE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_MULTIPLY
 	plays IS_OPERATOR;
 
@@ -3457,13 +3477,25 @@ PhpExprAssignOpPlusArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_INITIALIZATION
+	plays IS_LEFT
 	plays IS_OPERATOR
 	plays IS_RIGHT
 	plays IS_UPDATE;
 
+PhpExprAssignOpShiftLeftArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_FOR
+	plays IS_UNANNOTATED;
+
+PhpExprAssignOpShiftRightArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_UNANNOTATED;
+
 PhpExprAssignRefArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_FOR
 	plays IS_RIGHT
 	plays IS_UNANNOTATED;
@@ -3476,16 +3508,19 @@ PhpExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IF
 	plays IS_LEFT
 	plays IS_OPERATOR
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 PhpExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_BITWISE
 	plays IS_DEFAULT
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_OPERATOR
@@ -3498,7 +3533,9 @@ PhpExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact
 	plays IS_BINARY
 	plays IS_BITWISE
 	plays IS_EXPRESSION
+	plays IS_LEFT
 	plays IS_OPERATOR
+	plays IS_RIGHT
 	plays IS_XOR;
 
 PhpExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact
@@ -3524,6 +3561,7 @@ PhpExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CASE
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_LEFT
@@ -3552,6 +3590,7 @@ PhpExprBinaryOpConcatArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ADD
 	plays IS_BINARY
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_DEFAULT
 	plays IS_ELSE
@@ -3568,6 +3607,7 @@ PhpExprBinaryOpConcatArtifact sub PhpSourceArtifact
 PhpExprBinaryOpDivArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_DIVIDE
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_OPERATOR
@@ -3640,9 +3680,13 @@ PhpExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_AND
 	plays IS_BINARY
+	plays IS_BODY
 	plays IS_BOOLEAN
+	plays IS_CATCH
 	plays IS_EXPRESSION
-	plays IS_OPERATOR;
+	plays IS_LEFT
+	plays IS_OPERATOR
+	plays IS_RIGHT;
 
 PhpExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
 	# Semantic
@@ -3664,6 +3708,7 @@ PhpExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_EXPRESSION
 	plays IS_OPERATOR
+	plays IS_RIGHT
 	plays IS_XOR;
 
 PhpExprBinaryOpMinusArtifact sub PhpSourceArtifact
@@ -3678,8 +3723,10 @@ PhpExprBinaryOpMinusArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpModArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_LEFT
 	plays IS_MODULO
 	plays IS_OPERATOR
@@ -3700,8 +3747,10 @@ PhpExprBinaryOpNotEqualArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EQUAL
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IF
 	plays IS_LEFT
 	plays IS_NOT
@@ -3735,6 +3784,12 @@ PhpExprBinaryOpPlusArtifact sub PhpSourceArtifact
 	plays IS_RIGHT
 	plays IS_THEN;
 
+PhpExprBinaryOpPowArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_OPERATOR;
+
 PhpExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
@@ -3750,7 +3805,9 @@ PhpExprBinaryOpShiftRightArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_BITWISE
+	plays IS_CONDITION
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_LEFT
 	plays IS_OPERATOR
 	plays IS_RIGHT
@@ -3775,6 +3832,7 @@ PhpExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BINARY
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_IF
@@ -3807,9 +3865,11 @@ PhpExprBitwiseNotArtifact sub PhpSourceArtifact
 PhpExprBooleanNotArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BOOLEAN
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IF
 	plays IS_LEFT
 	plays IS_NOT
@@ -3822,6 +3882,7 @@ PhpExprCastArrayArtifact sub PhpSourceArtifact
 	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
+	plays IS_LEFT
 	plays IS_LIST
 	plays IS_RIGHT
 	plays IS_THEN;
@@ -3834,6 +3895,7 @@ PhpExprCastBoolArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_IF
 	plays IS_INCOMPLETE
+	plays IS_LEFT
 	plays IS_RIGHT
 	plays IS_THEN;
 
@@ -3849,8 +3911,10 @@ PhpExprCastDoubleArtifact sub PhpSourceArtifact
 
 PhpExprCastIntArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_INCOMPLETE
 	plays IS_LEFT
 	plays IS_NUMBER
@@ -3859,6 +3923,7 @@ PhpExprCastIntArtifact sub PhpSourceArtifact
 
 PhpExprCastObjectArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_RIGHT
@@ -3884,6 +3949,7 @@ PhpExprClassConstFetchArtifact sub PhpSourceArtifact
 	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IF
 	plays IS_INCOMPLETE
 	plays IS_LEFT
 	plays IS_RIGHT
@@ -3942,6 +4008,7 @@ PhpExprEmptyArtifact sub PhpSourceArtifact
 PhpExprErrorSuppressArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -3956,7 +4023,8 @@ PhpExprEvalArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_CALL
 	plays IS_EXPRESSION
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 PhpExprExitArtifact sub PhpSourceArtifact
 	# Semantic
@@ -3981,15 +4049,19 @@ PhpExprFuncCallArtifact sub PhpSourceArtifact
 	plays IS_IDENTIFIER
 	plays IS_IF
 	plays IS_IMPORT
+	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_PATHNAME
 	plays IS_RECEIVER
 	plays IS_RIGHT
 	plays IS_THEN
-	plays IS_TYPE;
+	plays IS_TYPE
+	plays IS_UPDATE;
 
 PhpExprIncludeArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_IF
 	plays IS_IMPORT
@@ -4009,12 +4081,15 @@ PhpExprInstanceofArtifact sub PhpSourceArtifact
 PhpExprIssetArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CONDITION
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_IF
 	plays IS_LEFT
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 PhpExprListArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4061,8 +4136,11 @@ PhpExprNewArtifact sub PhpSourceArtifact
 PhpExprPostDecArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_CATCH
+	plays IS_CONDITION
 	plays IS_DECREMENT
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_LEFT
@@ -4074,12 +4152,14 @@ PhpExprPostDecArtifact sub PhpSourceArtifact
 PhpExprPostIncArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_CATCH
 	plays IS_CONDITION
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_IF
 	plays IS_INCREMENT
+	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_POSTFIX
 	plays IS_RIGHT
@@ -4109,14 +4189,19 @@ PhpExprPreIncArtifact sub PhpSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_INCREMENT
+	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_RIGHT
+	plays IS_THEN
 	plays IS_UNARY
 	plays IS_UPDATE;
 
 PhpExprPrintArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
 	plays IS_CALL
+	plays IS_CASE
+	plays IS_CATCH
 	plays IS_STATEMENT;
 
 PhpExprPropertyFetchArtifact sub PhpSourceArtifact
@@ -4150,6 +4235,7 @@ PhpExprShellExecArtifact sub PhpSourceArtifact
 
 PhpExprStaticCallArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_ARGUMENT
 	plays IS_BODY
 	plays IS_CALL
 	plays IS_CASE
@@ -4160,13 +4246,18 @@ PhpExprStaticCallArtifact sub PhpSourceArtifact
 	plays IS_FOR
 	plays IS_IDENTIFIER
 	plays IS_IF
+	plays IS_IMPORT
 	plays IS_LEFT
+	plays IS_PATHNAME
 	plays IS_RECEIVER
 	plays IS_RIGHT
-	plays IS_THEN;
+	plays IS_THEN
+	plays IS_TYPE;
 
 PhpExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_ENTRY
@@ -4184,12 +4275,16 @@ PhpExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 
 PhpExprTernaryArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IDENTIFIER
 	plays IS_IF
 	plays IS_IMPORT
+	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_PATHNAME
 	plays IS_RECEIVER
@@ -4211,19 +4306,25 @@ PhpExprUnaryMinusArtifact sub PhpSourceArtifact
 
 PhpExprUnaryPlusArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
+	plays IS_RIGHT
 	plays IS_UNARY;
 
 PhpExprVariableArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_IDENTIFIER
 	plays IS_IF
 	plays IS_IMPORT
+	plays IS_INITIALIZATION
 	plays IS_ITERATOR
 	plays IS_LEFT
 	plays IS_PATHNAME
@@ -4263,9 +4364,11 @@ PhpModuleArtifact sub ModuleArtifact;
 
 PhpNameArtifact sub NameArtifact
 	# Semantic
+	plays IS_ALIAS
 	plays IS_BASE
 	plays IS_CATCH
 	plays IS_IMPLEMENTS
+	plays IS_INCOMPLETE
 	plays IS_RECEIVER
 	plays IS_TYPE;
 
@@ -4297,19 +4400,23 @@ PhpParamArtifact sub PhpSourceArtifact
 PhpScalarDNumberArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_DEFAULT
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_LEFT
 	plays IS_LITERAL
 	plays IS_NUMBER
-	plays IS_RIGHT;
+	plays IS_RIGHT
+	plays IS_THEN;
 
 PhpScalarEncapsedArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_IMPORT
 	plays IS_INCOMPLETE
 	plays IS_LEFT
 	plays IS_LITERAL
+	plays IS_PATHNAME
 	plays IS_RIGHT
 	plays IS_STRING
 	plays IS_THEN;
@@ -4327,6 +4434,7 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact
 	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
+	plays IS_FOR
 	plays IS_LEFT
 	plays IS_LITERAL
 	plays IS_NUMBER
@@ -4335,6 +4443,8 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact
 
 PhpScalarMagicConstClassArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_DEFAULT
+	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_LEFT
@@ -4351,6 +4461,7 @@ PhpScalarMagicConstDirArtifact sub PhpSourceArtifact
 
 PhpScalarMagicConstFileArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_DEFAULT
 	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
@@ -4363,11 +4474,13 @@ PhpScalarMagicConstFunctionArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
+	plays IS_LEFT
 	plays IS_LITERAL
 	plays IS_RIGHT;
 
 PhpScalarMagicConstLineArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_DEFAULT
 	plays IS_EXPRESSION
 	plays IS_INCOMPLETE
 	plays IS_LEFT
@@ -4389,6 +4502,13 @@ PhpScalarMagicConstNamespaceArtifact sub PhpSourceArtifact
 	plays IS_LEFT
 	plays IS_LITERAL
 	plays IS_RIGHT;
+
+PhpScalarMagicConstTraitArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_LITERAL;
 
 PhpScalarStringArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4455,6 +4575,7 @@ PhpStmtContinueArtifact sub PhpSourceArtifact
 	plays IS_CASE
 	plays IS_CATCH
 	plays IS_CONTINUE
+	plays IS_FOR
 	plays IS_STATEMENT;
 
 PhpStmtDeclareArtifact sub PhpSourceArtifact
@@ -4471,8 +4592,10 @@ PhpStmtDeclareDeclareArtifact sub PhpSourceArtifact
 PhpStmtDoArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_CATCH
 	plays IS_DO_WHILE
+	plays IS_FOR
 	plays IS_STATEMENT;
 
 PhpStmtEchoArtifact sub PhpSourceArtifact
@@ -4504,6 +4627,7 @@ PhpStmtForArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
+	plays IS_CATCH
 	plays IS_FOR
 	plays IS_STATEMENT;
 
@@ -4521,12 +4645,23 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact
 	plays IS_DECLARATION
 	plays IS_FUNCTION;
 
+PhpStmtGlobalArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_CASE
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
 PhpStmtGotoArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CATCH
 	plays IS_GOTO
 	plays IS_STATEMENT;
+
+PhpStmtHaltCompilerArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_UNANNOTATED;
 
 PhpStmtIfArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4540,6 +4675,7 @@ PhpStmtIfArtifact sub PhpSourceArtifact
 PhpStmtInlineHTMLArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_FOR
 	plays IS_INCOMPLETE
 	plays IS_LITERAL
@@ -4594,6 +4730,8 @@ PhpStmtReturnArtifact sub PhpSourceArtifact
 
 PhpStmtStaticArtifact sub PhpSourceArtifact
 	# Semantic
+	plays IS_BODY
+	plays IS_CASE
 	plays IS_TYPE
 	plays IS_VISIBILITY;
 
@@ -4618,6 +4756,7 @@ PhpStmtThrowArtifact sub PhpSourceArtifact
 	plays IS_BODY
 	plays IS_CASE
 	plays IS_CATCH
+	plays IS_FOR
 	plays IS_STATEMENT
 	plays IS_THROW;
 
@@ -4630,6 +4769,12 @@ PhpStmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_ALIAS
 	plays IS_STATEMENT;
+
+PhpStmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact
+	# Semantic
+	plays IS_ALIAS
+	plays IS_BASE
+	plays IS_INCOMPLETE;
 
 PhpStmtTraitUseArtifact sub PhpSourceArtifact
 	# Semantic
@@ -4650,6 +4795,7 @@ PhpStmtUnsetArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CALL
+	plays IS_CASE
 	plays IS_CATCH
 	plays IS_EXPRESSION
 	plays IS_FOR;
@@ -4665,6 +4811,7 @@ PhpStmtUseUseArtifact sub PhpSourceArtifact
 PhpStmtWhileArtifact sub PhpSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_CASE
 	plays IS_CATCH
 	plays IS_FOR
 	plays IS_STATEMENT
@@ -7140,29 +7287,21 @@ ADD sub relationship
 	relates IS_ADD;
 IS_ADD sub role;
 
-ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR sub relationship
-	relates IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR;
-IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR sub role;
-
-ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR sub relationship
-	relates IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR;
-IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR sub role;
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
 
 AND sub relationship
 	relates IS_AND;
 IS_AND sub role;
 
-AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR sub relationship
-	relates IS_AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR;
-IS_AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR sub role;
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
 
-AND_BINARY_BITWISE_EXPRESSION_OPERATOR sub relationship
-	relates IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR;
-IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR sub role;
-
-AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR sub relationship
-	relates IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR;
-IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR sub role;
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
 
 ARGS_LIST sub relationship
 	relates IS_ARGS_LIST;
@@ -7176,197 +7315,25 @@ ARITHMETIC sub relationship
 	relates IS_ARITHMETIC;
 IS_ARITHMETIC sub role;
 
-ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR sub relationship
-	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR;
-IS_ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR sub role;
-
-ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR sub relationship
-	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR;
-IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR sub role;
-
-ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR sub relationship
-	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR;
-IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR sub role;
-
-ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub relationship
-	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
-IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub role;
-
-ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR sub relationship
-	relates IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR;
-IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR sub role;
-
-ARITHMETIC_BINARY_EXPRESSION_MODULO_OPERATOR sub relationship
-	relates IS_ARITHMETIC_BINARY_EXPRESSION_MODULO_OPERATOR;
-IS_ARITHMETIC_BINARY_EXPRESSION_MODULO_OPERATOR sub role;
-
-ARITHMETIC_BINARY_EXPRESSION_MULTIPLY_OPERATOR sub relationship
-	relates IS_ARITHMETIC_BINARY_EXPRESSION_MULTIPLY_OPERATOR;
-IS_ARITHMETIC_BINARY_EXPRESSION_MULTIPLY_OPERATOR sub role;
-
-ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub relationship
-	relates IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
-IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub role;
-
-ARITHMETIC_DECREMENT_EXPRESSION_OPERATOR_UNARY sub relationship
-	relates IS_ARITHMETIC_DECREMENT_EXPRESSION_OPERATOR_UNARY;
-IS_ARITHMETIC_DECREMENT_EXPRESSION_OPERATOR_UNARY sub role;
-
-ARITHMETIC_EXPRESSION_INCREMENT_OPERATOR_UNARY sub relationship
-	relates IS_ARITHMETIC_EXPRESSION_INCREMENT_OPERATOR_UNARY;
-IS_ARITHMETIC_EXPRESSION_INCREMENT_OPERATOR_UNARY sub role;
-
-ARITHMETIC_EXPRESSION_NEGATIVE_OPERATOR_UNARY sub relationship
-	relates IS_ARITHMETIC_EXPRESSION_NEGATIVE_OPERATOR_UNARY;
-IS_ARITHMETIC_EXPRESSION_NEGATIVE_OPERATOR_UNARY sub role;
-
-ARITHMETIC_EXPRESSION_OPERATOR_POSITIVE_UNARY sub relationship
-	relates IS_ARITHMETIC_EXPRESSION_OPERATOR_POSITIVE_UNARY;
-IS_ARITHMETIC_EXPRESSION_OPERATOR_POSITIVE_UNARY sub role;
+ASSERT sub relationship
+	relates IS_ASSERT;
+IS_ASSERT sub role;
 
 ASSIGNMENT sub relationship
 	relates IS_ASSIGNMENT;
 IS_ASSIGNMENT sub role;
 
-ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR sub relationship
-	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR;
-IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR sub role;
-
-ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR sub relationship
-	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR;
-IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR sub role;
-
-ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub relationship
-	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT;
-IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub role;
-
-ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED sub relationship
-	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED;
-IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED sub role;
-
-ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub relationship
-	relates IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
-IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub role;
-
-ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT sub relationship
-	relates IS_ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT;
-IS_ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT sub role;
-
-ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NULL_RIGHT sub relationship
-	relates IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NULL_RIGHT;
-IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NULL_RIGHT sub role;
-
-ASSIGNMENT_BINARY_EXPRESSION_LITERAL_RIGHT_STRING sub relationship
-	relates IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_RIGHT_STRING;
-IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_RIGHT_STRING sub role;
-
-ASSIGNMENT_BINARY_EXPRESSION_OPERATOR sub relationship
-	relates IS_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR;
-IS_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR sub role;
-
-ASSIGNMENT_BINARY_EXPRESSION_RIGHT_THIS sub relationship
-	relates IS_ASSIGNMENT_BINARY_EXPRESSION_RIGHT_THIS;
-IS_ASSIGNMENT_BINARY_EXPRESSION_RIGHT_THIS sub role;
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
 
 BINARY sub relationship
 	relates IS_BINARY;
 IS_BINARY sub role;
 
-BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR sub relationship
-	relates IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR;
-IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR sub role;
-
-BINARY_BITWISE_EXPRESSION_OPERATOR_OR sub relationship
-	relates IS_BINARY_BITWISE_EXPRESSION_OPERATOR_OR;
-IS_BINARY_BITWISE_EXPRESSION_OPERATOR_OR sub role;
-
-BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub relationship
-	relates IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT;
-IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT sub role;
-
-BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED sub relationship
-	relates IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED;
-IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED sub role;
-
-BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub relationship
-	relates IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR;
-IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR sub role;
-
-BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL sub relationship
-	relates IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL;
-IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL sub role;
-
-BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT sub relationship
-	relates IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT;
-IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT sub role;
-
-BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR sub relationship
-	relates IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR;
-IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR sub role;
-
-BINARY_EQUAL_EXPRESSION_NOT_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EQUAL_EXPRESSION_NOT_OPERATOR_RELATIONAL;
-IS_BINARY_EQUAL_EXPRESSION_NOT_OPERATOR_RELATIONAL sub role;
-
-BINARY_EQUAL_EXPRESSION_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EQUAL_EXPRESSION_OPERATOR_RELATIONAL;
-IS_BINARY_EQUAL_EXPRESSION_OPERATOR_RELATIONAL sub role;
-
-BINARY_EXPRESSION_GREATER_THAN_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EXPRESSION_GREATER_THAN_OPERATOR_RELATIONAL;
-IS_BINARY_EXPRESSION_GREATER_THAN_OPERATOR_RELATIONAL sub role;
-
-BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
-IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub role;
-
-BINARY_EXPRESSION_LEFT_LITERAL_NULL sub relationship
-	relates IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL;
-IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL sub role;
-
-BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING sub relationship
-	relates IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING;
-IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING sub role;
-
-BINARY_EXPRESSION_LEFT_LITERAL_STRING sub relationship
-	relates IS_BINARY_EXPRESSION_LEFT_LITERAL_STRING;
-IS_BINARY_EXPRESSION_LEFT_LITERAL_STRING sub role;
-
-BINARY_EXPRESSION_LEFT_THIS sub relationship
-	relates IS_BINARY_EXPRESSION_LEFT_THIS;
-IS_BINARY_EXPRESSION_LEFT_THIS sub role;
-
-BINARY_EXPRESSION_LESS_THAN_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EXPRESSION_LESS_THAN_OPERATOR_RELATIONAL;
-IS_BINARY_EXPRESSION_LESS_THAN_OPERATOR_RELATIONAL sub role;
-
-BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relationship
-	relates IS_BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
-IS_BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub role;
-
-BINARY_EXPRESSION_LITERAL_NULL_RIGHT sub relationship
-	relates IS_BINARY_EXPRESSION_LITERAL_NULL_RIGHT;
-IS_BINARY_EXPRESSION_LITERAL_NULL_RIGHT sub role;
-
-BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING sub relationship
-	relates IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING;
-IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING sub role;
-
-BINARY_EXPRESSION_LITERAL_RIGHT_STRING sub relationship
-	relates IS_BINARY_EXPRESSION_LITERAL_RIGHT_STRING;
-IS_BINARY_EXPRESSION_LITERAL_RIGHT_STRING sub role;
-
-BINARY_EXPRESSION_RIGHT_THIS sub relationship
-	relates IS_BINARY_EXPRESSION_RIGHT_THIS;
-IS_BINARY_EXPRESSION_RIGHT_THIS sub role;
-
 BITWISE sub relationship
 	relates IS_BITWISE;
 IS_BITWISE sub role;
-
-BITWISE_EXPRESSION_NOT_OPERATOR_UNARY sub relationship
-	relates IS_BITWISE_EXPRESSION_NOT_OPERATOR_UNARY;
-IS_BITWISE_EXPRESSION_NOT_OPERATOR_UNARY sub role;
 
 BLOCK sub relationship
 	relates IS_BLOCK;
@@ -7376,109 +7343,29 @@ BODY sub relationship
 	relates IS_BODY;
 IS_BODY sub role;
 
-BODY_BOOLEAN_EXPRESSION_FUNCTION_LITERAL sub relationship
-	relates IS_BODY_BOOLEAN_EXPRESSION_FUNCTION_LITERAL;
-IS_BODY_BOOLEAN_EXPRESSION_FUNCTION_LITERAL sub role;
-
-BODY_BREAK_ELSE_IF_STATEMENT sub relationship
-	relates IS_BODY_BREAK_ELSE_IF_STATEMENT;
-IS_BODY_BREAK_ELSE_IF_STATEMENT sub role;
-
-BODY_BREAK_IF_STATEMENT_THEN sub relationship
-	relates IS_BODY_BREAK_IF_STATEMENT_THEN;
-IS_BODY_BREAK_IF_STATEMENT_THEN sub role;
-
-BODY_ELSE_IF_RETURN_STATEMENT sub relationship
-	relates IS_BODY_ELSE_IF_RETURN_STATEMENT;
-IS_BODY_ELSE_IF_RETURN_STATEMENT sub role;
-
-BODY_ELSE_IF_STATEMENT sub relationship
-	relates IS_BODY_ELSE_IF_STATEMENT;
-IS_BODY_ELSE_IF_STATEMENT sub role;
-
-BODY_ELSE_IF_STATEMENT_THROW sub relationship
-	relates IS_BODY_ELSE_IF_STATEMENT_THROW;
-IS_BODY_ELSE_IF_STATEMENT_THROW sub role;
-
-BODY_ELSE_IF_STATEMENT_TRY sub relationship
-	relates IS_BODY_ELSE_IF_STATEMENT_TRY;
-IS_BODY_ELSE_IF_STATEMENT_TRY sub role;
-
-BODY_EXPRESSION_FUNCTION_LITERAL_NULL sub relationship
-	relates IS_BODY_EXPRESSION_FUNCTION_LITERAL_NULL;
-IS_BODY_EXPRESSION_FUNCTION_LITERAL_NULL sub role;
-
-BODY_EXPRESSION_FUNCTION_LITERAL_STRING sub relationship
-	relates IS_BODY_EXPRESSION_FUNCTION_LITERAL_STRING;
-IS_BODY_EXPRESSION_FUNCTION_LITERAL_STRING sub role;
-
-BODY_FOR_IF_STATEMENT sub relationship
-	relates IS_BODY_FOR_IF_STATEMENT;
-IS_BODY_FOR_IF_STATEMENT sub role;
-
-BODY_FOR_IF_STATEMENT_THEN sub relationship
-	relates IS_BODY_FOR_IF_STATEMENT_THEN;
-IS_BODY_FOR_IF_STATEMENT_THEN sub role;
-
-BODY_FOR_STATEMENT sub relationship
-	relates IS_BODY_FOR_STATEMENT;
-IS_BODY_FOR_STATEMENT sub role;
-
-BODY_IF_RETURN_STATEMENT_THEN sub relationship
-	relates IS_BODY_IF_RETURN_STATEMENT_THEN;
-IS_BODY_IF_RETURN_STATEMENT_THEN sub role;
-
-BODY_IF_STATEMENT_THEN sub relationship
-	relates IS_BODY_IF_STATEMENT_THEN;
-IS_BODY_IF_STATEMENT_THEN sub role;
-
-BODY_IF_STATEMENT_THEN_THROW sub relationship
-	relates IS_BODY_IF_STATEMENT_THEN_THROW;
-IS_BODY_IF_STATEMENT_THEN_THROW sub role;
-
-BODY_STATEMENT_WHILE sub relationship
-	relates IS_BODY_STATEMENT_WHILE;
-IS_BODY_STATEMENT_WHILE sub role;
-
 BOOLEAN sub relationship
 	relates IS_BOOLEAN;
 IS_BOOLEAN sub role;
-
-BOOLEAN_CONDITION_DO_WHILE_EXPRESSION_LITERAL sub relationship
-	relates IS_BOOLEAN_CONDITION_DO_WHILE_EXPRESSION_LITERAL;
-IS_BOOLEAN_CONDITION_DO_WHILE_EXPRESSION_LITERAL sub role;
-
-BOOLEAN_CONDITION_EXPRESSION_FOR_LITERAL sub relationship
-	relates IS_BOOLEAN_CONDITION_EXPRESSION_FOR_LITERAL;
-IS_BOOLEAN_CONDITION_EXPRESSION_FOR_LITERAL sub role;
-
-BOOLEAN_CONDITION_EXPRESSION_IF_LITERAL sub relationship
-	relates IS_BOOLEAN_CONDITION_EXPRESSION_IF_LITERAL;
-IS_BOOLEAN_CONDITION_EXPRESSION_IF_LITERAL sub role;
-
-BOOLEAN_CONDITION_EXPRESSION_LITERAL_WHILE sub relationship
-	relates IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL_WHILE;
-IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL_WHILE sub role;
-
-BOOLEAN_EXPRESSION_LITERAL sub relationship
-	relates IS_BOOLEAN_EXPRESSION_LITERAL;
-IS_BOOLEAN_EXPRESSION_LITERAL sub role;
-
-BOOLEAN_EXPRESSION_NOT_OPERATOR_UNARY sub relationship
-	relates IS_BOOLEAN_EXPRESSION_NOT_OPERATOR_UNARY;
-IS_BOOLEAN_EXPRESSION_NOT_OPERATOR_UNARY sub role;
 
 BREAK sub relationship
 	relates IS_BREAK;
 IS_BREAK sub role;
 
-BREAK_STATEMENT sub relationship
-	relates IS_BREAK_STATEMENT;
-IS_BREAK_STATEMENT sub role;
+BYTE sub relationship
+	relates IS_BYTE;
+IS_BYTE sub role;
+
+BYTE_STRING sub relationship
+	relates IS_BYTE_STRING;
+IS_BYTE_STRING sub role;
 
 CALL sub relationship
 	relates IS_CALL;
 IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
 
 CASE sub relationship
 	relates IS_CASE;
@@ -7488,25 +7375,25 @@ CATCH sub relationship
 	relates IS_CATCH;
 IS_CATCH sub role;
 
+CHARACTER sub relationship
+	relates IS_CHARACTER;
+IS_CHARACTER sub role;
+
 COMMENT sub relationship
 	relates IS_COMMENT;
 IS_COMMENT sub role;
-
-COMMENT_NOOP sub relationship
-	relates IS_COMMENT_NOOP;
-IS_COMMENT_NOOP sub role;
 
 CONDITION sub relationship
 	relates IS_CONDITION;
 IS_CONDITION sub role;
 
-CONDITION_EXPRESSION_IF sub relationship
-	relates IS_CONDITION_EXPRESSION_IF;
-IS_CONDITION_EXPRESSION_IF sub role;
+CONTAINS sub relationship
+	relates IS_CONTAINS;
+IS_CONTAINS sub role;
 
-CONDITION_EXPRESSION_IF_WHILE sub relationship
-	relates IS_CONDITION_EXPRESSION_IF_WHILE;
-IS_CONDITION_EXPRESSION_IF_WHILE sub role;
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
 
 DECLARATION sub relationship
 	relates IS_DECLARATION;
@@ -7516,6 +7403,10 @@ DECREMENT sub relationship
 	relates IS_DECREMENT;
 IS_DECREMENT sub role;
 
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
 DIVIDE sub relationship
 	relates IS_DIVIDE;
 IS_DIVIDE sub role;
@@ -7524,9 +7415,21 @@ DO_WHILE sub relationship
 	relates IS_DO_WHILE;
 IS_DO_WHILE sub role;
 
+DOCUMENTATION sub relationship
+	relates IS_DOCUMENTATION;
+IS_DOCUMENTATION sub role;
+
 ELSE sub relationship
 	relates IS_ELSE;
 IS_ELSE sub role;
+
+ENTRY sub relationship
+	relates IS_ENTRY;
+IS_ENTRY sub role;
+
+ENUMERATION sub relationship
+	relates IS_ENUMERATION;
+IS_ENUMERATION sub role;
 
 EQUAL sub relationship
 	relates IS_EQUAL;
@@ -7536,57 +7439,25 @@ EXPRESSION sub relationship
 	relates IS_EXPRESSION;
 IS_EXPRESSION sub role;
 
-EXPRESSION_FOR_THIS sub relationship
-	relates IS_EXPRESSION_FOR_THIS;
-IS_EXPRESSION_FOR_THIS sub role;
-
-EXPRESSION_IDENTIFIER sub relationship
-	relates IS_EXPRESSION_IDENTIFIER;
-IS_EXPRESSION_IDENTIFIER sub role;
-
-EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub relationship
-	relates IS_EXPRESSION_INCOMPLETE_OPERATOR_UNARY;
-IS_EXPRESSION_INCOMPLETE_OPERATOR_UNARY sub role;
-
-EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING sub relationship
-	relates IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING;
-IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING sub role;
-
-EXPRESSION_LITERAL_NULL sub relationship
-	relates IS_EXPRESSION_LITERAL_NULL;
-IS_EXPRESSION_LITERAL_NULL sub role;
-
-EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING sub relationship
-	relates IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING;
-IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING sub role;
-
-EXPRESSION_LITERAL_PRIMITIVE_STRING sub relationship
-	relates IS_EXPRESSION_LITERAL_PRIMITIVE_STRING;
-IS_EXPRESSION_LITERAL_PRIMITIVE_STRING sub role;
-
-EXPRESSION_LITERAL_STRING sub relationship
-	relates IS_EXPRESSION_LITERAL_STRING;
-IS_EXPRESSION_LITERAL_STRING sub role;
-
-EXPRESSION_THIS sub relationship
-	relates IS_EXPRESSION_THIS;
-IS_EXPRESSION_THIS sub role;
-
 FILE sub relationship
 	relates IS_FILE;
 IS_FILE sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
 
 FOR sub relationship
 	relates IS_FOR;
 IS_FOR sub role;
 
-FOR_STATEMENT sub relationship
-	relates IS_FOR_STATEMENT;
-IS_FOR_STATEMENT sub role;
-
 FUNCTION sub relationship
 	relates IS_FUNCTION;
 IS_FUNCTION sub role;
+
+GOTO sub relationship
+	relates IS_GOTO;
+IS_GOTO sub role;
 
 GREATER_THAN sub relationship
 	relates IS_GREATER_THAN;
@@ -7596,6 +7467,10 @@ GREATER_THAN_OR_EQUAL sub relationship
 	relates IS_GREATER_THAN_OR_EQUAL;
 IS_GREATER_THAN_OR_EQUAL sub role;
 
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
 IDENTIFIER sub relationship
 	relates IS_IDENTIFIER;
 IS_IDENTIFIER sub role;
@@ -7604,9 +7479,9 @@ IF sub relationship
 	relates IS_IF;
 IS_IF sub role;
 
-IF_STATEMENT sub relationship
-	relates IS_IF_STATEMENT;
-IS_IF_STATEMENT sub role;
+IMPLEMENTS sub relationship
+	relates IS_IMPLEMENTS;
+IS_IMPLEMENTS sub role;
 
 IMPORT sub relationship
 	relates IS_IMPORT;
@@ -7619,6 +7494,22 @@ IS_INCOMPLETE sub role;
 INCREMENT sub relationship
 	relates IS_INCREMENT;
 IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+INSTANCE sub relationship
+	relates IS_INSTANCE;
+IS_INSTANCE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
 
 LEFT sub relationship
 	relates IS_LEFT;
@@ -7680,6 +7571,10 @@ NULL sub relationship
 	relates IS_NULL;
 IS_NULL sub role;
 
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
 OPERATOR sub relationship
 	relates IS_OPERATOR;
 IS_OPERATOR sub role;
@@ -7688,13 +7583,41 @@ OR sub relationship
 	relates IS_OR;
 IS_OR sub role;
 
+PACKAGE sub relationship
+	relates IS_PACKAGE;
+IS_PACKAGE sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
 POSITIVE sub relationship
 	relates IS_POSITIVE;
 IS_POSITIVE sub role;
 
+POSTFIX sub relationship
+	relates IS_POSTFIX;
+IS_POSTFIX sub role;
+
 PRIMITIVE sub relationship
 	relates IS_PRIMITIVE;
 IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+REGEXP sub relationship
+	relates IS_REGEXP;
+IS_REGEXP sub role;
 
 RELATIONAL sub relationship
 	relates IS_RELATIONAL;
@@ -7704,10 +7627,6 @@ RETURN sub relationship
 	relates IS_RETURN;
 IS_RETURN sub role;
 
-RETURN_STATEMENT sub relationship
-	relates IS_RETURN_STATEMENT;
-IS_RETURN_STATEMENT sub role;
-
 RIGHT sub relationship
 	relates IS_RIGHT;
 IS_RIGHT sub role;
@@ -7716,25 +7635,17 @@ RIGHT_SHIFT sub relationship
 	relates IS_RIGHT_SHIFT;
 IS_RIGHT_SHIFT sub role;
 
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+SET sub relationship
+	relates IS_SET;
+IS_SET sub role;
+
 STATEMENT sub relationship
 	relates IS_STATEMENT;
 IS_STATEMENT sub role;
-
-STATEMENT_SWITCH sub relationship
-	relates IS_STATEMENT_SWITCH;
-IS_STATEMENT_SWITCH sub role;
-
-STATEMENT_THROW sub relationship
-	relates IS_STATEMENT_THROW;
-IS_STATEMENT_THROW sub role;
-
-STATEMENT_TRY sub relationship
-	relates IS_STATEMENT_TRY;
-IS_STATEMENT_TRY sub role;
-
-STATEMENT_WHILE sub relationship
-	relates IS_STATEMENT_WHILE;
-IS_STATEMENT_WHILE sub role;
 
 STRING sub relationship
 	relates IS_STRING;
@@ -7744,9 +7655,17 @@ SUBSTRACT sub relationship
 	relates IS_SUBSTRACT;
 IS_SUBSTRACT sub role;
 
+SUBTYPE sub relationship
+	relates IS_SUBTYPE;
+IS_SUBTYPE sub role;
+
 SWITCH sub relationship
 	relates IS_SWITCH;
 IS_SWITCH sub role;
+
+TAKE_ADDRESS sub relationship
+	relates IS_TAKE_ADDRESS;
+IS_TAKE_ADDRESS sub role;
 
 THEN sub relationship
 	relates IS_THEN;
@@ -7772,6 +7691,338 @@ TYPE sub relationship
 	relates IS_TYPE;
 IS_TYPE sub role;
 
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UNSIGNED sub relationship
+	relates IS_UNSIGNED;
+IS_UNSIGNED sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BREAK sub relationship
+	relates IS_BREAK;
+IS_BREAK sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CHARACTER sub relationship
+	relates IS_CHARACTER;
+IS_CHARACTER sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+ENTRY sub relationship
+	relates IS_ENTRY;
+IS_ENTRY sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GOTO sub relationship
+	relates IS_GOTO;
+IS_GOTO sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+TAKE_ADDRESS sub relationship
+	relates IS_TAKE_ADDRESS;
+IS_TAKE_ADDRESS sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
 UNARY sub relationship
 	relates IS_UNARY;
 IS_UNARY sub role;
@@ -7780,21 +8031,1693 @@ UPDATE sub relationship
 	relates IS_UPDATE;
 IS_UPDATE sub role;
 
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSERT sub relationship
+	relates IS_ASSERT;
+IS_ASSERT sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BYTE sub relationship
+	relates IS_BYTE;
+IS_BYTE sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CHARACTER sub relationship
+	relates IS_CHARACTER;
+IS_CHARACTER sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+DO_WHILE sub relationship
+	relates IS_DO_WHILE;
+IS_DO_WHILE sub role;
+
+DOCUMENTATION sub relationship
+	relates IS_DOCUMENTATION;
+IS_DOCUMENTATION sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+ENUMERATION sub relationship
+	relates IS_ENUMERATION;
+IS_ENUMERATION sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+INSTANCE sub relationship
+	relates IS_INSTANCE;
+IS_INSTANCE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PACKAGE sub relationship
+	relates IS_PACKAGE;
+IS_PACKAGE sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+POSTFIX sub relationship
+	relates IS_POSTFIX;
+IS_POSTFIX sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SUBTYPE sub relationship
+	relates IS_SUBTYPE;
+IS_SUBTYPE sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
 UNANNOTATED sub relationship
 	relates IS_UNANNOTATED;
 IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
 
 UNSIGNED sub relationship
 	relates IS_UNSIGNED;
 IS_UNSIGNED sub role;
 
-VALUE sub relationship
-	relates IS_VALUE;
-IS_VALUE sub role;
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
 
 WHILE sub relationship
 	relates IS_WHILE;
 IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+DO_WHILE sub relationship
+	relates IS_DO_WHILE;
+IS_DO_WHILE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+INSTANCE sub relationship
+	relates IS_INSTANCE;
+IS_INSTANCE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULE sub relationship
+	relates IS_MODULE;
+IS_MODULE sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOOP sub relationship
+	relates IS_NOOP;
+IS_NOOP sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NULL sub relationship
+	relates IS_NULL;
+IS_NULL sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+POSTFIX sub relationship
+	relates IS_POSTFIX;
+IS_POSTFIX sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+REGEXP sub relationship
+	relates IS_REGEXP;
+IS_REGEXP sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SUBTYPE sub relationship
+	relates IS_SUBTYPE;
+IS_SUBTYPE sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TUPLE sub relationship
+	relates IS_TUPLE;
+IS_TUPLE sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UNSIGNED sub relationship
+	relates IS_UNSIGNED;
+IS_UNSIGNED sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BREAK sub relationship
+	relates IS_BREAK;
+IS_BREAK sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CATCH sub relationship
+	relates IS_CATCH;
+IS_CATCH sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DECREMENT sub relationship
+	relates IS_DECREMENT;
+IS_DECREMENT sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+DO_WHILE sub relationship
+	relates IS_DO_WHILE;
+IS_DO_WHILE sub role;
+
+DOCUMENTATION sub relationship
+	relates IS_DOCUMENTATION;
+IS_DOCUMENTATION sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+ENTRY sub relationship
+	relates IS_ENTRY;
+IS_ENTRY sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GOTO sub relationship
+	relates IS_GOTO;
+IS_GOTO sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPLEMENTS sub relationship
+	relates IS_IMPLEMENTS;
+IS_IMPLEMENTS sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INCREMENT sub relationship
+	relates IS_INCREMENT;
+IS_INCREMENT sub role;
+
+INITIALIZATION sub relationship
+	relates IS_INITIALIZATION;
+IS_INITIALIZATION sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NOOP sub relationship
+	relates IS_NOOP;
+IS_NOOP sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSTFIX sub relationship
+	relates IS_POSTFIX;
+IS_POSTFIX sub role;
+
+RECEIVER sub relationship
+	relates IS_RECEIVER;
+IS_RECEIVER sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+THROW sub relationship
+	relates IS_THROW;
+IS_THROW sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VARIABLE sub relationship
+	relates IS_VARIABLE;
+IS_VARIABLE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSERT sub relationship
+	relates IS_ASSERT;
+IS_ASSERT sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BYTE_STRING sub relationship
+	relates IS_BYTE_STRING;
+IS_BYTE_STRING sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CATCH sub relationship
+	relates IS_CATCH;
+IS_CATCH sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTAINS sub relationship
+	relates IS_CONTAINS;
+IS_CONTAINS sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULE sub relationship
+	relates IS_MODULE;
+IS_MODULE sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOOP sub relationship
+	relates IS_NOOP;
+IS_NOOP sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NULL sub relationship
+	relates IS_NULL;
+IS_NULL sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+SET sub relationship
+	relates IS_SET;
+IS_SET sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+THROW sub relationship
+	relates IS_THROW;
+IS_THROW sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TUPLE sub relationship
+	relates IS_TUPLE;
+IS_TUPLE sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;
+
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CASE sub relationship
+	relates IS_CASE;
+IS_CASE sub role;
+
+CATCH sub relationship
+	relates IS_CATCH;
+IS_CATCH sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+INSTANCE sub relationship
+	relates IS_INSTANCE;
+IS_INSTANCE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULO sub relationship
+	relates IS_MODULO;
+IS_MODULO sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NULL sub relationship
+	relates IS_NULL;
+IS_NULL sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+REGEXP sub relationship
+	relates IS_REGEXP;
+IS_REGEXP sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+SUBTYPE sub relationship
+	relates IS_SUBTYPE;
+IS_SUBTYPE sub role;
+
+SWITCH sub relationship
+	relates IS_SWITCH;
+IS_SWITCH sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+THIS sub relationship
+	relates IS_THIS;
+IS_THIS sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TUPLE sub relationship
+	relates IS_TUPLE;
+IS_TUPLE sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
 
 XOR sub relationship
 	relates IS_XOR;

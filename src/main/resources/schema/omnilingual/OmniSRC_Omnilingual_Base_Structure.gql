@@ -43,6 +43,7 @@ javaVarargsAttribute sub attribute datatype string;
 javascriptAsyncAttribute sub attribute datatype string;
 javascriptAwaitAttribute sub attribute datatype string;
 javascriptComputedAttribute sub attribute datatype string;
+javascriptDefaultAttribute sub attribute datatype string;
 javascriptDelegateAttribute sub attribute datatype string;
 javascriptExactAttribute sub attribute datatype string;
 javascriptExportKindAttribute sub attribute datatype string;
@@ -67,6 +68,7 @@ phpByRefAttribute sub attribute datatype string;
 phpFlagsAttribute sub flagsAttribute datatype string;
 phpMethodAttribute sub methodAttribute datatype string;
 phpNewModifierAttribute sub attribute datatype string;
+phpRemainingAttribute sub attribute datatype string;
 phpReturnTypeAttribute sub attribute datatype string;
 phpStaticAttribute sub staticAttribute datatype string;
 phpTypeAttribute sub attribute datatype string;
@@ -377,6 +379,7 @@ GoCompositeLitArtifact sub GoSourceArtifact
 	plays is_go_list_role
 	plays is_go_results_role
 	plays is_go_rhs_role
+	plays is_go_tag_role
 	plays is_go_value_role
 	plays is_go_values_role
 	plays is_go_x_role
@@ -491,6 +494,7 @@ GoFuncLitArtifact sub GoSourceArtifact
 
 GoFuncTypeArtifact sub GoSourceArtifact
 	# Structural
+	plays is_go_args_role
 	plays is_go_elt_role
 	plays is_go_fun_role
 	plays is_go_key_role
@@ -668,6 +672,7 @@ GoParenExprArtifact sub GoSourceArtifact
 	plays is_go_fun_role
 	plays is_go_high_role
 	plays is_go_index_role
+	plays is_go_key_role
 	plays is_go_lhs_role
 	plays is_go_list_role
 	plays is_go_low_role
@@ -824,6 +829,7 @@ GoStarExprArtifact sub GoSourceArtifact
 	plays is_go_key_role
 	plays is_go_lhs_role
 	plays is_go_list_role
+	plays is_go_low_role
 	plays is_go_results_role
 	plays is_go_rhs_role
 	plays is_go_tag_role
@@ -867,8 +873,11 @@ GoTypeAssertExprArtifact sub GoSourceArtifact
 	plays is_go_cond_role
 	plays is_go_elts_role
 	plays is_go_fun_role
+	plays is_go_high_role
 	plays is_go_index_role
+	plays is_go_key_role
 	plays is_go_list_role
+	plays is_go_low_role
 	plays is_go_results_role
 	plays is_go_rhs_role
 	plays is_go_tag_role
@@ -1817,7 +1826,6 @@ JavaThrowStatementArtifact sub ThrowStatementArtifact
 JavaTryStatementArtifact sub TryStatementArtifact
 	# Structural
 	plays is_java_body_role
-	plays is_java_else_statement_role
 	plays is_java_statements_role
 	plays has_java_body_role
 	plays has_java_catch_clauses_role
@@ -1948,6 +1956,7 @@ JavascriptArrayExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_tag_role
 	plays is_javascript_value_role
 	plays has_javascript_elements_role
+	plays has_javascript_inner_comments_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_trailing_comments_role;
 
@@ -1986,7 +1995,6 @@ JavascriptArrowFunctionExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_declaration_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
-	plays is_javascript_expressions_role
 	plays is_javascript_init_role
 	plays is_javascript_object_role
 	plays is_javascript_right_role
@@ -2053,7 +2061,8 @@ JavascriptAwaitExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_right_role
 	plays is_javascript_test_role
 	plays is_javascript_value_role
-	plays has_javascript_argument_role;
+	plays has_javascript_argument_role
+	plays has_javascript_leading_comments_role;
 
 JavascriptBigIntLiteralArtifact sub JavascriptSourceArtifact
 	# Attributes
@@ -2079,6 +2088,7 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_body_role
 	plays is_javascript_callee_role
 	plays is_javascript_consequent_role
+	plays is_javascript_declaration_role
 	plays is_javascript_discriminant_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
@@ -2132,6 +2142,7 @@ JavascriptBooleanLiteralArtifact sub BooleanLiteralArtifact
 	plays is_javascript_key_role
 	plays is_javascript_left_role
 	plays is_javascript_object_role
+	plays is_javascript_property_role
 	plays is_javascript_right_role
 	plays is_javascript_test_role
 	plays is_javascript_value_role
@@ -2208,7 +2219,6 @@ JavascriptClassDeclarationArtifact sub JavascriptSourceArtifact
 	plays is_javascript_body_role
 	plays is_javascript_declaration_role
 	plays has_javascript_body_role
-	plays has_javascript_decorators_role
 	plays has_javascript_id_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_super_class_role
@@ -2230,7 +2240,6 @@ JavascriptClassExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_super_class_role
 	plays is_javascript_value_role
 	plays has_javascript_body_role
-	plays has_javascript_decorators_role
 	plays has_javascript_id_role
 	plays has_javascript_implements_role
 	plays has_javascript_super_class_role
@@ -2301,17 +2310,16 @@ JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	plays is_javascript_callee_role
 	plays is_javascript_consequent_role
 	plays is_javascript_declaration_role
-	plays is_javascript_discriminant_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
 	plays is_javascript_expressions_role
 	plays is_javascript_init_role
+	plays is_javascript_key_role
 	plays is_javascript_left_role
 	plays is_javascript_object_role
 	plays is_javascript_property_role
 	plays is_javascript_right_role
 	plays is_javascript_test_role
-	plays is_javascript_update_role
 	plays is_javascript_value_role
 	plays has_javascript_alternate_role
 	plays has_javascript_consequent_role
@@ -2345,9 +2353,19 @@ JavascriptDeclareClassArtifact sub JavascriptSourceArtifact
 	plays has_javascript_trailing_comments_role
 	plays has_javascript_type_parameters_role;
 
+JavascriptDeclareExportDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has javascriptDefaultAttribute
+	# Structural
+	plays is_javascript_body_role
+	plays has_javascript_declaration_role
+	plays has_javascript_leading_comments_role
+	plays has_javascript_trailing_comments_role;
+
 JavascriptDeclareFunctionArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_body_role
+	plays is_javascript_declaration_role
 	plays has_javascript_id_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_trailing_comments_role;
@@ -2379,19 +2397,16 @@ JavascriptDeclareTypeAliasArtifact sub JavascriptSourceArtifact
 	plays has_javascript_id_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_right_role
-	plays has_javascript_trailing_comments_role;
+	plays has_javascript_trailing_comments_role
+	plays has_javascript_type_parameters_role;
 
 JavascriptDeclareVariableArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_body_role
+	plays is_javascript_declaration_role
 	plays has_javascript_id_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_trailing_comments_role;
-
-JavascriptDecoratorArtifact sub JavascriptSourceArtifact
-	# Structural
-	plays is_javascript_decorators_role
-	plays has_javascript_expression_role;
 
 JavascriptDirectiveArtifact sub JavascriptSourceArtifact
 	# Structural
@@ -2406,12 +2421,12 @@ JavascriptDirectiveLiteralArtifact sub JavascriptSourceArtifact
 
 JavascriptDoExpressionArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_javascript_argument_role
 	plays is_javascript_right_role
 	plays has_javascript_body_role;
 
 JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Structural
-	plays is_javascript_alternate_role
 	plays is_javascript_body_role
 	plays is_javascript_consequent_role
 	plays has_javascript_body_role
@@ -2568,6 +2583,7 @@ JavascriptFunctionExpressionArtifact sub JavascriptSourceArtifact
 
 JavascriptFunctionTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_javascript_declaration_role
 	plays is_javascript_params_role
 	plays is_javascript_return_type_role
 	plays is_javascript_right_role
@@ -2585,12 +2601,14 @@ JavascriptFunctionTypeParamArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_params_role
 	plays is_javascript_rest_role
+	plays has_javascript_leading_comments_role
 	plays has_javascript_name_role
 	plays has_javascript_type_annotation_role;
 
 JavascriptGenericTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_argument_role
+	plays is_javascript_declaration_role
 	plays is_javascript_default_role
 	plays is_javascript_element_type_role
 	plays is_javascript_key_role
@@ -2681,6 +2699,8 @@ JavascriptImportNamespaceSpecifierArtifact sub JavascriptSourceArtifact
 	plays has_javascript_local_role;
 
 JavascriptImportSpecifierArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has javascriptImportKindAttribute
 	# Structural
 	plays is_javascript_specifiers_role
 	plays has_javascript_imported_role
@@ -3218,6 +3238,7 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_body_role
 	plays is_javascript_callee_role
 	plays is_javascript_consequent_role
+	plays is_javascript_declaration_role
 	plays is_javascript_discriminant_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
@@ -3455,6 +3476,7 @@ JavascriptTypeCastExpressionArtifact sub JavascriptSourceArtifact
 JavascriptTypeofTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_argument_role
+	plays is_javascript_declaration_role
 	plays is_javascript_params_role
 	plays is_javascript_right_role
 	plays is_javascript_type_annotation_role
@@ -3704,6 +3726,7 @@ PhpExprAssignArtifact sub PhpSourceArtifact
 	plays is_php_init_role
 	plays is_php_left_role
 	plays is_php_loop_role
+	plays is_php_name_role
 	plays is_php_right_role
 	plays is_php_stmts_role
 	plays is_php_value_role
@@ -3730,6 +3753,7 @@ PhpExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact
 PhpExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_expr_role
 	plays has_php_var_role;
 
@@ -3737,7 +3761,9 @@ PhpExprAssignOpConcatArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_body_role
 	plays is_php_children_role
+	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_stmts_role
 	plays is_php_value_role
@@ -3756,8 +3782,10 @@ PhpExprAssignOpDivArtifact sub PhpSourceArtifact
 PhpExprAssignOpMinusArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_body_role
+	plays is_php_expr_role
 	plays is_php_loop_role
 	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_expr_role
 	plays has_php_var_role;
 
@@ -3765,12 +3793,14 @@ PhpExprAssignOpModArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_right_role
 	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_expr_role
 	plays has_php_var_role;
 
 PhpExprAssignOpMulArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_expr_role
 	plays has_php_var_role;
 
@@ -3779,10 +3809,24 @@ PhpExprAssignOpPlusArtifact sub PhpSourceArtifact
 	plays is_php_body_role
 	plays is_php_expr_role
 	plays is_php_init_role
+	plays is_php_left_role
 	plays is_php_loop_role
 	plays is_php_right_role
 	plays is_php_stmts_role
+	plays is_php_value_role
 	plays has_php_comments_role
+	plays has_php_expr_role
+	plays has_php_var_role;
+
+PhpExprAssignOpShiftLeftArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_php_stmts_role
+	plays has_php_expr_role
+	plays has_php_var_role;
+
+PhpExprAssignOpShiftRightArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_php_stmts_role
 	plays has_php_expr_role
 	plays has_php_var_role;
 
@@ -3800,8 +3844,10 @@ PhpExprAssignRefArtifact sub PhpSourceArtifact
 PhpExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
+	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
@@ -3812,6 +3858,7 @@ PhpExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
 	plays is_php_default_role
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
 	plays is_php_left_role
@@ -3822,7 +3869,10 @@ PhpExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_dim_role
 	plays is_php_expr_role
+	plays is_php_left_role
+	plays is_php_right_role
 	plays is_php_value_role
 	plays has_php_left_role
 	plays has_php_right_role;
@@ -3845,12 +3895,17 @@ PhpExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_cond_role
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
+	plays is_php_stmts_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -3889,7 +3944,9 @@ PhpExprBinaryOpConcatArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpDivArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
@@ -3906,6 +3963,7 @@ PhpExprBinaryOpEqualArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -3930,6 +3988,8 @@ PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
+	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -3949,8 +4009,12 @@ PhpExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_cond_role
 	plays is_php_expr_role
-	plays is_php_value_role
+	plays is_php_left_role
+	plays is_php_right_role
+	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -3963,7 +4027,6 @@ PhpExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_stmts_role
-	plays is_php_value_role
 	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
@@ -3972,11 +4035,13 @@ PhpExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
 	plays is_php_expr_role
+	plays is_php_right_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
 PhpExprBinaryOpMinusArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_cond_role
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
@@ -3985,6 +4050,7 @@ PhpExprBinaryOpMinusArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -4003,22 +4069,29 @@ PhpExprBinaryOpModArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpMulArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_cond_role
+	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
+	plays is_php_key_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
 PhpExprBinaryOpNotEqualArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -4040,10 +4113,18 @@ PhpExprBinaryOpPlusArtifact sub PhpSourceArtifact
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
+	plays has_php_left_role
+	plays has_php_right_role;
+
+PhpExprBinaryOpPowArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_php_expr_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -4059,9 +4140,12 @@ PhpExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
 
 PhpExprBinaryOpShiftRightArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_cond_role
+	plays is_php_dim_role
 	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_right_role
+	plays is_php_value_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
@@ -4080,16 +4164,19 @@ PhpExprBinaryOpSmallerArtifact sub PhpSourceArtifact
 PhpExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
 
 PhpExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_cond_role
 	plays is_php_expr_role
 	plays has_php_left_role
 	plays has_php_right_role;
@@ -4099,6 +4186,7 @@ PhpExprBitwiseNotArtifact sub PhpSourceArtifact
 	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_right_role
+	plays is_php_value_role
 	plays has_php_expr_role;
 
 PhpExprBooleanNotArtifact sub PhpSourceArtifact
@@ -4110,6 +4198,7 @@ PhpExprBooleanNotArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprCastArrayArtifact sub PhpSourceArtifact
@@ -4117,6 +4206,8 @@ PhpExprCastArrayArtifact sub PhpSourceArtifact
 	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
+	plays is_php_left_role
+	plays is_php_right_role
 	plays is_php_value_role
 	plays has_php_expr_role;
 
@@ -4126,6 +4217,7 @@ PhpExprCastBoolArtifact sub PhpSourceArtifact
 	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
+	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
 	plays has_php_expr_role;
@@ -4136,6 +4228,7 @@ PhpExprCastDoubleArtifact sub PhpSourceArtifact
 	plays is_php_expr_role
 	plays is_php_if_role
 	plays is_php_left_role
+	plays is_php_right_role
 	plays is_php_value_role
 	plays has_php_expr_role;
 
@@ -4145,15 +4238,18 @@ PhpExprCastIntArtifact sub PhpSourceArtifact
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_key_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprCastObjectArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
 	plays is_php_value_role
@@ -4172,6 +4268,7 @@ PhpExprCastStringArtifact sub PhpSourceArtifact
 	plays is_php_right_role
 	plays is_php_stmts_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprClassConstFetchArtifact sub PhpSourceArtifact
@@ -4181,12 +4278,15 @@ PhpExprClassConstFetchArtifact sub PhpSourceArtifact
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_key_role
 	plays is_php_left_role
 	plays is_php_name_role
 	plays is_php_right_role
+	plays is_php_stmts_role
 	plays is_php_value_role
+	plays is_php_var_role
 	plays has_php_class_role
 	plays has_php_comments_role
 	plays has_php_name_role;
@@ -4253,6 +4353,7 @@ PhpExprEmptyArtifact sub PhpSourceArtifact
 
 PhpExprErrorSuppressArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_cond_role
 	plays is_php_else_role
@@ -4267,16 +4368,18 @@ PhpExprErrorSuppressArtifact sub PhpSourceArtifact
 
 PhpExprEvalArtifact sub PhpSourceArtifact
 	# Structural
-	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_expr_role
+	plays is_php_if_role
 	plays is_php_stmts_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprExitArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_right_role
 	plays is_php_stmts_role
 	plays has_php_comments_role
@@ -4293,8 +4396,10 @@ PhpExprFuncCallArtifact sub PhpSourceArtifact
 	plays is_php_expr_role
 	plays is_php_exprs_role
 	plays is_php_if_role
+	plays is_php_init_role
 	plays is_php_key_role
 	plays is_php_left_role
+	plays is_php_loop_role
 	plays is_php_name_role
 	plays is_php_right_role
 	plays is_php_stmts_role
@@ -4333,7 +4438,9 @@ PhpExprInstanceofArtifact sub PhpSourceArtifact
 PhpExprIssetArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_cond_role
+	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_stmts_role
@@ -4343,6 +4450,7 @@ PhpExprIssetArtifact sub PhpSourceArtifact
 
 PhpExprListArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_value_role
 	plays is_php_value_var_role
 	plays is_php_var_role
 	plays has_php_comments_role
@@ -4376,6 +4484,7 @@ PhpExprMethodCallArtifact sub PhpSourceArtifact
 
 PhpExprNewArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
@@ -4392,20 +4501,28 @@ PhpExprNewArtifact sub PhpSourceArtifact
 PhpExprPostDecArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_cond_role
+	plays is_php_dim_role
+	plays is_php_else_role
+	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_loop_role
 	plays is_php_right_role
 	plays is_php_stmts_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_var_role;
 
 PhpExprPostIncArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_cond_role
 	plays is_php_dim_role
 	plays is_php_expr_role
 	plays is_php_if_role
+	plays is_php_init_role
 	plays is_php_left_role
 	plays is_php_loop_role
 	plays is_php_right_role
@@ -4430,10 +4547,13 @@ PhpExprPreDecArtifact sub PhpSourceArtifact
 
 PhpExprPreIncArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_cond_role
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_if_role
+	plays is_php_init_role
 	plays is_php_left_role
 	plays is_php_loop_role
 	plays is_php_right_role
@@ -4444,7 +4564,10 @@ PhpExprPreIncArtifact sub PhpSourceArtifact
 
 PhpExprPrintArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_stmts_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprPropertyFetchArtifact sub PhpSourceArtifact
@@ -4486,6 +4609,7 @@ PhpExprStaticCallArtifact sub PhpSourceArtifact
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_key_role
 	plays is_php_left_role
@@ -4503,8 +4627,10 @@ PhpExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_class_role
 	plays is_php_cond_role
+	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_left_role
 	plays is_php_right_role
@@ -4517,12 +4643,15 @@ PhpExprStaticPropertyFetchArtifact sub PhpSourceArtifact
 
 PhpExprTernaryArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
+	plays is_php_children_role
 	plays is_php_cond_role
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_exprs_role
 	plays is_php_if_role
+	plays is_php_init_role
 	plays is_php_key_role
 	plays is_php_left_role
 	plays is_php_name_role
@@ -4547,10 +4676,13 @@ PhpExprUnaryMinusArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_expr_role;
 
 PhpExprUnaryPlusArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_else_role
+	plays is_php_expr_role
 	plays is_php_value_role
 	plays has_php_expr_role;
 
@@ -4563,12 +4695,14 @@ PhpExprVariableArtifact sub PhpSourceArtifact
 	plays is_php_expr_role
 	plays is_php_exprs_role
 	plays is_php_if_role
+	plays is_php_init_role
 	plays is_php_key_role
 	plays is_php_key_var_role
 	plays is_php_left_role
 	plays is_php_name_role
 	plays is_php_parts_role
 	plays is_php_right_role
+	plays is_php_stmts_role
 	plays is_php_value_role
 	plays is_php_value_var_role
 	plays is_php_var_role
@@ -4607,6 +4741,7 @@ PhpNameArtifact sub NameArtifact
 	plays is_php_class_role
 	plays is_php_extends_role
 	plays is_php_implements_role
+	plays is_php_insteadof_role
 	plays is_php_name_role
 	plays is_php_return_type_role
 	plays is_php_trait_role
@@ -4641,6 +4776,7 @@ PhpParamArtifact sub PhpSourceArtifact
 	has phpVariadicAttribute
 	# Structural
 	plays is_php_params_role
+	plays has_php_comments_role
 	plays has_php_default_role
 	plays has_php_name_role
 	plays has_php_type_role;
@@ -4648,10 +4784,15 @@ PhpParamArtifact sub PhpSourceArtifact
 PhpScalarDNumberArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_default_role
+	plays is_php_dim_role
+	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_if_role
+	plays is_php_key_role
 	plays is_php_left_role
 	plays is_php_right_role
-	plays is_php_value_role;
+	plays is_php_value_role
+	plays has_php_comments_role;
 
 PhpScalarEncapsedArtifact sub PhpSourceArtifact
 	# Structural
@@ -4665,6 +4806,7 @@ PhpScalarEncapsedArtifact sub PhpSourceArtifact
 	plays is_php_name_role
 	plays is_php_right_role
 	plays is_php_value_role
+	plays has_php_comments_role
 	plays has_php_parts_role;
 
 PhpScalarEncapsedStringPartArtifact sub PhpSourceArtifact
@@ -4678,6 +4820,7 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact
 	plays is_php_dim_role
 	plays is_php_else_role
 	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_if_role
 	plays is_php_key_role
 	plays is_php_left_role
@@ -4689,6 +4832,8 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact
 
 PhpScalarMagicConstClassArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_default_role
+	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_key_role
 	plays is_php_left_role
@@ -4701,10 +4846,12 @@ PhpScalarMagicConstDirArtifact sub PhpSourceArtifact
 	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_right_role
-	plays is_php_value_role;
+	plays is_php_value_role
+	plays has_php_comments_role;
 
 PhpScalarMagicConstFileArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_default_role
 	plays is_php_else_role
 	plays is_php_expr_role
 	plays is_php_if_role
@@ -4716,27 +4863,38 @@ PhpScalarMagicConstFunctionArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_dim_role
 	plays is_php_expr_role
+	plays is_php_left_role
 	plays is_php_name_role
 	plays is_php_right_role
 	plays is_php_value_role;
 
 PhpScalarMagicConstLineArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_default_role
 	plays is_php_expr_role
 	plays is_php_left_role
+	plays is_php_right_role
 	plays is_php_value_role;
 
 PhpScalarMagicConstMethodArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_dim_role
+	plays is_php_expr_role
+	plays is_php_exprs_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role;
 
 PhpScalarMagicConstNamespaceArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_expr_role
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_value_role;
+
+PhpScalarMagicConstTraitArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_php_left_role;
 
 PhpScalarStringArtifact sub PhpSourceArtifact
 	# Structural
@@ -4825,6 +4983,7 @@ PhpStmtContinueArtifact sub PhpSourceArtifact
 PhpStmtDeclareArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_children_role
+	plays is_php_stmts_role
 	plays has_php_declares_role
 	plays has_php_stmts_role;
 
@@ -4896,6 +5055,7 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact
 	# Attributes
 	has phpByRefAttribute
 	# Structural
+	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_stmts_role
 	plays has_php_comments_role
@@ -4904,10 +5064,24 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact
 	plays has_php_return_type_role
 	plays has_php_stmts_role;
 
+PhpStmtGlobalArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_php_body_role
+	plays is_php_children_role
+	plays is_php_stmts_role
+	plays has_php_comments_role
+	plays has_php_vars_role;
+
 PhpStmtGotoArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_php_stmts_role
 	plays has_php_name_role;
+
+PhpStmtHaltCompilerArtifact sub PhpSourceArtifact
+	# Attributes
+	has phpRemainingAttribute
+	# Structural
+	plays is_php_children_role;
 
 PhpStmtIfArtifact sub PhpSourceArtifact
 	# Structural
@@ -4922,11 +5096,13 @@ PhpStmtIfArtifact sub PhpSourceArtifact
 
 PhpStmtInlineHTMLArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_stmts_role;
 
 PhpStmtInterfaceArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_children_role
 	plays is_php_stmts_role
 	plays has_php_comments_role
 	plays has_php_extends_role
@@ -5007,6 +5183,7 @@ PhpStmtThrowArtifact sub PhpSourceArtifact
 
 PhpStmtTraitArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_children_role
 	plays is_php_stmts_role
 	plays has_php_comments_role
 	plays has_php_name_role
@@ -5018,6 +5195,14 @@ PhpStmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact
 	has phpNewModifierAttribute
 	# Structural
 	plays is_php_adaptations_role
+	plays has_php_trait_role;
+
+PhpStmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact
+	# Attributes
+	has phpMethodAttribute
+	# Structural
+	plays is_php_adaptations_role
+	plays has_php_insteadof_role
 	plays has_php_trait_role;
 
 PhpStmtTraitUseArtifact sub PhpSourceArtifact
@@ -5039,6 +5224,7 @@ PhpStmtTryCatchArtifact sub PhpSourceArtifact
 
 PhpStmtUnsetArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_stmts_role
 	plays has_php_comments_role
@@ -5346,7 +5532,6 @@ PythonCallArtifact sub PythonSourceArtifact
 	plays is_python_operand_role
 	plays is_python_orelse_role
 	plays is_python_right_role
-	plays is_python_starargs_role
 	plays is_python_step_role
 	plays is_python_test_role
 	plays is_python_type_role
@@ -5510,7 +5695,6 @@ PythonExceptHandlerArtifact sub PythonSourceArtifact
 PythonExecArtifact sub PythonSourceArtifact
 	# Structural
 	plays is_python_body_role
-	plays is_python_body_stmts_role
 	plays has_python_body_role
 	plays has_python_globals_role;
 
@@ -5820,7 +6004,6 @@ PythonListCompArtifact sub PythonSourceArtifact
 	plays is_python_operand_role
 	plays is_python_orelse_role
 	plays is_python_right_role
-	plays is_python_starargs_role
 	plays is_python_test_role
 	plays is_python_value_role
 	plays is_python_values_role
@@ -6252,7 +6435,6 @@ PythonTryExceptArtifact sub PythonSourceArtifact
 	plays is_python_orelse_role
 	plays has_python_body_role
 	plays has_python_handlers_role
-	plays has_python_noops_sameline_role
 	plays has_python_orelse_role;
 
 PythonTryFinalbodyArtifact sub PythonSourceArtifact
@@ -7799,11 +7981,6 @@ declaration_relation sub parent_child_relation
 is_declaration_role sub is_child;
 has_declaration_role sub is_parent;
 
-decorators_relation sub parent_child_relation
-	relates is_decorators_role, relates has_decorators_role;
-is_decorators_role sub is_child;
-has_decorators_role sub is_parent;
-
 default_relation sub parent_child_relation
 	relates is_default_role, relates has_default_role;
 is_default_role sub is_child;
@@ -8792,11 +8969,6 @@ javascript_declarations_relation sub parent_child_relation
 is_javascript_declarations_role sub is_child;
 has_javascript_declarations_role sub is_parent;
 
-javascript_decorators_relation sub decorators_relation
-	relates is_javascript_decorators_role, relates has_javascript_decorators_role;
-is_javascript_decorators_role sub is_decorators_role;
-has_javascript_decorators_role sub has_decorators_role;
-
 javascript_default_relation sub default_relation
 	relates is_javascript_default_role, relates has_javascript_default_role;
 is_javascript_default_role sub is_default_role;
@@ -9178,6 +9350,11 @@ php_init_relation sub init_relation
 is_php_init_role sub is_init_role;
 has_php_init_role sub has_init_role;
 
+php_insteadof_relation sub parent_child_relation
+	relates is_php_insteadof_role, relates has_php_insteadof_role;
+is_php_insteadof_role sub is_child;
+has_php_insteadof_role sub is_parent;
+
 php_items_relation sub items_relation
 	relates is_php_items_role, relates has_php_items_role;
 is_php_items_role sub is_items_role;
@@ -9339,10 +9516,10 @@ python_decorator_list_relation sub parent_child_relation
 is_python_decorator_list_role sub is_child;
 has_python_decorator_list_role sub is_parent;
 
-python_decorators_relation sub decorators_relation
+python_decorators_relation sub parent_child_relation
 	relates is_python_decorators_role, relates has_python_decorators_role;
-is_python_decorators_role sub is_decorators_role;
-has_python_decorators_role sub has_decorators_role;
+is_python_decorators_role sub is_child;
+has_python_decorators_role sub is_parent;
 
 python_default_relation sub default_relation
 	relates is_python_default_role, relates has_python_default_role;

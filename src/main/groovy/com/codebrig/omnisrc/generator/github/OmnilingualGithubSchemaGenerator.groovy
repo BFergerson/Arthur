@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit
  */
 class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
-    public static final int PARSE_PROJECTS_PER_LANGUAGE = 3
-    public static final int PARSE_FILES_PER_PROJECT = 1000
+    public static final int PARSE_PROJECTS_PER_LANGUAGE = 30
+    public static final int PARSE_FILES_PER_PROJECT = Integer.MAX_VALUE
 
     static void main(String[] args) {
         long startTime = System.currentTimeMillis()
