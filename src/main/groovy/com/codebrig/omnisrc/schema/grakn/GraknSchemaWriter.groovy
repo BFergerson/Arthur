@@ -44,7 +44,6 @@ class GraknSchemaWriter implements SchemaWriter {
                         true, false))
             }
             if (actualRoles) {
-                //common actual semantic roles
                 observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
                         false, true))
             }
