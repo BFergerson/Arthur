@@ -28,7 +28,5 @@ class GraknSchemaWriterTest extends OmniSRCTest {
         assertEquals(new File("src/test/resources/schema/segment_same", "Individual_Roles.gql").text, individualSemanticRoles)
         def actualSemanticRoles = schemaWriter.getSegmentedSchemaDefinition(SchemaSegment.ACTUAL_SEMANTIC_ROLES)
         assertEquals(new File("src/test/resources/schema/segment_same", "Actual_Roles.gql").text, actualSemanticRoles)
-        def possibleSemanticRoles = schemaWriter.getSegmentedSchemaDefinition(SchemaSegment.POSSIBLE_SEMANTIC_ROLES)
-        assertEquals(new File("src/test/resources/schema/segment_same", "Possible_Roles.gql").text, possibleSemanticRoles)
     }
 }

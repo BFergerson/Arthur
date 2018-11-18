@@ -531,13 +531,13 @@ has_type_role sub is_parent;
 #####----- Go -----#####
 go_args_relation sub args_relation
 	relates is_go_args_role, relates has_go_args_role;
-is_go_args_role sub is_args_relation;
-has_go_args_role sub has_args_relation;
+is_go_args_role sub is_args_role;
+has_go_args_role sub has_args_role;
 
 go_body_relation sub body_relation
 	relates is_go_body_role, relates has_go_body_role;
-is_go_body_role sub is_body_relation;
-has_go_body_role sub has_body_relation;
+is_go_body_role sub is_body_role;
+has_go_body_role sub has_body_role;
 
 go_closing_relation sub parent_child_relation
 	relates is_go_closing_role, relates has_go_closing_role;
@@ -576,8 +576,8 @@ has_go_fun_role sub is_parent;
 
 go_func_relation sub func_relation
 	relates is_go_func_role, relates has_go_func_role;
-is_go_func_role sub is_func_relation;
-has_go_func_role sub has_func_relation;
+is_go_func_role sub is_func_role;
+has_go_func_role sub has_func_role;
 
 go_imports_relation sub parent_child_relation
 	relates is_go_imports_role, relates has_go_imports_role;
@@ -586,8 +586,8 @@ has_go_imports_role sub is_parent;
 
 go_init_relation sub init_relation
 	relates is_go_init_role, relates has_go_init_role;
-is_go_init_role sub is_init_relation;
-has_go_init_role sub has_init_relation;
+is_go_init_role sub is_init_role;
+has_go_init_role sub has_init_role;
 
 go_lbrace_relation sub parent_child_relation
 	relates is_go_lbrace_role, relates has_go_lbrace_role;
@@ -616,8 +616,8 @@ has_go_name_pos_role sub is_parent;
 
 go_name_relation sub name_relation
 	relates is_go_name_role, relates has_go_name_role;
-is_go_name_role sub is_name_relation;
-has_go_name_role sub has_name_relation;
+is_go_name_role sub is_name_role;
+has_go_name_role sub has_name_role;
 
 go_op_pos_relation sub parent_child_relation
 	relates is_go_op_pos_role, relates has_go_op_pos_role;
@@ -686,8 +686,8 @@ has_go_tok_pos_role sub is_parent;
 
 go_type_relation sub type_relation
 	relates is_go_type_role, relates has_go_type_role;
-is_go_type_role sub is_type_relation;
-has_go_type_role sub has_type_relation;
+is_go_type_role sub is_type_role;
+has_go_type_role sub has_type_role;
 
 go_value_pos_relation sub parent_child_relation
 	relates is_go_value_pos_role, relates has_go_value_pos_role;
@@ -707,8 +707,8 @@ has_go_y_role sub is_parent;
 #####----- Java -----#####
 java_arguments_relation sub arguments_relation
 	relates is_java_arguments_role, relates has_java_arguments_role;
-is_java_arguments_role sub is_arguments_relation;
-has_java_arguments_role sub has_arguments_relation;
+is_java_arguments_role sub is_arguments_role;
+has_java_arguments_role sub has_arguments_role;
 
 java_body_declarations_relation sub parent_child_relation
 	relates is_java_body_declarations_role, relates has_java_body_declarations_role;
@@ -717,8 +717,8 @@ has_java_body_declarations_role sub is_parent;
 
 java_body_relation sub body_relation
 	relates is_java_body_role, relates has_java_body_role;
-is_java_body_role sub is_body_relation;
-has_java_body_role sub has_body_relation;
+is_java_body_role sub is_body_role;
+has_java_body_role sub has_body_role;
 
 java_dimensions_relation sub parent_child_relation
 	relates is_java_dimensions_role, relates has_java_dimensions_role;
@@ -732,8 +732,8 @@ has_java_element_type_role sub is_parent;
 
 java_expression_relation sub expression_relation
 	relates is_java_expression_role, relates has_java_expression_role;
-is_java_expression_role sub is_expression_relation;
-has_java_expression_role sub has_expression_relation;
+is_java_expression_role sub is_expression_role;
+has_java_expression_role sub has_expression_role;
 
 java_fragments_relation sub parent_child_relation
 	relates is_java_fragments_role, relates has_java_fragments_role;
@@ -762,8 +762,8 @@ has_java_modifiers_role sub is_parent;
 
 java_name_relation sub name_relation
 	relates is_java_name_role, relates has_java_name_role;
-is_java_name_role sub is_name_relation;
-has_java_name_role sub has_name_relation;
+is_java_name_role sub is_name_role;
+has_java_name_role sub has_name_role;
 
 java_operand_relation sub parent_child_relation
 	relates is_java_operand_role, relates has_java_operand_role;
@@ -772,8 +772,8 @@ has_java_operand_role sub is_parent;
 
 java_operator_relation sub operator_relation
 	relates is_java_operator_role, relates has_java_operator_role;
-is_java_operator_role sub is_operator_relation;
-has_java_operator_role sub has_operator_relation;
+is_java_operator_role sub is_operator_role;
+has_java_operator_role sub has_operator_role;
 
 java_parameters_relation sub parent_child_relation
 	relates is_java_parameters_role, relates has_java_parameters_role;
@@ -802,8 +802,8 @@ has_java_statements_role sub is_parent;
 
 java_type_relation sub type_relation
 	relates is_java_type_role, relates has_java_type_role;
-is_java_type_role sub is_type_relation;
-has_java_type_role sub has_type_relation;
+is_java_type_role sub is_type_role;
+has_java_type_role sub has_type_role;
 
 java_types_relation sub parent_child_relation
 	relates is_java_types_role, relates has_java_types_role;
@@ -823,13 +823,13 @@ has_javascript_argument_role sub is_parent;
 
 javascript_arguments_relation sub arguments_relation
 	relates is_javascript_arguments_role, relates has_javascript_arguments_role;
-is_javascript_arguments_role sub is_arguments_relation;
-has_javascript_arguments_role sub has_arguments_relation;
+is_javascript_arguments_role sub is_arguments_role;
+has_javascript_arguments_role sub has_arguments_role;
 
 javascript_body_relation sub body_relation
 	relates is_javascript_body_role, relates has_javascript_body_role;
-is_javascript_body_role sub is_body_relation;
-has_javascript_body_role sub has_body_relation;
+is_javascript_body_role sub is_body_role;
+has_javascript_body_role sub has_body_role;
 
 javascript_callee_relation sub parent_child_relation
 	relates is_javascript_callee_role, relates has_javascript_callee_role;
@@ -843,8 +843,8 @@ has_javascript_declarations_role sub is_parent;
 
 javascript_expression_relation sub expression_relation
 	relates is_javascript_expression_role, relates has_javascript_expression_role;
-is_javascript_expression_role sub is_expression_relation;
-has_javascript_expression_role sub has_expression_relation;
+is_javascript_expression_role sub is_expression_role;
+has_javascript_expression_role sub has_expression_role;
 
 javascript_id_relation sub parent_child_relation
 	relates is_javascript_id_role, relates has_javascript_id_role;
@@ -853,8 +853,8 @@ has_javascript_id_role sub is_parent;
 
 javascript_init_relation sub init_relation
 	relates is_javascript_init_role, relates has_javascript_init_role;
-is_javascript_init_role sub is_init_relation;
-has_javascript_init_role sub has_init_relation;
+is_javascript_init_role sub is_init_role;
+has_javascript_init_role sub has_init_role;
 
 javascript_left_relation sub parent_child_relation
 	relates is_javascript_left_role, relates has_javascript_left_role;
@@ -868,8 +868,8 @@ has_javascript_object_role sub is_parent;
 
 javascript_operator_relation sub operator_relation
 	relates is_javascript_operator_role, relates has_javascript_operator_role;
-is_javascript_operator_role sub is_operator_relation;
-has_javascript_operator_role sub has_operator_relation;
+is_javascript_operator_role sub is_operator_role;
+has_javascript_operator_role sub has_operator_role;
 
 javascript_program_relation sub parent_child_relation
 	relates is_javascript_program_role, relates has_javascript_program_role;
@@ -899,13 +899,13 @@ has_javascript_update_role sub is_parent;
 #####----- Python -----#####
 python_args_relation sub args_relation
 	relates is_python_args_role, relates has_python_args_role;
-is_python_args_role sub is_args_relation;
-has_python_args_role sub has_args_relation;
+is_python_args_role sub is_args_role;
+has_python_args_role sub has_args_role;
 
 python_body_relation sub body_relation
 	relates is_python_body_role, relates has_python_body_role;
-is_python_body_role sub is_body_relation;
-has_python_body_role sub has_body_relation;
+is_python_body_role sub is_body_role;
+has_python_body_role sub has_body_role;
 
 python_body_stmts_relation sub parent_child_relation
 	relates is_python_body_stmts_role, relates has_python_body_stmts_role;
@@ -914,8 +914,8 @@ has_python_body_stmts_role sub is_parent;
 
 python_func_relation sub func_relation
 	relates is_python_func_role, relates has_python_func_role;
-is_python_func_role sub is_func_relation;
-has_python_func_role sub has_func_relation;
+is_python_func_role sub is_func_role;
+has_python_func_role sub has_func_role;
 
 python_iter_relation sub parent_child_relation
 	relates is_python_iter_role, relates has_python_iter_role;
