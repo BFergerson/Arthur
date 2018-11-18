@@ -2,6 +2,9 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
 
 #####----- Python -----#####
 conversionAttribute sub attribute datatype string;
@@ -294,6 +297,7 @@ CallArtifact sub PythonSourceArtifact
 	plays is_operand_role
 	plays is_orelse_role
 	plays is_right_role
+	plays is_starargs_role
 	plays is_step_role
 	plays is_test_role
 	plays is_type_role
@@ -457,6 +461,7 @@ ExceptHandlerArtifact sub PythonSourceArtifact
 ExecArtifact sub PythonSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_body_stmts_role
 	plays has_body_role
 	plays has_globals_role;
 
@@ -766,6 +771,7 @@ ListCompArtifact sub PythonSourceArtifact
 	plays is_operand_role
 	plays is_orelse_role
 	plays is_right_role
+	plays is_starargs_role
 	plays is_test_role
 	plays is_value_role
 	plays is_values_role
@@ -905,6 +911,8 @@ NotInArtifact sub PythonSourceArtifact
 	plays is_ops_role;
 
 NumArtifact sub PythonSourceArtifact
+	# Attributes
+	has numberValue
 	# Structural
 	plays is_annotation_role
 	plays is_args_role
@@ -1195,6 +1203,7 @@ TryExceptArtifact sub PythonSourceArtifact
 	plays is_orelse_role
 	plays has_body_role
 	plays has_handlers_role
+	plays has_noops_sameline_role
 	plays has_orelse_role;
 
 TryFinalbodyArtifact sub PythonSourceArtifact

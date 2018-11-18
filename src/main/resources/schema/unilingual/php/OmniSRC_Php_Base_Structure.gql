@@ -352,6 +352,13 @@ ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
 	plays has_left_role
 	plays has_right_role;
 
+ExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
+	# Structural
+	plays is_expr_role
+	plays is_value_role
+	plays has_left_role
+	plays has_right_role;
+
 ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
 	# Structural
 	plays is_body_role
@@ -361,6 +368,7 @@ ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
 	plays is_left_role
 	plays is_right_role
 	plays is_stmts_role
+	plays is_value_role
 	plays has_comments_role
 	plays has_left_role
 	plays has_right_role;
@@ -664,6 +672,7 @@ ExprErrorSuppressArtifact sub PhpSourceArtifact
 
 ExprEvalArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_body_role
 	plays is_children_role
 	plays is_expr_role
 	plays is_stmts_role
