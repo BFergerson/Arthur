@@ -1300,6 +1300,7 @@ WhileArtifact sub PythonSourceArtifact
 	plays is_body_stmts_role
 	plays is_else_stmts_role
 	plays is_final_stmts_role
+	plays is_orelse_role
 	plays has_body_role
 	plays has_orelse_role
 	plays has_test_role;
