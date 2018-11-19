@@ -507,6 +507,7 @@ MethodInvocationArtifact sub JavaSourceArtifact
 	plays is_extended_operands_role
 	plays is_index_role
 	plays is_initializer_role
+	plays is_initializers_role
 	plays is_left_operand_role
 	plays is_message_role
 	plays is_operand_role
