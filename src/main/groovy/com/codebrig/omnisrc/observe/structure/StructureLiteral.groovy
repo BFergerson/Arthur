@@ -12,7 +12,7 @@ import com.codebrig.omnisrc.SourceNode
 abstract class StructureLiteral {
 
     boolean isNodeLiteral(SourceNode node) {
-        return !getPossibleNodeLiteralAttributes(node)?.isEmpty()
+        return getNodeLiteralAttribute(node) != null
     }
 
     abstract String getNodeLiteralAttribute(SourceNode node)
