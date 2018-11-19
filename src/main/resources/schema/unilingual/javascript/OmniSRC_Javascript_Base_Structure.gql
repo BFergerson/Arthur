@@ -10,6 +10,7 @@ numberValue sub attribute datatype long;
 asyncAttribute sub attribute datatype string;
 awaitAttribute sub attribute datatype string;
 computedAttribute sub attribute datatype string;
+defaultAttribute sub attribute datatype string;
 delegateAttribute sub attribute datatype string;
 exactAttribute sub attribute datatype string;
 exportKindAttribute sub attribute datatype string;
@@ -65,6 +66,7 @@ ArrayExpressionArtifact sub JavascriptSourceArtifact
 	plays is_tag_role
 	plays is_value_role
 	plays has_elements_role
+	plays has_inner_comments_role
 	plays has_leading_comments_role
 	plays has_trailing_comments_role;
 
@@ -170,7 +172,8 @@ AwaitExpressionArtifact sub JavascriptSourceArtifact
 	plays is_right_role
 	plays is_test_role
 	plays is_value_role
-	plays has_argument_role;
+	plays has_argument_role
+	plays has_leading_comments_role;
 
 BigIntLiteralArtifact sub JavascriptSourceArtifact
 	# Attributes
@@ -196,6 +199,7 @@ BinaryExpressionArtifact sub JavascriptSourceArtifact
 	plays is_body_role
 	plays is_callee_role
 	plays is_consequent_role
+	plays is_declaration_role
 	plays is_discriminant_role
 	plays is_elements_role
 	plays is_expression_role
@@ -249,6 +253,7 @@ BooleanLiteralArtifact sub JavascriptSourceArtifact
 	plays is_key_role
 	plays is_left_role
 	plays is_object_role
+	plays is_property_role
 	plays is_right_role
 	plays is_test_role
 	plays is_value_role
@@ -313,6 +318,7 @@ CatchClauseArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_handler_role
 	plays has_body_role
+	plays has_leading_comments_role
 	plays has_param_role;
 
 ClassBodyArtifact sub JavascriptSourceArtifact
@@ -423,6 +429,7 @@ ConditionalExpressionArtifact sub JavascriptSourceArtifact
 	plays is_expression_role
 	plays is_expressions_role
 	plays is_init_role
+	plays is_key_role
 	plays is_left_role
 	plays is_object_role
 	plays is_property_role
@@ -462,9 +469,19 @@ DeclareClassArtifact sub JavascriptSourceArtifact
 	plays has_trailing_comments_role
 	plays has_type_parameters_role;
 
+DeclareExportDeclarationArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has defaultAttribute
+	# Structural
+	plays is_body_role
+	plays has_declaration_role
+	plays has_leading_comments_role
+	plays has_trailing_comments_role;
+
 DeclareFunctionArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_declaration_role
 	plays has_id_role
 	plays has_leading_comments_role
 	plays has_trailing_comments_role;
@@ -496,11 +513,13 @@ DeclareTypeAliasArtifact sub JavascriptSourceArtifact
 	plays has_id_role
 	plays has_leading_comments_role
 	plays has_right_role
-	plays has_trailing_comments_role;
+	plays has_trailing_comments_role
+	plays has_type_parameters_role;
 
 DeclareVariableArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_declaration_role
 	plays has_id_role
 	plays has_leading_comments_role
 	plays has_trailing_comments_role;
@@ -523,6 +542,7 @@ DirectiveLiteralArtifact sub JavascriptSourceArtifact
 
 DoExpressionArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_argument_role
 	plays is_right_role
 	plays has_body_role;
 
@@ -685,6 +705,7 @@ FunctionExpressionArtifact sub JavascriptSourceArtifact
 
 FunctionTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_declaration_role
 	plays is_params_role
 	plays is_return_type_role
 	plays is_right_role
@@ -702,12 +723,14 @@ FunctionTypeParamArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_params_role
 	plays is_rest_role
+	plays has_leading_comments_role
 	plays has_name_role
 	plays has_type_annotation_role;
 
 GenericTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_argument_role
+	plays is_declaration_role
 	plays is_default_role
 	plays is_element_type_role
 	plays is_key_role
@@ -798,6 +821,8 @@ ImportNamespaceSpecifierArtifact sub JavascriptSourceArtifact
 	plays has_local_role;
 
 ImportSpecifierArtifact sub JavascriptSourceArtifact
+	# Attributes
+	has importKindAttribute
 	# Structural
 	plays is_specifiers_role
 	plays has_imported_role
@@ -1335,6 +1360,7 @@ SequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays is_body_role
 	plays is_callee_role
 	plays is_consequent_role
+	plays is_declaration_role
 	plays is_discriminant_role
 	plays is_elements_role
 	plays is_expression_role
@@ -1349,7 +1375,8 @@ SequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays is_test_role
 	plays is_update_role
 	plays is_value_role
-	plays has_expressions_role;
+	plays has_expressions_role
+	plays has_leading_comments_role;
 
 SpreadElementArtifact sub JavascriptSourceArtifact
 	# Structural
@@ -1500,6 +1527,7 @@ ThisExpressionArtifact sub JavascriptSourceArtifact
 	plays is_right_role
 	plays is_test_role
 	plays is_value_role
+	plays has_leading_comments_role
 	plays has_trailing_comments_role;
 
 ThrowStatementArtifact sub JavascriptSourceArtifact
@@ -1572,6 +1600,7 @@ TypeCastExpressionArtifact sub JavascriptSourceArtifact
 TypeofTypeAnnotationArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_argument_role
+	plays is_declaration_role
 	plays is_params_role
 	plays is_right_role
 	plays is_type_annotation_role
@@ -1650,6 +1679,7 @@ UpdateExpressionArtifact sub JavascriptSourceArtifact
 	plays is_body_role
 	plays is_consequent_role
 	plays is_discriminant_role
+	plays is_elements_role
 	plays is_expression_role
 	plays is_expressions_role
 	plays is_init_role
@@ -1716,6 +1746,7 @@ WhileStatementArtifact sub JavascriptSourceArtifact
 WithStatementArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_body_role
+	plays is_consequent_role
 	plays has_body_role
 	plays has_leading_comments_role
 	plays has_object_role
