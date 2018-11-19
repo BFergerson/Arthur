@@ -1426,6 +1426,7 @@ JavaMethodInvocationArtifact sub JavaSourceArtifact
 	plays is_java_extended_operands_role
 	plays is_java_index_role
 	plays is_java_initializer_role
+	plays is_java_initializers_role
 	plays is_java_left_operand_role
 	plays is_java_message_role
 	plays is_java_operand_role
@@ -1826,6 +1827,7 @@ JavaThrowStatementArtifact sub ThrowStatementArtifact
 JavaTryStatementArtifact sub TryStatementArtifact
 	# Structural
 	plays is_java_body_role
+	plays is_java_else_statement_role
 	plays is_java_statements_role
 	plays has_java_body_role
 	plays has_java_catch_clauses_role
@@ -1995,6 +1997,7 @@ JavascriptArrowFunctionExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_declaration_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
+	plays is_javascript_expressions_role
 	plays is_javascript_init_role
 	plays is_javascript_object_role
 	plays is_javascript_right_role
@@ -2207,6 +2210,7 @@ JavascriptCatchClauseArtifact sub CatchClauseArtifact
 	# Structural
 	plays is_javascript_handler_role
 	plays has_javascript_body_role
+	plays has_javascript_leading_comments_role
 	plays has_javascript_param_role;
 
 JavascriptClassBodyArtifact sub JavascriptSourceArtifact
@@ -2219,6 +2223,7 @@ JavascriptClassDeclarationArtifact sub JavascriptSourceArtifact
 	plays is_javascript_body_role
 	plays is_javascript_declaration_role
 	plays has_javascript_body_role
+	plays has_javascript_decorators_role
 	plays has_javascript_id_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_super_class_role
@@ -2240,6 +2245,7 @@ JavascriptClassExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_super_class_role
 	plays is_javascript_value_role
 	plays has_javascript_body_role
+	plays has_javascript_decorators_role
 	plays has_javascript_id_role
 	plays has_javascript_implements_role
 	plays has_javascript_super_class_role
@@ -2310,6 +2316,7 @@ JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	plays is_javascript_callee_role
 	plays is_javascript_consequent_role
 	plays is_javascript_declaration_role
+	plays is_javascript_discriminant_role
 	plays is_javascript_elements_role
 	plays is_javascript_expression_role
 	plays is_javascript_expressions_role
@@ -2320,6 +2327,7 @@ JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	plays is_javascript_property_role
 	plays is_javascript_right_role
 	plays is_javascript_test_role
+	plays is_javascript_update_role
 	plays is_javascript_value_role
 	plays has_javascript_alternate_role
 	plays has_javascript_consequent_role
@@ -2408,6 +2416,11 @@ JavascriptDeclareVariableArtifact sub JavascriptSourceArtifact
 	plays has_javascript_leading_comments_role
 	plays has_javascript_trailing_comments_role;
 
+JavascriptDecoratorArtifact sub JavascriptSourceArtifact
+	# Structural
+	plays is_javascript_decorators_role
+	plays has_javascript_expression_role;
+
 JavascriptDirectiveArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_directives_role
@@ -2427,6 +2440,7 @@ JavascriptDoExpressionArtifact sub JavascriptSourceArtifact
 
 JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Structural
+	plays is_javascript_alternate_role
 	plays is_javascript_body_role
 	plays is_javascript_consequent_role
 	plays has_javascript_body_role
@@ -3253,7 +3267,8 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_test_role
 	plays is_javascript_update_role
 	plays is_javascript_value_role
-	plays has_javascript_expressions_role;
+	plays has_javascript_expressions_role
+	plays has_javascript_leading_comments_role;
 
 JavascriptSpreadElementArtifact sub JavascriptSourceArtifact
 	# Structural
@@ -3404,6 +3419,7 @@ JavascriptThisExpressionArtifact sub ThisExpressionArtifact
 	plays is_javascript_right_role
 	plays is_javascript_test_role
 	plays is_javascript_value_role
+	plays has_javascript_leading_comments_role
 	plays has_javascript_trailing_comments_role;
 
 JavascriptThrowStatementArtifact sub ThrowStatementArtifact
@@ -3555,6 +3571,7 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact
 	plays is_javascript_body_role
 	plays is_javascript_consequent_role
 	plays is_javascript_discriminant_role
+	plays is_javascript_elements_role
 	plays is_javascript_expression_role
 	plays is_javascript_expressions_role
 	plays is_javascript_init_role
@@ -3621,6 +3638,7 @@ JavascriptWhileStatementArtifact sub WhileStatementArtifact
 JavascriptWithStatementArtifact sub JavascriptSourceArtifact
 	# Structural
 	plays is_javascript_body_role
+	plays is_javascript_consequent_role
 	plays has_javascript_body_role
 	plays has_javascript_leading_comments_role
 	plays has_javascript_object_role
@@ -4014,6 +4032,7 @@ PhpExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_stmts_role
+	plays is_php_value_role
 	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
@@ -4027,6 +4046,7 @@ PhpExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
 	plays is_php_left_role
 	plays is_php_right_role
 	plays is_php_stmts_role
+	plays is_php_value_role
 	plays has_php_comments_role
 	plays has_php_left_role
 	plays has_php_right_role;
@@ -4368,6 +4388,7 @@ PhpExprErrorSuppressArtifact sub PhpSourceArtifact
 
 PhpExprEvalArtifact sub PhpSourceArtifact
 	# Structural
+	plays is_php_body_role
 	plays is_php_children_role
 	plays is_php_expr_role
 	plays is_php_if_role
@@ -5532,6 +5553,7 @@ PythonCallArtifact sub PythonSourceArtifact
 	plays is_python_operand_role
 	plays is_python_orelse_role
 	plays is_python_right_role
+	plays is_python_starargs_role
 	plays is_python_step_role
 	plays is_python_test_role
 	plays is_python_type_role
@@ -5695,6 +5717,7 @@ PythonExceptHandlerArtifact sub PythonSourceArtifact
 PythonExecArtifact sub PythonSourceArtifact
 	# Structural
 	plays is_python_body_role
+	plays is_python_body_stmts_role
 	plays has_python_body_role
 	plays has_python_globals_role;
 
@@ -6004,6 +6027,7 @@ PythonListCompArtifact sub PythonSourceArtifact
 	plays is_python_operand_role
 	plays is_python_orelse_role
 	plays is_python_right_role
+	plays is_python_starargs_role
 	plays is_python_test_role
 	plays is_python_value_role
 	plays is_python_values_role
@@ -6435,6 +6459,7 @@ PythonTryExceptArtifact sub PythonSourceArtifact
 	plays is_python_orelse_role
 	plays has_python_body_role
 	plays has_python_handlers_role
+	plays has_python_noops_sameline_role
 	plays has_python_orelse_role;
 
 PythonTryFinalbodyArtifact sub PythonSourceArtifact
@@ -6531,6 +6556,7 @@ PythonWhileArtifact sub WhileArtifact
 	plays is_python_body_stmts_role
 	plays is_python_else_stmts_role
 	plays is_python_final_stmts_role
+	plays is_python_orelse_role
 	plays has_python_body_role
 	plays has_python_orelse_role
 	plays has_python_test_role;
@@ -7981,6 +8007,11 @@ declaration_relation sub parent_child_relation
 is_declaration_role sub is_child;
 has_declaration_role sub is_parent;
 
+decorators_relation sub parent_child_relation
+	relates is_decorators_role, relates has_decorators_role;
+is_decorators_role sub is_child;
+has_decorators_role sub is_parent;
+
 default_relation sub parent_child_relation
 	relates is_default_role, relates has_default_role;
 is_default_role sub is_child;
@@ -8969,6 +9000,11 @@ javascript_declarations_relation sub parent_child_relation
 is_javascript_declarations_role sub is_child;
 has_javascript_declarations_role sub is_parent;
 
+javascript_decorators_relation sub decorators_relation
+	relates is_javascript_decorators_role, relates has_javascript_decorators_role;
+is_javascript_decorators_role sub is_decorators_role;
+has_javascript_decorators_role sub has_decorators_role;
+
 javascript_default_relation sub default_relation
 	relates is_javascript_default_role, relates has_javascript_default_role;
 is_javascript_default_role sub is_default_role;
@@ -9516,10 +9552,10 @@ python_decorator_list_relation sub parent_child_relation
 is_python_decorator_list_role sub is_child;
 has_python_decorator_list_role sub is_parent;
 
-python_decorators_relation sub parent_child_relation
+python_decorators_relation sub decorators_relation
 	relates is_python_decorators_role, relates has_python_decorators_role;
-is_python_decorators_role sub is_child;
-has_python_decorators_role sub is_parent;
+is_python_decorators_role sub is_decorators_role;
+has_python_decorators_role sub has_decorators_role;
 
 python_default_relation sub default_relation
 	relates is_python_default_role, relates has_python_default_role;

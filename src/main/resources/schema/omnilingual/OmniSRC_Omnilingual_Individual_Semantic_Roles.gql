@@ -36,18 +36,9 @@ BooleanLiteralArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT
 	plays IS_BINARY
-	plays IS_BINARY_BOOLEAN_EXPRESSION_LEFT_LITERAL
-	plays IS_BINARY_BOOLEAN_EXPRESSION_LITERAL_RIGHT
 	plays IS_BODY
-	plays IS_BODY_BOOLEAN_EXPRESSION_FUNCTION_LITERAL
 	plays IS_BOOLEAN
-	plays IS_BOOLEAN_CONDITION_DO_WHILE_EXPRESSION_LITERAL
-	plays IS_BOOLEAN_CONDITION_EXPRESSION_FOR_LITERAL
-	plays IS_BOOLEAN_CONDITION_EXPRESSION_IF_LITERAL
-	plays IS_BOOLEAN_CONDITION_EXPRESSION_LITERAL_WHILE
-	plays IS_BOOLEAN_EXPRESSION_LITERAL
 	plays IS_CALL
 	plays IS_CONDITION
 	plays IS_DO_WHILE
@@ -65,16 +56,12 @@ BooleanLiteralArtifact sub OmnilingualSourceArtifact
 BreakArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BREAK
-	plays IS_BREAK_STATEMENT
 	plays IS_STATEMENT;
 
 BreakStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_BREAK_ELSE_IF_STATEMENT
-	plays IS_BODY_BREAK_IF_STATEMENT_THEN
 	plays IS_BREAK
-	plays IS_BREAK_STATEMENT
 	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
@@ -88,7 +75,6 @@ CatchClauseArtifact sub OmnilingualSourceArtifact
 CommentArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_COMMENT
-	plays IS_COMMENT_NOOP
 	plays IS_NOOP;
 
 ConditionalExpressionArtifact sub OmnilingualSourceArtifact
@@ -99,14 +85,13 @@ ConditionalExpressionArtifact sub OmnilingualSourceArtifact
 	plays IS_BODY
 	plays IS_CALL
 	plays IS_CONDITION
-	plays IS_CONDITION_EXPRESSION_IF
-	plays IS_CONDITION_EXPRESSION_IF_WHILE
 	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_RIGHT
+	plays IS_SWITCH
 	plays IS_THEN
 	plays IS_WHILE;
 
@@ -132,10 +117,6 @@ EmptyStatementArtifact sub OmnilingualSourceArtifact
 ExpressionStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_ELSE_IF_STATEMENT
-	plays IS_BODY_FOR_STATEMENT
-	plays IS_BODY_IF_STATEMENT_THEN
-	plays IS_BODY_STATEMENT_WHILE
 	plays IS_ELSE
 	plays IS_FOR
 	plays IS_IF
@@ -155,10 +136,7 @@ ForArtifact sub OmnilingualSourceArtifact
 ForStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_FOR_IF_STATEMENT_THEN
-	plays IS_BODY_FOR_STATEMENT
 	plays IS_FOR
-	plays IS_FOR_STATEMENT
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_THEN;
@@ -173,12 +151,9 @@ IfArtifact sub OmnilingualSourceArtifact
 IfStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_ELSE_IF_STATEMENT
-	plays IS_BODY_FOR_IF_STATEMENT
 	plays IS_ELSE
 	plays IS_FOR
 	plays IS_IF
-	plays IS_IF_STATEMENT
 	plays IS_STATEMENT;
 
 ImportArtifact sub OmnilingualSourceArtifact
@@ -210,23 +185,17 @@ NameArtifact sub OmnilingualSourceArtifact
 	plays IS_ARGUMENT
 	plays IS_CALL
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_IDENTIFIER
 	plays IS_IDENTIFIER;
 
 NullLiteralArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NULL_RIGHT
 	plays IS_BINARY
-	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_NULL
-	plays IS_BINARY_EXPRESSION_LITERAL_NULL_RIGHT
 	plays IS_BODY
-	plays IS_BODY_EXPRESSION_FUNCTION_LITERAL_NULL
 	plays IS_CALL
 	plays IS_ELSE
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_LITERAL_NULL
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_LEFT
@@ -238,54 +207,16 @@ NullLiteralArtifact sub OmnilingualSourceArtifact
 OperatorArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ADD
-	plays IS_ADD_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR
-	plays IS_ADD_ARITHMETIC_BINARY_EXPRESSION_OPERATOR
 	plays IS_AND
-	plays IS_AND_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR
-	plays IS_AND_BINARY_BITWISE_EXPRESSION_OPERATOR
-	plays IS_AND_BINARY_BOOLEAN_EXPRESSION_OPERATOR
 	plays IS_ARITHMETIC
-	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_DIVIDE_EXPRESSION_OPERATOR
-	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MODULO_OPERATOR
-	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_MULTIPLY_OPERATOR
-	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT
-	plays IS_ARITHMETIC_BINARY_DIVIDE_EXPRESSION_OPERATOR
-	plays IS_ARITHMETIC_BINARY_EXPRESSION_MODULO_OPERATOR
-	plays IS_ARITHMETIC_BINARY_EXPRESSION_MULTIPLY_OPERATOR
-	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT
-	plays IS_ARITHMETIC_DECREMENT_EXPRESSION_OPERATOR_UNARY
-	plays IS_ARITHMETIC_EXPRESSION_INCREMENT_OPERATOR_UNARY
-	plays IS_ARITHMETIC_EXPRESSION_NEGATIVE_OPERATOR_UNARY
-	plays IS_ARITHMETIC_EXPRESSION_OPERATOR_POSITIVE_UNARY
 	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR
-	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_OR
-	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT
-	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED
-	plays IS_ASSIGNMENT_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR
 	plays IS_BINARY
-	plays IS_BINARY_BITWISE_EXPRESSION_LEFT_SHIFT_OPERATOR
-	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_OR
-	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT
-	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_RIGHT_SHIFT_UNSIGNED
-	plays IS_BINARY_BITWISE_EXPRESSION_OPERATOR_XOR
-	plays IS_BINARY_BOOLEAN_EXPRESSION_OPERATOR_OR
-	plays IS_BINARY_EQUAL_EXPRESSION_NOT_OPERATOR_RELATIONAL
-	plays IS_BINARY_EQUAL_EXPRESSION_OPERATOR_RELATIONAL
-	plays IS_BINARY_EXPRESSION_GREATER_THAN_OPERATOR_RELATIONAL
-	plays IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL
-	plays IS_BINARY_EXPRESSION_LESS_THAN_OPERATOR_RELATIONAL
-	plays IS_BINARY_EXPRESSION_LESS_THAN_OR_EQUAL_OPERATOR_RELATIONAL
 	plays IS_BITWISE
-	plays IS_BITWISE_EXPRESSION_NOT_OPERATOR_UNARY
 	plays IS_BOOLEAN
-	plays IS_BOOLEAN_EXPRESSION_NOT_OPERATOR_UNARY
 	plays IS_DECREMENT
 	plays IS_DIVIDE
 	plays IS_EQUAL
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_INCOMPLETE_OPERATOR_UNARY
 	plays IS_GREATER_THAN
 	plays IS_GREATER_THAN_OR_EQUAL
 	plays IS_INCOMPLETE
@@ -318,18 +249,14 @@ PositionArtifact sub OmnilingualSourceArtifact;
 ReturnArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_RETURN
-	plays IS_RETURN_STATEMENT
 	plays IS_STATEMENT;
 
 ReturnStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_ELSE_IF_RETURN_STATEMENT
-	plays IS_BODY_IF_RETURN_STATEMENT_THEN
 	plays IS_ELSE
 	plays IS_IF
 	plays IS_RETURN
-	plays IS_RETURN_STATEMENT
 	plays IS_STATEMENT
 	plays IS_THEN;
 
@@ -337,15 +264,10 @@ StrArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_BINARY
-	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
-	plays IS_BINARY_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
 	plays IS_BODY
 	plays IS_CALL
 	plays IS_ELSE
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_LEFT_LITERAL_PRIMITIVE_STRING
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_RIGHT_STRING
-	plays IS_EXPRESSION_LITERAL_PRIMITIVE_STRING
 	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_LEFT
@@ -360,18 +282,13 @@ StringLiteralArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_RIGHT_STRING
 	plays IS_BINARY
-	plays IS_BINARY_EXPRESSION_LEFT_LITERAL_STRING
-	plays IS_BINARY_EXPRESSION_LITERAL_RIGHT_STRING
 	plays IS_BODY
-	plays IS_BODY_EXPRESSION_FUNCTION_LITERAL_STRING
 	plays IS_CALL
 	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_LITERAL_STRING
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_LEFT
@@ -394,22 +311,16 @@ SwitchStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_STATEMENT
-	plays IS_STATEMENT_SWITCH
 	plays IS_SWITCH;
 
 ThisExpressionArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
 	plays IS_ASSIGNMENT
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_RIGHT_THIS
 	plays IS_BINARY
-	plays IS_BINARY_EXPRESSION_LEFT_THIS
-	plays IS_BINARY_EXPRESSION_RIGHT_THIS
 	plays IS_CALL
 	plays IS_ELSE
 	plays IS_EXPRESSION
-	plays IS_EXPRESSION_FOR_THIS
-	plays IS_EXPRESSION_THIS
 	plays IS_FOR
 	plays IS_IF
 	plays IS_LEFT
@@ -420,20 +331,18 @@ ThisExpressionArtifact sub OmnilingualSourceArtifact
 ThrowStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
-	plays IS_BODY_ELSE_IF_STATEMENT_THROW
-	plays IS_BODY_IF_STATEMENT_THEN_THROW
 	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
-	plays IS_STATEMENT_THROW
 	plays IS_THEN
 	plays IS_THROW;
 
 TryStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
+	plays IS_ELSE
+	plays IS_IF
 	plays IS_STATEMENT
-	plays IS_STATEMENT_TRY
 	plays IS_TRY;
 
 TypeParameterArtifact sub OmnilingualSourceArtifact
@@ -443,14 +352,12 @@ TypeParameterArtifact sub OmnilingualSourceArtifact
 WhileArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
 	plays IS_WHILE;
 
 WhileStatementArtifact sub OmnilingualSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_STATEMENT
-	plays IS_STATEMENT_WHILE
 	plays IS_WHILE;
 
 YieldArtifact sub OmnilingualSourceArtifact
@@ -1199,8 +1106,7 @@ JavaCompilationUnitArtifact sub JavaSourceArtifact
 
 JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	# Semantic
-	plays IS_POSITIONAL
-	plays IS_SWITCH;
+	plays IS_POSITIONAL;
 
 JavaConstructorInvocationArtifact sub JavaSourceArtifact
 	# Semantic
@@ -1463,6 +1369,7 @@ JavaMethodInvocationArtifact sub JavaSourceArtifact
 	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IF
+	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RECEIVER
@@ -2271,6 +2178,7 @@ JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact
 	plays IS_KEY
 	plays IS_LEFT
 	plays IS_MAP
+	plays IS_UPDATE
 	plays IS_VALUE;
 
 JavascriptContinueStatementArtifact sub ContinueStatementArtifact
@@ -2326,6 +2234,11 @@ JavascriptDeclareVariableArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_UNANNOTATED;
 
+JavascriptDecoratorArtifact sub JavascriptSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_INCOMPLETE;
+
 JavascriptDirectiveArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_INCOMPLETE;
@@ -2345,6 +2258,7 @@ JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_DO_WHILE
+	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_THEN;
@@ -2410,7 +2324,8 @@ JavascriptForInStatementArtifact sub JavascriptSourceArtifact
 	plays IS_IF
 	plays IS_ITERATOR
 	plays IS_STATEMENT
-	plays IS_THEN;
+	plays IS_THEN
+	plays IS_WHILE;
 
 JavascriptForOfStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
@@ -2423,6 +2338,7 @@ JavascriptForOfStatementArtifact sub JavascriptSourceArtifact
 
 JavascriptForStatementArtifact sub ForStatementArtifact
 	# Semantic
+	plays IS_DO_WHILE
 	plays IS_ELSE
 	plays IS_WHILE;
 
@@ -2644,6 +2560,7 @@ JavascriptLogicalExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_DO_WHILE
 	plays IS_ELSE
@@ -2683,6 +2600,7 @@ JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_FUNCTION
 	plays IS_IDENTIFIER
 	plays IS_IF
+	plays IS_INCOMPLETE
 	plays IS_INITIALIZATION
 	plays IS_ITERATOR
 	plays IS_KEY
@@ -2965,6 +2883,7 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact
 	plays IS_BOOLEAN
 	plays IS_CALL
 	plays IS_CALLEE
+	plays IS_CASE
 	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
@@ -3034,7 +2953,8 @@ JavascriptSwitchStatementArtifact sub SwitchStatementArtifact
 	plays IS_ELSE
 	plays IS_FOR
 	plays IS_IF
-	plays IS_THEN;
+	plays IS_THEN
+	plays IS_WHILE;
 
 JavascriptTaggedTemplateExpressionArtifact sub JavascriptSourceArtifact
 	# Semantic
@@ -3107,8 +3027,7 @@ JavascriptThrowStatementArtifact sub ThrowStatementArtifact
 JavascriptTryStatementArtifact sub TryStatementArtifact
 	# Semantic
 	plays IS_DO_WHILE
-	plays IS_ELSE
-	plays IS_IF
+	plays IS_FOR
 	plays IS_THEN
 	plays IS_WHILE;
 
@@ -3290,9 +3209,12 @@ JavascriptWhileStatementArtifact sub WhileStatementArtifact
 JavascriptWithStatementArtifact sub JavascriptSourceArtifact
 	# Semantic
 	plays IS_BLOCK
+	plays IS_BODY
+	plays IS_IF
 	plays IS_INCOMPLETE
 	plays IS_SCOPE
-	plays IS_STATEMENT;
+	plays IS_STATEMENT
+	plays IS_THEN;
 
 JavascriptYieldExpressionArtifact sub JavascriptSourceArtifact
 	# Semantic
