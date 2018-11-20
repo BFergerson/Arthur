@@ -1,197 +1,256 @@
 package com.codebrig.omnisrc.schema.grakn
 
-import com.codebrig.omnisrc.observations.ObservedLanguage
-import com.codebrig.omnisrc.observations.OmniObservedLanguage
+import com.codebrig.omnisrc.observe.ObservedLanguage
+import com.codebrig.omnisrc.observe.ObservedLanguages
+import com.codebrig.omnisrc.observe.structure.StructureLiteral
+import com.codebrig.omnisrc.schema.SchemaSegment
+import com.codebrig.omnisrc.schema.SchemaWriter
 import com.google.common.base.CaseFormat
 
+import static com.codebrig.omnisrc.schema.SchemaSegment.*
+
 /**
- * todo: description
+ * Used to create Grakn compatible OmniSRC schemas
  *
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class GraknSchemaWriter {
+class GraknSchemaWriter implements SchemaWriter {
 
     private final ObservedLanguage rootLanguage
     private final List<ObservedLanguage> observedLanguages
     private boolean naturalOrdering = true
 
     GraknSchemaWriter(ObservedLanguage observedLanguage) {
-        this.observedLanguages = Collections.singletonList(Objects.requireNonNull(observedLanguage))
-        this.rootLanguage = observedLanguage
+        this.rootLanguage = Objects.requireNonNull(observedLanguage)
+        this.observedLanguages = Collections.singletonList(observedLanguage)
     }
 
-    GraknSchemaWriter(OmniObservedLanguage rootLanguage, ObservedLanguage... observedLanguages) {
-        this.rootLanguage = rootLanguage
+    GraknSchemaWriter(ObservedLanguages rootLanguage, ObservedLanguage... observedLanguages) {
+        this.rootLanguage = Objects.requireNonNull(rootLanguage)
         this.observedLanguages = Arrays.asList(observedLanguages)
     }
 
-    private void doSemanticRoles(StringBuilder sb) {
+    private void writeSemanticRoles(Writer output, boolean individualRoles, boolean actualRoles) {
         println "Writing semantic roles"
-        sb.append("\n##########---------- Semantic Roles ----------##########\n")
+        def observedRoles
+        if (individualRoles && actualRoles) {
+            observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
+        } else {
+            observedRoles = new ArrayList<String>()
+            if (individualRoles) {
+                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
+                        true, false))
+            }
+            if (actualRoles) {
+                observedRoles.addAll(rootLanguage.getObservedRoles(naturalOrdering,
+                        false, true))
+            }
+        }
 
-        def observedRoles = rootLanguage.getObservedRoles(naturalOrdering)
+        if (!observedRoles.isEmpty()) {
+            output.append("\n##########---------- Semantic Roles ----------##########\n")
+        }
         for (int i = 0; i < observedRoles.size(); i++) {
             def role = observedRoles.get(i)
-            sb.append(role).append(" sub relationship\n")
-            sb.append("\trelates IS_").append(role).append(";\n")
-            sb.append("IS_").append(role).append(" sub role;\n")
+            output.append(role).append(" sub relationship\n")
+            output.append("\trelates IS_").append(role).append(";\n")
+            output.append("IS_").append(role).append(" sub role;\n")
 
             if ((i + 1) < observedRoles.size()) {
-                sb.append("\n")
+                output.append("\n")
             }
         }
     }
 
-    private void doAttributes(StringBuilder sb) {
+    private void writeAttributes(Writer output) {
         println "Writing attributes"
-        sb.append("\n##########---------- Attributes ----------##########\n")
-
-        //todo: smarter and dynamic
-        sb.append("token sub attribute datatype string;\n")
+        output.append("\n##########---------- Attributes ----------##########\n")
+        output.append("token sub attribute datatype string;\n")
+        StructureLiteral.allLiteralAttributes.each {
+            output.append(it.key).append(" sub attribute datatype ").append(it.value).append(";\n")
+        }
 
         if (rootLanguage.isOmnilingual()) {
-            outputAttributes(sb, rootLanguage)
+            outputAttributes(output, rootLanguage)
         }
         observedLanguages.each { observedLanguage ->
-            outputAttributes(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputAttributes(output, observedLanguage)
+            }
         }
     }
 
-    private void outputAttributes(StringBuilder sb, ObservedLanguage observedLanguage) {
-        sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        observedLanguage.getObservedAttributes(naturalOrdering).each {
+    private void outputAttributes(Writer output, ObservedLanguage observedLanguage) {
+        def observedAttributes = observedLanguage.getObservedAttributes(naturalOrdering)
+        observedAttributes.removeIf({
+            StructureLiteral.allLiteralAttributes.keySet().contains(it.replace("Attribute", ""))
+        })
+        if (!observedAttributes.isEmpty()) {
+            output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+        }
+        observedAttributes.each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
-            sb.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
-                    .append(" datatype string;\n") //todo: dynamic datatype
+            output.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
+                    .append(" datatype ").append(GraknAttributeDatatype.getType(attribute))
+                    .append(";\n")
         }
     }
 
-    private void doStructuralRelationships(StringBuilder sb) {
+    private void writeStructuralRelationships(Writer output) {
         println "Writing structural relationships"
-        sb.append("\n##########---------- Structural Relationships ----------##########\n")
-
-        //todo: smarter and dynamic
-        sb.append("parent_child_relation sub relationship\n" +
+        output.append("\n##########---------- Structural Relationships ----------##########\n")
+        output.append("parent_child_relation sub relationship\n" +
                 "\trelates is_parent, relates is_child;\n" +
                 "is_parent sub role;\n" +
                 "is_child sub role;\n")
 
         if (rootLanguage.isOmnilingual()) {
-            outputStructuralRelationships(sb, rootLanguage)
+            outputStructuralRelationships(output, rootLanguage)
         }
         observedLanguages.each { observedLanguage ->
-            outputStructuralRelationships(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputStructuralRelationships(output, observedLanguage)
+            }
         }
     }
 
-    private void outputStructuralRelationships(StringBuilder sb, ObservedLanguage observedLanguage) {
-        sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+    private void outputStructuralRelationships(Writer output, ObservedLanguage observedLanguage) {
         def observedRelations = observedLanguage.getObservedRelations(naturalOrdering)
+        observedRelations.remove("parent") //already defined
+        observedRelations.remove("child") //already defined
+        if (!observedRelations.isEmpty()) {
+            output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+        }
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
             def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
-            def isRole = "is_$fullRelation"
-            def hasRole = "has_$fullRelation"
+            def relationRole = observedLanguage.getRelationRole(relation, rootLanguage.isOmnilingual())
+            def isRole = "is_$relationRole"
+            def hasRole = "has_$relationRole"
             def subType = observedLanguage.getRelationExtends(fullRelation)
 
-            sb.append(fullRelation).append(" sub ").append(subType).append("\n")
-            sb.append("\trelates ").append(isRole)
-            sb.append(", relates ").append(hasRole).append(";\n")
+            output.append(fullRelation).append(" sub ").append(subType).append("\n")
+            output.append("\trelates ").append(isRole)
+            output.append(", relates ").append(hasRole).append(";\n")
             if (subType == "parent_child_relation") {
-                sb.append(isRole).append(" sub ").append("is_child").append(";\n")
-                sb.append(hasRole).append(" sub ").append("is_parent").append(";\n")
+                output.append(isRole).append(" sub ").append("is_child").append(";\n")
+                output.append(hasRole).append(" sub ").append("is_parent").append(";\n")
             } else {
-                sb.append(isRole).append(" sub ").append("is_$relation").append(";\n")
-                sb.append(hasRole).append(" sub ").append("has_$relation").append(";\n")
+                def subRole = observedLanguage.getRelationRole(relation, false)
+                output.append(isRole).append(" sub ").append("is_$subRole").append(";\n")
+                output.append(hasRole).append(" sub ").append("has_$subRole").append(";\n")
             }
 
             if ((i + 1) < observedRelations.size()) {
-                sb.append("\n")
+                output.append("\n")
             }
         }
     }
 
-    private void doEntities(StringBuilder sb) {
-        println "Writing globalEntities"
-        sb.append("\n##########---------- Entities ----------##########\n")
-        sb.append("SourceArtifact sub entity\n")
-                .append("\thas token;\n")
+    private void writeEntities(Writer output, boolean includeAttributes, boolean includeStructure,
+                               boolean individualRoles, boolean actualRoles) {
+        println "Writing entities"
+        output.append("\n##########---------- Entities ----------##########\n")
+        if (includeAttributes) {
+            output.append("SourceArtifact sub entity\n")
+                    .append("\thas token;\n")
+        }
 
         if (rootLanguage.isOmnilingual()) {
-            outputEntities(sb, rootLanguage)
+            outputEntities(output, rootLanguage, includeAttributes, includeStructure,
+                    individualRoles, actualRoles)
         }
         observedLanguages.each { observedLanguage ->
-            outputEntities(sb, observedLanguage)
+            if (!observedLanguage.isOmnilingual()) {
+                outputEntities(output, observedLanguage, includeAttributes, includeStructure,
+                        individualRoles, actualRoles)
+            }
         }
     }
 
-    private void outputEntities(StringBuilder sb, ObservedLanguage observedLanguage) {
-        sb.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        sb.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
+    private void outputEntities(Writer output, ObservedLanguage observedLanguage,
+                                boolean includeAttributes, boolean includeStructure,
+                                boolean individualRoles, boolean actualRoles) {
+        output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
+        output.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
 
         def observedEntities = observedLanguage.getObservedEntities(naturalOrdering)
         for (int i = 0; i < observedEntities.size(); i++) {
             def entity = observedEntities.get(i)
             def fullEntity = observedLanguage.getEntity(entity, rootLanguage.isOmnilingual())
-            sb.append(fullEntity).append(" sub ").append(observedLanguage.getEntityExtends(fullEntity))
+            output.append(fullEntity).append(" sub ").append(observedLanguage.getEntityExtends(fullEntity))
 
             //has
-            if (observedLanguage.attributes.containsKey(entity)) {
+            if (includeAttributes && observedLanguage.attributes.containsKey(entity)) {
                 def attrList = observedLanguage.getEntityObservedAttributes(entity, naturalOrdering)
-                if (!attrList.isEmpty()) sb.append("\n\t# Attributes\n")
+                if (!attrList.isEmpty()) output.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
                     def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())
-                    sb.append("\thas ").append(attribute)
+                    output.append("\thas ").append(attribute)
 
                     if ((z + 1) < attrList.size()) {
-                        sb.append("\n")
+                        output.append("\n")
                     }
                 }
             }
 
             //plays (UAST structure)
-            if (observedLanguage.relations.containsKey(entity)) {
+            if (includeStructure && observedLanguage.relations.containsKey(entity)) {
                 def isRelations = observedLanguage.getEntityObservedIsRelations(entity, naturalOrdering)
                 def hasRelations = observedLanguage.getEntityObservedHasRelations(entity, naturalOrdering)
-                if (!isRelations.isEmpty() || !hasRelations.isEmpty()) sb.append("\n\t# Structural\n")
+                if (!isRelations.isEmpty() || !hasRelations.isEmpty()) output.append("\n\t# Structural\n")
                 for (int z = 0; z < isRelations.size(); z++) {
-                    sb.append("\tplays is_").append(observedLanguage.getRelation(
+                    output.append("\tplays is_").append(observedLanguage.getRelationRole(
                             isRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < isRelations.size() || !hasRelations.isEmpty()) {
-                        sb.append("\n")
+                        output.append("\n")
                     }
                 }
                 for (int z = 0; z < hasRelations.size(); z++) {
-                    sb.append("\tplays has_").append(observedLanguage.getRelation(
+                    output.append("\tplays has_").append(observedLanguage.getRelationRole(
                             hasRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < hasRelations.size()) {
-                        sb.append("\n")
+                        output.append("\n")
                     }
                 }
             }
 
             //plays (semantic roles)
             if (observedLanguage.roles.containsKey(entity)) {
-                def roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
+                def roleList
+                if (individualRoles && actualRoles) {
+                    roleList = observedLanguage.getEntityObservedRoles(entity, naturalOrdering)
+                } else {
+                    roleList = new ArrayList<String>()
+                    if (individualRoles) {
+                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
+                                true, false))
+                    }
+                    if (actualRoles) {
+                        roleList.addAll(observedLanguage.getEntityObservedRoles(entity, naturalOrdering,
+                                false, true))
+                    }
+                }
+
                 if (!roleList.isEmpty()) {
-                    sb.append("\n\t# Semantic\n")
+                    output.append("\n\t# Semantic\n")
                     for (int z = 0; z < roleList.size(); z++) {
-                        sb.append("\tplays IS_").append(roleList.get(z))
+                        output.append("\tplays IS_").append(roleList.get(z))
 
                         if ((z + 1) < roleList.size()) {
-                            sb.append("\n")
+                            output.append("\n")
                         }
                     }
                 }
             }
-            sb.append(";\n")
+            output.append(";\n")
 
             if ((i + 1) < observedEntities.size()) {
-                sb.append("\n")
+                output.append("\n")
             }
         }
     }
@@ -204,13 +263,42 @@ class GraknSchemaWriter {
         this.naturalOrdering = naturalOrdering
     }
 
-    String getSchemaDefinition() {
-        def sb = new StringBuilder()
+    @Override
+    String getSegmentedSchemaDefinition(SchemaSegment... segments) {
+        def sb = new StringWriter()
         sb.append("define\n")
-        doAttributes(sb)
-        doEntities(sb)
-        doStructuralRelationships(sb)
-        doSemanticRoles(sb)
+        if (ATTRIBUTES in segments) {
+            writeAttributes(sb)
+        }
+        if (ENTITIES in segments
+                || INDIVIDUAL_SEMANTIC_ROLES in segments
+                || ACTUAL_SEMANTIC_ROLES in segments) {
+            def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
+            def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
+            def includeAttributes = ATTRIBUTES in segments
+            def includeStructure = RELATIONSHIPS in segments
+            writeEntities(sb, includeAttributes, includeStructure, individualRoles, actualRoles)
+        }
+        if (RELATIONSHIPS in segments) {
+            writeStructuralRelationships(sb)
+        }
+        if (INDIVIDUAL_SEMANTIC_ROLES in segments
+                || ACTUAL_SEMANTIC_ROLES in segments) {
+            def individualRoles = (INDIVIDUAL_SEMANTIC_ROLES in segments)
+            def actualRoles = (ACTUAL_SEMANTIC_ROLES in segments)
+            writeSemanticRoles(sb, individualRoles, actualRoles)
+        }
+        return sb.toString()
+    }
+
+    @Override
+    String getFullSchemaDefinition() {
+        def sb = new StringWriter()
+        sb.append("define\n")
+        writeAttributes(sb)
+        writeEntities(sb, true, true, true, true)
+        writeStructuralRelationships(sb)
+        writeSemanticRoles(sb, true, true)
         return sb.toString()
     }
 }

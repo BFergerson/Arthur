@@ -1,0 +1,1628 @@
+define
+
+##########---------- Entities ----------##########
+
+#####----- Python -----#####
+PythonSourceArtifact sub SourceArtifact;
+
+AddArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ADD
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_OPERATOR;
+
+AliasArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IDENTIFIER
+	plays IS_IMPORT
+	plays IS_PATHNAME;
+
+AliasAsnameArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ALIAS
+	plays IS_IDENTIFIER
+	plays IS_IMPORT
+	plays IS_PATHNAME;
+
+AndArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_AND
+	plays IS_BOOLEAN
+	plays IS_OPERATOR;
+
+AnnAssignArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_OPERATOR;
+
+ArgArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_NAME;
+
+ArgumentsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE;
+
+AssertArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ASSERT
+	plays IS_STATEMENT;
+
+AssignArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_EXPRESSION;
+
+AsyncForArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_INCOMPLETE
+	plays IS_ITERATOR
+	plays IS_STATEMENT;
+
+AsyncFunctionDefArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_INCOMPLETE
+	plays IS_NAME;
+
+AsyncWithArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_SCOPE
+	plays IS_STATEMENT;
+
+AttributeArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_IDENTIFIER;
+
+AugAssignArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ASSIGNMENT
+	plays IS_BINARY
+	plays IS_EXPRESSION
+	plays IS_OPERATOR;
+
+AwaitArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+BinOpArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+BitAndArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_AND
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_OPERATOR;
+
+BitOrArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_OPERATOR
+	plays IS_OR;
+
+BitXorArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_OPERATOR
+	plays IS_XOR;
+
+BoolLiteralArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE
+	plays IS_WHILE;
+
+BoolOpArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+BreakArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BREAK
+	plays IS_STATEMENT;
+
+BytesArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BYTE_STRING
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+CallArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+ClassDefArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_IDENTIFIER
+	plays IS_STATEMENT
+	plays IS_TYPE;
+
+ClassDefBasesArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BASE
+	plays IS_DECLARATION
+	plays IS_TYPE;
+
+ClassDefBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_TYPE;
+
+ClassDefDecoratorListArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_DECLARATION
+	plays IS_INCOMPLETE
+	plays IS_TYPE;
+
+CompareArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE
+	plays IS_WHILE;
+
+CompareComparatorsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_RIGHT;
+
+CompareOpsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION;
+
+ComprehensionArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_INCOMPLETE
+	plays IS_ITERATOR;
+
+ContinueArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CONTINUE
+	plays IS_STATEMENT;
+
+DeleteArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT;
+
+DictArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE;
+
+DictCompArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE;
+
+DivArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_DIVIDE
+	plays IS_OPERATOR;
+
+EllipsisArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN;
+
+EqArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EQUAL
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+ExceptHandlerArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CATCH
+	plays IS_IDENTIFIER
+	plays IS_TRY;
+
+ExecArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ExprArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION;
+
+ExtSliceArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+FloorDivArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_DIVIDE
+	plays IS_INCOMPLETE
+	plays IS_OPERATOR;
+
+ForArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FOR
+	plays IS_ITERATOR
+	plays IS_STATEMENT;
+
+ForBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_FOR
+	plays IS_THEN
+	plays IS_WHILE;
+
+FormattedValueArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+ForOrelseArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_ELSE
+	plays IS_FOR
+	plays IS_WHILE;
+
+FunctionDefArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_NAME;
+
+FunctionDefBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_DECLARATION
+	plays IS_FUNCTION;
+
+FunctionDefDecoratorsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE;
+
+GeneratorExpArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UNANNOTATED
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+GlobalArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_STATEMENT
+	plays IS_VISIBILITY
+	plays IS_WORLD;
+
+GtArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_GREATER_THAN
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+GtEArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+IfArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_IF;
+
+IfBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_IF
+	plays IS_THEN;
+
+IfExpArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+IfOrelseArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_ELSE
+	plays IS_IF;
+
+ImportArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_IMPORT
+	plays IS_STATEMENT;
+
+ImportFromArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_IMPORT
+	plays IS_STATEMENT;
+
+ImportFromLevelArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IMPORT
+	plays IS_INCOMPLETE;
+
+ImportFromModuleArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IDENTIFIER
+	plays IS_IMPORT
+	plays IS_PATHNAME;
+
+ImportFromNamesArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IDENTIFIER
+	plays IS_IMPORT
+	plays IS_INCOMPLETE
+	plays IS_PATHNAME;
+
+InArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CONTAINS
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+IndexArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+InvertArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BITWISE
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_UNARY;
+
+IsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IDENTICAL
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+IsNotArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_IDENTICAL
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+JoinedStrArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STRING
+	plays IS_THEN
+	plays IS_VALUE;
+
+KeywordArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_NAME;
+
+KwargArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGS_LIST
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_MAP
+	plays IS_NAME;
+
+KwonlyArgArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_NAME;
+
+LambdaArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANONYMOUS
+	plays IS_ARGUMENT
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_DECLARATION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE;
+
+ListArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LIST
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+ListCompArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LIST
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+LShiftArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_LEFT_SHIFT
+	plays IS_OPERATOR;
+
+LtArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_LESS_THAN
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+LtEArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_LESS_THAN_OR_EQUAL
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+MatMultArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_INCOMPLETE
+	plays IS_MULTIPLY
+	plays IS_OPERATOR;
+
+ModArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_MODULE
+	plays IS_OPERATOR;
+
+ModuleArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FILE
+	plays IS_MODULE;
+
+MultArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_MULTIPLY
+	plays IS_OPERATOR;
+
+NameArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+NoneLiteralArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_NULL
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE;
+
+NonlocalArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_INCOMPLETE
+	plays IS_MODULE
+	plays IS_STATEMENT
+	plays IS_VISIBILITY;
+
+NoopLineArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT
+	plays IS_NOOP;
+
+NoopSameLineArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT
+	plays IS_NOOP;
+
+NotArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BOOLEAN
+	plays IS_NOT
+	plays IS_OPERATOR;
+
+NotEqArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EQUAL
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+NotInArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CONTAINS
+	plays IS_NOT
+	plays IS_OPERATOR
+	plays IS_RELATIONAL;
+
+NumArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_NUMBER
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_VALUE
+	plays IS_WHILE;
+
+OrArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BOOLEAN
+	plays IS_OPERATOR
+	plays IS_OR;
+
+PassArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_NOOP
+	plays IS_STATEMENT;
+
+PowArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_INCOMPLETE
+	plays IS_OPERATOR;
+
+PreviousNoopsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_NOOP;
+
+PrintArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER;
+
+QualifiedIdentifierArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IDENTIFIER
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_POSITIONAL
+	plays IS_QUALIFIED
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+RaiseArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_STATEMENT
+	plays IS_THROW;
+
+RemainderNoopsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_NOOP;
+
+ReturnArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_RETURN
+	plays IS_STATEMENT;
+
+RShiftArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BINARY
+	plays IS_BITWISE
+	plays IS_OPERATOR
+	plays IS_RIGHT_SHIFT;
+
+SameLineNoopsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT;
+
+SetArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_SET
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+SetCompArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_SET
+	plays IS_THEN
+	plays IS_VALUE;
+
+SliceArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_INCOMPLETE;
+
+StarredArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_FUNCTION
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_UNANNOTATED;
+
+StrArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_STRING
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+SubArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARITHMETIC
+	plays IS_BINARY
+	plays IS_OPERATOR
+	plays IS_SUBSTRACT;
+
+SubscriptArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ANNOTATION
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_CALLEE
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_INCOMPLETE
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_NOOP
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_UPDATE
+	plays IS_VALUE
+	plays IS_WHILE;
+
+TryArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_STATEMENT
+	plays IS_TRY;
+
+TryBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BODY
+	plays IS_TRY;
+
+TryElseArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ELSE
+	plays IS_TRY;
+
+TryExceptArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CATCH
+	plays IS_STATEMENT
+	plays IS_TRY;
+
+TryFinalbodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FINALLY
+	plays IS_TRY;
+
+TryFinallyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_FINALLY
+	plays IS_STATEMENT
+	plays IS_TRY;
+
+TryHandlersArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_CATCH
+	plays IS_TRY;
+
+TupleArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_CALL
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FOR
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_LITERAL
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_PRIMITIVE
+	plays IS_RIGHT
+	plays IS_STATEMENT
+	plays IS_THEN
+	plays IS_TUPLE
+	plays IS_UPDATE
+	plays IS_VALUE;
+
+UAddArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BITWISE
+	plays IS_OPERATOR
+	plays IS_POSITIVE
+	plays IS_UNARY;
+
+UnaryOpArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_BINARY
+	plays IS_BODY
+	plays IS_BOOLEAN
+	plays IS_CALL
+	plays IS_CONDITION
+	plays IS_DEFAULT
+	plays IS_ELSE
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_IF
+	plays IS_KEY
+	plays IS_LEFT
+	plays IS_MAP
+	plays IS_NAME
+	plays IS_OPERATOR
+	plays IS_POSITIONAL
+	plays IS_RIGHT
+	plays IS_THEN
+	plays IS_UNARY
+	plays IS_VALUE
+	plays IS_WHILE;
+
+USubArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BITWISE
+	plays IS_NEGATIVE
+	plays IS_OPERATOR
+	plays IS_UNARY;
+
+VarargArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGS_LIST
+	plays IS_DECLARATION
+	plays IS_FUNCTION
+	plays IS_LIST
+	plays IS_NAME;
+
+WhileArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_STATEMENT
+	plays IS_WHILE;
+
+WithArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_SCOPE
+	plays IS_STATEMENT
+	plays IS_UNANNOTATED;
+
+WithBodyArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_BODY
+	plays IS_INCOMPLETE
+	plays IS_SCOPE;
+
+WithitemArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_EXPRESSION
+	plays IS_IDENTIFIER
+	plays IS_INCOMPLETE;
+
+WithItemsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_BLOCK
+	plays IS_INCOMPLETE
+	plays IS_SCOPE;
+
+YieldArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RETURN
+	plays IS_RIGHT
+	plays IS_STATEMENT;
+
+YieldFromArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_ARGUMENT
+	plays IS_CALL
+	plays IS_EXPRESSION
+	plays IS_FUNCTION
+	plays IS_INCOMPLETE
+	plays IS_LEFT
+	plays IS_NAME
+	plays IS_POSITIONAL
+	plays IS_RETURN
+	plays IS_RIGHT
+	plays IS_STATEMENT;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relationship
+	relates IS_ADD;
+IS_ADD sub role;
+
+ALIAS sub relationship
+	relates IS_ALIAS;
+IS_ALIAS sub role;
+
+AND sub relationship
+	relates IS_AND;
+IS_AND sub role;
+
+ANNOTATION sub relationship
+	relates IS_ANNOTATION;
+IS_ANNOTATION sub role;
+
+ANONYMOUS sub relationship
+	relates IS_ANONYMOUS;
+IS_ANONYMOUS sub role;
+
+ARGS_LIST sub relationship
+	relates IS_ARGS_LIST;
+IS_ARGS_LIST sub role;
+
+ARGUMENT sub relationship
+	relates IS_ARGUMENT;
+IS_ARGUMENT sub role;
+
+ARITHMETIC sub relationship
+	relates IS_ARITHMETIC;
+IS_ARITHMETIC sub role;
+
+ASSERT sub relationship
+	relates IS_ASSERT;
+IS_ASSERT sub role;
+
+ASSIGNMENT sub relationship
+	relates IS_ASSIGNMENT;
+IS_ASSIGNMENT sub role;
+
+BASE sub relationship
+	relates IS_BASE;
+IS_BASE sub role;
+
+BINARY sub relationship
+	relates IS_BINARY;
+IS_BINARY sub role;
+
+BITWISE sub relationship
+	relates IS_BITWISE;
+IS_BITWISE sub role;
+
+BLOCK sub relationship
+	relates IS_BLOCK;
+IS_BLOCK sub role;
+
+BODY sub relationship
+	relates IS_BODY;
+IS_BODY sub role;
+
+BOOLEAN sub relationship
+	relates IS_BOOLEAN;
+IS_BOOLEAN sub role;
+
+BREAK sub relationship
+	relates IS_BREAK;
+IS_BREAK sub role;
+
+BYTE_STRING sub relationship
+	relates IS_BYTE_STRING;
+IS_BYTE_STRING sub role;
+
+CALL sub relationship
+	relates IS_CALL;
+IS_CALL sub role;
+
+CALLEE sub relationship
+	relates IS_CALLEE;
+IS_CALLEE sub role;
+
+CATCH sub relationship
+	relates IS_CATCH;
+IS_CATCH sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
+
+CONDITION sub relationship
+	relates IS_CONDITION;
+IS_CONDITION sub role;
+
+CONTAINS sub relationship
+	relates IS_CONTAINS;
+IS_CONTAINS sub role;
+
+CONTINUE sub relationship
+	relates IS_CONTINUE;
+IS_CONTINUE sub role;
+
+DECLARATION sub relationship
+	relates IS_DECLARATION;
+IS_DECLARATION sub role;
+
+DEFAULT sub relationship
+	relates IS_DEFAULT;
+IS_DEFAULT sub role;
+
+DIVIDE sub relationship
+	relates IS_DIVIDE;
+IS_DIVIDE sub role;
+
+ELSE sub relationship
+	relates IS_ELSE;
+IS_ELSE sub role;
+
+EQUAL sub relationship
+	relates IS_EQUAL;
+IS_EQUAL sub role;
+
+EXPRESSION sub relationship
+	relates IS_EXPRESSION;
+IS_EXPRESSION sub role;
+
+FILE sub relationship
+	relates IS_FILE;
+IS_FILE sub role;
+
+FINALLY sub relationship
+	relates IS_FINALLY;
+IS_FINALLY sub role;
+
+FOR sub relationship
+	relates IS_FOR;
+IS_FOR sub role;
+
+FUNCTION sub relationship
+	relates IS_FUNCTION;
+IS_FUNCTION sub role;
+
+GREATER_THAN sub relationship
+	relates IS_GREATER_THAN;
+IS_GREATER_THAN sub role;
+
+GREATER_THAN_OR_EQUAL sub relationship
+	relates IS_GREATER_THAN_OR_EQUAL;
+IS_GREATER_THAN_OR_EQUAL sub role;
+
+IDENTICAL sub relationship
+	relates IS_IDENTICAL;
+IS_IDENTICAL sub role;
+
+IDENTIFIER sub relationship
+	relates IS_IDENTIFIER;
+IS_IDENTIFIER sub role;
+
+IF sub relationship
+	relates IS_IF;
+IS_IF sub role;
+
+IMPORT sub relationship
+	relates IS_IMPORT;
+IS_IMPORT sub role;
+
+INCOMPLETE sub relationship
+	relates IS_INCOMPLETE;
+IS_INCOMPLETE sub role;
+
+ITERATOR sub relationship
+	relates IS_ITERATOR;
+IS_ITERATOR sub role;
+
+KEY sub relationship
+	relates IS_KEY;
+IS_KEY sub role;
+
+LEFT sub relationship
+	relates IS_LEFT;
+IS_LEFT sub role;
+
+LEFT_SHIFT sub relationship
+	relates IS_LEFT_SHIFT;
+IS_LEFT_SHIFT sub role;
+
+LESS_THAN sub relationship
+	relates IS_LESS_THAN;
+IS_LESS_THAN sub role;
+
+LESS_THAN_OR_EQUAL sub relationship
+	relates IS_LESS_THAN_OR_EQUAL;
+IS_LESS_THAN_OR_EQUAL sub role;
+
+LIST sub relationship
+	relates IS_LIST;
+IS_LIST sub role;
+
+LITERAL sub relationship
+	relates IS_LITERAL;
+IS_LITERAL sub role;
+
+MAP sub relationship
+	relates IS_MAP;
+IS_MAP sub role;
+
+MODULE sub relationship
+	relates IS_MODULE;
+IS_MODULE sub role;
+
+MULTIPLY sub relationship
+	relates IS_MULTIPLY;
+IS_MULTIPLY sub role;
+
+NAME sub relationship
+	relates IS_NAME;
+IS_NAME sub role;
+
+NEGATIVE sub relationship
+	relates IS_NEGATIVE;
+IS_NEGATIVE sub role;
+
+NOOP sub relationship
+	relates IS_NOOP;
+IS_NOOP sub role;
+
+NOT sub relationship
+	relates IS_NOT;
+IS_NOT sub role;
+
+NULL sub relationship
+	relates IS_NULL;
+IS_NULL sub role;
+
+NUMBER sub relationship
+	relates IS_NUMBER;
+IS_NUMBER sub role;
+
+OPERATOR sub relationship
+	relates IS_OPERATOR;
+IS_OPERATOR sub role;
+
+OR sub relationship
+	relates IS_OR;
+IS_OR sub role;
+
+PATHNAME sub relationship
+	relates IS_PATHNAME;
+IS_PATHNAME sub role;
+
+POSITIONAL sub relationship
+	relates IS_POSITIONAL;
+IS_POSITIONAL sub role;
+
+POSITIVE sub relationship
+	relates IS_POSITIVE;
+IS_POSITIVE sub role;
+
+PRIMITIVE sub relationship
+	relates IS_PRIMITIVE;
+IS_PRIMITIVE sub role;
+
+QUALIFIED sub relationship
+	relates IS_QUALIFIED;
+IS_QUALIFIED sub role;
+
+RELATIONAL sub relationship
+	relates IS_RELATIONAL;
+IS_RELATIONAL sub role;
+
+RETURN sub relationship
+	relates IS_RETURN;
+IS_RETURN sub role;
+
+RIGHT sub relationship
+	relates IS_RIGHT;
+IS_RIGHT sub role;
+
+RIGHT_SHIFT sub relationship
+	relates IS_RIGHT_SHIFT;
+IS_RIGHT_SHIFT sub role;
+
+SCOPE sub relationship
+	relates IS_SCOPE;
+IS_SCOPE sub role;
+
+SET sub relationship
+	relates IS_SET;
+IS_SET sub role;
+
+STATEMENT sub relationship
+	relates IS_STATEMENT;
+IS_STATEMENT sub role;
+
+STRING sub relationship
+	relates IS_STRING;
+IS_STRING sub role;
+
+SUBSTRACT sub relationship
+	relates IS_SUBSTRACT;
+IS_SUBSTRACT sub role;
+
+THEN sub relationship
+	relates IS_THEN;
+IS_THEN sub role;
+
+THROW sub relationship
+	relates IS_THROW;
+IS_THROW sub role;
+
+TRY sub relationship
+	relates IS_TRY;
+IS_TRY sub role;
+
+TUPLE sub relationship
+	relates IS_TUPLE;
+IS_TUPLE sub role;
+
+TYPE sub relationship
+	relates IS_TYPE;
+IS_TYPE sub role;
+
+UNANNOTATED sub relationship
+	relates IS_UNANNOTATED;
+IS_UNANNOTATED sub role;
+
+UNARY sub relationship
+	relates IS_UNARY;
+IS_UNARY sub role;
+
+UPDATE sub relationship
+	relates IS_UPDATE;
+IS_UPDATE sub role;
+
+VALUE sub relationship
+	relates IS_VALUE;
+IS_VALUE sub role;
+
+VISIBILITY sub relationship
+	relates IS_VISIBILITY;
+IS_VISIBILITY sub role;
+
+WHILE sub relationship
+	relates IS_WHILE;
+IS_WHILE sub role;
+
+WORLD sub relationship
+	relates IS_WORLD;
+IS_WORLD sub role;
+
+XOR sub relationship
+	relates IS_XOR;
+IS_XOR sub role;

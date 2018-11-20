@@ -1,0 +1,1679 @@
+define
+
+##########---------- Attributes ----------##########
+token sub attribute datatype string;
+floatValue sub attribute datatype double;
+booleanValue sub attribute datatype boolean;
+numberValue sub attribute datatype long;
+
+#####----- Python -----#####
+conversionAttribute sub attribute datatype string;
+ctxAttribute sub attribute datatype string;
+encodingAttribute sub attribute datatype string;
+isAsyncAttribute sub attribute datatype string;
+literalValueAttribute sub attribute datatype string;
+nlAttribute sub attribute datatype string;
+numLevelAttribute sub attribute datatype string;
+simpleAttribute sub attribute datatype string;
+valueAttribute sub attribute datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity
+	has token;
+
+#####----- Python -----#####
+PythonSourceArtifact sub SourceArtifact;
+
+AddArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+AliasArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_name_list_role
+	plays has_asname_role;
+
+AliasAsnameArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_asname_role;
+
+AndArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+AnnAssignArtifact sub PythonSourceArtifact
+	# Attributes
+	has simpleAttribute
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays has_annotation_role
+	plays has_target_role
+	plays has_value_role;
+
+ArgArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_args_role
+	plays has_annotation_role
+	plays has_default_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+ArgumentsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays has_args_role;
+
+AssertArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_msg_role
+	plays has_test_role;
+
+AssignArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_finalbody_role
+	plays is_orelse_role
+	plays has_targets_role
+	plays has_value_role;
+
+AsyncForArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_stmts_role
+	plays has_body_role
+	plays has_iter_role
+	plays has_orelse_role
+	plays has_target_role;
+
+AsyncFunctionDefArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays has_args_role
+	plays has_body_role
+	plays has_decorator_list_role
+	plays has_returns_role;
+
+AsyncWithArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_stmts_role
+	plays is_final_stmts_role
+	plays has_body_role
+	plays has_items_role;
+
+AttributeArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_identifiers_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+AugAssignArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_op_role
+	plays has_target_role
+	plays has_value_role;
+
+AwaitArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_left_role
+	plays is_operand_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays is_values_role
+	plays has_value_role;
+
+BinOpArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_starargs_role
+	plays is_step_role
+	plays is_test_role
+	plays is_type_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_left_role
+	plays has_op_role
+	plays has_right_role;
+
+BitAndArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+BitOrArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+BitXorArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+BoolLiteralArtifact sub PythonSourceArtifact
+	# Attributes
+	has valueAttribute
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+BoolOpArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_iter_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_test_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_op_role
+	plays has_values_role;
+
+BreakArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_orelse_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+BytesArtifact sub PythonSourceArtifact
+	# Attributes
+	has encodingAttribute
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_iter_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+CallArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_decorators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_starargs_role
+	plays is_step_role
+	plays is_test_role
+	plays is_type_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_args_role
+	plays has_func_role
+	plays has_keywords_role
+	plays has_kwargs_role
+	plays has_starargs_role;
+
+ClassDefArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_orelse_role
+	plays has_bases_role
+	plays has_body_role
+	plays has_decorator_list_role
+	plays has_keywords_role
+	plays has_noops_sameline_role;
+
+ClassDefBasesArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_bases_role
+	plays has_bases_role;
+
+ClassDefBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+ClassDefDecoratorListArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_decorator_list_role
+	plays has_decorators_role;
+
+CompareArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays is_values_role
+	plays has_comparators_role
+	plays has_left_role
+	plays has_ops_role;
+
+CompareComparatorsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_comparators_role
+	plays has_comparators_role;
+
+CompareOpsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role
+	plays has_ops_role;
+
+ComprehensionArtifact sub PythonSourceArtifact
+	# Attributes
+	has isAsyncAttribute
+	# Structural
+	plays is_generators_role
+	plays has_ifs_role
+	plays has_iter_role
+	plays has_target_role;
+
+ContinueArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+DeleteArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_targets_role;
+
+DictArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_left_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_value_role
+	plays is_values_role
+	plays has_keys_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role
+	plays has_values_role;
+
+DictCompArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_value_role
+	plays is_values_role
+	plays has_generators_role
+	plays has_key_role
+	plays has_value_role;
+
+DivArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+EllipsisArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elts_role
+	plays is_value_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+EqArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+ExceptHandlerArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_handlers_role
+	plays has_body_role
+	plays has_noops_sameline_role
+	plays has_type_role;
+
+ExecArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays has_body_role
+	plays has_globals_role;
+
+ExprArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_finalbody_role
+	plays is_orelse_role
+	plays has_value_role;
+
+ExtSliceArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_slice_role
+	plays has_dims_role;
+
+FloorDivArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+ForArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_finalbody_role
+	plays is_orelse_role
+	plays has_body_role
+	plays has_iter_role
+	plays has_orelse_role
+	plays has_target_role;
+
+ForBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+FormattedValueArtifact sub PythonSourceArtifact
+	# Attributes
+	has conversionAttribute
+	# Structural
+	plays is_values_role
+	plays has_format_spec_role
+	plays has_value_role;
+
+ForOrelseArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_orelse_role
+	plays has_else_stmts_role;
+
+FunctionDefArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_orelse_role
+	plays has_args_role
+	plays has_body_role
+	plays has_decorator_list_role
+	plays has_noops_sameline_role
+	plays has_returns_role;
+
+FunctionDefBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+FunctionDefDecoratorsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_decorator_list_role
+	plays has_decorators_role;
+
+GeneratorExpArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_comparators_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_iter_role
+	plays is_orelse_role
+	plays is_value_role
+	plays has_elt_role
+	plays has_generators_role;
+
+GlobalArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays has_names_role;
+
+GtArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+GtEArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+IfArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_finalbody_role
+	plays is_orelse_role
+	plays has_body_role
+	plays has_noops_sameline_role
+	plays has_orelse_role
+	plays has_test_role;
+
+IfBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+IfExpArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_test_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_body_role
+	plays has_orelse_role
+	plays has_test_role;
+
+IfOrelseArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_orelse_role
+	plays has_else_stmts_role;
+
+ImportArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_names_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+ImportFromArtifact sub PythonSourceArtifact
+	# Attributes
+	has numLevelAttribute
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_level_role
+	plays has_module_role
+	plays has_names_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+ImportFromLevelArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_level_role;
+
+ImportFromModuleArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_module_role;
+
+ImportFromNamesArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_names_role
+	plays has_name_list_role;
+
+InArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+IndexArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_dims_role
+	plays is_slice_role
+	plays has_value_role;
+
+InvertArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+IsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+IsNotArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+JoinedStrArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_format_spec_role
+	plays is_identifiers_role
+	plays is_key_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_value_role
+	plays is_values_role
+	plays has_values_role;
+
+KeywordArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_keywords_role
+	plays has_value_role;
+
+KwargArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays has_annotation_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+KwonlyArgArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays has_annotation_role
+	plays has_default_role
+	plays has_noops_previous_role;
+
+LambdaArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_orelse_role
+	plays is_value_role
+	plays is_values_role
+	plays has_args_role
+	plays has_body_role;
+
+ListArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_iter_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_target_role
+	plays is_targets_role
+	plays is_value_role
+	plays is_values_role
+	plays has_elts_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+ListCompArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_iter_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_starargs_role
+	plays is_test_role
+	plays is_value_role
+	plays is_values_role
+	plays has_elt_role
+	plays has_generators_role;
+
+LShiftArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+LtArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+LtEArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+MatMultArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+ModArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+ModuleArtifact sub PythonSourceArtifact
+	# Structural
+	plays has_body_role
+	plays has_noops_remainder_role;
+
+MultArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+NameArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_cause_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_decorators_role
+	plays is_default_role
+	plays is_dest_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_globals_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_kwargs_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_names_role
+	plays is_operand_role
+	plays is_optional_vars_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_starargs_role
+	plays is_step_role
+	plays is_target_role
+	plays is_targets_role
+	plays is_test_role
+	plays is_type_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+NoneLiteralArtifact sub PythonSourceArtifact
+	# Attributes
+	has literalValueAttribute
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_cause_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_test_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+NonlocalArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays has_names_role;
+
+NoopLineArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_lines_role;
+
+NoopSameLineArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_noop_lines_role;
+
+NotArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+NotEqArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+NotInArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_ops_role;
+
+NumArtifact sub PythonSourceArtifact
+	# Attributes
+	has numberValue
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_cause_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_step_role
+	plays is_test_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+OrArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+PassArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_finalbody_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+PowArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+PreviousNoopsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_noops_previous_role
+	plays has_lines_role;
+
+PrintArtifact sub PythonSourceArtifact
+	# Attributes
+	has nlAttribute
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays has_dest_role
+	plays has_noops_previous_role
+	plays has_values_role;
+
+QualifiedIdentifierArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_decorators_role
+	plays is_default_role
+	plays is_dest_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_globals_role
+	plays is_ifs_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_optional_vars_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_step_role
+	plays is_target_role
+	plays is_targets_role
+	plays is_tback_role
+	plays is_test_role
+	plays is_type_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_identifiers_role;
+
+RaiseArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_cause_role
+	plays has_exc_role
+	plays has_inst_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role
+	plays has_tback_role
+	plays has_type_role;
+
+RemainderNoopsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_noops_remainder_role
+	plays has_lines_role;
+
+ReturnArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_orelse_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role
+	plays has_value_role;
+
+RShiftArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+SameLineNoopsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_noops_sameline_role
+	plays has_noop_lines_role;
+
+SetArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_iter_role
+	plays is_left_role
+	plays is_right_role
+	plays is_value_role
+	plays is_values_role
+	plays has_elts_role;
+
+SetCompArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_comparators_role
+	plays is_left_role
+	plays is_right_role
+	plays is_value_role
+	plays is_values_role
+	plays has_elt_role
+	plays has_generators_role;
+
+SliceArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_dims_role
+	plays is_slice_role
+	plays has_lower_role
+	plays has_step_role
+	plays has_upper_role;
+
+StarredArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_args_role
+	plays is_elts_role
+	plays has_value_role;
+
+StrArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_identifiers_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_test_role
+	plays is_value_role
+	plays is_values_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+SubArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+SubscriptArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_annotation_role
+	plays is_args_role
+	plays is_bases_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_context_expr_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_func_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_optional_vars_role
+	plays is_orelse_role
+	plays is_returns_role
+	plays is_right_role
+	plays is_step_role
+	plays is_target_role
+	plays is_targets_role
+	plays is_tback_role
+	plays is_test_role
+	plays is_type_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_slice_role
+	plays has_value_role;
+
+TryArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_body_role
+	plays has_finalbody_role
+	plays has_handlers_role
+	plays has_noops_sameline_role
+	plays has_orelse_role;
+
+TryBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+TryElseArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_orelse_role;
+
+TryExceptArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_finalbody_role
+	plays is_orelse_role
+	plays has_body_role
+	plays has_handlers_role
+	plays has_noops_sameline_role
+	plays has_orelse_role;
+
+TryFinalbodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_finalbody_role
+	plays has_final_stmts_role;
+
+TryFinallyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays has_body_role
+	plays has_finalbody_role;
+
+TryHandlersArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_handlers_role
+	plays has_handlers_role;
+
+TupleArtifact sub PythonSourceArtifact
+	# Attributes
+	has ctxAttribute
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_exc_role
+	plays is_identifiers_role
+	plays is_inst_role
+	plays is_iter_role
+	plays is_key_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_msg_role
+	plays is_operand_role
+	plays is_optional_vars_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_target_role
+	plays is_targets_role
+	plays is_type_role
+	plays is_value_role
+	plays is_values_role
+	plays has_elts_role
+	plays has_noops_previous_role;
+
+UAddArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+UnaryOpArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_comparators_role
+	plays is_default_role
+	plays is_elt_role
+	plays is_elts_role
+	plays is_identifiers_role
+	plays is_ifs_role
+	plays is_keys_role
+	plays is_left_role
+	plays is_lower_role
+	plays is_operand_role
+	plays is_orelse_role
+	plays is_right_role
+	plays is_step_role
+	plays is_test_role
+	plays is_upper_role
+	plays is_value_role
+	plays is_values_role
+	plays has_op_role
+	plays has_operand_role;
+
+USubArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_op_role;
+
+VarargArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays has_annotation_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role;
+
+WhileArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays is_orelse_role
+	plays has_body_role
+	plays has_orelse_role
+	plays has_test_role;
+
+WithArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays is_body_stmts_role
+	plays is_else_stmts_role
+	plays is_final_stmts_role
+	plays has_body_role
+	plays has_context_expr_role
+	plays has_items_role
+	plays has_optional_vars_role;
+
+WithBodyArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_body_role
+	plays has_body_stmts_role;
+
+WithitemArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_items_role
+	plays has_context_expr_role
+	plays has_optional_vars_role;
+
+WithItemsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_items_role
+	plays has_items_role;
+
+YieldArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_stmts_role
+	plays is_value_role
+	plays has_noops_previous_role
+	plays has_noops_sameline_role
+	plays has_value_role;
+
+YieldFromArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_args_role
+	plays is_body_stmts_role
+	plays is_context_expr_role
+	plays is_left_role
+	plays is_test_role
+	plays is_value_role
+	plays has_value_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relationship
+	relates is_parent, relates is_child;
+is_parent sub role;
+is_child sub role;
+
+#####----- Python -----#####
+annotation_relation sub parent_child_relation
+	relates is_annotation_role, relates has_annotation_role;
+is_annotation_role sub is_child;
+has_annotation_role sub is_parent;
+
+args_relation sub parent_child_relation
+	relates is_args_role, relates has_args_role;
+is_args_role sub is_child;
+has_args_role sub is_parent;
+
+asname_relation sub parent_child_relation
+	relates is_asname_role, relates has_asname_role;
+is_asname_role sub is_child;
+has_asname_role sub is_parent;
+
+bases_relation sub parent_child_relation
+	relates is_bases_role, relates has_bases_role;
+is_bases_role sub is_child;
+has_bases_role sub is_parent;
+
+body_relation sub parent_child_relation
+	relates is_body_role, relates has_body_role;
+is_body_role sub is_child;
+has_body_role sub is_parent;
+
+body_stmts_relation sub parent_child_relation
+	relates is_body_stmts_role, relates has_body_stmts_role;
+is_body_stmts_role sub is_child;
+has_body_stmts_role sub is_parent;
+
+cause_relation sub parent_child_relation
+	relates is_cause_role, relates has_cause_role;
+is_cause_role sub is_child;
+has_cause_role sub is_parent;
+
+comparators_relation sub parent_child_relation
+	relates is_comparators_role, relates has_comparators_role;
+is_comparators_role sub is_child;
+has_comparators_role sub is_parent;
+
+context_expr_relation sub parent_child_relation
+	relates is_context_expr_role, relates has_context_expr_role;
+is_context_expr_role sub is_child;
+has_context_expr_role sub is_parent;
+
+decorator_list_relation sub parent_child_relation
+	relates is_decorator_list_role, relates has_decorator_list_role;
+is_decorator_list_role sub is_child;
+has_decorator_list_role sub is_parent;
+
+decorators_relation sub parent_child_relation
+	relates is_decorators_role, relates has_decorators_role;
+is_decorators_role sub is_child;
+has_decorators_role sub is_parent;
+
+default_relation sub parent_child_relation
+	relates is_default_role, relates has_default_role;
+is_default_role sub is_child;
+has_default_role sub is_parent;
+
+dest_relation sub parent_child_relation
+	relates is_dest_role, relates has_dest_role;
+is_dest_role sub is_child;
+has_dest_role sub is_parent;
+
+dims_relation sub parent_child_relation
+	relates is_dims_role, relates has_dims_role;
+is_dims_role sub is_child;
+has_dims_role sub is_parent;
+
+else_stmts_relation sub parent_child_relation
+	relates is_else_stmts_role, relates has_else_stmts_role;
+is_else_stmts_role sub is_child;
+has_else_stmts_role sub is_parent;
+
+elt_relation sub parent_child_relation
+	relates is_elt_role, relates has_elt_role;
+is_elt_role sub is_child;
+has_elt_role sub is_parent;
+
+elts_relation sub parent_child_relation
+	relates is_elts_role, relates has_elts_role;
+is_elts_role sub is_child;
+has_elts_role sub is_parent;
+
+exc_relation sub parent_child_relation
+	relates is_exc_role, relates has_exc_role;
+is_exc_role sub is_child;
+has_exc_role sub is_parent;
+
+final_stmts_relation sub parent_child_relation
+	relates is_final_stmts_role, relates has_final_stmts_role;
+is_final_stmts_role sub is_child;
+has_final_stmts_role sub is_parent;
+
+finalbody_relation sub parent_child_relation
+	relates is_finalbody_role, relates has_finalbody_role;
+is_finalbody_role sub is_child;
+has_finalbody_role sub is_parent;
+
+format_spec_relation sub parent_child_relation
+	relates is_format_spec_role, relates has_format_spec_role;
+is_format_spec_role sub is_child;
+has_format_spec_role sub is_parent;
+
+func_relation sub parent_child_relation
+	relates is_func_role, relates has_func_role;
+is_func_role sub is_child;
+has_func_role sub is_parent;
+
+generators_relation sub parent_child_relation
+	relates is_generators_role, relates has_generators_role;
+is_generators_role sub is_child;
+has_generators_role sub is_parent;
+
+globals_relation sub parent_child_relation
+	relates is_globals_role, relates has_globals_role;
+is_globals_role sub is_child;
+has_globals_role sub is_parent;
+
+handlers_relation sub parent_child_relation
+	relates is_handlers_role, relates has_handlers_role;
+is_handlers_role sub is_child;
+has_handlers_role sub is_parent;
+
+identifiers_relation sub parent_child_relation
+	relates is_identifiers_role, relates has_identifiers_role;
+is_identifiers_role sub is_child;
+has_identifiers_role sub is_parent;
+
+ifs_relation sub parent_child_relation
+	relates is_ifs_role, relates has_ifs_role;
+is_ifs_role sub is_child;
+has_ifs_role sub is_parent;
+
+inst_relation sub parent_child_relation
+	relates is_inst_role, relates has_inst_role;
+is_inst_role sub is_child;
+has_inst_role sub is_parent;
+
+items_relation sub parent_child_relation
+	relates is_items_role, relates has_items_role;
+is_items_role sub is_child;
+has_items_role sub is_parent;
+
+iter_relation sub parent_child_relation
+	relates is_iter_role, relates has_iter_role;
+is_iter_role sub is_child;
+has_iter_role sub is_parent;
+
+key_relation sub parent_child_relation
+	relates is_key_role, relates has_key_role;
+is_key_role sub is_child;
+has_key_role sub is_parent;
+
+keys_relation sub parent_child_relation
+	relates is_keys_role, relates has_keys_role;
+is_keys_role sub is_child;
+has_keys_role sub is_parent;
+
+keywords_relation sub parent_child_relation
+	relates is_keywords_role, relates has_keywords_role;
+is_keywords_role sub is_child;
+has_keywords_role sub is_parent;
+
+kwargs_relation sub parent_child_relation
+	relates is_kwargs_role, relates has_kwargs_role;
+is_kwargs_role sub is_child;
+has_kwargs_role sub is_parent;
+
+left_relation sub parent_child_relation
+	relates is_left_role, relates has_left_role;
+is_left_role sub is_child;
+has_left_role sub is_parent;
+
+level_relation sub parent_child_relation
+	relates is_level_role, relates has_level_role;
+is_level_role sub is_child;
+has_level_role sub is_parent;
+
+lines_relation sub parent_child_relation
+	relates is_lines_role, relates has_lines_role;
+is_lines_role sub is_child;
+has_lines_role sub is_parent;
+
+lower_relation sub parent_child_relation
+	relates is_lower_role, relates has_lower_role;
+is_lower_role sub is_child;
+has_lower_role sub is_parent;
+
+module_relation sub parent_child_relation
+	relates is_module_role, relates has_module_role;
+is_module_role sub is_child;
+has_module_role sub is_parent;
+
+msg_relation sub parent_child_relation
+	relates is_msg_role, relates has_msg_role;
+is_msg_role sub is_child;
+has_msg_role sub is_parent;
+
+name_list_relation sub parent_child_relation
+	relates is_name_list_role, relates has_name_list_role;
+is_name_list_role sub is_child;
+has_name_list_role sub is_parent;
+
+names_relation sub parent_child_relation
+	relates is_names_role, relates has_names_role;
+is_names_role sub is_child;
+has_names_role sub is_parent;
+
+noop_lines_relation sub parent_child_relation
+	relates is_noop_lines_role, relates has_noop_lines_role;
+is_noop_lines_role sub is_child;
+has_noop_lines_role sub is_parent;
+
+noops_previous_relation sub parent_child_relation
+	relates is_noops_previous_role, relates has_noops_previous_role;
+is_noops_previous_role sub is_child;
+has_noops_previous_role sub is_parent;
+
+noops_remainder_relation sub parent_child_relation
+	relates is_noops_remainder_role, relates has_noops_remainder_role;
+is_noops_remainder_role sub is_child;
+has_noops_remainder_role sub is_parent;
+
+noops_sameline_relation sub parent_child_relation
+	relates is_noops_sameline_role, relates has_noops_sameline_role;
+is_noops_sameline_role sub is_child;
+has_noops_sameline_role sub is_parent;
+
+op_relation sub parent_child_relation
+	relates is_op_role, relates has_op_role;
+is_op_role sub is_child;
+has_op_role sub is_parent;
+
+operand_relation sub parent_child_relation
+	relates is_operand_role, relates has_operand_role;
+is_operand_role sub is_child;
+has_operand_role sub is_parent;
+
+ops_relation sub parent_child_relation
+	relates is_ops_role, relates has_ops_role;
+is_ops_role sub is_child;
+has_ops_role sub is_parent;
+
+optional_vars_relation sub parent_child_relation
+	relates is_optional_vars_role, relates has_optional_vars_role;
+is_optional_vars_role sub is_child;
+has_optional_vars_role sub is_parent;
+
+orelse_relation sub parent_child_relation
+	relates is_orelse_role, relates has_orelse_role;
+is_orelse_role sub is_child;
+has_orelse_role sub is_parent;
+
+returns_relation sub parent_child_relation
+	relates is_returns_role, relates has_returns_role;
+is_returns_role sub is_child;
+has_returns_role sub is_parent;
+
+right_relation sub parent_child_relation
+	relates is_right_role, relates has_right_role;
+is_right_role sub is_child;
+has_right_role sub is_parent;
+
+slice_relation sub parent_child_relation
+	relates is_slice_role, relates has_slice_role;
+is_slice_role sub is_child;
+has_slice_role sub is_parent;
+
+starargs_relation sub parent_child_relation
+	relates is_starargs_role, relates has_starargs_role;
+is_starargs_role sub is_child;
+has_starargs_role sub is_parent;
+
+step_relation sub parent_child_relation
+	relates is_step_role, relates has_step_role;
+is_step_role sub is_child;
+has_step_role sub is_parent;
+
+target_relation sub parent_child_relation
+	relates is_target_role, relates has_target_role;
+is_target_role sub is_child;
+has_target_role sub is_parent;
+
+targets_relation sub parent_child_relation
+	relates is_targets_role, relates has_targets_role;
+is_targets_role sub is_child;
+has_targets_role sub is_parent;
+
+tback_relation sub parent_child_relation
+	relates is_tback_role, relates has_tback_role;
+is_tback_role sub is_child;
+has_tback_role sub is_parent;
+
+test_relation sub parent_child_relation
+	relates is_test_role, relates has_test_role;
+is_test_role sub is_child;
+has_test_role sub is_parent;
+
+type_relation sub parent_child_relation
+	relates is_type_role, relates has_type_role;
+is_type_role sub is_child;
+has_type_role sub is_parent;
+
+upper_relation sub parent_child_relation
+	relates is_upper_role, relates has_upper_role;
+is_upper_role sub is_child;
+has_upper_role sub is_parent;
+
+value_relation sub parent_child_relation
+	relates is_value_role, relates has_value_role;
+is_value_role sub is_child;
+has_value_role sub is_parent;
+
+values_relation sub parent_child_relation
+	relates is_values_role, relates has_values_role;
+is_values_role sub is_child;
+has_values_role sub is_parent;
