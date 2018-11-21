@@ -3,7 +3,10 @@ package com.codebrig.omnisrc
 import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 import com.codebrig.omnisrc.observe.structure.literal.*
+import com.codebrig.omnisrc.observe.structure.naming.GoNaming
 import com.codebrig.omnisrc.observe.structure.naming.JavaNaming
+import com.codebrig.omnisrc.observe.structure.naming.JavascriptNaming
+import com.codebrig.omnisrc.observe.structure.naming.PythonNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
@@ -78,8 +81,14 @@ enum SourceLanguage {
 
     StructureNaming getStructureNaming() {
         switch (this) {
+            case Go:
+                return new GoNaming()
             case Java:
                 return new JavaNaming()
+            case Javascript:
+                return new JavascriptNaming()
+            case Python:
+                return new PythonNaming()
             default:
                 return null //todo: implement rest
         }

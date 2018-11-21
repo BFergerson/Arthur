@@ -4,8 +4,8 @@ import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguages
 import com.codebrig.omnisrc.observe.filter.MultiFilter
+import com.codebrig.omnisrc.observe.filter.RoleFilter
 import com.codebrig.omnisrc.observe.filter.TypeFilter
-import com.codebrig.omnisrc.observe.filter.WhitelistRoleFilter
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import org.junit.Test
 
@@ -17,9 +17,9 @@ class SchemaGeneratorTest {
     void fileAndFunctionOnlySchema() {
         def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithIndividualAndActualSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
-        def roleFilter = new WhitelistRoleFilter("FILE", "DECLARATION_FUNCTION")
-        multiFilter.acceptFilter(roleFilter)
-        multiFilter.acceptFilter(new TypeFilter("MethodDeclaration"))
+        def roleFilter = new RoleFilter("FILE", "DECLARATION_FUNCTION")
+        multiFilter.accept(roleFilter)
+        multiFilter.accept(new TypeFilter("MethodDeclaration"))
         schemaGenerator.filter = multiFilter
 
         def goLanguage = schemaGenerator.observeLanguage(SourceLanguage.Go, new File("src/test/resources/same/"))

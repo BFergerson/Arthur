@@ -10,18 +10,16 @@ import com.codebrig.omnisrc.SourceNodeFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class TokenFilter extends SourceNodeFilter {
+class TokenFilter extends SourceNodeFilter<TokenFilter, String> {
 
-    private final String token
-
-    TokenFilter(String token) {
-        this.token = token
+    TokenFilter(String... values) {
+        accept(values)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
         if (node != null) {
-            return node.token == token
+            return evaluateProperty(node.token)
         }
         return false
     }

@@ -10,34 +10,28 @@ import com.codebrig.omnisrc.SourceNodeFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class InternalRoleFilter extends SourceNodeFilter {
+class InternalRoleFilter extends SourceNodeFilter<InternalRoleFilter, String> {
 
-    private Set<String> acceptedRoles
-    private Set<String> rejectedRoles
-
-    InternalRoleFilter() {
-        acceptedRoles = new HashSet<>()
-        rejectedRoles = new HashSet<>()
+    InternalRoleFilter(String... values) {
+        accept(values)
     }
 
-    InternalRoleFilter(String... acceptRoles) {
-        acceptedRoles = new HashSet<>(Arrays.asList(acceptRoles))
-        rejectedRoles = new HashSet<>()
+    @Override
+    InternalRoleFilter accept(String... values) {
+        super.accept(values.collect { it.toUpperCase() }.toArray(new String[0]))
+        return this
     }
 
-    void acceptRole(String role) {
-        acceptedRoles.add(Objects.requireNonNull(role).toUpperCase())
-    }
-
-    void rejectRole(String role) {
-        rejectedRoles.add(Objects.requireNonNull(role).toUpperCase())
+    @Override
+    InternalRoleFilter reject(String... values) {
+        super.reject(values.collect { it.toUpperCase() }.toArray(new String[0]))
+        return this
     }
 
     @Override
     boolean evaluate(SourceNode node) {
         if (node != null) {
-            def internalRole = node.properties.get("internalRole")
-            return acceptedRoles.contains(internalRole) && !rejectedRoles.contains(internalRole)
+            return evaluateProperty(node.properties.get("internalRole").toUpperCase())
         }
         return false
     }

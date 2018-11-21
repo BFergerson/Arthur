@@ -4,12 +4,12 @@ import "fmt"
 
 func andOperator() {
    if (true && true) {
-      fmt.Printf("")
+      fmt.Println("")
    }
 }
 
 func orOperator() {
    if (true || true) {
-      fmt.Printf("")
+      fmt.Println("")
    }
 }

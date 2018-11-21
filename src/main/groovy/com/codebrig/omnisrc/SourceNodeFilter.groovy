@@ -14,7 +14,28 @@ import scala.collection.JavaConverters
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-abstract class SourceNodeFilter implements Predicate<SourceNode> {
+abstract class SourceNodeFilter<T extends SourceNodeFilter<T, P>, P> implements Predicate<SourceNode> {
+
+    protected final Set<P> acceptSet = new LinkedHashSet<>()
+    protected final Set<P> rejectSet = new LinkedHashSet<>()
+
+    T accept(P... values) {
+        values.each {
+            acceptSet.add(it)
+        }
+        return (T) this
+    }
+
+    T reject(P... values) {
+        values.each {
+            rejectSet.add(it)
+        }
+        return (T) this
+    }
+
+    boolean evaluateProperty(P value) {
+        return acceptSet.contains(value) && !rejectSet.contains(value)
+    }
 
     Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes, this)

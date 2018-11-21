@@ -4,26 +4,28 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
 
 /**
- * Reject by the semantic role
+ * Match by the semantic role
  *
  * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class BlacklistRoleFilter extends SourceNodeFilter {
+class RoleFilter extends SourceNodeFilter<RoleFilter, String> {
 
-    private Set<String> rejectedRoles
-
-    BlacklistRoleFilter() {
-        this.rejectedRoles = new HashSet<>()
+    RoleFilter(String... values) {
+        accept(values)
     }
 
-    BlacklistRoleFilter(String... rejectRoles) {
-        this.rejectedRoles = new HashSet<>(Arrays.asList(rejectRoles))
+    @Override
+    RoleFilter accept(String... values) {
+        super.accept(values.collect { it.toUpperCase() }.toArray(new String[0]))
+        return this
     }
 
-    void rejectRole(String role) {
-        rejectedRoles.add(Objects.requireNonNull(role).toUpperCase())
+    @Override
+    RoleFilter reject(String... values) {
+        super.reject(values.collect { it.toUpperCase() }.toArray(new String[0]))
+        return this
     }
 
     @Override
@@ -31,9 +33,12 @@ class BlacklistRoleFilter extends SourceNodeFilter {
         if (node != null) {
             def roleList = new ArrayList<String>()
             boolean foundReject = false
+            boolean foundAccept = false
             node.roles.each {
                 roleList.add(it.name())
-                if (rejectedRoles.contains(it.name())) {
+                if (acceptSet.contains(it.name())) {
+                    foundAccept = true
+                } else if (rejectSet.contains(it.name())) {
                     foundReject = true
                 }
             }
@@ -50,9 +55,10 @@ class BlacklistRoleFilter extends SourceNodeFilter {
                         sb.append("_")
                     }
                 }
-                return !rejectedRoles.contains(sb.toString())
+                return (foundAccept || acceptSet.contains(sb.toString())) && !rejectSet.contains(sb.toString())
             }
+            return foundAccept
         }
-        return true
+        return false
     }
 }

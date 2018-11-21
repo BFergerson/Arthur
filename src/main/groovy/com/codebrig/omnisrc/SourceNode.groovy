@@ -54,7 +54,7 @@ class SourceNode {
         return underlyingNode.internalType()
     }
 
-    String getQualifiedName() {
+    String getName() {
         return naming.getNodeName(this)
     }
 

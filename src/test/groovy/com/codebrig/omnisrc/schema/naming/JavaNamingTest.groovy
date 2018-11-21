@@ -2,8 +2,8 @@ package com.codebrig.omnisrc.schema.naming
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.observe.filter.RoleFilter
 import com.codebrig.omnisrc.observe.filter.TypeFilter
-import com.codebrig.omnisrc.observe.filter.WhitelistRoleFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
@@ -16,10 +16,10 @@ class JavaNamingTest extends OmniSRCTest {
     void fileQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
-        def fileFilter = new WhitelistRoleFilter("FILE")
+        def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("ForStmt", it.qualifiedName)
+            assertEquals("ForStmt", it.name)
         }
     }
 
@@ -27,10 +27,10 @@ class JavaNamingTest extends OmniSRCTest {
     void fileQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
-        def fileFilter = new WhitelistRoleFilter("FILE")
+        def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("com.company.ForStmt", it.qualifiedName)
+            assertEquals("com.company.ForStmt", it.name)
         }
     }
 
@@ -41,7 +41,7 @@ class JavaNamingTest extends OmniSRCTest {
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("ForStmt.method()", it.qualifiedName)
+            assertEquals("ForStmt.method()", it.name)
         }
     }
 
@@ -52,7 +52,7 @@ class JavaNamingTest extends OmniSRCTest {
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("com.company.ForStmt.method()", it.qualifiedName)
+            assertEquals("com.company.ForStmt.method()", it.name)
         }
     }
 
@@ -66,7 +66,7 @@ class JavaNamingTest extends OmniSRCTest {
         boolean foundMethod4 = false
         boolean foundMethod5 = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            switch (it.qualifiedName) {
+            switch (it.name) {
                 case "VariousStuff.method_3_args(java.lang.String,int,java.lang.Object)":
                     foundMethod3 = true
                     break
@@ -77,7 +77,7 @@ class JavaNamingTest extends OmniSRCTest {
                     foundMethod5 = true
                     break
                 default:
-                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundMethod3)
@@ -95,7 +95,7 @@ class JavaNamingTest extends OmniSRCTest {
         boolean foundMethod4 = false
         boolean foundMethod5 = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            switch (it.qualifiedName) {
+            switch (it.name) {
                 case "com.company.VariousStuff.method_3_args(java.lang.String,int,java.lang.Object)":
                     foundMethod3 = true
                     break
@@ -106,7 +106,7 @@ class JavaNamingTest extends OmniSRCTest {
                     foundMethod5 = true
                     break
                 default:
-                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundMethod3)
@@ -123,7 +123,7 @@ class JavaNamingTest extends OmniSRCTest {
         boolean foundSetMethod = false
         boolean foundMapMethod = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            switch (it.qualifiedName) {
+            switch (it.name) {
                 case "ImportQualifiedName.acceptGuavaSet(com.google.common.collect.ImmutableSet<java.lang.Boolean>)":
                     foundSetMethod = true
                     break
@@ -131,7 +131,7 @@ class JavaNamingTest extends OmniSRCTest {
                     foundMapMethod = true
                     break
                 default:
-                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundSetMethod)
@@ -147,7 +147,7 @@ class JavaNamingTest extends OmniSRCTest {
         boolean foundSetMethod = false
         boolean foundMapMethod = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            switch (it.qualifiedName) {
+            switch (it.name) {
                 case "com.company.ImportQualifiedName.acceptGuavaSet(com.google.common.collect.ImmutableSet<java.lang.Boolean>)":
                     foundSetMethod = true
                     break
@@ -155,7 +155,7 @@ class JavaNamingTest extends OmniSRCTest {
                     foundMapMethod = true
                     break
                 default:
-                    throw new IllegalArgumentException("Invalid qualified name: " + it.qualifiedName)
+                    throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundSetMethod)
