@@ -18,7 +18,6 @@ import com.google.common.io.Resources
 enum SourceLanguage {
 
     OmniSRC([]),
-    //Bash(["csh", "tcsh", "bash", "sh", "zsh"]),
     Go(["go"]),
     Java(["java"]),
     Javascript(["js"]),
