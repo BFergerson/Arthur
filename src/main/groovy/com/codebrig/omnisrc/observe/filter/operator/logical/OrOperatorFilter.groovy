@@ -14,7 +14,7 @@ class OrOperatorFilter extends SourceNodeFilter<OrOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {
-        operatorTypes.add("Or")
+        operatorTypes.add("Or") //python
         operatorTypes.add("Operator") //go, java, javascript
     }
 

@@ -14,7 +14,7 @@ class AndOperatorFilter extends SourceNodeFilter<AndOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {
-        operatorTypes.add("And")
+        operatorTypes.add("And") //python
         operatorTypes.add("Operator") //go, java, javascript
     }
 
