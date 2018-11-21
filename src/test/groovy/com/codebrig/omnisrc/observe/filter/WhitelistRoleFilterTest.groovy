@@ -12,7 +12,7 @@ class WhitelistRoleFilterTest extends OmniSRCTest {
     @Test
     void onlyForStatementsFilter() {
         def filter = new WhitelistRoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
-        def parseFolder = new File("src/test/resources/same/")
+        def parseFolder = new File("src/test/resources/same/program")
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
             def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
