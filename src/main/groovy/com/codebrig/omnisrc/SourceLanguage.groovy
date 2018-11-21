@@ -11,7 +11,7 @@ import com.google.common.io.Resources
 /**
  * The supported source code languages
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
