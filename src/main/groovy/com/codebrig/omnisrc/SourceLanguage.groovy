@@ -73,16 +73,6 @@ enum SourceLanguage {
         }
     }
 
-    String getPossibleSemanticRolesSchemaDefinition() {
-        if (this == OmniSRC) {
-            return Resources.toString(Resources.getResource(
-                    "schema/omnilingual/OmniSRC_Omnilingual_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
-        } else {
-            return Resources.toString(Resources.getResource(
-                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
-        }
-    }
-
     boolean isValidExtension(String extension) {
         return fileExtensions.contains(extension.toLowerCase())
     }
