@@ -55,9 +55,10 @@ class RoleFilter extends SourceNodeFilter<RoleFilter, String> {
                         sb.append("_")
                     }
                 }
-                return (foundAccept || acceptSet.contains(sb.toString())) && !rejectSet.contains(sb.toString())
+                return ((foundAccept || acceptSet.contains(sb.toString())) && !rejectSet.contains(sb.toString())) ||
+                        (acceptSet.isEmpty() && !rejectSet.contains(sb.toString()))
             }
-            return foundAccept
+            return foundAccept || (acceptSet.isEmpty() && !foundReject)
         }
         return false
     }
