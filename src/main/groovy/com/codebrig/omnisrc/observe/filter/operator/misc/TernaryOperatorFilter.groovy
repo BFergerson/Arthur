@@ -1,4 +1,4 @@
-package com.codebrig.omnisrc.observe.filter.operator.relational
+package com.codebrig.omnisrc.observe.filter.operator.misc
 
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
@@ -10,15 +10,15 @@ import com.codebrig.omnisrc.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class EqualTypeOperatorFilter extends SourceNodeFilter<EqualTypeOperatorFilter, Void> {
+class TernaryOperatorFilter extends SourceNodeFilter<TernaryOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {
-        operatorTypes.add("Operator") //javascript
+        operatorTypes.add("ConditionalExpression") //java, javascript
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes && node.token == "==="
+        return node != null && node.internalType in operatorTypes
     }
 }

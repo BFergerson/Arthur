@@ -13,7 +13,7 @@ import static org.junit.Assert.*
 class NotEqualOperatorFilterTest extends OmniSRCTest {
 
     @Test
-    void equalOperator_Go() {
+    void notEqualOperator_Go() {
         def file = new File("src/test/resources/same/operators/Operators.go")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
@@ -34,7 +34,7 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
     }
 
     @Test
-    void equalOperator_Java() {
+    void notEqualOperator_Java() {
         def file = new File("src/test/resources/same/operators/Operators.java")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
@@ -55,7 +55,7 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
     }
 
     @Test
-    void equalOperator_Javascript() {
+    void notEqualOperator_Javascript() {
         def file = new File("src/test/resources/same/operators/Operators.js")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
@@ -76,7 +76,7 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
     }
 
     @Test
-    void equalOperator_Python() {
+    void notEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
@@ -94,5 +94,26 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
             }
         }
         assertTrue(foundNotEqualOperator)
+    }
+
+    @Test
+    void alternateNotEqualOperator_Python() {
+        def file = new File("src/test/resources/same/operators/Operators.py")
+        def language = SourceLanguage.getSourceLanguage(file)
+        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+
+        def foundAlternateNotEqualOperator = false
+        def functionFilter = new FunctionFilter()
+        def nameFilter = new NameFilter("alternateNotEqualOperator")
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+            assertEquals("alternateNotEqualOperator()", it.name)
+
+            new NotEqualOperatorFilter().getFilteredNodes(it).each {
+                assertFalse(foundAlternateNotEqualOperator)
+                assertEquals("!=", it.token)
+                foundAlternateNotEqualOperator = true
+            }
+        }
+        assertTrue(foundAlternateNotEqualOperator)
     }
 }

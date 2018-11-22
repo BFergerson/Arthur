@@ -18,6 +18,6 @@ def notEqualOperator():
         print ""
 
 
-def notEqualOperator_brackets():
+def alternateNotEqualOperator():
     if True <> True:
         print ""

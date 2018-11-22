@@ -28,13 +28,13 @@ function notEqualOperator() {
     }
 }
 
-function equalOperator_type() {
+function equalTypeOperator() {
     if (true === true) {
         console.log("");
     }
 }
 
-function notEqualOperator_type() {
+function notEqualTypeOperator() {
     if (true !== true) {
         console.log("");
     }
