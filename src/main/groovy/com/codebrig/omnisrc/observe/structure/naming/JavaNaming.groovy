@@ -166,6 +166,7 @@ class JavaNaming implements StructureNaming {
     static String getJavaQualifiedName(String object) {
         switch (object) {
             case "Boolean":
+            case "Double":
             case "Integer":
             case "String":
             case "Object":
