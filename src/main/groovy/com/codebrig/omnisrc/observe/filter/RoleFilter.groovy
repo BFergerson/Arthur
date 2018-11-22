@@ -50,7 +50,7 @@ class RoleFilter extends SourceNodeFilter<RoleFilter, String> {
                 roleList.sort(String.CASE_INSENSITIVE_ORDER)
                 def sb = new StringBuilder()
                 for (int i = 0; i < roleList.size(); i++) {
-                    sb.append(roleList.get(i))
+                    sb.append(roleList.get(i).toUpperCase())
                     if ((i + 1) < roleList.size()) {
                         sb.append("_")
                     }
