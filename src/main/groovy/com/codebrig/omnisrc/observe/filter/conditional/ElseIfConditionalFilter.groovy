@@ -15,7 +15,7 @@ import com.google.common.collect.Sets
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class ElseConditionalFilter extends SourceNodeFilter<ElseConditionalFilter, Void> {
+class ElseIfConditionalFilter extends SourceNodeFilter<ElseIfConditionalFilter, Void> {
 
     private static final Set<String> conditionalTypes = new HashSet<>()
     static {
@@ -38,29 +38,31 @@ class ElseConditionalFilter extends SourceNodeFilter<ElseConditionalFilter, Void
                 ).getFilteredNodes(node.children).each {
                     MultiFilter.matchAll(
                             new InternalRoleFilter("else_stmts"),
-                            new TypeFilter().reject("If")
+                            new TypeFilter("If")
                     ).getFilteredNodes(it.children).each {
-                        elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                        new TypeFilter("If.body").getFilteredNodes(it.children).each {
+                            elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                        }
                     }
                 }
             } else if (node.language == SourceLanguage.Java) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("elseStatement"),
-                        new TypeFilter().reject("IfStatement")
+                        new TypeFilter("IfStatement")
                 ).getFilteredNodes(node.children).each {
                     elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             } else if (node.language == SourceLanguage.Javascript) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("alternate"),
-                        new TypeFilter().reject("IfStatement")
+                        new TypeFilter("IfStatement")
                 ).getFilteredNodes(node.children).each {
                     elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             } else if (node.language == SourceLanguage.Go) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("Else"),
-                        new TypeFilter().reject("IfStmt")
+                        new TypeFilter("IfStmt")
                 ).getFilteredNodes(node.children).each {
                     elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }

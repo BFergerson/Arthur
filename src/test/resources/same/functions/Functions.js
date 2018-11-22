@@ -1,7 +1,7 @@
 function function1() {
-    console.log("")
+    console.log("");
 }
 
 function function2() {
-    console.log("")
+    console.log("");
 }

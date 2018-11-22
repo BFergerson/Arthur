@@ -34,7 +34,7 @@ abstract class SourceNodeFilter<T extends SourceNodeFilter<T, P>, P> implements 
     }
 
     boolean evaluateProperty(P value) {
-        return acceptSet.contains(value) && !rejectSet.contains(value)
+        return (acceptSet.isEmpty() || acceptSet.contains(value)) && !rejectSet.contains(value)
     }
 
     Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
