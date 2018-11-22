@@ -20,15 +20,15 @@ abstract class SourceNodeFilter<T extends SourceNodeFilter<T, P>, P> implements 
     protected final Set<P> rejectSet = new LinkedHashSet<>()
 
     T accept(P... values) {
-        values.each {
-            acceptSet.add(it)
+        Objects.requireNonNull(values).each {
+            acceptSet.add(Objects.requireNonNull(it))
         }
         return (T) this
     }
 
     T reject(P... values) {
-        values.each {
-            rejectSet.add(it)
+        Objects.requireNonNull(values).each {
+            rejectSet.add(Objects.requireNonNull(it))
         }
         return (T) this
     }
