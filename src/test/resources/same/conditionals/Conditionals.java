@@ -21,4 +21,18 @@ public class Conditionals {
             System.out.println("");
         }
     }
+
+    public void switchConditional() {
+        switch (1) {
+            case 1: //https://github.com/bblfsh/java-driver/issues/98
+                System.out.println("");
+        }
+    }
+
+    public void switchCaseConditional() {
+        switch (1) {
+            case 1:
+                System.out.println("");
+        }
+    }
 }

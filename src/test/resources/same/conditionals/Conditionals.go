@@ -23,3 +23,15 @@ func ifElseIfConditional() {
       fmt.Println("")
    }
 }
+
+func switchConditional() {
+    switch 1 {
+    }
+}
+
+func switchCaseConditional() {
+    switch 1 {
+        case 1:
+            fmt.Println("")
+    }
+}
