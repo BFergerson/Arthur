@@ -34,11 +34,11 @@ class RoleFilter extends SourceNodeFilter<RoleFilter, String> {
             def roleList = new ArrayList<String>()
             boolean foundReject = false
             boolean foundAccept = false
-            node.roles.each {
-                roleList.add(it.name())
-                if (acceptSet.contains(it.name())) {
+            node.roles.collect { it.name().toUpperCase() }.each {
+                roleList.add(it)
+                if (acceptSet.contains(it)) {
                     foundAccept = true
-                } else if (rejectSet.contains(it.name())) {
+                } else if (rejectSet.contains(it)) {
                     foundReject = true
                 }
             }
