@@ -10,16 +10,16 @@ import com.codebrig.omnisrc.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class EqualOperatorFilter extends SourceNodeFilter<EqualOperatorFilter, Void> {
+class NotEqualOperatorFilter extends SourceNodeFilter<EqualOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {
-        operatorTypes.add("Eq") //python
+        operatorTypes.add("NotEq") //python
         operatorTypes.add("Operator") //go, java, javascript
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes && node.token == "=="
+        return node != null && node.internalType in operatorTypes && node.token == "!="
     }
 }

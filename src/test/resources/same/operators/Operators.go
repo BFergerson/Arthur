@@ -13,3 +13,15 @@ func orOperator() {
       fmt.Println("")
    }
 }
+
+func equalOperator() {
+    if (true == true) {
+        fmt.Println("")
+    }
+}
+
+func notEqualOperator() {
+    if (true != true) {
+        fmt.Println("")
+    }
+}

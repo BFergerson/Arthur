@@ -15,3 +15,27 @@ function ternaryOperator() {
     a = 10;
     b = (a == 1) ? 20 : 30;
 }
+
+function equalOperator() {
+    if (true == true) {
+        console.log("");
+    }
+}
+
+function notEqualOperator() {
+    if (true != true) {
+        console.log("");
+    }
+}
+
+function equalOperator_type() {
+    if (true === true) {
+        console.log("");
+    }
+}
+
+function notEqualOperator_type() {
+    if (true !== true) {
+        console.log("");
+    }
+}
