@@ -19,4 +19,15 @@ class NameFilterTest_Java extends OmniSRCTest {
             assertEquals("SingleVariableDeclaration", it.internalType)
         }
     }
+
+    @Test
+    void innerVariable() {
+        def file = new File("src/test/resources/java/ImportQualifiedName.java")
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def fileFilter = new NameFilter("arrayList")
+
+        fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            assertEquals("VariableDeclarationStatement", it.internalType)
+        }
+    }
 }

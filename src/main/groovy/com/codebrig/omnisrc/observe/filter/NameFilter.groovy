@@ -27,6 +27,29 @@ class NameFilter extends SourceNodeFilter<NameFilter, String> {
             def childNameFilter
             if (node.language == SourceLanguage.Javascript) {
                 childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
+            } else if (node.language == SourceLanguage.Java) {
+                if (node.internalType == "VariableDeclarationStatement") {
+                    MultiFilter.matchAll(
+                            new InternalRoleFilter("fragments"),
+                            new TypeFilter("VariableDeclarationFragment")
+                    ).getFilteredNodes(node).each {
+                        childNameFilter = MultiFilter.matchAll(
+                                new InternalRoleFilter("name"),
+                                new TypeFilter().reject("VariableDeclarationFragment")
+                        ).getFilteredNodes(it.children)
+                    }
+                }
+
+                if (childNameFilter == null) {
+                    if (node.internalType == "VariableDeclarationFragment") {
+                        return false
+                    }
+
+                    childNameFilter = MultiFilter.matchAll(
+                            new InternalRoleFilter("name"),
+                            new TypeFilter().reject("VariableDeclarationFragment")
+                    ).getFilteredNodes(node.children)
+                }
             } else {
                 childNameFilter = new InternalRoleFilter("name").getFilteredNodes(node.children)
             }
