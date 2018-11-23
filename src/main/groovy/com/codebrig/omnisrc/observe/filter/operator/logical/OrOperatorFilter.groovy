@@ -4,7 +4,7 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
 
 /**
- * todo: this
+ * Match by logical or operator
  *
  * @version 0.3
  * @since 0.3

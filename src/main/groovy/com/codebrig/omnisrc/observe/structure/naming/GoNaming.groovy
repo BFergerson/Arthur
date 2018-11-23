@@ -5,7 +5,7 @@ import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 
 /**
- * todo: this
+ * Used to get the names of Go AST nodes
  *
  * @version 0.3
  * @since 0.3

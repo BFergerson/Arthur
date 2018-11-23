@@ -7,7 +7,7 @@ import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 import com.google.common.collect.Sets
 
 /**
- * todo: this
+ * Match by finally
  *
  * @version 0.3
  * @since 0.3

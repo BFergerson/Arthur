@@ -6,7 +6,7 @@ import com.codebrig.omnisrc.SourceNodeFilter
 import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 
 /**
- * todo: this
+ * Match by for loop
  *
  * @version 0.3
  * @since 0.3

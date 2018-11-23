@@ -9,7 +9,7 @@ import com.codebrig.omnisrc.observe.filter.TypeFilter
 import com.google.common.collect.Sets
 
 /**
- * todo: this
+ * Match by else if conditional
  *
  * @version 0.3
  * @since 0.3

@@ -4,7 +4,7 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 
 /**
- * todo: this
+ * Used to get the names of Python AST nodes
  *
  * @version 0.3
  * @since 0.3
