@@ -4,7 +4,7 @@ import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
 
 /**
- * Match by try
+ * Match by try in exception handling construct
  *
  * @version 0.3
  * @since 0.3

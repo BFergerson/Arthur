@@ -7,7 +7,7 @@ import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 import com.google.common.collect.Sets
 
 /**
- * Match by finally
+ * Match by finally in exception handling construct
  *
  * @version 0.3
  * @since 0.3
