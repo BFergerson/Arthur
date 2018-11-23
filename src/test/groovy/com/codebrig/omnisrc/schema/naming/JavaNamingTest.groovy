@@ -122,6 +122,7 @@ class JavaNamingTest extends OmniSRCTest {
 
         boolean foundSetMethod = false
         boolean foundMapMethod = false
+        boolean foundInnerVariableMethod = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             switch (it.name) {
                 case "ImportQualifiedName.acceptGuavaSet(com.google.common.collect.ImmutableSet<java.lang.Boolean>)":
@@ -130,12 +131,16 @@ class JavaNamingTest extends OmniSRCTest {
                 case "ImportQualifiedName.acceptGuavaMap(com.google.common.collect.ImmutableMap<java.lang.Boolean,java.lang.Integer>)":
                     foundMapMethod = true
                     break
+                case "ImportQualifiedName.innerVariable()":
+                    foundInnerVariableMethod = true
+                    break
                 default:
                     throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundSetMethod)
         assertTrue(foundMapMethod)
+        assertTrue(foundInnerVariableMethod)
     }
 
     @Test
