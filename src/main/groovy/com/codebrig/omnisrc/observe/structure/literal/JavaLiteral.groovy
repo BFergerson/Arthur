@@ -16,6 +16,9 @@ class JavaLiteral extends StructureLiteral {
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumberLiteral":
+                if (node.token.endsWith("D") || node.token.endsWith("F")) {
+                    return floatValueLiteral()
+                }
                 return numberValueLiteral()
             default:
                 return null
