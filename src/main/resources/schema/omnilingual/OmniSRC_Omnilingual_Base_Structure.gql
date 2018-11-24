@@ -1491,6 +1491,7 @@ JavaNullLiteralArtifact sub NullLiteralArtifact
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
+	has floatValue
 	has numberValue
 	# Structural
 	plays is_java_arguments_role

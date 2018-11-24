@@ -27,11 +27,11 @@ class JavaLiteral extends StructureLiteral {
 
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
-        def literalAttribute = getNodeLiteralAttribute(node)
-        if (literalAttribute == null) {
-            return Collections.emptyList()
-        } else {
-            return Collections.singletonList(literalAttribute)
+        switch (Objects.requireNonNull(node).internalType) {
+            case "NumberLiteral":
+                return [numberValueLiteral(), floatValueLiteral()]
+            default:
+                return Collections.emptyList()
         }
     }
 }

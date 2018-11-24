@@ -572,6 +572,7 @@ NullLiteralArtifact sub JavaSourceArtifact
 
 NumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
+	has floatValue
 	has numberValue
 	# Structural
 	plays is_arguments_role
