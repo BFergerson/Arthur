@@ -98,6 +98,8 @@ rubySelectorAttribute sub attribute datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
+    plays is_child
+    plays is_parent
 	has token;
 
 #####----- Omnilingual -----#####
