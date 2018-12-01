@@ -17,7 +17,7 @@ class VariousStuff {
     void method_IterableArgs(Iterable<?> args) {
     }
 
-    void method_ListMapArgs(List<Map.Entry<K, V>> args) {
+    void method_ListMapArgs(List<Map.Entry<?, ?>> args) {
     }
 
     int method_3_args(String s, int x, Object o) {

@@ -142,9 +142,9 @@ class JavaNaming implements StructureNaming {
         def paramTypes = ""
         new InternalRoleFilter("typeArguments").getFilteredNodes(node.children).each {
             if (it.internalType == "WildcardType") {
-                paramTypes += "?"
+                paramTypes += "?,"
             } else if (it.internalType == "ParameterizedType") {
-                paramTypes += getParameterizedTypeName(it)
+                paramTypes += getParameterizedTypeName(it) + ","
             } else {
                 paramTypes += getSimpleTypeName(it) + ","
             }
@@ -214,8 +214,6 @@ class JavaNaming implements StructureNaming {
             case "Object":
             case "Iterable":
                 return "java.lang." + object
-            case "Map.Entry":
-                return "java.util." + object
             default:
                 return object
         }

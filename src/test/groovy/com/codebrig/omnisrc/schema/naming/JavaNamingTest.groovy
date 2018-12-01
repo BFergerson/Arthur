@@ -78,7 +78,7 @@ class JavaNamingTest extends OmniSRCTest {
                 case "VariousStuff.method_IterableArgs(java.lang.Iterable<?>)":
                     foundIterableArgs = true
                     break
-                case "VariousStuff.method_ListMapArgs(java.util.List<java.util.Map.Entry<K,V>>)":
+                case "VariousStuff.method_ListMapArgs(java.util.List<Map.Entry<?,?>>)":
                     foundListMapArgs = true
                     break
             }
