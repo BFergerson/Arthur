@@ -62,6 +62,7 @@ class JavaNamingTest extends OmniSRCTest {
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
+        boolean foundMapEntryArrayArgs = false
         boolean foundStringArrayArgs = false
         boolean foundStringArrayArgs2 = false
         boolean foundIterableArgs = false
@@ -69,6 +70,9 @@ class JavaNamingTest extends OmniSRCTest {
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             println it.name
             switch (it.name) {
+                case "VariousStuff.method_MapEntryArrayArgs(Map.Entry<java.lang.Object,java.lang.String>[])":
+                    foundMapEntryArrayArgs = true
+                    break
                 case "VariousStuff.method_StringArrayArgs(java.lang.String[])":
                     foundStringArrayArgs = true
                     break
@@ -83,6 +87,7 @@ class JavaNamingTest extends OmniSRCTest {
                     break
             }
         }
+        assertTrue(foundMapEntryArrayArgs)
         assertTrue(foundStringArrayArgs)
         assertTrue(foundStringArrayArgs2)
         assertTrue(foundIterableArgs)
