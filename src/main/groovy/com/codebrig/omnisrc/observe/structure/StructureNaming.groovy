@@ -10,6 +10,7 @@ import com.codebrig.omnisrc.SourceNode
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 trait StructureNaming {
+
     boolean isNamedNodeType(SourceNode node) {
         return isNamedNodeType(node.internalType)
     }
