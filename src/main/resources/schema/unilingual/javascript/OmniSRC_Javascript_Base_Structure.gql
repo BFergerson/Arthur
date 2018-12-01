@@ -1,10 +1,11 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
+doubleValue sub attribute datatype double;
+name sub attribute datatype string;
 numberValue sub attribute datatype long;
+token sub attribute datatype string;
 
 #####----- Javascript -----#####
 asyncAttribute sub attribute datatype string;
@@ -663,6 +664,7 @@ FunctionDeclarationArtifact sub JavascriptSourceArtifact
 	# Attributes
 	has asyncAttribute
 	has generatorAttribute
+	has name
 	# Structural
 	plays is_body_role
 	plays is_consequent_role

@@ -1,10 +1,11 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
+doubleValue sub attribute datatype double;
+name sub attribute datatype string;
 numberValue sub attribute datatype long;
+token sub attribute datatype string;
 
 #####----- Omnilingual -----#####
 colAttribute sub attribute datatype string;
@@ -473,6 +474,8 @@ GoForStmtArtifact sub GoSourceArtifact
 	plays has_go_post_role;
 
 GoFuncDeclArtifact sub GoSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_go_decls_role
 	plays has_go_body_role
@@ -1138,6 +1141,8 @@ JavaClassInstanceCreationArtifact sub JavaSourceArtifact
 	plays has_java_type_role;
 
 JavaCompilationUnitArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays has_java_comments_role
 	plays has_java_imports_role
@@ -1405,6 +1410,7 @@ JavaMemberValuePairArtifact sub JavaSourceArtifact
 JavaMethodDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has javaConstructorAttribute
+	has name
 	# Structural
 	plays is_java_body_declarations_role
 	plays has_java_body_role
@@ -1604,6 +1610,8 @@ JavaPrimitiveTypeArtifact sub JavaSourceArtifact
 	plays is_java_type_role;
 
 JavaQualifiedNameArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_java_arguments_role
 	plays is_java_array_role
@@ -1648,6 +1656,8 @@ JavaReturnStatementArtifact sub ReturnStatementArtifact
 	plays has_java_expression_role;
 
 JavaSimpleNameArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_java_arguments_role
 	plays is_java_array_role
@@ -1840,6 +1850,7 @@ JavaTryStatementArtifact sub TryStatementArtifact
 JavaTypeDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has javaInterfaceAttribute
+	has name
 	# Structural
 	plays is_java_body_declarations_role
 	plays is_java_declaration_role
@@ -2556,6 +2567,7 @@ JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact
 	# Attributes
 	has javascriptAsyncAttribute
 	has javascriptGeneratorAttribute
+	has name
 	# Structural
 	plays is_javascript_body_role
 	plays is_javascript_consequent_role
@@ -5775,6 +5787,8 @@ PythonForOrelseArtifact sub PythonSourceArtifact
 	plays has_python_else_stmts_role;
 
 PythonFunctionDefArtifact sub PythonSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_python_body_role
 	plays is_python_body_stmts_role
