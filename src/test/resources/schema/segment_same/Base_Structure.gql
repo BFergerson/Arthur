@@ -3,6 +3,7 @@ define
 ##########---------- Attributes ----------##########
 booleanValue sub attribute datatype boolean;
 doubleValue sub attribute datatype double;
+name sub attribute datatype string;
 numberValue sub attribute datatype long;
 token sub attribute datatype string;
 
@@ -122,6 +123,8 @@ GoForStmtArtifact sub GoSourceArtifact
 	plays has_go_post_role;
 
 GoFuncDeclArtifact sub GoSourceArtifact
+	# Attributes
+	has name
 	# Structural
 	plays is_go_decls_role
 	plays has_go_body_role
@@ -214,6 +217,8 @@ JavaBlockArtifact sub JavaSourceArtifact
 	plays has_java_statements_role;
 
 JavaCompilationUnitArtifact sub JavaSourceArtifact
+	# Attributes
+	has name
 	# Structural
 	plays has_java_types_role;
 
@@ -244,6 +249,7 @@ JavaInfixExpressionArtifact sub JavaSourceArtifact
 JavaMethodDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has javaConstructorAttribute
+	has name
 	# Structural
 	plays is_java_body_declarations_role
 	plays has_java_body_role
@@ -287,12 +293,16 @@ JavaPrimitiveTypeArtifact sub JavaSourceArtifact
 	plays is_java_type_role;
 
 JavaQualifiedNameArtifact sub JavaSourceArtifact
+	# Attributes
+	has name
 	# Structural
 	plays is_java_expression_role
 	plays has_java_name_role
 	plays has_java_qualifier_role;
 
 JavaSimpleNameArtifact sub JavaSourceArtifact
+	# Attributes
+	has name
 	# Structural
 	plays is_java_arguments_role
 	plays is_java_left_operand_role
@@ -316,6 +326,7 @@ JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact
 JavaTypeDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has javaInterfaceAttribute
+	has name
 	# Structural
 	plays is_java_types_role
 	plays has_java_body_declarations_role

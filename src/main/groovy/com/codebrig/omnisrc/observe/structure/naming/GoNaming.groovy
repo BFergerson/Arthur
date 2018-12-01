@@ -14,6 +14,16 @@ import com.codebrig.omnisrc.observe.structure.StructureNaming
 class GoNaming implements StructureNaming {
 
     @Override
+    boolean isNamedNodeType(String internalType) {
+        switch (Objects.requireNonNull(internalType)) {
+            case "FuncDecl":
+                return true
+            default:
+                return false
+        }
+    }
+
+    @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "FuncDecl":

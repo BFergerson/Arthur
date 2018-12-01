@@ -14,12 +14,22 @@ import com.codebrig.omnisrc.observe.structure.StructureNaming
 class JavascriptNaming implements StructureNaming {
 
     @Override
+    boolean isNamedNodeType(String internalType) {
+        switch (Objects.requireNonNull(internalType)) {
+            case "FunctionDeclaration":
+                return true
+            default:
+                return false
+        }
+    }
+
+    @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
                 return getFunctionDeclarationName(node)
             default:
-                throw new IllegalArgumentException("Unsupported Javascript node type: " + node.internalType)
+                return null
         }
     }
 

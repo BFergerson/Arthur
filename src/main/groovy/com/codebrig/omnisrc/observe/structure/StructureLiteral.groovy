@@ -60,7 +60,9 @@ abstract class StructureLiteral {
         def rtnMap = new LinkedHashMap<String, String>()
         rtnMap.put(booleanValueLiteral(), "boolean")
         rtnMap.put(doubleValueLiteral(), "double")
+        rtnMap.put("name", "string")
         rtnMap.put(numberValueLiteral(), "long")
+        rtnMap.put("token", "string")
         return rtnMap
     }
 }

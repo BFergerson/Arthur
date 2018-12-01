@@ -15,6 +15,20 @@ import com.codebrig.omnisrc.observe.structure.StructureNaming
 class JavaNaming implements StructureNaming {
 
     @Override
+    boolean isNamedNodeType(String internalType) {
+        switch (Objects.requireNonNull(internalType)) {
+            case "SimpleName":
+            case "QualifiedName":
+            case "CompilationUnit":
+            case "MethodDeclaration":
+            case "TypeDeclaration":
+                return true
+            default:
+                return false
+        }
+    }
+
+    @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "SimpleName":

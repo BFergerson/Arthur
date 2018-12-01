@@ -70,7 +70,6 @@ class GraknSchemaWriter implements SchemaWriter {
         StructureLiteral.allLiteralAttributes.each {
             output.append(it.key).append(" sub attribute datatype ").append(it.value).append(";\n")
         }
-        output.append("token sub attribute datatype string;\n")
 
         if (rootLanguage.isOmnilingual()) {
             outputAttributes(output, rootLanguage)
@@ -187,6 +186,11 @@ class GraknSchemaWriter implements SchemaWriter {
             //has
             if (includeAttributes && observedLanguage.attributes.containsKey(entity)) {
                 def attrList = observedLanguage.getEntityObservedAttributes(entity, naturalOrdering)
+                def entityWithoutArtifact = entity.replace("Artifact", "")
+                if (observedLanguage.language.structureNaming.isNamedNodeType(entityWithoutArtifact)) {
+                    attrList.add("name")
+                }
+
                 if (!attrList.isEmpty()) output.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
                     def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())

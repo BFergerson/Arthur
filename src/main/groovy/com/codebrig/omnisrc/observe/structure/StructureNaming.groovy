@@ -10,5 +10,7 @@ import com.codebrig.omnisrc.SourceNode
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 interface StructureNaming {
+    boolean isNamedNodeType(String internalType)
+
     String getNodeName(SourceNode node)
 }
