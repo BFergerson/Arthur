@@ -64,8 +64,8 @@ class JavaNamingTest extends OmniSRCTest {
 
         boolean foundStringArrayArgs = false
         boolean foundStringArrayArgs2 = false
+        boolean foundStringArrayArgs3 = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            println it.name
             switch (it.name) {
                 case "VariousStuff.method_StringArrayArgs(java.lang.String[])":
                     foundStringArrayArgs = true
@@ -73,10 +73,14 @@ class JavaNamingTest extends OmniSRCTest {
                 case "VariousStuff.method_StringArrayArgs2(java.lang.String[][])":
                     foundStringArrayArgs2 = true
                     break
+                case "VariousStuff.method_StringArrayArgs3(java.lang.Iterable<?>)":
+                    foundStringArrayArgs3 = true
+                    break
             }
         }
         assertTrue(foundStringArrayArgs)
         assertTrue(foundStringArrayArgs2)
+        assertTrue(foundStringArrayArgs3)
     }
 
     @Test

@@ -11,6 +11,9 @@ class VariousStuff {
     void method_StringArrayArgs2(String[][] args) {
     }
 
+    void method_StringArrayArgs3(Iterable<?> args) {
+    }
+
     int method_3_args(String s, int x, Object o) {
         return 1;
     }
