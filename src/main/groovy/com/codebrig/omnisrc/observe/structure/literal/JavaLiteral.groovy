@@ -21,7 +21,7 @@ class JavaLiteral extends StructureLiteral {
                         || node.token.toUpperCase().contains("E")
                         || node.token.toUpperCase().endsWith("D")
                         || node.token.toUpperCase().endsWith("F")) {
-                    return floatValueLiteral()
+                    return doubleValueLiteral()
                 }
                 return numberValueLiteral()
             default:
@@ -33,7 +33,7 @@ class JavaLiteral extends StructureLiteral {
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumberLiteral":
-                return [numberValueLiteral(), floatValueLiteral()]
+                return [numberValueLiteral(), doubleValueLiteral()]
             default:
                 return Collections.emptyList()
         }

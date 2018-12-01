@@ -2,7 +2,7 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
-floatValue sub attribute datatype double;
+doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
 numberValue sub attribute datatype long;
 
@@ -574,7 +574,7 @@ NullLiteralArtifact sub JavaSourceArtifact
 
 NumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
-	has floatValue
+	has doubleValue
 	has numberValue
 	# Structural
 	plays is_arguments_role

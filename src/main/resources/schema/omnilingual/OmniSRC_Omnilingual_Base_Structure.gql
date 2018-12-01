@@ -2,7 +2,7 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
-floatValue sub attribute datatype double;
+doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
 numberValue sub attribute datatype long;
 
@@ -230,7 +230,7 @@ GoAssignStmtArtifact sub GoSourceArtifact
 
 GoBasicLitArtifact sub GoSourceArtifact
 	# Attributes
-	has floatValue
+	has doubleValue
 	has goKindAttribute
 	has numberValue
 	# Structural
@@ -1493,7 +1493,7 @@ JavaNullLiteralArtifact sub NullLiteralArtifact
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
-	has floatValue
+	has doubleValue
 	has numberValue
 	# Structural
 	plays is_java_arguments_role

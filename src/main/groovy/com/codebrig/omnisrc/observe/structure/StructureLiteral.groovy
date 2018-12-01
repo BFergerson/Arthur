@@ -48,8 +48,8 @@ abstract class StructureLiteral {
         return "numberValue"
     }
 
-    static String floatValueLiteral() {
-        return "floatValue"
+    static String doubleValueLiteral() {
+        return "doubleValue"
     }
 
     static String booleanValueLiteral() {
@@ -59,7 +59,7 @@ abstract class StructureLiteral {
     static Map<String, String> getAllLiteralAttributes() {
         def rtnMap = new HashMap<String, String>()
         rtnMap.put(numberValueLiteral(), "long")
-        rtnMap.put(floatValueLiteral(), "double")
+        rtnMap.put(doubleValueLiteral(), "double")
         rtnMap.put(booleanValueLiteral(), "boolean")
         return rtnMap
     }

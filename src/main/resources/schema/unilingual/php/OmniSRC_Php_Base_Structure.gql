@@ -2,7 +2,7 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
-floatValue sub attribute datatype double;
+doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
 numberValue sub attribute datatype long;
 

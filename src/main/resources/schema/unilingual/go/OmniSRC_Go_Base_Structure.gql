@@ -2,7 +2,7 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
-floatValue sub attribute datatype double;
+doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
 numberValue sub attribute datatype long;
 
@@ -56,7 +56,7 @@ AssignStmtArtifact sub GoSourceArtifact
 
 BasicLitArtifact sub GoSourceArtifact
 	# Attributes
-	has floatValue
+	has doubleValue
 	has kindAttribute
 	has numberValue
 	# Structural
