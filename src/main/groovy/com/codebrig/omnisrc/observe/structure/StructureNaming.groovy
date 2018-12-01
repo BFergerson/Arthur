@@ -9,8 +9,12 @@ import com.codebrig.omnisrc.SourceNode
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-interface StructureNaming {
-    boolean isNamedNodeType(String internalType)
+trait StructureNaming {
+    boolean isNamedNodeType(SourceNode node) {
+        return isNamedNodeType(node.internalType)
+    }
 
-    String getNodeName(SourceNode node)
+    abstract boolean isNamedNodeType(String internalType)
+
+    abstract String getNodeName(SourceNode node)
 }
