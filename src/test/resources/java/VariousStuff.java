@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Map;
+
 class VariousStuff {
 
     public int var;
@@ -11,7 +14,10 @@ class VariousStuff {
     void method_StringArrayArgs2(String[][] args) {
     }
 
-    void method_StringArrayArgs3(Iterable<?> args) {
+    void method_IterableArgs(Iterable<?> args) {
+    }
+
+    void method_ListMapArgs(List<Map.Entry<K, V>> args) {
     }
 
     int method_3_args(String s, int x, Object o) {

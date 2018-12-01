@@ -143,6 +143,8 @@ class JavaNaming implements StructureNaming {
         new InternalRoleFilter("typeArguments").getFilteredNodes(node.children).each {
             if (it.internalType == "WildcardType") {
                 paramTypes += "?"
+            } else if (it.internalType == "ParameterizedType") {
+                paramTypes += getParameterizedTypeName(it)
             } else {
                 paramTypes += getSimpleTypeName(it) + ","
             }
@@ -159,7 +161,15 @@ class JavaNaming implements StructureNaming {
     }
 
     static String getSimpleTypeName(SourceNode node) {
-        def name = getJavaQualifiedName(new InternalRoleFilter("name").getFilteredNodes(node.children).next().token)
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+            name += it.token + "."
+        }
+        if (name.endsWith(".")) {
+            name = name.substring(0, name.length() - 1)
+        }
+        name = getJavaQualifiedName(name)
+
         getImports(node.rootSourceNode).each {
             if (it.endsWith(name)) {
                 name = it
@@ -204,6 +214,8 @@ class JavaNaming implements StructureNaming {
             case "Object":
             case "Iterable":
                 return "java.lang." + object
+            case "Map.Entry":
+                return "java.util." + object
             default:
                 return object
         }

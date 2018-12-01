@@ -57,15 +57,17 @@ class JavaNamingTest extends OmniSRCTest {
     }
 
     @Test
-    void methodQualifiedName_variousStuff_noPackage_stringArrayArgs() {
+    void methodQualifiedName_variousStuff_noPackage_differentArgs() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundStringArrayArgs = false
         boolean foundStringArrayArgs2 = false
-        boolean foundStringArrayArgs3 = false
+        boolean foundIterableArgs = false
+        boolean foundListMapArgs = false
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            println it.name
             switch (it.name) {
                 case "VariousStuff.method_StringArrayArgs(java.lang.String[])":
                     foundStringArrayArgs = true
@@ -73,14 +75,18 @@ class JavaNamingTest extends OmniSRCTest {
                 case "VariousStuff.method_StringArrayArgs2(java.lang.String[][])":
                     foundStringArrayArgs2 = true
                     break
-                case "VariousStuff.method_StringArrayArgs3(java.lang.Iterable<?>)":
-                    foundStringArrayArgs3 = true
+                case "VariousStuff.method_IterableArgs(java.lang.Iterable<?>)":
+                    foundIterableArgs = true
+                    break
+                case "VariousStuff.method_ListMapArgs(java.util.List<java.util.Map.Entry<K,V>>)":
+                    foundListMapArgs = true
                     break
             }
         }
         assertTrue(foundStringArrayArgs)
         assertTrue(foundStringArrayArgs2)
-        assertTrue(foundStringArrayArgs3)
+        assertTrue(foundIterableArgs)
+        assertTrue(foundListMapArgs)
     }
 
     @Test
