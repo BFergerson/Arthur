@@ -19,7 +19,9 @@ tokAttribute sub attribute datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
-	has token;
+	has token
+	plays is_child
+	plays is_parent;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;

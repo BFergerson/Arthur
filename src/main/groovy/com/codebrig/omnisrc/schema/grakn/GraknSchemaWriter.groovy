@@ -155,7 +155,9 @@ class GraknSchemaWriter implements SchemaWriter {
         output.append("\n##########---------- Entities ----------##########\n")
         if (includeAttributes) {
             output.append("SourceArtifact sub entity\n")
-                    .append("\thas token;\n")
+                    .append("\thas token\n")
+                    .append("\tplays is_child\n")
+                    .append("\tplays is_parent;\n")
         }
 
         if (rootLanguage.isOmnilingual()) {
