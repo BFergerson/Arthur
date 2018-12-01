@@ -3,9 +3,6 @@ package com.codebrig.omnisrc
 import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import org.apache.commons.collections4.Predicate
 import org.apache.commons.collections4.iterators.FilterIterator
-import org.apache.commons.collections4.iterators.TransformIterator
-import org.bblfsh.client.BblfshClient
-import scala.collection.JavaConverters
 
 /**
  * Used to filter through SourceNodes
@@ -46,21 +43,30 @@ abstract class SourceNodeFilter<T extends SourceNodeFilter<T, P>, P> implements 
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
-        return getFilteredNodes(sourceNode, BblfshClient.PreOrder())
+        return new FilterIterator(new PreorderIterator(sourceNode), this)
     }
 
-    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, int sortMethod) {
-        def itr = asJavaIterator(BblfshClient.iterator(sourceNode.underlyingNode, sortMethod))
-        def transformItr = new TransformIterator<Node, SourceNode>(itr, { Node node ->
-            if (node == null) {
-                return null
+    static class PreorderIterator implements Iterator<SourceNode> {
+
+        private final Deque<SourceNode> nodeStack
+
+        PreorderIterator(SourceNode node) {
+            nodeStack = new ArrayDeque<SourceNode>()
+            nodeStack.push(node)
+        }
+
+        @Override
+        boolean hasNext() {
+            return !nodeStack.isEmpty()
+        }
+
+        @Override
+        SourceNode next() {
+            SourceNode next = nodeStack.pop()
+            next.children.reverse().each {
+                nodeStack.push(it)
             }
-            return new SourceNode(sourceNode.language, sourceNode.underlyingNode, node)
-        })
-        return new FilterIterator(transformItr, this)
-    }
-
-    static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
-        return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()
+            return next
+        }
     }
 }
