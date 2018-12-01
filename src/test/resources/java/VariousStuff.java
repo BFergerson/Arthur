@@ -8,6 +8,9 @@ class VariousStuff {
     public final static int var3 = 1;
     private static int var4 = 1;
 
+    public void method_QualifiedTypeArgs(TypeToken<?>.TypeSet args) {
+    }
+
 //    public void method_ObjectVarArgs(Object... args) {
 //    }
 
@@ -38,4 +41,8 @@ class VariousStuff {
         //System.out.println("hello");
     }
 
+    public class TypeToken<T> {
+        public class TypeSet {
+        }
+    }
 }

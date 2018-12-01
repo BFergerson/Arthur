@@ -130,6 +130,9 @@ class JavaNaming implements StructureNaming {
                 case "ArrayType":
                     type = getArrayTypeName(it)
                     break
+                case "QualifiedType":
+                    type = getQualifiedTypeName(it)
+                    break
                 default:
                     throw new IllegalStateException("Unsupported type: " + it.internalType)
             }
@@ -203,6 +206,34 @@ class JavaNaming implements StructureNaming {
             dimensions += "[]"
         }
         return type + dimensions
+    }
+
+    static String getQualifiedTypeName(SourceNode node) {
+        def qualifier = ""
+        new InternalRoleFilter("qualifier").getFilteredNodes(node.children).each {
+            switch (it.internalType) {
+                case "PrimitiveType":
+                    qualifier += it.token
+                    break
+                case "ParameterizedType":
+                    qualifier += getParameterizedTypeName(it)
+                    break
+                case "SimpleType":
+                    qualifier += getSimpleTypeName(it)
+                    break
+                case "ArrayType":
+                    qualifier += getArrayTypeName(it)
+                    break
+                case "QualifiedType":
+                    qualifier += getQualifiedTypeName(it)
+                    break
+                default:
+                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+            }
+        }
+
+        def name = getSimpleTypeName(new InternalRoleFilter("name").getFilteredNodes(node.children).next())
+        return qualifier + "." + name
     }
 
     static List<String> getImports(SourceNode rootNode) {
