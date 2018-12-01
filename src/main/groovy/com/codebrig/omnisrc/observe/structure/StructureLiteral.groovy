@@ -57,10 +57,10 @@ abstract class StructureLiteral {
     }
 
     static Map<String, String> getAllLiteralAttributes() {
-        def rtnMap = new HashMap<String, String>()
-        rtnMap.put(numberValueLiteral(), "long")
-        rtnMap.put(doubleValueLiteral(), "double")
+        def rtnMap = new LinkedHashMap<String, String>()
         rtnMap.put(booleanValueLiteral(), "boolean")
+        rtnMap.put(doubleValueLiteral(), "double")
+        rtnMap.put(numberValueLiteral(), "long")
         return rtnMap
     }
 }

@@ -1,10 +1,10 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
+doubleValue sub attribute datatype double;
 numberValue sub attribute datatype long;
+token sub attribute datatype string;
 
 #####----- Omnilingual -----#####
 kindAttribute sub attribute datatype string;
@@ -33,7 +33,9 @@ pythonNlAttribute sub attribute datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
-	has token;
+	has token
+	plays is_child
+	plays is_parent;
 
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
@@ -263,6 +265,7 @@ JavaModifierArtifact sub JavaSourceArtifact
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
+	has doubleValue
 	has numberValue
 	# Structural
 	plays is_java_initializer_role

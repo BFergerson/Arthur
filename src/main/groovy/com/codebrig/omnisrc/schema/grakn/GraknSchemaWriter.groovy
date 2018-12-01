@@ -67,10 +67,10 @@ class GraknSchemaWriter implements SchemaWriter {
     private void writeAttributes(Writer output) {
         println "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
-        output.append("token sub attribute datatype string;\n")
         StructureLiteral.allLiteralAttributes.each {
             output.append(it.key).append(" sub attribute datatype ").append(it.value).append(";\n")
         }
+        output.append("token sub attribute datatype string;\n")
 
         if (rootLanguage.isOmnilingual()) {
             outputAttributes(output, rootLanguage)
