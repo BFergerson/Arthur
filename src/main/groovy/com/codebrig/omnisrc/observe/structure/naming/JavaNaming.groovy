@@ -127,6 +127,9 @@ class JavaNaming implements StructureNaming {
                 case "SimpleType":
                     type = getSimpleTypeName(it)
                     break
+                case "ArrayType":
+                    type = getArrayTypeName(it)
+                    break
                 default:
                     throw new IllegalStateException("Unsupported type: " + it.internalType)
             }
@@ -159,6 +162,17 @@ class JavaNaming implements StructureNaming {
             }
         }
         return name
+    }
+
+    static String getArrayTypeName(SourceNode node) {
+        def arrayType = getJavaQualifiedName(new InternalRoleFilter("name")
+                .getFilteredNodes(new InternalRoleFilter("elementType")
+                .getFilteredNodes(node.children).next().children).next().token)
+        def dimensions = ""
+        new InternalRoleFilter("dimensions").getFilteredNodes(node.children).each {
+            dimensions += "[]"
+        }
+        return arrayType + dimensions
     }
 
     static List<String> getImports(SourceNode rootNode) {

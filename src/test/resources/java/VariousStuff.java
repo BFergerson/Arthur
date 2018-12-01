@@ -5,6 +5,12 @@ class VariousStuff {
     public final static int var3 = 1;
     private static int var4 = 1;
 
+    void method_StringArrayArgs(String[] args) {
+    }
+
+    void method_StringArrayArgs2(String[][] args) {
+    }
+
     int method_3_args(String s, int x, Object o) {
         return 1;
     }

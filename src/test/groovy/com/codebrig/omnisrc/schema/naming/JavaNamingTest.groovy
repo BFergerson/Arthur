@@ -57,6 +57,29 @@ class JavaNamingTest extends OmniSRCTest {
     }
 
     @Test
+    void methodQualifiedName_variousStuff_noPackage_stringArrayArgs() {
+        def file = new File("src/test/resources/java/VariousStuff.java")
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def functionFilter = new TypeFilter("MethodDeclaration")
+
+        boolean foundStringArrayArgs = false
+        boolean foundStringArrayArgs2 = false
+        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+            println it.name
+            switch (it.name) {
+                case "VariousStuff.method_StringArrayArgs(java.lang.String[])":
+                    foundStringArrayArgs = true
+                    break
+                case "VariousStuff.method_StringArrayArgs2(java.lang.String[][])":
+                    foundStringArrayArgs2 = true
+                    break
+            }
+        }
+        assertTrue(foundStringArrayArgs)
+        assertTrue(foundStringArrayArgs2)
+    }
+
+    @Test
     void methodQualifiedName_variousStuff_noPackage() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
@@ -76,8 +99,6 @@ class JavaNamingTest extends OmniSRCTest {
                 case "VariousStuff.method_5_args(byte,java.lang.String,int,java.lang.Object,char)":
                     foundMethod5 = true
                     break
-                default:
-                    throw new IllegalArgumentException("Invalid qualified name: " + it.name)
             }
         }
         assertTrue(foundMethod3)
