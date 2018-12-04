@@ -154,4 +154,8 @@ enum SourceLanguage {
             throw new IllegalArgumentException("Could not determine source language of: " + languageName)
         }
     }
+
+    static List<SourceLanguage> getSupportedLanguages() {
+        return values().findAll { it != OmniSRC }
+    }
 }
