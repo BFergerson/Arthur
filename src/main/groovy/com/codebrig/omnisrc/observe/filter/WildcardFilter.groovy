@@ -6,11 +6,11 @@ import com.codebrig.omnisrc.SourceNodeFilter
 /**
  * Matches everything
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class WildcardFilter extends SourceNodeFilter {
+class WildcardFilter extends SourceNodeFilter<WildcardFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode object) {

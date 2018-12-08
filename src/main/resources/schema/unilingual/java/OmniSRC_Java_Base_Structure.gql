@@ -1,10 +1,11 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-floatValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
+doubleValue sub attribute datatype double;
+name sub attribute datatype string;
 numberValue sub attribute datatype long;
+token sub attribute datatype string;
 
 #####----- Java -----#####
 constructorAttribute sub attribute datatype string;
@@ -19,7 +20,9 @@ varargsAttribute sub attribute datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
-	has token;
+	has token
+	plays is_child
+	plays is_parent;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
@@ -217,6 +220,8 @@ ClassInstanceCreationArtifact sub JavaSourceArtifact
 	plays has_type_role;
 
 CompilationUnitArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays has_comments_role
 	plays has_imports_role
@@ -484,6 +489,7 @@ MemberValuePairArtifact sub JavaSourceArtifact
 MethodDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has constructorAttribute
+	has name
 	# Structural
 	plays is_body_declarations_role
 	plays has_body_role
@@ -572,6 +578,7 @@ NullLiteralArtifact sub JavaSourceArtifact
 
 NumberLiteralArtifact sub JavaSourceArtifact
 	# Attributes
+	has doubleValue
 	has numberValue
 	# Structural
 	plays is_arguments_role
@@ -682,6 +689,8 @@ PrimitiveTypeArtifact sub JavaSourceArtifact
 	plays is_type_role;
 
 QualifiedNameArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_arguments_role
 	plays is_array_role
@@ -726,6 +735,8 @@ ReturnStatementArtifact sub JavaSourceArtifact
 	plays has_expression_role;
 
 SimpleNameArtifact sub JavaSourceArtifact
+    # Attributes
+    has name
 	# Structural
 	plays is_arguments_role
 	plays is_array_role
@@ -918,6 +929,7 @@ TryStatementArtifact sub JavaSourceArtifact
 TypeDeclarationArtifact sub JavaSourceArtifact
 	# Attributes
 	has interfaceAttribute
+	has name
 	# Structural
 	plays is_body_declarations_role
 	plays is_declaration_role

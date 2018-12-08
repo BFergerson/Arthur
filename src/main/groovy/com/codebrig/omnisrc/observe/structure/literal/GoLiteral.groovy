@@ -6,7 +6,7 @@ import com.codebrig.omnisrc.observe.structure.StructureLiteral
 /**
  * Used to determine and get the literal type of Go AST nodes
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -21,7 +21,7 @@ class GoLiteral extends StructureLiteral {
                 } else if (node.properties.get("Kind") == "INT") {
                     return numberValueLiteral()
                 } else if (node.properties.get("Kind") == "FLOAT") {
-                    return floatValueLiteral()
+                    return doubleValueLiteral()
                 } else {
                     throw new UnsupportedOperationException("Literal kind: " + node.properties.get("Kind"))
                 }
@@ -33,7 +33,7 @@ class GoLiteral extends StructureLiteral {
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "BasicLit":
-                return [numberValueLiteral(), floatValueLiteral()]
+                return [numberValueLiteral(), doubleValueLiteral()]
             default:
                 return Collections.emptyList()
         }

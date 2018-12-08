@@ -23,7 +23,7 @@ import static com.google.common.io.Files.getFileExtension
 /**
  * Used to observe a source code language and generate the resulting schema
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

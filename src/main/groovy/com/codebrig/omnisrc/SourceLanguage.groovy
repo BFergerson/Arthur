@@ -3,7 +3,10 @@ package com.codebrig.omnisrc
 import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 import com.codebrig.omnisrc.observe.structure.literal.*
+import com.codebrig.omnisrc.observe.structure.naming.GoNaming
 import com.codebrig.omnisrc.observe.structure.naming.JavaNaming
+import com.codebrig.omnisrc.observe.structure.naming.JavascriptNaming
+import com.codebrig.omnisrc.observe.structure.naming.PythonNaming
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
@@ -11,14 +14,13 @@ import com.google.common.io.Resources
 /**
  * The supported source code languages
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 enum SourceLanguage {
 
     OmniSRC([]),
-    //Bash(["csh", "tcsh", "bash", "sh", "zsh"]),
     Go(["go"]),
     Java(["java"]),
     Javascript(["js"]),
@@ -27,6 +29,8 @@ enum SourceLanguage {
     Ruby(["rb"])
 
     private final Set<String> fileExtensions
+    private StructureNaming namingCache
+    private StructureLiteral literalCache
 
     SourceLanguage(List<String> fileExtensions) {
         this.fileExtensions = new HashSet<>(fileExtensions)
@@ -73,43 +77,45 @@ enum SourceLanguage {
         }
     }
 
-    String getPossibleSemanticRolesSchemaDefinition() {
-        if (this == OmniSRC) {
-            return Resources.toString(Resources.getResource(
-                    "schema/omnilingual/OmniSRC_Omnilingual_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
-        } else {
-            return Resources.toString(Resources.getResource(
-                    "schema/unilingual/$key/OmniSRC_" + qualifiedName + "_Possible_Semantic_Roles.gql"), Charsets.UTF_8)
-        }
-    }
-
     boolean isValidExtension(String extension) {
         return fileExtensions.contains(extension.toLowerCase())
     }
 
     StructureNaming getStructureNaming() {
+        if (namingCache != null) {
+            return namingCache
+        }
         switch (this) {
+            case Go:
+                return namingCache = new GoNaming()
             case Java:
-                return new JavaNaming()
+                return namingCache = new JavaNaming()
+            case Javascript:
+                return namingCache = new JavascriptNaming()
+            case Python:
+                return namingCache = new PythonNaming()
             default:
                 return null //todo: implement rest
         }
     }
 
     StructureLiteral getStructureLiteral() {
+        if (literalCache != null) {
+            return literalCache
+        }
         switch (this) {
             case Go:
-                return new GoLiteral()
+                return literalCache = new GoLiteral()
             case Java:
-                return new JavaLiteral()
+                return literalCache = new JavaLiteral()
             case Javascript:
-                return new JavascriptLiteral()
+                return literalCache = new JavascriptLiteral()
             case Php:
-                return new PhpLiteral()
+                return literalCache = new PhpLiteral()
             case Python:
-                return new PythonLiteral()
+                return literalCache = new PythonLiteral()
             case Ruby:
-                return new RubyLiteral()
+                return literalCache = new RubyLiteral()
             default:
                 return null //todo: implement rest
         }
@@ -147,5 +153,9 @@ enum SourceLanguage {
         } else {
             throw new IllegalArgumentException("Could not determine source language of: " + languageName)
         }
+    }
+
+    static List<SourceLanguage> getSupportedLanguages() {
+        return values().findAll { it != OmniSRC }
     }
 }

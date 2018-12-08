@@ -10,7 +10,7 @@ import scala.collection.JavaConverters
 /**
  * Represents a single UAST unit extracted from source code.
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -54,7 +54,7 @@ class SourceNode {
         return underlyingNode.internalType()
     }
 
-    String getQualifiedName() {
+    String getName() {
         return naming.getNodeName(this)
     }
 

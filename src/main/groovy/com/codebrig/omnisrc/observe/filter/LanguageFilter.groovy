@@ -7,22 +7,20 @@ import com.codebrig.omnisrc.SourceNodeFilter
 /**
  * Match by the source code language
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class LanguageFilter extends SourceNodeFilter {
+class LanguageFilter extends SourceNodeFilter<LanguageFilter, SourceLanguage> {
 
-    private final SourceLanguage language
-
-    LanguageFilter(SourceLanguage language) {
-        this.language = Objects.requireNonNull(language)
+    LanguageFilter(SourceLanguage... values) {
+        accept(values)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
         if (node != null) {
-            return node.language == language
+            return evaluateProperty(node.language)
         }
         return false
     }

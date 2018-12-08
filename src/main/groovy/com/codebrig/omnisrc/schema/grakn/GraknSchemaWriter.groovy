@@ -12,7 +12,7 @@ import static com.codebrig.omnisrc.schema.SchemaSegment.*
 /**
  * Used to create Grakn compatible OmniSRC schemas
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -67,7 +67,6 @@ class GraknSchemaWriter implements SchemaWriter {
     private void writeAttributes(Writer output) {
         println "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
-        output.append("token sub attribute datatype string;\n")
         StructureLiteral.allLiteralAttributes.each {
             output.append(it.key).append(" sub attribute datatype ").append(it.value).append(";\n")
         }
@@ -155,7 +154,9 @@ class GraknSchemaWriter implements SchemaWriter {
         output.append("\n##########---------- Entities ----------##########\n")
         if (includeAttributes) {
             output.append("SourceArtifact sub entity\n")
-                    .append("\thas token;\n")
+                    .append("\thas token\n")
+                    .append("\tplays is_child\n")
+                    .append("\tplays is_parent;\n")
         }
 
         if (rootLanguage.isOmnilingual()) {
@@ -185,6 +186,11 @@ class GraknSchemaWriter implements SchemaWriter {
             //has
             if (includeAttributes && observedLanguage.attributes.containsKey(entity)) {
                 def attrList = observedLanguage.getEntityObservedAttributes(entity, naturalOrdering)
+                def entityWithoutArtifact = entity.replace("Artifact", "")
+                if (observedLanguage.language.structureNaming.isNamedNodeType(entityWithoutArtifact)) {
+                    attrList.add("name")
+                }
+
                 if (!attrList.isEmpty()) output.append("\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
                     def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())

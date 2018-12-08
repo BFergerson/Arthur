@@ -2,15 +2,15 @@
 OmniSRC is a semantic omnilingual UAST (universal abstract syntax tree) schema generator which uses source code as input and outputs unilingual and omnilingual ontologies derived from those language(s).
 OmniSRC parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) and constructs the observed schema for use in a [Grakn](https://github.com/graknlabs/grakn) knowledge graph. 
 
-## Omnilingual Schemas
+## Omnilingual Schema
 
-| Languages   | Schema      |
+| Languages   | Segments    |
 | ----------- | ----------- |
 | Go, Java, JavaScript, PHP, Python, Ruby | [OmniSRC_Omnilingual_Base_Structure.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/omnilingual/OmniSRC_Omnilingual_Base_Structure.gql) <br> [OmniSRC_Omnilingual_Individual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/omnilingual/OmniSRC_Omnilingual_Individual_Semantic_Roles.gql) <br> [OmniSRC_Omnilingual_Actual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/omnilingual/OmniSRC_Omnilingual_Actual_Semantic_Roles.gql) |
 
 ## Unilingual Schemas
 
-| Language    | Schema      |
+| Language    | Segments    |
 | ----------- | ----------- |
 | Go          | [OmniSRC_Go_Base_Structure.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/go/OmniSRC_Go_Base_Structure.gql) <br> [OmniSRC_Go_Individual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/go/OmniSRC_Go_Individual_Semantic_Roles.gql) <br> [OmniSRC_Go_Actual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/go/OmniSRC_Go_Actual_Semantic_Roles.gql) |
 | Java        | [OmniSRC_Java_Base_Structure.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/java/OmniSRC_Java_Base_Structure.gql) <br> [OmniSRC_Java_Individual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/java/OmniSRC_Java_Individual_Semantic_Roles.gql) <br> [OmniSRC_Java_Actual_Semantic_Roles.gql](https://github.com/CodeBrig/OmniSRC/blob/master/src/main/resources/schema/unilingual/java/OmniSRC_Java_Actual_Semantic_Roles.gql) |

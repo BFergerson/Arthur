@@ -7,12 +7,12 @@ import org.junit.Test
 
 import static org.junit.Assert.assertTrue
 
-class WhitelistRoleFilterTest extends OmniSRCTest {
+class RoleFilterTest extends OmniSRCTest {
 
     @Test
     void onlyForStatementsFilter() {
-        def filter = new WhitelistRoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
-        def parseFolder = new File("src/test/resources/same/")
+        def filter = new RoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
+        def parseFolder = new File("src/test/resources/same/program")
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
             def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)

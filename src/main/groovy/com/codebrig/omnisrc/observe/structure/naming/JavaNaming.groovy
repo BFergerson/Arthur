@@ -8,11 +8,25 @@ import com.codebrig.omnisrc.observe.structure.StructureNaming
 /**
  * Used to get the names/qualified names of Java AST nodes
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class JavaNaming implements StructureNaming {
+
+    @Override
+    boolean isNamedNodeType(String internalType) {
+        switch (Objects.requireNonNull(internalType)) {
+            case "SimpleName":
+            case "QualifiedName":
+            case "CompilationUnit":
+            case "MethodDeclaration":
+            case "TypeDeclaration":
+                return true
+            default:
+                return false
+        }
+    }
 
     @Override
     String getNodeName(SourceNode node) {
@@ -73,7 +87,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    private static String getPackageDeclarationName(SourceNode node) {
+    static String getPackageDeclarationName(SourceNode node) {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node).each {
             name += it.token + "."
@@ -81,7 +95,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    private static String getSimpleNameName(SourceNode node) {
+    static String getSimpleNameName(SourceNode node) {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node).each {
             name += it.token
@@ -89,7 +103,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    private static String getQualifiedNameName(SourceNode node) {
+    static String getQualifiedNameName(SourceNode node) {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node).each {
             name += it.token + "."
@@ -100,7 +114,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    private static String getSingleVariableDeclarationName(SourceNode node) {
+    static String getSingleVariableDeclarationName(SourceNode node) {
         def type = ""
         new InternalRoleFilter("type").getFilteredNodes(node.children).each {
             switch (it.internalType) {
@@ -113,6 +127,12 @@ class JavaNaming implements StructureNaming {
                 case "SimpleType":
                     type = getSimpleTypeName(it)
                     break
+                case "ArrayType":
+                    type = getArrayTypeName(it)
+                    break
+                case "QualifiedType":
+                    type = getQualifiedTypeName(it)
+                    break
                 default:
                     throw new IllegalStateException("Unsupported type: " + it.internalType)
             }
@@ -120,11 +140,17 @@ class JavaNaming implements StructureNaming {
         return type
     }
 
-    private static String getParameterizedTypeName(SourceNode node) {
+    static String getParameterizedTypeName(SourceNode node) {
         def type = getSimpleTypeName(new InternalRoleFilter("type").getFilteredNodes(node.children).next())
         def paramTypes = ""
         new InternalRoleFilter("typeArguments").getFilteredNodes(node.children).each {
-            paramTypes += getSimpleTypeName(it) + ","
+            if (it.internalType == "WildcardType") {
+                paramTypes += "?,"
+            } else if (it.internalType == "ParameterizedType") {
+                paramTypes += getParameterizedTypeName(it) + ","
+            } else {
+                paramTypes += getSimpleTypeName(it) + ","
+            }
         }
         if (paramTypes.endsWith(",")) {
             paramTypes = paramTypes.substring(0, paramTypes.length() - 1)
@@ -137,8 +163,16 @@ class JavaNaming implements StructureNaming {
         }
     }
 
-    private static String getSimpleTypeName(SourceNode node) {
-        def name = getJavaQualifiedName(new InternalRoleFilter("name").getFilteredNodes(node.children).next().token)
+    static String getSimpleTypeName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+            name += it.token + "."
+        }
+        if (name.endsWith(".")) {
+            name = name.substring(0, name.length() - 1)
+        }
+        name = getJavaQualifiedName(name)
+
         getImports(node.rootSourceNode).each {
             if (it.endsWith(name)) {
                 name = it
@@ -147,7 +181,62 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    private static List<String> getImports(SourceNode rootNode) {
+    static String getArrayTypeName(SourceNode node) {
+        def type
+        def elementType = new InternalRoleFilter("elementType").getFilteredNodes(node.children).next()
+        switch (elementType.internalType) {
+            case "PrimitiveType":
+                type = elementType.token
+                break
+            case "ParameterizedType":
+                type = getParameterizedTypeName(elementType)
+                break
+            case "SimpleType":
+                type = getSimpleTypeName(elementType)
+                break
+            case "ArrayType":
+                type = getArrayTypeName(elementType)
+                break
+            default:
+                throw new IllegalStateException("Unsupported type: " + elementType.internalType)
+        }
+
+        def dimensions = ""
+        new InternalRoleFilter("dimensions").getFilteredNodes(node.children).each {
+            dimensions += "[]"
+        }
+        return type + dimensions
+    }
+
+    static String getQualifiedTypeName(SourceNode node) {
+        def qualifier = ""
+        new InternalRoleFilter("qualifier").getFilteredNodes(node.children).each {
+            switch (it.internalType) {
+                case "PrimitiveType":
+                    qualifier += it.token
+                    break
+                case "ParameterizedType":
+                    qualifier += getParameterizedTypeName(it)
+                    break
+                case "SimpleType":
+                    qualifier += getSimpleTypeName(it)
+                    break
+                case "ArrayType":
+                    qualifier += getArrayTypeName(it)
+                    break
+                case "QualifiedType":
+                    qualifier += getQualifiedTypeName(it)
+                    break
+                default:
+                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+            }
+        }
+
+        def name = getSimpleTypeName(new InternalRoleFilter("name").getFilteredNodes(node.children).next())
+        return qualifier + "." + name
+    }
+
+    static List<String> getImports(SourceNode rootNode) {
         def importList = new ArrayList<String>()
         new InternalRoleFilter("imports").getFilteredNodes(rootNode.children).each {
             def importStr = ""
@@ -163,12 +252,14 @@ class JavaNaming implements StructureNaming {
         return importList
     }
 
-    private static String getJavaQualifiedName(String object) {
+    static String getJavaQualifiedName(String object) {
         switch (object) {
             case "Boolean":
+            case "Double":
             case "Integer":
             case "String":
             case "Object":
+            case "Iterable":
                 return "java.lang." + object
             default:
                 return object

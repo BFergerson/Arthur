@@ -2,7 +2,7 @@ define
 
 ##########---------- Attributes ----------##########
 token sub attribute datatype string;
-floatValue sub attribute datatype double;
+doubleValue sub attribute datatype double;
 booleanValue sub attribute datatype boolean;
 numberValue sub attribute datatype long;
 
@@ -22,7 +22,9 @@ variadicAttribute sub attribute datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
-	has token;
+	has token
+	plays is_child
+	plays is_parent;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;

@@ -6,28 +6,21 @@ import com.codebrig.omnisrc.SourceNodeFilter
 /**
  * Match by the type
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class TypeFilter extends SourceNodeFilter {
+class TypeFilter extends SourceNodeFilter<TypeFilter, String> {
 
-    private Set<String> acceptedTypes
-
-    TypeFilter() {
-        acceptedTypes = new HashSet<>()
-    }
-
-    TypeFilter(String... acceptTypes) {
-        acceptedTypes = new HashSet<>(Arrays.asList(acceptTypes))
-    }
-
-    void acceptType(String internalType) {
-        acceptedTypes.add(internalType)
+    TypeFilter(String... values) {
+        accept(values)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return acceptedTypes.contains(node?.internalType)
+        if (node != null) {
+            return evaluateProperty(node.internalType)
+        }
+        return false
     }
 }

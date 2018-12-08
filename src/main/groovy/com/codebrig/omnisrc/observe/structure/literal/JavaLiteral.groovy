@@ -6,7 +6,7 @@ import com.codebrig.omnisrc.observe.structure.StructureLiteral
 /**
  * Used to determine and get the literal type of Java AST nodes
  *
- * @version 0.2
+ * @version 0.3
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -16,6 +16,13 @@ class JavaLiteral extends StructureLiteral {
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumberLiteral":
+                if (node.token.contains(".")
+                        || node.token.toUpperCase().contains("P")
+                        || node.token.toUpperCase().contains("E")
+                        || node.token.toUpperCase().endsWith("D")
+                        || node.token.toUpperCase().endsWith("F")) {
+                    return doubleValueLiteral()
+                }
                 return numberValueLiteral()
             default:
                 return null
@@ -24,11 +31,11 @@ class JavaLiteral extends StructureLiteral {
 
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
-        def literalAttribute = getNodeLiteralAttribute(node)
-        if (literalAttribute == null) {
-            return Collections.emptyList()
-        } else {
-            return Collections.singletonList(literalAttribute)
+        switch (Objects.requireNonNull(node).internalType) {
+            case "NumberLiteral":
+                return [numberValueLiteral(), doubleValueLiteral()]
+            default:
+                return Collections.emptyList()
         }
     }
 }
