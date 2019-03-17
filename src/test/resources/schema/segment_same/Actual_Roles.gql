@@ -267,6 +267,10 @@ PythonNameArtifact sub PythonSourceArtifact
 	plays IS_CALL_CALLEE_EXPRESSION_IDENTIFIER
 	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE;
 
+PythonNoopSameLineArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT_NOOP;
+
 PythonNumArtifact sub PythonSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NUMBER_POSITIONAL_PRIMITIVE;
@@ -274,6 +278,8 @@ PythonNumArtifact sub PythonSourceArtifact
 PythonPrintArtifact sub PythonSourceArtifact
 	# Semantic
 	plays IS_CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER;
+
+PythonSameLineNoopsArtifact sub PythonSourceArtifact;
 
 ##########---------- Semantic Roles ----------##########
 ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NUMBER_POSITIONAL_PRIMITIVE sub relationship
@@ -399,6 +405,10 @@ IS_CALL_EXPRESSION_IDENTIFIER_QUALIFIED_RECEIVER sub role;
 CALLEE_EXPRESSION_INCOMPLETE sub relationship
 	relates IS_CALLEE_EXPRESSION_INCOMPLETE;
 IS_CALLEE_EXPRESSION_INCOMPLETE sub role;
+
+COMMENT_NOOP sub relationship
+	relates IS_COMMENT_NOOP;
+IS_COMMENT_NOOP sub role;
 
 DECLARATION_EXPRESSION_FOR_INITIALIZATION_VARIABLE sub relationship
 	relates IS_DECLARATION_EXPRESSION_FOR_INITIALIZATION_VARIABLE;

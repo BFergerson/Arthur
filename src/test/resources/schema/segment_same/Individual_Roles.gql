@@ -415,6 +415,11 @@ PythonNameArtifact sub PythonSourceArtifact
 	plays IS_POSITIONAL
 	plays IS_UPDATE;
 
+PythonNoopSameLineArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT
+	plays IS_NOOP;
+
 PythonNumArtifact sub PythonSourceArtifact
 	# Semantic
 	plays IS_ARGUMENT
@@ -434,6 +439,10 @@ PythonPrintArtifact sub PythonSourceArtifact
 	plays IS_EXPRESSION
 	plays IS_FUNCTION
 	plays IS_IDENTIFIER;
+
+PythonSameLineNoopsArtifact sub PythonSourceArtifact
+	# Semantic
+	plays IS_COMMENT;
 
 ##########---------- Semantic Roles ----------##########
 ARGS_LIST sub relationship
@@ -471,6 +480,10 @@ IS_CALL sub role;
 CALLEE sub relationship
 	relates IS_CALLEE;
 IS_CALLEE sub role;
+
+COMMENT sub relationship
+	relates IS_COMMENT;
+IS_COMMENT sub role;
 
 CONDITION sub relationship
 	relates IS_CONDITION;
@@ -547,6 +560,10 @@ IS_MODULE sub role;
 NAME sub relationship
 	relates IS_NAME;
 IS_NAME sub role;
+
+NOOP sub relationship
+	relates IS_NOOP;
+IS_NOOP sub role;
 
 NUMBER sub relationship
 	relates IS_NUMBER;

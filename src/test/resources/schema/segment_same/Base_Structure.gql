@@ -475,7 +475,12 @@ PythonNameArtifact sub PythonSourceArtifact
 	# Structural
 	plays is_python_func_role
 	plays is_python_target_role
-	plays is_python_values_role;
+	plays is_python_values_role
+	plays has_python_noops_sameline_role;
+
+PythonNoopSameLineArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_python_noop_lines_role;
 
 PythonNumArtifact sub PythonSourceArtifact
 	# Attributes
@@ -489,6 +494,11 @@ PythonPrintArtifact sub PythonSourceArtifact
 	# Structural
 	plays is_python_body_stmts_role
 	plays has_python_values_role;
+
+PythonSameLineNoopsArtifact sub PythonSourceArtifact
+	# Structural
+	plays is_python_noops_sameline_role
+	plays has_python_noop_lines_role;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relationship
@@ -935,6 +945,16 @@ python_iter_relation sub parent_child_relation
 	relates is_python_iter_role, relates has_python_iter_role;
 is_python_iter_role sub is_child;
 has_python_iter_role sub is_parent;
+
+python_noop_lines_relation sub parent_child_relation
+	relates is_python_noop_lines_role, relates has_python_noop_lines_role;
+is_python_noop_lines_role sub is_child;
+has_python_noop_lines_role sub is_parent;
+
+python_noops_sameline_relation sub parent_child_relation
+	relates is_python_noops_sameline_role, relates has_python_noops_sameline_role;
+is_python_noops_sameline_role sub is_child;
+has_python_noops_sameline_role sub is_parent;
 
 python_orelse_relation sub parent_child_relation
 	relates is_python_orelse_role, relates has_python_orelse_role;
