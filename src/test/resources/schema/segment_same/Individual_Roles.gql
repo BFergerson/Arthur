@@ -5,308 +5,308 @@ define
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
-ExpressionStatementArtifact sub OmnilingualSourceArtifact
+ExpressionStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_STATEMENT;
 
-FileArtifact sub OmnilingualSourceArtifact
+FileArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_FILE;
 
-ForStatementArtifact sub OmnilingualSourceArtifact
+ForStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
-	plays IS_FOR
+	plays IS_FOR,
 	plays IS_STATEMENT;
 
-OperatorArtifact sub OmnilingualSourceArtifact
+OperatorArtifact sub OmnilingualSourceArtifact,
 	# Semantic
-	plays IS_ARITHMETIC
-	plays IS_BINARY
-	plays IS_DECREMENT
-	plays IS_EXPRESSION
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_OPERATOR
-	plays IS_RELATIONAL
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL,
 	plays IS_UNARY;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoAssignStmtArtifact sub GoSourceArtifact
+GoAssignStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_DECLARATION
-	plays IS_FOR
-	plays IS_INITIALIZATION
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_INITIALIZATION,
 	plays IS_STATEMENT;
 
-GoBasicLitArtifact sub GoSourceArtifact
+GoBasicLitArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_EXPRESSION
-	plays IS_IMPORT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PATHNAME
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_IMPORT,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PATHNAME,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
 	plays IS_STRING;
 
-GoBinaryExprArtifact sub GoSourceArtifact
+GoBinaryExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_GREATER_THAN_OR_EQUAL
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_GREATER_THAN_OR_EQUAL,
 	plays IS_RELATIONAL;
 
-GoBlockStmtArtifact sub GoSourceArtifact
+GoBlockStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BODY
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_SCOPE
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
-GoCallExprArtifact sub GoSourceArtifact
+GoCallExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_CALL
+	plays IS_CALL,
 	plays IS_EXPRESSION;
 
-GoExprStmtArtifact sub GoSourceArtifact
+GoExprStmtArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_STATEMENT;
 
-GoFieldListArtifact sub GoSourceArtifact
+GoFieldListArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_ARGS_LIST;
 
 GoFileArtifact sub FileArtifact;
 
-GoForStmtArtifact sub GoSourceArtifact
+GoForStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FOR
+	plays IS_FOR,
 	plays IS_STATEMENT;
 
-GoFuncDeclArtifact sub GoSourceArtifact
+GoFuncDeclArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
+	plays IS_DECLARATION,
 	plays IS_FUNCTION;
 
-GoFuncTypeArtifact sub GoSourceArtifact
+GoFuncTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
 	plays IS_TYPE;
 
-GoGenDeclArtifact sub GoSourceArtifact
+GoGenDeclArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION;
 
-GoIdentArtifact sub GoSourceArtifact
+GoIdentArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_NAME
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_NAME,
 	plays IS_POSITIONAL;
 
-GoImportSpecArtifact sub GoSourceArtifact
+GoImportSpecArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
+	plays IS_DECLARATION,
 	plays IS_IMPORT;
 
-GoIncDecStmtArtifact sub GoSourceArtifact
+GoIncDecStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECREMENT
-	plays IS_FOR
-	plays IS_STATEMENT
-	plays IS_UNARY
+	plays IS_DECREMENT,
+	plays IS_FOR,
+	plays IS_STATEMENT,
+	plays IS_UNARY,
 	plays IS_UPDATE;
 
-GoOperatorArtifact sub OperatorArtifact
+GoOperatorArtifact sub OperatorArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
+	plays IS_ASSIGNMENT,
 	plays IS_DECLARATION;
 
 GoPositionArtifact sub GoSourceArtifact;
 
-GoSelectorExprArtifact sub GoSourceArtifact
+GoSelectorExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_CALLEE
-	plays IS_EXPRESSION
+	plays IS_CALLEE,
+	plays IS_EXPRESSION,
 	plays IS_INCOMPLETE;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaArrayTypeArtifact sub JavaSourceArtifact
+JavaArrayTypeArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_LIST
-	plays IS_PRIMITIVE
+	plays IS_LIST,
+	plays IS_PRIMITIVE,
 	plays IS_TYPE;
 
-JavaBlockArtifact sub JavaSourceArtifact
+JavaBlockArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_BLOCK
-	plays IS_BODY
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_SCOPE
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
-JavaCompilationUnitArtifact sub JavaSourceArtifact
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_FILE;
 
-JavaDimensionArtifact sub JavaSourceArtifact
+JavaDimensionArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE
+	plays IS_INCOMPLETE,
 	plays IS_TYPE;
 
 JavaExpressionStatementArtifact sub ExpressionStatementArtifact;
 
 JavaForStatementArtifact sub ForStatementArtifact;
 
-JavaInfixExpressionArtifact sub JavaSourceArtifact
+JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_OPERATOR
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
 
-JavaMethodDeclarationArtifact sub JavaSourceArtifact
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_FUNCTION
-	plays IS_VISIBILITY
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-JavaMethodInvocationArtifact sub JavaSourceArtifact
+JavaMethodInvocationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_CALL
+	plays IS_CALL,
 	plays IS_EXPRESSION;
 
-JavaModifierArtifact sub JavaSourceArtifact
+JavaModifierArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE
-	plays IS_VISIBILITY
+	plays IS_INCOMPLETE,
+	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-JavaNumberLiteralArtifact sub JavaSourceArtifact
+JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_EXPRESSION
-	plays IS_LITERAL
-	plays IS_NUMBER
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
 	plays IS_RIGHT;
 
-JavaOperatorArtifact sub OperatorArtifact
+JavaOperatorArtifact sub OperatorArtifact,
 	# Semantic
 	plays IS_POSTFIX;
 
-JavaPostfixExpressionArtifact sub JavaSourceArtifact
+JavaPostfixExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_ARITHMETIC
-	plays IS_DECREMENT
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_OPERATOR
-	plays IS_POSTFIX
-	plays IS_UNARY
+	plays IS_ARITHMETIC,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_OPERATOR,
+	plays IS_POSTFIX,
+	plays IS_UNARY,
 	plays IS_UPDATE;
 
-JavaPrimitiveTypeArtifact sub JavaSourceArtifact
+JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE,
 	plays IS_TYPE;
 
-JavaQualifiedNameArtifact sub JavaSourceArtifact
+JavaQualifiedNameArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_QUALIFIED
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_QUALIFIED,
 	plays IS_RECEIVER;
 
-JavaSimpleNameArtifact sub JavaSourceArtifact
+JavaSimpleNameArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_BINARY
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_NAME
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CALLEE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_NAME,
 	plays IS_POSITIONAL;
 
-JavaSimpleTypeArtifact sub JavaSourceArtifact
+JavaSimpleTypeArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_TYPE;
 
-JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact
+JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_DECLARATION
-	plays IS_FUNCTION
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
 	plays IS_VARIABLE;
 
-JavaTypeDeclarationArtifact sub JavaSourceArtifact
+JavaTypeDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_TYPE
-	plays IS_VISIBILITY
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact
+JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_INITIALIZATION
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_INITIALIZATION,
 	plays IS_VARIABLE;
 
-JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact
+JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
+	plays IS_DECLARATION,
 	plays IS_VARIABLE;
 
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
-JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact
+JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_OPERATOR
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
 
-JavascriptBlockStatementArtifact sub JavascriptSourceArtifact
+JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK
-	plays IS_SCOPE
+	plays IS_BLOCK,
+	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
-JavascriptCallExpressionArtifact sub JavascriptSourceArtifact
+JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_CALL
+	plays IS_CALL,
 	plays IS_EXPRESSION;
 
 JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact;
@@ -315,332 +315,282 @@ JavascriptFileArtifact sub FileArtifact;
 
 JavascriptForStatementArtifact sub ForStatementArtifact;
 
-JavascriptIdentifierArtifact sub JavascriptSourceArtifact
+JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_BINARY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_LEFT;
 
-JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact
+JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
+	plays IS_CALL,
+	plays IS_CALLEE,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_QUALIFIED;
 
-JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact
+JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_EXPRESSION
-	plays IS_INITIALIZATION
-	plays IS_LITERAL
-	plays IS_NUMBER
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_INITIALIZATION,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
 	plays IS_RIGHT;
 
 JavascriptOperatorArtifact sub OperatorArtifact;
 
-JavascriptProgramArtifact sub JavascriptSourceArtifact
+JavascriptProgramArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_MODULE;
 
-JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact
+JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARITHMETIC
-	plays IS_DECREMENT
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_OPERATOR
-	plays IS_POSTFIX
-	plays IS_UNARY
+	plays IS_ARITHMETIC,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_OPERATOR,
+	plays IS_POSTFIX,
+	plays IS_UNARY,
 	plays IS_UPDATE;
 
-JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact
+JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_FOR
-	plays IS_INITIALIZATION
-	plays IS_STATEMENT
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_INITIALIZATION,
+	plays IS_STATEMENT,
 	plays IS_VARIABLE;
 
-JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact
+JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION
+	plays IS_DECLARATION,
 	plays IS_VARIABLE;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
-PythonCallArtifact sub PythonSourceArtifact
+PythonCallArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FOR
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
 	plays IS_FUNCTION;
 
-PythonForArtifact sub PythonSourceArtifact
+PythonForArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_FOR
-	plays IS_ITERATOR
+	plays IS_FOR,
+	plays IS_ITERATOR,
 	plays IS_STATEMENT;
 
-PythonForBodyArtifact sub PythonSourceArtifact
+PythonForBodyArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_FOR
+	plays IS_BODY,
+	plays IS_FOR,
 	plays IS_THEN;
 
-PythonForOrelseArtifact sub PythonSourceArtifact
+PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
+	plays IS_BODY,
+	plays IS_ELSE,
 	plays IS_FOR;
 
-PythonModuleArtifact sub PythonSourceArtifact
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_FILE
+	plays IS_FILE,
 	plays IS_MODULE;
 
-PythonNameArtifact sub PythonSourceArtifact
+PythonNameArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IDENTIFIER
-	plays IS_POSITIONAL
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_CALLEE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IDENTIFIER,
+	plays IS_POSITIONAL,
 	plays IS_UPDATE;
 
-PythonNoopSameLineArtifact sub PythonSourceArtifact
+PythonNoopSameLineArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_COMMENT
+	plays IS_COMMENT,
 	plays IS_NOOP;
 
-PythonNumArtifact sub PythonSourceArtifact
+PythonNumArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LITERAL
-	plays IS_NAME
-	plays IS_NUMBER
-	plays IS_POSITIONAL
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LITERAL,
+	plays IS_NAME,
+	plays IS_NUMBER,
+	plays IS_POSITIONAL,
 	plays IS_PRIMITIVE;
 
-PythonPrintArtifact sub PythonSourceArtifact
+PythonPrintArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_CALL
-	plays IS_CALLEE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
+	plays IS_CALL,
+	plays IS_CALLEE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
 	plays IS_IDENTIFIER;
 
-PythonSameLineNoopsArtifact sub PythonSourceArtifact
+PythonSameLineNoopsArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_COMMENT;
 
 ##########---------- Semantic Roles ----------##########
-ARGS_LIST sub relationship
+ARGS_LIST sub relation,
 	relates IS_ARGS_LIST;
-IS_ARGS_LIST sub role;
 
-ARGUMENT sub relationship
+ARGUMENT sub relation,
 	relates IS_ARGUMENT;
-IS_ARGUMENT sub role;
 
-ARITHMETIC sub relationship
+ARITHMETIC sub relation,
 	relates IS_ARITHMETIC;
-IS_ARITHMETIC sub role;
 
-ASSIGNMENT sub relationship
+ASSIGNMENT sub relation,
 	relates IS_ASSIGNMENT;
-IS_ASSIGNMENT sub role;
 
-BINARY sub relationship
+BINARY sub relation,
 	relates IS_BINARY;
-IS_BINARY sub role;
 
-BLOCK sub relationship
+BLOCK sub relation,
 	relates IS_BLOCK;
-IS_BLOCK sub role;
 
-BODY sub relationship
+BODY sub relation,
 	relates IS_BODY;
-IS_BODY sub role;
 
-CALL sub relationship
+CALL sub relation,
 	relates IS_CALL;
-IS_CALL sub role;
 
-CALLEE sub relationship
+CALLEE sub relation,
 	relates IS_CALLEE;
-IS_CALLEE sub role;
 
-COMMENT sub relationship
+COMMENT sub relation,
 	relates IS_COMMENT;
-IS_COMMENT sub role;
 
-CONDITION sub relationship
+CONDITION sub relation,
 	relates IS_CONDITION;
-IS_CONDITION sub role;
 
-DECLARATION sub relationship
+DECLARATION sub relation,
 	relates IS_DECLARATION;
-IS_DECLARATION sub role;
 
-DECREMENT sub relationship
+DECREMENT sub relation,
 	relates IS_DECREMENT;
-IS_DECREMENT sub role;
 
-ELSE sub relationship
+ELSE sub relation,
 	relates IS_ELSE;
-IS_ELSE sub role;
 
-EXPRESSION sub relationship
+EXPRESSION sub relation,
 	relates IS_EXPRESSION;
-IS_EXPRESSION sub role;
 
-FILE sub relationship
+FILE sub relation,
 	relates IS_FILE;
-IS_FILE sub role;
 
-FOR sub relationship
+FOR sub relation,
 	relates IS_FOR;
-IS_FOR sub role;
 
-FUNCTION sub relationship
+FUNCTION sub relation,
 	relates IS_FUNCTION;
-IS_FUNCTION sub role;
 
-GREATER_THAN_OR_EQUAL sub relationship
+GREATER_THAN_OR_EQUAL sub relation,
 	relates IS_GREATER_THAN_OR_EQUAL;
-IS_GREATER_THAN_OR_EQUAL sub role;
 
-IDENTIFIER sub relationship
+IDENTIFIER sub relation,
 	relates IS_IDENTIFIER;
-IS_IDENTIFIER sub role;
 
-IMPORT sub relationship
+IMPORT sub relation,
 	relates IS_IMPORT;
-IS_IMPORT sub role;
 
-INCOMPLETE sub relationship
+INCOMPLETE sub relation,
 	relates IS_INCOMPLETE;
-IS_INCOMPLETE sub role;
 
-INITIALIZATION sub relationship
+INITIALIZATION sub relation,
 	relates IS_INITIALIZATION;
-IS_INITIALIZATION sub role;
 
-ITERATOR sub relationship
+ITERATOR sub relation,
 	relates IS_ITERATOR;
-IS_ITERATOR sub role;
 
-LEFT sub relationship
+LEFT sub relation,
 	relates IS_LEFT;
-IS_LEFT sub role;
 
-LIST sub relationship
+LIST sub relation,
 	relates IS_LIST;
-IS_LIST sub role;
 
-LITERAL sub relationship
+LITERAL sub relation,
 	relates IS_LITERAL;
-IS_LITERAL sub role;
 
-MODULE sub relationship
+MODULE sub relation,
 	relates IS_MODULE;
-IS_MODULE sub role;
 
-NAME sub relationship
+NAME sub relation,
 	relates IS_NAME;
-IS_NAME sub role;
 
-NOOP sub relationship
+NOOP sub relation,
 	relates IS_NOOP;
-IS_NOOP sub role;
 
-NUMBER sub relationship
+NUMBER sub relation,
 	relates IS_NUMBER;
-IS_NUMBER sub role;
 
-OPERATOR sub relationship
+OPERATOR sub relation,
 	relates IS_OPERATOR;
-IS_OPERATOR sub role;
 
-PATHNAME sub relationship
+PATHNAME sub relation,
 	relates IS_PATHNAME;
-IS_PATHNAME sub role;
 
-POSITIONAL sub relationship
+POSITIONAL sub relation,
 	relates IS_POSITIONAL;
-IS_POSITIONAL sub role;
 
-POSTFIX sub relationship
+POSTFIX sub relation,
 	relates IS_POSTFIX;
-IS_POSTFIX sub role;
 
-PRIMITIVE sub relationship
+PRIMITIVE sub relation,
 	relates IS_PRIMITIVE;
-IS_PRIMITIVE sub role;
 
-QUALIFIED sub relationship
+QUALIFIED sub relation,
 	relates IS_QUALIFIED;
-IS_QUALIFIED sub role;
 
-RECEIVER sub relationship
+RECEIVER sub relation,
 	relates IS_RECEIVER;
-IS_RECEIVER sub role;
 
-RELATIONAL sub relationship
+RELATIONAL sub relation,
 	relates IS_RELATIONAL;
-IS_RELATIONAL sub role;
 
-RIGHT sub relationship
+RIGHT sub relation,
 	relates IS_RIGHT;
-IS_RIGHT sub role;
 
-SCOPE sub relationship
+SCOPE sub relation,
 	relates IS_SCOPE;
-IS_SCOPE sub role;
 
-STATEMENT sub relationship
+STATEMENT sub relation,
 	relates IS_STATEMENT;
-IS_STATEMENT sub role;
 
-STRING sub relationship
+STRING sub relation,
 	relates IS_STRING;
-IS_STRING sub role;
 
-THEN sub relationship
+THEN sub relation,
 	relates IS_THEN;
-IS_THEN sub role;
 
-TYPE sub relationship
+TYPE sub relation,
 	relates IS_TYPE;
-IS_TYPE sub role;
 
-UNARY sub relationship
+UNARY sub relation,
 	relates IS_UNARY;
-IS_UNARY sub role;
 
-UPDATE sub relationship
+UPDATE sub relation,
 	relates IS_UPDATE;
-IS_UPDATE sub role;
 
-VARIABLE sub relationship
+VARIABLE sub relation,
 	relates IS_VARIABLE;
-IS_VARIABLE sub role;
 
-VISIBILITY sub relationship
+VISIBILITY sub relation,
 	relates IS_VISIBILITY;
-IS_VISIBILITY sub role;
 
-WORLD sub relationship
+WORLD sub relation,
 	relates IS_WORLD;
-IS_WORLD sub role;

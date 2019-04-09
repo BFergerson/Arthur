@@ -8,7 +8,6 @@ JavaSourceArtifact sub SourceArtifact;
 AnnotationTypeDeclarationArtifact sub JavaSourceArtifact
 	# Semantic
 	plays IS_ANNOTATION
-	plays IS_BODY
 	plays IS_DECLARATION
 	plays IS_TYPE;
 
@@ -111,7 +110,6 @@ AssignmentArtifact sub JavaSourceArtifact
 	plays IS_RIGHT
 	plays IS_RIGHT_SHIFT
 	plays IS_SUBSTRACT
-	plays IS_SWITCH
 	plays IS_THEN
 	plays IS_UNSIGNED
 	plays IS_UPDATE
@@ -151,7 +149,6 @@ BooleanLiteralArtifact sub JavaSourceArtifact
 	plays IS_DO_WHILE
 	plays IS_ELSE
 	plays IS_EXPRESSION
-	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_LEFT
@@ -166,7 +163,6 @@ BreakStatementArtifact sub JavaSourceArtifact
 	plays IS_BODY
 	plays IS_BREAK
 	plays IS_CASE
-	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
@@ -179,8 +175,6 @@ CastExpressionArtifact sub JavaSourceArtifact
 	plays IS_BINARY
 	plays IS_BODY
 	plays IS_CALL
-	plays IS_CASE
-	plays IS_CONDITION
 	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
@@ -256,9 +250,7 @@ ConditionalExpressionArtifact sub JavaSourceArtifact
 	plays IS_IF
 	plays IS_POSITIONAL
 	plays IS_RIGHT
-	plays IS_SWITCH
-	plays IS_THEN
-	plays IS_WHILE;
+	plays IS_THEN;
 
 ConstructorInvocationArtifact sub JavaSourceArtifact
 	# Semantic
@@ -351,8 +343,7 @@ ExpressionStatementArtifact sub JavaSourceArtifact
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
-	plays IS_THEN
-	plays IS_WHILE;
+	plays IS_THEN;
 
 FieldAccessArtifact sub JavaSourceArtifact
 	# Semantic
@@ -387,10 +378,8 @@ ForStatementArtifact sub JavaSourceArtifact
 	plays IS_BODY
 	plays IS_CASE
 	plays IS_FOR
-	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
-	plays IS_THEN
 	plays IS_UNANNOTATED;
 
 IfStatementArtifact sub JavaSourceArtifact
@@ -484,11 +473,8 @@ JavadocArtifact sub JavaSourceArtifact
 
 LabeledStatementArtifact sub JavaSourceArtifact
 	# Semantic
-	plays IS_BODY
-	plays IS_CASE
 	plays IS_INCOMPLETE
-	plays IS_STATEMENT
-	plays IS_SWITCH;
+	plays IS_STATEMENT;
 
 LambdaExpressionArtifact sub JavaSourceArtifact
 	# Semantic
@@ -551,14 +537,12 @@ MethodInvocationArtifact sub JavaSourceArtifact
 	plays IS_FOR
 	plays IS_FUNCTION
 	plays IS_IF
-	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RECEIVER
 	plays IS_RIGHT
 	plays IS_SWITCH
 	plays IS_THEN
-	plays IS_UPDATE
 	plays IS_WHILE;
 
 MethodRefArtifact sub JavaSourceArtifact
@@ -580,12 +564,6 @@ ModifierArtifact sub JavaSourceArtifact
 	plays IS_SUBTYPE
 	plays IS_VISIBILITY
 	plays IS_WORLD;
-
-NameQualifiedTypeArtifact sub JavaSourceArtifact
-	# Semantic
-	plays IS_NAME
-	plays IS_QUALIFIED
-	plays IS_TYPE;
 
 NormalAnnotationArtifact sub JavaSourceArtifact
 	# Semantic
@@ -708,22 +686,18 @@ PostfixExpressionArtifact sub JavaSourceArtifact
 	plays IS_ARITHMETIC
 	plays IS_ASSIGNMENT
 	plays IS_BINARY
-	plays IS_BODY
 	plays IS_CALL
 	plays IS_DECREMENT
 	plays IS_ELSE
 	plays IS_EXPRESSION
 	plays IS_FOR
-	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_INCREMENT
-	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_OPERATOR
 	plays IS_POSITIONAL
 	plays IS_POSTFIX
 	plays IS_RIGHT
-	plays IS_SWITCH
 	plays IS_THEN
 	plays IS_UNARY
 	plays IS_UPDATE;
@@ -748,7 +722,6 @@ PrefixExpressionArtifact sub JavaSourceArtifact
 	plays IS_FUNCTION
 	plays IS_IF
 	plays IS_INCREMENT
-	plays IS_INITIALIZATION
 	plays IS_LEFT
 	plays IS_NEGATIVE
 	plays IS_NOT
@@ -895,10 +868,6 @@ SuperFieldAccessArtifact sub JavaSourceArtifact
 	plays IS_ASSIGNMENT
 	plays IS_BINARY
 	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IF
 	plays IS_LEFT
 	plays IS_POSITIONAL
 	plays IS_RECEIVER
@@ -953,11 +922,13 @@ SynchronizedStatementArtifact sub JavaSourceArtifact
 
 TagElementArtifact sub JavaSourceArtifact
 	# Semantic
+	plays IS_COMMENT
 	plays IS_DOCUMENTATION
 	plays IS_INCOMPLETE;
 
 TextElementArtifact sub JavaSourceArtifact
 	# Semantic
+	plays IS_COMMENT
 	plays IS_DOCUMENTATION
 	plays IS_INCOMPLETE;
 
@@ -983,7 +954,6 @@ ThrowStatementArtifact sub JavaSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
-	plays IS_ELSE
 	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
@@ -994,8 +964,6 @@ TryStatementArtifact sub JavaSourceArtifact
 	# Semantic
 	plays IS_BODY
 	plays IS_CASE
-	plays IS_ELSE
-	plays IS_IF
 	plays IS_STATEMENT
 	plays IS_SWITCH
 	plays IS_TRY
