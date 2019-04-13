@@ -157,7 +157,7 @@ class SchemaGenerator {
                     failCount.getAndIncrement()
                 }
             }
-        })
+        }).count()
         executorService.shutdown()
 
         println "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
