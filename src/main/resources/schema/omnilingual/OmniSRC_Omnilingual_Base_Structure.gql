@@ -25,10 +25,22 @@ goOffsetAttribute sub attribute, datatype string;
 goSlice3Attribute sub attribute, datatype string;
 goTokAttribute sub attribute, datatype string;
 
+#####----- Java -----#####
+javaConstructorAttribute sub attribute, datatype string;
+javaInterfaceAttribute sub attribute, datatype string;
+javaOnDemandAttribute sub attribute, datatype string;
+javaParenthesesAttribute sub attribute, datatype string;
+javaStaticAttribute sub staticAttribute, datatype string;
+javaTagNameAttribute sub attribute, datatype string;
+javaTextAttribute sub attribute, datatype string;
+javaUpperBoundAttribute sub attribute, datatype string;
+javaVarargsAttribute sub attribute, datatype string;
+
 #####----- Javascript -----#####
 javascriptAsyncAttribute sub attribute, datatype string;
 javascriptAwaitAttribute sub attribute, datatype string;
 javascriptComputedAttribute sub attribute, datatype string;
+javascriptDefaultAttribute sub attribute, datatype string;
 javascriptDelegateAttribute sub attribute, datatype string;
 javascriptExactAttribute sub attribute, datatype string;
 javascriptExportKindAttribute sub attribute, datatype string;
@@ -92,29 +104,57 @@ AndArtifact sub OmnilingualSourceArtifact;
 
 ArgArtifact sub OmnilingualSourceArtifact;
 
+ArrayTypeArtifact sub OmnilingualSourceArtifact;
+
+BlockArtifact sub OmnilingualSourceArtifact;
+
+BooleanLiteralArtifact sub OmnilingualSourceArtifact;
+
 BreakArtifact sub OmnilingualSourceArtifact;
+
+BreakStatementArtifact sub OmnilingualSourceArtifact;
+
+CatchClauseArtifact sub OmnilingualSourceArtifact;
 
 CommentArtifact sub OmnilingualSourceArtifact;
 
+ConditionalExpressionArtifact sub OmnilingualSourceArtifact;
+
 ConstArtifact sub OmnilingualSourceArtifact;
 
+ContinueStatementArtifact sub OmnilingualSourceArtifact;
+
 EllipsisArtifact sub OmnilingualSourceArtifact;
+
+EmptyStatementArtifact sub OmnilingualSourceArtifact;
+
+ExpressionStatementArtifact sub OmnilingualSourceArtifact;
 
 FileArtifact sub OmnilingualSourceArtifact;
 
 ForArtifact sub OmnilingualSourceArtifact;
 
+ForStatementArtifact sub OmnilingualSourceArtifact;
+
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
 IfArtifact sub OmnilingualSourceArtifact;
 
+IfStatementArtifact sub OmnilingualSourceArtifact;
+
 ImportArtifact sub OmnilingualSourceArtifact;
 
+ImportDeclarationArtifact sub OmnilingualSourceArtifact;
+
 KwargArtifact sub OmnilingualSourceArtifact;
+
+LabeledStatementArtifact sub OmnilingualSourceArtifact;
 
 ModuleArtifact sub OmnilingualSourceArtifact;
 
 NameArtifact sub OmnilingualSourceArtifact;
+
+NullLiteralArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
 
@@ -122,18 +162,36 @@ OrArtifact sub OmnilingualSourceArtifact;
 
 ReturnArtifact sub OmnilingualSourceArtifact;
 
+ReturnStatementArtifact sub OmnilingualSourceArtifact;
+
 StrArtifact sub OmnilingualSourceArtifact;
+
+StringLiteralArtifact sub OmnilingualSourceArtifact;
 
 SuperArtifact sub OmnilingualSourceArtifact;
 
+SwitchCaseArtifact sub OmnilingualSourceArtifact;
+
+SwitchStatementArtifact sub OmnilingualSourceArtifact;
+
+ThisExpressionArtifact sub OmnilingualSourceArtifact;
+
+ThrowStatementArtifact sub OmnilingualSourceArtifact;
+
+TryStatementArtifact sub OmnilingualSourceArtifact;
+
+TypeParameterArtifact sub OmnilingualSourceArtifact;
+
 WhileArtifact sub OmnilingualSourceArtifact;
+
+WhileStatementArtifact sub OmnilingualSourceArtifact;
 
 YieldArtifact sub OmnilingualSourceArtifact;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoArrayTypeArtifact sub GoSourceArtifact,
+GoArrayTypeArtifact sub ArrayTypeArtifact,
 	# Structural
 	plays is_go_args_role,
 	plays is_go_elt_role,
@@ -459,6 +517,7 @@ GoGoStmtArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_body_role,
 	plays is_go_list_role,
+	plays is_go_stmt_role,
 	plays has_go_call_role,
 	plays has_go_go_role;
 
@@ -731,6 +790,7 @@ GoSendStmtArtifact sub GoSourceArtifact,
 	plays is_go_comm_role,
 	plays is_go_list_role,
 	plays is_go_post_role,
+	plays is_go_stmt_role,
 	plays has_go_arrow_role,
 	plays has_go_chan_role,
 	plays has_go_value_role;
@@ -881,15 +941,1043 @@ GoValueSpecArtifact sub GoSourceArtifact,
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
+JavaAnnotationTypeDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays is_java_types_role,
+	plays has_java_body_declarations_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role;
+
+JavaAnnotationTypeMemberDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays has_java_default_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_type_role;
+
+JavaAnonymousClassDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_anonymous_class_declaration_role,
+	plays has_java_body_declarations_role;
+
+JavaArrayAccessArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_hand_side_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_array_role,
+	plays has_java_index_role;
+
+JavaArrayCreationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_initializer_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays has_java_dimensions_role,
+	plays has_java_initializer_role,
+	plays has_java_type_role;
+
+JavaArrayInitializerArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_default_role,
+	plays is_java_expressions_role,
+	plays is_java_initializer_role,
+	plays is_java_value_role,
+	plays has_java_expressions_role;
+
+JavaArrayTypeArtifact sub ArrayTypeArtifact,
+	# Structural
+	plays is_java_bound_role,
+	plays is_java_return_type2_role,
+	plays is_java_right_operand_role,
+	plays is_java_type_arguments_role,
+	plays is_java_type_role,
+	plays has_java_dimensions_role,
+	plays has_java_element_type_role;
+
+JavaAssertStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_expression_role,
+	plays has_java_message_role;
+
+JavaAssignmentArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_expression_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_initializers_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays is_java_updaters_role,
+	plays has_java_left_hand_side_role,
+	plays has_java_operator_role,
+	plays has_java_right_hand_side_role;
+
+JavaBlockArtifact sub BlockArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_finally_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_statements_role;
+
+JavaBlockCommentArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_comments_role;
+
+JavaBooleanLiteralArtifact sub BooleanLiteralArtifact,
+	# Attributes
+	has booleanValue,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role;
+
+JavaBreakStatementArtifact sub BreakStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_label_role;
+
+JavaCastExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_expression_role,
+	plays has_java_type_role;
+
+JavaCatchClauseArtifact sub CatchClauseArtifact,
+	# Structural
+	plays is_java_catch_clauses_role,
+	plays has_java_body_role,
+	plays has_java_exception_role;
+
+JavaCharacterLiteralArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_default_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role;
+
+JavaClassInstanceCreationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_anonymous_class_declaration_role,
+	plays has_java_arguments_role,
+	plays has_java_expression_role,
+	plays has_java_type_role;
+
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays has_java_comments_role,
+	plays has_java_imports_role,
+	plays has_java_package_role,
+	plays has_java_types_role;
+
+JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays has_java_else_expression_role,
+	plays has_java_expression_role,
+	plays has_java_then_expression_role;
+
+JavaConstructorInvocationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_arguments_role;
+
+JavaContinueStatementArtifact sub ContinueStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_label_role;
+
+JavaCreationReferenceArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_initializer_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays has_java_type_role;
+
+JavaDimensionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_dimensions_role,
+	plays is_java_extra_dimensions2_role,
+	plays has_java_annotations_role;
+
+JavaDoStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaEmptyStatementArtifact sub EmptyStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role;
+
+JavaEnhancedForStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_body_role,
+	plays has_java_expression_role,
+	plays has_java_parameter_role;
+
+JavaEnumConstantDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_enum_constants_role,
+	plays has_java_anonymous_class_declaration_role,
+	plays has_java_arguments_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role;
+
+JavaEnumDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays is_java_types_role,
+	plays has_java_body_declarations_role,
+	plays has_java_enum_constants_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_super_interface_types_role;
+
+JavaExpressionMethodReferenceArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_initializer_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays has_java_expression_role,
+	plays has_java_name_role,
+	plays has_java_type_arguments_role;
+
+JavaExpressionStatementArtifact sub ExpressionStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_expression_role;
+
+JavaFieldAccessArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_hand_side_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_expression_role,
+	plays has_java_name_role;
+
+JavaFieldDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays has_java_fragments_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_type_role;
+
+JavaForStatementArtifact sub ForStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_body_role,
+	plays has_java_expression_role,
+	plays has_java_initializers_role,
+	plays has_java_updaters_role;
+
+JavaIfStatementArtifact sub IfStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_else_statement_role,
+	plays has_java_expression_role,
+	plays has_java_then_statement_role;
+
+JavaImportDeclarationArtifact sub ImportDeclarationArtifact,
+	# Attributes
+	has javaOnDemandAttribute,
+	has javaStaticAttribute,
+	# Structural
+	plays is_java_imports_role,
+	plays has_java_name_role;
+
+JavaInfixExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role,
+	plays has_java_extended_operands_role,
+	plays has_java_left_operand_role,
+	plays has_java_operator_role,
+	plays has_java_right_operand_role;
+
+JavaInitializerArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays has_java_body_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role;
+
+JavaInstanceofExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_expression_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays has_java_left_operand_role,
+	plays has_java_right_operand_role;
+
+JavaIntersectionTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_type_role,
+	plays has_java_types_role;
+
+JavaJavadocArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_comments_role,
+	plays is_java_javadoc_role,
+	plays has_java_tags_role;
+
+JavaLabeledStatementArtifact sub LabeledStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_label_role;
+
+JavaLambdaExpressionArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaParenthesesAttribute,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_initializer_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_then_expression_role,
+	plays has_java_body_role,
+	plays has_java_parameters_role;
+
+JavaLineCommentArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_comments_role;
+
+JavaMarkerAnnotationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_annotations_role,
+	plays is_java_default_role,
+	plays is_java_expressions_role,
+	plays is_java_modifiers_role,
+	plays is_java_value_role,
+	plays is_java_varargs_annotations_role,
+	plays has_java_type_name_role;
+
+JavaMemberRefArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_fragments_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role;
+
+JavaMemberValuePairArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_values_role,
+	plays has_java_name_role,
+	plays has_java_value_role;
+
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaConstructorAttribute,
+	has name,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays has_java_body_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_parameters_role,
+	plays has_java_return_type2_role,
+	plays has_java_thrown_exception_types_role,
+	plays has_java_type_parameters_role;
+
+JavaMethodInvocationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_updaters_role,
+	plays has_java_arguments_role,
+	plays has_java_expression_role,
+	plays has_java_name_role,
+	plays has_java_type_arguments_role;
+
+JavaMethodRefArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_fragments_role,
+	plays has_java_name_role,
+	plays has_java_parameters_role,
+	plays has_java_qualifier_role;
+
+JavaMethodRefParameterArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaVarargsAttribute,
+	# Structural
+	plays is_java_parameters_role,
+	plays has_java_name_role,
+	plays has_java_type_role;
+
+JavaModifierArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_modifiers_role;
+
+JavaNameQualifiedTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_element_type_role,
+	plays is_java_type_role,
+	plays has_java_annotations_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role;
+
+JavaNormalAnnotationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_annotations_role,
+	plays is_java_default_role,
+	plays is_java_expressions_role,
+	plays is_java_modifiers_role,
+	plays is_java_value_role,
+	plays has_java_type_name_role,
+	plays has_java_values_role;
+
+JavaNullLiteralArtifact sub NullLiteralArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role;
+
+JavaNumberLiteralArtifact sub JavaSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has numberValue,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role;
+
+JavaOperatorArtifact sub OperatorArtifact,
+	# Structural
+	plays is_java_operator_role;
+
+JavaPackageDeclarationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_package_role,
+	plays has_java_annotations_role,
+	plays has_java_javadoc_role,
+	plays has_java_name_role;
+
+JavaParameterizedTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_bound_role,
+	plays is_java_element_type_role,
+	plays is_java_qualifier_role,
+	plays is_java_return_type2_role,
+	plays is_java_right_operand_role,
+	plays is_java_super_interface_types_role,
+	plays is_java_superclass_type_role,
+	plays is_java_type_arguments_role,
+	plays is_java_type_bounds_role,
+	plays is_java_type_role,
+	plays is_java_types_role,
+	plays has_java_type_arguments_role,
+	plays has_java_type_role;
+
+JavaParenthesizedExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_expression_role;
+
+JavaPostfixExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_initializers_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_updaters_role,
+	plays has_java_operand_role,
+	plays has_java_operator_role;
+
+JavaPrefixExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_initializers_role,
+	plays is_java_left_operand_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_updaters_role,
+	plays is_java_value_role,
+	plays has_java_operand_role,
+	plays has_java_operator_role;
+
+JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_element_type_role,
+	plays is_java_return_type2_role,
+	plays is_java_type_role;
+
+JavaQualifiedNameArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_fragments_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_left_hand_side_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_name_role,
+	plays is_java_operand_role,
+	plays is_java_qualifier_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_type_name_role,
+	plays is_java_value_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role;
+
+JavaQualifiedTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_bound_role,
+	plays is_java_return_type2_role,
+	plays is_java_superclass_type_role,
+	plays is_java_type_arguments_role,
+	plays is_java_type_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role;
+
+JavaReturnStatementArtifact sub ReturnStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_expression_role;
+
+JavaSimpleNameArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_array_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_dimensions_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_fragments_role,
+	plays is_java_index_role,
+	plays is_java_initializer_role,
+	plays is_java_label_role,
+	plays is_java_left_hand_side_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_name_role,
+	plays is_java_operand_role,
+	plays is_java_qualifier_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_type_name_role,
+	plays is_java_value_role;
+
+JavaSimpleTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_bound_role,
+	plays is_java_element_type_role,
+	plays is_java_return_type2_role,
+	plays is_java_right_operand_role,
+	plays is_java_super_interface_types_role,
+	plays is_java_superclass_type_role,
+	plays is_java_thrown_exception_types_role,
+	plays is_java_type_arguments_role,
+	plays is_java_type_bounds_role,
+	plays is_java_type_role,
+	plays is_java_types_role,
+	plays has_java_annotations_role,
+	plays has_java_name_role;
+
+JavaSingleMemberAnnotationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_annotations_role,
+	plays is_java_default_role,
+	plays is_java_expressions_role,
+	plays is_java_modifiers_role,
+	plays is_java_value_role,
+	plays has_java_type_name_role,
+	plays has_java_value_role;
+
+JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaVarargsAttribute,
+	# Structural
+	plays is_java_exception_role,
+	plays is_java_parameter_role,
+	plays is_java_parameters_role,
+	plays has_java_extra_dimensions2_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_type_role,
+	plays has_java_varargs_annotations_role;
+
+JavaStringLiteralArtifact sub StringLiteralArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role;
+
+JavaSuperConstructorInvocationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_arguments_role,
+	plays has_java_expression_role;
+
+JavaSuperFieldAccessArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_expression_role,
+	plays is_java_initializer_role,
+	plays is_java_left_hand_side_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_name_role;
+
+JavaSuperMethodInvocationArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_arguments_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role,
+	plays has_java_type_arguments_role;
+
+JavaSuperMethodReferenceArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_initializer_role,
+	plays has_java_name_role,
+	plays has_java_qualifier_role;
+
+JavaSwitchCaseArtifact sub SwitchCaseArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaSwitchStatementArtifact sub SwitchStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays has_java_expression_role,
+	plays has_java_statements_role;
+
+JavaSynchronizedStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaTagElementArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaTagNameAttribute,
+	# Structural
+	plays is_java_fragments_role,
+	plays is_java_tags_role,
+	plays has_java_fragments_role;
+
+JavaTextElementArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaTextAttribute,
+	# Structural
+	plays is_java_fragments_role;
+
+JavaThisExpressionArtifact sub ThisExpressionArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_message_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays has_java_qualifier_role;
+
+JavaThrowStatementArtifact sub ThrowStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_expression_role;
+
+JavaTryStatementArtifact sub TryStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_body_role,
+	plays has_java_catch_clauses_role,
+	plays has_java_finally_role,
+	plays has_java_resources_role;
+
+JavaTypeDeclarationArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaInterfaceAttribute,
+	has name,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays is_java_declaration_role,
+	plays is_java_types_role,
+	plays has_java_body_declarations_role,
+	plays has_java_javadoc_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_super_interface_types_role,
+	plays has_java_superclass_type_role,
+	plays has_java_type_parameters_role;
+
+JavaTypeDeclarationStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_declaration_role;
+
+JavaTypeLiteralArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_body_role,
+	plays is_java_default_role,
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
+	plays is_java_extended_operands_role,
+	plays is_java_initializer_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role,
+	plays is_java_value_role,
+	plays has_java_type_role;
+
+JavaTypeMethodReferenceArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_arguments_role,
+	plays has_java_name_role,
+	plays has_java_type_role;
+
+JavaTypeParameterArtifact sub TypeParameterArtifact,
+	# Structural
+	plays is_java_type_parameters_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_type_bounds_role;
+
+JavaUnionTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_type_role,
+	plays has_java_types_role;
+
+JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_initializers_role,
+	plays is_java_resources_role,
+	plays has_java_fragments_role,
+	plays has_java_modifiers_role,
+	plays has_java_type_role;
+
+JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_fragments_role,
+	plays is_java_parameters_role,
+	plays has_java_extra_dimensions2_role,
+	plays has_java_initializer_role,
+	plays has_java_name_role;
+
+JavaVariableDeclarationStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_statements_role,
+	plays has_java_fragments_role,
+	plays has_java_modifiers_role,
+	plays has_java_type_role;
+
+JavaWhileStatementArtifact sub WhileStatementArtifact,
+	# Structural
+	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays is_java_then_statement_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaWildcardTypeArtifact sub JavaSourceArtifact,
+	# Attributes
+	has javaUpperBoundAttribute,
+	# Structural
+	plays is_java_type_arguments_role,
+	plays has_java_bound_role;
 
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptAnyTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_argument_role,
+	plays is_javascript_element_type_role,
+	plays is_javascript_key_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
 	plays is_javascript_value_role;
 
 JavascriptArrayExpressionArtifact sub JavascriptSourceArtifact,
@@ -928,11 +2016,15 @@ JavascriptArrayPatternArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_value_role,
 	plays has_javascript_elements_role,
 	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role;
 
 JavascriptArrayTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_element_type_role,
 	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
@@ -954,12 +2046,18 @@ JavascriptArrowFunctionExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
+	plays is_javascript_key_role,
+	plays is_javascript_left_role,
 	plays is_javascript_object_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
+	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_body_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_params_role,
+	plays has_javascript_predicate_role,
 	plays has_javascript_return_type_role,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_parameters_role;
@@ -973,6 +2071,7 @@ JavascriptAssignmentExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_declaration_role,
+	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
@@ -983,6 +2082,7 @@ JavascriptAssignmentExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
 	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
@@ -995,6 +2095,7 @@ JavascriptAssignmentExpressionArtifact sub JavascriptSourceArtifact,
 JavascriptAssignmentPatternArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_elements_role,
+	plays is_javascript_left_role,
 	plays is_javascript_params_role,
 	plays is_javascript_value_role,
 	plays has_javascript_leading_comments_role,
@@ -1008,6 +2109,7 @@ JavascriptAwaitExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
 	plays is_javascript_body_role,
+	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
@@ -1016,7 +2118,10 @@ JavascriptAwaitExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_key_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
+	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_argument_role,
@@ -1030,6 +2135,7 @@ JavascriptBigIntLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_arguments_role,
 	plays is_javascript_body_role,
 	plays is_javascript_elements_role,
+	plays is_javascript_expression_role,
 	plays is_javascript_init_role,
 	plays is_javascript_left_role,
 	plays is_javascript_right_role,
@@ -1045,6 +2151,7 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_body_role,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
+	plays is_javascript_declaration_role,
 	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
@@ -1055,6 +2162,8 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_leading_comments_role,
@@ -1062,6 +2171,17 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_operator_role,
 	plays has_javascript_right_role,
 	plays has_javascript_trailing_comments_role;
+
+JavascriptBindExpressionArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_callee_role,
+	plays is_javascript_expression_role,
+	plays is_javascript_expressions_role,
+	plays is_javascript_init_role,
+	plays is_javascript_object_role,
+	plays is_javascript_right_role,
+	plays has_javascript_callee_role,
+	plays has_javascript_object_role;
 
 JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -1076,7 +2196,7 @@ JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptBooleanLiteralArtifact sub JavascriptSourceArtifact,
+JavascriptBooleanLiteralArtifact sub BooleanLiteralArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -1102,26 +2222,34 @@ JavascriptBooleanLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptValueAttribute,
 	# Structural
-	plays is_javascript_types_role;
+	plays is_javascript_right_role,
+	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
+	plays is_javascript_value_role;
 
 JavascriptBooleanTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
-	plays is_javascript_value_role;
+	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role;
 
-JavascriptBreakStatementArtifact sub JavascriptSourceArtifact,
+JavascriptBreakStatementArtifact sub BreakStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
+	plays has_javascript_inner_comments_role,
 	plays has_javascript_label_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
 JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptOptionalAttribute,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -1150,24 +2278,31 @@ JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptCatchClauseArtifact sub JavascriptSourceArtifact,
+JavascriptCatchClauseArtifact sub CatchClauseArtifact,
 	# Structural
 	plays is_javascript_handler_role,
 	plays has_javascript_body_role,
-	plays has_javascript_param_role;
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_param_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptClassBodyArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
-	plays has_javascript_body_role;
+	plays has_javascript_body_role,
+	plays has_javascript_inner_comments_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptClassDeclarationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
+	plays is_javascript_consequent_role,
 	plays is_javascript_declaration_role,
 	plays has_javascript_body_role,
 	plays has_javascript_decorators_role,
 	plays has_javascript_id_role,
+	plays has_javascript_implements_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_super_class_role,
 	plays has_javascript_super_type_parameters_role,
@@ -1182,14 +2317,30 @@ JavascriptClassExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_callee_role,
 	plays is_javascript_declaration_role,
 	plays is_javascript_elements_role,
+	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
+	plays is_javascript_left_role,
+	plays is_javascript_object_role,
 	plays is_javascript_right_role,
 	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
+	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_body_role,
+	plays has_javascript_decorators_role,
 	plays has_javascript_id_role,
-	plays has_javascript_super_class_role;
+	plays has_javascript_implements_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_super_class_role,
+	plays has_javascript_super_type_parameters_role,
+	plays has_javascript_type_parameters_role;
+
+JavascriptClassImplementsArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_implements_role,
+	plays has_javascript_id_role,
+	plays has_javascript_type_parameters_role;
 
 JavascriptClassMethodArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1201,12 +2352,26 @@ JavascriptClassMethodArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_body_role,
+	plays has_javascript_decorators_role,
 	plays has_javascript_key_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_params_role,
 	plays has_javascript_return_type_role,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_parameters_role;
+
+JavascriptClassPrivateMethodArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptAsyncAttribute,
+	has javascriptComputedAttribute,
+	has javascriptGeneratorAttribute,
+	has javascriptKindAttribute,
+	has javascriptStaticAttribute,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_key_role,
+	plays has_javascript_params_role;
 
 JavascriptClassPrivatePropertyArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1226,7 +2391,8 @@ JavascriptClassPropertyArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role,
-	plays has_javascript_value_role;
+	plays has_javascript_value_role,
+	plays has_javascript_variance_role;
 
 JavascriptCommentBlockArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -1242,7 +2408,7 @@ JavascriptCommentLineArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_leading_comments_role,
 	plays is_javascript_trailing_comments_role;
 
-JavascriptConditionalExpressionArtifact sub JavascriptSourceArtifact,
+JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -1251,6 +2417,7 @@ JavascriptConditionalExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_declaration_role,
+	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
@@ -1260,18 +2427,22 @@ JavascriptConditionalExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_alternate_role,
 	plays has_javascript_consequent_role,
 	plays has_javascript_leading_comments_role,
-	plays has_javascript_test_role;
+	plays has_javascript_test_role,
+	plays has_javascript_trailing_comments_role;
 
-JavascriptContinueStatementArtifact sub JavascriptSourceArtifact,
+JavascriptContinueStatementArtifact sub ContinueStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
+	plays has_javascript_inner_comments_role,
 	plays has_javascript_label_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
@@ -1286,13 +2457,56 @@ JavascriptDebuggerStatementArtifact sub JavascriptSourceArtifact,
 JavascriptDeclareClassArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
+	plays is_javascript_declaration_role,
 	plays has_javascript_body_role,
-	plays has_javascript_id_role;
+	plays has_javascript_extends_role,
+	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_mixins_role,
+	plays has_javascript_trailing_comments_role,
+	plays has_javascript_type_parameters_role;
+
+JavascriptDeclaredPredicateArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_predicate_role,
+	plays has_javascript_value_role;
+
+JavascriptDeclareExportAllDeclarationArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptExportKindAttribute,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_source_role;
+
+JavascriptDeclareExportDeclarationArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptDefaultAttribute,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_declaration_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_source_role,
+	plays has_javascript_specifiers_role;
 
 JavascriptDeclareFunctionArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
-	plays has_javascript_id_role;
+	plays is_javascript_declaration_role,
+	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_predicate_role,
+	plays has_javascript_trailing_comments_role;
+
+JavascriptDeclareInterfaceArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_extends_role,
+	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role,
+	plays has_javascript_type_parameters_role;
 
 JavascriptDeclareModuleArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1309,9 +2523,27 @@ JavascriptDeclareModuleExportsArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_body_role,
 	plays has_javascript_type_annotation_role;
 
+JavascriptDeclareOpaqueTypeArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays is_javascript_declaration_role,
+	plays has_javascript_id_role,
+	plays has_javascript_supertype_role,
+	plays has_javascript_type_parameters_role;
+
+JavascriptDeclareTypeAliasArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_right_role,
+	plays has_javascript_trailing_comments_role,
+	plays has_javascript_type_parameters_role;
+
 JavascriptDeclareVariableArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
+	plays is_javascript_declaration_role,
 	plays has_javascript_id_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
@@ -1335,7 +2567,13 @@ JavascriptDirectiveLiteralArtifact sub JavascriptSourceArtifact,
 JavascriptDoExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_argument_role,
+	plays is_javascript_arguments_role,
+	plays is_javascript_body_role,
+	plays is_javascript_expression_role,
 	plays is_javascript_init_role,
+	plays is_javascript_left_role,
+	plays is_javascript_right_role,
+	plays is_javascript_value_role,
 	plays has_javascript_body_role;
 
 JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact,
@@ -1347,17 +2585,29 @@ JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_test_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptEmptyStatementArtifact sub JavascriptSourceArtifact,
+JavascriptEmptyStatementArtifact sub EmptyStatementArtifact,
 	# Structural
+	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptExistsTypeAnnotationArtifact sub JavascriptSourceArtifact,
+JavascriptEmptyTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
+	plays is_javascript_value_role;
+
+JavascriptExistsTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_default_role,
+	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
+	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
 	plays is_javascript_value_role;
 
 JavascriptExportAllDeclarationArtifact sub JavascriptSourceArtifact,
@@ -1382,6 +2632,7 @@ JavascriptExportNamedDeclarationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_declaration_role,
+	plays has_javascript_inner_comments_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_source_role,
 	plays has_javascript_specifiers_role,
@@ -1392,9 +2643,10 @@ JavascriptExportSpecifierArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_specifiers_role,
 	plays has_javascript_exported_role,
 	plays has_javascript_leading_comments_role,
-	plays has_javascript_local_role;
+	plays has_javascript_local_role,
+	plays has_javascript_trailing_comments_role;
 
-JavascriptExpressionStatementArtifact sub JavascriptSourceArtifact,
+JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -1431,7 +2683,7 @@ JavascriptForOfStatementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_right_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptForStatementArtifact sub JavascriptSourceArtifact,
+JavascriptForStatementArtifact sub ForStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -1456,6 +2708,7 @@ JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_id_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_params_role,
+	plays has_javascript_predicate_role,
 	plays has_javascript_return_type_role,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_parameters_role;
@@ -1476,9 +2729,11 @@ JavascriptFunctionExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
+	plays is_javascript_left_role,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
 	plays is_javascript_tag_role,
 	plays is_javascript_value_role,
 	plays has_javascript_body_role,
@@ -1491,12 +2746,16 @@ JavascriptFunctionExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptFunctionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_declaration_role,
+	plays is_javascript_element_type_role,
 	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
 	plays has_javascript_params_role,
+	plays has_javascript_rest_role,
 	plays has_javascript_return_type_role,
 	plays has_javascript_type_parameters_role;
 
@@ -1505,7 +2764,10 @@ JavascriptFunctionTypeParamArtifact sub JavascriptSourceArtifact,
 	has javascriptOptionalAttribute,
 	# Structural
 	plays is_javascript_params_role,
+	plays is_javascript_rest_role,
+	plays has_javascript_leading_comments_role,
 	plays has_javascript_name_role,
+	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role;
 
 JavascriptGenericTypeAnnotationArtifact sub JavascriptSourceArtifact,
@@ -1513,14 +2775,18 @@ JavascriptGenericTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_argument_role,
 	plays is_javascript_default_role,
 	plays is_javascript_element_type_role,
+	plays is_javascript_impltype_role,
 	plays is_javascript_key_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
+	plays is_javascript_supertype_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
 	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_parameters_role;
 
 JavascriptIdentifierArtifact sub IdentifierArtifact,
@@ -1563,7 +2829,7 @@ JavascriptIdentifierArtifact sub IdentifierArtifact,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role;
 
-JavascriptIfStatementArtifact sub JavascriptSourceArtifact,
+JavascriptIfStatementArtifact sub IfStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -1578,11 +2844,12 @@ JavascriptImportArtifact sub ImportArtifact,
 	# Structural
 	plays is_javascript_callee_role;
 
-JavascriptImportDeclarationArtifact sub JavascriptSourceArtifact,
+JavascriptImportDeclarationArtifact sub ImportDeclarationArtifact,
 	# Attributes
 	has javascriptImportKindAttribute,
 	# Structural
 	plays is_javascript_body_role,
+	plays is_javascript_consequent_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_source_role,
 	plays has_javascript_specifiers_role,
@@ -1605,13 +2872,42 @@ JavascriptImportSpecifierArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_specifiers_role,
 	plays has_javascript_imported_role,
 	plays has_javascript_leading_comments_role,
-	plays has_javascript_local_role;
+	plays has_javascript_local_role,
+	plays has_javascript_trailing_comments_role;
+
+JavascriptInferredPredicateArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_predicate_role;
+
+JavascriptInterfaceDeclarationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays is_javascript_declaration_role,
+	plays has_javascript_body_role,
+	plays has_javascript_extends_role,
+	plays has_javascript_id_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role,
+	plays has_javascript_type_parameters_role;
+
+JavascriptInterfaceExtendsArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_extends_role,
+	plays is_javascript_mixins_role,
+	plays has_javascript_id_role,
+	plays has_javascript_type_parameters_role;
 
 JavascriptIntersectionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_argument_role,
+	plays is_javascript_element_type_role,
+	plays is_javascript_impltype_role,
+	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
+	plays is_javascript_value_role,
 	plays has_javascript_types_role;
 
 JavascriptJSXAttributeArtifact sub JavascriptSourceArtifact,
@@ -1629,7 +2925,8 @@ JavascriptJSXClosingElementArtifact sub JavascriptSourceArtifact,
 
 JavascriptJSXClosingFragmentArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_closing_fragment_role;
+	plays is_javascript_closing_fragment_role,
+	plays has_javascript_inner_comments_role;
 
 JavascriptJSXElementArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -1642,8 +2939,10 @@ JavascriptJSXElementArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_init_role,
+	plays is_javascript_left_role,
 	plays is_javascript_object_role,
 	plays is_javascript_right_role,
+	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_children_role,
 	plays has_javascript_closing_element_role,
@@ -1668,10 +2967,12 @@ JavascriptJSXFragmentArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_body_role,
 	plays is_javascript_children_role,
 	plays is_javascript_consequent_role,
+	plays is_javascript_expression_role,
 	plays is_javascript_right_role,
 	plays is_javascript_value_role,
 	plays has_javascript_children_role,
 	plays has_javascript_closing_fragment_role,
+	plays has_javascript_leading_comments_role,
 	plays has_javascript_opening_fragment_role;
 
 JavascriptJSXIdentifierArtifact sub JavascriptSourceArtifact,
@@ -1679,6 +2980,7 @@ JavascriptJSXIdentifierArtifact sub JavascriptSourceArtifact,
 	has name,
 	# Structural
 	plays is_javascript_name_role,
+	plays is_javascript_namespace_role,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays has_javascript_trailing_comments_role;
@@ -1690,6 +2992,12 @@ JavascriptJSXMemberExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_object_role,
 	plays has_javascript_property_role;
 
+JavascriptJSXNamespacedNameArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_name_role,
+	plays has_javascript_name_role,
+	plays has_javascript_namespace_role;
+
 JavascriptJSXOpeningElementArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptSelfClosingAttribute,
@@ -1700,12 +3008,18 @@ JavascriptJSXOpeningElementArtifact sub JavascriptSourceArtifact,
 
 JavascriptJSXOpeningFragmentArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_opening_fragment_role;
+	plays is_javascript_opening_fragment_role,
+	plays has_javascript_inner_comments_role;
 
 JavascriptJSXSpreadAttributeArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_attributes_role,
 	plays has_javascript_argument_role;
+
+JavascriptJSXSpreadChildArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_children_role,
+	plays has_javascript_expression_role;
 
 JavascriptJSXTextArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1713,7 +3027,7 @@ JavascriptJSXTextArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_children_role;
 
-JavascriptLabeledStatementArtifact sub JavascriptSourceArtifact,
+JavascriptLabeledStatementArtifact sub LabeledStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -1731,15 +3045,19 @@ JavascriptLogicalExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_body_role,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
+	plays is_javascript_declaration_role,
 	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
+	plays is_javascript_key_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
@@ -1787,6 +3105,7 @@ JavascriptMetaPropertyArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_body_role,
 	plays is_javascript_callee_role,
 	plays is_javascript_declaration_role,
+	plays is_javascript_expression_role,
 	plays is_javascript_init_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
@@ -1808,6 +3127,8 @@ JavascriptMixedTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_value_role;
 
 JavascriptNewExpressionArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptOptionalAttribute,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -1825,6 +3146,7 @@ JavascriptNewExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
 	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_arguments_role,
@@ -1834,14 +3156,17 @@ JavascriptNewExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptNullableTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_element_type_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role,
 	plays has_javascript_type_annotation_role;
 
-JavascriptNullLiteralArtifact sub JavascriptSourceArtifact,
+JavascriptNullLiteralArtifact sub NullLiteralArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -1860,10 +3185,12 @@ JavascriptNullLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_super_class_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
-	plays has_javascript_leading_comments_role;
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptNullLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_params_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
@@ -1873,19 +3200,29 @@ JavascriptNumberLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptValueAttribute,
 	# Structural
-	plays is_javascript_right_role,
-	plays is_javascript_types_role,
-	plays is_javascript_value_role;
-
-JavascriptNumberTypeAnnotationArtifact sub JavascriptSourceArtifact,
-	# Structural
-	plays is_javascript_key_role,
+	plays is_javascript_declaration_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role;
+
+JavascriptNumberTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_declaration_role,
+	plays is_javascript_default_role,
+	plays is_javascript_element_type_role,
+	plays is_javascript_impltype_role,
+	plays is_javascript_key_role,
+	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
+	plays is_javascript_right_role,
+	plays is_javascript_supertype_role,
+	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
+	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role;
 
 JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1908,6 +3245,7 @@ JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
@@ -1930,6 +3268,8 @@ JavascriptObjectExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_inner_comments_role,
@@ -1951,6 +3291,7 @@ JavascriptObjectMethodArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_params_role,
 	plays has_javascript_return_type_role,
+	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_parameters_role;
 
 JavascriptObjectPatternArtifact sub JavascriptSourceArtifact,
@@ -1964,6 +3305,7 @@ JavascriptObjectPatternArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_value_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_properties_role,
+	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role;
 
 JavascriptObjectPropertyArtifact sub JavascriptSourceArtifact,
@@ -1982,15 +3324,30 @@ JavascriptObjectTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptExactAttribute,
 	# Structural
+	plays is_javascript_argument_role,
 	plays is_javascript_body_role,
+	plays is_javascript_element_type_role,
+	plays is_javascript_impltype_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
+	plays has_javascript_call_properties_role,
 	plays has_javascript_indexers_role,
-	plays has_javascript_properties_role;
+	plays has_javascript_inner_comments_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_properties_role,
+	plays has_javascript_trailing_comments_role;
+
+JavascriptObjectTypeCallPropertyArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptStaticAttribute,
+	# Structural
+	plays is_javascript_call_properties_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_value_role;
 
 JavascriptObjectTypeIndexerArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -1999,7 +3356,9 @@ JavascriptObjectTypeIndexerArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_indexers_role,
 	plays has_javascript_id_role,
 	plays has_javascript_key_role,
-	plays has_javascript_value_role;
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_value_role,
+	plays has_javascript_variance_role;
 
 JavascriptObjectTypePropertyArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -2016,13 +3375,18 @@ JavascriptObjectTypePropertyArtifact sub JavascriptSourceArtifact,
 JavascriptObjectTypeSpreadPropertyArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_properties_role,
-	plays has_javascript_argument_role;
+	plays has_javascript_argument_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptOpaqueTypeArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_body_role,
 	plays is_javascript_declaration_role,
 	plays has_javascript_id_role,
-	plays has_javascript_impltype_role;
+	plays has_javascript_impltype_role,
+	plays has_javascript_supertype_role,
+	plays has_javascript_type_parameters_role;
 
 JavascriptOperatorArtifact sub OperatorArtifact,
 	# Structural
@@ -2046,6 +3410,7 @@ JavascriptProgramArtifact sub JavascriptSourceArtifact,
 JavascriptQualifiedTypeIdentifierArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_id_role,
+	plays is_javascript_qualification_role,
 	plays has_javascript_id_role,
 	plays has_javascript_qualification_role;
 
@@ -2059,9 +3424,11 @@ JavascriptRegExpLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_arguments_role,
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
+	plays is_javascript_declaration_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_init_role,
+	plays is_javascript_key_role,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
@@ -2070,6 +3437,8 @@ JavascriptRegExpLiteralArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_trailing_comments_role;
 
 JavascriptRestElementArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptOptionalAttribute,
 	# Structural
 	plays is_javascript_elements_role,
 	plays is_javascript_params_role,
@@ -2079,12 +3448,13 @@ JavascriptRestElementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_trailing_comments_role,
 	plays has_javascript_type_annotation_role;
 
-JavascriptReturnStatementArtifact sub JavascriptSourceArtifact,
+JavascriptReturnStatementArtifact sub ReturnStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
 	plays has_javascript_argument_role,
+	plays has_javascript_inner_comments_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
@@ -2107,10 +3477,13 @@ JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
 	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
-	plays has_javascript_expressions_role;
+	plays has_javascript_expressions_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptSpreadElementArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -2120,7 +3493,7 @@ JavascriptSpreadElementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_argument_role,
 	plays has_javascript_leading_comments_role;
 
-JavascriptStringLiteralArtifact sub JavascriptSourceArtifact,
+JavascriptStringLiteralArtifact sub StringLiteralArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -2129,6 +3502,7 @@ JavascriptStringLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_declaration_role,
+	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
@@ -2149,7 +3523,10 @@ JavascriptStringLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptValueAttribute,
 	# Structural
+	plays is_javascript_key_role,
 	plays is_javascript_params_role,
+	plays is_javascript_right_role,
+	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
 	plays has_javascript_leading_comments_role,
@@ -2157,6 +3534,7 @@ JavascriptStringLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 
 JavascriptStringTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_declaration_role,
 	plays is_javascript_default_role,
 	plays is_javascript_element_type_role,
 	plays is_javascript_impltype_role,
@@ -2166,14 +3544,15 @@ JavascriptStringTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
-	plays is_javascript_value_role;
+	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role;
 
 JavascriptSuperArtifact sub SuperArtifact,
 	# Structural
 	plays is_javascript_callee_role,
 	plays is_javascript_object_role;
 
-JavascriptSwitchCaseArtifact sub JavascriptSourceArtifact,
+JavascriptSwitchCaseArtifact sub SwitchCaseArtifact,
 	# Structural
 	plays is_javascript_cases_role,
 	plays has_javascript_consequent_role,
@@ -2181,7 +3560,7 @@ JavascriptSwitchCaseArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_test_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptSwitchStatementArtifact sub JavascriptSourceArtifact,
+JavascriptSwitchStatementArtifact sub SwitchStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -2205,9 +3584,11 @@ JavascriptTaggedTemplateExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_init_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
+	plays is_javascript_property_role,
 	plays is_javascript_right_role,
 	plays is_javascript_tag_role,
 	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role,
 	plays has_javascript_quasi_role,
 	plays has_javascript_tag_role;
 
@@ -2215,7 +3596,8 @@ JavascriptTemplateElementArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptTailAttribute,
 	# Structural
-	plays is_javascript_quasis_role;
+	plays is_javascript_quasis_role,
+	plays has_javascript_leading_comments_role;
 
 JavascriptTemplateLiteralArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -2235,13 +3617,16 @@ JavascriptTemplateLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_property_role,
 	plays is_javascript_quasi_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
+	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_expressions_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_quasis_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptThisExpressionArtifact sub JavascriptSourceArtifact,
+JavascriptThisExpressionArtifact sub ThisExpressionArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
@@ -2258,9 +3643,18 @@ JavascriptThisExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
 	plays is_javascript_test_role,
+	plays is_javascript_value_role,
+	plays has_javascript_trailing_comments_role;
+
+JavascriptThisTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_params_role,
+	plays is_javascript_return_type_role,
+	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
 	plays is_javascript_value_role;
 
-JavascriptThrowStatementArtifact sub JavascriptSourceArtifact,
+JavascriptThrowStatementArtifact sub ThrowStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -2269,7 +3663,7 @@ JavascriptThrowStatementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptTryStatementArtifact sub JavascriptSourceArtifact,
+JavascriptTryStatementArtifact sub TryStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -2282,9 +3676,14 @@ JavascriptTryStatementArtifact sub JavascriptSourceArtifact,
 
 JavascriptTupleTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_element_type_role,
+	plays is_javascript_key_role,
+	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
+	plays is_javascript_value_role,
 	plays has_javascript_types_role;
 
 JavascriptTypeAliasArtifact sub JavascriptSourceArtifact,
@@ -2310,14 +3709,19 @@ JavascriptTypeCastExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
+	plays is_javascript_body_role,
 	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
+	plays is_javascript_declaration_role,
+	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
+	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
 	plays is_javascript_value_role,
 	plays has_javascript_expression_role,
 	plays has_javascript_leading_comments_role,
@@ -2325,24 +3729,30 @@ JavascriptTypeCastExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptTypeofTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_element_type_role,
+	plays is_javascript_params_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
 	plays is_javascript_types_role,
 	plays is_javascript_value_role,
 	plays has_javascript_argument_role;
 
-JavascriptTypeParameterArtifact sub JavascriptSourceArtifact,
+JavascriptTypeParameterArtifact sub TypeParameterArtifact,
 	# Attributes
 	has name,
 	# Structural
 	plays is_javascript_params_role,
 	plays has_javascript_bound_role,
-	plays has_javascript_default_role;
+	plays has_javascript_default_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role,
+	plays has_javascript_variance_role;
 
 JavascriptTypeParameterDeclarationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_type_parameters_role,
-	plays has_javascript_params_role;
+	plays has_javascript_params_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptTypeParameterInstantiationArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -2358,6 +3768,7 @@ JavascriptUnaryExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
 	plays is_javascript_body_role,
+	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_discriminant_role,
 	plays is_javascript_elements_role,
@@ -2369,6 +3780,8 @@ JavascriptUnaryExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
@@ -2379,11 +3792,16 @@ JavascriptUnaryExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptUnionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_argument_role,
+	plays is_javascript_declaration_role,
+	plays is_javascript_element_type_role,
 	plays is_javascript_impltype_role,
+	plays is_javascript_key_role,
 	plays is_javascript_params_role,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
+	plays is_javascript_types_role,
 	plays is_javascript_value_role,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_types_role;
@@ -2396,8 +3814,10 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
 	plays is_javascript_body_role,
+	plays is_javascript_callee_role,
 	plays is_javascript_consequent_role,
 	plays is_javascript_discriminant_role,
+	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
 	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
@@ -2406,6 +3826,8 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_object_role,
 	plays is_javascript_property_role,
 	plays is_javascript_right_role,
+	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
 	plays is_javascript_test_role,
 	plays is_javascript_update_role,
 	plays is_javascript_value_role,
@@ -2448,9 +3870,11 @@ JavascriptVoidTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_return_type_role,
 	plays is_javascript_right_role,
 	plays is_javascript_type_annotation_role,
-	plays is_javascript_types_role;
+	plays is_javascript_types_role,
+	plays is_javascript_value_role,
+	plays has_javascript_leading_comments_role;
 
-JavascriptWhileStatementArtifact sub JavascriptSourceArtifact,
+JavascriptWhileStatementArtifact sub WhileStatementArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -2472,13 +3896,22 @@ JavascriptYieldExpressionArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptDelegateAttribute,
 	# Structural
+	plays is_javascript_alternate_role,
 	plays is_javascript_argument_role,
+	plays is_javascript_arguments_role,
+	plays is_javascript_callee_role,
+	plays is_javascript_consequent_role,
+	plays is_javascript_elements_role,
 	plays is_javascript_expression_role,
+	plays is_javascript_expressions_role,
 	plays is_javascript_init_role,
 	plays is_javascript_key_role,
 	plays is_javascript_left_role,
+	plays is_javascript_object_role,
 	plays is_javascript_right_role,
 	plays is_javascript_super_class_role,
+	plays is_javascript_tag_role,
+	plays is_javascript_test_role,
 	plays is_javascript_value_role,
 	plays has_javascript_argument_role;
 
@@ -2609,6 +4042,7 @@ PhpExprAssignOpConcatArtifact sub PhpSourceArtifact,
 	plays is_php_expr_role,
 	plays is_php_if_role,
 	plays is_php_left_role,
+	plays is_php_loop_role,
 	plays is_php_right_role,
 	plays is_php_stmts_role,
 	plays is_php_value_role,
@@ -2620,6 +4054,7 @@ PhpExprAssignOpDivArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_left_role,
+	plays is_php_loop_role,
 	plays is_php_stmts_role,
 	plays has_php_comments_role,
 	plays has_php_expr_role,
@@ -2631,12 +4066,14 @@ PhpExprAssignOpMinusArtifact sub PhpSourceArtifact,
 	plays is_php_expr_role,
 	plays is_php_loop_role,
 	plays is_php_stmts_role,
+	plays is_php_value_role,
 	plays has_php_comments_role,
 	plays has_php_expr_role,
 	plays has_php_var_role;
 
 PhpExprAssignOpModArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_right_role,
 	plays is_php_stmts_role,
 	plays has_php_comments_role,
@@ -2653,6 +4090,7 @@ PhpExprAssignOpMulArtifact sub PhpSourceArtifact,
 PhpExprAssignOpPlusArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
+	plays is_php_children_role,
 	plays is_php_expr_role,
 	plays is_php_init_role,
 	plays is_php_left_role,
@@ -2661,6 +4099,12 @@ PhpExprAssignOpPlusArtifact sub PhpSourceArtifact,
 	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_comments_role,
+	plays has_php_expr_role,
+	plays has_php_var_role;
+
+PhpExprAssignOpPowArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_stmts_role,
 	plays has_php_expr_role,
 	plays has_php_var_role;
 
@@ -2681,8 +4125,11 @@ PhpExprAssignRefArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_children_role,
+	plays is_php_init_role,
+	plays is_php_loop_role,
 	plays is_php_right_role,
 	plays is_php_stmts_role,
+	plays is_php_value_role,
 	plays is_php_var_role,
 	plays has_php_comments_role,
 	plays has_php_expr_role,
@@ -2695,9 +4142,11 @@ PhpExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
+	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
+	plays has_php_comments_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
@@ -2705,16 +4154,20 @@ PhpExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_cond_role,
 	plays is_php_default_role,
+	plays is_php_dim_role,
+	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
+	plays has_php_comments_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
 PhpExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_dim_role,
 	plays is_php_expr_role,
 	plays is_php_left_role,
@@ -2766,6 +4219,7 @@ PhpExprBinaryOpCoalesceArtifact sub PhpSourceArtifact,
 	plays is_php_left_role,
 	plays is_php_name_role,
 	plays is_php_right_role,
+	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays is_php_var_role,
 	plays has_php_left_role,
@@ -2791,6 +4245,7 @@ PhpExprBinaryOpConcatArtifact sub PhpSourceArtifact,
 
 PhpExprBinaryOpDivArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_dim_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_exprs_role,
@@ -2809,6 +4264,7 @@ PhpExprBinaryOpEqualArtifact sub PhpSourceArtifact,
 	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
+	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_comments_role,
 	plays has_php_left_role,
@@ -2836,6 +4292,7 @@ PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
+	plays has_php_comments_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
@@ -2854,11 +4311,13 @@ PhpExprBinaryOpIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_body_role,
 	plays is_php_cond_role,
 	plays is_php_expr_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_stmts_role,
+	plays is_php_value_role,
 	plays has_php_comments_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
@@ -2880,6 +4339,8 @@ PhpExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_cond_role,
 	plays is_php_expr_role,
+	plays is_php_right_role,
+	plays is_php_stmts_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
@@ -2932,6 +4393,7 @@ PhpExprBinaryOpNotEqualArtifact sub PhpSourceArtifact,
 	plays is_php_cond_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
+	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
@@ -2954,11 +4416,13 @@ PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprBinaryOpPlusArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_dim_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_exprs_role,
 	plays is_php_if_role,
+	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
@@ -2969,6 +4433,9 @@ PhpExprBinaryOpPlusArtifact sub PhpSourceArtifact,
 PhpExprBinaryOpPowArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_expr_role,
+	plays is_php_if_role,
+	plays is_php_left_role,
+	plays is_php_right_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
@@ -2987,7 +4454,9 @@ PhpExprBinaryOpShiftRightArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_cond_role,
 	plays is_php_dim_role,
+	plays is_php_else_role,
 	plays is_php_expr_role,
+	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
@@ -3015,6 +4484,7 @@ PhpExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
+	plays has_php_comments_role,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
@@ -3028,6 +4498,7 @@ PhpExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact,
 PhpExprBitwiseNotArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_expr_role,
+	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
@@ -3047,9 +4518,11 @@ PhpExprBooleanNotArtifact sub PhpSourceArtifact,
 
 PhpExprCastArrayArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
+	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
 	plays is_php_var_role,
@@ -3058,16 +4531,19 @@ PhpExprCastArrayArtifact sub PhpSourceArtifact,
 PhpExprCastBoolArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_cond_role,
+	plays is_php_dim_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
+	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_expr_role;
 
 PhpExprCastDoubleArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
@@ -3087,6 +4563,7 @@ PhpExprCastIntArtifact sub PhpSourceArtifact,
 	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
+	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_comments_role,
 	plays has_php_expr_role;
@@ -3096,6 +4573,7 @@ PhpExprCastObjectArtifact sub PhpSourceArtifact,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
+	plays is_php_left_role,
 	plays is_php_value_role,
 	plays is_php_var_role,
 	plays has_php_expr_role;
@@ -3118,6 +4596,7 @@ PhpExprCastStringArtifact sub PhpSourceArtifact,
 
 PhpExprClassConstFetchArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_children_role,
 	plays is_php_cond_role,
 	plays is_php_default_role,
 	plays is_php_dim_role,
@@ -3275,6 +4754,7 @@ PhpExprInstanceofArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_cond_role,
 	plays is_php_dim_role,
+	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
@@ -3337,6 +4817,7 @@ PhpExprNewArtifact sub PhpSourceArtifact,
 	plays is_php_expr_role,
 	plays is_php_if_role,
 	plays is_php_left_role,
+	plays is_php_name_role,
 	plays is_php_right_role,
 	plays is_php_stmts_role,
 	plays is_php_value_role,
@@ -3367,6 +4848,7 @@ PhpExprPostIncArtifact sub PhpSourceArtifact,
 	plays is_php_children_role,
 	plays is_php_cond_role,
 	plays is_php_dim_role,
+	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
 	plays is_php_init_role,
@@ -3383,6 +4865,7 @@ PhpExprPreDecArtifact sub PhpSourceArtifact,
 	plays is_php_cond_role,
 	plays is_php_dim_role,
 	plays is_php_expr_role,
+	plays is_php_if_role,
 	plays is_php_init_role,
 	plays is_php_left_role,
 	plays is_php_loop_role,
@@ -3444,6 +4927,7 @@ PhpExprPropertyFetchArtifact sub PhpSourceArtifact,
 PhpExprShellExecArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_expr_role,
+	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_parts_role;
 
@@ -3451,6 +4935,7 @@ PhpExprStaticCallArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_children_role,
+	plays is_php_class_role,
 	plays is_php_cond_role,
 	plays is_php_dim_role,
 	plays is_php_else_role,
@@ -3478,6 +4963,7 @@ PhpExprStaticPropertyFetchArtifact sub PhpSourceArtifact,
 	plays is_php_expr_role,
 	plays is_php_exprs_role,
 	plays is_php_if_role,
+	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_name_role,
 	plays is_php_right_role,
@@ -3561,6 +5047,7 @@ PhpExprVariableArtifact sub PhpSourceArtifact,
 
 PhpExprYieldArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_expr_role,
 	plays is_php_stmts_role,
 	plays is_php_value_role,
 	plays has_php_comments_role,
@@ -3591,6 +5078,7 @@ PhpNameArtifact sub NameArtifact,
 	plays is_php_class_role,
 	plays is_php_extends_role,
 	plays is_php_implements_role,
+	plays is_php_insteadof_role,
 	plays is_php_name_role,
 	plays is_php_return_type_role,
 	plays is_php_trait_role,
@@ -3646,6 +5134,7 @@ PhpScalarDNumberArtifact sub PhpSourceArtifact,
 
 PhpScalarEncapsedArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_dim_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
@@ -3683,6 +5172,7 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact,
 PhpScalarMagicConstClassArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_default_role,
+	plays is_php_dim_role,
 	plays is_php_expr_role,
 	plays is_php_key_role,
 	plays is_php_left_role,
@@ -3693,6 +5183,8 @@ PhpScalarMagicConstClassArtifact sub PhpSourceArtifact,
 PhpScalarMagicConstDirArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_expr_role,
+	plays is_php_if_role,
+	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role,
@@ -3704,6 +5196,7 @@ PhpScalarMagicConstFileArtifact sub PhpSourceArtifact,
 	plays is_php_else_role,
 	plays is_php_expr_role,
 	plays is_php_if_role,
+	plays is_php_key_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role;
@@ -3727,6 +5220,7 @@ PhpScalarMagicConstLineArtifact sub PhpSourceArtifact,
 
 PhpScalarMagicConstMethodArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_dim_role,
 	plays is_php_expr_role,
 	plays is_php_exprs_role,
 	plays is_php_left_role,
@@ -3739,6 +5233,10 @@ PhpScalarMagicConstNamespaceArtifact sub PhpSourceArtifact,
 	plays is_php_left_role,
 	plays is_php_right_role,
 	plays is_php_value_role;
+
+PhpScalarMagicConstTraitArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_left_role;
 
 PhpScalarStringArtifact sub PhpSourceArtifact,
 	# Structural
@@ -3961,6 +5459,7 @@ PhpStmtLabelArtifact sub PhpSourceArtifact,
 	plays is_php_body_role,
 	plays is_php_children_role,
 	plays is_php_stmts_role,
+	plays has_php_comments_role,
 	plays has_php_name_role;
 
 PhpStmtNamespaceArtifact sub PhpSourceArtifact,
@@ -4045,6 +5544,14 @@ PhpStmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact,
 	plays is_php_adaptations_role,
 	plays has_php_trait_role;
 
+PhpStmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpMethodAttribute,
+	# Structural
+	plays is_php_adaptations_role,
+	plays has_php_insteadof_role,
+	plays has_php_trait_role;
+
 PhpStmtTraitUseArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_stmts_role,
@@ -4122,6 +5629,7 @@ PythonAnnAssignArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
+	plays is_python_else_stmts_role,
 	plays has_python_annotation_role,
 	plays has_python_target_role,
 	plays has_python_value_role;
@@ -4224,6 +5732,7 @@ PythonAwaitArtifact sub PythonSourceArtifact,
 
 PythonBinOpArtifact sub PythonSourceArtifact,
 	# Structural
+	plays is_python_annotation_role,
 	plays is_python_args_role,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
@@ -4254,6 +5763,7 @@ PythonBinOpArtifact sub PythonSourceArtifact,
 	plays is_python_value_role,
 	plays is_python_values_role,
 	plays has_python_left_role,
+	plays has_python_noops_sameline_role,
 	plays has_python_op_role,
 	plays has_python_right_role;
 
@@ -4282,6 +5792,8 @@ PythonBoolLiteralArtifact sub PythonSourceArtifact,
 	plays is_python_elts_role,
 	plays is_python_keys_role,
 	plays is_python_left_role,
+	plays is_python_msg_role,
+	plays is_python_operand_role,
 	plays is_python_orelse_role,
 	plays is_python_right_role,
 	plays is_python_test_role,
@@ -4302,7 +5814,9 @@ PythonBoolOpArtifact sub PythonSourceArtifact,
 	plays is_python_identifiers_role,
 	plays is_python_ifs_role,
 	plays is_python_iter_role,
+	plays is_python_key_role,
 	plays is_python_keys_role,
+	plays is_python_kwargs_role,
 	plays is_python_left_role,
 	plays is_python_operand_role,
 	plays is_python_orelse_role,
@@ -4349,6 +5863,7 @@ PythonBytesArtifact sub PythonSourceArtifact,
 
 PythonCallArtifact sub PythonSourceArtifact,
 	# Structural
+	plays is_python_annotation_role,
 	plays is_python_args_role,
 	plays is_python_bases_role,
 	plays is_python_body_role,
@@ -4367,12 +5882,15 @@ PythonCallArtifact sub PythonSourceArtifact,
 	plays is_python_iter_role,
 	plays is_python_key_role,
 	plays is_python_keys_role,
+	plays is_python_kwargs_role,
 	plays is_python_left_role,
 	plays is_python_lower_role,
 	plays is_python_msg_role,
 	plays is_python_operand_role,
 	plays is_python_orelse_role,
+	plays is_python_returns_role,
 	plays is_python_right_role,
+	plays is_python_starargs_role,
 	plays is_python_step_role,
 	plays is_python_test_role,
 	plays is_python_type_role,
@@ -4390,6 +5908,7 @@ PythonClassDefArtifact sub PythonSourceArtifact,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
+	plays is_python_final_stmts_role,
 	plays is_python_orelse_role,
 	plays has_python_bases_role,
 	plays has_python_body_role,
@@ -4418,6 +5937,7 @@ PythonCompareArtifact sub PythonSourceArtifact,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
 	plays is_python_comparators_role,
+	plays is_python_default_role,
 	plays is_python_elt_role,
 	plays is_python_elts_role,
 	plays is_python_identifiers_role,
@@ -4458,6 +5978,7 @@ PythonContinueArtifact sub PythonSourceArtifact,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
+	plays is_python_final_stmts_role,
 	plays has_python_noops_previous_role,
 	plays has_python_noops_sameline_role;
 
@@ -4495,6 +6016,7 @@ PythonDictCompArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_args_role,
 	plays is_python_body_role,
+	plays is_python_body_stmts_role,
 	plays is_python_comparators_role,
 	plays is_python_elt_role,
 	plays is_python_elts_role,
@@ -4536,6 +6058,7 @@ PythonExceptHandlerArtifact sub PythonSourceArtifact,
 PythonExecArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_body_role,
+	plays is_python_body_stmts_role,
 	plays has_python_body_role,
 	plays has_python_globals_role;
 
@@ -4596,6 +6119,7 @@ PythonFunctionDefArtifact sub PythonSourceArtifact,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
+	plays is_python_final_stmts_role,
 	plays is_python_orelse_role,
 	plays has_python_args_role,
 	plays has_python_body_role,
@@ -4678,6 +6202,7 @@ PythonIfExpArtifact sub PythonSourceArtifact,
 	plays is_python_key_role,
 	plays is_python_keys_role,
 	plays is_python_left_role,
+	plays is_python_lower_role,
 	plays is_python_msg_role,
 	plays is_python_operand_role,
 	plays is_python_orelse_role,
@@ -4801,6 +6326,7 @@ PythonLambdaArtifact sub PythonSourceArtifact,
 	plays is_python_elts_role,
 	plays is_python_func_role,
 	plays is_python_identifiers_role,
+	plays is_python_ifs_role,
 	plays is_python_orelse_role,
 	plays is_python_value_role,
 	plays is_python_values_role,
@@ -4829,6 +6355,7 @@ PythonListArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_target_role,
 	plays is_python_targets_role,
+	plays is_python_type_role,
 	plays is_python_value_role,
 	plays is_python_values_role,
 	plays has_python_elts_role,
@@ -4850,6 +6377,7 @@ PythonListCompArtifact sub PythonSourceArtifact,
 	plays is_python_operand_role,
 	plays is_python_orelse_role,
 	plays is_python_right_role,
+	plays is_python_starargs_role,
 	plays is_python_test_role,
 	plays is_python_value_role,
 	plays is_python_values_role,
@@ -4925,6 +6453,7 @@ PythonNameArtifact sub NameArtifact,
 	plays is_python_step_role,
 	plays is_python_target_role,
 	plays is_python_targets_role,
+	plays is_python_tback_role,
 	plays is_python_test_role,
 	plays is_python_type_role,
 	plays is_python_upper_role,
@@ -5002,6 +6531,8 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays is_python_elt_role,
 	plays is_python_elts_role,
 	plays is_python_identifiers_role,
+	plays is_python_ifs_role,
+	plays is_python_iter_role,
 	plays is_python_keys_role,
 	plays is_python_left_role,
 	plays is_python_lower_role,
@@ -5084,6 +6615,7 @@ PythonQualifiedIdentifierArtifact sub PythonSourceArtifact,
 	plays is_python_orelse_role,
 	plays is_python_returns_role,
 	plays is_python_right_role,
+	plays is_python_starargs_role,
 	plays is_python_step_role,
 	plays is_python_target_role,
 	plays is_python_targets_role,
@@ -5157,6 +6689,7 @@ PythonSetCompArtifact sub PythonSourceArtifact,
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
 	plays is_python_comparators_role,
+	plays is_python_identifiers_role,
 	plays is_python_left_role,
 	plays is_python_right_role,
 	plays is_python_value_role,
@@ -5191,17 +6724,20 @@ PythonStrArtifact sub StrArtifact,
 	plays is_python_elt_role,
 	plays is_python_elts_role,
 	plays is_python_exc_role,
+	plays is_python_func_role,
 	plays is_python_identifiers_role,
 	plays is_python_inst_role,
 	plays is_python_iter_role,
 	plays is_python_keys_role,
 	plays is_python_left_role,
+	plays is_python_lower_role,
 	plays is_python_msg_role,
 	plays is_python_operand_role,
 	plays is_python_orelse_role,
 	plays is_python_returns_role,
 	plays is_python_right_role,
 	plays is_python_test_role,
+	plays is_python_upper_role,
 	plays is_python_value_role,
 	plays is_python_values_role,
 	plays has_python_noops_previous_role,
@@ -5320,6 +6856,7 @@ PythonTupleArtifact sub PythonSourceArtifact,
 	plays is_python_key_role,
 	plays is_python_keys_role,
 	plays is_python_left_role,
+	plays is_python_lower_role,
 	plays is_python_msg_role,
 	plays is_python_operand_role,
 	plays is_python_optional_vars_role,
@@ -5327,11 +6864,14 @@ PythonTupleArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_target_role,
 	plays is_python_targets_role,
+	plays is_python_test_role,
 	plays is_python_type_role,
+	plays is_python_upper_role,
 	plays is_python_value_role,
 	plays is_python_values_role,
 	plays has_python_elts_role,
-	plays has_python_noops_previous_role;
+	plays has_python_noops_previous_role,
+	plays has_python_noops_sameline_role;
 
 PythonUAddArtifact sub PythonSourceArtifact,
 	# Structural
@@ -5414,6 +6954,7 @@ PythonYieldArtifact sub YieldArtifact,
 	# Structural
 	plays is_python_args_role,
 	plays is_python_body_stmts_role,
+	plays is_python_context_expr_role,
 	plays is_python_value_role,
 	plays has_python_noops_previous_role,
 	plays has_python_noops_sameline_role,
@@ -5554,13 +7095,14 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	plays is_ruby_args_role,
 	plays is_ruby_children_role;
 
-RubyBlockArtifact sub RubySourceArtifact,
+RubyBlockArtifact sub BlockArtifact,
 	# Structural
 	plays is_ruby_1_role,
 	plays is_ruby_2_role,
 	plays is_ruby_base_role,
 	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
+	plays is_ruby_casevar_role,
 	plays is_ruby_children_role,
 	plays is_ruby_class_role,
 	plays is_ruby_condition_role,
@@ -5604,6 +7146,7 @@ RubyCaseArtifact sub RubySourceArtifact,
 	plays is_ruby_file_role,
 	plays is_ruby_left_role,
 	plays is_ruby_right_role,
+	plays is_ruby_target_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role,
 	plays has_ruby_casevar_role,
@@ -5621,6 +7164,7 @@ RubyCasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_else_role,
 	plays is_ruby_file_role,
 	plays is_ruby_iterators_role,
+	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role,
@@ -5634,13 +7178,13 @@ RubyCbaseArtifact sub RubySourceArtifact,
 
 RubyClassArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_ruby_base_role,
 	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
 	plays is_ruby_ensure_body_role,
 	plays is_ruby_file_role,
 	plays is_ruby_right_role,
+	plays is_ruby_value_role,
 	plays has_ruby_body_role,
 	plays has_ruby_comments_role,
 	plays has_ruby_parent_role;
@@ -5654,6 +7198,7 @@ RubyCommentArtifact sub CommentArtifact,
 
 RubyComplexArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_body_role,
 	plays is_ruby_class_role,
 	plays is_ruby_contents_role,
 	plays is_ruby_values_role;
@@ -5709,7 +7254,6 @@ RubyCvasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_ensure_body_role,
 	plays is_ruby_iterators_role,
 	plays is_ruby_target_role,
-	plays is_ruby_value_role,
 	plays has_ruby_value_role;
 
 RubyDefArtifact sub RubySourceArtifact,
@@ -5747,6 +7291,7 @@ RubyDefsArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
+	plays is_ruby_class_role,
 	plays is_ruby_condition_role,
 	plays is_ruby_else_role,
 	plays is_ruby_values_role,
@@ -5767,7 +7312,6 @@ RubyDstrArtifact sub RubySourceArtifact,
 	plays is_ruby_contents_role,
 	plays is_ruby_default_role,
 	plays is_ruby_else_role,
-	plays is_ruby_left_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
@@ -5784,6 +7328,7 @@ RubyDsymArtifact sub RubySourceArtifact,
 	plays is_ruby_class_role,
 	plays is_ruby_contents_role,
 	plays is_ruby_else_role,
+	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role,
@@ -5896,17 +7441,16 @@ RubyGvasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role,
-	plays has_ruby_children_role,
-	plays has_ruby_comments_role;
+	plays has_ruby_children_role;
 
 RubyHashArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_1_role,
 	plays is_ruby_2_role,
 	plays is_ruby_base_role,
 	plays is_ruby_body_role,
 	plays is_ruby_children_role,
 	plays is_ruby_class_role,
-	plays is_ruby_conditions_role,
 	plays is_ruby_contents_role,
 	plays is_ruby_default_role,
 	plays is_ruby_else_role,
@@ -5936,10 +7480,12 @@ RubyIfArtifact sub IfArtifact,
 	plays is_ruby_class_role,
 	plays is_ruby_condition_role,
 	plays is_ruby_contents_role,
+	plays is_ruby_default_role,
 	plays is_ruby_else_role,
 	plays is_ruby_ensure_body_role,
 	plays is_ruby_file_role,
 	plays is_ruby_left_role,
+	plays is_ruby_parent_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
@@ -5963,7 +7509,6 @@ RubyIntArtifact sub RubySourceArtifact,
 	plays is_ruby_contents_role,
 	plays is_ruby_default_role,
 	plays is_ruby_else_role,
-	plays is_ruby_ensure_body_role,
 	plays is_ruby_left_role,
 	plays is_ruby_object_role,
 	plays is_ruby_right_role,
@@ -5978,6 +7523,7 @@ RubyIrangeArtifact sub RubySourceArtifact,
 	plays is_ruby_class_role,
 	plays is_ruby_conditions_role,
 	plays is_ruby_contents_role,
+	plays is_ruby_default_role,
 	plays is_ruby_else_role,
 	plays is_ruby_iterated_role,
 	plays is_ruby_target_role,
@@ -6004,6 +7550,7 @@ RubyIvarArtifact sub RubySourceArtifact,
 	plays is_ruby_left_role,
 	plays is_ruby_object_role,
 	plays is_ruby_options_role,
+	plays is_ruby_parent_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
@@ -6024,7 +7571,6 @@ RubyIvasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_iterators_role,
 	plays is_ruby_left_role,
 	plays is_ruby_object_role,
-	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role,
@@ -6096,6 +7642,7 @@ RubyLvasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_2_role,
 	plays is_ruby_alias_role,
 	plays is_ruby_base_role,
+	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
 	plays is_ruby_casevar_role,
 	plays is_ruby_children_role,
@@ -6147,11 +7694,13 @@ RubyMlhsArtifact sub RubySourceArtifact,
 
 RubyModuleArtifact sub ModuleArtifact,
 	# Structural
+	plays is_ruby_base_role,
 	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
 	plays is_ruby_file_role,
 	plays is_ruby_right_role,
+	plays is_ruby_value_role,
 	plays has_ruby_begin_role,
 	plays has_ruby_comments_role,
 	plays has_ruby_file_role;
@@ -6172,7 +7721,6 @@ RubyNilArtifact sub RubySourceArtifact,
 	plays is_ruby_casevar_role,
 	plays is_ruby_children_role,
 	plays is_ruby_class_role,
-	plays is_ruby_condition_role,
 	plays is_ruby_conditions_role,
 	plays is_ruby_contents_role,
 	plays is_ruby_default_role,
@@ -6199,7 +7747,6 @@ RubyNthRefArtifact sub RubySourceArtifact,
 	plays is_ruby_casevar_role,
 	plays is_ruby_children_role,
 	plays is_ruby_condition_role,
-	plays is_ruby_conditions_role,
 	plays is_ruby_contents_role,
 	plays is_ruby_else_role,
 	plays is_ruby_left_role,
@@ -6220,6 +7767,7 @@ RubyOpAsgnArtifact sub RubySourceArtifact,
 	plays is_ruby_else_role,
 	plays is_ruby_ensure_body_role,
 	plays is_ruby_file_role,
+	plays is_ruby_left_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
 	plays is_ruby_value_role,
@@ -6250,7 +7798,9 @@ RubyOrArtifact sub OrArtifact,
 	plays is_ruby_condition_role,
 	plays is_ruby_conditions_role,
 	plays is_ruby_contents_role,
+	plays is_ruby_default_role,
 	plays is_ruby_else_role,
+	plays is_ruby_ensure_body_role,
 	plays is_ruby_left_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
@@ -6263,6 +7813,7 @@ RubyOrAsgnArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_begin_role,
 	plays is_ruby_body_role,
+	plays is_ruby_casevar_role,
 	plays is_ruby_class_role,
 	plays is_ruby_condition_role,
 	plays is_ruby_else_role,
@@ -6297,6 +7848,7 @@ RubyRationalArtifact sub RubySourceArtifact,
 	plays is_ruby_base_role,
 	plays is_ruby_body_role,
 	plays is_ruby_contents_role,
+	plays is_ruby_value_role,
 	plays is_ruby_values_role;
 
 RubyRedoArtifact sub RubySourceArtifact,
@@ -6364,8 +7916,9 @@ RubyReturnArtifact sub ReturnArtifact,
 	plays is_ruby_body_role,
 	plays is_ruby_class_role,
 	plays is_ruby_else_role,
-	plays is_ruby_ensure_body_role,
+	plays is_ruby_file_role,
 	plays is_ruby_right_role,
+	plays has_ruby_comments_role,
 	plays has_ruby_target_role;
 
 RubySclassArtifact sub RubySourceArtifact,
@@ -6644,6 +8197,7 @@ RubyStrArtifact sub StrArtifact,
 	plays is_ruby_else_role,
 	plays is_ruby_file_role,
 	plays is_ruby_left_role,
+	plays is_ruby_object_role,
 	plays is_ruby_options_role,
 	plays is_ruby_right_role,
 	plays is_ruby_target_role,
@@ -6725,7 +8279,6 @@ RubyUntilArtifact sub RubySourceArtifact,
 	plays is_ruby_base_role,
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
-	plays is_ruby_ensure_body_role,
 	plays has_ruby_body_role,
 	plays has_ruby_condition_role;
 
@@ -6767,6 +8320,7 @@ RubyXstrArtifact sub RubySourceArtifact,
 	plays is_ruby_body_role,
 	plays is_ruby_children_role,
 	plays is_ruby_condition_role,
+	plays is_ruby_contents_role,
 	plays is_ruby_else_role,
 	plays is_ruby_right_role,
 	plays is_ruby_value_role,
@@ -6815,11 +8369,17 @@ parent_child_relation sub relation,
 args_relation sub parent_child_relation,
 	relates is_args_role as is_child, relates has_args_role as is_parent;
 
+arguments_relation sub parent_child_relation,
+	relates is_arguments_role as is_child, relates has_arguments_role as is_parent;
+
 begin_relation sub parent_child_relation,
 	relates is_begin_role as is_child, relates has_begin_role as is_parent;
 
 body_relation sub parent_child_relation,
 	relates is_body_role as is_child, relates has_body_role as is_parent;
+
+bound_relation sub parent_child_relation,
+	relates is_bound_role as is_child, relates has_bound_role as is_parent;
 
 cases_relation sub parent_child_relation,
 	relates is_cases_role as is_child, relates has_cases_role as is_parent;
@@ -6836,11 +8396,17 @@ comments_relation sub parent_child_relation,
 cond_relation sub parent_child_relation,
 	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
+declaration_relation sub parent_child_relation,
+	relates is_declaration_role as is_child, relates has_declaration_role as is_parent;
+
 decorators_relation sub parent_child_relation,
 	relates is_decorators_role as is_child, relates has_decorators_role as is_parent;
 
 default_relation sub parent_child_relation,
 	relates is_default_role as is_child, relates has_default_role as is_parent;
+
+element_type_relation sub parent_child_relation,
+	relates is_element_type_role as is_child, relates has_element_type_role as is_parent;
 
 else_relation sub parent_child_relation,
 	relates is_else_role as is_child, relates has_else_role as is_parent;
@@ -6851,6 +8417,18 @@ elt_relation sub parent_child_relation,
 elts_relation sub parent_child_relation,
 	relates is_elts_role as is_child, relates has_elts_role as is_parent;
 
+expression_relation sub parent_child_relation,
+	relates is_expression_role as is_child, relates has_expression_role as is_parent;
+
+expressions_relation sub parent_child_relation,
+	relates is_expressions_role as is_child, relates has_expressions_role as is_parent;
+
+extends_relation sub parent_child_relation,
+	relates is_extends_role as is_child, relates has_extends_role as is_parent;
+
+finally_relation sub parent_child_relation,
+	relates is_finally_role as is_child, relates has_finally_role as is_parent;
+
 func_relation sub parent_child_relation,
 	relates is_func_role as is_child, relates has_func_role as is_parent;
 
@@ -6859,6 +8437,15 @@ handlers_relation sub parent_child_relation,
 
 if_relation sub parent_child_relation,
 	relates is_if_role as is_child, relates has_if_role as is_parent;
+
+implements_relation sub parent_child_relation,
+	relates is_implements_role as is_child, relates has_implements_role as is_parent;
+
+imports_relation sub parent_child_relation,
+	relates is_imports_role as is_child, relates has_imports_role as is_parent;
+
+index_relation sub parent_child_relation,
+	relates is_index_role as is_child, relates has_index_role as is_parent;
 
 init_relation sub parent_child_relation,
 	relates is_init_role as is_child, relates has_init_role as is_parent;
@@ -6887,8 +8474,14 @@ object_relation sub parent_child_relation,
 op_relation sub parent_child_relation,
 	relates is_op_role as is_child, relates has_op_role as is_parent;
 
+operand_relation sub parent_child_relation,
+	relates is_operand_role as is_child, relates has_operand_role as is_parent;
+
 operator_relation sub parent_child_relation,
 	relates is_operator_role as is_child, relates has_operator_role as is_parent;
+
+package_relation sub parent_child_relation,
+	relates is_package_role as is_child, relates has_package_role as is_parent;
 
 params_relation sub parent_child_relation,
 	relates is_params_role as is_child, relates has_params_role as is_parent;
@@ -6910,6 +8503,9 @@ targets_relation sub parent_child_relation,
 
 test_relation sub parent_child_relation,
 	relates is_test_role as is_child, relates has_test_role as is_parent;
+
+type_parameters_relation sub parent_child_relation,
+	relates is_type_parameters_role as is_child, relates has_type_parameters_role as is_parent;
 
 type_relation sub parent_child_relation,
 	relates is_type_role as is_child, relates has_type_role as is_parent;
@@ -7014,11 +8610,11 @@ go_high_relation sub parent_child_relation,
 go_if_relation sub if_relation,
 	relates is_go_if_role as is_if_role, relates has_go_if_role as has_if_role;
 
-go_imports_relation sub parent_child_relation,
-	relates is_go_imports_role as is_child, relates has_go_imports_role as is_parent;
+go_imports_relation sub imports_relation,
+	relates is_go_imports_role as is_imports_role, relates has_go_imports_role as has_imports_role;
 
-go_index_relation sub parent_child_relation,
-	relates is_go_index_role as is_child, relates has_go_index_role as is_parent;
+go_index_relation sub index_relation,
+	relates is_go_index_role as is_index_role, relates has_go_index_role as has_index_role;
 
 go_init_relation sub init_relation,
 	relates is_go_init_role as is_init_role, relates has_go_init_role as has_init_role;
@@ -7080,8 +8676,8 @@ go_op_relation sub op_relation,
 go_opening_relation sub parent_child_relation,
 	relates is_go_opening_role as is_child, relates has_go_opening_role as is_parent;
 
-go_package_relation sub parent_child_relation,
-	relates is_go_package_role as is_child, relates has_go_package_role as is_parent;
+go_package_relation sub package_relation,
+	relates is_go_package_role as is_package_role, relates has_go_package_role as has_package_role;
 
 go_params_relation sub params_relation,
 	relates is_go_params_role as is_params_role, relates has_go_params_role as has_params_role;
@@ -7164,6 +8760,190 @@ go_x_relation sub parent_child_relation,
 go_y_relation sub parent_child_relation,
 	relates is_go_y_role as is_child, relates has_go_y_role as is_parent;
 
+#####----- Java -----#####
+java_annotations_relation sub parent_child_relation,
+	relates is_java_annotations_role as is_child, relates has_java_annotations_role as is_parent;
+
+java_anonymous_class_declaration_relation sub parent_child_relation,
+	relates is_java_anonymous_class_declaration_role as is_child, relates has_java_anonymous_class_declaration_role as is_parent;
+
+java_arguments_relation sub arguments_relation,
+	relates is_java_arguments_role as is_arguments_role, relates has_java_arguments_role as has_arguments_role;
+
+java_array_relation sub parent_child_relation,
+	relates is_java_array_role as is_child, relates has_java_array_role as is_parent;
+
+java_body_declarations_relation sub parent_child_relation,
+	relates is_java_body_declarations_role as is_child, relates has_java_body_declarations_role as is_parent;
+
+java_body_relation sub body_relation,
+	relates is_java_body_role as is_body_role, relates has_java_body_role as has_body_role;
+
+java_bound_relation sub bound_relation,
+	relates is_java_bound_role as is_bound_role, relates has_java_bound_role as has_bound_role;
+
+java_catch_clauses_relation sub parent_child_relation,
+	relates is_java_catch_clauses_role as is_child, relates has_java_catch_clauses_role as is_parent;
+
+java_comments_relation sub comments_relation,
+	relates is_java_comments_role as is_comments_role, relates has_java_comments_role as has_comments_role;
+
+java_declaration_relation sub declaration_relation,
+	relates is_java_declaration_role as is_declaration_role, relates has_java_declaration_role as has_declaration_role;
+
+java_default_relation sub default_relation,
+	relates is_java_default_role as is_default_role, relates has_java_default_role as has_default_role;
+
+java_dimensions_relation sub parent_child_relation,
+	relates is_java_dimensions_role as is_child, relates has_java_dimensions_role as is_parent;
+
+java_element_type_relation sub element_type_relation,
+	relates is_java_element_type_role as is_element_type_role, relates has_java_element_type_role as has_element_type_role;
+
+java_else_expression_relation sub parent_child_relation,
+	relates is_java_else_expression_role as is_child, relates has_java_else_expression_role as is_parent;
+
+java_else_statement_relation sub parent_child_relation,
+	relates is_java_else_statement_role as is_child, relates has_java_else_statement_role as is_parent;
+
+java_enum_constants_relation sub parent_child_relation,
+	relates is_java_enum_constants_role as is_child, relates has_java_enum_constants_role as is_parent;
+
+java_exception_relation sub parent_child_relation,
+	relates is_java_exception_role as is_child, relates has_java_exception_role as is_parent;
+
+java_expression_relation sub expression_relation,
+	relates is_java_expression_role as is_expression_role, relates has_java_expression_role as has_expression_role;
+
+java_expressions_relation sub expressions_relation,
+	relates is_java_expressions_role as is_expressions_role, relates has_java_expressions_role as has_expressions_role;
+
+java_extended_operands_relation sub parent_child_relation,
+	relates is_java_extended_operands_role as is_child, relates has_java_extended_operands_role as is_parent;
+
+java_extra_dimensions2_relation sub parent_child_relation,
+	relates is_java_extra_dimensions2_role as is_child, relates has_java_extra_dimensions2_role as is_parent;
+
+java_finally_relation sub finally_relation,
+	relates is_java_finally_role as is_finally_role, relates has_java_finally_role as has_finally_role;
+
+java_fragments_relation sub parent_child_relation,
+	relates is_java_fragments_role as is_child, relates has_java_fragments_role as is_parent;
+
+java_imports_relation sub imports_relation,
+	relates is_java_imports_role as is_imports_role, relates has_java_imports_role as has_imports_role;
+
+java_index_relation sub index_relation,
+	relates is_java_index_role as is_index_role, relates has_java_index_role as has_index_role;
+
+java_initializer_relation sub parent_child_relation,
+	relates is_java_initializer_role as is_child, relates has_java_initializer_role as is_parent;
+
+java_initializers_relation sub parent_child_relation,
+	relates is_java_initializers_role as is_child, relates has_java_initializers_role as is_parent;
+
+java_javadoc_relation sub parent_child_relation,
+	relates is_java_javadoc_role as is_child, relates has_java_javadoc_role as is_parent;
+
+java_label_relation sub label_relation,
+	relates is_java_label_role as is_label_role, relates has_java_label_role as has_label_role;
+
+java_left_hand_side_relation sub parent_child_relation,
+	relates is_java_left_hand_side_role as is_child, relates has_java_left_hand_side_role as is_parent;
+
+java_left_operand_relation sub parent_child_relation,
+	relates is_java_left_operand_role as is_child, relates has_java_left_operand_role as is_parent;
+
+java_message_relation sub parent_child_relation,
+	relates is_java_message_role as is_child, relates has_java_message_role as is_parent;
+
+java_modifiers_relation sub parent_child_relation,
+	relates is_java_modifiers_role as is_child, relates has_java_modifiers_role as is_parent;
+
+java_name_relation sub name_relation,
+	relates is_java_name_role as is_name_role, relates has_java_name_role as has_name_role;
+
+java_operand_relation sub operand_relation,
+	relates is_java_operand_role as is_operand_role, relates has_java_operand_role as has_operand_role;
+
+java_operator_relation sub operator_relation,
+	relates is_java_operator_role as is_operator_role, relates has_java_operator_role as has_operator_role;
+
+java_package_relation sub package_relation,
+	relates is_java_package_role as is_package_role, relates has_java_package_role as has_package_role;
+
+java_parameter_relation sub parent_child_relation,
+	relates is_java_parameter_role as is_child, relates has_java_parameter_role as is_parent;
+
+java_parameters_relation sub parent_child_relation,
+	relates is_java_parameters_role as is_child, relates has_java_parameters_role as is_parent;
+
+java_qualifier_relation sub parent_child_relation,
+	relates is_java_qualifier_role as is_child, relates has_java_qualifier_role as is_parent;
+
+java_resources_relation sub parent_child_relation,
+	relates is_java_resources_role as is_child, relates has_java_resources_role as is_parent;
+
+java_return_type2_relation sub parent_child_relation,
+	relates is_java_return_type2_role as is_child, relates has_java_return_type2_role as is_parent;
+
+java_right_hand_side_relation sub parent_child_relation,
+	relates is_java_right_hand_side_role as is_child, relates has_java_right_hand_side_role as is_parent;
+
+java_right_operand_relation sub parent_child_relation,
+	relates is_java_right_operand_role as is_child, relates has_java_right_operand_role as is_parent;
+
+java_statements_relation sub parent_child_relation,
+	relates is_java_statements_role as is_child, relates has_java_statements_role as is_parent;
+
+java_super_interface_types_relation sub parent_child_relation,
+	relates is_java_super_interface_types_role as is_child, relates has_java_super_interface_types_role as is_parent;
+
+java_superclass_type_relation sub parent_child_relation,
+	relates is_java_superclass_type_role as is_child, relates has_java_superclass_type_role as is_parent;
+
+java_tags_relation sub parent_child_relation,
+	relates is_java_tags_role as is_child, relates has_java_tags_role as is_parent;
+
+java_then_expression_relation sub parent_child_relation,
+	relates is_java_then_expression_role as is_child, relates has_java_then_expression_role as is_parent;
+
+java_then_statement_relation sub parent_child_relation,
+	relates is_java_then_statement_role as is_child, relates has_java_then_statement_role as is_parent;
+
+java_thrown_exception_types_relation sub parent_child_relation,
+	relates is_java_thrown_exception_types_role as is_child, relates has_java_thrown_exception_types_role as is_parent;
+
+java_type_arguments_relation sub parent_child_relation,
+	relates is_java_type_arguments_role as is_child, relates has_java_type_arguments_role as is_parent;
+
+java_type_bounds_relation sub parent_child_relation,
+	relates is_java_type_bounds_role as is_child, relates has_java_type_bounds_role as is_parent;
+
+java_type_name_relation sub parent_child_relation,
+	relates is_java_type_name_role as is_child, relates has_java_type_name_role as is_parent;
+
+java_type_parameters_relation sub type_parameters_relation,
+	relates is_java_type_parameters_role as is_type_parameters_role, relates has_java_type_parameters_role as has_type_parameters_role;
+
+java_type_relation sub type_relation,
+	relates is_java_type_role as is_type_role, relates has_java_type_role as has_type_role;
+
+java_types_relation sub types_relation,
+	relates is_java_types_role as is_types_role, relates has_java_types_role as has_types_role;
+
+java_updaters_relation sub parent_child_relation,
+	relates is_java_updaters_role as is_child, relates has_java_updaters_role as is_parent;
+
+java_value_relation sub value_relation,
+	relates is_java_value_role as is_value_role, relates has_java_value_role as has_value_role;
+
+java_values_relation sub values_relation,
+	relates is_java_values_role as is_values_role, relates has_java_values_role as has_values_role;
+
+java_varargs_annotations_relation sub parent_child_relation,
+	relates is_java_varargs_annotations_role as is_child, relates has_java_varargs_annotations_role as is_parent;
+
 #####----- Javascript -----#####
 javascript_alternate_relation sub parent_child_relation,
 	relates is_javascript_alternate_role as is_child, relates has_javascript_alternate_role as is_parent;
@@ -7171,8 +8951,8 @@ javascript_alternate_relation sub parent_child_relation,
 javascript_argument_relation sub parent_child_relation,
 	relates is_javascript_argument_role as is_child, relates has_javascript_argument_role as is_parent;
 
-javascript_arguments_relation sub parent_child_relation,
-	relates is_javascript_arguments_role as is_child, relates has_javascript_arguments_role as is_parent;
+javascript_arguments_relation sub arguments_relation,
+	relates is_javascript_arguments_role as is_arguments_role, relates has_javascript_arguments_role as has_arguments_role;
 
 javascript_attributes_relation sub parent_child_relation,
 	relates is_javascript_attributes_role as is_child, relates has_javascript_attributes_role as is_parent;
@@ -7183,8 +8963,11 @@ javascript_block_relation sub parent_child_relation,
 javascript_body_relation sub body_relation,
 	relates is_javascript_body_role as is_body_role, relates has_javascript_body_role as has_body_role;
 
-javascript_bound_relation sub parent_child_relation,
-	relates is_javascript_bound_role as is_child, relates has_javascript_bound_role as is_parent;
+javascript_bound_relation sub bound_relation,
+	relates is_javascript_bound_role as is_bound_role, relates has_javascript_bound_role as has_bound_role;
+
+javascript_call_properties_relation sub parent_child_relation,
+	relates is_javascript_call_properties_role as is_child, relates has_javascript_call_properties_role as is_parent;
 
 javascript_callee_relation sub parent_child_relation,
 	relates is_javascript_callee_role as is_child, relates has_javascript_callee_role as is_parent;
@@ -7207,8 +8990,8 @@ javascript_comments_relation sub comments_relation,
 javascript_consequent_relation sub parent_child_relation,
 	relates is_javascript_consequent_role as is_child, relates has_javascript_consequent_role as is_parent;
 
-javascript_declaration_relation sub parent_child_relation,
-	relates is_javascript_declaration_role as is_child, relates has_javascript_declaration_role as is_parent;
+javascript_declaration_relation sub declaration_relation,
+	relates is_javascript_declaration_role as is_declaration_role, relates has_javascript_declaration_role as has_declaration_role;
 
 javascript_declarations_relation sub parent_child_relation,
 	relates is_javascript_declarations_role as is_child, relates has_javascript_declarations_role as is_parent;
@@ -7225,8 +9008,8 @@ javascript_directives_relation sub parent_child_relation,
 javascript_discriminant_relation sub parent_child_relation,
 	relates is_javascript_discriminant_role as is_child, relates has_javascript_discriminant_role as is_parent;
 
-javascript_element_type_relation sub parent_child_relation,
-	relates is_javascript_element_type_role as is_child, relates has_javascript_element_type_role as is_parent;
+javascript_element_type_relation sub element_type_relation,
+	relates is_javascript_element_type_role as is_element_type_role, relates has_javascript_element_type_role as has_element_type_role;
 
 javascript_elements_relation sub parent_child_relation,
 	relates is_javascript_elements_role as is_child, relates has_javascript_elements_role as is_parent;
@@ -7234,11 +9017,14 @@ javascript_elements_relation sub parent_child_relation,
 javascript_exported_relation sub parent_child_relation,
 	relates is_javascript_exported_role as is_child, relates has_javascript_exported_role as is_parent;
 
-javascript_expression_relation sub parent_child_relation,
-	relates is_javascript_expression_role as is_child, relates has_javascript_expression_role as is_parent;
+javascript_expression_relation sub expression_relation,
+	relates is_javascript_expression_role as is_expression_role, relates has_javascript_expression_role as has_expression_role;
 
-javascript_expressions_relation sub parent_child_relation,
-	relates is_javascript_expressions_role as is_child, relates has_javascript_expressions_role as is_parent;
+javascript_expressions_relation sub expressions_relation,
+	relates is_javascript_expressions_role as is_expressions_role, relates has_javascript_expressions_role as has_expressions_role;
+
+javascript_extends_relation sub extends_relation,
+	relates is_javascript_extends_role as is_extends_role, relates has_javascript_extends_role as has_extends_role;
 
 javascript_finalizer_relation sub parent_child_relation,
 	relates is_javascript_finalizer_role as is_child, relates has_javascript_finalizer_role as is_parent;
@@ -7248,6 +9034,9 @@ javascript_handler_relation sub parent_child_relation,
 
 javascript_id_relation sub parent_child_relation,
 	relates is_javascript_id_role as is_child, relates has_javascript_id_role as is_parent;
+
+javascript_implements_relation sub implements_relation,
+	relates is_javascript_implements_role as is_implements_role, relates has_javascript_implements_role as has_implements_role;
 
 javascript_impltype_relation sub parent_child_relation,
 	relates is_javascript_impltype_role as is_child, relates has_javascript_impltype_role as is_parent;
@@ -7282,8 +9071,14 @@ javascript_local_relation sub parent_child_relation,
 javascript_meta_relation sub parent_child_relation,
 	relates is_javascript_meta_role as is_child, relates has_javascript_meta_role as is_parent;
 
+javascript_mixins_relation sub parent_child_relation,
+	relates is_javascript_mixins_role as is_child, relates has_javascript_mixins_role as is_parent;
+
 javascript_name_relation sub name_relation,
 	relates is_javascript_name_role as is_name_role, relates has_javascript_name_role as has_name_role;
+
+javascript_namespace_relation sub parent_child_relation,
+	relates is_javascript_namespace_role as is_child, relates has_javascript_namespace_role as is_parent;
 
 javascript_object_relation sub object_relation,
 	relates is_javascript_object_role as is_object_role, relates has_javascript_object_role as has_object_role;
@@ -7303,6 +9098,9 @@ javascript_param_relation sub parent_child_relation,
 javascript_params_relation sub params_relation,
 	relates is_javascript_params_role as is_params_role, relates has_javascript_params_role as has_params_role;
 
+javascript_predicate_relation sub parent_child_relation,
+	relates is_javascript_predicate_role as is_child, relates has_javascript_predicate_role as is_parent;
+
 javascript_program_relation sub parent_child_relation,
 	relates is_javascript_program_role as is_child, relates has_javascript_program_role as is_parent;
 
@@ -7320,6 +9118,9 @@ javascript_quasi_relation sub parent_child_relation,
 
 javascript_quasis_relation sub parent_child_relation,
 	relates is_javascript_quasis_role as is_child, relates has_javascript_quasis_role as is_parent;
+
+javascript_rest_relation sub parent_child_relation,
+	relates is_javascript_rest_role as is_child, relates has_javascript_rest_role as is_parent;
 
 javascript_return_type_relation sub return_type_relation,
 	relates is_javascript_return_type_role as is_return_type_role, relates has_javascript_return_type_role as has_return_type_role;
@@ -7339,6 +9140,9 @@ javascript_super_class_relation sub parent_child_relation,
 javascript_super_type_parameters_relation sub parent_child_relation,
 	relates is_javascript_super_type_parameters_role as is_child, relates has_javascript_super_type_parameters_role as is_parent;
 
+javascript_supertype_relation sub parent_child_relation,
+	relates is_javascript_supertype_role as is_child, relates has_javascript_supertype_role as is_parent;
+
 javascript_tag_relation sub tag_relation,
 	relates is_javascript_tag_role as is_tag_role, relates has_javascript_tag_role as has_tag_role;
 
@@ -7351,8 +9155,8 @@ javascript_trailing_comments_relation sub parent_child_relation,
 javascript_type_annotation_relation sub parent_child_relation,
 	relates is_javascript_type_annotation_role as is_child, relates has_javascript_type_annotation_role as is_parent;
 
-javascript_type_parameters_relation sub parent_child_relation,
-	relates is_javascript_type_parameters_role as is_child, relates has_javascript_type_parameters_role as is_parent;
+javascript_type_parameters_relation sub type_parameters_relation,
+	relates is_javascript_type_parameters_role as is_type_parameters_role, relates has_javascript_type_parameters_role as has_type_parameters_role;
 
 javascript_types_relation sub types_relation,
 	relates is_javascript_types_role as is_types_role, relates has_javascript_types_role as has_types_role;
@@ -7418,20 +9222,23 @@ php_expr_relation sub parent_child_relation,
 php_exprs_relation sub parent_child_relation,
 	relates is_php_exprs_role as is_child, relates has_php_exprs_role as is_parent;
 
-php_extends_relation sub parent_child_relation,
-	relates is_php_extends_role as is_child, relates has_php_extends_role as is_parent;
+php_extends_relation sub extends_relation,
+	relates is_php_extends_role as is_extends_role, relates has_php_extends_role as has_extends_role;
 
-php_finally_relation sub parent_child_relation,
-	relates is_php_finally_role as is_child, relates has_php_finally_role as is_parent;
+php_finally_relation sub finally_relation,
+	relates is_php_finally_role as is_finally_role, relates has_php_finally_role as has_finally_role;
 
 php_if_relation sub if_relation,
 	relates is_php_if_role as is_if_role, relates has_php_if_role as has_if_role;
 
-php_implements_relation sub parent_child_relation,
-	relates is_php_implements_role as is_child, relates has_php_implements_role as is_parent;
+php_implements_relation sub implements_relation,
+	relates is_php_implements_role as is_implements_role, relates has_php_implements_role as has_implements_role;
 
 php_init_relation sub init_relation,
 	relates is_php_init_role as is_init_role, relates has_php_init_role as has_init_role;
+
+php_insteadof_relation sub parent_child_relation,
+	relates is_php_insteadof_role as is_child, relates has_php_insteadof_role as is_parent;
 
 php_items_relation sub items_relation,
 	relates is_php_items_role as is_items_role, relates has_php_items_role as has_items_role;
@@ -7641,8 +9448,8 @@ python_noops_sameline_relation sub parent_child_relation,
 python_op_relation sub op_relation,
 	relates is_python_op_role as is_op_role, relates has_python_op_role as has_op_role;
 
-python_operand_relation sub parent_child_relation,
-	relates is_python_operand_role as is_child, relates has_python_operand_role as is_parent;
+python_operand_relation sub operand_relation,
+	relates is_python_operand_role as is_operand_role, relates has_python_operand_role as has_operand_role;
 
 python_ops_relation sub parent_child_relation,
 	relates is_python_ops_role as is_child, relates has_python_ops_role as is_parent;
