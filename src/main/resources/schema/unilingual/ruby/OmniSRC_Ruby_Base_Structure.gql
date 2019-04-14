@@ -1,1557 +1,1521 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-doubleValue sub attribute datatype double;
-booleanValue sub attribute datatype boolean;
-numberValue sub attribute datatype long;
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+token sub attribute, datatype string;
 
 #####----- Ruby -----#####
-colAttribute sub attribute datatype string;
-documentationAttribute sub attribute datatype string;
-inlineAttribute sub attribute datatype string;
-lineAttribute sub attribute datatype string;
-nameAttribute sub attribute datatype string;
-offsetAttribute sub attribute datatype string;
-selectorAttribute sub attribute datatype string;
+documentationAttribute sub attribute, datatype string;
+inlineAttribute sub attribute, datatype string;
+selectorAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
-SourceArtifact sub entity
-	has token
-	plays is_child
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
 	plays is_parent;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
-AliasArtifact sub RubySourceArtifact
+AliasArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_else_role
-	plays has_1_role
+	plays is_body_role,
+	plays is_else_role,
+	plays has_1_role,
 	plays has_2_role;
 
-AndArtifact sub RubySourceArtifact
+AndArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_left_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_left_role,
 	plays has_right_role;
 
-AndAsgnArtifact sub RubySourceArtifact
+AndAsgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_else_role
-	plays has_target_role
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_values_role,
+	plays has_target_role,
 	plays has_value_role;
 
-ArgArtifact sub RubySourceArtifact
+ArgArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays is_children_role;
 
-ArgsArtifact sub RubySourceArtifact
+ArgsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays has_children_role;
 
-ArrayArtifact sub RubySourceArtifact
+ArrayArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_exceptions_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_exceptions_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_contents_role;
 
-BackRefArtifact sub RubySourceArtifact
+BackRefArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_contents_role
-	plays is_left_role
-	plays is_options_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_options_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-BeginArtifact sub RubySourceArtifact
+BeginArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_options_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_text_role
-	plays is_value_role
-	plays is_values_role
-	plays has_body_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_options_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_text_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_body_role,
 	plays has_comments_role;
 
-BlockargArtifact sub RubySourceArtifact
+BlockargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays is_children_role;
 
-BlockArtifact sub RubySourceArtifact
+BlockArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_args_role
-	plays has_blockdata_role
-	plays has_body_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_args_role,
+	plays has_blockdata_role,
+	plays has_body_role,
 	plays has_comments_role;
 
-BlockPassArtifact sub RubySourceArtifact
+BlockPassArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_children_role
-	plays is_values_role
+	plays is_children_role,
+	plays is_values_role,
 	plays has_children_role;
 
-BreakArtifact sub RubySourceArtifact
+BreakArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_else_role
-	plays is_right_role
+	plays is_body_role,
+	plays is_else_role,
+	plays is_right_role,
 	plays has_target_role;
 
-CaseArtifact sub RubySourceArtifact
+CaseArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays is_values_role
-	plays has_casevar_role
-	plays has_comments_role
-	plays has_else_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_casevar_role,
+	plays has_comments_role,
+	plays has_else_role,
 	plays has_when_clauses_role;
 
-CasgnArtifact sub RubySourceArtifact
+CasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_alias_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_children_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_file_role
-	plays is_iterators_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
-	plays has_comments_role
+	plays is_alias_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_iterators_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
+	plays has_comments_role,
 	plays has_value_role;
 
-CbaseArtifact sub RubySourceArtifact
+CbaseArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_base_role;
 
-ClassArtifact sub RubySourceArtifact
+ClassArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_right_role
-	plays has_body_role
-	plays has_comments_role
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_right_role,
+	plays has_body_role,
+	plays has_comments_role,
 	plays has_parent_role;
 
-CommentArtifact sub RubySourceArtifact
+CommentArtifact sub RubySourceArtifact,
 	# Attributes
-	has documentationAttribute
-	has inlineAttribute
+	has documentationAttribute,
+	has inlineAttribute,
 	# Structural
-	plays is_comments_role
-	plays has_end_role
-	plays has_start_role;
+	plays is_comments_role;
 
-ComplexArtifact sub RubySourceArtifact
+ComplexArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_class_role
-	plays is_contents_role
+	plays is_body_role,
+	plays is_class_role,
+	plays is_contents_role,
 	plays is_values_role;
 
-ConstArtifact sub RubySourceArtifact
+ConstArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_base_role;
 
-CvarArtifact sub RubySourceArtifact
+CvarArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-CvasgnArtifact sub RubySourceArtifact
+CvasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_iterators_role
-	plays is_target_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_iterators_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays has_value_role;
 
-DefArtifact sub RubySourceArtifact
+DefArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_file_role
-	plays is_value_role
-	plays is_values_role
-	plays has_args_role
-	plays has_body_role
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_args_role,
+	plays has_body_role,
 	plays has_comments_role;
 
-DefinedArtifact sub RubySourceArtifact
+DefinedArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-DefsArtifact sub RubySourceArtifact
+DefsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_values_role
-	plays has_args_role
-	plays has_base_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays has_args_role,
+	plays has_base_role,
 	plays has_class_role;
 
-DstrArtifact sub RubySourceArtifact
+DstrArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-DsymArtifact sub RubySourceArtifact
+DsymArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-EnsureArtifact sub RubySourceArtifact
+EnsureArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_class_role
-	plays has_body_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays has_body_role,
 	plays has_ensure_body_role;
 
-ErangeArtifact sub RubySourceArtifact
+ErangeArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_body_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_iterated_role
-	plays is_value_role
-	plays is_values_role
-	plays has_1_role
+	plays is_2_role,
+	plays is_body_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_iterated_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_1_role,
 	plays has_2_role;
 
-FalseArtifact sub RubySourceArtifact
+FalseArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-FloatArtifact sub RubySourceArtifact
+FloatArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-ForArtifact sub RubySourceArtifact
+ForArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_file_role
-	plays has_body_role
-	plays has_comments_role
-	plays has_iterated_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays has_body_role,
+	plays has_comments_role,
+	plays has_iterated_role,
 	plays has_iterators_role;
 
-GvarArtifact sub RubySourceArtifact
+GvarArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-GvasgnArtifact sub RubySourceArtifact
+GvasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_children_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_children_role,
 	plays has_comments_role;
 
-HashArtifact sub RubySourceArtifact
+HashArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_comments_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_comments_role,
 	plays has_contents_role;
 
-IdentifierArtifact sub RubySourceArtifact
+IdentifierArtifact sub RubySourceArtifact,
 	# Attributes
-	has nameAttribute
+	has name,
 	# Structural
 	plays is_qnames_role;
 
-IfArtifact sub RubySourceArtifact
+IfArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_body_role
-	plays has_comments_role
-	plays has_condition_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_body_role,
+	plays has_comments_role,
+	plays has_condition_role,
 	plays has_else_role;
 
-IntArtifact sub RubySourceArtifact
+IntArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-IrangeArtifact sub RubySourceArtifact
+IrangeArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_body_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_1_role
+	plays is_2_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_1_role,
 	plays has_2_role;
 
-IvarArtifact sub RubySourceArtifact
+IvarArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_options_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_options_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-IvasgnArtifact sub RubySourceArtifact
+IvasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_alias_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_iterators_role
-	plays is_object_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_alias_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_iterators_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_value_role;
 
-KwargArtifact sub RubySourceArtifact
+KwargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays is_children_role;
 
-KwbeginArtifact sub RubySourceArtifact
+KwbeginArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_body_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_body_role,
 	plays has_comments_role;
 
-KwoptargArtifact sub RubySourceArtifact
+KwoptargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
-	plays is_children_role
+	plays is_args_role,
+	plays is_children_role,
 	plays has_default_role;
 
-KwrestargArtifact sub RubySourceArtifact
+KwrestargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays is_children_role;
 
-KwsplatArtifact sub RubySourceArtifact
+KwsplatArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_contents_role;
 
-LvarArtifact sub RubySourceArtifact
+LvarArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-LvasgnArtifact sub RubySourceArtifact
+LvasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_alias_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_iterated_role
-	plays is_iterators_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_2_role,
+	plays is_alias_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_iterated_role,
+	plays is_iterators_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_value_role;
 
-MasgnArtifact sub RubySourceArtifact
+MasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays has_targets_role
+	plays is_body_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays has_targets_role,
 	plays has_values_role;
 
-MatchWithLvasgnArtifact sub RubySourceArtifact
+MatchWithLvasgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_condition_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-MlhsArtifact sub RubySourceArtifact
+MlhsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
-	plays is_children_role
-	plays is_iterators_role
-	plays is_targets_role
+	plays is_args_role,
+	plays is_children_role,
+	plays is_iterators_role,
+	plays is_targets_role,
 	plays has_children_role;
 
-ModuleArtifact sub RubySourceArtifact
+ModuleArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
-	plays is_else_role
-	plays is_file_role
-	plays has_begin_role
-	plays has_comments_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_right_role,
+	plays has_begin_role,
+	plays has_comments_role,
 	plays has_file_role;
 
-NextArtifact sub RubySourceArtifact
+NextArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_else_role
-	plays is_right_role
+	plays is_body_role,
+	plays is_else_role,
+	plays is_right_role,
 	plays has_target_role;
 
-NilArtifact sub RubySourceArtifact
+NilArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-NilNodeArtifact sub RubySourceArtifact
+NilNodeArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
+	plays is_begin_role,
+	plays is_body_role,
 	plays is_else_role;
 
-OpAsgnArtifact sub RubySourceArtifact
+NthRefArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_class_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays is_values_role
-	plays has_comments_role
-	plays has_operator_role
-	plays has_target_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_children_role;
+
+OpAsgnArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_class_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_comments_role,
+	plays has_operator_role,
+	plays has_target_role,
 	plays has_value_role;
 
-OperatorArtifact sub RubySourceArtifact
+OperatorArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_operator_role;
 
-OptargArtifact sub RubySourceArtifact
+OptargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
-	plays is_children_role
+	plays is_args_role,
+	plays is_children_role,
 	plays has_default_role;
 
-OrArtifact sub RubySourceArtifact
+OrArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_left_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_left_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_left_role,
 	plays has_right_role;
 
-OrAsgnArtifact sub RubySourceArtifact
+OrAsgnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_begin_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_target_role
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_target_role,
 	plays has_value_role;
 
-PairArtifact sub RubySourceArtifact
+PairArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_contents_role
-	plays has_1_role
+	plays is_contents_role,
+	plays has_1_role,
 	plays has_2_role;
 
-PositionArtifact sub RubySourceArtifact
-	# Attributes
-	has colAttribute
-	has lineAttribute
-	has offsetAttribute
+PostexeArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_end_role
-	plays is_start_role;
-
-PostexeArtifact sub RubySourceArtifact
-	# Structural
-	plays is_body_role
+	plays is_body_role,
 	plays has_body_role;
 
-PreexeArtifact sub RubySourceArtifact
+PreexeArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_file_role
+	plays is_body_role,
+	plays is_file_role,
 	plays has_body_role;
 
-RationalArtifact sub RubySourceArtifact
+RationalArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_contents_role
-	plays is_value_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_contents_role,
+	plays is_value_role,
 	plays is_values_role;
 
-RedoArtifact sub RubySourceArtifact
+RedoArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
+	plays is_body_role,
 	plays is_else_role;
 
-RegexpArtifact sub RubySourceArtifact
+RegexpArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_options_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_options_role,
 	plays has_text_role;
 
-RegoptArtifact sub RubySourceArtifact
+RegoptArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_options_role
-	plays is_text_role
+	plays is_options_role,
+	plays is_text_role,
 	plays has_options_role;
 
-ResbodyArtifact sub RubySourceArtifact
+ResbodyArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_handlers_role
-	plays has_alias_role
-	plays has_body_role
+	plays is_handlers_role,
+	plays has_alias_role,
+	plays has_body_role,
 	plays has_exceptions_role;
 
-RescueArtifact sub RubySourceArtifact
+RescueArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_value_role
-	plays is_values_role
-	plays has_body_role
-	plays has_comments_role
-	plays has_else_role
+	plays is_body_role,
+	plays is_class_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_body_role,
+	plays has_else_role,
 	plays has_handlers_role;
 
-RestargArtifact sub RubySourceArtifact
+RestargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays is_children_role;
 
-RetryArtifact sub RubySourceArtifact
+RetryArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
+	plays is_body_role,
 	plays is_else_role;
 
-ReturnArtifact sub RubySourceArtifact
+ReturnArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_right_role
+	plays is_body_role,
+	plays is_class_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_right_role,
+	plays has_comments_role,
 	plays has_target_role;
 
-SclassArtifact sub RubySourceArtifact
+SclassArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_class_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_value_role
-	plays is_values_role
-	plays has_body_role
-	plays has_comments_role
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_body_role,
+	plays has_comments_role,
 	plays has_object_role;
 
-SelfArtifact sub RubySourceArtifact
+SelfArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-SendArrayArtifact sub RubySourceArtifact
+SendArrayArtifact sub RubySourceArtifact,
 	# Attributes
-	has selectorAttribute
+	has selectorAttribute,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
 	plays has_values_role;
 
-SendAssignArtifact sub RubySourceArtifact
+SendAssignArtifact sub RubySourceArtifact,
 	# Attributes
-	has selectorAttribute
+	has selectorAttribute,
 	# Structural
-	plays is_base_role
-	plays is_begin_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
-	plays has_comments_role
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
+	plays has_comments_role,
 	plays has_values_role;
 
-SendCallArtifact sub RubySourceArtifact
+SendCallArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
-	plays has_comments_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
+	plays has_comments_role,
 	plays has_values_role;
 
-SendIdentifierArtifact sub RubySourceArtifact
+SendIdentifierArtifact sub RubySourceArtifact,
 	# Attributes
-	has selectorAttribute
+	has selectorAttribute,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
 	plays has_comments_role;
 
-SendOperatorArtifact sub RubySourceArtifact
+SendOperatorArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
-	plays has_comments_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
+	plays has_comments_role,
 	plays has_values_role;
 
-SendQualifiedArtifact sub RubySourceArtifact
+SendQualifiedArtifact sub RubySourceArtifact,
 	# Attributes
-	has selectorAttribute
+	has selectorAttribute,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_iterated_role
-	plays is_left_role
-	plays is_object_role
-	plays is_parent_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_comments_role
-	plays has_qnames_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_iterated_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_parent_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_comments_role,
+	plays has_qnames_role,
 	plays has_values_role;
 
-SendRequireArtifact sub RubySourceArtifact
+SendRequireArtifact sub RubySourceArtifact,
 	# Attributes
-	has selectorAttribute
+	has selectorAttribute,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
-	plays has_comments_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
+	plays has_comments_role,
 	plays has_values_role;
 
-SendStatementArtifact sub RubySourceArtifact
+SendStatementArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_begin_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
-	plays has_base_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_begin_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
+	plays has_base_role,
 	plays has_values_role;
 
-ShadowargArtifact sub RubySourceArtifact
+ShadowargArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_args_role
+	plays is_args_role,
 	plays has_children_role;
 
-SplatArtifact sub RubySourceArtifact
+SplatArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_children_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_target_role
+	plays is_children_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_target_role,
 	plays is_values_role;
 
-StrArtifact sub RubySourceArtifact
+StrArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_file_role
-	plays is_left_role
-	plays is_options_role
-	plays is_right_role
-	plays is_target_role
-	plays is_text_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_file_role,
+	plays is_left_role,
+	plays is_options_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_text_role,
+	plays is_value_role,
 	plays is_values_role;
 
-SuperArtifact sub RubySourceArtifact
+SuperArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_2_role
-	plays is_base_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-SymArtifact sub RubySourceArtifact
+SymArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-SymbolArtifact sub RubySourceArtifact
+SymbolArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_children_role
+	plays is_children_role,
 	plays is_options_role;
 
-TrueArtifact sub RubySourceArtifact
+TrueArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_1_role
-	plays is_2_role
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_children_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_conditions_role
-	plays is_contents_role
-	plays is_default_role
-	plays is_else_role
-	plays is_left_role
-	plays is_object_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_1_role,
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_conditions_role,
+	plays is_contents_role,
+	plays is_default_role,
+	plays is_else_role,
+	plays is_left_role,
+	plays is_object_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
-UndefArtifact sub RubySourceArtifact
+UndefArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
+	plays is_body_role,
 	plays has_target_role;
 
-UntilArtifact sub RubySourceArtifact
+UntilArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays has_body_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays has_body_role,
 	plays has_condition_role;
 
-UntilPostArtifact sub RubySourceArtifact
+UntilPostArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays has_body_role
+	plays is_body_role,
+	plays has_body_role,
 	plays has_condition_role;
 
-WhenArtifact sub RubySourceArtifact
+WhenArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_when_clauses_role
-	plays has_body_role
+	plays is_when_clauses_role,
+	plays has_body_role,
 	plays has_conditions_role;
 
-WhileArtifact sub RubySourceArtifact
+WhileArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_class_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_file_role
-	plays is_value_role
-	plays has_body_role
-	plays has_comments_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_file_role,
+	plays is_value_role,
+	plays has_body_role,
+	plays has_comments_role,
 	plays has_condition_role;
 
-WhilePostArtifact sub RubySourceArtifact
+WhilePostArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_body_role
-	plays has_body_role
+	plays is_body_role,
+	plays is_else_role,
+	plays has_body_role,
 	plays has_condition_role;
 
-XstrArtifact sub RubySourceArtifact
+XstrArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_condition_role
-	plays is_else_role
-	plays is_right_role
-	plays is_value_role
-	plays is_values_role
+	plays is_base_role,
+	plays is_body_role,
+	plays is_children_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_children_role;
 
-YieldArtifact sub RubySourceArtifact
+YieldArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_body_role
-	plays is_casevar_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
-	plays is_values_role
+	plays is_2_role,
+	plays is_base_role,
+	plays is_body_role,
+	plays is_casevar_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
+	plays is_values_role,
 	plays has_target_role;
 
-ZsuperArtifact sub RubySourceArtifact
+ZsuperArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_base_role
-	plays is_blockdata_role
-	plays is_body_role
-	plays is_class_role
-	plays is_condition_role
-	plays is_contents_role
-	plays is_else_role
-	plays is_ensure_body_role
-	plays is_left_role
-	plays is_right_role
-	plays is_target_role
-	plays is_value_role
+	plays is_base_role,
+	plays is_blockdata_role,
+	plays is_body_role,
+	plays is_class_role,
+	plays is_condition_role,
+	plays is_contents_role,
+	plays is_else_role,
+	plays is_ensure_body_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_target_role,
+	plays is_value_role,
 	plays is_values_role;
 
 ##########---------- Structural Relationships ----------##########
-parent_child_relation sub relationship
+parent_child_relation sub relation,
 	relates is_parent, relates is_child;
-is_parent sub role;
-is_child sub role;
 
 #####----- Ruby -----#####
-1_relation sub parent_child_relation
-	relates is_1_role, relates has_1_role;
-is_1_role sub is_child;
-has_1_role sub is_parent;
+1_relation sub parent_child_relation,
+	relates is_1_role as is_child, relates has_1_role as is_parent;
 
-2_relation sub parent_child_relation
-	relates is_2_role, relates has_2_role;
-is_2_role sub is_child;
-has_2_role sub is_parent;
+2_relation sub parent_child_relation,
+	relates is_2_role as is_child, relates has_2_role as is_parent;
 
-alias_relation sub parent_child_relation
-	relates is_alias_role, relates has_alias_role;
-is_alias_role sub is_child;
-has_alias_role sub is_parent;
+alias_relation sub parent_child_relation,
+	relates is_alias_role as is_child, relates has_alias_role as is_parent;
 
-args_relation sub parent_child_relation
-	relates is_args_role, relates has_args_role;
-is_args_role sub is_child;
-has_args_role sub is_parent;
+args_relation sub parent_child_relation,
+	relates is_args_role as is_child, relates has_args_role as is_parent;
 
-base_relation sub parent_child_relation
-	relates is_base_role, relates has_base_role;
-is_base_role sub is_child;
-has_base_role sub is_parent;
+base_relation sub parent_child_relation,
+	relates is_base_role as is_child, relates has_base_role as is_parent;
 
-begin_relation sub parent_child_relation
-	relates is_begin_role, relates has_begin_role;
-is_begin_role sub is_child;
-has_begin_role sub is_parent;
+begin_relation sub parent_child_relation,
+	relates is_begin_role as is_child, relates has_begin_role as is_parent;
 
-blockdata_relation sub parent_child_relation
-	relates is_blockdata_role, relates has_blockdata_role;
-is_blockdata_role sub is_child;
-has_blockdata_role sub is_parent;
+blockdata_relation sub parent_child_relation,
+	relates is_blockdata_role as is_child, relates has_blockdata_role as is_parent;
 
-body_relation sub parent_child_relation
-	relates is_body_role, relates has_body_role;
-is_body_role sub is_child;
-has_body_role sub is_parent;
+body_relation sub parent_child_relation,
+	relates is_body_role as is_child, relates has_body_role as is_parent;
 
-casevar_relation sub parent_child_relation
-	relates is_casevar_role, relates has_casevar_role;
-is_casevar_role sub is_child;
-has_casevar_role sub is_parent;
+casevar_relation sub parent_child_relation,
+	relates is_casevar_role as is_child, relates has_casevar_role as is_parent;
 
-children_relation sub parent_child_relation
-	relates is_children_role, relates has_children_role;
-is_children_role sub is_child;
-has_children_role sub is_parent;
+children_relation sub parent_child_relation,
+	relates is_children_role as is_child, relates has_children_role as is_parent;
 
-class_relation sub parent_child_relation
-	relates is_class_role, relates has_class_role;
-is_class_role sub is_child;
-has_class_role sub is_parent;
+class_relation sub parent_child_relation,
+	relates is_class_role as is_child, relates has_class_role as is_parent;
 
-comments_relation sub parent_child_relation
-	relates is_comments_role, relates has_comments_role;
-is_comments_role sub is_child;
-has_comments_role sub is_parent;
+comments_relation sub parent_child_relation,
+	relates is_comments_role as is_child, relates has_comments_role as is_parent;
 
-condition_relation sub parent_child_relation
-	relates is_condition_role, relates has_condition_role;
-is_condition_role sub is_child;
-has_condition_role sub is_parent;
+condition_relation sub parent_child_relation,
+	relates is_condition_role as is_child, relates has_condition_role as is_parent;
 
-conditions_relation sub parent_child_relation
-	relates is_conditions_role, relates has_conditions_role;
-is_conditions_role sub is_child;
-has_conditions_role sub is_parent;
+conditions_relation sub parent_child_relation,
+	relates is_conditions_role as is_child, relates has_conditions_role as is_parent;
 
-contents_relation sub parent_child_relation
-	relates is_contents_role, relates has_contents_role;
-is_contents_role sub is_child;
-has_contents_role sub is_parent;
+contents_relation sub parent_child_relation,
+	relates is_contents_role as is_child, relates has_contents_role as is_parent;
 
-default_relation sub parent_child_relation
-	relates is_default_role, relates has_default_role;
-is_default_role sub is_child;
-has_default_role sub is_parent;
+default_relation sub parent_child_relation,
+	relates is_default_role as is_child, relates has_default_role as is_parent;
 
-else_relation sub parent_child_relation
-	relates is_else_role, relates has_else_role;
-is_else_role sub is_child;
-has_else_role sub is_parent;
+else_relation sub parent_child_relation,
+	relates is_else_role as is_child, relates has_else_role as is_parent;
 
-end_relation sub parent_child_relation
-	relates is_end_role, relates has_end_role;
-is_end_role sub is_child;
-has_end_role sub is_parent;
+ensure_body_relation sub parent_child_relation,
+	relates is_ensure_body_role as is_child, relates has_ensure_body_role as is_parent;
 
-ensure_body_relation sub parent_child_relation
-	relates is_ensure_body_role, relates has_ensure_body_role;
-is_ensure_body_role sub is_child;
-has_ensure_body_role sub is_parent;
+exceptions_relation sub parent_child_relation,
+	relates is_exceptions_role as is_child, relates has_exceptions_role as is_parent;
 
-exceptions_relation sub parent_child_relation
-	relates is_exceptions_role, relates has_exceptions_role;
-is_exceptions_role sub is_child;
-has_exceptions_role sub is_parent;
+file_relation sub parent_child_relation,
+	relates is_file_role as is_child, relates has_file_role as is_parent;
 
-file_relation sub parent_child_relation
-	relates is_file_role, relates has_file_role;
-is_file_role sub is_child;
-has_file_role sub is_parent;
+handlers_relation sub parent_child_relation,
+	relates is_handlers_role as is_child, relates has_handlers_role as is_parent;
 
-handlers_relation sub parent_child_relation
-	relates is_handlers_role, relates has_handlers_role;
-is_handlers_role sub is_child;
-has_handlers_role sub is_parent;
+iterated_relation sub parent_child_relation,
+	relates is_iterated_role as is_child, relates has_iterated_role as is_parent;
 
-iterated_relation sub parent_child_relation
-	relates is_iterated_role, relates has_iterated_role;
-is_iterated_role sub is_child;
-has_iterated_role sub is_parent;
+iterators_relation sub parent_child_relation,
+	relates is_iterators_role as is_child, relates has_iterators_role as is_parent;
 
-iterators_relation sub parent_child_relation
-	relates is_iterators_role, relates has_iterators_role;
-is_iterators_role sub is_child;
-has_iterators_role sub is_parent;
+left_relation sub parent_child_relation,
+	relates is_left_role as is_child, relates has_left_role as is_parent;
 
-left_relation sub parent_child_relation
-	relates is_left_role, relates has_left_role;
-is_left_role sub is_child;
-has_left_role sub is_parent;
+object_relation sub parent_child_relation,
+	relates is_object_role as is_child, relates has_object_role as is_parent;
 
-object_relation sub parent_child_relation
-	relates is_object_role, relates has_object_role;
-is_object_role sub is_child;
-has_object_role sub is_parent;
+operator_relation sub parent_child_relation,
+	relates is_operator_role as is_child, relates has_operator_role as is_parent;
 
-operator_relation sub parent_child_relation
-	relates is_operator_role, relates has_operator_role;
-is_operator_role sub is_child;
-has_operator_role sub is_parent;
+options_relation sub parent_child_relation,
+	relates is_options_role as is_child, relates has_options_role as is_parent;
 
-options_relation sub parent_child_relation
-	relates is_options_role, relates has_options_role;
-is_options_role sub is_child;
-has_options_role sub is_parent;
+parent_relation sub parent_child_relation,
+	relates is_parent_role as is_child, relates has_parent_role as is_parent;
 
-parent_relation sub parent_child_relation
-	relates is_parent_role, relates has_parent_role;
-is_parent_role sub is_child;
-has_parent_role sub is_parent;
+qnames_relation sub parent_child_relation,
+	relates is_qnames_role as is_child, relates has_qnames_role as is_parent;
 
-qnames_relation sub parent_child_relation
-	relates is_qnames_role, relates has_qnames_role;
-is_qnames_role sub is_child;
-has_qnames_role sub is_parent;
+right_relation sub parent_child_relation,
+	relates is_right_role as is_child, relates has_right_role as is_parent;
 
-right_relation sub parent_child_relation
-	relates is_right_role, relates has_right_role;
-is_right_role sub is_child;
-has_right_role sub is_parent;
+target_relation sub parent_child_relation,
+	relates is_target_role as is_child, relates has_target_role as is_parent;
 
-start_relation sub parent_child_relation
-	relates is_start_role, relates has_start_role;
-is_start_role sub is_child;
-has_start_role sub is_parent;
+targets_relation sub parent_child_relation,
+	relates is_targets_role as is_child, relates has_targets_role as is_parent;
 
-target_relation sub parent_child_relation
-	relates is_target_role, relates has_target_role;
-is_target_role sub is_child;
-has_target_role sub is_parent;
+text_relation sub parent_child_relation,
+	relates is_text_role as is_child, relates has_text_role as is_parent;
 
-targets_relation sub parent_child_relation
-	relates is_targets_role, relates has_targets_role;
-is_targets_role sub is_child;
-has_targets_role sub is_parent;
+value_relation sub parent_child_relation,
+	relates is_value_role as is_child, relates has_value_role as is_parent;
 
-text_relation sub parent_child_relation
-	relates is_text_role, relates has_text_role;
-is_text_role sub is_child;
-has_text_role sub is_parent;
+values_relation sub parent_child_relation,
+	relates is_values_role as is_child, relates has_values_role as is_parent;
 
-value_relation sub parent_child_relation
-	relates is_value_role, relates has_value_role;
-is_value_role sub is_child;
-has_value_role sub is_parent;
-
-values_relation sub parent_child_relation
-	relates is_values_role, relates has_values_role;
-is_values_role sub is_child;
-has_values_role sub is_parent;
-
-when_clauses_relation sub parent_child_relation
-	relates is_when_clauses_role, relates has_when_clauses_role;
-is_when_clauses_role sub is_child;
-has_when_clauses_role sub is_parent;
+when_clauses_relation sub parent_child_relation,
+	relates is_when_clauses_role as is_child, relates has_when_clauses_role as is_parent;

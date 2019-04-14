@@ -5,1622 +5,1601 @@ define
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
-AliasArtifact sub RubySourceArtifact
+AliasArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ALIAS
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_STATEMENT
+	plays IS_ALIAS,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-AndArtifact sub RubySourceArtifact
+AndArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_AND
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_AND,
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_OPERATOR,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-AndAsgnArtifact sub RubySourceArtifact
+AndAsgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_AND
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_OPERATOR
+	plays IS_AND,
+	plays IS_BITWISE,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_OPERATOR,
 	plays IS_THEN;
 
-ArgArtifact sub RubySourceArtifact
+ArgArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_NAME;
 
-ArgsArtifact sub RubySourceArtifact
+ArgsArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
 	plays IS_INCOMPLETE;
 
-ArrayArtifact sub RubySourceArtifact
+ArrayArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LIST,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-BackRefArtifact sub RubySourceArtifact
+BackRefArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_REGEXP
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_REGEXP,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-BeginArtifact sub RubySourceArtifact
+BeginArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BLOCK
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-BlockargArtifact sub RubySourceArtifact
+BlockargArtifact sub RubySourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+BlockArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
+	plays IS_VALUE;
+
+BlockPassArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION,
 	plays IS_UNANNOTATED;
 
-BlockArtifact sub RubySourceArtifact
+BreakArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BLOCK
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE;
-
-BlockPassArtifact sub RubySourceArtifact
-	# Semantic
-	plays IS_ARGUMENT
-	plays IS_CALL
-	plays IS_FUNCTION
-	plays IS_UNANNOTATED;
-
-BreakArtifact sub RubySourceArtifact
-	# Semantic
-	plays IS_BODY
-	plays IS_BREAK
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_BREAK,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-CaseArtifact sub RubySourceArtifact
+CaseArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_SWITCH
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
 	plays IS_THEN;
 
-CasgnArtifact sub RubySourceArtifact
+CasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IDENTIFIER,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
 	plays IS_THEN;
 
-CbaseArtifact sub RubySourceArtifact
+CbaseArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
 	plays IS_QUALIFIED;
 
-ClassArtifact sub RubySourceArtifact
+ClassArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_DECLARATION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
+	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_TYPE;
 
-CommentArtifact sub RubySourceArtifact
+CommentArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_COMMENT
+	plays IS_COMMENT,
 	plays IS_NOOP;
 
-ComplexArtifact sub RubySourceArtifact
+ComplexArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE,
 	plays IS_RIGHT;
 
-ConstArtifact sub RubySourceArtifact
+ConstArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-CvarArtifact sub RubySourceArtifact
+CvarArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_TYPE
-	plays IS_VALUE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_TYPE,
+	plays IS_VALUE,
 	plays IS_VISIBILITY;
 
-CvasgnArtifact sub RubySourceArtifact
+CvasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IDENTIFIER,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
 	plays IS_THEN;
 
-DefArtifact sub RubySourceArtifact
+DefArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_DECLARATION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_RIGHT
-	plays IS_STATEMENT
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-DefinedArtifact sub RubySourceArtifact
+DefinedArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_TUPLE
-	plays IS_UNANNOTATED
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_TUPLE,
+	plays IS_UNANNOTATED,
 	plays IS_VALUE;
 
-DefsArtifact sub RubySourceArtifact
+DefsArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_DECLARATION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-DstrArtifact sub RubySourceArtifact
+DstrArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNANNOTATED
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-DsymArtifact sub RubySourceArtifact
+DsymArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STRING
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-EnsureArtifact sub RubySourceArtifact
+EnsureArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION,
 	plays IS_FINALLY;
 
-ErangeArtifact sub RubySourceArtifact
+ErangeArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-FalseArtifact sub RubySourceArtifact
+FalseArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-FloatArtifact sub RubySourceArtifact
+FloatArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-ForArtifact sub RubySourceArtifact
+ForArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-GvarArtifact sub RubySourceArtifact
+GvarArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE
-	plays IS_VISIBILITY
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-GvasgnArtifact sub RubySourceArtifact
+GvasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN;
 
-HashArtifact sub RubySourceArtifact
+HashArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_MAP
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_MAP,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
 IdentifierArtifact sub RubySourceArtifact;
 
-IfArtifact sub RubySourceArtifact
+IfArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IF
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-IntArtifact sub RubySourceArtifact
+IntArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-IrangeArtifact sub RubySourceArtifact
+IrangeArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-IvarArtifact sub RubySourceArtifact
+IvarArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INSTANCE
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
-	plays IS_VALUE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INSTANCE,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
+	plays IS_VALUE,
 	plays IS_VISIBILITY;
 
-IvasgnArtifact sub RubySourceArtifact
+IvasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
 	plays IS_THEN;
 
-KwargArtifact sub RubySourceArtifact
+KwargArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
-	plays IS_MAP
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_MAP,
 	plays IS_NAME;
 
-KwbeginArtifact sub RubySourceArtifact
+KwbeginArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BLOCK
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-KwoptargArtifact sub RubySourceArtifact
+KwoptargArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
 	plays IS_NAME;
 
-KwrestargArtifact sub RubySourceArtifact
+KwrestargArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_INCOMPLETE;
 
-KwsplatArtifact sub RubySourceArtifact
+KwsplatArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION,
 	plays IS_INCOMPLETE;
 
-LvarArtifact sub RubySourceArtifact
+LvarArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-LvasgnArtifact sub RubySourceArtifact
+LvasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UPDATE;
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
+	plays IS_VALUE;
 
-MasgnArtifact sub RubySourceArtifact
+MasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
+	plays IS_ASSIGNMENT,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
 	plays IS_THEN;
 
-MatchWithLvasgnArtifact sub RubySourceArtifact
+MatchWithLvasgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_EXPRESSION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
-MlhsArtifact sub RubySourceArtifact
+MlhsArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_INCOMPLETE
-	plays IS_ITERATOR
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_INCOMPLETE,
+	plays IS_ITERATOR,
 	plays IS_LEFT;
 
-ModuleArtifact sub RubySourceArtifact
+ModuleArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
-	plays IS_MODULE
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_MODULE,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-NextArtifact sub RubySourceArtifact
+NextArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_THEN
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
-NilArtifact sub RubySourceArtifact
+NilArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNANNOTATED
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_NULL,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-NilNodeArtifact sub RubySourceArtifact
+NilNodeArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
+	plays IS_BODY,
 	plays IS_NULL;
 
-OpAsgnArtifact sub RubySourceArtifact
+NthRefArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ADD
-	plays IS_AND
-	plays IS_ARGUMENT
-	plays IS_ARITHMETIC
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_DIVIDE
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LEFT_SHIFT
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
-	plays IS_THEN
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_REGEXP,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_VALUE;
+
+OpAsgnArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARGUMENT,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_DIVIDE,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_LEFT_SHIFT,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RIGHT,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_VALUE,
 	plays IS_XOR;
 
-OperatorArtifact sub RubySourceArtifact
+OperatorArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ADD
-	plays IS_AND
-	plays IS_ARITHMETIC
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_DIVIDE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_LEFT_SHIFT
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_DIVIDE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT_SHIFT,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
 	plays IS_XOR;
 
-OptargArtifact sub RubySourceArtifact
+OptargArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_DEFAULT
-	plays IS_EXPRESSION
+	plays IS_ARGUMENT,
+	plays IS_DEFAULT,
+	plays IS_EXPRESSION,
 	plays IS_NAME;
 
-OrArtifact sub RubySourceArtifact
+OrArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-OrAsgnArtifact sub RubySourceArtifact
+OrAsgnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RIGHT
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RIGHT,
 	plays IS_THEN;
 
-PairArtifact sub RubySourceArtifact
+PairArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
 	plays IS_TUPLE;
 
-PositionArtifact sub RubySourceArtifact;
+PostexeArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_EXPRESSION,
+	plays IS_THEN,
+	plays IS_UNANNOTATED;
 
-PostexeArtifact sub RubySourceArtifact
+PreexeArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-PreexeArtifact sub RubySourceArtifact
+RationalArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
-
-RationalArtifact sub RubySourceArtifact
-	# Semantic
-	plays IS_ARGUMENT
-	plays IS_BINARY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_NUMBER
-	plays IS_PRIMITIVE
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE,
 	plays IS_RIGHT;
 
-RedoArtifact sub RubySourceArtifact
+RedoArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_THEN
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
-RegexpArtifact sub RubySourceArtifact
+RegexpArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_REGEXP
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_REGEXP,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-RegoptArtifact sub RubySourceArtifact
+RegoptArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
 	plays IS_REGEXP;
 
-ResbodyArtifact sub RubySourceArtifact
+ResbodyArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_CATCH
+	plays IS_CATCH,
 	plays IS_EXPRESSION;
 
-RescueArtifact sub RubySourceArtifact
+RescueArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_THEN
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_TRY;
 
-RestargArtifact sub RubySourceArtifact
+RestargArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_EXPRESSION
-	plays IS_IDENTIFIER
+	plays IS_ARGUMENT,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_LIST;
 
-RetryArtifact sub RubySourceArtifact
+RetryArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-ReturnArtifact sub RubySourceArtifact
+ReturnArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RETURN
-	plays IS_RIGHT
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-SclassArtifact sub RubySourceArtifact
+SclassArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_DECLARATION
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_RIGHT
-	plays IS_THEN
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_TYPE;
 
-SelfArtifact sub RubySourceArtifact
+SelfArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_THIS
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_THIS,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-SendArrayArtifact sub RubySourceArtifact
+SendArrayArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LIST
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LIST,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-SendAssignArtifact sub RubySourceArtifact
+SendAssignArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
 	plays IS_THEN;
 
-SendCallArtifact sub RubySourceArtifact
+SendCallArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-SendIdentifierArtifact sub RubySourceArtifact
+SendIdentifierArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-SendOperatorArtifact sub RubySourceArtifact
+SendOperatorArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ADD
-	plays IS_AND
-	plays IS_ARGUMENT
-	plays IS_ARITHMETIC
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BITWISE
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_DIVIDE
-	plays IS_ELSE
-	plays IS_EQUAL
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_GREATER_THAN_OR_EQUAL
-	plays IS_IDENTICAL
-	plays IS_INCOMPLETE
-	plays IS_LEFT
-	plays IS_LEFT_SHIFT
-	plays IS_LESS_THAN_OR_EQUAL
-	plays IS_MODULO
-	plays IS_MULTIPLY
-	plays IS_NOT
-	plays IS_OPERATOR
-	plays IS_OR
-	plays IS_RELATIONAL
-	plays IS_RIGHT
-	plays IS_RIGHT_SHIFT
-	plays IS_SUBSTRACT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNARY
-	plays IS_VALUE
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARGUMENT,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DIVIDE,
+	plays IS_ELSE,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_IDENTICAL,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RELATIONAL,
+	plays IS_RIGHT,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UNARY,
+	plays IS_UPDATE,
+	plays IS_VALUE,
 	plays IS_XOR;
 
-SendQualifiedArtifact sub RubySourceArtifact
+SendQualifiedArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_QUALIFIED
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UPDATE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_QUALIFIED,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UPDATE,
 	plays IS_VALUE;
 
-SendRequireArtifact sub RubySourceArtifact
+SendRequireArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_IMPORT
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNANNOTATED
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IMPORT,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_UNANNOTATED,
 	plays IS_VALUE;
 
-SendStatementArtifact sub RubySourceArtifact
+SendStatementArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ANONYMOUS
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_CONTINUE
-	plays IS_DECLARATION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_INSTANCE
-	plays IS_ITERATOR
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_SUBTYPE
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_VALUE
-	plays IS_VISIBILITY
+	plays IS_ANONYMOUS,
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_CONTINUE,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INSTANCE,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
+	plays IS_SUBTYPE,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_VALUE,
+	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-ShadowargArtifact sub RubySourceArtifact
+ShadowargArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-SplatArtifact sub RubySourceArtifact
+SplatArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_CALL
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_INCOMPLETE
-	plays IS_LEFT
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
 	plays IS_RIGHT;
 
-StrArtifact sub RubySourceArtifact
+StrArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_PRIMITIVE
-	plays IS_RIGHT
-	plays IS_STRING
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-SuperArtifact sub RubySourceArtifact
+SuperArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
-	plays IS_UNANNOTATED
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BASE,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-SymArtifact sub RubySourceArtifact
+SymArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_IDENTIFIER
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-SymbolArtifact sub RubySourceArtifact
+SymbolArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION
+	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER;
 
-TrueArtifact sub RubySourceArtifact
+TrueArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_BOOLEAN
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_LITERAL
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_TUPLE
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
 	plays IS_VALUE;
 
-UndefArtifact sub RubySourceArtifact
+UndefArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_EXPRESSION
-	plays IS_INCOMPLETE
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
-UntilArtifact sub RubySourceArtifact
+UntilArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_STATEMENT
-	plays IS_THEN
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
-UntilPostArtifact sub RubySourceArtifact
+UntilPostArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
-WhenArtifact sub RubySourceArtifact
+WhenArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_CASE
+	plays IS_CASE,
 	plays IS_EXPRESSION;
 
-WhileArtifact sub RubySourceArtifact
+WhileArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_RIGHT
-	plays IS_STATEMENT
-	plays IS_THEN
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_RIGHT,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
-WhilePostArtifact sub RubySourceArtifact
+WhilePostArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_BODY
-	plays IS_STATEMENT
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
-XstrArtifact sub RubySourceArtifact
+XstrArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_THEN;
 
-YieldArtifact sub RubySourceArtifact
+YieldArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FOR
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_VALUE;
 
-ZsuperArtifact sub RubySourceArtifact
+ZsuperArtifact sub RubySourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT
-	plays IS_ASSIGNMENT
-	plays IS_BINARY
-	plays IS_BODY
-	plays IS_CALL
-	plays IS_CONDITION
-	plays IS_ELSE
-	plays IS_EXPRESSION
-	plays IS_FUNCTION
-	plays IS_LEFT
-	plays IS_RIGHT
-	plays IS_THEN
-	plays IS_UNANNOTATED;
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BASE,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_THEN;
 
 ##########---------- Semantic Roles ----------##########
-ADD sub relationship
+ADD sub relation,
 	relates IS_ADD;
-IS_ADD sub role;
 
-ALIAS sub relationship
+ALIAS sub relation,
 	relates IS_ALIAS;
-IS_ALIAS sub role;
 
-AND sub relationship
+AND sub relation,
 	relates IS_AND;
-IS_AND sub role;
 
-ANONYMOUS sub relationship
+ANONYMOUS sub relation,
 	relates IS_ANONYMOUS;
-IS_ANONYMOUS sub role;
 
-ARGUMENT sub relationship
+ARGUMENT sub relation,
 	relates IS_ARGUMENT;
-IS_ARGUMENT sub role;
 
-ARITHMETIC sub relationship
+ARITHMETIC sub relation,
 	relates IS_ARITHMETIC;
-IS_ARITHMETIC sub role;
 
-ASSIGNMENT sub relationship
+ASSIGNMENT sub relation,
 	relates IS_ASSIGNMENT;
-IS_ASSIGNMENT sub role;
 
-BINARY sub relationship
+BASE sub relation,
+	relates IS_BASE;
+
+BINARY sub relation,
 	relates IS_BINARY;
-IS_BINARY sub role;
 
-BITWISE sub relationship
+BITWISE sub relation,
 	relates IS_BITWISE;
-IS_BITWISE sub role;
 
-BLOCK sub relationship
+BLOCK sub relation,
 	relates IS_BLOCK;
-IS_BLOCK sub role;
 
-BODY sub relationship
+BODY sub relation,
 	relates IS_BODY;
-IS_BODY sub role;
 
-BOOLEAN sub relationship
+BOOLEAN sub relation,
 	relates IS_BOOLEAN;
-IS_BOOLEAN sub role;
 
-BREAK sub relationship
+BREAK sub relation,
 	relates IS_BREAK;
-IS_BREAK sub role;
 
-CALL sub relationship
+CALL sub relation,
 	relates IS_CALL;
-IS_CALL sub role;
 
-CASE sub relationship
+CASE sub relation,
 	relates IS_CASE;
-IS_CASE sub role;
 
-CATCH sub relationship
+CATCH sub relation,
 	relates IS_CATCH;
-IS_CATCH sub role;
 
-COMMENT sub relationship
+COMMENT sub relation,
 	relates IS_COMMENT;
-IS_COMMENT sub role;
 
-CONDITION sub relationship
+CONDITION sub relation,
 	relates IS_CONDITION;
-IS_CONDITION sub role;
 
-CONTINUE sub relationship
+CONTINUE sub relation,
 	relates IS_CONTINUE;
-IS_CONTINUE sub role;
 
-DECLARATION sub relationship
+DECLARATION sub relation,
 	relates IS_DECLARATION;
-IS_DECLARATION sub role;
 
-DEFAULT sub relationship
+DEFAULT sub relation,
 	relates IS_DEFAULT;
-IS_DEFAULT sub role;
 
-DIVIDE sub relationship
+DIVIDE sub relation,
 	relates IS_DIVIDE;
-IS_DIVIDE sub role;
 
-ELSE sub relationship
+ELSE sub relation,
 	relates IS_ELSE;
-IS_ELSE sub role;
 
-EQUAL sub relationship
+EQUAL sub relation,
 	relates IS_EQUAL;
-IS_EQUAL sub role;
 
-EXPRESSION sub relationship
+EXPRESSION sub relation,
 	relates IS_EXPRESSION;
-IS_EXPRESSION sub role;
 
-FINALLY sub relationship
+FINALLY sub relation,
 	relates IS_FINALLY;
-IS_FINALLY sub role;
 
-FOR sub relationship
+FOR sub relation,
 	relates IS_FOR;
-IS_FOR sub role;
 
-FUNCTION sub relationship
+FUNCTION sub relation,
 	relates IS_FUNCTION;
-IS_FUNCTION sub role;
 
-GREATER_THAN_OR_EQUAL sub relationship
+GREATER_THAN_OR_EQUAL sub relation,
 	relates IS_GREATER_THAN_OR_EQUAL;
-IS_GREATER_THAN_OR_EQUAL sub role;
 
-IDENTICAL sub relationship
+IDENTICAL sub relation,
 	relates IS_IDENTICAL;
-IS_IDENTICAL sub role;
 
-IDENTIFIER sub relationship
+IDENTIFIER sub relation,
 	relates IS_IDENTIFIER;
-IS_IDENTIFIER sub role;
 
-IF sub relationship
+IF sub relation,
 	relates IS_IF;
-IS_IF sub role;
 
-IMPORT sub relationship
+IMPORT sub relation,
 	relates IS_IMPORT;
-IS_IMPORT sub role;
 
-INCOMPLETE sub relationship
+INCOMPLETE sub relation,
 	relates IS_INCOMPLETE;
-IS_INCOMPLETE sub role;
 
-INSTANCE sub relationship
+INSTANCE sub relation,
 	relates IS_INSTANCE;
-IS_INSTANCE sub role;
 
-ITERATOR sub relationship
+ITERATOR sub relation,
 	relates IS_ITERATOR;
-IS_ITERATOR sub role;
 
-LEFT sub relationship
+LEFT sub relation,
 	relates IS_LEFT;
-IS_LEFT sub role;
 
-LEFT_SHIFT sub relationship
+LEFT_SHIFT sub relation,
 	relates IS_LEFT_SHIFT;
-IS_LEFT_SHIFT sub role;
 
-LESS_THAN_OR_EQUAL sub relationship
+LESS_THAN_OR_EQUAL sub relation,
 	relates IS_LESS_THAN_OR_EQUAL;
-IS_LESS_THAN_OR_EQUAL sub role;
 
-LIST sub relationship
+LIST sub relation,
 	relates IS_LIST;
-IS_LIST sub role;
 
-LITERAL sub relationship
+LITERAL sub relation,
 	relates IS_LITERAL;
-IS_LITERAL sub role;
 
-MAP sub relationship
+MAP sub relation,
 	relates IS_MAP;
-IS_MAP sub role;
 
-MODULE sub relationship
+MODULE sub relation,
 	relates IS_MODULE;
-IS_MODULE sub role;
 
-MODULO sub relationship
+MODULO sub relation,
 	relates IS_MODULO;
-IS_MODULO sub role;
 
-MULTIPLY sub relationship
+MULTIPLY sub relation,
 	relates IS_MULTIPLY;
-IS_MULTIPLY sub role;
 
-NAME sub relationship
+NAME sub relation,
 	relates IS_NAME;
-IS_NAME sub role;
 
-NOOP sub relationship
+NOOP sub relation,
 	relates IS_NOOP;
-IS_NOOP sub role;
 
-NOT sub relationship
+NOT sub relation,
 	relates IS_NOT;
-IS_NOT sub role;
 
-NULL sub relationship
+NULL sub relation,
 	relates IS_NULL;
-IS_NULL sub role;
 
-NUMBER sub relationship
+NUMBER sub relation,
 	relates IS_NUMBER;
-IS_NUMBER sub role;
 
-OPERATOR sub relationship
+OPERATOR sub relation,
 	relates IS_OPERATOR;
-IS_OPERATOR sub role;
 
-OR sub relationship
+OR sub relation,
 	relates IS_OR;
-IS_OR sub role;
 
-PRIMITIVE sub relationship
+PRIMITIVE sub relation,
 	relates IS_PRIMITIVE;
-IS_PRIMITIVE sub role;
 
-QUALIFIED sub relationship
+QUALIFIED sub relation,
 	relates IS_QUALIFIED;
-IS_QUALIFIED sub role;
 
-REGEXP sub relationship
+REGEXP sub relation,
 	relates IS_REGEXP;
-IS_REGEXP sub role;
 
-RELATIONAL sub relationship
+RELATIONAL sub relation,
 	relates IS_RELATIONAL;
-IS_RELATIONAL sub role;
 
-RETURN sub relationship
+RETURN sub relation,
 	relates IS_RETURN;
-IS_RETURN sub role;
 
-RIGHT sub relationship
+RIGHT sub relation,
 	relates IS_RIGHT;
-IS_RIGHT sub role;
 
-RIGHT_SHIFT sub relationship
+RIGHT_SHIFT sub relation,
 	relates IS_RIGHT_SHIFT;
-IS_RIGHT_SHIFT sub role;
 
-STATEMENT sub relationship
+STATEMENT sub relation,
 	relates IS_STATEMENT;
-IS_STATEMENT sub role;
 
-STRING sub relationship
+STRING sub relation,
 	relates IS_STRING;
-IS_STRING sub role;
 
-SUBSTRACT sub relationship
+SUBSTRACT sub relation,
 	relates IS_SUBSTRACT;
-IS_SUBSTRACT sub role;
 
-SUBTYPE sub relationship
+SUBTYPE sub relation,
 	relates IS_SUBTYPE;
-IS_SUBTYPE sub role;
 
-SWITCH sub relationship
+SWITCH sub relation,
 	relates IS_SWITCH;
-IS_SWITCH sub role;
 
-THEN sub relationship
+THEN sub relation,
 	relates IS_THEN;
-IS_THEN sub role;
 
-THIS sub relationship
+THIS sub relation,
 	relates IS_THIS;
-IS_THIS sub role;
 
-TRY sub relationship
+TRY sub relation,
 	relates IS_TRY;
-IS_TRY sub role;
 
-TUPLE sub relationship
+TUPLE sub relation,
 	relates IS_TUPLE;
-IS_TUPLE sub role;
 
-TYPE sub relationship
+TYPE sub relation,
 	relates IS_TYPE;
-IS_TYPE sub role;
 
-UNANNOTATED sub relationship
+UNANNOTATED sub relation,
 	relates IS_UNANNOTATED;
-IS_UNANNOTATED sub role;
 
-UNARY sub relationship
+UNARY sub relation,
 	relates IS_UNARY;
-IS_UNARY sub role;
 
-UPDATE sub relationship
+UPDATE sub relation,
 	relates IS_UPDATE;
-IS_UPDATE sub role;
 
-VALUE sub relationship
+VALUE sub relation,
 	relates IS_VALUE;
-IS_VALUE sub role;
 
-VISIBILITY sub relationship
+VISIBILITY sub relation,
 	relates IS_VISIBILITY;
-IS_VISIBILITY sub role;
 
-WHILE sub relationship
+WHILE sub relation,
 	relates IS_WHILE;
-IS_WHILE sub role;
 
-WORLD sub relationship
+WORLD sub relation,
 	relates IS_WORLD;
-IS_WORLD sub role;
 
-XOR sub relationship
+XOR sub relation,
 	relates IS_XOR;
-IS_XOR sub role;
