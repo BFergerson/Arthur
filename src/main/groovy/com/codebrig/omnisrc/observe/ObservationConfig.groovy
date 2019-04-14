@@ -8,7 +8,7 @@ import static com.codebrig.omnisrc.schema.SchemaSegment.*
 /**
  * Used to configure the schema segments which will be observed
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

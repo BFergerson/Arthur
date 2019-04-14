@@ -2,15 +2,19 @@ package com.codebrig.omnisrc.observe.structure.literal
 
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.observe.structure.StructureLiteral
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * Used to determine and get the literal type of Go AST nodes
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class GoLiteral extends StructureLiteral {
+
+    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     @Override
     String getNodeLiteralAttribute(SourceNode node) {
@@ -22,6 +26,8 @@ class GoLiteral extends StructureLiteral {
                     return numberValueLiteral()
                 } else if (node.properties.get("Kind") == "FLOAT") {
                     return doubleValueLiteral()
+                } else if (node.properties.get("Kind") == "IMAG") {
+                    log.warn("Unsupported node literal: IMAG. Skipping...")
                 } else {
                     throw new UnsupportedOperationException("Literal kind: " + node.properties.get("Kind"))
                 }

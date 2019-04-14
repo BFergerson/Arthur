@@ -3,7 +3,7 @@ package com.codebrig.omnisrc.observe.filter
 /**
  * Match by the simple name
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

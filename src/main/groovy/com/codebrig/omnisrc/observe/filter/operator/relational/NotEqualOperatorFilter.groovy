@@ -6,7 +6,7 @@ import com.codebrig.omnisrc.SourceNodeFilter
 /**
  * Match by not equal operator
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

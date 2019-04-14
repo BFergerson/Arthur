@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger
 /**
  * Semantic roles observed during source code parsing
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Generate a single language schema by observing source code on GitHub
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

@@ -7,7 +7,7 @@ import com.codebrig.omnisrc.schema.SchemaSegment
 /**
  * Represents multiple observed languages
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
