@@ -1,1878 +1,1926 @@
 define
 
 ##########---------- Attributes ----------##########
-token sub attribute datatype string;
-doubleValue sub attribute datatype double;
-booleanValue sub attribute datatype boolean;
-numberValue sub attribute datatype long;
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+token sub attribute, datatype string;
 
 #####----- Php -----#####
-aliasAttribute sub attribute datatype string;
-byRefAttribute sub attribute datatype string;
-flagsAttribute sub attribute datatype string;
-methodAttribute sub attribute datatype string;
-newModifierAttribute sub attribute datatype string;
-remainingAttribute sub attribute datatype string;
-returnTypeAttribute sub attribute datatype string;
-staticAttribute sub attribute datatype string;
-typeAttribute sub attribute datatype string;
-unpackAttribute sub attribute datatype string;
-varAttribute sub attribute datatype string;
-variadicAttribute sub attribute datatype string;
+aliasAttribute sub attribute, datatype string;
+byRefAttribute sub attribute, datatype string;
+flagsAttribute sub attribute, datatype string;
+methodAttribute sub attribute, datatype string;
+newModifierAttribute sub attribute, datatype string;
+remainingAttribute sub attribute, datatype string;
+returnTypeAttribute sub attribute, datatype string;
+staticAttribute sub attribute, datatype string;
+typeAttribute sub attribute, datatype string;
+unpackAttribute sub attribute, datatype string;
+varAttribute sub attribute, datatype string;
+variadicAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
-SourceArtifact sub entity
-	has token
-	plays is_child
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
 	plays is_parent;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
-ArgArtifact sub PhpSourceArtifact
+ArgArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
-	has unpackAttribute
+	has byRefAttribute,
+	has unpackAttribute,
 	# Structural
-	plays is_args_role
-	plays has_comments_role
+	plays is_args_role,
+	plays has_comments_role,
 	plays has_value_role;
 
-CommentArtifact sub PhpSourceArtifact
+CommentArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_comments_role;
 
-CommentDocArtifact sub PhpSourceArtifact
+CommentDocArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_comments_role;
 
-ConstArtifact sub PhpSourceArtifact
+ConstArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_consts_role
-	plays has_name_role
+	plays is_consts_role,
+	plays has_name_role,
 	plays has_value_role;
 
-DeclareStmtsArtifact sub PhpSourceArtifact
+DeclareStmtsArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_stmts_role;
 
-ExprArrayArtifact sub PhpSourceArtifact
+ExprArrayArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_default_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays is_var_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_value_var_role,
+	plays is_var_role,
+	plays has_comments_role,
 	plays has_items_role;
 
-ExprArrayDimFetchArtifact sub PhpSourceArtifact
+ExprArrayDimFetchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_parts_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays is_vars_role
-	plays has_comments_role
-	plays has_dim_role
+	plays is_children_role,
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_parts_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays is_vars_role,
+	plays has_comments_role,
+	plays has_dim_role,
 	plays has_var_role;
 
-ExprArrayItemArtifact sub PhpSourceArtifact
+ExprArrayItemArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
+	has byRefAttribute,
 	# Structural
-	plays is_items_role
-	plays has_comments_role
-	plays has_key_role
+	plays is_items_role,
+	plays has_comments_role,
+	plays has_key_role,
 	plays has_value_role;
 
-ExprAssignArtifact sub PhpSourceArtifact
+ExprAssignArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_init_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_name_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpBitwiseAndArtifact sub PhpSourceArtifact
+ExprAssignOpBitwiseAndArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_right_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_right_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact
+ExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact
+ExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpConcatArtifact sub PhpSourceArtifact
+ExprAssignOpConcatArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpDivArtifact sub PhpSourceArtifact
+ExprAssignOpDivArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_left_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpMinusArtifact sub PhpSourceArtifact
+ExprAssignOpMinusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_expr_role
-	plays is_loop_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_expr_role,
+	plays is_loop_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpModArtifact sub PhpSourceArtifact
+ExprAssignOpModArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_right_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_cond_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpMulArtifact sub PhpSourceArtifact
+ExprAssignOpMulArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpPlusArtifact sub PhpSourceArtifact
+ExprAssignOpPlusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_expr_role
-	plays is_init_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_expr_role,
+	plays is_init_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpShiftLeftArtifact sub PhpSourceArtifact
+ExprAssignOpPowArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_expr_role
+	plays is_stmts_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignOpShiftRightArtifact sub PhpSourceArtifact
+ExprAssignOpShiftLeftArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_expr_role
+	plays is_stmts_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprAssignRefArtifact sub PhpSourceArtifact
+ExprAssignOpShiftRightArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_var_role
-	plays has_comments_role
-	plays has_expr_role
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
 	plays has_var_role;
 
-ExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact
+ExprAssignRefArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_init_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_comments_role,
+	plays has_expr_role,
+	plays has_var_role;
+
+ExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact
+ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact
+ExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_dim_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact
+ExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact
+ExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpCoalesceArtifact sub PhpSourceArtifact
+ExprBinaryOpCoalesceArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_value_role
-	plays is_var_role
-	plays has_left_role
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpConcatArtifact sub PhpSourceArtifact
+ExprBinaryOpConcatArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpDivArtifact sub PhpSourceArtifact
+ExprBinaryOpDivArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpEqualArtifact sub PhpSourceArtifact
+ExprBinaryOpEqualArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpGreaterArtifact sub PhpSourceArtifact
+ExprBinaryOpGreaterArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact
+ExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact
+ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact
+ExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_body_role,
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact
+ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact
+ExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_expr_role
-	plays is_right_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpMinusArtifact sub PhpSourceArtifact
+ExprBinaryOpMinusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpModArtifact sub PhpSourceArtifact
+ExprBinaryOpModArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpMulArtifact sub PhpSourceArtifact
+ExprBinaryOpMulArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpNotEqualArtifact sub PhpSourceArtifact
+ExprBinaryOpNotEqualArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact
+ExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpPlusArtifact sub PhpSourceArtifact
+ExprBinaryOpPlusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpPowArtifact sub PhpSourceArtifact
+ExprBinaryOpPowArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_expr_role
-	plays has_left_role
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact
+ExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpShiftRightArtifact sub PhpSourceArtifact
+ExprBinaryOpShiftRightArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpSmallerArtifact sub PhpSourceArtifact
+ExprBinaryOpSmallerArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact
+ExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact
+ExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_expr_role
-	plays has_left_role
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_left_role,
 	plays has_right_role;
 
-ExprBitwiseNotArtifact sub PhpSourceArtifact
+ExprBitwiseNotArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
 	plays has_expr_role;
 
-ExprBooleanNotArtifact sub PhpSourceArtifact
+ExprBooleanNotArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprCastArrayArtifact sub PhpSourceArtifact
+ExprCastArrayArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_var_role,
 	plays has_expr_role;
 
-ExprCastBoolArtifact sub PhpSourceArtifact
+ExprCastBoolArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
 	plays has_expr_role;
 
-ExprCastDoubleArtifact sub PhpSourceArtifact
+ExprCastDoubleArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprCastIntArtifact sub PhpSourceArtifact
+ExprCastIntArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprCastObjectArtifact sub PhpSourceArtifact
+ExprCastObjectArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_value_role
-	plays is_var_role
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
 	plays has_expr_role;
 
-ExprCastStringArtifact sub PhpSourceArtifact
+ExprCastStringArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprClassConstFetchArtifact sub PhpSourceArtifact
+ExprCastUnsetArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_class_role
-	plays has_comments_role
+	plays is_expr_role,
+	plays has_expr_role;
+
+ExprClassConstFetchArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_class_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprCloneArtifact sub PhpSourceArtifact
+ExprCloneArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_value_role
-	plays is_var_role
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
 	plays has_expr_role;
 
-ExprClosureArtifact sub PhpSourceArtifact
+ExprClosureArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
-	has returnTypeAttribute
-	has staticAttribute
+	has byRefAttribute,
+	has returnTypeAttribute,
+	has staticAttribute,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_name_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
-	plays has_params_role
-	plays has_return_type_role
-	plays has_stmts_role
+	plays is_children_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_comments_role,
+	plays has_params_role,
+	plays has_return_type_role,
+	plays has_stmts_role,
 	plays has_uses_role;
 
-ExprClosureUseArtifact sub PhpSourceArtifact
+ExprClosureUseArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
-	has varAttribute
+	has byRefAttribute,
+	has varAttribute,
 	# Structural
 	plays is_uses_role;
 
-ExprConstFetchArtifact sub PhpSourceArtifact
+ExprConstFetchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprEmptyArtifact sub PhpSourceArtifact
+ExprEmptyArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprErrorSuppressArtifact sub PhpSourceArtifact
+ExprErrorSuppressArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprEvalArtifact sub PhpSourceArtifact
+ExprEvalArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_children_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprExitArtifact sub PhpSourceArtifact
+ExprExitArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_right_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_if_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprFuncCallArtifact sub PhpSourceArtifact
+ExprFuncCallArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_init_role
-	plays is_key_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_name_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_args_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_args_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprIncludeArtifact sub PhpSourceArtifact
+ExprIncludeArtifact sub PhpSourceArtifact,
 	# Attributes
-	has typeAttribute
+	has typeAttribute,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprInstanceofArtifact sub PhpSourceArtifact
+ExprInstanceofArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_class_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_class_role,
 	plays has_expr_role;
 
-ExprIssetArtifact sub PhpSourceArtifact
+ExprIssetArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_vars_role;
 
-ExprListArtifact sub PhpSourceArtifact
+ExprListArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_value_role
-	plays is_value_var_role
-	plays is_var_role
-	plays has_comments_role
+	plays is_value_role,
+	plays is_value_var_role,
+	plays is_var_role,
+	plays has_comments_role,
 	plays has_items_role;
 
-ExprMethodCallArtifact sub PhpSourceArtifact
+ExprMethodCallArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_init_role
-	plays is_key_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_name_role
-	plays is_parts_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_args_role
-	plays has_comments_role
-	plays has_name_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_name_role,
+	plays is_parts_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_args_role,
+	plays has_comments_role,
+	plays has_name_role,
 	plays has_var_role;
 
-ExprNewArtifact sub PhpSourceArtifact
+ExprNewArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_args_role
-	plays has_class_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_args_role,
+	plays has_class_role,
 	plays has_comments_role;
 
-ExprPostDecArtifact sub PhpSourceArtifact
+ExprPostDecArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_init_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_var_role;
 
-ExprPostIncArtifact sub PhpSourceArtifact
+ExprPostIncArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_init_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_var_role;
 
-ExprPreDecArtifact sub PhpSourceArtifact
+ExprPreDecArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_dim_role
-	plays is_expr_role
-	plays is_init_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_var_role;
 
-ExprPreIncArtifact sub PhpSourceArtifact
+ExprPreIncArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_init_role
-	plays is_left_role
-	plays is_loop_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_left_role,
+	plays is_loop_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_var_role;
 
-ExprPrintArtifact sub PhpSourceArtifact
+ExprPrintArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprPropertyFetchArtifact sub PhpSourceArtifact
+ExprPropertyFetchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_key_var_role
-	plays is_left_role
-	plays is_name_role
-	plays is_parts_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_value_var_role
-	plays is_var_role
-	plays is_vars_role
-	plays has_comments_role
-	plays has_name_role
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_key_var_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_parts_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_value_var_role,
+	plays is_var_role,
+	plays is_vars_role,
+	plays has_comments_role,
+	plays has_name_role,
 	plays has_var_role;
 
-ExprShellExecArtifact sub PhpSourceArtifact
+ExprShellExecArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_expr_role
-	plays is_stmts_role
-	plays is_value_role
+	plays is_expr_role,
+	plays is_stmts_role,
+	plays is_value_role,
 	plays has_parts_role;
 
-ExprStaticCallArtifact sub PhpSourceArtifact
+ExprStaticCallArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_args_role
-	plays has_class_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_args_role,
+	plays has_class_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprStaticPropertyFetchArtifact sub PhpSourceArtifact
+ExprStaticPropertyFetchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays is_var_role
-	plays is_vars_role
-	plays has_class_role
-	plays has_comments_role
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays is_vars_role,
+	plays has_class_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprTernaryArtifact sub PhpSourceArtifact
+ExprTernaryArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_init_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_var_role
-	plays has_comments_role
-	plays has_cond_role
-	plays has_else_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_var_role,
+	plays has_comments_role,
+	plays has_cond_role,
+	plays has_else_role,
 	plays has_if_role;
 
-ExprUnaryMinusArtifact sub PhpSourceArtifact
+ExprUnaryMinusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-ExprUnaryPlusArtifact sub PhpSourceArtifact
+ExprUnaryPlusArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays is_expr_role
-	plays is_value_role
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
 	plays has_expr_role;
 
-ExprVariableArtifact sub PhpSourceArtifact
+ExprVariableArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_cond_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_init_role
-	plays is_key_role
-	plays is_key_var_role
-	plays is_left_role
-	plays is_name_role
-	plays is_parts_role
-	plays is_right_role
-	plays is_stmts_role
-	plays is_value_role
-	plays is_value_var_role
-	plays is_var_role
-	plays is_vars_role
-	plays has_comments_role
+	plays is_class_role,
+	plays is_cond_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_init_role,
+	plays is_key_role,
+	plays is_key_var_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_parts_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays is_value_var_role,
+	plays is_var_role,
+	plays is_vars_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-ExprYieldArtifact sub PhpSourceArtifact
+ExprYieldArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_key_role
+	plays is_body_role,
+	plays is_expr_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
+	plays has_key_role,
 	plays has_value_role;
 
-ExprYieldFromArtifact sub PhpSourceArtifact
+ExprYieldFromArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_stmts_role
+	plays is_body_role,
+	plays is_stmts_role,
 	plays has_expr_role;
 
-FunctionBodyArtifact sub PhpSourceArtifact
+FunctionBodyArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
+	plays is_stmts_role,
 	plays has_body_role;
 
-FunctionReturnTypeArtifact sub PhpSourceArtifact
+FunctionReturnTypeArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_return_type_role;
 
-ModuleArtifact sub PhpSourceArtifact
+ModuleArtifact sub PhpSourceArtifact,
 	# Structural
 	plays has_children_role;
 
-NameArtifact sub PhpSourceArtifact
+NameArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_extends_role
-	plays is_implements_role
-	plays is_insteadof_role
-	plays is_name_role
-	plays is_return_type_role
-	plays is_trait_role
-	plays is_traits_role
-	plays is_type_role
-	plays is_types_role
+	plays is_class_role,
+	plays is_extends_role,
+	plays is_implements_role,
+	plays is_insteadof_role,
+	plays is_name_role,
+	plays is_prefix_role,
+	plays is_return_type_role,
+	plays is_trait_role,
+	plays is_traits_role,
+	plays is_type_role,
+	plays is_types_role,
 	plays has_comments_role;
 
-NameFullyQualifiedArtifact sub PhpSourceArtifact
+NameFullyQualifiedArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_class_role
-	plays is_extends_role
-	plays is_implements_role
-	plays is_name_role
-	plays is_return_type_role
-	plays is_type_role
-	plays is_types_role
+	plays is_class_role,
+	plays is_extends_role,
+	plays is_implements_role,
+	plays is_insteadof_role,
+	plays is_name_role,
+	plays is_return_type_role,
+	plays is_trait_role,
+	plays is_traits_role,
+	plays is_type_role,
+	plays is_types_role,
 	plays has_comments_role;
 
-NullableTypeArtifact sub PhpSourceArtifact
+NullableTypeArtifact sub PhpSourceArtifact,
 	# Attributes
-	has typeAttribute
+	has typeAttribute,
 	# Structural
-	plays is_return_type_role
-	plays is_type_role
+	plays is_return_type_role,
+	plays is_type_role,
 	plays has_type_role;
 
-ParamArtifact sub PhpSourceArtifact
+ParamArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
-	has typeAttribute
-	has variadicAttribute
+	has byRefAttribute,
+	has typeAttribute,
+	has variadicAttribute,
 	# Structural
-	plays is_params_role
-	plays has_comments_role
-	plays has_default_role
-	plays has_name_role
+	plays is_params_role,
+	plays has_comments_role,
+	plays has_default_role,
+	plays has_name_role,
 	plays has_type_role;
 
-ScalarDNumberArtifact sub PhpSourceArtifact
+ScalarDNumberArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
 	plays has_comments_role;
 
-ScalarEncapsedArtifact sub PhpSourceArtifact
+ScalarEncapsedArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_value_role
-	plays has_comments_role
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
+	plays has_comments_role,
 	plays has_parts_role;
 
-ScalarEncapsedStringPartArtifact sub PhpSourceArtifact
+ScalarEncapsedStringPartArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_parts_role;
 
-ScalarLNumberArtifact sub PhpSourceArtifact
+ScalarLNumberArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_num_role
-	plays is_right_role
-	plays is_value_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_num_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
 	plays has_comments_role;
 
-ScalarMagicConstClassArtifact sub PhpSourceArtifact
+ScalarMagicConstClassArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_default_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_expr_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstDirArtifact sub PhpSourceArtifact
+ScalarMagicConstDirArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
-	plays is_value_role
+	plays is_expr_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
 	plays has_comments_role;
 
-ScalarMagicConstFileArtifact sub PhpSourceArtifact
+ScalarMagicConstFileArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_default_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_if_role
-	plays is_left_role
-	plays is_right_role
+	plays is_default_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstFunctionArtifact sub PhpSourceArtifact
+ScalarMagicConstFunctionArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_dim_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
+	plays is_dim_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstLineArtifact sub PhpSourceArtifact
+ScalarMagicConstLineArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_default_role
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
+	plays is_default_role,
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstMethodArtifact sub PhpSourceArtifact
+ScalarMagicConstMethodArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_dim_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_left_role
-	plays is_right_role
+	plays is_dim_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_left_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstNamespaceArtifact sub PhpSourceArtifact
+ScalarMagicConstNamespaceArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_expr_role
-	plays is_left_role
-	plays is_right_role
+	plays is_expr_role,
+	plays is_left_role,
+	plays is_right_role,
 	plays is_value_role;
 
-ScalarMagicConstTraitArtifact sub PhpSourceArtifact
+ScalarMagicConstTraitArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_left_role;
 
-ScalarStringArtifact sub PhpSourceArtifact
+ScalarStringArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cond_role
-	plays is_default_role
-	plays is_dim_role
-	plays is_else_role
-	plays is_expr_role
-	plays is_exprs_role
-	plays is_if_role
-	plays is_key_role
-	plays is_left_role
-	plays is_name_role
-	plays is_right_role
-	plays is_value_role
+	plays is_cond_role,
+	plays is_default_role,
+	plays is_dim_role,
+	plays is_else_role,
+	plays is_expr_role,
+	plays is_exprs_role,
+	plays is_if_role,
+	plays is_key_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_right_role,
+	plays is_stmts_role,
+	plays is_value_role,
 	plays has_comments_role;
 
-StmtBreakArtifact sub PhpSourceArtifact
+StmtBreakArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_num_role;
 
-StmtCaseArtifact sub PhpSourceArtifact
+StmtCaseArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_cases_role
-	plays has_comments_role
-	plays has_cond_role
+	plays is_cases_role,
+	plays has_comments_role,
+	plays has_cond_role,
 	plays has_stmts_role;
 
-StmtCatchArtifact sub PhpSourceArtifact
+StmtCatchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_catches_role
-	plays has_comments_role
-	plays has_stmts_role
+	plays is_catches_role,
+	plays has_comments_role,
+	plays has_stmts_role,
 	plays has_types_role;
 
-StmtClassArtifact sub PhpSourceArtifact
+StmtClassArtifact sub PhpSourceArtifact,
 	# Attributes
-	has flagsAttribute
-	has typeAttribute
+	has flagsAttribute,
+	has typeAttribute,
 	# Structural
-	plays is_children_role
-	plays is_class_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_extends_role
-	plays has_implements_role
-	plays has_name_role
+	plays is_children_role,
+	plays is_class_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_extends_role,
+	plays has_implements_role,
+	plays has_name_role,
 	plays has_stmts_role;
 
-StmtClassConstArtifact sub PhpSourceArtifact
+StmtClassConstArtifact sub PhpSourceArtifact,
 	# Attributes
-	has flagsAttribute
+	has flagsAttribute,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_consts_role;
 
-StmtClassMethodArtifact sub PhpSourceArtifact
+StmtClassMethodArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
-	has flagsAttribute
-	has returnTypeAttribute
-	has typeAttribute
+	has byRefAttribute,
+	has flagsAttribute,
+	has returnTypeAttribute,
+	has typeAttribute,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_name_role
-	plays has_params_role
-	plays has_return_type_role
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_name_role,
+	plays has_params_role,
+	plays has_return_type_role,
 	plays has_stmts_role;
 
-StmtConstArtifact sub PhpSourceArtifact
+StmtConstArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_children_role
-	plays has_comments_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_consts_role;
 
-StmtContinueArtifact sub PhpSourceArtifact
+StmtContinueArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_num_role;
 
-StmtDeclareArtifact sub PhpSourceArtifact
+StmtDeclareArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_children_role
-	plays is_stmts_role
-	plays has_declares_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_declares_role,
 	plays has_stmts_role;
 
-StmtDeclareDeclareArtifact sub PhpSourceArtifact
+StmtDeclareDeclareArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_declares_role
+	plays is_declares_role,
 	plays has_value_role;
 
-StmtDoArtifact sub PhpSourceArtifact
+StmtDoArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_cond_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_cond_role,
 	plays has_stmts_role;
 
-StmtEchoArtifact sub PhpSourceArtifact
+StmtEchoArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_exprs_role;
 
-StmtElseArtifact sub PhpSourceArtifact
+StmtElseArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_else_role
-	plays has_comments_role
+	plays is_else_role,
+	plays has_comments_role,
 	plays has_stmts_role;
 
-StmtElseIfArtifact sub PhpSourceArtifact
+StmtElseIfArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_elseifs_role
-	plays has_comments_role
-	plays has_cond_role
+	plays is_elseifs_role,
+	plays has_comments_role,
+	plays has_cond_role,
 	plays has_stmts_role;
 
-StmtFinallyArtifact sub PhpSourceArtifact
+StmtFinallyArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_finally_role
+	plays is_finally_role,
 	plays has_stmts_role;
 
-StmtForArtifact sub PhpSourceArtifact
+StmtForArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_cond_role
-	plays has_init_role
-	plays has_loop_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_cond_role,
+	plays has_init_role,
+	plays has_loop_role,
 	plays has_stmts_role;
 
-StmtForeachArtifact sub PhpSourceArtifact
+StmtForeachArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
+	has byRefAttribute,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_expr_role
-	plays has_key_var_role
-	plays has_stmts_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_expr_role,
+	plays has_key_var_role,
+	plays has_stmts_role,
 	plays has_value_var_role;
 
-StmtFunctionArtifact sub PhpSourceArtifact
+StmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
-	has byRefAttribute
+	has byRefAttribute,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_name_role
-	plays has_params_role
-	plays has_return_type_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_name_role,
+	plays has_params_role,
+	plays has_return_type_role,
 	plays has_stmts_role;
 
-StmtGlobalArtifact sub PhpSourceArtifact
+StmtGlobalArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_vars_role;
 
-StmtGotoArtifact sub PhpSourceArtifact
+StmtGotoArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
+	plays is_children_role,
+	plays is_stmts_role,
 	plays has_name_role;
 
-StmtHaltCompilerArtifact sub PhpSourceArtifact
+StmtGroupUseArtifact sub PhpSourceArtifact,
 	# Attributes
-	has remainingAttribute
+	has typeAttribute,
+	# Structural
+	plays is_stmts_role,
+	plays has_prefix_role,
+	plays has_uses_role;
+
+StmtHaltCompilerArtifact sub PhpSourceArtifact,
+	# Attributes
+	has remainingAttribute,
 	# Structural
 	plays is_children_role;
 
-StmtIfArtifact sub PhpSourceArtifact
+StmtIfArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_cond_role
-	plays has_else_role
-	plays has_elseifs_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_cond_role,
+	plays has_else_role,
+	plays has_elseifs_role,
 	plays has_stmts_role;
 
-StmtInlineHTMLArtifact sub PhpSourceArtifact
+StmtInlineHTMLArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
+	plays is_body_role,
+	plays is_children_role,
 	plays is_stmts_role;
 
-StmtInterfaceArtifact sub PhpSourceArtifact
+StmtInterfaceArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_extends_role
-	plays has_name_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_extends_role,
+	plays has_name_role,
 	plays has_stmts_role;
 
-StmtLabelArtifact sub PhpSourceArtifact
+StmtLabelArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_stmts_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_name_role;
 
-StmtNamespaceArtifact sub PhpSourceArtifact
+StmtNamespaceArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_children_role
-	plays has_comments_role
-	plays has_name_role
+	plays is_children_role,
+	plays has_comments_role,
+	plays has_name_role,
 	plays has_stmts_role;
 
-StmtNopArtifact sub PhpSourceArtifact
+StmtNopArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
+	plays is_body_role,
+	plays is_children_role,
 	plays is_stmts_role;
 
-StmtPropertyArtifact sub PhpSourceArtifact
+StmtPropertyArtifact sub PhpSourceArtifact,
 	# Attributes
-	has flagsAttribute
-	has typeAttribute
+	has flagsAttribute,
+	has typeAttribute,
 	# Structural
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_props_role;
 
-StmtPropertyPropertyArtifact sub PhpSourceArtifact
+StmtPropertyPropertyArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_props_role
-	plays has_default_role
+	plays is_props_role,
+	plays has_default_role,
 	plays has_name_role;
 
-StmtReturnArtifact sub PhpSourceArtifact
+StmtReturnArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-StmtStaticArtifact sub PhpSourceArtifact
+StmtStaticArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_vars_role;
 
-StmtStaticVarArtifact sub PhpSourceArtifact
+StmtStaticVarArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_vars_role
-	plays has_default_role
+	plays is_vars_role,
+	plays has_default_role,
 	plays has_name_role;
 
-StmtSwitchArtifact sub PhpSourceArtifact
+StmtSwitchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_cases_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_cases_role,
+	plays has_comments_role,
 	plays has_cond_role;
 
-StmtThrowArtifact sub PhpSourceArtifact
+StmtThrowArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_expr_role;
 
-StmtTraitArtifact sub PhpSourceArtifact
+StmtTraitArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_name_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_name_role,
 	plays has_stmts_role;
 
-StmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact
+StmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact,
 	# Attributes
-	has methodAttribute
-	has newModifierAttribute
+	has methodAttribute,
+	has newModifierAttribute,
 	# Structural
-	plays is_adaptations_role
+	plays is_adaptations_role,
 	plays has_trait_role;
 
-StmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact
+StmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact,
 	# Attributes
-	has methodAttribute
+	has methodAttribute,
 	# Structural
-	plays is_adaptations_role
-	plays has_insteadof_role
+	plays is_adaptations_role,
+	plays has_insteadof_role,
 	plays has_trait_role;
 
-StmtTraitUseArtifact sub PhpSourceArtifact
+StmtTraitUseArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_stmts_role
-	plays has_adaptations_role
-	plays has_comments_role
+	plays is_stmts_role,
+	plays has_adaptations_role,
+	plays has_comments_role,
 	plays has_traits_role;
 
-StmtTryCatchArtifact sub PhpSourceArtifact
+StmtTryCatchArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_catches_role
-	plays has_comments_role
-	plays has_finally_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_catches_role,
+	plays has_comments_role,
+	plays has_finally_role,
 	plays has_stmts_role;
 
-StmtUnsetArtifact sub PhpSourceArtifact
+StmtUnsetArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_vars_role;
 
-StmtUseArtifact sub PhpSourceArtifact
+StmtUseArtifact sub PhpSourceArtifact,
 	# Attributes
-	has typeAttribute
+	has typeAttribute,
 	# Structural
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
 	plays has_uses_role;
 
-StmtUseUseArtifact sub PhpSourceArtifact
+StmtUseUseArtifact sub PhpSourceArtifact,
 	# Attributes
-	has aliasAttribute
-	has typeAttribute
+	has aliasAttribute,
+	has typeAttribute,
 	# Structural
-	plays is_uses_role
+	plays is_uses_role,
 	plays has_name_role;
 
-StmtWhileArtifact sub PhpSourceArtifact
+StmtWhileArtifact sub PhpSourceArtifact,
 	# Structural
-	plays is_body_role
-	plays is_children_role
-	plays is_stmts_role
-	plays has_comments_role
-	plays has_cond_role
+	plays is_body_role,
+	plays is_children_role,
+	plays is_stmts_role,
+	plays has_comments_role,
+	plays has_cond_role,
 	plays has_stmts_role;
 
 ##########---------- Structural Relationships ----------##########
-parent_child_relation sub relationship
+parent_child_relation sub relation,
 	relates is_parent, relates is_child;
-is_parent sub role;
-is_child sub role;
 
 #####----- Php -----#####
-adaptations_relation sub parent_child_relation
-	relates is_adaptations_role, relates has_adaptations_role;
-is_adaptations_role sub is_child;
-has_adaptations_role sub is_parent;
+adaptations_relation sub parent_child_relation,
+	relates is_adaptations_role as is_child, relates has_adaptations_role as is_parent;
 
-args_relation sub parent_child_relation
-	relates is_args_role, relates has_args_role;
-is_args_role sub is_child;
-has_args_role sub is_parent;
+args_relation sub parent_child_relation,
+	relates is_args_role as is_child, relates has_args_role as is_parent;
 
-body_relation sub parent_child_relation
-	relates is_body_role, relates has_body_role;
-is_body_role sub is_child;
-has_body_role sub is_parent;
+body_relation sub parent_child_relation,
+	relates is_body_role as is_child, relates has_body_role as is_parent;
 
-cases_relation sub parent_child_relation
-	relates is_cases_role, relates has_cases_role;
-is_cases_role sub is_child;
-has_cases_role sub is_parent;
+cases_relation sub parent_child_relation,
+	relates is_cases_role as is_child, relates has_cases_role as is_parent;
 
-catches_relation sub parent_child_relation
-	relates is_catches_role, relates has_catches_role;
-is_catches_role sub is_child;
-has_catches_role sub is_parent;
+catches_relation sub parent_child_relation,
+	relates is_catches_role as is_child, relates has_catches_role as is_parent;
 
-children_relation sub parent_child_relation
-	relates is_children_role, relates has_children_role;
-is_children_role sub is_child;
-has_children_role sub is_parent;
+children_relation sub parent_child_relation,
+	relates is_children_role as is_child, relates has_children_role as is_parent;
 
-class_relation sub parent_child_relation
-	relates is_class_role, relates has_class_role;
-is_class_role sub is_child;
-has_class_role sub is_parent;
+class_relation sub parent_child_relation,
+	relates is_class_role as is_child, relates has_class_role as is_parent;
 
-comments_relation sub parent_child_relation
-	relates is_comments_role, relates has_comments_role;
-is_comments_role sub is_child;
-has_comments_role sub is_parent;
+comments_relation sub parent_child_relation,
+	relates is_comments_role as is_child, relates has_comments_role as is_parent;
 
-cond_relation sub parent_child_relation
-	relates is_cond_role, relates has_cond_role;
-is_cond_role sub is_child;
-has_cond_role sub is_parent;
+cond_relation sub parent_child_relation,
+	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
-consts_relation sub parent_child_relation
-	relates is_consts_role, relates has_consts_role;
-is_consts_role sub is_child;
-has_consts_role sub is_parent;
+consts_relation sub parent_child_relation,
+	relates is_consts_role as is_child, relates has_consts_role as is_parent;
 
-declares_relation sub parent_child_relation
-	relates is_declares_role, relates has_declares_role;
-is_declares_role sub is_child;
-has_declares_role sub is_parent;
+declares_relation sub parent_child_relation,
+	relates is_declares_role as is_child, relates has_declares_role as is_parent;
 
-default_relation sub parent_child_relation
-	relates is_default_role, relates has_default_role;
-is_default_role sub is_child;
-has_default_role sub is_parent;
+default_relation sub parent_child_relation,
+	relates is_default_role as is_child, relates has_default_role as is_parent;
 
-dim_relation sub parent_child_relation
-	relates is_dim_role, relates has_dim_role;
-is_dim_role sub is_child;
-has_dim_role sub is_parent;
+dim_relation sub parent_child_relation,
+	relates is_dim_role as is_child, relates has_dim_role as is_parent;
 
-else_relation sub parent_child_relation
-	relates is_else_role, relates has_else_role;
-is_else_role sub is_child;
-has_else_role sub is_parent;
+else_relation sub parent_child_relation,
+	relates is_else_role as is_child, relates has_else_role as is_parent;
 
-elseifs_relation sub parent_child_relation
-	relates is_elseifs_role, relates has_elseifs_role;
-is_elseifs_role sub is_child;
-has_elseifs_role sub is_parent;
+elseifs_relation sub parent_child_relation,
+	relates is_elseifs_role as is_child, relates has_elseifs_role as is_parent;
 
-expr_relation sub parent_child_relation
-	relates is_expr_role, relates has_expr_role;
-is_expr_role sub is_child;
-has_expr_role sub is_parent;
+expr_relation sub parent_child_relation,
+	relates is_expr_role as is_child, relates has_expr_role as is_parent;
 
-exprs_relation sub parent_child_relation
-	relates is_exprs_role, relates has_exprs_role;
-is_exprs_role sub is_child;
-has_exprs_role sub is_parent;
+exprs_relation sub parent_child_relation,
+	relates is_exprs_role as is_child, relates has_exprs_role as is_parent;
 
-extends_relation sub parent_child_relation
-	relates is_extends_role, relates has_extends_role;
-is_extends_role sub is_child;
-has_extends_role sub is_parent;
+extends_relation sub parent_child_relation,
+	relates is_extends_role as is_child, relates has_extends_role as is_parent;
 
-finally_relation sub parent_child_relation
-	relates is_finally_role, relates has_finally_role;
-is_finally_role sub is_child;
-has_finally_role sub is_parent;
+finally_relation sub parent_child_relation,
+	relates is_finally_role as is_child, relates has_finally_role as is_parent;
 
-if_relation sub parent_child_relation
-	relates is_if_role, relates has_if_role;
-is_if_role sub is_child;
-has_if_role sub is_parent;
+if_relation sub parent_child_relation,
+	relates is_if_role as is_child, relates has_if_role as is_parent;
 
-implements_relation sub parent_child_relation
-	relates is_implements_role, relates has_implements_role;
-is_implements_role sub is_child;
-has_implements_role sub is_parent;
+implements_relation sub parent_child_relation,
+	relates is_implements_role as is_child, relates has_implements_role as is_parent;
 
-init_relation sub parent_child_relation
-	relates is_init_role, relates has_init_role;
-is_init_role sub is_child;
-has_init_role sub is_parent;
+init_relation sub parent_child_relation,
+	relates is_init_role as is_child, relates has_init_role as is_parent;
 
-insteadof_relation sub parent_child_relation
-	relates is_insteadof_role, relates has_insteadof_role;
-is_insteadof_role sub is_child;
-has_insteadof_role sub is_parent;
+insteadof_relation sub parent_child_relation,
+	relates is_insteadof_role as is_child, relates has_insteadof_role as is_parent;
 
-items_relation sub parent_child_relation
-	relates is_items_role, relates has_items_role;
-is_items_role sub is_child;
-has_items_role sub is_parent;
+items_relation sub parent_child_relation,
+	relates is_items_role as is_child, relates has_items_role as is_parent;
 
-key_relation sub parent_child_relation
-	relates is_key_role, relates has_key_role;
-is_key_role sub is_child;
-has_key_role sub is_parent;
+key_relation sub parent_child_relation,
+	relates is_key_role as is_child, relates has_key_role as is_parent;
 
-key_var_relation sub parent_child_relation
-	relates is_key_var_role, relates has_key_var_role;
-is_key_var_role sub is_child;
-has_key_var_role sub is_parent;
+key_var_relation sub parent_child_relation,
+	relates is_key_var_role as is_child, relates has_key_var_role as is_parent;
 
-left_relation sub parent_child_relation
-	relates is_left_role, relates has_left_role;
-is_left_role sub is_child;
-has_left_role sub is_parent;
+left_relation sub parent_child_relation,
+	relates is_left_role as is_child, relates has_left_role as is_parent;
 
-loop_relation sub parent_child_relation
-	relates is_loop_role, relates has_loop_role;
-is_loop_role sub is_child;
-has_loop_role sub is_parent;
+loop_relation sub parent_child_relation,
+	relates is_loop_role as is_child, relates has_loop_role as is_parent;
 
-name_relation sub parent_child_relation
-	relates is_name_role, relates has_name_role;
-is_name_role sub is_child;
-has_name_role sub is_parent;
+name_relation sub parent_child_relation,
+	relates is_name_role as is_child, relates has_name_role as is_parent;
 
-num_relation sub parent_child_relation
-	relates is_num_role, relates has_num_role;
-is_num_role sub is_child;
-has_num_role sub is_parent;
+num_relation sub parent_child_relation,
+	relates is_num_role as is_child, relates has_num_role as is_parent;
 
-params_relation sub parent_child_relation
-	relates is_params_role, relates has_params_role;
-is_params_role sub is_child;
-has_params_role sub is_parent;
+params_relation sub parent_child_relation,
+	relates is_params_role as is_child, relates has_params_role as is_parent;
 
-parts_relation sub parent_child_relation
-	relates is_parts_role, relates has_parts_role;
-is_parts_role sub is_child;
-has_parts_role sub is_parent;
+parts_relation sub parent_child_relation,
+	relates is_parts_role as is_child, relates has_parts_role as is_parent;
 
-props_relation sub parent_child_relation
-	relates is_props_role, relates has_props_role;
-is_props_role sub is_child;
-has_props_role sub is_parent;
+prefix_relation sub parent_child_relation,
+	relates is_prefix_role as is_child, relates has_prefix_role as is_parent;
 
-return_type_relation sub parent_child_relation
-	relates is_return_type_role, relates has_return_type_role;
-is_return_type_role sub is_child;
-has_return_type_role sub is_parent;
+props_relation sub parent_child_relation,
+	relates is_props_role as is_child, relates has_props_role as is_parent;
 
-right_relation sub parent_child_relation
-	relates is_right_role, relates has_right_role;
-is_right_role sub is_child;
-has_right_role sub is_parent;
+return_type_relation sub parent_child_relation,
+	relates is_return_type_role as is_child, relates has_return_type_role as is_parent;
 
-stmts_relation sub parent_child_relation
-	relates is_stmts_role, relates has_stmts_role;
-is_stmts_role sub is_child;
-has_stmts_role sub is_parent;
+right_relation sub parent_child_relation,
+	relates is_right_role as is_child, relates has_right_role as is_parent;
 
-trait_relation sub parent_child_relation
-	relates is_trait_role, relates has_trait_role;
-is_trait_role sub is_child;
-has_trait_role sub is_parent;
+stmts_relation sub parent_child_relation,
+	relates is_stmts_role as is_child, relates has_stmts_role as is_parent;
 
-traits_relation sub parent_child_relation
-	relates is_traits_role, relates has_traits_role;
-is_traits_role sub is_child;
-has_traits_role sub is_parent;
+trait_relation sub parent_child_relation,
+	relates is_trait_role as is_child, relates has_trait_role as is_parent;
 
-type_relation sub parent_child_relation
-	relates is_type_role, relates has_type_role;
-is_type_role sub is_child;
-has_type_role sub is_parent;
+traits_relation sub parent_child_relation,
+	relates is_traits_role as is_child, relates has_traits_role as is_parent;
 
-types_relation sub parent_child_relation
-	relates is_types_role, relates has_types_role;
-is_types_role sub is_child;
-has_types_role sub is_parent;
+type_relation sub parent_child_relation,
+	relates is_type_role as is_child, relates has_type_role as is_parent;
 
-uses_relation sub parent_child_relation
-	relates is_uses_role, relates has_uses_role;
-is_uses_role sub is_child;
-has_uses_role sub is_parent;
+types_relation sub parent_child_relation,
+	relates is_types_role as is_child, relates has_types_role as is_parent;
 
-value_relation sub parent_child_relation
-	relates is_value_role, relates has_value_role;
-is_value_role sub is_child;
-has_value_role sub is_parent;
+uses_relation sub parent_child_relation,
+	relates is_uses_role as is_child, relates has_uses_role as is_parent;
 
-value_var_relation sub parent_child_relation
-	relates is_value_var_role, relates has_value_var_role;
-is_value_var_role sub is_child;
-has_value_var_role sub is_parent;
+value_relation sub parent_child_relation,
+	relates is_value_role as is_child, relates has_value_role as is_parent;
 
-var_relation sub parent_child_relation
-	relates is_var_role, relates has_var_role;
-is_var_role sub is_child;
-has_var_role sub is_parent;
+value_var_relation sub parent_child_relation,
+	relates is_value_var_role as is_child, relates has_value_var_role as is_parent;
 
-vars_relation sub parent_child_relation
-	relates is_vars_role, relates has_vars_role;
-is_vars_role sub is_child;
-has_vars_role sub is_parent;
+var_relation sub parent_child_relation,
+	relates is_var_role as is_child, relates has_var_role as is_parent;
+
+vars_relation sub parent_child_relation,
+	relates is_vars_role as is_child, relates has_vars_role as is_parent;

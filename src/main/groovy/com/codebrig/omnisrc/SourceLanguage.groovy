@@ -3,10 +3,7 @@ package com.codebrig.omnisrc
 import com.codebrig.omnisrc.observe.structure.StructureLiteral
 import com.codebrig.omnisrc.observe.structure.StructureNaming
 import com.codebrig.omnisrc.observe.structure.literal.*
-import com.codebrig.omnisrc.observe.structure.naming.GoNaming
-import com.codebrig.omnisrc.observe.structure.naming.JavaNaming
-import com.codebrig.omnisrc.observe.structure.naming.JavascriptNaming
-import com.codebrig.omnisrc.observe.structure.naming.PythonNaming
+import com.codebrig.omnisrc.observe.structure.naming.*
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
@@ -14,7 +11,7 @@ import com.google.common.io.Resources
 /**
  * The supported source code languages
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -92,10 +89,14 @@ enum SourceLanguage {
                 return namingCache = new JavaNaming()
             case Javascript:
                 return namingCache = new JavascriptNaming()
+            case Php:
+                return namingCache = new PhpNaming()
             case Python:
                 return namingCache = new PythonNaming()
+            case Ruby:
+                return namingCache = new RubyNaming()
             default:
-                return null //todo: implement rest
+                throw new IllegalStateException("Missing structure naming for language: " + this)
         }
     }
 
@@ -117,7 +118,7 @@ enum SourceLanguage {
             case Ruby:
                 return literalCache = new RubyLiteral()
             default:
-                return null //todo: implement rest
+                throw new IllegalStateException("Missing structure literal for language: " + this)
         }
     }
 
