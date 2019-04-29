@@ -10,6 +10,9 @@ token sub attribute datatype string;
 #####----- Java -----#####
 javaConstructorAttribute sub attribute datatype string;
 
+#####----- Php -----#####
+phpByRefAttribute sub attribute datatype string;
+
 ##########---------- Entities ----------##########
 SourceArtifact sub entity
 	has token
@@ -69,6 +72,17 @@ JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptFileArtifact sub FileArtifact;
 
+#####----- Php -----#####
+PhpSourceArtifact sub SourceArtifact;
+
+PhpStmtFunctionArtifact sub PhpSourceArtifact
+	# Attributes
+	has phpByRefAttribute
+	# Semantic
+	plays IS_DECLARATION
+	plays IS_DECLARATION_FUNCTION
+	plays IS_FUNCTION;
+
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
@@ -77,6 +91,9 @@ PythonModuleArtifact sub PythonSourceArtifact
 	plays IS_FILE
 	plays IS_FILE_MODULE
 	plays IS_MODULE;
+
+#####----- Ruby -----#####
+RubySourceArtifact sub SourceArtifact;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relationship

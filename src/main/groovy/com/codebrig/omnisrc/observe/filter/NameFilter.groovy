@@ -20,7 +20,7 @@ class NameFilter extends SourceNodeFilter<NameFilter, String> {
     @Override
     boolean evaluate(SourceNode node) {
         if (node != null) {
-            if (node.language == SourceLanguage.Python) {
+            if (node.language in [SourceLanguage.Python, SourceLanguage.Ruby]) {
                 return evaluateProperty(node.token)
             }
 

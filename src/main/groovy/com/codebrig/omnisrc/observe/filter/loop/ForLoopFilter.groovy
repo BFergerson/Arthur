@@ -16,8 +16,11 @@ class ForLoopFilter extends SourceNodeFilter<ForLoopFilter, Void> {
 
     private static final Set<String> loopTypes = new HashSet<>()
     static {
+        loopTypes.add("for") //ruby
+        loopTypes.add("For") //python
         loopTypes.add("ForStmt") //go
-        loopTypes.add("ForStatement") //java, javascript, python
+        loopTypes.add("ForStatement") //java, javascript
+        loopTypes.add("Stmt_For") //php
     }
 
     @Override

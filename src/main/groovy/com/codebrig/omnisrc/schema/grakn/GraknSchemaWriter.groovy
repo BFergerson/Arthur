@@ -175,9 +175,12 @@ class GraknSchemaWriter implements SchemaWriter {
                                 boolean includeAttributes, boolean includeStructure,
                                 boolean individualRoles, boolean actualRoles) {
         output.append("\n#####----- " + observedLanguage.language.qualifiedName + " -----#####\n")
-        output.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n\n")
+        output.append(observedLanguage.language.qualifiedName).append("SourceArtifact sub SourceArtifact;\n")
 
         def observedEntities = observedLanguage.getObservedEntities(naturalOrdering)
+        if (!observedEntities.isEmpty()) {
+            output.append("\n")
+        }
         for (int i = 0; i < observedEntities.size(); i++) {
             def entity = observedEntities.get(i)
             def fullEntity = observedLanguage.getEntity(entity, rootLanguage.isOmnilingual())

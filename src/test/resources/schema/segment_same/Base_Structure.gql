@@ -1,41 +1,49 @@
 define
 
 ##########---------- Attributes ----------##########
-booleanValue sub attribute datatype boolean;
-doubleValue sub attribute datatype double;
-name sub attribute datatype string;
-numberValue sub attribute datatype long;
-token sub attribute datatype string;
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+token sub attribute, datatype string;
 
 #####----- Omnilingual -----#####
-kindAttribute sub attribute datatype string;
+kindAttribute sub attribute, datatype string;
 
 #####----- Go -----#####
-goColAttribute sub attribute datatype string;
-goKindAttribute sub kindAttribute datatype string;
-goLineAttribute sub attribute datatype string;
-goOffsetAttribute sub attribute datatype string;
-goTokAttribute sub attribute datatype string;
+goColAttribute sub attribute, datatype string;
+goKindAttribute sub kindAttribute, datatype string;
+goLineAttribute sub attribute, datatype string;
+goOffsetAttribute sub attribute, datatype string;
+goTokAttribute sub attribute, datatype string;
 
 #####----- Java -----#####
-javaConstructorAttribute sub attribute datatype string;
-javaInterfaceAttribute sub attribute datatype string;
-javaVarargsAttribute sub attribute datatype string;
+javaConstructorAttribute sub attribute, datatype string;
+javaInterfaceAttribute sub attribute, datatype string;
+javaVarargsAttribute sub attribute, datatype string;
 
 #####----- Javascript -----#####
-javascriptComputedAttribute sub attribute datatype string;
-javascriptKindAttribute sub kindAttribute datatype string;
-javascriptPrefixAttribute sub attribute datatype string;
-javascriptSourceTypeAttribute sub attribute datatype string;
+javascriptAsyncAttribute sub attribute, datatype string;
+javascriptComputedAttribute sub attribute, datatype string;
+javascriptGeneratorAttribute sub attribute, datatype string;
+javascriptKindAttribute sub kindAttribute, datatype string;
+javascriptPrefixAttribute sub attribute, datatype string;
+javascriptSourceTypeAttribute sub attribute, datatype string;
+
+#####----- Php -----#####
+phpByRefAttribute sub attribute, datatype string;
 
 #####----- Python -----#####
-pythonCtxAttribute sub attribute datatype string;
-pythonNlAttribute sub attribute datatype string;
+pythonCtxAttribute sub attribute, datatype string;
+pythonNlAttribute sub attribute, datatype string;
+
+#####----- Ruby -----#####
+rubySelectorAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
-SourceArtifact sub entity
-	has token
-	plays is_child
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
 	plays is_parent;
 
 #####----- Omnilingual -----#####
@@ -47,926 +55,972 @@ FileArtifact sub OmnilingualSourceArtifact;
 
 ForStatementArtifact sub OmnilingualSourceArtifact;
 
+IdentifierArtifact sub OmnilingualSourceArtifact;
+
+ModuleArtifact sub OmnilingualSourceArtifact;
+
+NameArtifact sub OmnilingualSourceArtifact;
+
 OperatorArtifact sub OmnilingualSourceArtifact;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoAssignStmtArtifact sub GoSourceArtifact
+GoAssignStmtArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_init_role
-	plays has_go_lhs_role
-	plays has_go_op_role
-	plays has_go_rhs_role
+	plays is_go_init_role,
+	plays has_go_lhs_role,
+	plays has_go_op_role,
+	plays has_go_rhs_role,
 	plays has_go_tok_pos_role;
 
-GoBasicLitArtifact sub GoSourceArtifact
+GoBasicLitArtifact sub GoSourceArtifact,
 	# Attributes
-	has doubleValue
-	has goKindAttribute
-	has numberValue
+	has doubleValue,
+	has goKindAttribute,
+	has numberValue,
 	# Structural
-	plays is_go_path_role
-	plays is_go_rhs_role
-	plays is_go_y_role
+	plays is_go_path_role,
+	plays is_go_rhs_role,
+	plays is_go_y_role,
 	plays has_go_value_pos_role;
 
-GoBinaryExprArtifact sub GoSourceArtifact
+GoBinaryExprArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_cond_role
-	plays has_go_op_pos_role
-	plays has_go_op_role
-	plays has_go_x_role
+	plays is_go_cond_role,
+	plays has_go_op_pos_role,
+	plays has_go_op_role,
+	plays has_go_x_role,
 	plays has_go_y_role;
 
-GoBlockStmtArtifact sub GoSourceArtifact
+GoBlockStmtArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_body_role
-	plays has_go_lbrace_role
-	plays has_go_list_role
+	plays is_go_body_role,
+	plays has_go_lbrace_role,
+	plays has_go_list_role,
 	plays has_go_rbrace_role;
 
-GoCallExprArtifact sub GoSourceArtifact
+GoCallExprArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_x_role
-	plays has_go_args_role
-	plays has_go_ellipsis_role
-	plays has_go_fun_role
-	plays has_go_lparen_role
+	plays is_go_x_role,
+	plays has_go_args_role,
+	plays has_go_ellipsis_role,
+	plays has_go_fun_role,
+	plays has_go_lparen_role,
 	plays has_go_rparen_role;
 
-GoExprStmtArtifact sub GoSourceArtifact
+GoExprStmtArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_list_role
+	plays is_go_list_role,
 	plays has_go_x_role;
 
-GoFieldListArtifact sub GoSourceArtifact
+GoFieldListArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_params_role
-	plays has_go_closing_role
+	plays is_go_params_role,
+	plays has_go_closing_role,
 	plays has_go_opening_role;
 
-GoFileArtifact sub FileArtifact
+GoFileArtifact sub FileArtifact,
 	# Structural
-	plays has_go_decls_role
-	plays has_go_imports_role
-	plays has_go_name_role
+	plays has_go_decls_role,
+	plays has_go_imports_role,
+	plays has_go_name_role,
 	plays has_go_package_role;
 
-GoForStmtArtifact sub GoSourceArtifact
+GoForStmtArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_list_role
-	plays has_go_body_role
-	plays has_go_cond_role
-	plays has_go_for_role
-	plays has_go_init_role
+	plays is_go_list_role,
+	plays has_go_body_role,
+	plays has_go_cond_role,
+	plays has_go_for_role,
+	plays has_go_init_role,
 	plays has_go_post_role;
 
-GoFuncDeclArtifact sub GoSourceArtifact
+GoFuncDeclArtifact sub GoSourceArtifact,
 	# Attributes
-	has name
+	has name,
 	# Structural
-	plays is_go_decls_role
-	plays has_go_body_role
-	plays has_go_name_role
+	plays is_go_decls_role,
+	plays has_go_body_role,
+	plays has_go_name_role,
 	plays has_go_type_role;
 
-GoFuncTypeArtifact sub GoSourceArtifact
+GoFuncTypeArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_type_role
-	plays has_go_func_role
+	plays is_go_type_role,
+	plays has_go_func_role,
 	plays has_go_params_role;
 
-GoGenDeclArtifact sub GoSourceArtifact
+GoGenDeclArtifact sub GoSourceArtifact,
 	# Attributes
-	has goTokAttribute
+	has goTokAttribute,
 	# Structural
-	plays is_go_decls_role
-	plays has_go_lparen_role
-	plays has_go_rparen_role
-	plays has_go_specs_role
+	plays is_go_decls_role,
+	plays has_go_lparen_role,
+	plays has_go_rparen_role,
+	plays has_go_specs_role,
 	plays has_go_tok_pos_role;
 
-GoIdentArtifact sub GoSourceArtifact
+GoIdentArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_args_role
-	plays is_go_lhs_role
-	plays is_go_name_role
-	plays is_go_sel_role
-	plays is_go_x_role
+	plays is_go_args_role,
+	plays is_go_lhs_role,
+	plays is_go_name_role,
+	plays is_go_sel_role,
+	plays is_go_x_role,
 	plays has_go_name_pos_role;
 
-GoImportSpecArtifact sub GoSourceArtifact
+GoImportSpecArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_imports_role
-	plays is_go_specs_role
-	plays has_go_end_pos_role
+	plays is_go_imports_role,
+	plays is_go_specs_role,
+	plays has_go_end_pos_role,
 	plays has_go_path_role;
 
-GoIncDecStmtArtifact sub GoSourceArtifact
+GoIncDecStmtArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_post_role
-	plays has_go_op_role
-	plays has_go_tok_pos_role
+	plays is_go_post_role,
+	plays has_go_op_role,
+	plays has_go_tok_pos_role,
 	plays has_go_x_role;
 
-GoOperatorArtifact sub OperatorArtifact
+GoOperatorArtifact sub OperatorArtifact,
 	# Structural
 	plays is_go_op_role;
 
-GoPositionArtifact sub GoSourceArtifact
+GoPositionArtifact sub GoSourceArtifact,
 	# Attributes
-	has goColAttribute
-	has goLineAttribute
-	has goOffsetAttribute
+	has goColAttribute,
+	has goLineAttribute,
+	has goOffsetAttribute,
 	# Structural
-	plays is_go_closing_role
-	plays is_go_ellipsis_role
-	plays is_go_end_pos_role
-	plays is_go_for_role
-	plays is_go_func_role
-	plays is_go_lbrace_role
-	plays is_go_lparen_role
-	plays is_go_name_pos_role
-	plays is_go_op_pos_role
-	plays is_go_opening_role
-	plays is_go_package_role
-	plays is_go_rbrace_role
-	plays is_go_rparen_role
-	plays is_go_tok_pos_role
+	plays is_go_closing_role,
+	plays is_go_ellipsis_role,
+	plays is_go_end_pos_role,
+	plays is_go_for_role,
+	plays is_go_func_role,
+	plays is_go_lbrace_role,
+	plays is_go_lparen_role,
+	plays is_go_name_pos_role,
+	plays is_go_op_pos_role,
+	plays is_go_opening_role,
+	plays is_go_package_role,
+	plays is_go_rbrace_role,
+	plays is_go_rparen_role,
+	plays is_go_tok_pos_role,
 	plays is_go_value_pos_role;
 
-GoSelectorExprArtifact sub GoSourceArtifact
+GoSelectorExprArtifact sub GoSourceArtifact,
 	# Structural
-	plays is_go_fun_role
-	plays has_go_sel_role
+	plays is_go_fun_role,
+	plays has_go_sel_role,
 	plays has_go_x_role;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaArrayTypeArtifact sub JavaSourceArtifact
+JavaArrayTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_type_role
-	plays has_java_dimensions_role
+	plays is_java_type_role,
+	plays has_java_dimensions_role,
 	plays has_java_element_type_role;
 
-JavaBlockArtifact sub JavaSourceArtifact
+JavaBlockArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_body_role
+	plays is_java_body_role,
 	plays has_java_statements_role;
 
-JavaCompilationUnitArtifact sub JavaSourceArtifact
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name
+	has name,
 	# Structural
 	plays has_java_types_role;
 
-JavaDimensionArtifact sub JavaSourceArtifact
+JavaDimensionArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_dimensions_role;
 
-JavaExpressionStatementArtifact sub ExpressionStatementArtifact
+JavaExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Structural
-	plays is_java_statements_role
+	plays is_java_statements_role,
 	plays has_java_expression_role;
 
-JavaForStatementArtifact sub ForStatementArtifact
+JavaForStatementArtifact sub ForStatementArtifact,
 	# Structural
-	plays is_java_statements_role
-	plays has_java_body_role
-	plays has_java_expression_role
-	plays has_java_initializers_role
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role,
+	plays has_java_initializers_role,
 	plays has_java_updaters_role;
 
-JavaInfixExpressionArtifact sub JavaSourceArtifact
+JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_expression_role
-	plays has_java_left_operand_role
-	plays has_java_operator_role
+	plays is_java_expression_role,
+	plays has_java_left_operand_role,
+	plays has_java_operator_role,
 	plays has_java_right_operand_role;
 
-JavaMethodDeclarationArtifact sub JavaSourceArtifact
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has javaConstructorAttribute
-	has name
+	has javaConstructorAttribute,
+	has name,
 	# Structural
-	plays is_java_body_declarations_role
-	plays has_java_body_role
-	plays has_java_modifiers_role
-	plays has_java_name_role
-	plays has_java_parameters_role
+	plays is_java_body_declarations_role,
+	plays has_java_body_role,
+	plays has_java_modifiers_role,
+	plays has_java_name_role,
+	plays has_java_parameters_role,
 	plays has_java_return_type2_role;
 
-JavaMethodInvocationArtifact sub JavaSourceArtifact
+JavaMethodInvocationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_expression_role
-	plays has_java_arguments_role
-	plays has_java_expression_role
+	plays is_java_expression_role,
+	plays has_java_arguments_role,
+	plays has_java_expression_role,
 	plays has_java_name_role;
 
-JavaModifierArtifact sub JavaSourceArtifact
+JavaModifierArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_modifiers_role;
 
-JavaNumberLiteralArtifact sub JavaSourceArtifact
+JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	# Attributes
-	has doubleValue
-	has numberValue
+	has doubleValue,
+	has numberValue,
 	# Structural
-	plays is_java_initializer_role
+	plays is_java_initializer_role,
 	plays is_java_right_operand_role;
 
-JavaOperatorArtifact sub OperatorArtifact
+JavaOperatorArtifact sub OperatorArtifact,
 	# Structural
 	plays is_java_operator_role;
 
-JavaPostfixExpressionArtifact sub JavaSourceArtifact
+JavaPostfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_updaters_role
-	plays has_java_operand_role
+	plays is_java_updaters_role,
+	plays has_java_operand_role,
 	plays has_java_operator_role;
 
-JavaPrimitiveTypeArtifact sub JavaSourceArtifact
+JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_return_type2_role
+	plays is_java_return_type2_role,
 	plays is_java_type_role;
 
-JavaQualifiedNameArtifact sub JavaSourceArtifact
+JavaQualifiedNameArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name
+	has name,
 	# Structural
-	plays is_java_expression_role
-	plays has_java_name_role
+	plays is_java_expression_role,
+	plays has_java_name_role,
 	plays has_java_qualifier_role;
 
-JavaSimpleNameArtifact sub JavaSourceArtifact
+JavaSimpleNameArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name
+	has name,
 	# Structural
-	plays is_java_arguments_role
-	plays is_java_left_operand_role
-	plays is_java_name_role
-	plays is_java_operand_role
+	plays is_java_arguments_role,
+	plays is_java_left_operand_role,
+	plays is_java_name_role,
+	plays is_java_operand_role,
 	plays is_java_qualifier_role;
 
-JavaSimpleTypeArtifact sub JavaSourceArtifact
+JavaSimpleTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_element_type_role
+	plays is_java_element_type_role,
 	plays has_java_name_role;
 
-JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact
+JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has javaVarargsAttribute
+	has javaVarargsAttribute,
 	# Structural
-	plays is_java_parameters_role
-	plays has_java_name_role
+	plays is_java_parameters_role,
+	plays has_java_name_role,
 	plays has_java_type_role;
 
-JavaTypeDeclarationArtifact sub JavaSourceArtifact
+JavaTypeDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has javaInterfaceAttribute
-	has name
+	has javaInterfaceAttribute,
+	has name,
 	# Structural
-	plays is_java_types_role
-	plays has_java_body_declarations_role
-	plays has_java_modifiers_role
+	plays is_java_types_role,
+	plays has_java_body_declarations_role,
+	plays has_java_modifiers_role,
 	plays has_java_name_role;
 
-JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact
+JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_initializers_role
-	plays has_java_fragments_role
+	plays is_java_initializers_role,
+	plays has_java_fragments_role,
 	plays has_java_type_role;
 
-JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact
+JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_fragments_role
-	plays has_java_initializer_role
+	plays is_java_fragments_role,
+	plays has_java_initializer_role,
 	plays has_java_name_role;
 
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
-JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact
+JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_test_role
-	plays has_javascript_left_role
-	plays has_javascript_operator_role
+	plays is_javascript_test_role,
+	plays has_javascript_left_role,
+	plays has_javascript_operator_role,
 	plays has_javascript_right_role;
 
-JavascriptBlockStatementArtifact sub JavascriptSourceArtifact
+JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_body_role
+	plays is_javascript_body_role,
 	plays has_javascript_body_role;
 
-JavascriptCallExpressionArtifact sub JavascriptSourceArtifact
+JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_expression_role
-	plays has_javascript_arguments_role
+	plays is_javascript_expression_role,
+	plays has_javascript_arguments_role,
 	plays has_javascript_callee_role;
 
-JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact
+JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Structural
-	plays is_javascript_body_role
+	plays is_javascript_body_role,
 	plays has_javascript_expression_role;
 
-JavascriptFileArtifact sub FileArtifact
+JavascriptFileArtifact sub FileArtifact,
 	# Structural
 	plays has_javascript_program_role;
 
-JavascriptForStatementArtifact sub ForStatementArtifact
+JavascriptForStatementArtifact sub ForStatementArtifact,
 	# Structural
-	plays is_javascript_body_role
-	plays has_javascript_body_role
-	plays has_javascript_init_role
-	plays has_javascript_test_role
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_init_role,
+	plays has_javascript_test_role,
 	plays has_javascript_update_role;
 
-JavascriptIdentifierArtifact sub JavascriptSourceArtifact
+JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptAsyncAttribute,
+	has javascriptGeneratorAttribute,
+	has name,
 	# Structural
-	plays is_javascript_argument_role
-	plays is_javascript_arguments_role
-	plays is_javascript_id_role
-	plays is_javascript_left_role
-	plays is_javascript_object_role
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_id_role;
+
+JavascriptIdentifierArtifact sub IdentifierArtifact,
+	# Structural
+	plays is_javascript_argument_role,
+	plays is_javascript_arguments_role,
+	plays is_javascript_id_role,
+	plays is_javascript_left_role,
+	plays is_javascript_object_role,
 	plays is_javascript_property_role;
 
-JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact
+JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has javascriptComputedAttribute
+	has javascriptComputedAttribute,
 	# Structural
-	plays is_javascript_callee_role
-	plays has_javascript_object_role
+	plays is_javascript_callee_role,
+	plays has_javascript_object_role,
 	plays has_javascript_property_role;
 
-JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact
+JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has numberValue
+	has numberValue,
 	# Structural
-	plays is_javascript_init_role
+	plays is_javascript_init_role,
 	plays is_javascript_right_role;
 
-JavascriptOperatorArtifact sub OperatorArtifact
+JavascriptOperatorArtifact sub OperatorArtifact,
 	# Structural
 	plays is_javascript_operator_role;
 
-JavascriptProgramArtifact sub JavascriptSourceArtifact
+JavascriptProgramArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has javascriptSourceTypeAttribute
+	has javascriptSourceTypeAttribute,
 	# Structural
-	plays is_javascript_program_role
+	plays is_javascript_program_role,
 	plays has_javascript_body_role;
 
-JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact
+JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has javascriptPrefixAttribute
+	has javascriptPrefixAttribute,
 	# Structural
-	plays is_javascript_update_role
-	plays has_javascript_argument_role
+	plays is_javascript_update_role,
+	plays has_javascript_argument_role,
 	plays has_javascript_operator_role;
 
-JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact
+JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has javascriptKindAttribute
+	has javascriptKindAttribute,
 	# Structural
-	plays is_javascript_init_role
+	plays is_javascript_init_role,
 	plays has_javascript_declarations_role;
 
-JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact
+JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_javascript_declarations_role
-	plays has_javascript_id_role
+	plays is_javascript_declarations_role,
+	plays has_javascript_id_role,
 	plays has_javascript_init_role;
+
+#####----- Php -----#####
+PhpSourceArtifact sub SourceArtifact;
+
+PhpExprAssignArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_init_role,
+	plays has_php_expr_role,
+	plays has_php_var_role;
+
+PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprPostDecArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_loop_role,
+	plays has_php_var_role;
+
+PhpExprVariableArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_exprs_role,
+	plays is_php_left_role,
+	plays is_php_var_role,
+	plays has_php_name_role;
+
+PhpFunctionBodyArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_stmts_role,
+	plays has_php_body_role;
+
+PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_return_type_role;
+
+PhpModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_php_children_role;
+
+PhpNameArtifact sub NameArtifact,
+	# Structural
+	plays is_php_name_role;
+
+PhpScalarLNumberArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_expr_role,
+	plays is_php_right_role;
+
+PhpStmtEchoArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_stmts_role,
+	plays has_php_exprs_role;
+
+PhpStmtForArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_body_role,
+	plays has_php_cond_role,
+	plays has_php_init_role,
+	plays has_php_loop_role,
+	plays has_php_stmts_role;
+
+PhpStmtFunctionArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpByRefAttribute,
+	# Structural
+	plays is_php_children_role,
+	plays has_php_name_role,
+	plays has_php_return_type_role,
+	plays has_php_stmts_role;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
-PythonCallArtifact sub PythonSourceArtifact
+PythonCallArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_python_iter_role
-	plays has_python_args_role
+	plays is_python_iter_role,
+	plays has_python_args_role,
 	plays has_python_func_role;
 
-PythonForArtifact sub PythonSourceArtifact
+PythonForArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_python_body_role
-	plays has_python_body_role
-	plays has_python_iter_role
-	plays has_python_orelse_role
+	plays is_python_body_role,
+	plays has_python_body_role,
+	plays has_python_iter_role,
+	plays has_python_orelse_role,
 	plays has_python_target_role;
 
-PythonForBodyArtifact sub PythonSourceArtifact
+PythonForBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_python_body_role
+	plays is_python_body_role,
 	plays has_python_body_stmts_role;
 
-PythonForOrelseArtifact sub PythonSourceArtifact
+PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_orelse_role;
 
-PythonModuleArtifact sub PythonSourceArtifact
+PythonModuleArtifact sub ModuleArtifact,
 	# Structural
 	plays has_python_body_role;
 
-PythonNameArtifact sub PythonSourceArtifact
+PythonNameArtifact sub NameArtifact,
 	# Attributes
-	has pythonCtxAttribute
+	has pythonCtxAttribute,
 	# Structural
-	plays is_python_func_role
-	plays is_python_target_role
-	plays is_python_values_role
-	plays has_python_noops_sameline_role;
+	plays is_python_func_role,
+	plays is_python_target_role,
+	plays is_python_values_role;
 
-PythonNoopSameLineArtifact sub PythonSourceArtifact
-	# Structural
-	plays is_python_noop_lines_role;
-
-PythonNumArtifact sub PythonSourceArtifact
+PythonNumArtifact sub PythonSourceArtifact,
 	# Attributes
-	has numberValue
+	has numberValue,
 	# Structural
 	plays is_python_args_role;
 
-PythonPrintArtifact sub PythonSourceArtifact
+PythonPrintArtifact sub PythonSourceArtifact,
 	# Attributes
-	has pythonNlAttribute
+	has pythonNlAttribute,
 	# Structural
-	plays is_python_body_stmts_role
+	plays is_python_body_stmts_role,
 	plays has_python_values_role;
 
-PythonSameLineNoopsArtifact sub PythonSourceArtifact
+#####----- Ruby -----#####
+RubySourceArtifact sub SourceArtifact;
+
+RubyArgsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_python_noops_sameline_role
-	plays has_python_noop_lines_role;
+	plays is_ruby_args_role;
+
+RubyBeginArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_body_role;
+
+RubyDefArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_file_role,
+	plays has_ruby_args_role,
+	plays has_ruby_body_role;
+
+RubyIdentifierArtifact sub IdentifierArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_ruby_qnames_role;
+
+RubyIntArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_value_role,
+	plays is_ruby_values_role;
+
+RubyLvarArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_base_role,
+	plays is_ruby_values_role;
+
+RubyLvasgnArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays is_ruby_target_role,
+	plays has_ruby_value_role;
+
+RubyModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_ruby_file_role;
+
+RubyOpAsgnArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_operator_role,
+	plays has_ruby_target_role,
+	plays has_ruby_value_role;
+
+RubyOperatorArtifact sub OperatorArtifact,
+	# Structural
+	plays is_ruby_operator_role;
+
+RubySendCallArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_base_role,
+	plays has_ruby_values_role;
+
+RubySendQualifiedArtifact sub RubySourceArtifact,
+	# Attributes
+	has rubySelectorAttribute,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_qnames_role,
+	plays has_ruby_values_role;
+
+RubyUntilArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_body_role,
+	plays has_ruby_condition_role;
 
 ##########---------- Structural Relationships ----------##########
-parent_child_relation sub relationship
+parent_child_relation sub relation,
 	relates is_parent, relates is_child;
-is_parent sub role;
-is_child sub role;
 
 #####----- Omnilingual -----#####
-args_relation sub parent_child_relation
-	relates is_args_role, relates has_args_role;
-is_args_role sub is_child;
-has_args_role sub is_parent;
+args_relation sub parent_child_relation,
+	relates is_args_role as is_child, relates has_args_role as is_parent;
 
-arguments_relation sub parent_child_relation
-	relates is_arguments_role, relates has_arguments_role;
-is_arguments_role sub is_child;
-has_arguments_role sub is_parent;
+arguments_relation sub parent_child_relation,
+	relates is_arguments_role as is_child, relates has_arguments_role as is_parent;
 
-body_relation sub parent_child_relation
-	relates is_body_role, relates has_body_role;
-is_body_role sub is_child;
-has_body_role sub is_parent;
+body_relation sub parent_child_relation,
+	relates is_body_role as is_child, relates has_body_role as is_parent;
 
-expression_relation sub parent_child_relation
-	relates is_expression_role, relates has_expression_role;
-is_expression_role sub is_child;
-has_expression_role sub is_parent;
+cond_relation sub parent_child_relation,
+	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
-func_relation sub parent_child_relation
-	relates is_func_role, relates has_func_role;
-is_func_role sub is_child;
-has_func_role sub is_parent;
+expression_relation sub parent_child_relation,
+	relates is_expression_role as is_child, relates has_expression_role as is_parent;
 
-init_relation sub parent_child_relation
-	relates is_init_role, relates has_init_role;
-is_init_role sub is_child;
-has_init_role sub is_parent;
+func_relation sub parent_child_relation,
+	relates is_func_role as is_child, relates has_func_role as is_parent;
 
-name_relation sub parent_child_relation
-	relates is_name_role, relates has_name_role;
-is_name_role sub is_child;
-has_name_role sub is_parent;
+init_relation sub parent_child_relation,
+	relates is_init_role as is_child, relates has_init_role as is_parent;
 
-operator_relation sub parent_child_relation
-	relates is_operator_role, relates has_operator_role;
-is_operator_role sub is_child;
-has_operator_role sub is_parent;
+left_relation sub parent_child_relation,
+	relates is_left_role as is_child, relates has_left_role as is_parent;
 
-type_relation sub parent_child_relation
-	relates is_type_role, relates has_type_role;
-is_type_role sub is_child;
-has_type_role sub is_parent;
+name_relation sub parent_child_relation,
+	relates is_name_role as is_child, relates has_name_role as is_parent;
+
+operator_relation sub parent_child_relation,
+	relates is_operator_role as is_child, relates has_operator_role as is_parent;
+
+right_relation sub parent_child_relation,
+	relates is_right_role as is_child, relates has_right_role as is_parent;
+
+target_relation sub parent_child_relation,
+	relates is_target_role as is_child, relates has_target_role as is_parent;
+
+type_relation sub parent_child_relation,
+	relates is_type_role as is_child, relates has_type_role as is_parent;
+
+values_relation sub parent_child_relation,
+	relates is_values_role as is_child, relates has_values_role as is_parent;
 
 #####----- Go -----#####
-go_args_relation sub args_relation
-	relates is_go_args_role, relates has_go_args_role;
-is_go_args_role sub is_args_role;
-has_go_args_role sub has_args_role;
+go_args_relation sub args_relation,
+	relates is_go_args_role as is_args_role, relates has_go_args_role as has_args_role;
 
-go_body_relation sub body_relation
-	relates is_go_body_role, relates has_go_body_role;
-is_go_body_role sub is_body_role;
-has_go_body_role sub has_body_role;
+go_body_relation sub body_relation,
+	relates is_go_body_role as is_body_role, relates has_go_body_role as has_body_role;
 
-go_closing_relation sub parent_child_relation
-	relates is_go_closing_role, relates has_go_closing_role;
-is_go_closing_role sub is_child;
-has_go_closing_role sub is_parent;
+go_closing_relation sub parent_child_relation,
+	relates is_go_closing_role as is_child, relates has_go_closing_role as is_parent;
 
-go_cond_relation sub parent_child_relation
-	relates is_go_cond_role, relates has_go_cond_role;
-is_go_cond_role sub is_child;
-has_go_cond_role sub is_parent;
+go_cond_relation sub cond_relation,
+	relates is_go_cond_role as is_cond_role, relates has_go_cond_role as has_cond_role;
 
-go_decls_relation sub parent_child_relation
-	relates is_go_decls_role, relates has_go_decls_role;
-is_go_decls_role sub is_child;
-has_go_decls_role sub is_parent;
+go_decls_relation sub parent_child_relation,
+	relates is_go_decls_role as is_child, relates has_go_decls_role as is_parent;
 
-go_ellipsis_relation sub parent_child_relation
-	relates is_go_ellipsis_role, relates has_go_ellipsis_role;
-is_go_ellipsis_role sub is_child;
-has_go_ellipsis_role sub is_parent;
+go_ellipsis_relation sub parent_child_relation,
+	relates is_go_ellipsis_role as is_child, relates has_go_ellipsis_role as is_parent;
 
-go_end_pos_relation sub parent_child_relation
-	relates is_go_end_pos_role, relates has_go_end_pos_role;
-is_go_end_pos_role sub is_child;
-has_go_end_pos_role sub is_parent;
+go_end_pos_relation sub parent_child_relation,
+	relates is_go_end_pos_role as is_child, relates has_go_end_pos_role as is_parent;
 
-go_for_relation sub parent_child_relation
-	relates is_go_for_role, relates has_go_for_role;
-is_go_for_role sub is_child;
-has_go_for_role sub is_parent;
+go_for_relation sub parent_child_relation,
+	relates is_go_for_role as is_child, relates has_go_for_role as is_parent;
 
-go_fun_relation sub parent_child_relation
-	relates is_go_fun_role, relates has_go_fun_role;
-is_go_fun_role sub is_child;
-has_go_fun_role sub is_parent;
+go_fun_relation sub parent_child_relation,
+	relates is_go_fun_role as is_child, relates has_go_fun_role as is_parent;
 
-go_func_relation sub func_relation
-	relates is_go_func_role, relates has_go_func_role;
-is_go_func_role sub is_func_role;
-has_go_func_role sub has_func_role;
+go_func_relation sub func_relation,
+	relates is_go_func_role as is_func_role, relates has_go_func_role as has_func_role;
 
-go_imports_relation sub parent_child_relation
-	relates is_go_imports_role, relates has_go_imports_role;
-is_go_imports_role sub is_child;
-has_go_imports_role sub is_parent;
+go_imports_relation sub parent_child_relation,
+	relates is_go_imports_role as is_child, relates has_go_imports_role as is_parent;
 
-go_init_relation sub init_relation
-	relates is_go_init_role, relates has_go_init_role;
-is_go_init_role sub is_init_role;
-has_go_init_role sub has_init_role;
+go_init_relation sub init_relation,
+	relates is_go_init_role as is_init_role, relates has_go_init_role as has_init_role;
 
-go_lbrace_relation sub parent_child_relation
-	relates is_go_lbrace_role, relates has_go_lbrace_role;
-is_go_lbrace_role sub is_child;
-has_go_lbrace_role sub is_parent;
+go_lbrace_relation sub parent_child_relation,
+	relates is_go_lbrace_role as is_child, relates has_go_lbrace_role as is_parent;
 
-go_lhs_relation sub parent_child_relation
-	relates is_go_lhs_role, relates has_go_lhs_role;
-is_go_lhs_role sub is_child;
-has_go_lhs_role sub is_parent;
+go_lhs_relation sub parent_child_relation,
+	relates is_go_lhs_role as is_child, relates has_go_lhs_role as is_parent;
 
-go_list_relation sub parent_child_relation
-	relates is_go_list_role, relates has_go_list_role;
-is_go_list_role sub is_child;
-has_go_list_role sub is_parent;
+go_list_relation sub parent_child_relation,
+	relates is_go_list_role as is_child, relates has_go_list_role as is_parent;
 
-go_lparen_relation sub parent_child_relation
-	relates is_go_lparen_role, relates has_go_lparen_role;
-is_go_lparen_role sub is_child;
-has_go_lparen_role sub is_parent;
+go_lparen_relation sub parent_child_relation,
+	relates is_go_lparen_role as is_child, relates has_go_lparen_role as is_parent;
 
-go_name_pos_relation sub parent_child_relation
-	relates is_go_name_pos_role, relates has_go_name_pos_role;
-is_go_name_pos_role sub is_child;
-has_go_name_pos_role sub is_parent;
+go_name_pos_relation sub parent_child_relation,
+	relates is_go_name_pos_role as is_child, relates has_go_name_pos_role as is_parent;
 
-go_name_relation sub name_relation
-	relates is_go_name_role, relates has_go_name_role;
-is_go_name_role sub is_name_role;
-has_go_name_role sub has_name_role;
+go_name_relation sub name_relation,
+	relates is_go_name_role as is_name_role, relates has_go_name_role as has_name_role;
 
-go_op_pos_relation sub parent_child_relation
-	relates is_go_op_pos_role, relates has_go_op_pos_role;
-is_go_op_pos_role sub is_child;
-has_go_op_pos_role sub is_parent;
+go_op_pos_relation sub parent_child_relation,
+	relates is_go_op_pos_role as is_child, relates has_go_op_pos_role as is_parent;
 
-go_op_relation sub parent_child_relation
-	relates is_go_op_role, relates has_go_op_role;
-is_go_op_role sub is_child;
-has_go_op_role sub is_parent;
+go_op_relation sub parent_child_relation,
+	relates is_go_op_role as is_child, relates has_go_op_role as is_parent;
 
-go_opening_relation sub parent_child_relation
-	relates is_go_opening_role, relates has_go_opening_role;
-is_go_opening_role sub is_child;
-has_go_opening_role sub is_parent;
+go_opening_relation sub parent_child_relation,
+	relates is_go_opening_role as is_child, relates has_go_opening_role as is_parent;
 
-go_package_relation sub parent_child_relation
-	relates is_go_package_role, relates has_go_package_role;
-is_go_package_role sub is_child;
-has_go_package_role sub is_parent;
+go_package_relation sub parent_child_relation,
+	relates is_go_package_role as is_child, relates has_go_package_role as is_parent;
 
-go_params_relation sub parent_child_relation
-	relates is_go_params_role, relates has_go_params_role;
-is_go_params_role sub is_child;
-has_go_params_role sub is_parent;
+go_params_relation sub parent_child_relation,
+	relates is_go_params_role as is_child, relates has_go_params_role as is_parent;
 
-go_path_relation sub parent_child_relation
-	relates is_go_path_role, relates has_go_path_role;
-is_go_path_role sub is_child;
-has_go_path_role sub is_parent;
+go_path_relation sub parent_child_relation,
+	relates is_go_path_role as is_child, relates has_go_path_role as is_parent;
 
-go_post_relation sub parent_child_relation
-	relates is_go_post_role, relates has_go_post_role;
-is_go_post_role sub is_child;
-has_go_post_role sub is_parent;
+go_post_relation sub parent_child_relation,
+	relates is_go_post_role as is_child, relates has_go_post_role as is_parent;
 
-go_rbrace_relation sub parent_child_relation
-	relates is_go_rbrace_role, relates has_go_rbrace_role;
-is_go_rbrace_role sub is_child;
-has_go_rbrace_role sub is_parent;
+go_rbrace_relation sub parent_child_relation,
+	relates is_go_rbrace_role as is_child, relates has_go_rbrace_role as is_parent;
 
-go_rhs_relation sub parent_child_relation
-	relates is_go_rhs_role, relates has_go_rhs_role;
-is_go_rhs_role sub is_child;
-has_go_rhs_role sub is_parent;
+go_rhs_relation sub parent_child_relation,
+	relates is_go_rhs_role as is_child, relates has_go_rhs_role as is_parent;
 
-go_rparen_relation sub parent_child_relation
-	relates is_go_rparen_role, relates has_go_rparen_role;
-is_go_rparen_role sub is_child;
-has_go_rparen_role sub is_parent;
+go_rparen_relation sub parent_child_relation,
+	relates is_go_rparen_role as is_child, relates has_go_rparen_role as is_parent;
 
-go_sel_relation sub parent_child_relation
-	relates is_go_sel_role, relates has_go_sel_role;
-is_go_sel_role sub is_child;
-has_go_sel_role sub is_parent;
+go_sel_relation sub parent_child_relation,
+	relates is_go_sel_role as is_child, relates has_go_sel_role as is_parent;
 
-go_specs_relation sub parent_child_relation
-	relates is_go_specs_role, relates has_go_specs_role;
-is_go_specs_role sub is_child;
-has_go_specs_role sub is_parent;
+go_specs_relation sub parent_child_relation,
+	relates is_go_specs_role as is_child, relates has_go_specs_role as is_parent;
 
-go_tok_pos_relation sub parent_child_relation
-	relates is_go_tok_pos_role, relates has_go_tok_pos_role;
-is_go_tok_pos_role sub is_child;
-has_go_tok_pos_role sub is_parent;
+go_tok_pos_relation sub parent_child_relation,
+	relates is_go_tok_pos_role as is_child, relates has_go_tok_pos_role as is_parent;
 
-go_type_relation sub type_relation
-	relates is_go_type_role, relates has_go_type_role;
-is_go_type_role sub is_type_role;
-has_go_type_role sub has_type_role;
+go_type_relation sub type_relation,
+	relates is_go_type_role as is_type_role, relates has_go_type_role as has_type_role;
 
-go_value_pos_relation sub parent_child_relation
-	relates is_go_value_pos_role, relates has_go_value_pos_role;
-is_go_value_pos_role sub is_child;
-has_go_value_pos_role sub is_parent;
+go_value_pos_relation sub parent_child_relation,
+	relates is_go_value_pos_role as is_child, relates has_go_value_pos_role as is_parent;
 
-go_x_relation sub parent_child_relation
-	relates is_go_x_role, relates has_go_x_role;
-is_go_x_role sub is_child;
-has_go_x_role sub is_parent;
+go_x_relation sub parent_child_relation,
+	relates is_go_x_role as is_child, relates has_go_x_role as is_parent;
 
-go_y_relation sub parent_child_relation
-	relates is_go_y_role, relates has_go_y_role;
-is_go_y_role sub is_child;
-has_go_y_role sub is_parent;
+go_y_relation sub parent_child_relation,
+	relates is_go_y_role as is_child, relates has_go_y_role as is_parent;
 
 #####----- Java -----#####
-java_arguments_relation sub arguments_relation
-	relates is_java_arguments_role, relates has_java_arguments_role;
-is_java_arguments_role sub is_arguments_role;
-has_java_arguments_role sub has_arguments_role;
+java_arguments_relation sub arguments_relation,
+	relates is_java_arguments_role as is_arguments_role, relates has_java_arguments_role as has_arguments_role;
 
-java_body_declarations_relation sub parent_child_relation
-	relates is_java_body_declarations_role, relates has_java_body_declarations_role;
-is_java_body_declarations_role sub is_child;
-has_java_body_declarations_role sub is_parent;
+java_body_declarations_relation sub parent_child_relation,
+	relates is_java_body_declarations_role as is_child, relates has_java_body_declarations_role as is_parent;
 
-java_body_relation sub body_relation
-	relates is_java_body_role, relates has_java_body_role;
-is_java_body_role sub is_body_role;
-has_java_body_role sub has_body_role;
+java_body_relation sub body_relation,
+	relates is_java_body_role as is_body_role, relates has_java_body_role as has_body_role;
 
-java_dimensions_relation sub parent_child_relation
-	relates is_java_dimensions_role, relates has_java_dimensions_role;
-is_java_dimensions_role sub is_child;
-has_java_dimensions_role sub is_parent;
+java_dimensions_relation sub parent_child_relation,
+	relates is_java_dimensions_role as is_child, relates has_java_dimensions_role as is_parent;
 
-java_element_type_relation sub parent_child_relation
-	relates is_java_element_type_role, relates has_java_element_type_role;
-is_java_element_type_role sub is_child;
-has_java_element_type_role sub is_parent;
+java_element_type_relation sub parent_child_relation,
+	relates is_java_element_type_role as is_child, relates has_java_element_type_role as is_parent;
 
-java_expression_relation sub expression_relation
-	relates is_java_expression_role, relates has_java_expression_role;
-is_java_expression_role sub is_expression_role;
-has_java_expression_role sub has_expression_role;
+java_expression_relation sub expression_relation,
+	relates is_java_expression_role as is_expression_role, relates has_java_expression_role as has_expression_role;
 
-java_fragments_relation sub parent_child_relation
-	relates is_java_fragments_role, relates has_java_fragments_role;
-is_java_fragments_role sub is_child;
-has_java_fragments_role sub is_parent;
+java_fragments_relation sub parent_child_relation,
+	relates is_java_fragments_role as is_child, relates has_java_fragments_role as is_parent;
 
-java_initializer_relation sub parent_child_relation
-	relates is_java_initializer_role, relates has_java_initializer_role;
-is_java_initializer_role sub is_child;
-has_java_initializer_role sub is_parent;
+java_initializer_relation sub parent_child_relation,
+	relates is_java_initializer_role as is_child, relates has_java_initializer_role as is_parent;
 
-java_initializers_relation sub parent_child_relation
-	relates is_java_initializers_role, relates has_java_initializers_role;
-is_java_initializers_role sub is_child;
-has_java_initializers_role sub is_parent;
+java_initializers_relation sub parent_child_relation,
+	relates is_java_initializers_role as is_child, relates has_java_initializers_role as is_parent;
 
-java_left_operand_relation sub parent_child_relation
-	relates is_java_left_operand_role, relates has_java_left_operand_role;
-is_java_left_operand_role sub is_child;
-has_java_left_operand_role sub is_parent;
+java_left_operand_relation sub parent_child_relation,
+	relates is_java_left_operand_role as is_child, relates has_java_left_operand_role as is_parent;
 
-java_modifiers_relation sub parent_child_relation
-	relates is_java_modifiers_role, relates has_java_modifiers_role;
-is_java_modifiers_role sub is_child;
-has_java_modifiers_role sub is_parent;
+java_modifiers_relation sub parent_child_relation,
+	relates is_java_modifiers_role as is_child, relates has_java_modifiers_role as is_parent;
 
-java_name_relation sub name_relation
-	relates is_java_name_role, relates has_java_name_role;
-is_java_name_role sub is_name_role;
-has_java_name_role sub has_name_role;
+java_name_relation sub name_relation,
+	relates is_java_name_role as is_name_role, relates has_java_name_role as has_name_role;
 
-java_operand_relation sub parent_child_relation
-	relates is_java_operand_role, relates has_java_operand_role;
-is_java_operand_role sub is_child;
-has_java_operand_role sub is_parent;
+java_operand_relation sub parent_child_relation,
+	relates is_java_operand_role as is_child, relates has_java_operand_role as is_parent;
 
-java_operator_relation sub operator_relation
-	relates is_java_operator_role, relates has_java_operator_role;
-is_java_operator_role sub is_operator_role;
-has_java_operator_role sub has_operator_role;
+java_operator_relation sub operator_relation,
+	relates is_java_operator_role as is_operator_role, relates has_java_operator_role as has_operator_role;
 
-java_parameters_relation sub parent_child_relation
-	relates is_java_parameters_role, relates has_java_parameters_role;
-is_java_parameters_role sub is_child;
-has_java_parameters_role sub is_parent;
+java_parameters_relation sub parent_child_relation,
+	relates is_java_parameters_role as is_child, relates has_java_parameters_role as is_parent;
 
-java_qualifier_relation sub parent_child_relation
-	relates is_java_qualifier_role, relates has_java_qualifier_role;
-is_java_qualifier_role sub is_child;
-has_java_qualifier_role sub is_parent;
+java_qualifier_relation sub parent_child_relation,
+	relates is_java_qualifier_role as is_child, relates has_java_qualifier_role as is_parent;
 
-java_return_type2_relation sub parent_child_relation
-	relates is_java_return_type2_role, relates has_java_return_type2_role;
-is_java_return_type2_role sub is_child;
-has_java_return_type2_role sub is_parent;
+java_return_type2_relation sub parent_child_relation,
+	relates is_java_return_type2_role as is_child, relates has_java_return_type2_role as is_parent;
 
-java_right_operand_relation sub parent_child_relation
-	relates is_java_right_operand_role, relates has_java_right_operand_role;
-is_java_right_operand_role sub is_child;
-has_java_right_operand_role sub is_parent;
+java_right_operand_relation sub parent_child_relation,
+	relates is_java_right_operand_role as is_child, relates has_java_right_operand_role as is_parent;
 
-java_statements_relation sub parent_child_relation
-	relates is_java_statements_role, relates has_java_statements_role;
-is_java_statements_role sub is_child;
-has_java_statements_role sub is_parent;
+java_statements_relation sub parent_child_relation,
+	relates is_java_statements_role as is_child, relates has_java_statements_role as is_parent;
 
-java_type_relation sub type_relation
-	relates is_java_type_role, relates has_java_type_role;
-is_java_type_role sub is_type_role;
-has_java_type_role sub has_type_role;
+java_type_relation sub type_relation,
+	relates is_java_type_role as is_type_role, relates has_java_type_role as has_type_role;
 
-java_types_relation sub parent_child_relation
-	relates is_java_types_role, relates has_java_types_role;
-is_java_types_role sub is_child;
-has_java_types_role sub is_parent;
+java_types_relation sub parent_child_relation,
+	relates is_java_types_role as is_child, relates has_java_types_role as is_parent;
 
-java_updaters_relation sub parent_child_relation
-	relates is_java_updaters_role, relates has_java_updaters_role;
-is_java_updaters_role sub is_child;
-has_java_updaters_role sub is_parent;
+java_updaters_relation sub parent_child_relation,
+	relates is_java_updaters_role as is_child, relates has_java_updaters_role as is_parent;
 
 #####----- Javascript -----#####
-javascript_argument_relation sub parent_child_relation
-	relates is_javascript_argument_role, relates has_javascript_argument_role;
-is_javascript_argument_role sub is_child;
-has_javascript_argument_role sub is_parent;
+javascript_argument_relation sub parent_child_relation,
+	relates is_javascript_argument_role as is_child, relates has_javascript_argument_role as is_parent;
 
-javascript_arguments_relation sub arguments_relation
-	relates is_javascript_arguments_role, relates has_javascript_arguments_role;
-is_javascript_arguments_role sub is_arguments_role;
-has_javascript_arguments_role sub has_arguments_role;
+javascript_arguments_relation sub arguments_relation,
+	relates is_javascript_arguments_role as is_arguments_role, relates has_javascript_arguments_role as has_arguments_role;
 
-javascript_body_relation sub body_relation
-	relates is_javascript_body_role, relates has_javascript_body_role;
-is_javascript_body_role sub is_body_role;
-has_javascript_body_role sub has_body_role;
+javascript_body_relation sub body_relation,
+	relates is_javascript_body_role as is_body_role, relates has_javascript_body_role as has_body_role;
 
-javascript_callee_relation sub parent_child_relation
-	relates is_javascript_callee_role, relates has_javascript_callee_role;
-is_javascript_callee_role sub is_child;
-has_javascript_callee_role sub is_parent;
+javascript_callee_relation sub parent_child_relation,
+	relates is_javascript_callee_role as is_child, relates has_javascript_callee_role as is_parent;
 
-javascript_declarations_relation sub parent_child_relation
-	relates is_javascript_declarations_role, relates has_javascript_declarations_role;
-is_javascript_declarations_role sub is_child;
-has_javascript_declarations_role sub is_parent;
+javascript_declarations_relation sub parent_child_relation,
+	relates is_javascript_declarations_role as is_child, relates has_javascript_declarations_role as is_parent;
 
-javascript_expression_relation sub expression_relation
-	relates is_javascript_expression_role, relates has_javascript_expression_role;
-is_javascript_expression_role sub is_expression_role;
-has_javascript_expression_role sub has_expression_role;
+javascript_expression_relation sub expression_relation,
+	relates is_javascript_expression_role as is_expression_role, relates has_javascript_expression_role as has_expression_role;
 
-javascript_id_relation sub parent_child_relation
-	relates is_javascript_id_role, relates has_javascript_id_role;
-is_javascript_id_role sub is_child;
-has_javascript_id_role sub is_parent;
+javascript_id_relation sub parent_child_relation,
+	relates is_javascript_id_role as is_child, relates has_javascript_id_role as is_parent;
 
-javascript_init_relation sub init_relation
-	relates is_javascript_init_role, relates has_javascript_init_role;
-is_javascript_init_role sub is_init_role;
-has_javascript_init_role sub has_init_role;
+javascript_init_relation sub init_relation,
+	relates is_javascript_init_role as is_init_role, relates has_javascript_init_role as has_init_role;
 
-javascript_left_relation sub parent_child_relation
-	relates is_javascript_left_role, relates has_javascript_left_role;
-is_javascript_left_role sub is_child;
-has_javascript_left_role sub is_parent;
+javascript_left_relation sub left_relation,
+	relates is_javascript_left_role as is_left_role, relates has_javascript_left_role as has_left_role;
 
-javascript_object_relation sub parent_child_relation
-	relates is_javascript_object_role, relates has_javascript_object_role;
-is_javascript_object_role sub is_child;
-has_javascript_object_role sub is_parent;
+javascript_object_relation sub parent_child_relation,
+	relates is_javascript_object_role as is_child, relates has_javascript_object_role as is_parent;
 
-javascript_operator_relation sub operator_relation
-	relates is_javascript_operator_role, relates has_javascript_operator_role;
-is_javascript_operator_role sub is_operator_role;
-has_javascript_operator_role sub has_operator_role;
+javascript_operator_relation sub operator_relation,
+	relates is_javascript_operator_role as is_operator_role, relates has_javascript_operator_role as has_operator_role;
 
-javascript_program_relation sub parent_child_relation
-	relates is_javascript_program_role, relates has_javascript_program_role;
-is_javascript_program_role sub is_child;
-has_javascript_program_role sub is_parent;
+javascript_program_relation sub parent_child_relation,
+	relates is_javascript_program_role as is_child, relates has_javascript_program_role as is_parent;
 
-javascript_property_relation sub parent_child_relation
-	relates is_javascript_property_role, relates has_javascript_property_role;
-is_javascript_property_role sub is_child;
-has_javascript_property_role sub is_parent;
+javascript_property_relation sub parent_child_relation,
+	relates is_javascript_property_role as is_child, relates has_javascript_property_role as is_parent;
 
-javascript_right_relation sub parent_child_relation
-	relates is_javascript_right_role, relates has_javascript_right_role;
-is_javascript_right_role sub is_child;
-has_javascript_right_role sub is_parent;
+javascript_right_relation sub right_relation,
+	relates is_javascript_right_role as is_right_role, relates has_javascript_right_role as has_right_role;
 
-javascript_test_relation sub parent_child_relation
-	relates is_javascript_test_role, relates has_javascript_test_role;
-is_javascript_test_role sub is_child;
-has_javascript_test_role sub is_parent;
+javascript_test_relation sub parent_child_relation,
+	relates is_javascript_test_role as is_child, relates has_javascript_test_role as is_parent;
 
-javascript_update_relation sub parent_child_relation
-	relates is_javascript_update_role, relates has_javascript_update_role;
-is_javascript_update_role sub is_child;
-has_javascript_update_role sub is_parent;
+javascript_update_relation sub parent_child_relation,
+	relates is_javascript_update_role as is_child, relates has_javascript_update_role as is_parent;
+
+#####----- Php -----#####
+php_body_relation sub body_relation,
+	relates is_php_body_role as is_body_role, relates has_php_body_role as has_body_role;
+
+php_children_relation sub parent_child_relation,
+	relates is_php_children_role as is_child, relates has_php_children_role as is_parent;
+
+php_cond_relation sub cond_relation,
+	relates is_php_cond_role as is_cond_role, relates has_php_cond_role as has_cond_role;
+
+php_expr_relation sub parent_child_relation,
+	relates is_php_expr_role as is_child, relates has_php_expr_role as is_parent;
+
+php_exprs_relation sub parent_child_relation,
+	relates is_php_exprs_role as is_child, relates has_php_exprs_role as is_parent;
+
+php_init_relation sub init_relation,
+	relates is_php_init_role as is_init_role, relates has_php_init_role as has_init_role;
+
+php_left_relation sub left_relation,
+	relates is_php_left_role as is_left_role, relates has_php_left_role as has_left_role;
+
+php_loop_relation sub parent_child_relation,
+	relates is_php_loop_role as is_child, relates has_php_loop_role as is_parent;
+
+php_name_relation sub name_relation,
+	relates is_php_name_role as is_name_role, relates has_php_name_role as has_name_role;
+
+php_return_type_relation sub parent_child_relation,
+	relates is_php_return_type_role as is_child, relates has_php_return_type_role as is_parent;
+
+php_right_relation sub right_relation,
+	relates is_php_right_role as is_right_role, relates has_php_right_role as has_right_role;
+
+php_stmts_relation sub parent_child_relation,
+	relates is_php_stmts_role as is_child, relates has_php_stmts_role as is_parent;
+
+php_var_relation sub parent_child_relation,
+	relates is_php_var_role as is_child, relates has_php_var_role as is_parent;
 
 #####----- Python -----#####
-python_args_relation sub args_relation
-	relates is_python_args_role, relates has_python_args_role;
-is_python_args_role sub is_args_role;
-has_python_args_role sub has_args_role;
+python_args_relation sub args_relation,
+	relates is_python_args_role as is_args_role, relates has_python_args_role as has_args_role;
 
-python_body_relation sub body_relation
-	relates is_python_body_role, relates has_python_body_role;
-is_python_body_role sub is_body_role;
-has_python_body_role sub has_body_role;
+python_body_relation sub body_relation,
+	relates is_python_body_role as is_body_role, relates has_python_body_role as has_body_role;
 
-python_body_stmts_relation sub parent_child_relation
-	relates is_python_body_stmts_role, relates has_python_body_stmts_role;
-is_python_body_stmts_role sub is_child;
-has_python_body_stmts_role sub is_parent;
+python_body_stmts_relation sub parent_child_relation,
+	relates is_python_body_stmts_role as is_child, relates has_python_body_stmts_role as is_parent;
 
-python_func_relation sub func_relation
-	relates is_python_func_role, relates has_python_func_role;
-is_python_func_role sub is_func_role;
-has_python_func_role sub has_func_role;
+python_func_relation sub func_relation,
+	relates is_python_func_role as is_func_role, relates has_python_func_role as has_func_role;
 
-python_iter_relation sub parent_child_relation
-	relates is_python_iter_role, relates has_python_iter_role;
-is_python_iter_role sub is_child;
-has_python_iter_role sub is_parent;
+python_iter_relation sub parent_child_relation,
+	relates is_python_iter_role as is_child, relates has_python_iter_role as is_parent;
 
-python_noop_lines_relation sub parent_child_relation
-	relates is_python_noop_lines_role, relates has_python_noop_lines_role;
-is_python_noop_lines_role sub is_child;
-has_python_noop_lines_role sub is_parent;
+python_orelse_relation sub parent_child_relation,
+	relates is_python_orelse_role as is_child, relates has_python_orelse_role as is_parent;
 
-python_noops_sameline_relation sub parent_child_relation
-	relates is_python_noops_sameline_role, relates has_python_noops_sameline_role;
-is_python_noops_sameline_role sub is_child;
-has_python_noops_sameline_role sub is_parent;
+python_target_relation sub target_relation,
+	relates is_python_target_role as is_target_role, relates has_python_target_role as has_target_role;
 
-python_orelse_relation sub parent_child_relation
-	relates is_python_orelse_role, relates has_python_orelse_role;
-is_python_orelse_role sub is_child;
-has_python_orelse_role sub is_parent;
+python_values_relation sub values_relation,
+	relates is_python_values_role as is_values_role, relates has_python_values_role as has_values_role;
 
-python_target_relation sub parent_child_relation
-	relates is_python_target_role, relates has_python_target_role;
-is_python_target_role sub is_child;
-has_python_target_role sub is_parent;
+#####----- Ruby -----#####
+ruby_args_relation sub args_relation,
+	relates is_ruby_args_role as is_args_role, relates has_ruby_args_role as has_args_role;
 
-python_values_relation sub parent_child_relation
-	relates is_python_values_role, relates has_python_values_role;
-is_python_values_role sub is_child;
-has_python_values_role sub is_parent;
+ruby_base_relation sub parent_child_relation,
+	relates is_ruby_base_role as is_child, relates has_ruby_base_role as is_parent;
+
+ruby_body_relation sub body_relation,
+	relates is_ruby_body_role as is_body_role, relates has_ruby_body_role as has_body_role;
+
+ruby_condition_relation sub parent_child_relation,
+	relates is_ruby_condition_role as is_child, relates has_ruby_condition_role as is_parent;
+
+ruby_file_relation sub parent_child_relation,
+	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
+
+ruby_operator_relation sub operator_relation,
+	relates is_ruby_operator_role as is_operator_role, relates has_ruby_operator_role as has_operator_role;
+
+ruby_qnames_relation sub parent_child_relation,
+	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
+
+ruby_target_relation sub target_relation,
+	relates is_ruby_target_role as is_target_role, relates has_ruby_target_role as has_target_role;
+
+ruby_value_relation sub parent_child_relation,
+	relates is_ruby_value_role as is_child, relates has_ruby_value_role as is_parent;
+
+ruby_values_relation sub values_relation,
+	relates is_ruby_values_role as is_values_role, relates has_ruby_values_role as has_values_role;

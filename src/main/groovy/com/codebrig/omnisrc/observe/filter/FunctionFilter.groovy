@@ -14,9 +14,11 @@ class FunctionFilter extends SourceNodeFilter<FunctionFilter, Void> {
 
     private static final Set<String> functionTypes = new HashSet<>()
     static {
+        functionTypes.add("def") //ruby
         functionTypes.add("FuncDecl") //go
         functionTypes.add("MethodDeclaration") //java
         functionTypes.add("FunctionDeclaration") //js
+        functionTypes.add("Stmt_Function") //php
         functionTypes.add("FunctionDef") //python
     }
 
