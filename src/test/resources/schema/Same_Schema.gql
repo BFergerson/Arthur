@@ -11,7 +11,7 @@ token sub attribute, datatype string;
 javaConstructorAttribute sub attribute, datatype string;
 
 #####----- Php -----#####
-phpByRefAttribute sub attribute datatype string;
+phpByRefAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
@@ -75,12 +75,12 @@ JavascriptFileArtifact sub FileArtifact;
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
-PhpStmtFunctionArtifact sub PhpSourceArtifact
+PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
-	has phpByRefAttribute
+	has phpByRefAttribute,
 	# Semantic
-	plays IS_DECLARATION
-	plays IS_DECLARATION_FUNCTION
+	plays IS_DECLARATION,
+	plays IS_DECLARATION_FUNCTION,
 	plays IS_FUNCTION;
 
 #####----- Python -----#####

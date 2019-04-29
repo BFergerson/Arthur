@@ -23,14 +23,22 @@ javaInterfaceAttribute sub attribute, datatype string;
 javaVarargsAttribute sub attribute, datatype string;
 
 #####----- Javascript -----#####
+javascriptAsyncAttribute sub attribute, datatype string;
 javascriptComputedAttribute sub attribute, datatype string;
+javascriptGeneratorAttribute sub attribute, datatype string;
 javascriptKindAttribute sub kindAttribute, datatype string;
 javascriptPrefixAttribute sub attribute, datatype string;
 javascriptSourceTypeAttribute sub attribute, datatype string;
 
+#####----- Php -----#####
+phpByRefAttribute sub attribute, datatype string;
+
 #####----- Python -----#####
 pythonCtxAttribute sub attribute, datatype string;
 pythonNlAttribute sub attribute, datatype string;
+
+#####----- Ruby -----#####
+rubySelectorAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
@@ -45,7 +53,15 @@ ExpressionStatementArtifact sub OmnilingualSourceArtifact;
 
 FileArtifact sub OmnilingualSourceArtifact;
 
+ForArtifact sub OmnilingualSourceArtifact;
+
 ForStatementArtifact sub OmnilingualSourceArtifact;
+
+IdentifierArtifact sub OmnilingualSourceArtifact;
+
+ModuleArtifact sub OmnilingualSourceArtifact;
+
+NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
 
@@ -383,7 +399,17 @@ JavascriptForStatementArtifact sub ForStatementArtifact,
 	plays has_javascript_test_role,
 	plays has_javascript_update_role;
 
-JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
+JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptAsyncAttribute,
+	has javascriptGeneratorAttribute,
+	has name,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_id_role;
+
+JavascriptIdentifierArtifact sub IdentifierArtifact,
 	# Structural
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
@@ -439,6 +465,77 @@ JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_id_role,
 	plays has_javascript_init_role;
 
+#####----- Php -----#####
+PhpSourceArtifact sub SourceArtifact;
+
+PhpExprAssignArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_init_role,
+	plays has_php_expr_role,
+	plays has_php_var_role;
+
+PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprPostDecArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_loop_role,
+	plays has_php_var_role;
+
+PhpExprVariableArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_exprs_role,
+	plays is_php_left_role,
+	plays is_php_var_role,
+	plays has_php_name_role;
+
+PhpFunctionBodyArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_stmts_role,
+	plays has_php_body_role;
+
+PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_return_type_role;
+
+PhpModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_php_children_role;
+
+PhpNameArtifact sub NameArtifact,
+	# Structural
+	plays is_php_name_role;
+
+PhpScalarLNumberArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_expr_role,
+	plays is_php_right_role;
+
+PhpStmtEchoArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_stmts_role,
+	plays has_php_exprs_role;
+
+PhpStmtForArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_body_role,
+	plays has_php_cond_role,
+	plays has_php_init_role,
+	plays has_php_loop_role,
+	plays has_php_stmts_role;
+
+PhpStmtFunctionArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpByRefAttribute,
+	# Structural
+	plays is_php_children_role,
+	plays has_php_name_role,
+	plays has_php_return_type_role,
+	plays has_php_stmts_role;
+
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
@@ -448,7 +545,7 @@ PythonCallArtifact sub PythonSourceArtifact,
 	plays has_python_args_role,
 	plays has_python_func_role;
 
-PythonForArtifact sub PythonSourceArtifact,
+PythonForArtifact sub ForArtifact,
 	# Structural
 	plays is_python_body_role,
 	plays has_python_body_role,
@@ -465,22 +562,17 @@ PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_orelse_role;
 
-PythonModuleArtifact sub PythonSourceArtifact,
+PythonModuleArtifact sub ModuleArtifact,
 	# Structural
 	plays has_python_body_role;
 
-PythonNameArtifact sub PythonSourceArtifact,
+PythonNameArtifact sub NameArtifact,
 	# Attributes
 	has pythonCtxAttribute,
 	# Structural
 	plays is_python_func_role,
 	plays is_python_target_role,
-	plays is_python_values_role,
-	plays has_python_noops_sameline_role;
-
-PythonNoopSameLineArtifact sub PythonSourceArtifact,
-	# Structural
-	plays is_python_noop_lines_role;
+	plays is_python_values_role;
 
 PythonNumArtifact sub PythonSourceArtifact,
 	# Attributes
@@ -495,10 +587,67 @@ PythonPrintArtifact sub PythonSourceArtifact,
 	plays is_python_body_stmts_role,
 	plays has_python_values_role;
 
-PythonSameLineNoopsArtifact sub PythonSourceArtifact,
+#####----- Ruby -----#####
+RubySourceArtifact sub SourceArtifact;
+
+RubyArgsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_python_noops_sameline_role,
-	plays has_python_noop_lines_role;
+	plays is_ruby_args_role;
+
+RubyBeginArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_base_role,
+	plays has_ruby_body_role;
+
+RubyDefArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_file_role,
+	plays has_ruby_args_role,
+	plays has_ruby_body_role;
+
+RubyForArtifact sub ForArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_body_role,
+	plays has_ruby_iterated_role,
+	plays has_ruby_iterators_role;
+
+RubyIdentifierArtifact sub IdentifierArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_ruby_qnames_role;
+
+RubyIntArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays is_ruby_values_role;
+
+RubyLvarArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_values_role;
+
+RubyLvasgnArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_iterators_role;
+
+RubyModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_ruby_file_role;
+
+RubySendCallArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_iterated_role,
+	plays has_ruby_base_role,
+	plays has_ruby_values_role;
+
+RubySendQualifiedArtifact sub RubySourceArtifact,
+	# Attributes
+	has rubySelectorAttribute,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_qnames_role,
+	plays has_ruby_values_role;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
@@ -514,6 +663,9 @@ arguments_relation sub parent_child_relation,
 body_relation sub parent_child_relation,
 	relates is_body_role as is_child, relates has_body_role as is_parent;
 
+cond_relation sub parent_child_relation,
+	relates is_cond_role as is_child, relates has_cond_role as is_parent;
+
 expression_relation sub parent_child_relation,
 	relates is_expression_role as is_child, relates has_expression_role as is_parent;
 
@@ -523,14 +675,23 @@ func_relation sub parent_child_relation,
 init_relation sub parent_child_relation,
 	relates is_init_role as is_child, relates has_init_role as is_parent;
 
+left_relation sub parent_child_relation,
+	relates is_left_role as is_child, relates has_left_role as is_parent;
+
 name_relation sub parent_child_relation,
 	relates is_name_role as is_child, relates has_name_role as is_parent;
 
 operator_relation sub parent_child_relation,
 	relates is_operator_role as is_child, relates has_operator_role as is_parent;
 
+right_relation sub parent_child_relation,
+	relates is_right_role as is_child, relates has_right_role as is_parent;
+
 type_relation sub parent_child_relation,
 	relates is_type_role as is_child, relates has_type_role as is_parent;
+
+values_relation sub parent_child_relation,
+	relates is_values_role as is_child, relates has_values_role as is_parent;
 
 #####----- Go -----#####
 go_args_relation sub args_relation,
@@ -542,8 +703,8 @@ go_body_relation sub body_relation,
 go_closing_relation sub parent_child_relation,
 	relates is_go_closing_role as is_child, relates has_go_closing_role as is_parent;
 
-go_cond_relation sub parent_child_relation,
-	relates is_go_cond_role as is_child, relates has_go_cond_role as is_parent;
+go_cond_relation sub cond_relation,
+	relates is_go_cond_role as is_cond_role, relates has_go_cond_role as has_cond_role;
 
 go_decls_relation sub parent_child_relation,
 	relates is_go_decls_role as is_child, relates has_go_decls_role as is_parent;
@@ -730,8 +891,8 @@ javascript_id_relation sub parent_child_relation,
 javascript_init_relation sub init_relation,
 	relates is_javascript_init_role as is_init_role, relates has_javascript_init_role as has_init_role;
 
-javascript_left_relation sub parent_child_relation,
-	relates is_javascript_left_role as is_child, relates has_javascript_left_role as is_parent;
+javascript_left_relation sub left_relation,
+	relates is_javascript_left_role as is_left_role, relates has_javascript_left_role as has_left_role;
 
 javascript_object_relation sub parent_child_relation,
 	relates is_javascript_object_role as is_child, relates has_javascript_object_role as is_parent;
@@ -745,14 +906,54 @@ javascript_program_relation sub parent_child_relation,
 javascript_property_relation sub parent_child_relation,
 	relates is_javascript_property_role as is_child, relates has_javascript_property_role as is_parent;
 
-javascript_right_relation sub parent_child_relation,
-	relates is_javascript_right_role as is_child, relates has_javascript_right_role as is_parent;
+javascript_right_relation sub right_relation,
+	relates is_javascript_right_role as is_right_role, relates has_javascript_right_role as has_right_role;
 
 javascript_test_relation sub parent_child_relation,
 	relates is_javascript_test_role as is_child, relates has_javascript_test_role as is_parent;
 
 javascript_update_relation sub parent_child_relation,
 	relates is_javascript_update_role as is_child, relates has_javascript_update_role as is_parent;
+
+#####----- Php -----#####
+php_body_relation sub body_relation,
+	relates is_php_body_role as is_body_role, relates has_php_body_role as has_body_role;
+
+php_children_relation sub parent_child_relation,
+	relates is_php_children_role as is_child, relates has_php_children_role as is_parent;
+
+php_cond_relation sub cond_relation,
+	relates is_php_cond_role as is_cond_role, relates has_php_cond_role as has_cond_role;
+
+php_expr_relation sub parent_child_relation,
+	relates is_php_expr_role as is_child, relates has_php_expr_role as is_parent;
+
+php_exprs_relation sub parent_child_relation,
+	relates is_php_exprs_role as is_child, relates has_php_exprs_role as is_parent;
+
+php_init_relation sub init_relation,
+	relates is_php_init_role as is_init_role, relates has_php_init_role as has_init_role;
+
+php_left_relation sub left_relation,
+	relates is_php_left_role as is_left_role, relates has_php_left_role as has_left_role;
+
+php_loop_relation sub parent_child_relation,
+	relates is_php_loop_role as is_child, relates has_php_loop_role as is_parent;
+
+php_name_relation sub name_relation,
+	relates is_php_name_role as is_name_role, relates has_php_name_role as has_name_role;
+
+php_return_type_relation sub parent_child_relation,
+	relates is_php_return_type_role as is_child, relates has_php_return_type_role as is_parent;
+
+php_right_relation sub right_relation,
+	relates is_php_right_role as is_right_role, relates has_php_right_role as has_right_role;
+
+php_stmts_relation sub parent_child_relation,
+	relates is_php_stmts_role as is_child, relates has_php_stmts_role as is_parent;
+
+php_var_relation sub parent_child_relation,
+	relates is_php_var_role as is_child, relates has_php_var_role as is_parent;
 
 #####----- Python -----#####
 python_args_relation sub args_relation,
@@ -770,17 +971,36 @@ python_func_relation sub func_relation,
 python_iter_relation sub parent_child_relation,
 	relates is_python_iter_role as is_child, relates has_python_iter_role as is_parent;
 
-python_noop_lines_relation sub parent_child_relation,
-	relates is_python_noop_lines_role as is_child, relates has_python_noop_lines_role as is_parent;
-
-python_noops_sameline_relation sub parent_child_relation,
-	relates is_python_noops_sameline_role as is_child, relates has_python_noops_sameline_role as is_parent;
-
 python_orelse_relation sub parent_child_relation,
 	relates is_python_orelse_role as is_child, relates has_python_orelse_role as is_parent;
 
 python_target_relation sub parent_child_relation,
 	relates is_python_target_role as is_child, relates has_python_target_role as is_parent;
 
-python_values_relation sub parent_child_relation,
-	relates is_python_values_role as is_child, relates has_python_values_role as is_parent;
+python_values_relation sub values_relation,
+	relates is_python_values_role as is_values_role, relates has_python_values_role as has_values_role;
+
+#####----- Ruby -----#####
+ruby_args_relation sub args_relation,
+	relates is_ruby_args_role as is_args_role, relates has_ruby_args_role as has_args_role;
+
+ruby_base_relation sub parent_child_relation,
+	relates is_ruby_base_role as is_child, relates has_ruby_base_role as is_parent;
+
+ruby_body_relation sub body_relation,
+	relates is_ruby_body_role as is_body_role, relates has_ruby_body_role as has_body_role;
+
+ruby_file_relation sub parent_child_relation,
+	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
+
+ruby_iterated_relation sub parent_child_relation,
+	relates is_ruby_iterated_role as is_child, relates has_ruby_iterated_role as is_parent;
+
+ruby_iterators_relation sub parent_child_relation,
+	relates is_ruby_iterators_role as is_child, relates has_ruby_iterators_role as is_parent;
+
+ruby_qnames_relation sub parent_child_relation,
+	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
+
+ruby_values_relation sub values_relation,
+	relates is_ruby_values_role as is_values_role, relates has_ruby_values_role as has_values_role;

@@ -14,13 +14,13 @@ import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
  */
 class ForLoopFilter extends SourceNodeFilter<ForLoopFilter, Void> {
 
-    private static final Set<String> loopTypes = new HashSet<>()
+    public static final Set<String> LOOP_TYPES = new HashSet<>()
     static {
-        loopTypes.add("for") //ruby
-        loopTypes.add("For") //python
-        loopTypes.add("ForStmt") //go
-        loopTypes.add("ForStatement") //java, javascript
-        loopTypes.add("Stmt_For") //php
+        LOOP_TYPES.add("for") //ruby
+        LOOP_TYPES.add("For") //python
+        LOOP_TYPES.add("ForStmt") //go
+        LOOP_TYPES.add("ForStatement") //java, javascript
+        LOOP_TYPES.add("Stmt_For") //php
     }
 
     @Override
@@ -28,7 +28,7 @@ class ForLoopFilter extends SourceNodeFilter<ForLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        if (node.internalType in loopTypes) {
+        if (node.internalType in LOOP_TYPES) {
             if (node.language == SourceLanguage.Go) {
                 def foundInit = false
                 new InternalRoleFilter("Init").getFilteredNodes(node.children).each {

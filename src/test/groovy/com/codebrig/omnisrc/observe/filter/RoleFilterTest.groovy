@@ -2,6 +2,7 @@ package com.codebrig.omnisrc.observe.filter
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
+import com.codebrig.omnisrc.observe.filter.loop.ForLoopFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
@@ -19,7 +20,7 @@ class RoleFilterTest extends OmniSRCTest {
 
             boolean foundForStatement = false
             filter.getFilteredNodes(language, resp.uast).each {
-                assertTrue(["For", "ForStmt", "ForStatement"].contains(it.internalType))
+                assertTrue(ForLoopFilter.LOOP_TYPES.contains(it.internalType))
                 foundForStatement = true
             }
             assertTrue(foundForStatement)
