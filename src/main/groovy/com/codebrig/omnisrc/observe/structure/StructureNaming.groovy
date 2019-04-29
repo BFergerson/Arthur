@@ -5,7 +5,7 @@ import com.codebrig.omnisrc.SourceNode
 /**
  * Used to get the names/qualified names of UAST nodes
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

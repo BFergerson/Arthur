@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 /**
  * Used to determine and get the literal type of Go AST nodes
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

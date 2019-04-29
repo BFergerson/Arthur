@@ -6,7 +6,7 @@ import org.apache.commons.lang.math.NumberUtils
 /**
  * Used to determine and get the literal type of UAST nodes
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

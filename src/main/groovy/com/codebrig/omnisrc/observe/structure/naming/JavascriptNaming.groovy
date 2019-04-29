@@ -7,7 +7,7 @@ import com.codebrig.omnisrc.observe.structure.StructureNaming
 /**
  * Used to get the names of JavaScript AST nodes
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

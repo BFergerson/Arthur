@@ -16,7 +16,7 @@ import java.util.stream.Collectors
  * Extracts the useful information necessary to create
  * a valid schema based on the observed source code.
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

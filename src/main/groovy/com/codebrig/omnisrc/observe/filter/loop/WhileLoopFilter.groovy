@@ -8,7 +8,7 @@ import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 /**
  * Match by while loop
  *
- * @version 0.3.1
+ * @version 0.3.2
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
