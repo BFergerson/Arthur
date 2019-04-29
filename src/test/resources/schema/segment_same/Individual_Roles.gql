@@ -18,17 +18,6 @@ ForStatementArtifact sub OmnilingualSourceArtifact,
 	plays IS_FOR,
 	plays IS_STATEMENT;
 
-IdentifierArtifact sub OmnilingualSourceArtifact;
-
-ModuleArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_MODULE;
-
-NameArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
-
 OperatorArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_ARITHMETIC,
@@ -312,8 +301,6 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
-	plays IS_BODY,
-	plays IS_FUNCTION,
 	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
@@ -328,22 +315,14 @@ JavascriptFileArtifact sub FileArtifact;
 
 JavascriptForStatementArtifact sub ForStatementArtifact;
 
-JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_STATEMENT;
-
-JavascriptIdentifierArtifact sub IdentifierArtifact,
+JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_BINARY,
 	plays IS_CALL,
 	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
 	plays IS_IDENTIFIER,
-	plays IS_LEFT,
-	plays IS_NAME;
+	plays IS_LEFT;
 
 JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -392,82 +371,6 @@ JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	plays IS_DECLARATION,
 	plays IS_VARIABLE;
 
-#####----- Php -----#####
-PhpSourceArtifact sub SourceArtifact;
-
-PhpExprAssignArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_INITIALIZATION;
-
-PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BINARY,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL;
-
-PhpExprPostDecArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECREMENT,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_POSTFIX,
-	plays IS_UNARY,
-	plays IS_UPDATE;
-
-PhpExprVariableArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_LEFT,
-	plays IS_VARIABLE;
-
-PhpFunctionBodyArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
-
-PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_RETURN,
-	plays IS_TYPE;
-
-PhpModuleArtifact sub ModuleArtifact;
-
-PhpNameArtifact sub NameArtifact;
-
-PhpScalarLNumberArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_RIGHT;
-
-PhpStmtEchoArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_FOR,
-	plays IS_STATEMENT;
-
-PhpStmtForArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_FOR,
-	plays IS_STATEMENT;
-
-PhpStmtFunctionArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
-
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
@@ -487,7 +390,8 @@ PythonForArtifact sub PythonSourceArtifact,
 PythonForBodyArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_BODY,
-	plays IS_FOR;
+	plays IS_FOR,
+	plays IS_THEN;
 
 PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -495,18 +399,26 @@ PythonForOrelseArtifact sub PythonSourceArtifact,
 	plays IS_ELSE,
 	plays IS_FOR;
 
-PythonModuleArtifact sub ModuleArtifact,
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_FILE;
+	plays IS_FILE,
+	plays IS_MODULE;
 
-PythonNameArtifact sub NameArtifact,
+PythonNameArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_CALL,
 	plays IS_CALLEE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
+	plays IS_IDENTIFIER,
 	plays IS_POSITIONAL,
 	plays IS_UPDATE;
+
+PythonNoopSameLineArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
 
 PythonNumArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -528,89 +440,9 @@ PythonPrintArtifact sub PythonSourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_IDENTIFIER;
 
-#####----- Ruby -----#####
-RubySourceArtifact sub SourceArtifact;
-
-RubyArgsArtifact sub RubySourceArtifact,
+PythonSameLineNoopsArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
-
-RubyBeginArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_BLOCK,
-	plays IS_BODY;
-
-RubyDefArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_STATEMENT;
-
-RubyIdentifierArtifact sub IdentifierArtifact;
-
-RubyIntArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BINARY,
-	plays IS_CALL,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_PRIMITIVE,
-	plays IS_RIGHT;
-
-RubyLvarArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
-
-RubyLvasgnArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_LEFT;
-
-RubyModuleArtifact sub ModuleArtifact,
-	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_STATEMENT;
-
-RubyOpAsgnArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_EXPRESSION,
-	plays IS_OPERATOR,
-	plays IS_SUBSTRACT;
-
-RubyOperatorArtifact sub OperatorArtifact,
-	# Semantic
-	plays IS_SUBSTRACT;
-
-RubySendCallArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_CALL,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION;
-
-RubySendQualifiedArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_QUALIFIED;
-
-RubyUntilArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_STATEMENT,
-	plays IS_WHILE;
+	plays IS_COMMENT;
 
 ##########---------- Semantic Roles ----------##########
 ARGS_LIST sub relation,
@@ -639,6 +471,9 @@ CALL sub relation,
 
 CALLEE sub relation,
 	relates IS_CALLEE;
+
+COMMENT sub relation,
+	relates IS_COMMENT;
 
 CONDITION sub relation,
 	relates IS_CONDITION;
@@ -697,6 +532,9 @@ MODULE sub relation,
 NAME sub relation,
 	relates IS_NAME;
 
+NOOP sub relation,
+	relates IS_NOOP;
+
 NUMBER sub relation,
 	relates IS_NUMBER;
 
@@ -724,9 +562,6 @@ RECEIVER sub relation,
 RELATIONAL sub relation,
 	relates IS_RELATIONAL;
 
-RETURN sub relation,
-	relates IS_RETURN;
-
 RIGHT sub relation,
 	relates IS_RIGHT;
 
@@ -739,8 +574,8 @@ STATEMENT sub relation,
 STRING sub relation,
 	relates IS_STRING;
 
-SUBSTRACT sub relation,
-	relates IS_SUBSTRACT;
+THEN sub relation,
+	relates IS_THEN;
 
 TYPE sub relation,
 	relates IS_TYPE;
@@ -756,9 +591,6 @@ VARIABLE sub relation,
 
 VISIBILITY sub relation,
 	relates IS_VISIBILITY;
-
-WHILE sub relation,
-	relates IS_WHILE;
 
 WORLD sub relation,
 	relates IS_WORLD;

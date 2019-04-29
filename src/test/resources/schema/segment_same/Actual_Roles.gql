@@ -13,12 +13,6 @@ ForStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_FOR_STATEMENT;
 
-IdentifierArtifact sub OmnilingualSourceArtifact;
-
-ModuleArtifact sub OmnilingualSourceArtifact;
-
-NameArtifact sub OmnilingualSourceArtifact;
-
 OperatorArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_BINARY_EXPRESSION_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
@@ -196,7 +190,6 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK_BODY_FUNCTION_SCOPE_STATEMENT,
 	plays IS_BLOCK_SCOPE_STATEMENT;
 
 JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
@@ -211,15 +204,10 @@ JavascriptForStatementArtifact sub ForStatementArtifact,
 	# Semantic
 	plays IS_FOR_STATEMENT;
 
-JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION_FUNCTION_STATEMENT;
-
-JavascriptIdentifierArtifact sub IdentifierArtifact,
+JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER,
 	plays IS_BINARY_EXPRESSION_IDENTIFIER_LEFT,
-	plays IS_EXPRESSION_FUNCTION_IDENTIFIER_NAME,
 	plays IS_EXPRESSION_IDENTIFIER;
 
 JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
@@ -250,56 +238,6 @@ JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION_VARIABLE;
 
-#####----- Php -----#####
-PhpSourceArtifact sub SourceArtifact;
-
-PhpExprAssignArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT_EXPRESSION_FOR_INITIALIZATION;
-
-PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BINARY_CONDITION_EXPRESSION_FOR_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
-
-PhpExprPostDecArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECREMENT_EXPRESSION_FOR_POSTFIX_UNARY_UPDATE;
-
-PhpExprVariableArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_IDENTIFIER_LEFT_VARIABLE,
-	plays IS_IDENTIFIER_VARIABLE;
-
-PhpFunctionBodyArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BODY_DECLARATION_FUNCTION;
-
-PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION_FUNCTION_RETURN_TYPE;
-
-PhpModuleArtifact sub ModuleArtifact;
-
-PhpNameArtifact sub NameArtifact,
-	# Semantic
-	plays IS_EXPRESSION_IDENTIFIER;
-
-PhpScalarLNumberArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION_LITERAL_NUMBER_RIGHT;
-
-PhpStmtEchoArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_BODY_CALL_FOR_STATEMENT;
-
-PhpStmtForArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_FOR_STATEMENT;
-
-PhpStmtFunctionArtifact sub PhpSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION_FUNCTION;
-
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
@@ -313,21 +251,25 @@ PythonForArtifact sub PythonSourceArtifact,
 
 PythonForBodyArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_BODY_FOR;
+	plays IS_BODY_FOR_THEN;
 
 PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_BODY_ELSE_FOR;
 
-PythonModuleArtifact sub ModuleArtifact,
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_FILE_MODULE;
 
-PythonNameArtifact sub NameArtifact,
+PythonNameArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL,
 	plays IS_CALL_CALLEE_EXPRESSION_IDENTIFIER,
 	plays IS_EXPRESSION_FOR_IDENTIFIER_UPDATE;
+
+PythonNoopSameLineArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_COMMENT_NOOP;
 
 PythonNumArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -337,66 +279,11 @@ PythonPrintArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER;
 
-#####----- Ruby -----#####
-RubySourceArtifact sub SourceArtifact;
-
-RubyArgsArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT_EXPRESSION_INCOMPLETE;
-
-RubyBeginArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_BLOCK_BODY;
-
-RubyDefArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT;
-
-RubyIdentifierArtifact sub IdentifierArtifact;
-
-RubyIntArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NUMBER_PRIMITIVE,
-	plays IS_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT;
-
-RubyLvarArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION_IDENTIFIER;
-
-RubyLvasgnArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT;
-
-RubyModuleArtifact sub ModuleArtifact,
-	# Semantic
-	plays IS_IDENTIFIER_MODULE_STATEMENT;
-
-RubyOpAsgnArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
-
-RubyOperatorArtifact sub OperatorArtifact,
-	# Semantic
-	plays IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
-
-RubySendCallArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_CALL_CONDITION_EXPRESSION_FUNCTION;
-
-RubySendQualifiedArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION_IDENTIFIER_QUALIFIED;
-
-RubyUntilArtifact sub RubySourceArtifact,
-	# Semantic
-	plays IS_STATEMENT_WHILE;
+PythonSameLineNoopsArtifact sub PythonSourceArtifact;
 
 ##########---------- Semantic Roles ----------##########
 ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NUMBER_POSITIONAL_PRIMITIVE sub relation,
 	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NAME_NUMBER_POSITIONAL_PRIMITIVE;
-
-ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NUMBER_PRIMITIVE sub relation,
-	relates IS_ARGUMENT_CALL_EXPRESSION_FUNCTION_LITERAL_NUMBER_PRIMITIVE;
 
 ARGUMENT_CALL_EXPRESSION_IDENTIFIER sub relation,
 	relates IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER;
@@ -412,15 +299,6 @@ ARGUMENT_EXPRESSION_FUNCTION_IDENTIFIER_NAME sub relation,
 
 ARGUMENT_EXPRESSION_IDENTIFIER_POSITIONAL sub relation,
 	relates IS_ARGUMENT_EXPRESSION_IDENTIFIER_POSITIONAL;
-
-ARGUMENT_EXPRESSION_INCOMPLETE sub relation,
-	relates IS_ARGUMENT_EXPRESSION_INCOMPLETE;
-
-ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub relation,
-	relates IS_ARITHMETIC_ASSIGNMENT_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
-
-ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT sub relation,
-	relates IS_ARITHMETIC_BINARY_EXPRESSION_OPERATOR_SUBSTRACT;
 
 ARITHMETIC_DECREMENT_EXPRESSION_FOR_OPERATOR_POSTFIX_UNARY_UPDATE sub relation,
 	relates IS_ARITHMETIC_DECREMENT_EXPRESSION_FOR_OPERATOR_POSTFIX_UNARY_UPDATE;
@@ -443,9 +321,6 @@ ASSIGNMENT_BINARY_EXPRESSION_IDENTIFIER_LEFT sub relation,
 ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT sub relation,
 	relates IS_ASSIGNMENT_BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT;
 
-ASSIGNMENT_EXPRESSION_FOR_INITIALIZATION sub relation,
-	relates IS_ASSIGNMENT_EXPRESSION_FOR_INITIALIZATION;
-
 BINARY_CONDITION_EXPRESSION_FOR_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL sub relation,
 	relates IS_BINARY_CONDITION_EXPRESSION_FOR_GREATER_THAN_OR_EQUAL_OPERATOR_RELATIONAL;
 
@@ -464,9 +339,6 @@ BINARY_EXPRESSION_LITERAL_NUMBER_PRIMITIVE_RIGHT sub relation,
 BINARY_EXPRESSION_LITERAL_NUMBER_RIGHT sub relation,
 	relates IS_BINARY_EXPRESSION_LITERAL_NUMBER_RIGHT;
 
-BLOCK_BODY sub relation,
-	relates IS_BLOCK_BODY;
-
 BLOCK_BODY_FOR_SCOPE_STATEMENT sub relation,
 	relates IS_BLOCK_BODY_FOR_SCOPE_STATEMENT;
 
@@ -476,17 +348,11 @@ BLOCK_BODY_FUNCTION_SCOPE_STATEMENT sub relation,
 BLOCK_SCOPE_STATEMENT sub relation,
 	relates IS_BLOCK_SCOPE_STATEMENT;
 
-BODY_CALL_FOR_STATEMENT sub relation,
-	relates IS_BODY_CALL_FOR_STATEMENT;
-
-BODY_DECLARATION_FUNCTION sub relation,
-	relates IS_BODY_DECLARATION_FUNCTION;
-
 BODY_ELSE_FOR sub relation,
 	relates IS_BODY_ELSE_FOR;
 
-BODY_FOR sub relation,
-	relates IS_BODY_FOR;
+BODY_FOR_THEN sub relation,
+	relates IS_BODY_FOR_THEN;
 
 CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER sub relation,
 	relates IS_CALL_CALLEE_EXPRESSION_FUNCTION_IDENTIFIER;
@@ -496,9 +362,6 @@ CALL_CALLEE_EXPRESSION_IDENTIFIER sub relation,
 
 CALL_CALLEE_EXPRESSION_IDENTIFIER_QUALIFIED sub relation,
 	relates IS_CALL_CALLEE_EXPRESSION_IDENTIFIER_QUALIFIED;
-
-CALL_CONDITION_EXPRESSION_FUNCTION sub relation,
-	relates IS_CALL_CONDITION_EXPRESSION_FUNCTION;
 
 CALL_EXPRESSION sub relation,
 	relates IS_CALL_EXPRESSION;
@@ -512,6 +375,9 @@ CALL_EXPRESSION_IDENTIFIER_QUALIFIED_RECEIVER sub relation,
 CALLEE_EXPRESSION_INCOMPLETE sub relation,
 	relates IS_CALLEE_EXPRESSION_INCOMPLETE;
 
+COMMENT_NOOP sub relation,
+	relates IS_COMMENT_NOOP;
+
 DECLARATION_EXPRESSION_FOR_INITIALIZATION_VARIABLE sub relation,
 	relates IS_DECLARATION_EXPRESSION_FOR_INITIALIZATION_VARIABLE;
 
@@ -520,15 +386,6 @@ DECLARATION_FOR_INITIALIZATION_STATEMENT_VARIABLE sub relation,
 
 DECLARATION_FUNCTION sub relation,
 	relates IS_DECLARATION_FUNCTION;
-
-DECLARATION_FUNCTION_IDENTIFIER_STATEMENT sub relation,
-	relates IS_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT;
-
-DECLARATION_FUNCTION_RETURN_TYPE sub relation,
-	relates IS_DECLARATION_FUNCTION_RETURN_TYPE;
-
-DECLARATION_FUNCTION_STATEMENT sub relation,
-	relates IS_DECLARATION_FUNCTION_STATEMENT;
 
 DECLARATION_FUNCTION_VISIBILITY_WORLD sub relation,
 	relates IS_DECLARATION_FUNCTION_VISIBILITY_WORLD;
@@ -541,9 +398,6 @@ DECLARATION_TYPE_VISIBILITY_WORLD sub relation,
 
 DECLARATION_VARIABLE sub relation,
 	relates IS_DECLARATION_VARIABLE;
-
-DECREMENT_EXPRESSION_FOR_POSTFIX_UNARY_UPDATE sub relation,
-	relates IS_DECREMENT_EXPRESSION_FOR_POSTFIX_UNARY_UPDATE;
 
 DECREMENT_EXPRESSION_OPERATOR_UNARY sub relation,
 	relates IS_DECREMENT_EXPRESSION_OPERATOR_UNARY;
@@ -563,9 +417,6 @@ EXPRESSION_FUNCTION_TYPE sub relation,
 EXPRESSION_IDENTIFIER sub relation,
 	relates IS_EXPRESSION_IDENTIFIER;
 
-EXPRESSION_IDENTIFIER_QUALIFIED sub relation,
-	relates IS_EXPRESSION_IDENTIFIER_QUALIFIED;
-
 EXPRESSION_IMPORT_LITERAL_PATHNAME_PRIMITIVE_STRING sub relation,
 	relates IS_EXPRESSION_IMPORT_LITERAL_PATHNAME_PRIMITIVE_STRING;
 
@@ -575,9 +426,6 @@ EXPRESSION_INITIALIZATION_LITERAL_NUMBER sub relation,
 EXPRESSION_LITERAL_NUMBER sub relation,
 	relates IS_EXPRESSION_LITERAL_NUMBER;
 
-EXPRESSION_LITERAL_NUMBER_RIGHT sub relation,
-	relates IS_EXPRESSION_LITERAL_NUMBER_RIGHT;
-
 FILE_MODULE sub relation,
 	relates IS_FILE_MODULE;
 
@@ -586,15 +434,6 @@ FOR_ITERATOR_STATEMENT sub relation,
 
 FOR_STATEMENT sub relation,
 	relates IS_FOR_STATEMENT;
-
-IDENTIFIER_LEFT_VARIABLE sub relation,
-	relates IS_IDENTIFIER_LEFT_VARIABLE;
-
-IDENTIFIER_MODULE_STATEMENT sub relation,
-	relates IS_IDENTIFIER_MODULE_STATEMENT;
-
-IDENTIFIER_VARIABLE sub relation,
-	relates IS_IDENTIFIER_VARIABLE;
 
 INCOMPLETE_TYPE sub relation,
 	relates IS_INCOMPLETE_TYPE;
@@ -607,9 +446,6 @@ NUMBER_PRIMITIVE_TYPE sub relation,
 
 PRIMITIVE_TYPE sub relation,
 	relates IS_PRIMITIVE_TYPE;
-
-STATEMENT_WHILE sub relation,
-	relates IS_STATEMENT_WHILE;
 
 VISIBILITY_WORLD sub relation,
 	relates IS_VISIBILITY_WORLD;

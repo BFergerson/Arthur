@@ -1,11 +1,11 @@
 plugins {
-    id "com.avast.gradle.docker-compose" version "0.6.6"
+    id "com.avast.gradle.docker-compose" version "0.9.1"
 }
 
 apply plugin: 'groovy'
 
 group 'com.codebrig.omnisrc'
-version '0.3'
+version '0.3.1'
 
 repositories {
     mavenCentral()

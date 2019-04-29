@@ -11,7 +11,7 @@ import com.google.common.io.Resources
 /**
  * The supported source code languages
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -96,7 +96,7 @@ enum SourceLanguage {
             case Ruby:
                 return namingCache = new RubyNaming()
             default:
-                return null //todo: implement rest
+                throw new IllegalStateException("Missing structure naming for language: " + this)
         }
     }
 
@@ -118,7 +118,7 @@ enum SourceLanguage {
             case Ruby:
                 return literalCache = new RubyLiteral()
             default:
-                return null //todo: implement rest
+                throw new IllegalStateException("Missing structure literal for language: " + this)
         }
     }
 

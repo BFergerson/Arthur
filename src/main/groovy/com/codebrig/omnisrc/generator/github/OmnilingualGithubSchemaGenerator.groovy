@@ -14,13 +14,13 @@ import java.util.concurrent.TimeUnit
 /**
  * Generate a multi-language schema by observing source code on GitHub
  *
- * @version 0.3
+ * @version 0.3.1
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
-    public static final int PARSE_PROJECTS_PER_LANGUAGE = 30
+    public static final int PARSE_PROJECTS_PER_LANGUAGE = 75
     public static final int PARSE_FILES_PER_PROJECT = Integer.MAX_VALUE
 
     static void main(String[] args) {
