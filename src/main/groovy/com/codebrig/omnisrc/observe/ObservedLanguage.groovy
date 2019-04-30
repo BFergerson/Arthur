@@ -67,7 +67,7 @@ class ObservedLanguage {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
         if (!child.properties.get("internalRole")?.isEmpty()
-                && !child.internalType.isEmpty()) { //todo: understand this clause
+                && !child.internalType.isEmpty()) { //todo: understand this clause (this is #27)
             //parent is parent
             relations.get(entity).observeIs("parent")
 
@@ -83,7 +83,7 @@ class ObservedLanguage {
         relations.putIfAbsent(entity, new ObservedRelations())
         entityChildren.each { child ->
             if (!child.properties.get("internalRole")?.isEmpty()
-                    && !child.internalType.isEmpty()) { //todo: understand this clause
+                    && !child.internalType.isEmpty()) { //todo: understand this clause (this is #27)
                 //parent relates to child (has)
                 relations.get(entity).observeHas(toValidRelation(child.properties.get("internalRole")))
 
