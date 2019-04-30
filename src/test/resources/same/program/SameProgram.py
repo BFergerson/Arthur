@@ -1,2 +1,3 @@
-for k in range(10, 0, -1):
-    print k
+def main():
+    for k in range(10, 0, -1):
+        print k

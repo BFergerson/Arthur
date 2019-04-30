@@ -539,6 +539,10 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact,
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
+PythonArgumentsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_args_role;
+
 PythonCallArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_iter_role,
@@ -547,7 +551,7 @@ PythonCallArtifact sub PythonSourceArtifact,
 
 PythonForArtifact sub ForArtifact,
 	# Structural
-	plays is_python_body_role,
+	plays is_python_body_stmts_role,
 	plays has_python_body_role,
 	plays has_python_iter_role,
 	plays has_python_orelse_role,
@@ -561,6 +565,24 @@ PythonForBodyArtifact sub PythonSourceArtifact,
 PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_orelse_role;
+
+PythonFunctionDefArtifact sub PythonSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_python_body_role,
+	plays has_python_args_role,
+	plays has_python_body_role,
+	plays has_python_decorator_list_role;
+
+PythonFunctionDefBodyArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_role,
+	plays has_python_body_stmts_role;
+
+PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_decorator_list_role;
 
 PythonModuleArtifact sub ModuleArtifact,
 	# Structural
@@ -964,6 +986,9 @@ python_body_relation sub body_relation,
 
 python_body_stmts_relation sub parent_child_relation,
 	relates is_python_body_stmts_role as is_child, relates has_python_body_stmts_role as is_parent;
+
+python_decorator_list_relation sub parent_child_relation,
+	relates is_python_decorator_list_role as is_child, relates has_python_decorator_list_role as is_parent;
 
 python_func_relation sub func_relation,
 	relates is_python_func_role as is_func_role, relates has_python_func_role as has_func_role;

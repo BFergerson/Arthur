@@ -305,6 +305,10 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact,
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
+PythonArgumentsArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE;
+
 PythonCallArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_CALL_EXPRESSION_FOR_FUNCTION;
@@ -320,6 +324,18 @@ PythonForBodyArtifact sub PythonSourceArtifact,
 PythonForOrelseArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_BODY_ELSE_FOR;
+
+PythonFunctionDefArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION_FUNCTION_IDENTIFIER_NAME;
+
+PythonFunctionDefBodyArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_BODY_DECLARATION_FUNCTION;
+
+PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION_FUNCTION_INCOMPLETE;
 
 PythonModuleArtifact sub ModuleArtifact,
 	# Semantic
@@ -395,6 +411,9 @@ ARGUMENT_CALL_EXPRESSION_IDENTIFIER sub relation,
 
 ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL sub relation,
 	relates IS_ARGUMENT_CALL_EXPRESSION_IDENTIFIER_POSITIONAL;
+
+ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE sub relation,
+	relates IS_ARGUMENT_DECLARATION_FUNCTION_INCOMPLETE;
 
 ARGUMENT_DECLARATION_FUNCTION_VARIABLE sub relation,
 	relates IS_ARGUMENT_DECLARATION_FUNCTION_VARIABLE;
@@ -510,8 +529,14 @@ DECLARATION_FOR_INITIALIZATION_STATEMENT_VARIABLE sub relation,
 DECLARATION_FUNCTION sub relation,
 	relates IS_DECLARATION_FUNCTION;
 
+DECLARATION_FUNCTION_IDENTIFIER_NAME sub relation,
+	relates IS_DECLARATION_FUNCTION_IDENTIFIER_NAME;
+
 DECLARATION_FUNCTION_IDENTIFIER_STATEMENT sub relation,
 	relates IS_DECLARATION_FUNCTION_IDENTIFIER_STATEMENT;
+
+DECLARATION_FUNCTION_INCOMPLETE sub relation,
+	relates IS_DECLARATION_FUNCTION_INCOMPLETE;
 
 DECLARATION_FUNCTION_RETURN_TYPE sub relation,
 	relates IS_DECLARATION_FUNCTION_RETURN_TYPE;

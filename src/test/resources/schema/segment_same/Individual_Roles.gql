@@ -476,6 +476,13 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact,
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
+PythonArgumentsArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
 PythonCallArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_CALL,
@@ -497,6 +504,25 @@ PythonForOrelseArtifact sub PythonSourceArtifact,
 	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_FOR;
+
+PythonFunctionDefArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+PythonFunctionDefBodyArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
 
 PythonModuleArtifact sub ModuleArtifact,
 	# Semantic
