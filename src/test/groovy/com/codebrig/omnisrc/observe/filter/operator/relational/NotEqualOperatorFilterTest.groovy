@@ -14,86 +14,28 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
 
     @Test
     void notEqualOperator_Go() {
-        def file = new File("src/test/resources/same/operators/Operators.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundNotEqualOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("notEqualOperator()", it.name)
-
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundNotEqualOperator)
-                assertEquals("!=", it.token)
-                foundNotEqualOperator = true
-            }
-        }
-        assertTrue(foundNotEqualOperator)
+        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.go"))
     }
 
     @Test
     void notEqualOperator_Java() {
-        def file = new File("src/test/resources/same/operators/Operators.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundNotEqualOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Operators.notEqualOperator()", it.name)
-
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundNotEqualOperator)
-                assertEquals("!=", it.token)
-                foundNotEqualOperator = true
-            }
-        }
-        assertTrue(foundNotEqualOperator)
+        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+                "Operators.")
     }
 
     @Test
     void notEqualOperator_Javascript() {
-        def file = new File("src/test/resources/same/operators/Operators.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    }
 
-        def foundNotEqualOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("notEqualOperator()", it.name)
-
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundNotEqualOperator)
-                assertEquals("!=", it.token)
-                foundNotEqualOperator = true
-            }
-        }
-        assertTrue(foundNotEqualOperator)
+    @Test
+    void notEqualOperator_Php() {
+        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
     @Test
     void notEqualOperator_Python() {
-        def file = new File("src/test/resources/same/operators/Operators.py")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundNotEqualOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("notEqualOperator()", it.name)
-
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundNotEqualOperator)
-                assertEquals("!=", it.token)
-                foundNotEqualOperator = true
-            }
-        }
-        assertTrue(foundNotEqualOperator)
+        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
     @Test
@@ -115,5 +57,28 @@ class NotEqualOperatorFilterTest extends OmniSRCTest {
             }
         }
         assertTrue(foundAlternateNotEqualOperator)
+    }
+
+    private static void assertNotEqualOperatorPresent(File file) {
+        assertNotEqualOperatorPresent(file, "")
+    }
+
+    private static void assertNotEqualOperatorPresent(File file, String qualifiedName) {
+        def language = SourceLanguage.getSourceLanguage(file)
+        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+
+        def foundNotEqualOperator = false
+        def functionFilter = new FunctionFilter()
+        def nameFilter = new NameFilter("notEqualOperator")
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+            assertEquals(qualifiedName + "notEqualOperator()", it.name)
+
+            new NotEqualOperatorFilter().getFilteredNodes(it).each {
+                assertFalse(foundNotEqualOperator)
+                if (!it.token.isEmpty()) assertEquals("!=", it.token)
+                foundNotEqualOperator = true
+            }
+        }
+        assertTrue(foundNotEqualOperator)
     }
 }

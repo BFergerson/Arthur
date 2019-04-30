@@ -1,5 +1,6 @@
 package com.codebrig.omnisrc.observe.filter.operator.relational
 
+import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
 
@@ -15,10 +16,18 @@ class EqualTypeOperatorFilter extends SourceNodeFilter<EqualTypeOperatorFilter, 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {
         operatorTypes.add("Operator") //javascript
+        operatorTypes.add("Expr_BinaryOp_Identical") //php
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes && node.token == "==="
+        if (node != null && node.internalType in operatorTypes) {
+            if (node.language == SourceLanguage.Php) {
+                return true
+            } else {
+                return node.token == "==="
+            }
+        }
+        return false
     }
 }

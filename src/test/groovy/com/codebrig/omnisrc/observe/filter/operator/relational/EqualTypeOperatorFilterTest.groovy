@@ -14,7 +14,15 @@ class EqualTypeOperatorFilterTest extends OmniSRCTest {
 
     @Test
     void equalTypeOperator_Javascript() {
-        def file = new File("src/test/resources/same/operators/Operators.js")
+        assertEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    }
+
+    @Test
+    void equalTypeOperator_Php() {
+        assertEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
+    }
+
+    private void assertEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -26,7 +34,7 @@ class EqualTypeOperatorFilterTest extends OmniSRCTest {
 
             new EqualTypeOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundEqualTypeOperator)
-                assertEquals("===", it.token)
+                if (!it.token.isEmpty()) assertEquals("===", it.token)
                 foundEqualTypeOperator = true
             }
         }
