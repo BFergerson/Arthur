@@ -12,85 +12,51 @@ class FunctionFilterTest extends OmniSRCTest {
 
     @Test
     void onlyFunctions_Java() {
-        def filter = new FunctionFilter()
-        def file = new File("src/test/resources/same/functions/Functions.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        boolean foundFunction1 = false
-        boolean foundFunction2 = false
-        filter.getFilteredNodes(language, resp.uast).each {
-            if (!foundFunction1) {
-                assertEquals("Operators.function1()", it.name)
-                foundFunction1 = true
-            } else {
-                assertEquals("Operators.function2()", it.name)
-                foundFunction2 = true
-            }
-        }
-        assertTrue(foundFunction1)
-        assertTrue(foundFunction2)
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.java"),
+                "Functions.")
     }
 
     @Test
     void onlyFunctions_Javascript() {
-        def filter = new FunctionFilter()
-        def file = new File("src/test/resources/same/functions/Functions.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        boolean foundFunction1 = false
-        boolean foundFunction2 = false
-        filter.getFilteredNodes(language, resp.uast).each {
-            if (!foundFunction1) {
-                assertEquals("function1()", it.name)
-                foundFunction1 = true
-            } else {
-                assertEquals("function2()", it.name)
-                foundFunction2 = true
-            }
-        }
-        assertTrue(foundFunction1)
-        assertTrue(foundFunction2)
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.js"))
     }
 
     @Test
     void onlyFunctions_Go() {
-        def filter = new FunctionFilter()
-        def file = new File("src/test/resources/same/functions/Functions.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.go"))
+    }
 
-        boolean foundFunction1 = false
-        boolean foundFunction2 = false
-        filter.getFilteredNodes(language, resp.uast).each {
-            if (!foundFunction1) {
-                assertEquals("function1()", it.name)
-                foundFunction1 = true
-            } else {
-                assertEquals("function2()", it.name)
-                foundFunction2 = true
-            }
-        }
-        assertTrue(foundFunction1)
-        assertTrue(foundFunction2)
+    @Test
+    void onlyFunctions_Php() {
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.php"))
     }
 
     @Test
     void onlyFunctions_Python() {
-        def filter = new FunctionFilter()
-        def file = new File("src/test/resources/same/functions/Functions.py")
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.py"))
+    }
+
+    @Test
+    void onlyFunctions_Ruby() {
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.rb"))
+    }
+
+    private static void assertFunctionsPresent(File file) {
+        assertFunctionsPresent(file, "")
+    }
+
+    private static void assertFunctionsPresent(File file, String prependedClass) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         boolean foundFunction1 = false
         boolean foundFunction2 = false
-        filter.getFilteredNodes(language, resp.uast).each {
+        new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             if (!foundFunction1) {
-                assertEquals("function1()", it.name)
+                assertEquals(prependedClass + "function1()", it.name)
                 foundFunction1 = true
             } else {
-                assertEquals("function2()", it.name)
+                assertEquals(prependedClass + "function2()", it.name)
                 foundFunction2 = true
             }
         }

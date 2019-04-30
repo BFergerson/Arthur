@@ -1,4 +1,4 @@
-public class Operators {
+public class Functions {
 
     public void function1() {
         System.out.println("");
