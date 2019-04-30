@@ -2,8 +2,8 @@ package com.codebrig.omnisrc.schema.naming
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
-import com.codebrig.omnisrc.observe.filter.RoleFilter
-import com.codebrig.omnisrc.observe.filter.TypeFilter
+import com.codebrig.omnisrc.observe.structure.filter.RoleFilter
+import com.codebrig.omnisrc.observe.structure.filter.TypeFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 

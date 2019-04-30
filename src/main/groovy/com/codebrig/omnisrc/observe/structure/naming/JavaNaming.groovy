@@ -1,9 +1,9 @@
 package com.codebrig.omnisrc.observe.structure.naming
 
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
-import com.codebrig.omnisrc.observe.filter.TypeFilter
 import com.codebrig.omnisrc.observe.structure.StructureNaming
+import com.codebrig.omnisrc.observe.structure.filter.InternalRoleFilter
+import com.codebrig.omnisrc.observe.structure.filter.TypeFilter
 
 /**
  * Used to get the names/qualified names of Java AST nodes

@@ -3,7 +3,7 @@ package com.codebrig.omnisrc.observe.structure.filter.loop
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
-import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
+import com.codebrig.omnisrc.observe.structure.filter.InternalRoleFilter
 
 /**
  * Match by for loop

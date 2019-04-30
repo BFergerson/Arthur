@@ -1,8 +1,8 @@
 package com.codebrig.omnisrc.observe.structure.naming
 
 import com.codebrig.omnisrc.SourceNode
-import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
 import com.codebrig.omnisrc.observe.structure.StructureNaming
+import com.codebrig.omnisrc.observe.structure.filter.InternalRoleFilter
 
 /**
  * Used to get the names of PHP AST nodes

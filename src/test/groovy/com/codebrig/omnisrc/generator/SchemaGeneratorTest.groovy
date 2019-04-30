@@ -3,9 +3,9 @@ package com.codebrig.omnisrc.generator
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.observe.ObservationConfig
 import com.codebrig.omnisrc.observe.ObservedLanguages
-import com.codebrig.omnisrc.observe.filter.MultiFilter
-import com.codebrig.omnisrc.observe.filter.RoleFilter
-import com.codebrig.omnisrc.observe.filter.TypeFilter
+import com.codebrig.omnisrc.observe.structure.filter.MultiFilter
+import com.codebrig.omnisrc.observe.structure.filter.RoleFilter
+import com.codebrig.omnisrc.observe.structure.filter.TypeFilter
 import com.codebrig.omnisrc.schema.grakn.GraknSchemaWriter
 import org.junit.Test
 

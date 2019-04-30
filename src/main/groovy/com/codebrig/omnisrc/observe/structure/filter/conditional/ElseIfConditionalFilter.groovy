@@ -3,9 +3,9 @@ package com.codebrig.omnisrc.observe.structure.filter.conditional
 import com.codebrig.omnisrc.SourceLanguage
 import com.codebrig.omnisrc.SourceNode
 import com.codebrig.omnisrc.SourceNodeFilter
-import com.codebrig.omnisrc.observe.filter.InternalRoleFilter
-import com.codebrig.omnisrc.observe.filter.MultiFilter
-import com.codebrig.omnisrc.observe.filter.TypeFilter
+import com.codebrig.omnisrc.observe.structure.filter.InternalRoleFilter
+import com.codebrig.omnisrc.observe.structure.filter.MultiFilter
+import com.codebrig.omnisrc.observe.structure.filter.TypeFilter
 import com.google.common.collect.Sets
 
 /**

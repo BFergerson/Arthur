@@ -2,9 +2,9 @@ package com.codebrig.omnisrc.observe.structure.filter.operator.misc
 
 import com.codebrig.omnisrc.OmniSRCTest
 import com.codebrig.omnisrc.SourceLanguage
-import com.codebrig.omnisrc.observe.filter.FunctionFilter
-import com.codebrig.omnisrc.observe.filter.MultiFilter
-import com.codebrig.omnisrc.observe.filter.NameFilter
+import com.codebrig.omnisrc.observe.structure.filter.FunctionFilter
+import com.codebrig.omnisrc.observe.structure.filter.MultiFilter
+import com.codebrig.omnisrc.observe.structure.filter.NameFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
