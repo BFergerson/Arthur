@@ -14,107 +14,39 @@ class ForLoopFilterTest extends OmniSRCTest {
 
     @Test
     void forLoop_Go() {
-        def file = new File("src/test/resources/same/loops/Loops.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forLoop()", it.name)
-
-            new ForLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForLoop)
-                foundForLoop = true
-            }
-        }
-        assertTrue(foundForLoop)
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.go"))
     }
 
     @Test
     void forLoop_Java() {
-        def file = new File("src/test/resources/same/loops/Loops.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Loops.forLoop()", it.name)
-
-            new ForLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForLoop)
-                foundForLoop = true
-            }
-        }
-        assertTrue(foundForLoop)
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.java"), "Loops.")
     }
 
     @Test
     void forLoop_Javascript() {
-        def file = new File("src/test/resources/same/loops/Loops.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forLoop()", it.name)
-
-            new ForLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForLoop)
-                foundForLoop = true
-            }
-        }
-        assertTrue(foundForLoop)
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
     }
 
     @Test
     void forLoop_Php() {
-        def file = new File("src/test/resources/same/loops/Loops.php")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forLoop()", it.name)
-
-            new ForLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForLoop)
-                foundForLoop = true
-            }
-        }
-        assertTrue(foundForLoop)
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.php"))
     }
 
     @Test
     void forLoop_Python() {
-        def file = new File("src/test/resources/same/loops/Loops.py")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forLoop()", it.name)
-
-            new ForLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForLoop)
-                foundForLoop = true
-            }
-        }
-        assertTrue(foundForLoop)
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.py"))
     }
 
     @Test
     void forLoop_Ruby() {
-        def file = new File("src/test/resources/same/loops/Loops.rb")
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.rb"))
+    }
+
+    private static void assertLoopPresent(File file) {
+        assertLoopPresent(file, "")
+    }
+
+    private static void assertLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -122,7 +54,7 @@ class ForLoopFilterTest extends OmniSRCTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("forLoop")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forLoop()", it.name)
+            assertEquals(qualifiedName + "forLoop()", it.name)
 
             new ForLoopFilter().getFilteredNodes(it).each {
                 assertFalse(foundForLoop)

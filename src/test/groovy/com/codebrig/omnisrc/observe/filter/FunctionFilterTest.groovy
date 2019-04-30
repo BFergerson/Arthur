@@ -45,7 +45,7 @@ class FunctionFilterTest extends OmniSRCTest {
         assertFunctionsPresent(file, "")
     }
 
-    private static void assertFunctionsPresent(File file, String prependedClass) {
+    private static void assertFunctionsPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -53,10 +53,10 @@ class FunctionFilterTest extends OmniSRCTest {
         boolean foundFunction2 = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             if (!foundFunction1) {
-                assertEquals(prependedClass + "function1()", it.name)
+                assertEquals(qualifiedName + "function1()", it.name)
                 foundFunction1 = true
             } else {
-                assertEquals(prependedClass + "function2()", it.name)
+                assertEquals(qualifiedName + "function2()", it.name)
                 foundFunction2 = true
             }
         }
