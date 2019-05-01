@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by the source code language
@@ -11,7 +11,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class LanguageFilter extends SourceNodeFilter<LanguageFilter, SourceLanguage> {
+class LanguageFilter extends StructureFilter<LanguageFilter, SourceLanguage> {
 
     LanguageFilter(SourceLanguage... values) {
         accept(values)

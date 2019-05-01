@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
@@ -15,7 +15,7 @@ import com.google.common.collect.Sets
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class ElseConditionalFilter extends SourceNodeFilter<ElseConditionalFilter, Void> {
+class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void> {
 
     private static final Set<String> conditionalTypes = new HashSet<>()
     static {

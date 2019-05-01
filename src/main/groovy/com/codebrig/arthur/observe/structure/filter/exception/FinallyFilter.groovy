@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.exception
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.google.common.collect.Sets
 
@@ -13,7 +13,7 @@ import com.google.common.collect.Sets
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class FinallyFilter extends SourceNodeFilter<FinallyFilter, Void> {
+class FinallyFilter extends StructureFilter<FinallyFilter, Void> {
 
     private static final Set<String> exceptionTypes = new HashSet<>()
     static {

@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter.exception
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by catch in exception handling construct
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class CatchFilter extends SourceNodeFilter<CatchFilter, Void> {
+class CatchFilter extends StructureFilter<CatchFilter, Void> {
 
     private static final Set<String> exceptionTypes = new HashSet<>()
     static {

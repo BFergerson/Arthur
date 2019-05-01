@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter.loop
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by do while loop
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class DoWhileLoopFilter extends SourceNodeFilter<DoWhileLoopFilter, Void> {
+class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
     private static final Set<String> loopTypes = new HashSet<>()
     static {

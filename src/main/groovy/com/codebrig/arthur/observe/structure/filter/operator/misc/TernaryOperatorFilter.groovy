@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter.operator.misc
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by ternary operator
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class TernaryOperatorFilter extends SourceNodeFilter<TernaryOperatorFilter, Void> {
+class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {

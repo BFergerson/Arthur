@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by switch conditional
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class SwitchConditionalFilter extends SourceNodeFilter<SwitchConditionalFilter, Void> {
+class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, Void> {
 
     private static final Set<String> conditionalTypes = new HashSet<>()
     static {

@@ -2,7 +2,7 @@ package com.codebrig.arthur.generator
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguage
 import com.codebrig.arthur.observe.structure.filter.WildcardFilter
@@ -36,7 +36,7 @@ class SchemaGenerator {
     private static final int MAX_PARSE_WAIT_SECONDS = 15
     private static final int MAX_FILE_PARSE_COUNT = Integer.MAX_VALUE
     private final BblfshClient client
-    private SourceNodeFilter filter
+    private StructureFilter filter
     private final ObservationConfig config
 
     SchemaGenerator() {
@@ -57,7 +57,7 @@ class SchemaGenerator {
         this.config = observationConfig
     }
 
-    void setFilter(SourceNodeFilter filter) {
+    void setFilter(StructureFilter filter) {
         this.filter = Objects.requireNonNull(filter)
     }
 

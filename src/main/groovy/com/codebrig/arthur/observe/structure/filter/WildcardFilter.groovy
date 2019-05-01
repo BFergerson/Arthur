@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Matches everything
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class WildcardFilter extends SourceNodeFilter<WildcardFilter, Void> {
+class WildcardFilter extends StructureFilter<WildcardFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode object) {

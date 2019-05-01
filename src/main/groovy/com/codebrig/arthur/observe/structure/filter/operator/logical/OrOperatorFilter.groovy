@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter.operator.logical
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by logical or operator
@@ -10,7 +10,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class OrOperatorFilter extends SourceNodeFilter<OrOperatorFilter, Void> {
+class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {

@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.loop
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 
 /**
@@ -12,7 +12,7 @@ import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class ForLoopFilter extends SourceNodeFilter<ForLoopFilter, Void> {
+class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
 
     public static final Set<String> LOOP_TYPES = new HashSet<>()
     static {

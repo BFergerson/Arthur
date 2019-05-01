@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by not equal operator
@@ -11,7 +11,7 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class NotEqualOperatorFilter extends SourceNodeFilter<EqualOperatorFilter, Void> {
+class NotEqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
 
     private static final Set<String> operatorTypes = new HashSet<>()
     static {

@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.SourceNodeFilter
+import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
  * Match by multiple filters
@@ -10,13 +10,13 @@ import com.codebrig.arthur.SourceNodeFilter
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class MultiFilter extends SourceNodeFilter<MultiFilter, SourceNodeFilter> {
+class MultiFilter extends StructureFilter<MultiFilter, StructureFilter> {
 
-    static MultiFilter matchAny(SourceNodeFilter... filters) {
+    static MultiFilter matchAny(StructureFilter... filters) {
         return new MultiFilter(MatchStyle.ANY, filters)
     }
 
-    static MultiFilter matchAll(SourceNodeFilter... filters) {
+    static MultiFilter matchAll(StructureFilter... filters) {
         return new MultiFilter(MatchStyle.ALL, filters)
     }
 
@@ -26,7 +26,7 @@ class MultiFilter extends SourceNodeFilter<MultiFilter, SourceNodeFilter> {
         this.matchStyle = Objects.requireNonNull(matchStyle)
     }
 
-    MultiFilter(MatchStyle matchStyle, SourceNodeFilter... filters) {
+    MultiFilter(MatchStyle matchStyle, StructureFilter... filters) {
         this.matchStyle = Objects.requireNonNull(matchStyle)
         accept(filters)
     }
