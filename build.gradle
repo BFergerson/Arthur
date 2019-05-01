@@ -4,8 +4,8 @@ plugins {
 
 apply plugin: 'groovy'
 
-group 'com.codebrig.omnisrc'
-version '0.3.1'
+group 'com.codebrig.arthur'
+version '0.3.2'
 
 repositories {
     mavenCentral()
@@ -22,7 +22,7 @@ dependencies {
 
 task createProperties(dependsOn: processResources) {
     doLast {
-        new File("$buildDir/resources/main/omnisrc_build.properties").withWriter { w ->
+        new File("$buildDir/resources/main/arthur_build.properties").withWriter { w ->
             Properties p = new Properties()
             p['version'] = project.version.toString()
             p.store w, null

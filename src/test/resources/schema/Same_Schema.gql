@@ -10,6 +10,9 @@ token sub attribute, datatype string;
 #####----- Java -----#####
 javaConstructorAttribute sub attribute, datatype string;
 
+#####----- Php -----#####
+phpByRefAttribute sub attribute, datatype string;
+
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
 	has token,
@@ -37,7 +40,6 @@ GoFuncDeclArtifact sub GoSourceArtifact,
 	plays is_go_decls_role,
 	# Semantic
 	plays IS_DECLARATION,
-	plays IS_DECLARATION_FUNCTION,
 	plays IS_FUNCTION;
 
 #####----- Java -----#####
@@ -59,7 +61,6 @@ JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	plays is_child,
 	# Semantic
 	plays IS_DECLARATION,
-	plays IS_DECLARATION_FUNCTION_VISIBILITY_WORLD,
 	plays IS_FUNCTION,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
@@ -69,14 +70,26 @@ JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptFileArtifact sub FileArtifact;
 
+#####----- Php -----#####
+PhpSourceArtifact sub SourceArtifact;
+
+PhpStmtFunctionArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpByRefAttribute,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
 PythonModuleArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_FILE,
-	plays IS_FILE_MODULE,
 	plays IS_MODULE;
+
+#####----- Ruby -----#####
+RubySourceArtifact sub SourceArtifact;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
@@ -90,17 +103,8 @@ go_decls_relation sub parent_child_relation,
 DECLARATION sub relation,
 	relates IS_DECLARATION;
 
-DECLARATION_FUNCTION sub relation,
-	relates IS_DECLARATION_FUNCTION;
-
-DECLARATION_FUNCTION_VISIBILITY_WORLD sub relation,
-	relates IS_DECLARATION_FUNCTION_VISIBILITY_WORLD;
-
 FILE sub relation,
 	relates IS_FILE;
-
-FILE_MODULE sub relation,
-	relates IS_FILE_MODULE;
 
 FUNCTION sub relation,
 	relates IS_FUNCTION;
