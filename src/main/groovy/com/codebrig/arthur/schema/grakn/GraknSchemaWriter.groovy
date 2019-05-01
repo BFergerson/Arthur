@@ -12,7 +12,7 @@ import static com.codebrig.arthur.schema.SchemaSegment.*
 /**
  * Used to create Grakn compatible Arthur schemas
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

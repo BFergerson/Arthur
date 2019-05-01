@@ -6,7 +6,7 @@ import com.codebrig.arthur.observe.structure.StructureFilter
 /**
  * Match by the semantic role
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
