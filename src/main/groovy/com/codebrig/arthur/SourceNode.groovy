@@ -10,7 +10,7 @@ import scala.collection.JavaConverters
 /**
  * Represents a single UAST unit extracted from source code.
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

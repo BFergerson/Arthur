@@ -16,7 +16,7 @@ import java.util.stream.Collectors
  * Extracts the useful information necessary to create
  * a valid schema based on the observed source code.
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -67,7 +67,7 @@ class ObservedLanguage {
         entity = toValidEntity(entity)
         relations.putIfAbsent(entity, new ObservedRelations())
         if (!child.properties.get("internalRole")?.isEmpty()
-                && !child.internalType.isEmpty()) { //todo: understand this clause (this is #27)
+                && !child.internalType.isEmpty()) { //todo: understand this clause (this is phenomena#27)
             //parent is parent
             relations.get(entity).observeIs("parent")
 
@@ -83,7 +83,7 @@ class ObservedLanguage {
         relations.putIfAbsent(entity, new ObservedRelations())
         entityChildren.each { child ->
             if (!child.properties.get("internalRole")?.isEmpty()
-                    && !child.internalType.isEmpty()) { //todo: understand this clause (this is #27)
+                    && !child.internalType.isEmpty()) { //todo: understand this clause (this is phenomena#27)
                 //parent relates to child (has)
                 relations.get(entity).observeHas(toValidRelation(child.properties.get("internalRole")))
 

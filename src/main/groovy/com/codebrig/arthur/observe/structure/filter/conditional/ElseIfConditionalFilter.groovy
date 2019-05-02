@@ -11,7 +11,7 @@ import com.google.common.collect.Sets
 /**
  * Match by else if conditional
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

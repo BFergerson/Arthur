@@ -24,8 +24,6 @@ public class Conditionals {
 
     public void switchConditional() {
         switch (1) {
-            case 1: //https://github.com/bblfsh/java-driver/issues/98
-                System.out.println("");
         }
     }
 
