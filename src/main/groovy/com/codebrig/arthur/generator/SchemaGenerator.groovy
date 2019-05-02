@@ -16,6 +16,8 @@ import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
 import org.kohsuke.github.GHRepositorySearchBuilder
 import org.kohsuke.github.GitHub
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
@@ -32,6 +34,8 @@ import static com.google.common.io.Files.getFileExtension
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class SchemaGenerator {
+
+    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     private static final int MAX_PARSE_WAIT_SECONDS = 15
     private static final int MAX_FILE_PARSE_COUNT = Integer.MAX_VALUE
@@ -98,7 +102,7 @@ class SchemaGenerator {
     void parseGithubRepository(String repoName, ObservedLanguage observedLanguage, int parseFileLimit) {
         def outputFolder = new File("/tmp/arthur/out/$repoName")
         if (new File(outputFolder, "cloned.arthur").exists()) {
-            println "$repoName already exists. Repository cloning skipped."
+            log.info "$repoName already exists. Repository cloning skipped."
         } else {
             if (outputFolder.exists()) outputFolder.deleteDir()
             outputFolder.mkdirs()
@@ -118,7 +122,7 @@ class SchemaGenerator {
                 if (file.exists()) {
                     sourceFiles.add(file)
                 } else {
-                    System.err.println("Skipping non-existent file: " + file)
+                    log.error "Skipping non-existent file: " + file
                 }
             }
         }
@@ -131,7 +135,7 @@ class SchemaGenerator {
                 return null
             }
 
-            println "Parsing: " + file
+            log.info "Parsing: " + file
             def fileResponse = new FileParseResponse(file)
             def task = executorService.submit({
                 fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
@@ -140,7 +144,7 @@ class SchemaGenerator {
             try {
                 return task.get(MAX_PARSE_WAIT_SECONDS, TimeUnit.SECONDS)
             } catch (Exception e) {
-                System.err.println("Failed to parse: " + file + " - Reason: " + e.message)
+                log.error "Failed to parse: " + file + " - Reason: " + e.message
                 return null
             }
         }).map({
@@ -153,16 +157,16 @@ class SchemaGenerator {
                     extractSchema(observedLanguage, rootSourceNode)
                     parseCount.getAndIncrement()
                 } else {
-                    System.err.println("Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString())
+                    log.error "Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString()
                     failCount.getAndIncrement()
                 }
             }
         }).count()
         executorService.shutdown()
 
-        println "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
+        log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
         if (failCount.get() > 0) {
-            System.err.println("Failed to parse " + failCount.get() + " " + observedLanguage.language.qualifiedName + " files")
+            log.error "Failed to parse " + failCount.get() + " " + observedLanguage.language.qualifiedName + " files"
         }
     }
 
@@ -212,7 +216,7 @@ class SchemaGenerator {
     }
 
     static void cloneRepo(String githubRepository, File outputDirectory) {
-        println "Cloning: $githubRepository"
+        log.info "Cloning: $githubRepository"
         Git.cloneRepository()
                 .setURI("https://github.com/" + githubRepository + ".git")
                 .setDirectory(outputDirectory)
@@ -220,7 +224,7 @@ class SchemaGenerator {
                 .setTimeout(TimeUnit.MINUTES.toSeconds(5) as int)
                 .call()
         new File(outputDirectory, "cloned.arthur").createNewFile()
-        println "Cloned: $githubRepository"
+        log.info "Cloned: $githubRepository"
     }
 
     @Canonical

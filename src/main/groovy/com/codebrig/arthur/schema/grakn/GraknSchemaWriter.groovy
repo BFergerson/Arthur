@@ -6,6 +6,8 @@ import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SchemaWriter
 import com.google.common.base.CaseFormat
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import static com.codebrig.arthur.schema.SchemaSegment.*
 
@@ -17,6 +19,8 @@ import static com.codebrig.arthur.schema.SchemaSegment.*
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class GraknSchemaWriter implements SchemaWriter {
+
+    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     private final ObservedLanguage rootLanguage
     private final List<ObservedLanguage> observedLanguages
@@ -33,7 +37,7 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     private void writeSemanticRoles(Writer output) {
-        println "Writing semantic roles"
+        log.info "Writing semantic roles"
         def observedRoles = rootLanguage.getObservedSemanticRoles(naturalOrdering)
 
         if (!observedRoles.isEmpty()) {
@@ -51,7 +55,7 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     private void writeAttributes(Writer output) {
-        println "Writing attributes"
+        log.info "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
         StructureLiteral.allLiteralAttributes.each {
             output.append(it.key).append(" sub attribute, datatype ").append(it.value).append(";\n")
@@ -84,7 +88,7 @@ class GraknSchemaWriter implements SchemaWriter {
     }
 
     private void writeStructuralRelationships(Writer output) {
-        println "Writing structural relationships"
+        log.info "Writing structural relationships"
         output.append("\n##########---------- Structural Relationships ----------##########\n")
         output.append("parent_child_relation sub relation,\n" +
                 "\trelates is_parent, relates is_child;\n")
@@ -133,7 +137,7 @@ class GraknSchemaWriter implements SchemaWriter {
 
     private void writeEntities(Writer output, boolean includeAttributes, boolean includeStructure,
                                boolean includeSemantics) {
-        println "Writing entities"
+        log.info "Writing entities"
         output.append("\n##########---------- Entities ----------##########\n")
         if (includeAttributes) {
             output.append("SourceArtifact sub entity,\n")
