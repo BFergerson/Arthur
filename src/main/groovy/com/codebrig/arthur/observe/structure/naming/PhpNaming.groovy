@@ -16,6 +16,7 @@ class PhpNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
+            case "StmtFunction":
             case "Stmt_Function":
                 return true
             default:
@@ -26,6 +27,7 @@ class PhpNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
+            case "StmtFunction":
             case "Stmt_Function":
                 return getFunctionName(node)
             default:

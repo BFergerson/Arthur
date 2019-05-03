@@ -15,6 +15,7 @@ class RubyNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
+            case "Def":
             case "def":
                 return true
             default:
@@ -25,6 +26,7 @@ class RubyNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
+            case "Def":
             case "def":
                 return getDefName(node)
             default:

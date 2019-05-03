@@ -10,6 +10,11 @@ token sub attribute, datatype string;
 #####----- Java -----#####
 javaConstructorAttribute sub attribute, datatype string;
 
+#####----- Javascript -----#####
+javascriptAsyncAttribute sub attribute, datatype string;
+javascriptGeneratorAttribute sub attribute, datatype string;
+javascriptSourceTypeAttribute sub attribute, datatype string;
+
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
 
@@ -25,6 +30,10 @@ OmnilingualSourceArtifact sub SourceArtifact;
 FileArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_FILE;
+
+ModuleArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_MODULE;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
@@ -68,14 +77,44 @@ JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
-JavascriptFileArtifact sub FileArtifact;
+JavascriptFileArtifact sub FileArtifact,
+	# Structural
+	plays has_javascript_program_role;
+
+JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptAsyncAttribute,
+	has javascriptGeneratorAttribute,
+	has name,
+	# Structural
+	plays is_javascript_body_role,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_STATEMENT;
+
+JavascriptProgramArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptSourceTypeAttribute,
+	# Structural
+	plays is_javascript_program_role,
+	plays has_javascript_body_role,
+	# Semantic
+	plays IS_MODULE;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
+PhpModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_php_children_role;
+
 PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
 	has phpByRefAttribute,
+	has name,
+	# Structural
+	plays is_php_children_role,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION;
@@ -83,21 +122,74 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact,
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
-PythonModuleArtifact sub PythonSourceArtifact,
+PythonFunctionDefArtifact sub PythonSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_python_body_role,
 	# Semantic
-	plays IS_FILE,
-	plays IS_MODULE;
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+PythonModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_python_body_role,
+	# Semantic
+	plays IS_FILE;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
+
+RubyDefArtifact sub RubySourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_ruby_file_role,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_STATEMENT;
+
+RubyModuleArtifact sub ModuleArtifact,
+	# Structural
+	plays has_ruby_file_role,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_STATEMENT;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
 
+#####----- Omnilingual -----#####
+body_relation sub parent_child_relation,
+	relates is_body_role as is_child, relates has_body_role as is_parent;
+
 #####----- Go -----#####
 go_decls_relation sub parent_child_relation,
 	relates is_go_decls_role as is_child, relates has_go_decls_role as is_parent;
+
+#####----- Javascript -----#####
+javascript_body_relation sub body_relation,
+	relates is_javascript_body_role as is_body_role, relates has_javascript_body_role as has_body_role;
+
+javascript_program_relation sub parent_child_relation,
+	relates is_javascript_program_role as is_child, relates has_javascript_program_role as is_parent;
+
+#####----- Php -----#####
+php_children_relation sub parent_child_relation,
+	relates is_php_children_role as is_child, relates has_php_children_role as is_parent;
+
+#####----- Python -----#####
+python_body_relation sub body_relation,
+	relates is_python_body_role as is_body_role, relates has_python_body_role as has_body_role;
+
+#####----- Ruby -----#####
+ruby_file_relation sub parent_child_relation,
+	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
 
 ##########---------- Semantic Roles ----------##########
 DECLARATION sub relation,
@@ -109,8 +201,17 @@ FILE sub relation,
 FUNCTION sub relation,
 	relates IS_FUNCTION;
 
+IDENTIFIER sub relation,
+	relates IS_IDENTIFIER;
+
 MODULE sub relation,
 	relates IS_MODULE;
+
+NAME sub relation,
+	relates IS_NAME;
+
+STATEMENT sub relation,
+	relates IS_STATEMENT;
 
 VISIBILITY sub relation,
 	relates IS_VISIBILITY;

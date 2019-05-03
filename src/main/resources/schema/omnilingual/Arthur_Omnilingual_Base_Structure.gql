@@ -5467,6 +5467,7 @@ PhpStmtForeachArtifact sub PhpSourceArtifact,
 PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
 	has phpByRefAttribute,
+	has name,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_children_role,
@@ -7346,6 +7347,8 @@ RubyCvasgnArtifact sub RubySourceArtifact,
 	plays has_ruby_value_role;
 
 RubyDefArtifact sub RubySourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_ruby_base_role,
 	plays is_ruby_begin_role,
