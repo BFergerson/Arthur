@@ -7,6 +7,7 @@ import com.codebrig.arthur.observe.structure.naming.*
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
+import groovy.transform.Memoized
 
 /**
  * The supported source code languages
@@ -26,8 +27,6 @@ enum SourceLanguage {
     Ruby(["rb"])
 
     private final Set<String> fileExtensions
-    private StructureNaming namingCache
-    private StructureLiteral literalCache
 
     SourceLanguage(List<String> fileExtensions) {
         this.fileExtensions = new HashSet<>(fileExtensions)
@@ -68,45 +67,41 @@ enum SourceLanguage {
         return fileExtensions.contains(extension.toLowerCase())
     }
 
+    @Memoized
     StructureNaming getStructureNaming() {
-        if (namingCache != null) {
-            return namingCache
-        }
         switch (this) {
             case Go:
-                return namingCache = new GoNaming()
+                return new GoNaming()
             case Java:
-                return namingCache = new JavaNaming()
+                return new JavaNaming()
             case Javascript:
-                return namingCache = new JavascriptNaming()
+                return new JavascriptNaming()
             case Php:
-                return namingCache = new PhpNaming()
+                return new PhpNaming()
             case Python:
-                return namingCache = new PythonNaming()
+                return new PythonNaming()
             case Ruby:
-                return namingCache = new RubyNaming()
+                return new RubyNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
     }
 
+    @Memoized
     StructureLiteral getStructureLiteral() {
-        if (literalCache != null) {
-            return literalCache
-        }
         switch (this) {
             case Go:
-                return literalCache = new GoLiteral()
+                return new GoLiteral()
             case Java:
-                return literalCache = new JavaLiteral()
+                return new JavaLiteral()
             case Javascript:
-                return literalCache = new JavascriptLiteral()
+                return new JavascriptLiteral()
             case Php:
-                return literalCache = new PhpLiteral()
+                return new PhpLiteral()
             case Python:
-                return literalCache = new PythonLiteral()
+                return new PythonLiteral()
             case Ruby:
-                return literalCache = new RubyLiteral()
+                return new RubyLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }
