@@ -12,8 +12,7 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Java() {
-        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.java"),
-                "Functions.")
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.java"))
     }
 
     @Test
@@ -53,10 +52,10 @@ class FunctionFilterTest extends ArthurTest {
         boolean foundFunction2 = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             if (!foundFunction1) {
-                assertEquals(qualifiedName + "function1()", it.name)
+                assertEquals(qualifiedName + "function1", it.name)
                 foundFunction1 = true
             } else {
-                assertEquals(qualifiedName + "function2()", it.name)
+                assertEquals(qualifiedName + "function2", it.name)
                 foundFunction2 = true
             }
         }
