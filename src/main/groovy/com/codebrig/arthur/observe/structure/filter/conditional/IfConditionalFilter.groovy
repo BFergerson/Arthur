@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by if conditional
@@ -12,15 +14,23 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
 
-    private static final Set<String> conditionalTypes = new HashSet<>()
-    static {
-        conditionalTypes.add("If") //python
-        conditionalTypes.add("IfStmt") //go
-        conditionalTypes.add("IfStatement") //java, javascript
+    private final MultiFilter ifStatementFilter, ifExpressionFilter
+
+    IfConditionalFilter() {
+        this.ifStatementFilter = MultiFilter.matchAll(
+                new RoleFilter("IF"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY")
+        )
+        this.ifExpressionFilter = MultiFilter.matchAll(
+                new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
+                new RoleFilter().reject("IDENTIFIER", "CONDITION")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in conditionalTypes
+        boolean ifStatementFilterResult = ifStatementFilter.evaluate(node)
+        boolean ifExpressionFilterResult = ifExpressionFilter.evaluate(node)
+        return ifStatementFilterResult || ifExpressionFilterResult
     }
 }
