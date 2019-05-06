@@ -18,8 +18,6 @@ class JavascriptNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "FunctionDeclaration":
                 return true
-            case "Identifier":
-                return true
             default:
                 return false
         }
@@ -30,8 +28,6 @@ class JavascriptNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
                 return getFunctionDeclarationName(node)
-            case "Identifier":
-                return getIdentifierName(node)
             default:
                 return null
         }
@@ -43,9 +39,5 @@ class JavascriptNaming implements StructureNaming {
             functionName = it.token
         }
         return functionName + "()"
-    }
-
-    static String getIdentifierName(SourceNode node) {
-        node.token
     }
 }
