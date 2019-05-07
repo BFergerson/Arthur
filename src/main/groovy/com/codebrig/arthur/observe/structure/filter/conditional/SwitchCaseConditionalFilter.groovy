@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by case in switch conditional
@@ -12,14 +14,22 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalFilter, Void> {
 
-    private static final Set<String> conditionalTypes = new HashSet<>()
-    static {
-        conditionalTypes.add("CaseClause") //go
-        conditionalTypes.add("SwitchCase") //java, javascript
+    private final MultiFilter switchCaseConditionalFilter
+
+    SwitchCaseConditionalFilter() {
+        MultiFilter switchStatementFilter = MultiFilter.matchAll(
+                new RoleFilter("SWITCH"), new RoleFilter("CASE"),
+                new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY")
+        )
+        MultiFilter switchClauseFilter = MultiFilter.matchAll(
+                new RoleFilter("CASE"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BODY")
+        )
+        this.switchCaseConditionalFilter = MultiFilter.matchAny(switchStatementFilter, switchClauseFilter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in conditionalTypes
+        return this.switchCaseConditionalFilter.evaluate(node)
     }
 }

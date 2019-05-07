@@ -14,23 +14,22 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
 
-    private final MultiFilter ifStatementFilter, ifExpressionFilter
+    private final MultiFilter ifConditionalFilter
 
     IfConditionalFilter() {
-        this.ifStatementFilter = MultiFilter.matchAll(
+        MultiFilter ifStatementFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY")
         )
-        this.ifExpressionFilter = MultiFilter.matchAll(
+        MultiFilter ifExpressionFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
                 new RoleFilter().reject("IDENTIFIER", "CONDITION")
         )
+        this.ifConditionalFilter = MultiFilter.matchAny(ifStatementFilter, ifExpressionFilter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean ifStatementFilterResult = ifStatementFilter.evaluate(node)
-        boolean ifExpressionFilterResult = ifExpressionFilter.evaluate(node)
-        return ifStatementFilterResult || ifExpressionFilterResult
+        return this.ifConditionalFilter.evaluate(node)
     }
 }

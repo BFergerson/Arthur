@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by switch conditional
@@ -12,14 +14,17 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, Void> {
 
-    private static final Set<String> conditionalTypes = new HashSet<>()
-    static {
-        conditionalTypes.add("SwitchStmt") //go
-        conditionalTypes.add("SwitchStatement") //java, javascript
+    private final MultiFilter switchConditionalFilter
+
+    SwitchConditionalFilter() {
+        this.switchConditionalFilter = MultiFilter.matchAll(
+                new RoleFilter("SWITCH"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in conditionalTypes
+        return this.switchConditionalFilter.evaluate(node)
     }
 }

@@ -18,17 +18,18 @@ import com.google.common.collect.Sets
  */
 class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void> {
 
-    private final MultiFilter elseStatementFilter, elseExpressionFilter
+    private final MultiFilter elseConditionalFilter
 
     private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseConditionalFilter() {
-        this.elseStatementFilter = MultiFilter.matchAll(
+        MultiFilter elseStatementFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT")
         )
-        this.elseExpressionFilter = MultiFilter.matchAll(
+        MultiFilter elseExpressionFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION")
         )
+        this.elseConditionalFilter = MultiFilter.matchAny(elseStatementFilter, elseExpressionFilter)
     }
 
     @Override
@@ -36,11 +37,7 @@ class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void>
         if (node == null) {
             return false
         }
-
-        boolean elseStatementFilterResult = this.elseStatementFilter.evaluate(node)
-        boolean elseExpressionFilterResult = this.elseExpressionFilter.evaluate(node)
-
-        if (elseStatementFilterResult || elseExpressionFilterResult) {
+        if (this.elseConditionalFilter.evaluate(node)) {
             if (node.language == SourceLanguage.Python) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("orelse"),
