@@ -24,10 +24,10 @@ class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void>
 
     ElseConditionalFilter() {
         this.elseStatementFilter = MultiFilter.matchAll(
-                new RoleFilter("ELSE", "STATEMENT", "BLOCK", "SCOPE")
+                new RoleFilter("IF"), new RoleFilter("STATEMENT")
         )
         this.elseExpressionFilter = MultiFilter.matchAll(
-                new RoleFilter("EXPRESSION", "FUNCTION", "CALL", "CALLEE", "IDENTIFIER")
+                new RoleFilter("IF"), new RoleFilter("EXPRESSION")
         )
     }
 
