@@ -5,6 +5,7 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import com.google.common.collect.Sets
 
@@ -17,20 +18,29 @@ import com.google.common.collect.Sets
  */
 class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void> {
 
-    private static final Set<String> conditionalTypes = new HashSet<>()
-    static {
-        conditionalTypes.add("If") //python
-        conditionalTypes.add("IfStmt") //go
-        conditionalTypes.add("IfStatement") //java, javascript
-    }
+    private final MultiFilter elseStatementFilter, elseExpressionFilter
+
     private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
+
+    ElseConditionalFilter() {
+        this.elseStatementFilter = MultiFilter.matchAll(
+                new RoleFilter("ELSE", "STATEMENT", "BLOCK", "SCOPE")
+        )
+        this.elseExpressionFilter = MultiFilter.matchAll(
+                new RoleFilter("EXPRESSION", "FUNCTION", "CALL", "CALLEE", "IDENTIFIER")
+        )
+    }
 
     @Override
     boolean evaluate(SourceNode node) {
         if (node == null) {
             return false
         }
-        if (node.internalType in conditionalTypes) {
+
+        boolean elseStatementFilterResult = this.elseStatementFilter.evaluate(node)
+        boolean elseExpressionFilterResult = this.elseExpressionFilter.evaluate(node)
+
+        if (elseStatementFilterResult || elseExpressionFilterResult) {
             if (node.language == SourceLanguage.Python) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("orelse"),
