@@ -3,6 +3,8 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by not equal operator
@@ -13,16 +15,28 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class NotEqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("NotEq") //python
-        operatorTypes.add("Operator") //go, java, javascript
-        operatorTypes.add("Expr_BinaryOp_NotEqual") //php
+    private final MultiFilter notEqualOperatorFilter
+
+    NotEqualOperatorFilter() {
+        MultiFilter notEqualToken1Filter = MultiFilter.matchAll(
+                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        MultiFilter notEqualToken2Filter = MultiFilter.matchAll(
+                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        )
+        MultiFilter notEqualToken3Filter = MultiFilter.matchAll(
+                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL")
+        )
+        this.notEqualOperatorFilter = MultiFilter.matchAny(notEqualToken1Filter, notEqualToken2Filter, notEqualToken3Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null && node.internalType in operatorTypes) {
+        boolean result = this.notEqualOperatorFilter.evaluate(node)
+        if (result) {
             if (node.language == SourceLanguage.Php) {
                 return true
             } else {

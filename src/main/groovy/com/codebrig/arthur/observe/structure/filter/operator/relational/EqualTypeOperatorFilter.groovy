@@ -3,6 +3,8 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by equal type operator
@@ -13,15 +15,25 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("Operator") //javascript
-        operatorTypes.add("Expr_BinaryOp_Identical") //php
+    private final MultiFilter equalTypeOperatorFilter
+
+    EqualTypeOperatorFilter() {
+        MultiFilter equalTypeToken1Filter = MultiFilter.matchAll(
+                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(
+                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        )
+        this.equalTypeOperatorFilter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null && node.internalType in operatorTypes) {
+        boolean result = this.equalTypeOperatorFilter.evaluate(node)
+        if (result) {
             if (node.language == SourceLanguage.Php) {
                 return true
             } else {

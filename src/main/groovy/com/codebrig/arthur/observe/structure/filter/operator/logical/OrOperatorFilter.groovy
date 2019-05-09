@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.operator.logical
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by logical or operator
@@ -12,14 +14,23 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("Or") //python
-        operatorTypes.add("Operator") //go, java, javascript
+    private final MultiFilter orOperatorFilter
+
+    OrOperatorFilter() {
+        MultiFilter orToken1Filter = MultiFilter.matchAll(
+                new RoleFilter("OR"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter().reject("IF", "CONDITION")
+        )
+        MultiFilter orToken2Filter = MultiFilter.matchAll(
+                new RoleFilter("OR"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
+                new RoleFilter().reject("IF", "CONDITION")
+        )
+        this.orOperatorFilter = MultiFilter.matchAny(orToken1Filter, orToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes && (node.token == "||" || node.token == "or")
+        return this.orOperatorFilter.evaluate(node)
     }
 }

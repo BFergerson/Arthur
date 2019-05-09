@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.operator.logical
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by logical and operator
@@ -12,14 +14,23 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("And") //python
-        operatorTypes.add("Operator") //go, java, javascript
+    private final MultiFilter andOperatorFilter
+
+    AndOperatorFilter() {
+        MultiFilter andToken1Filter = MultiFilter.matchAll(
+                new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter().reject("IF", "CONDITION")
+        )
+        MultiFilter andToken2Filter = MultiFilter.matchAll(
+                new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
+                new RoleFilter().reject("IF", "CONDITION")
+        )
+        this.andOperatorFilter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes && (node.token == "&&" || node.token == "and")
+        return this.andOperatorFilter.evaluate(node)
     }
 }
