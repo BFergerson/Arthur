@@ -42,7 +42,8 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
         if (node == null) {
             return false
         }
-        if (this.elseIfConditionalFilter.evaluate(node)) {
+        boolean result = this.elseIfConditionalFilter.evaluate(node)
+        if (result) {
             if (node.language == SourceLanguage.Python) {
                 MultiFilter.matchAll(
                         new InternalRoleFilter("orelse"),

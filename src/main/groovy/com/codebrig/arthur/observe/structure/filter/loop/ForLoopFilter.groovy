@@ -32,7 +32,8 @@ class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        if (this.forLoopFilter.evaluate(node)) {
+        boolean result = this.forLoopFilter.evaluate(node)
+        if (result) {
             switch (node.language) {
                 case SourceLanguage.Go:
                 case SourceLanguage.Php:

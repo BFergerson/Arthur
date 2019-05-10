@@ -40,7 +40,8 @@ class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        if (this.whileLoopFilter.evaluate(node)) {
+        boolean result = this.whileLoopFilter.evaluate(node)
+        if (result) {
             if (node.language == SourceLanguage.Go) {
                 def foundInit = false
                 new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
