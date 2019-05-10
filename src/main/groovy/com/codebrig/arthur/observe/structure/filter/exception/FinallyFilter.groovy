@@ -4,6 +4,8 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.google.common.collect.Sets
 
 /**
@@ -15,19 +17,24 @@ import com.google.common.collect.Sets
  */
 class FinallyFilter extends StructureFilter<FinallyFilter, Void> {
 
-    private static final Set<String> exceptionTypes = new HashSet<>()
-    static {
-        exceptionTypes.add("TryFinally") //python
-        exceptionTypes.add("TryStatement") //java, javascript
-    }
+    private final MultiFilter finallyFilter
+
     private final Set<Integer> finallyNodeIdentities = Sets.newConcurrentHashSet()
+
+    FinallyFilter() {
+        this.finallyFilter = MultiFilter.matchAll(
+                new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("CATCH")
+        )
+    }
 
     @Override
     boolean evaluate(SourceNode node) {
         if (node == null) {
             return false
         }
-        if (node.internalType in exceptionTypes) {
+        boolean result = this.finallyFilter.evaluate(node)
+        if (result) {
             if (node.language == SourceLanguage.Java) {
                 new InternalRoleFilter("finally").getFilteredNodes(node.children).each {
                     finallyNodeIdentities.add(System.identityHashCode(it.underlyingNode))
