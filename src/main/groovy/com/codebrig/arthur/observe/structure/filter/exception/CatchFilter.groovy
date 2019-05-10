@@ -18,7 +18,12 @@ class CatchFilter extends StructureFilter<CatchFilter, Void> {
     private final MultiFilter catchFilter
 
     CatchFilter() {
-        this.catchFilter = MultiFilter.matchAll(
+        super()
+        this.catchFilter = createCatchFilter()
+    }
+
+    private static createCatchFilter() {
+        return MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("CATCH")
         )
     }

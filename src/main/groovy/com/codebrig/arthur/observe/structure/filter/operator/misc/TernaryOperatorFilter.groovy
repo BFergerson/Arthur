@@ -17,16 +17,18 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
     private final MultiFilter ternaryOperatorFilter
 
     TernaryOperatorFilter() {
+        super()
+        this.ternaryOperatorFilter = createTernaryOperatorFilter()
+    }
+
+    private static createTernaryOperatorFilter() {
         MultiFilter ternaryToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("EXPRESSION"), new RoleFilter("ASSIGNMENT"),
-                new RoleFilter("BINARY"), new RoleFilter("RIGHT"),
-                new RoleFilter("CONDITION")
-        )
-        MultiFilter ternaryToken2Filter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION"), new RoleFilter("ASSIGNMENT"),
                 new RoleFilter("BINARY"), new RoleFilter("RIGHT")
         )
-        this.ternaryOperatorFilter = MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
+        MultiFilter ternaryToken2Filter = MultiFilter.matchAll(ternaryToken1Filter, new RoleFilter("CONDITION")
+        )
+        return MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
     }
 
     @Override

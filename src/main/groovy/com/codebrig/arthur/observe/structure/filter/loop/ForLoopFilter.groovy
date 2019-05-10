@@ -28,7 +28,8 @@ class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        if (node.internalType in LOOP_TYPES) {
+        boolean result = node.internalType in LOOP_TYPES
+        if (result) {
             if (node.language == SourceLanguage.Go) {
                 def foundInit = false
                 new InternalRoleFilter("Init").getFilteredNodes(node.children).each {

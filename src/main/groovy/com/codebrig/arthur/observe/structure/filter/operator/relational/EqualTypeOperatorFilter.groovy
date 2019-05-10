@@ -18,16 +18,19 @@ class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, V
     private final MultiFilter equalTypeOperatorFilter
 
     EqualTypeOperatorFilter() {
+        super()
+        this.equalTypeOperatorFilter = createEqualTypeOperatorFilter()
+    }
+
+    private static createEqualTypeOperatorFilter() {
         MultiFilter equalTypeToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(
                 new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
         )
-        this.equalTypeOperatorFilter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
+        MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(equalTypeToken1Filter,
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        return MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
     }
 
     @Override

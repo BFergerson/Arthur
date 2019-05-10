@@ -18,19 +18,21 @@ class EqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
     private final MultiFilter equalOperatorFilter
 
     EqualOperatorFilter() {
+        super()
+        this.equalOperatorFilter = createEqualOperatorFilter()
+    }
+
+    private static createEqualOperatorFilter() {
         MultiFilter equalToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        MultiFilter equalToken2Filter = MultiFilter.matchAll(
-                new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
-        )
-        MultiFilter equalToken3Filter = MultiFilter.matchAll(
                 new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL")
         )
-        this.equalOperatorFilter = MultiFilter.matchAny(equalToken1Filter, equalToken2Filter, equalToken3Filter)
+        MultiFilter equalToken2Filter = MultiFilter.matchAll(equalToken1Filter,
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        )
+        MultiFilter equalToken3Filter = MultiFilter.matchAll(equalToken1Filter, equalToken2Filter,
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        return MultiFilter.matchAny(equalToken1Filter, equalToken2Filter, equalToken3Filter)
     }
 
     @Override

@@ -18,7 +18,12 @@ class TryFilter extends StructureFilter<TryFilter, Void> {
     private final MultiFilter tryFilter
 
     TryFilter() {
-        this.tryFilter = MultiFilter.matchAll(
+        super()
+        this.tryFilter = createTryFilter()
+    }
+
+    private static createTryFilter() {
+        return MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )

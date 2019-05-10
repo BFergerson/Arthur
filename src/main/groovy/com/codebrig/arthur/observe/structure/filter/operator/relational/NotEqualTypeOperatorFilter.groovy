@@ -18,16 +18,19 @@ class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFil
     private final MultiFilter notEqualTypeOperatorFilter
 
     NotEqualTypeOperatorFilter() {
+        super()
+        this.notEqualTypeOperatorFilter = createNotEqualTypeOperatorFilter()
+    }
+
+    private static createNotEqualTypeOperatorFilter() {
         MultiFilter notEqualTypeToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("NOT"), new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        MultiFilter notEqualTypeToken2Filter = MultiFilter.matchAll(
                 new RoleFilter("NOT"), new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
         )
-        this.notEqualTypeOperatorFilter = MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
+        MultiFilter notEqualTypeToken2Filter = MultiFilter.matchAll(notEqualTypeToken1Filter,
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        return MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
     }
 
     @Override

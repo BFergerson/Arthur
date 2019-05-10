@@ -17,6 +17,11 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
     private final MultiFilter andOperatorFilter
 
     AndOperatorFilter() {
+        super()
+        this.andOperatorFilter = createAndOperatorFilter()
+    }
+
+    private static createAndOperatorFilter() {
         MultiFilter andToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
@@ -26,7 +31,7 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
                 new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter().reject("IF", "CONDITION")
         )
-        this.andOperatorFilter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
+        return MultiFilter.matchAny(andToken1Filter, andToken2Filter)
     }
 
     @Override

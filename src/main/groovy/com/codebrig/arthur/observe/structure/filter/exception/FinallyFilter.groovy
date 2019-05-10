@@ -22,7 +22,12 @@ class FinallyFilter extends StructureFilter<FinallyFilter, Void> {
     private final Set<Integer> finallyNodeIdentities = Sets.newConcurrentHashSet()
 
     FinallyFilter() {
-        this.finallyFilter = MultiFilter.matchAll(
+        super()
+        this.finallyFilter = createFinallyFilter()
+    }
+
+    private static createFinallyFilter() {
+        return MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("CATCH")
         )

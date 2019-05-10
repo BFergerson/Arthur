@@ -18,19 +18,21 @@ class NotEqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> 
     private final MultiFilter notEqualOperatorFilter
 
     NotEqualOperatorFilter() {
+        super()
+        this.notEqualOperatorFilter = createNotEqualOperatorFilter()
+    }
+
+    private static createNotEqualOperatorFilter() {
         MultiFilter notEqualToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        MultiFilter notEqualToken2Filter = MultiFilter.matchAll(
-                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
-        )
-        MultiFilter notEqualToken3Filter = MultiFilter.matchAll(
                 new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL")
         )
-        this.notEqualOperatorFilter = MultiFilter.matchAny(notEqualToken1Filter, notEqualToken2Filter, notEqualToken3Filter)
+        MultiFilter notEqualToken2Filter = MultiFilter.matchAll(notEqualToken1Filter,
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        )
+        MultiFilter notEqualToken3Filter = MultiFilter.matchAll(notEqualToken2Filter,
+                new RoleFilter("IF"), new RoleFilter("CONDITION")
+        )
+        return MultiFilter.matchAny(notEqualToken1Filter, notEqualToken2Filter, notEqualToken3Filter)
     }
 
     @Override

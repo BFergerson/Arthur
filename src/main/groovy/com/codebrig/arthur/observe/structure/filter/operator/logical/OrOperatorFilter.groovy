@@ -17,6 +17,11 @@ class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
     private final MultiFilter orOperatorFilter
 
     OrOperatorFilter() {
+        super()
+        this.orOperatorFilter = createOrOperatorFilter()
+    }
+
+    private static createOrOperatorFilter() {
         MultiFilter orToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("OR"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
@@ -26,7 +31,7 @@ class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
                 new RoleFilter("OR"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter().reject("IF", "CONDITION")
         )
-        this.orOperatorFilter = MultiFilter.matchAny(orToken1Filter, orToken2Filter)
+        return MultiFilter.matchAny(orToken1Filter, orToken2Filter)
     }
 
     @Override
