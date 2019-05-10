@@ -16,7 +16,7 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
 
-    private MultiFilter whileLoopFilter
+    private final MultiFilter whileLoopFilter
 
     WhileLoopFilter() {
         super()

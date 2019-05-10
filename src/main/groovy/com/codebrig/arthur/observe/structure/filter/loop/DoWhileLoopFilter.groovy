@@ -14,7 +14,7 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
-    private MultiFilter doWhileLoopFilter
+    private final MultiFilter doWhileLoopFilter
 
     DoWhileLoopFilter() {
         super()
