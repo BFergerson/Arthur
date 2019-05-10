@@ -17,6 +17,11 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
     private final MultiFilter ifConditionalFilter
 
     IfConditionalFilter() {
+        super()
+        this.ifConditionalFilter = createIfConditionalFilter()
+    }
+
+    private static createIfConditionalFilter() {
         MultiFilter ifStatementFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY")
@@ -25,7 +30,7 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
                 new RoleFilter().reject("IDENTIFIER", "CONDITION")
         )
-        this.ifConditionalFilter = MultiFilter.matchAny(ifStatementFilter, ifExpressionFilter)
+        return MultiFilter.matchAny(ifStatementFilter, ifExpressionFilter)
     }
 
     @Override

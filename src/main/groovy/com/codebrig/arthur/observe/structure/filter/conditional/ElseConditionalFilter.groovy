@@ -23,13 +23,18 @@ class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void>
     private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseConditionalFilter() {
+        super()
+        this.elseConditionalFilter = createElseConditionalFilter()
+    }
+
+    private static createElseConditionalFilter() {
         MultiFilter elseStatementFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT")
         )
         MultiFilter elseExpressionFilter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION")
         )
-        this.elseConditionalFilter = MultiFilter.matchAny(elseStatementFilter, elseExpressionFilter)
+        return MultiFilter.matchAny(elseStatementFilter, elseExpressionFilter)
     }
 
     @Override
