@@ -4,11 +4,20 @@ import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.loop.ForLoopFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 
 import static org.junit.Assert.assertTrue
 
 class RoleFilterTest extends ArthurTest {
+
+    ForLoopFilter forLoopFilter
+
+    @Before
+    void setUp() throws Exception {
+        this.forLoopFilter = new ForLoopFilter()
+    }
 
     @Test
     void onlyForStatementsFilter() {
@@ -20,10 +29,15 @@ class RoleFilterTest extends ArthurTest {
 
             boolean foundForStatement = false
             filter.getFilteredNodes(language, resp.uast).each {
-                assertTrue(ForLoopFilter.LOOP_TYPES.contains(it.internalType))
+                assertTrue(this.forLoopFilter.evaluate(it))
                 foundForStatement = true
             }
             assertTrue(foundForStatement)
         }
+    }
+
+    @After
+    void tearDown() throws Exception {
+        this.forLoopFilter = null
     }
 }
