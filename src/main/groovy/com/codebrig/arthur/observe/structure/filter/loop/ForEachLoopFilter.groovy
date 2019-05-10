@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.loop
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by for each loop
@@ -12,15 +14,22 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
 
-    private static final Set<String> loopTypes = new HashSet<>()
-    static {
-        loopTypes.add("RangeStmt") //go
-        loopTypes.add("EnhancedForStatement") //java
-        loopTypes.add("ForInStatement")// javascript
+    private final MultiFilter forEachLoopFilter
+
+    ForEachLoopFilter() {
+        super()
+        this.forEachLoopFilter = createForEachLoopFilter()
+    }
+
+    private static MultiFilter createForEachLoopFilter() {
+        return MultiFilter.matchAll(
+                new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
+                new RoleFilter().reject("DECLARATION", "VARIABLE")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in loopTypes
+        return this.forEachLoopFilter.evaluate(node)
     }
 }

@@ -4,6 +4,8 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by for loop
@@ -14,13 +16,15 @@ import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
  */
 class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
 
-    public static final Set<String> LOOP_TYPES = new HashSet<>()
-    static {
-        LOOP_TYPES.add("for") //ruby
-        LOOP_TYPES.add("For") //python
-        LOOP_TYPES.add("ForStmt") //go
-        LOOP_TYPES.add("ForStatement") //java, javascript
-        LOOP_TYPES.add("Stmt_For") //php
+    private final MultiFilter forLoopFilter
+
+    ForLoopFilter() {
+        super()
+        this.forLoopFilter = createForLoopFilter()
+    }
+
+    private static MultiFilter createForLoopFilter() {
+        return MultiFilter.matchAll(new RoleFilter("FOR"), new RoleFilter("STATEMENT"))
     }
 
     @Override
@@ -28,14 +32,22 @@ class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        boolean result = node.internalType in LOOP_TYPES
-        if (result) {
-            if (node.language == SourceLanguage.Go) {
-                def foundInit = false
-                new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
-                    foundInit = true
-                }
-                return foundInit
+        if (this.forLoopFilter.evaluate(node)) {
+            switch (node.language) {
+                case SourceLanguage.Go:
+                case SourceLanguage.Php:
+                case SourceLanguage.Javascript:
+                    def foundInit = false
+                    new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
+                        foundInit = true
+                    }
+                    return foundInit
+                case SourceLanguage.Java:
+                    def foundInit = false
+                    new InternalRoleFilter("initializers").getFilteredNodes(node.children).each {
+                        foundInit = true
+                    }
+                    return foundInit
             }
             return true
         }

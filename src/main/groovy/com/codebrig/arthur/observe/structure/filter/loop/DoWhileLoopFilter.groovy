@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.loop
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by do while loop
@@ -12,14 +14,22 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
-    private static final Set<String> loopTypes = new HashSet<>()
-    static {
-        loopTypes.add("DoStatement") //java
-        loopTypes.add("DoWhileStatement") // javascript
+    private MultiFilter doWhileLoopFilter
+
+    DoWhileLoopFilter() {
+        super()
+        this.doWhileLoopFilter = createDoWhileLoopFilter()
+    }
+
+    private static createDoWhileLoopFilter() {
+        return MultiFilter.matchAll(
+                new RoleFilter("DO_WHILE"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in loopTypes
+        return this.doWhileLoopFilter.evaluate(node)
     }
 }

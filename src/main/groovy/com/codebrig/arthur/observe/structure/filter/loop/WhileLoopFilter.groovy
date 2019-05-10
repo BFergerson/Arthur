@@ -4,6 +4,8 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by while loop
@@ -14,11 +16,23 @@ import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
  */
 class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
 
-    private static final Set<String> loopTypes = new HashSet<>()
-    static {
-        loopTypes.add("While") //python
-        loopTypes.add("ForStmt") //go
-        loopTypes.add("WhileStatement") //java, javascript
+    private MultiFilter whileLoopFilter
+
+    WhileLoopFilter() {
+        super()
+        this.whileLoopFilter = createWhileLoopFilter()
+    }
+
+    private static createWhileLoopFilter() {
+        MultiFilter whileTokenFilter = MultiFilter.matchAll(
+                new RoleFilter("WHILE"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+        )
+        MultiFilter forTokenFilter = MultiFilter.matchAll(
+                new RoleFilter("FOR"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+        )
+        return MultiFilter.matchAny(whileTokenFilter, forTokenFilter)
     }
 
     @Override
@@ -26,7 +40,7 @@ class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
         if (node == null) {
             return false
         }
-        if (node.internalType in loopTypes) {
+        if (this.whileLoopFilter.evaluate(node)) {
             if (node.language == SourceLanguage.Go) {
                 def foundInit = false
                 new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
