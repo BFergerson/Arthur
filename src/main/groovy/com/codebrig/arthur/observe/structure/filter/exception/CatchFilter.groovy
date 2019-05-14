@@ -18,14 +18,14 @@ class CatchFilter extends StructureFilter<CatchFilter, Void> {
     private final MultiFilter filter
 
     CatchFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("CATCH")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
                     new RoleFilter("TRY", "CATCH", "STATEMENT"),

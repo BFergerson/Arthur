@@ -17,7 +17,7 @@ class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
     private final MultiFilter filter
 
     DoWhileLoopFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("DO_WHILE"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
@@ -25,6 +25,6 @@ class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

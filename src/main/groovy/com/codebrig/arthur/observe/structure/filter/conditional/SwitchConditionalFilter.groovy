@@ -17,7 +17,7 @@ class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, V
     private final MultiFilter filter
 
     SwitchConditionalFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("SWITCH"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
@@ -25,6 +25,6 @@ class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, V
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

@@ -17,7 +17,7 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
     private final MultiFilter filter
 
     IfConditionalFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT", "EXPRESSION"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY", "IDENTIFIER", "CONDITION")
         )
@@ -25,6 +25,6 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }
