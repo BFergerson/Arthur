@@ -1,10 +1,10 @@
 package com.codebrig.arthur.observe.structure.filter.exception
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by try in exception handling construct
@@ -15,38 +15,23 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class TryFilter extends StructureFilter<TryFilter, Void> {
 
-    private final MultiFilter tryFilter
+    private final MultiFilter filter
 
     TryFilter() {
-        super()
-        this.tryFilter = createTryFilter()
-    }
-
-    private static createTryFilter() {
-        return MultiFilter.matchAll(
+        this.filter = MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
-                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "FINALLY")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.tryFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Javascript) {
-                if (node.roles.find{ it.toString() == "CATCH" }) {
-                    return false
-                } else {
-                    return true
-                }
-            }
-            else if (node.language == SourceLanguage.Python) {
-                if (node.roles.find{ it.toString() == "FINALLY" }) {
-                    return false
-                } else {
-                    return true
-                }
-            }
+            def matched = MultiFilter.matchAll(
+                    new TypeFilter("TryExcept", "TryStatement")
+            ).getFilteredNodes(node)
+            return matched.hasNext()
         }
         return result
     }

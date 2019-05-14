@@ -1,6 +1,5 @@
 package com.codebrig.arthur.observe.structure.filter.loop
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
@@ -16,41 +15,26 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
 
-    private final MultiFilter whileLoopFilter
+    private final MultiFilter filter
 
     WhileLoopFilter() {
-        super()
-        this.whileLoopFilter = createWhileLoopFilter()
-    }
-
-    private static createWhileLoopFilter() {
-        MultiFilter whileTokenFilter = MultiFilter.matchAll(
-                new RoleFilter("WHILE"), new RoleFilter("STATEMENT"),
+        this.filter = MultiFilter.matchAll(
+                new RoleFilter("WHILE", "FOR"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
-        MultiFilter forTokenFilter = MultiFilter.matchAll(
-                new RoleFilter("FOR"), new RoleFilter("STATEMENT"),
-                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
-        )
-        return MultiFilter.matchAny(whileTokenFilter, forTokenFilter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node == null) {
-            return false
-        }
-        boolean result = this.whileLoopFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Go) {
-                def foundInit = false
-                new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
-                    foundInit = true
-                }
-                return !foundInit
+            def matched = MultiFilter.matchAll(
+                    new InternalRoleFilter("Init")
+            ).getFilteredNodes(node.children)
+            if (matched.hasNext()) {
+                return true
             }
-            return true
         }
-        return false
+        return result
     }
 }

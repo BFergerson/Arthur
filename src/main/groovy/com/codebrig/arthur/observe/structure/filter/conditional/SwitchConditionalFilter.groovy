@@ -14,15 +14,10 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, Void> {
 
-    private final MultiFilter switchConditionalFilter
+    private final MultiFilter filter
 
     SwitchConditionalFilter() {
-        super()
-        this.switchConditionalFilter = createSwitchConditionalFilter()
-    }
-
-    private static createSwitchConditionalFilter() {
-        return MultiFilter.matchAll(
+        this.filter = MultiFilter.matchAll(
                 new RoleFilter("SWITCH"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
@@ -30,6 +25,6 @@ class SwitchConditionalFilter extends StructureFilter<SwitchConditionalFilter, V
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.switchConditionalFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }

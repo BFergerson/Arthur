@@ -12,15 +12,10 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
 
-    private final MultiFilter functionFilter
+    private final MultiFilter filter
 
     FunctionFilter() {
-        super()
-        this.functionFilter = createFunctionFilter()
-    }
-
-    private static createFunctionFilter() {
-        return MultiFilter.matchAll(
+        this.filter = MultiFilter.matchAll(
                 new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
                 new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
         )
@@ -28,6 +23,6 @@ class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return functionFilter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

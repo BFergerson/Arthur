@@ -14,27 +14,17 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalFilter, Void> {
 
-    private final MultiFilter switchCaseConditionalFilter
+    private final MultiFilter filter
 
     SwitchCaseConditionalFilter() {
-        super()
-        this.switchCaseConditionalFilter = createSwitchCaseConditionalFilter()
-    }
-
-    private static createSwitchCaseConditionalFilter() {
-        MultiFilter switchStatementFilter = MultiFilter.matchAll(
-                new RoleFilter("SWITCH"), new RoleFilter("CASE"),
+        this.filter = MultiFilter.matchAll(
+                new RoleFilter("CASE"), new RoleFilter("SWITCH", "STATEMENT"),
                 new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY")
         )
-        MultiFilter switchClauseFilter = MultiFilter.matchAll(
-                new RoleFilter("CASE"), new RoleFilter("STATEMENT"),
-                new RoleFilter().reject("BODY")
-        )
-        return MultiFilter.matchAny(switchStatementFilter, switchClauseFilter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.switchCaseConditionalFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }

@@ -1,6 +1,5 @@
 package com.codebrig.arthur.observe.structure.filter.conditional
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
@@ -18,65 +17,32 @@ import com.google.common.collect.Sets
  */
 class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, Void> {
 
-    private final MultiFilter elseIfConditionalFilter
+    private final MultiFilter filter
 
     private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseIfConditionalFilter() {
-        super()
-        this.elseIfConditionalFilter = createElseIfConditionalFilter()
-    }
-
-    private static createElseIfConditionalFilter() {
-        MultiFilter elseIfStatementFilter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("STATEMENT")
-        )
-        MultiFilter elseIfExpressionFilter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("EXPRESSION")
-        )
-        return MultiFilter.matchAny(elseIfStatementFilter, elseIfExpressionFilter)
+        this.filter = MultiFilter.matchAll(new RoleFilter("IF"), new RoleFilter("STATEMENT", "EXPRESSION"))
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node == null) {
-            return false
-        }
-        boolean result = this.elseIfConditionalFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Python) {
+            MultiFilter.matchAll(
+                    new InternalRoleFilter("elseStatement", "alternate", "Else"),
+                    new TypeFilter("If", "IfStatement", "IfStmt")
+            ).getFilteredNodes(node.children).each {
+                elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+            }
+            MultiFilter.matchAll(
+                    new InternalRoleFilter("orelse"),
+                    new TypeFilter("If.orelse")
+            ).getFilteredNodes(node.children).each {
                 MultiFilter.matchAll(
-                        new InternalRoleFilter("orelse"),
-                        new TypeFilter("If.orelse")
-                ).getFilteredNodes(node.children).each {
-                    MultiFilter.matchAll(
-                            new InternalRoleFilter("else_stmts"),
-                            new TypeFilter("If")
-                    ).getFilteredNodes(it.children).each {
-                        new TypeFilter("If.body").getFilteredNodes(it.children).each {
-                            elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                        }
-                    }
-                }
-            } else if (node.language == SourceLanguage.Java) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("elseStatement"),
-                        new TypeFilter("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Javascript) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("alternate"),
-                        new TypeFilter("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Go) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("Else"),
-                        new TypeFilter("IfStmt")
-                ).getFilteredNodes(node.children).each {
+                        new InternalRoleFilter("else_stmts"),
+                        new TypeFilter("If")
+                ).getFilteredNodes(it.children).each {
                     elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             }

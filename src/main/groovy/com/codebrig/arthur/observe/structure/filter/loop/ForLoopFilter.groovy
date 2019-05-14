@@ -1,6 +1,5 @@
 package com.codebrig.arthur.observe.structure.filter.loop
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
@@ -16,42 +15,26 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
 
-    private final MultiFilter forLoopFilter
+    private final MultiFilter filter
 
     ForLoopFilter() {
-        super()
-        this.forLoopFilter = createForLoopFilter()
-    }
-
-    private static MultiFilter createForLoopFilter() {
-        return MultiFilter.matchAll(new RoleFilter("FOR"), new RoleFilter("STATEMENT"))
+        this.filter = MultiFilter.matchAll(
+                new RoleFilter("FOR"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "DECLARATION", "INCREMENT", "UNARY", "UPDATE")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node == null) {
-            return false
-        }
-        boolean result = this.forLoopFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            switch (node.language) {
-                case SourceLanguage.Go:
-                case SourceLanguage.Php:
-                case SourceLanguage.Javascript:
-                    def foundInit = false
-                    new InternalRoleFilter("Init").getFilteredNodes(node.children).each {
-                        foundInit = true
-                    }
-                    return foundInit
-                case SourceLanguage.Java:
-                    def foundInit = false
-                    new InternalRoleFilter("initializers").getFilteredNodes(node.children).each {
-                        foundInit = true
-                    }
-                    return foundInit
+            def matched = MultiFilter.matchAll(
+                    new InternalRoleFilter("Init", "initializers")
+            ).getFilteredNodes(node.children)
+            if (matched.hasNext()) {
+                return true
             }
-            return true
         }
-        return false
+        return result
     }
 }

@@ -14,25 +14,20 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void> {
 
-    private final MultiFilter ternaryOperatorFilter
+    private final MultiFilter filter
 
     TernaryOperatorFilter() {
-        super()
-        this.ternaryOperatorFilter = createTernaryOperatorFilter()
-    }
-
-    private static createTernaryOperatorFilter() {
         MultiFilter ternaryToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("EXPRESSION"), new RoleFilter("ASSIGNMENT"),
                 new RoleFilter("BINARY"), new RoleFilter("RIGHT")
         )
         MultiFilter ternaryToken2Filter = MultiFilter.matchAll(ternaryToken1Filter, new RoleFilter("CONDITION")
         )
-        return MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
+        this.filter = MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.ternaryOperatorFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }

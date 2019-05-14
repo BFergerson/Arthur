@@ -14,15 +14,10 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
-    private final MultiFilter doWhileLoopFilter
+    private final MultiFilter filter
 
     DoWhileLoopFilter() {
-        super()
-        this.doWhileLoopFilter = createDoWhileLoopFilter()
-    }
-
-    private static createDoWhileLoopFilter() {
-        return MultiFilter.matchAll(
+        this.filter = MultiFilter.matchAll(
                 new RoleFilter("DO_WHILE"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
@@ -30,6 +25,6 @@ class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.doWhileLoopFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }

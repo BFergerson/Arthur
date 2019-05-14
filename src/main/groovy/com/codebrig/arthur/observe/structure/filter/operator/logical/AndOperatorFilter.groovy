@@ -14,28 +14,21 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
 
-    private final MultiFilter andOperatorFilter
+    private final MultiFilter filter
 
     AndOperatorFilter() {
-        super()
-        this.andOperatorFilter = createAndOperatorFilter()
-    }
-
-    private static createAndOperatorFilter() {
-        MultiFilter andToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
-                new RoleFilter().reject("IF", "CONDITION")
-        )
-        MultiFilter andToken2Filter = MultiFilter.matchAll(
+        def andToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter().reject("IF", "CONDITION")
         )
-        return MultiFilter.matchAny(andToken1Filter, andToken2Filter)
+        def andToken2Filter = MultiFilter.matchAll(
+                andToken1Filter, new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        )
+        this.filter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.andOperatorFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }

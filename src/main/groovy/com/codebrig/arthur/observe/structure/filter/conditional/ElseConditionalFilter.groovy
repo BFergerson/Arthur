@@ -1,6 +1,5 @@
 package com.codebrig.arthur.observe.structure.filter.conditional
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
@@ -18,65 +17,23 @@ import com.google.common.collect.Sets
  */
 class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void> {
 
-    private final MultiFilter elseConditionalFilter
+    private final MultiFilter filter
 
     private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseConditionalFilter() {
-        super()
-        this.elseConditionalFilter = createElseConditionalFilter()
-    }
-
-    private static createElseConditionalFilter() {
-        MultiFilter elseStatementFilter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("STATEMENT")
-        )
-        MultiFilter elseExpressionFilter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("EXPRESSION")
-        )
-        return MultiFilter.matchAny(elseStatementFilter, elseExpressionFilter)
+        this.filter = MultiFilter.matchAll(new RoleFilter("IF"), new RoleFilter("STATEMENT", "EXPRESSION"))
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node == null) {
-            return false
-        }
-        boolean result = this.elseConditionalFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Python) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("orelse"),
-                        new TypeFilter("If.orelse")
-                ).getFilteredNodes(node.children).each {
-                    MultiFilter.matchAll(
-                            new InternalRoleFilter("else_stmts"),
-                            new TypeFilter().reject("If")
-                    ).getFilteredNodes(it.children).each {
-                        elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                    }
-                }
-            } else if (node.language == SourceLanguage.Java) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("elseStatement"),
-                        new TypeFilter().reject("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Javascript) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("alternate"),
-                        new TypeFilter().reject("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Go) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("Else"),
-                        new TypeFilter().reject("IfStmt")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
+            MultiFilter.matchAll(
+                    new InternalRoleFilter("orelse", "elseStatement", "alternate", "Else"),
+                    new TypeFilter().reject("If", "IfStmt", "IfStatement")
+            ).getFilteredNodes(node.children).each {
+                elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }
         }
 

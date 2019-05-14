@@ -14,15 +14,10 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
 
-    private final MultiFilter forEachLoopFilter
+    private final MultiFilter filter
 
     ForEachLoopFilter() {
-        super()
-        this.forEachLoopFilter = createForEachLoopFilter()
-    }
-
-    private static MultiFilter createForEachLoopFilter() {
-        return MultiFilter.matchAll(
+        this.filter = MultiFilter.matchAll(
                 new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
                 new RoleFilter().reject("DECLARATION", "VARIABLE")
         )
@@ -30,6 +25,6 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.forEachLoopFilter.evaluate(node)
+        return this.filter.evaluate(node)
     }
 }
