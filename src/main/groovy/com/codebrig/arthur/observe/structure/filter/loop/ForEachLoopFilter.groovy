@@ -17,7 +17,7 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
     private final MultiFilter filter
 
     ForEachLoopFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
                 new RoleFilter().reject("DECLARATION", "VARIABLE")
         )
@@ -25,6 +25,6 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

@@ -18,7 +18,7 @@ class FinallyFilter extends StructureFilter<FinallyFilter, Void> {
     private final MultiFilter filter
 
     FinallyFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("CATCH")
         )
@@ -26,7 +26,7 @@ class FinallyFilter extends StructureFilter<FinallyFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
                     new InternalRoleFilter("finally", "finalizer", "finalbody")

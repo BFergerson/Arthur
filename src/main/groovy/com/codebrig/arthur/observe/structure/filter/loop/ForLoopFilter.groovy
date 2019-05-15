@@ -18,7 +18,7 @@ class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
     private final MultiFilter filter
 
     ForLoopFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("FOR"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "DECLARATION", "INCREMENT", "UNARY", "UPDATE")
         )
@@ -26,7 +26,7 @@ class ForLoopFilter extends StructureFilter<ForLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
                     new InternalRoleFilter("Init", "initializers")

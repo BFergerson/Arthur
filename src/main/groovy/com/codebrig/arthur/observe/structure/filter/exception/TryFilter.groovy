@@ -18,7 +18,7 @@ class TryFilter extends StructureFilter<TryFilter, Void> {
     private final MultiFilter filter
 
     TryFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "FINALLY")
         )
@@ -26,7 +26,7 @@ class TryFilter extends StructureFilter<TryFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
                     new TypeFilter("TryExcept", "TryStatement")

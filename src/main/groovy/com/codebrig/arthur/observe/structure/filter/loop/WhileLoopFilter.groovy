@@ -18,7 +18,7 @@ class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
     private final MultiFilter filter
 
     WhileLoopFilter() {
-        this.filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("WHILE", "FOR"), new RoleFilter("STATEMENT"),
                 new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
         )
@@ -26,7 +26,7 @@ class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
                     new InternalRoleFilter("Init")
