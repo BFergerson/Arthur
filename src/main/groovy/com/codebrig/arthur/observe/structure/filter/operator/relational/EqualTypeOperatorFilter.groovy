@@ -1,10 +1,11 @@
 package com.codebrig.arthur.observe.structure.filter.operator.relational
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.google.common.collect.Sets
 
 /**
  * Match by equal type operator
@@ -15,14 +16,11 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, Void> {
 
-    private final MultiFilter equalTypeOperatorFilter
+    private final MultiFilter filter
+
+    private final Set<Integer> equalTypeNodeIdentities = Sets.newConcurrentHashSet()
 
     EqualTypeOperatorFilter() {
-        super()
-        this.equalTypeOperatorFilter = createEqualTypeOperatorFilter()
-    }
-
-    private static createEqualTypeOperatorFilter() {
         MultiFilter equalTypeToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
@@ -30,18 +28,24 @@ class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, V
         MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(equalTypeToken1Filter,
                 new RoleFilter("IF"), new RoleFilter("CONDITION")
         )
-        return MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
+        this.filter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.equalTypeOperatorFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Php) {
-                return true
-            } else {
-                return node.token == "==="
+            MultiFilter.matchAll(
+                    new TypeFilter("Expr_BinaryOp_Identical", "Operator")
+            ).getFilteredNodes(node).each {
+                equalTypeNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }
+        }
+
+        int nodeIdentity = System.identityHashCode(node.underlyingNode)
+        if (equalTypeNodeIdentities.contains(nodeIdentity)) {
+            equalTypeNodeIdentities.remove(nodeIdentity)
+            return true
         }
         return false
     }

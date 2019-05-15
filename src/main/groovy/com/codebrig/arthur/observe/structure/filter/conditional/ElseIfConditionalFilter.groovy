@@ -19,7 +19,7 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
 
     private final MultiFilter filter
 
-    private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
+    private final Set<Integer> elseIfNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseIfConditionalFilter() {
         this.filter = MultiFilter.matchAll(new RoleFilter("IF"), new RoleFilter("STATEMENT", "EXPRESSION"))
@@ -33,7 +33,7 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
                     new InternalRoleFilter("elseStatement", "alternate", "Else"),
                     new TypeFilter("If", "IfStatement", "IfStmt")
             ).getFilteredNodes(node.children).each {
-                elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }
             MultiFilter.matchAll(
                     new InternalRoleFilter("orelse"),
@@ -43,14 +43,14 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
                         new InternalRoleFilter("else_stmts"),
                         new TypeFilter("If")
                 ).getFilteredNodes(it.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                    elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             }
         }
 
         int nodeIdentity = System.identityHashCode(node.underlyingNode)
-        if (elseNodeIdentities.contains(nodeIdentity)) {
-            elseNodeIdentities.remove(nodeIdentity)
+        if (elseIfNodeIdentities.contains(nodeIdentity)) {
+            elseIfNodeIdentities.remove(nodeIdentity)
             return true
         }
         return false

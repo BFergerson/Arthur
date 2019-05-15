@@ -1,10 +1,11 @@
 package com.codebrig.arthur.observe.structure.filter.operator.relational
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.google.common.collect.Sets
 
 /**
  * Match by not equal type operator
@@ -15,14 +16,11 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  */
 class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFilter, Void> {
 
-    private final MultiFilter notEqualTypeOperatorFilter
+    private final MultiFilter filter
+
+    private final Set<Integer> notEqualTypeNodeIdentities = Sets.newConcurrentHashSet()
 
     NotEqualTypeOperatorFilter() {
-        super()
-        this.notEqualTypeOperatorFilter = createNotEqualTypeOperatorFilter()
-    }
-
-    private static createNotEqualTypeOperatorFilter() {
         MultiFilter notEqualTypeToken1Filter = MultiFilter.matchAll(
                 new RoleFilter("NOT"), new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
                 new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
@@ -30,18 +28,24 @@ class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFil
         MultiFilter notEqualTypeToken2Filter = MultiFilter.matchAll(notEqualTypeToken1Filter,
                 new RoleFilter("IF"), new RoleFilter("CONDITION")
         )
-        return MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
+        this.filter = MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.notEqualTypeOperatorFilter.evaluate(node)
+        boolean result = this.filter.evaluate(node)
         if (result) {
-            if (node.language == SourceLanguage.Php) {
-                return true
-            } else {
-                return node.token == "!=="
+            MultiFilter.matchAll(
+                    new TypeFilter("Expr_BinaryOp_NotIdentical", "Operator")
+            ).getFilteredNodes(node).each {
+                notEqualTypeNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }
+        }
+
+        int nodeIdentity = System.identityHashCode(node.underlyingNode)
+        if (notEqualTypeNodeIdentities.contains(nodeIdentity)) {
+            notEqualTypeNodeIdentities.remove(nodeIdentity)
+            return true
         }
         return false
     }
