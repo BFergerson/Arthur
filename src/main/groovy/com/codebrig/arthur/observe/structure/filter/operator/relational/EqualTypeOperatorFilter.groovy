@@ -21,14 +21,11 @@ class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, V
     private final Set<Integer> equalTypeNodeIdentities = Sets.newConcurrentHashSet()
 
     EqualTypeOperatorFilter() {
-        MultiFilter equalTypeToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+        filter = MultiFilter.matchAll(
+                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"),
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"),
+                new RoleFilter("BINARY")
         )
-        MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(equalTypeToken1Filter,
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        filter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
     }
 
     @Override

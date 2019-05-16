@@ -17,14 +17,10 @@ class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
     private final MultiFilter filter
 
     OrOperatorFilter() {
-        def orToken1Filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("OR"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter().reject("IF", "CONDITION")
         )
-        def orToken2Filter = MultiFilter.matchAll(
-                orToken1Filter, new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
-        )
-        filter = MultiFilter.matchAny(orToken1Filter, orToken2Filter)
     }
 
     @Override

@@ -21,16 +21,10 @@ class NotEqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> 
     private final Set<Integer> notEqualNodeIdentities = Sets.newConcurrentHashSet()
 
     NotEqualOperatorFilter() {
-        MultiFilter notEqualToken1Filter = MultiFilter.matchAll(
-                new RoleFilter("NOT"), new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL")
+        filter = MultiFilter.matchAll(
+                new RoleFilter("NOT"), new RoleFilter("EQUAL"),
+                new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL")
         )
-        MultiFilter notEqualToken2Filter = MultiFilter.matchAll(notEqualToken1Filter,
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
-        )
-        MultiFilter notEqualToken3Filter = MultiFilter.matchAll(notEqualToken2Filter,
-                new RoleFilter("IF"), new RoleFilter("CONDITION")
-        )
-        filter = MultiFilter.matchAny(notEqualToken1Filter, notEqualToken2Filter, notEqualToken3Filter)
     }
 
     @Override

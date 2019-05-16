@@ -17,14 +17,10 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
     private final MultiFilter filter
 
     AndOperatorFilter() {
-        def andToken1Filter = MultiFilter.matchAll(
+        filter = MultiFilter.matchAll(
                 new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
                 new RoleFilter().reject("IF", "CONDITION")
         )
-        def andToken2Filter = MultiFilter.matchAll(
-                andToken1Filter, new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
-        )
-        filter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
     }
 
     @Override
