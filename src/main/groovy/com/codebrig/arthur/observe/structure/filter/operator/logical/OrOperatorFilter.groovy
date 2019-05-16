@@ -24,11 +24,11 @@ class OrOperatorFilter extends StructureFilter<OrOperatorFilter, Void> {
         def orToken2Filter = MultiFilter.matchAll(
                 orToken1Filter, new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
         )
-        this.filter = MultiFilter.matchAny(orToken1Filter, orToken2Filter)
+        filter = MultiFilter.matchAny(orToken1Filter, orToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

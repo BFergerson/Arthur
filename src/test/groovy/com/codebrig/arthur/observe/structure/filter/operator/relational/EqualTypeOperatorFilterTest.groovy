@@ -22,7 +22,7 @@ class EqualTypeOperatorFilterTest extends ArthurTest {
         assertEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
-    private static void assertEqualTypeOperatorPresent(File file) {
+    private void assertEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

@@ -28,12 +28,12 @@ class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFil
         MultiFilter notEqualTypeToken2Filter = MultiFilter.matchAll(notEqualTypeToken1Filter,
                 new RoleFilter("IF"), new RoleFilter("CONDITION")
         )
-        this.filter = MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
+        filter = MultiFilter.matchAny(notEqualTypeToken1Filter, notEqualTypeToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             MultiFilter.matchAll(
                     new TypeFilter("Expr_BinaryOp_NotIdentical", "Operator")

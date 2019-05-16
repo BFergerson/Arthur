@@ -24,11 +24,11 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
         def andToken2Filter = MultiFilter.matchAll(
                 andToken1Filter, new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
         )
-        this.filter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
+        filter = MultiFilter.matchAny(andToken1Filter, andToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

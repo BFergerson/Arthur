@@ -28,12 +28,12 @@ class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, V
         MultiFilter equalTypeToken2Filter = MultiFilter.matchAll(equalTypeToken1Filter,
                 new RoleFilter("IF"), new RoleFilter("CONDITION")
         )
-        this.filter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
+        filter = MultiFilter.matchAny(equalTypeToken1Filter, equalTypeToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             MultiFilter.matchAll(
                     new TypeFilter("Expr_BinaryOp_Identical", "Operator")

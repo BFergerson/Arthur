@@ -23,11 +23,11 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
         )
         MultiFilter ternaryToken2Filter = MultiFilter.matchAll(ternaryToken1Filter, new RoleFilter("CONDITION")
         )
-        this.filter = MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
+        filter = MultiFilter.matchAny(ternaryToken1Filter, ternaryToken2Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return this.filter.evaluate(node)
+        return filter.evaluate(node)
     }
 }

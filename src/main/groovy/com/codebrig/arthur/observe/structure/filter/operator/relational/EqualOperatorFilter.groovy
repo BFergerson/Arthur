@@ -30,12 +30,12 @@ class EqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
         MultiFilter equalToken3Filter = MultiFilter.matchAll(equalToken1Filter, equalToken2Filter,
                 new RoleFilter("IF"), new RoleFilter("CONDITION")
         )
-        this.filter = MultiFilter.matchAny(equalToken1Filter, equalToken2Filter, equalToken3Filter)
+        filter = MultiFilter.matchAny(equalToken1Filter, equalToken2Filter, equalToken3Filter)
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = this.filter.evaluate(node)
+        boolean result = filter.evaluate(node)
         if (result) {
             MultiFilter.matchAll(
                     new TypeFilter("Eq", "Expr_BinaryOp_Equal", "Operator")
