@@ -5,7 +5,6 @@ import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.google.common.collect.Sets
 
 /**
  * Match by not equal type operator
@@ -18,32 +17,17 @@ class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFil
 
     private final MultiFilter filter
 
-    private final Set<Integer> notEqualTypeNodeIdentities = Sets.newConcurrentHashSet()
-
     NotEqualTypeOperatorFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("NOT"), new RoleFilter("IDENTICAL"),
                 new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY")
+                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new TypeFilter().reject("InfixExpression", "BinaryExpression")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = filter.evaluate(node)
-        if (result) {
-            MultiFilter.matchAll(
-                    new TypeFilter("Expr_BinaryOp_NotIdentical", "Operator")
-            ).getFilteredNodes(node).each {
-                notEqualTypeNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-            }
-        }
-
-        int nodeIdentity = System.identityHashCode(node.underlyingNode)
-        if (notEqualTypeNodeIdentities.contains(nodeIdentity)) {
-            notEqualTypeNodeIdentities.remove(nodeIdentity)
-            return true
-        }
-        return false
+        return filter.evaluate(node)
     }
 }

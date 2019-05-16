@@ -5,7 +5,6 @@ import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.google.common.collect.Sets
 
 /**
  * Match by equal operator
@@ -18,31 +17,16 @@ class EqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
 
     private final MultiFilter filter
 
-    private final Set<Integer> equalNodeIdentities = Sets.newConcurrentHashSet()
-
     EqualOperatorFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"),
-                new RoleFilter("RELATIONAL")
+                new RoleFilter("RELATIONAL"),
+                new TypeFilter().reject("InfixExpression", "BinaryExpression")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = filter.evaluate(node)
-        if (result) {
-            MultiFilter.matchAll(
-                    new TypeFilter("Eq", "Expr_BinaryOp_Equal", "Operator")
-            ).getFilteredNodes(node).each {
-                equalNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-            }
-        }
-
-        int nodeIdentity = System.identityHashCode(node.underlyingNode)
-        if (equalNodeIdentities.contains(nodeIdentity)) {
-            equalNodeIdentities.remove(nodeIdentity)
-            return true
-        }
-        return false
+        return filter.evaluate(node)
     }
 }
