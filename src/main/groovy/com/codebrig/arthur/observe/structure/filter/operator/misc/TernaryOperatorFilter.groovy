@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.filter.operator.misc
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
 /**
  * Match by ternary operator
@@ -12,13 +14,18 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("ConditionalExpression") //java, javascript
+    private final MultiFilter filter
+
+    TernaryOperatorFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
+                new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
+                new RoleFilter("RIGHT")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in operatorTypes
+        return filter.evaluate(node)
     }
 }

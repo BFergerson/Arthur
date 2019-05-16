@@ -2,6 +2,9 @@ package com.codebrig.arthur.observe.structure.filter.exception
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by catch in exception handling construct
@@ -12,14 +15,24 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class CatchFilter extends StructureFilter<CatchFilter, Void> {
 
-    private static final Set<String> exceptionTypes = new HashSet<>()
-    static {
-        exceptionTypes.add("ExceptHandler") //python
-        exceptionTypes.add("CatchClause") //java, javascript
+    private final MultiFilter filter
+
+    CatchFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("TRY"), new RoleFilter("CATCH")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in exceptionTypes
+        boolean result = filter.evaluate(node)
+        if (result) {
+            def matched = MultiFilter.matchAll(
+                    new RoleFilter("TRY", "CATCH", "STATEMENT"),
+                    new TypeFilter("TryExcept")
+            ).getFilteredNodes(node)
+            return !matched.hasNext()
+        }
+        return result
     }
 }

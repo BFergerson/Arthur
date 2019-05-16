@@ -1,10 +1,10 @@
 package com.codebrig.arthur.observe.structure.filter.conditional
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import com.google.common.collect.Sets
 
@@ -17,61 +17,43 @@ import com.google.common.collect.Sets
  */
 class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, Void> {
 
-    private static final Set<String> conditionalTypes = new HashSet<>()
-    static {
-        conditionalTypes.add("If") //python
-        conditionalTypes.add("IfStmt") //go
-        conditionalTypes.add("IfStatement") //java, javascript
+    private final MultiFilter filter
+
+    private final Set<Integer> elseIfNodeIdentities = Sets.newConcurrentHashSet()
+
+    ElseIfConditionalFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("IF"),
+                new RoleFilter("STATEMENT", "EXPRESSION")
+        )
     }
-    private final Set<Integer> elseNodeIdentities = Sets.newConcurrentHashSet()
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node == null) {
-            return false
-        }
-        if (node.internalType in conditionalTypes) {
-            if (node.language == SourceLanguage.Python) {
+        boolean result = filter.evaluate(node)
+        if (result) {
+            MultiFilter.matchAll(
+                    new InternalRoleFilter("elseStatement", "alternate", "Else"),
+                    new TypeFilter("If", "IfStatement", "IfStmt")
+            ).getFilteredNodes(node.children).each {
+                elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+            }
+            MultiFilter.matchAll(
+                    new InternalRoleFilter("orelse"),
+                    new TypeFilter("If.orelse")
+            ).getFilteredNodes(node.children).each {
                 MultiFilter.matchAll(
-                        new InternalRoleFilter("orelse"),
-                        new TypeFilter("If.orelse")
-                ).getFilteredNodes(node.children).each {
-                    MultiFilter.matchAll(
-                            new InternalRoleFilter("else_stmts"),
-                            new TypeFilter("If")
-                    ).getFilteredNodes(it.children).each {
-                        new TypeFilter("If.body").getFilteredNodes(it.children).each {
-                            elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                        }
-                    }
-                }
-            } else if (node.language == SourceLanguage.Java) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("elseStatement"),
-                        new TypeFilter("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Javascript) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("alternate"),
-                        new TypeFilter("IfStatement")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
-                }
-            } else if (node.language == SourceLanguage.Go) {
-                MultiFilter.matchAll(
-                        new InternalRoleFilter("Else"),
-                        new TypeFilter("IfStmt")
-                ).getFilteredNodes(node.children).each {
-                    elseNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                        new InternalRoleFilter("else_stmts"),
+                        new TypeFilter("If")
+                ).getFilteredNodes(it.children).each {
+                    elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             }
         }
 
         int nodeIdentity = System.identityHashCode(node.underlyingNode)
-        if (elseNodeIdentities.contains(nodeIdentity)) {
-            elseNodeIdentities.remove(nodeIdentity)
+        if (elseIfNodeIdentities.contains(nodeIdentity)) {
+            elseIfNodeIdentities.remove(nodeIdentity)
             return true
         }
         return false

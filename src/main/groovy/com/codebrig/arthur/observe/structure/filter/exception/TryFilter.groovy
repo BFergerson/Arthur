@@ -2,6 +2,9 @@ package com.codebrig.arthur.observe.structure.filter.exception
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by try in exception handling construct
@@ -12,14 +15,24 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class TryFilter extends StructureFilter<TryFilter, Void> {
 
-    private static final Set<String> exceptionTypes = new HashSet<>()
-    static {
-        exceptionTypes.add("TryExcept") //python
-        exceptionTypes.add("TryStatement") //java, javascript
+    private final MultiFilter filter
+
+    TryFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("TRY"), new RoleFilter("STATEMENT"),
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "FINALLY")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in exceptionTypes
+        boolean result = filter.evaluate(node)
+        if (result) {
+            def matched = MultiFilter.matchAll(
+                    new TypeFilter("TryExcept", "TryStatement")
+            ).getFilteredNodes(node)
+            return matched.hasNext()
+        }
+        return result
     }
 }

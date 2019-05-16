@@ -1,8 +1,10 @@
 package com.codebrig.arthur.observe.structure.filter.operator.relational
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by not equal operator
@@ -13,22 +15,18 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class NotEqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("NotEq") //python
-        operatorTypes.add("Operator") //go, java, javascript
-        operatorTypes.add("Expr_BinaryOp_NotEqual") //php
+    private final MultiFilter filter
+
+    NotEqualOperatorFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("NOT"), new RoleFilter("EQUAL"),
+                new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
+                new TypeFilter().reject("InfixExpression", "BinaryExpression")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null && node.internalType in operatorTypes) {
-            if (node.language == SourceLanguage.Php) {
-                return true
-            } else {
-                return node.token == "!="
-            }
-        }
-        return false
+        return filter.evaluate(node)
     }
 }

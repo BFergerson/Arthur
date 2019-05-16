@@ -1,8 +1,10 @@
 package com.codebrig.arthur.observe.structure.filter.operator.relational
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by equal type operator
@@ -13,21 +15,19 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class EqualTypeOperatorFilter extends StructureFilter<EqualTypeOperatorFilter, Void> {
 
-    private static final Set<String> operatorTypes = new HashSet<>()
-    static {
-        operatorTypes.add("Operator") //javascript
-        operatorTypes.add("Expr_BinaryOp_Identical") //php
+    private final MultiFilter filter
+
+    EqualTypeOperatorFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"),
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"),
+                new RoleFilter("BINARY"),
+                new TypeFilter().reject("InfixExpression", "BinaryExpression")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null && node.internalType in operatorTypes) {
-            if (node.language == SourceLanguage.Php) {
-                return true
-            } else {
-                return node.token == "==="
-            }
-        }
-        return false
+        return filter.evaluate(node)
     }
 }

@@ -12,18 +12,17 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  */
 class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
 
-    private static final Set<String> functionTypes = new HashSet<>()
-    static {
-        functionTypes.add("def") //ruby
-        functionTypes.add("FuncDecl") //go
-        functionTypes.add("MethodDeclaration") //java
-        functionTypes.add("FunctionDeclaration") //js
-        functionTypes.add("Stmt_Function") //php
-        functionTypes.add("FunctionDef") //python
+    private final MultiFilter filter
+
+    FunctionFilter() {
+        filter = MultiFilter.matchAll(
+                new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
+                new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
+        )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.internalType in functionTypes
+        return filter.evaluate(node)
     }
 }
