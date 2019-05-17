@@ -14,123 +14,41 @@ class TryFilterTest extends ArthurTest {
 
     @Test
     void tryCatch_Java() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundTry = false
-        def foundCatch = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatch")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Exceptions.tryCatch()", it.name)
-
-            new TryFilter().getFilteredNodes(it).each {
-                assertFalse(foundTry)
-                foundTry = true
-            }
-            new CatchFilter().getFilteredNodes(it).each {
-                assertFalse(foundCatch)
-                foundCatch = true
-            }
-        }
-        assertTrue(foundTry)
-        assertTrue(foundCatch)
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.java"),
+                "Exceptions.")
     }
 
     @Test
     void tryCatchFinally_Java() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundTry = false
-        def foundCatch = false
-        def foundFinally = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatchFinally")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Exceptions.tryCatchFinally()", it.name)
-
-            new TryFilter().getFilteredNodes(it).each {
-                assertFalse(foundTry)
-                foundTry = true
-            }
-            new CatchFilter().getFilteredNodes(it).each {
-                assertFalse(foundCatch)
-                foundCatch = true
-            }
-            new FinallyFilter().getFilteredNodes(it).each {
-                assertFalse(foundFinally)
-                foundFinally = true
-            }
-        }
-        assertTrue(foundTry)
-        assertTrue(foundCatch)
-        assertTrue(foundFinally)
+        assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.java"),
+                "Exceptions.")
     }
 
     @Test
     void tryCatch_Javascript() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundTry = false
-        def foundCatch = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatch")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("tryCatch()", it.name)
-
-            new TryFilter().getFilteredNodes(it).each {
-                assertFalse(foundTry)
-                foundTry = true
-            }
-            new CatchFilter().getFilteredNodes(it).each {
-                assertFalse(foundCatch)
-                foundCatch = true
-            }
-        }
-        assertTrue(foundTry)
-        assertTrue(foundCatch)
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.js"))
     }
 
     @Test
     void tryCatchFinally_Javascript() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundTry = false
-        def foundCatch = false
-        def foundFinally = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatchFinally")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("tryCatchFinally()", it.name)
-
-            new TryFilter().getFilteredNodes(it).each {
-                assertFalse(foundTry)
-                foundTry = true
-            }
-            new CatchFilter().getFilteredNodes(it).each {
-                assertFalse(foundCatch)
-                foundCatch = true
-            }
-            new FinallyFilter().getFilteredNodes(it).each {
-                assertFalse(foundFinally)
-                foundFinally = true
-            }
-        }
-        assertTrue(foundTry)
-        assertTrue(foundCatch)
-        assertTrue(foundFinally)
+        assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.js"))
     }
 
     @Test
     void tryCatch_Python() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.py")
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.py"))
+    }
+
+    @Test
+    void tryCatchFinally_Python() {
+        assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.py"))
+    }
+
+    private static void assertTryCatchPresent(File file) {
+        assertTryCatchPresent(file, "")
+    }
+
+    private static void assertTryCatchPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -139,7 +57,7 @@ class TryFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("tryCatch")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("tryCatch()", it.name)
+            assertEquals(qualifiedName + "tryCatch()", it.name)
 
             new TryFilter().getFilteredNodes(it).each {
                 assertFalse(foundTry)
@@ -154,9 +72,11 @@ class TryFilterTest extends ArthurTest {
         assertTrue(foundCatch)
     }
 
-    @Test
-    void tryCatchFinally_Python() {
-        def file = new File("src/test/resources/same/exceptions/Exceptions.py")
+    private static void assertTryCatchFinallyPresent(File file) {
+        assertTryCatchFinallyPresent(file, "")
+    }
+
+    private static void assertTryCatchFinallyPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -166,7 +86,7 @@ class TryFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("tryCatchFinally")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("tryCatchFinally()", it.name)
+            assertEquals(qualifiedName + "tryCatchFinally()", it.name)
 
             new TryFilter().getFilteredNodes(it).each {
                 assertFalse(foundTry)
