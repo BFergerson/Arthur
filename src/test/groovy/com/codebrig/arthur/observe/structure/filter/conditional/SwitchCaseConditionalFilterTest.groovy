@@ -14,47 +14,25 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
 
     @Test
     void switchCaseConditional_Go() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundSwitchCaseConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchCaseConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("switchCaseConditional()", it.name)
-
-            new SwitchCaseConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundSwitchCaseConditional)
-                foundSwitchCaseConditional = true
-            }
-        }
-        assertTrue(foundSwitchCaseConditional)
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.go"))
     }
 
     @Test
     void switchCaseConditional_Java() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundSwitchCaseConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchCaseConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Conditionals.switchCaseConditional()", it.name)
-
-            new SwitchCaseConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundSwitchCaseConditional)
-                foundSwitchCaseConditional = true
-            }
-        }
-        assertTrue(foundSwitchCaseConditional)
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.java"),
+                "Conditionals.")
     }
 
     @Test
     void switchCaseConditional_Javascript() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.js")
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
+    }
+
+    private static void assertSwitchCaseConditionalPresent(File file) {
+        assertSwitchCaseConditionalPresent(file, "")
+    }
+
+    private static void assertSwitchCaseConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -62,7 +40,7 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("switchCaseConditional")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("switchCaseConditional()", it.name)
+            assertEquals(qualifiedName + "switchCaseConditional()", it.name)
 
             new SwitchCaseConditionalFilter().getFilteredNodes(it).each {
                 assertFalse(foundSwitchCaseConditional)

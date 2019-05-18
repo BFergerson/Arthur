@@ -14,27 +14,19 @@ class DoWhileLoopFilterTest extends ArthurTest {
 
     @Test
     void doWhileLoop_Java() {
-        def file = new File("src/test/resources/same/loops/Loops.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundDoWhileLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("doWhileLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Loops.doWhileLoop()", it.name)
-
-            new DoWhileLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundDoWhileLoop)
-                foundDoWhileLoop = true
-            }
-        }
-        assertTrue(foundDoWhileLoop)
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.java"),"Loops.")
     }
 
     @Test
     void doWhileLoop_Javascript() {
-        def file = new File("src/test/resources/same/loops/Loops.js")
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
+    }
+
+    private static void assertDoWhileLoopPresent(File file) {
+        assertDoWhileLoopPresent(file, "")
+    }
+
+    private static void assertDoWhileLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -42,7 +34,7 @@ class DoWhileLoopFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("doWhileLoop")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("doWhileLoop()", it.name)
+            assertEquals(qualifiedName + "doWhileLoop()", it.name)
 
             new DoWhileLoopFilter().getFilteredNodes(it).each {
                 assertFalse(foundDoWhileLoop)

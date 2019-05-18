@@ -14,47 +14,25 @@ class SwitchConditionalFilterTest extends ArthurTest {
 
     @Test
     void switchConditional_Go() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundSwitchConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("switchConditional()", it.name)
-
-            new SwitchConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundSwitchConditional)
-                foundSwitchConditional = true
-            }
-        }
-        assertTrue(foundSwitchConditional)
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.go"))
     }
 
     @Test
     void switchConditional_Java() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundSwitchConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Conditionals.switchConditional()", it.name)
-
-            new SwitchConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundSwitchConditional)
-                foundSwitchConditional = true
-            }
-        }
-        assertTrue(foundSwitchConditional)
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.java"),
+                "Conditionals.")
     }
 
     @Test
     void switchConditional_Javascript() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.js")
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
+    }
+
+    private static void assertSwitchConditionalPresent(File file) {
+        assertSwitchConditionalPresent(file, "")
+    }
+
+    private static void assertSwitchConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -62,7 +40,7 @@ class SwitchConditionalFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("switchConditional")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("switchConditional()", it.name)
+            assertEquals(qualifiedName + "switchConditional()", it.name)
 
             new SwitchConditionalFilter().getFilteredNodes(it).each {
                 assertFalse(foundSwitchConditional)

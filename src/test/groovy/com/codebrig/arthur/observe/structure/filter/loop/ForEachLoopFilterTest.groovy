@@ -14,47 +14,25 @@ class ForEachLoopFilterTest extends ArthurTest {
 
     @Test
     void forEachLoop_Go() {
-        def file = new File("src/test/resources/same/loops/Loops.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForEachLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forEachLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forEachLoop()", it.name)
-
-            new ForEachLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForEachLoop)
-                foundForEachLoop = true
-            }
-        }
-        assertTrue(foundForEachLoop)
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.go"))
     }
 
     @Test
     void forEachLoop_Java() {
-        def file = new File("src/test/resources/same/loops/Loops.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundForEachLoop = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forEachLoop")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Loops.forEachLoop()", it.name)
-
-            new ForEachLoopFilter().getFilteredNodes(it).each {
-                assertFalse(foundForEachLoop)
-                foundForEachLoop = true
-            }
-        }
-        assertTrue(foundForEachLoop)
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.java"),
+                "Loops.")
     }
 
     @Test
     void forEachLoop_Javascript() {
-        def file = new File("src/test/resources/same/loops/Loops.js")
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
+    }
+
+    private static void assertForEachLoopPresent(File file) {
+        assertForEachLoopPresent(file, "")
+    }
+
+    private static void assertForEachLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -62,7 +40,7 @@ class ForEachLoopFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("forEachLoop")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("forEachLoop()", it.name)
+            assertEquals(qualifiedName + "forEachLoop()", it.name)
 
             new ForEachLoopFilter().getFilteredNodes(it).each {
                 assertFalse(foundForEachLoop)

@@ -14,27 +14,20 @@ class TernaryOperatorFilterTest extends ArthurTest {
 
     @Test
     void ternaryOperator_Java() {
-        def file = new File("src/test/resources/same/operators/Operators.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundTernaryOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ternaryOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Operators.ternaryOperator()", it.name)
-
-            new TernaryOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundTernaryOperator)
-                foundTernaryOperator = true
-            }
-        }
-        assertTrue(foundTernaryOperator)
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+                "Operators.")
     }
 
     @Test
     void ternaryOperator_Javascript() {
-        def file = new File("src/test/resources/same/operators/Operators.js")
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    }
+
+    private static void assertTernaryOperatorPresent(File file) {
+        assertTernaryOperatorPresent(file, "")
+    }
+
+    private static void assertTernaryOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -42,7 +35,7 @@ class TernaryOperatorFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("ternaryOperator")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ternaryOperator()", it.name)
+            assertEquals(qualifiedName + "ternaryOperator()", it.name)
 
             new TernaryOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundTernaryOperator)

@@ -14,70 +14,33 @@ class AndOperatorFilterTest extends ArthurTest {
 
     @Test
     void andOperator_Go() {
-        def file = new File("src/test/resources/same/operators/Operators.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundAndOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("andOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("andOperator()", it.name)
-
-            new AndOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundAndOperator)
-                assertEquals("&&", it.token)
-                foundAndOperator = true
-            }
-        }
-        assertTrue(foundAndOperator)
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.go"),
+                "&&")
     }
 
     @Test
     void andOperator_Java() {
-        def file = new File("src/test/resources/same/operators/Operators.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundAndOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("andOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Operators.andOperator()", it.name)
-
-            new AndOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundAndOperator)
-                assertEquals("&&", it.token)
-                foundAndOperator = true
-            }
-        }
-        assertTrue(foundAndOperator)
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+                "&&", "Operators.")
     }
 
     @Test
     void andOperator_Javascript() {
-        def file = new File("src/test/resources/same/operators/Operators.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundAndOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("andOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("andOperator()", it.name)
-
-            new AndOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundAndOperator)
-                assertEquals("&&", it.token)
-                foundAndOperator = true
-            }
-        }
-        assertTrue(foundAndOperator)
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.js"),
+                "&&")
     }
 
     @Test
     void andOperator_Python() {
-        def file = new File("src/test/resources/same/operators/Operators.py")
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.py"),
+                "and")
+    }
+
+    private static void assertAndOperatorPresent(File file, String andToken) {
+        assertAndOperatorPresent(file, andToken, "")
+    }
+
+    private static void assertAndOperatorPresent(File file, String andToken, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -85,11 +48,11 @@ class AndOperatorFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("andOperator")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("andOperator()", it.name)
+            assertEquals(qualifiedName + "andOperator()", it.name)
 
             new AndOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAndOperator)
-                assertEquals("and", it.token)
+                assertEquals(andToken, it.token)
                 foundAndOperator = true
             }
         }

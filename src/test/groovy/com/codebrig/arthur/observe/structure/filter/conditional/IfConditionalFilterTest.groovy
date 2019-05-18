@@ -14,67 +14,30 @@ class IfConditionalFilterTest extends ArthurTest {
 
     @Test
     void ifConditional_Go() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifConditional()", it.name)
-
-            new IfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundIfConditional)
-                foundIfConditional = true
-            }
-        }
-        assertTrue(foundIfConditional)
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.go"))
     }
 
     @Test
     void ifConditional_Java() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Conditionals.ifConditional()", it.name)
-
-            new IfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundIfConditional)
-                foundIfConditional = true
-            }
-        }
-        assertTrue(foundIfConditional)
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.java"),
+                "Conditionals.")
     }
 
     @Test
     void ifConditional_Javascript() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifConditional()", it.name)
-
-            new IfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundIfConditional)
-                foundIfConditional = true
-            }
-        }
-        assertTrue(foundIfConditional)
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
     }
 
     @Test
     void ifConditional_Python() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.py")
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.py"))
+    }
+
+    private static void assertIfConditionalPresent(File file) {
+        assertIfConditionalPresent(file, "")
+    }
+
+    private static void assertIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -82,7 +45,7 @@ class IfConditionalFilterTest extends ArthurTest {
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("ifConditional")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifConditional()", it.name)
+            assertEquals(qualifiedName + "ifConditional()", it.name)
 
             new IfConditionalFilter().getFilteredNodes(it).each {
                 assertFalse(foundIfConditional)
