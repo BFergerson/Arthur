@@ -9,7 +9,7 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
 /**
  * Match by Elvis operator
  *
- * @version 0.1
+ * @version 0.4
  * @since 0.4
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
