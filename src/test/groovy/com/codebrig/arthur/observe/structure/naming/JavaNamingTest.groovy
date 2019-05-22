@@ -58,23 +58,18 @@ class JavaNamingTest extends ArthurTest {
         assertJavaNamingPresent("function10", "(List<java.lang.Integer>)")
     }
 
-    private static void assertJavaNamingPresent(String filterName, String argsList) {
-
-        File file = new File("src/test/resources/same/functions/Functions.java")
-
+    private static void assertJavaNamingPresent(String functionName, String argsList) {
+        def file = new File("src/test/resources/same/functions/Functions.java")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(filterName)
-
+        def nameFilter = new NameFilter(functionName)
         boolean foundFunction = false
-
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Functions." + filterName + argsList, it.name)
+            assertEquals("Functions." + functionName + argsList, it.name)
             foundFunction = true
         }
-
         assertTrue(foundFunction)
     }
 }
