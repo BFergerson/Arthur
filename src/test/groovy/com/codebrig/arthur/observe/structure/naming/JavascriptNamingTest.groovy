@@ -4,7 +4,6 @@ import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
-import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
@@ -24,18 +23,98 @@ class JavascriptNamingTest extends ArthurTest {
     }
 
     @Test
-    void expressionNoArg() {
-        assertJavascriptNamingPresent("\"var function4 = function()\"")
+    void anonymousNoArg() {
+        assertJavascriptNamingPresent("()")
     }
 
     @Test
-    void expressionWithArg() {
-        assertJavascriptNamingPresent("\"var function5 = function(param)\"")
+    void anonymousWithArg() {
+        assertJavascriptNamingPresent("()")
     }
 
     @Test
-    void arrowFunction() {
-        assertJavascriptNamingPresent("\"var function6 = (param)\"")
+    void namedNoArg() {
+        assertJavascriptNamingPresent("function6()")
+    }
+
+    @Test
+    void namedWithArg() {
+        assertJavascriptNamingPresent("function7()")
+    }
+
+    @Test
+    void anonymousArrowNoArg() {
+        assertJavascriptNamingPresent("()")
+    }
+
+    @Test
+    void anonymousArrowWithArg() {
+        assertJavascriptNamingPresent("()")
+    }
+
+    @Test
+    void shorthandNoArg() {
+        assertJavascriptNamingPresent("function10()")
+    }
+
+    @Test
+    void computedNoArg() {
+        assertJavascriptNamingPresent("function11Var()")
+    }
+
+    @Test
+    void computedWithArg() {
+        assertJavascriptNamingPresent("function12Var()")
+    }
+
+    @Test
+    void generatorDeclarationNoArg() {
+        assertJavascriptNamingPresent("function13()")
+    }
+
+    @Test
+    void generatorDeclarationWithArg() {
+        assertJavascriptNamingPresent("function14()")
+    }
+
+    @Test
+    void generatorExpressionAnonymousNoArg() {
+        assertJavascriptNamingPresent("()")
+    }
+
+    @Test
+    void generatorExpressionAnonymousWithArg() {
+        assertJavascriptNamingPresent("()")
+    }
+
+    @Test
+    void generatorExpressionNamedNoArg() {
+        assertJavascriptNamingPresent("function17()")
+    }
+
+    @Test
+    void generatorExpressionNamedWithArg() {
+        assertJavascriptNamingPresent("function18()")
+    }
+
+    @Test
+    void generatorShorthandNoArg() {
+        assertJavascriptNamingPresent("function19()")
+    }
+
+    @Test
+    void generatorShorthandWithArg() {
+        assertJavascriptNamingPresent("function20()")
+    }
+
+    @Test
+    void newFunction() {
+        assertJavascriptNamingPresent("Function()")
+    }
+
+    @Test
+    void iife() {
+        assertJavascriptNamingPresent("()")
     }
 
     private static void assertJavascriptNamingPresent(String functionName) {
@@ -48,28 +127,6 @@ class JavascriptNamingTest extends ArthurTest {
         MultiFilter.matchAll(functionFilter).getFilteredNodes(language, resp.uast).each {
             if (functionName == it.name) {
                 foundFunction = true
-            } else {
-                MultiFilter.matchAll(
-                        new TypeFilter("FunctionExpression", "ArrowFunctionExpression")
-                ).getFilteredNodes(
-                    MultiFilter.matchAll(
-                            new TypeFilter("BlockExpression")
-                    ).getFilteredNodes(
-                        MultiFilter.matchAll(
-                                new TypeFilter("ExpressionStatement")
-                        ).getFilteredNodes(
-                                MultiFilter.matchAll(
-                                        new TypeFilter("CallExpression")
-                                ).getFilteredNodes(
-                                        MultiFilter.matchAll(
-                                            new TypeFilter("StringLiteral")
-                                        ).getFilteredNodes(it).each {
-                                            println ">>>>> it.token = ${it.token}"
-                                            if (functionName == it.token) {
-                                                foundFunction = true
-                                            }
-                                        })))
-                )
             }
         }
         assertTrue(foundFunction)
