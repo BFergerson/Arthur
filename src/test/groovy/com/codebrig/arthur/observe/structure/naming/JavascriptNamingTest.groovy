@@ -117,6 +117,11 @@ class JavascriptNamingTest extends ArthurTest {
         assertJavascriptNamingPresent("()")
     }
 
+    @Test
+    void defaultParam() {
+        assertJavascriptNamingPresent("function21()")
+    }
+
     private static void assertJavascriptNamingPresent(String functionName) {
         def file = new File("src/test/resources/same/functions/Functions.js")
         def language = SourceLanguage.getSourceLanguage(file)

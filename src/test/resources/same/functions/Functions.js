@@ -90,3 +90,7 @@ var newFunctionVar = new Function(number1, number2,
 (function() {
     console.log("IIFE");
 })();
+
+function function21(param = 1) {
+    console.log("defaultParam");
+}
