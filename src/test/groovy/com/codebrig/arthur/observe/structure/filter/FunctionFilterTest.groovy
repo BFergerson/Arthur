@@ -16,7 +16,15 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Javascript() {
+        String anonymousFolder = "src/test/resources/same/functions/javascript/anonymous"
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousNoArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousWithArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousArrowNoArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousArrowWithArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousGeneratorExpressionNoArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousGeneratorExpressionWithArg.js"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousIIFE.js"))
     }
 
     @Test

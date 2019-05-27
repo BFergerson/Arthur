@@ -11,119 +11,121 @@ import static org.junit.Assert.assertTrue
 
 class JavascriptNamingTest extends ArthurTest {
 
+    private static final String functionsFile = "src/test/resources/same/functions/Functions.js"
+    private static final String anonymousFolder = "src/test/resources/same/functions/javascript/anonymous"
+
     @Test
     void noArgs() {
-        assertJavascriptNamingPresent("function1()")
-        assertJavascriptNamingPresent("function2()")
+        assertJavascriptNamingPresent("function1()", new File(functionsFile))
+        assertJavascriptNamingPresent("function2()", new File(functionsFile))
     }
 
     @Test
     void withArg() {
-        assertJavascriptNamingPresent("function3()")
+        assertJavascriptNamingPresent("function3()", new File(functionsFile))
     }
 
     @Test
     void anonymousNoArg() {
-        assertJavascriptNamingPresent("()")
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousNoArg.js"))
     }
 
     @Test
     void anonymousWithArg() {
-        assertJavascriptNamingPresent("()")
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousWithArg.js"))
     }
 
     @Test
     void namedNoArg() {
-        assertJavascriptNamingPresent("function6()")
+        assertJavascriptNamingPresent("function4()", new File(functionsFile))
     }
 
     @Test
     void namedWithArg() {
-        assertJavascriptNamingPresent("function7()")
+        assertJavascriptNamingPresent("function5()", new File(functionsFile))
     }
 
     @Test
     void anonymousArrowNoArg() {
-        assertJavascriptNamingPresent("()")
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousArrowNoArg.js"))
     }
 
     @Test
     void anonymousArrowWithArg() {
-        assertJavascriptNamingPresent("()")
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousArrowWithArg.js"))
     }
 
     @Test
     void shorthandNoArg() {
-        assertJavascriptNamingPresent("function10()")
+        assertJavascriptNamingPresent("function6()", new File(functionsFile))
     }
 
     @Test
     void computedNoArg() {
-        assertJavascriptNamingPresent("function11Var()")
+        assertJavascriptNamingPresent("function7Var()", new File(functionsFile))
     }
 
     @Test
     void computedWithArg() {
-        assertJavascriptNamingPresent("function12Var()")
+        assertJavascriptNamingPresent("function8Var()", new File(functionsFile))
     }
 
     @Test
     void generatorDeclarationNoArg() {
-        assertJavascriptNamingPresent("function13()")
+        assertJavascriptNamingPresent("function9()", new File(functionsFile))
     }
 
     @Test
     void generatorDeclarationWithArg() {
-        assertJavascriptNamingPresent("function14()")
+        assertJavascriptNamingPresent("function10()", new File(functionsFile))
     }
 
     @Test
-    void generatorExpressionAnonymousNoArg() {
-        assertJavascriptNamingPresent("()")
+    void anonymousGeneratorExpressionNoArg() {
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousGeneratorExpressionNoArg.js"))
     }
 
     @Test
-    void generatorExpressionAnonymousWithArg() {
-        assertJavascriptNamingPresent("()")
+    void anonymousGeneratorExpressionWithArg() {
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousGeneratorExpressionWithArg.js"))
     }
 
     @Test
     void generatorExpressionNamedNoArg() {
-        assertJavascriptNamingPresent("function17()")
+        assertJavascriptNamingPresent("function11()", new File(functionsFile))
     }
 
     @Test
     void generatorExpressionNamedWithArg() {
-        assertJavascriptNamingPresent("function18()")
+        assertJavascriptNamingPresent("function12()", new File(functionsFile))
     }
 
     @Test
     void generatorShorthandNoArg() {
-        assertJavascriptNamingPresent("function19()")
+        assertJavascriptNamingPresent("function13()", new File(functionsFile))
     }
 
     @Test
     void generatorShorthandWithArg() {
-        assertJavascriptNamingPresent("function20()")
+        assertJavascriptNamingPresent("function14()", new File(functionsFile))
     }
 
     @Test
     void newFunction() {
-        assertJavascriptNamingPresent("Function()")
+        assertJavascriptNamingPresent("Function()", new File(functionsFile))
     }
 
     @Test
     void iife() {
-        assertJavascriptNamingPresent("()")
+        assertJavascriptNamingPresent("()", new File("${anonymousFolder}/AnonymousIIFE.js"))
     }
 
     @Test
     void defaultParam() {
-        assertJavascriptNamingPresent("function21()")
+        assertJavascriptNamingPresent("function15()", new File(functionsFile))
     }
 
-    private static void assertJavascriptNamingPresent(String functionName) {
-        def file = new File("src/test/resources/same/functions/Functions.js")
+    private static void assertJavascriptNamingPresent(String functionName, File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

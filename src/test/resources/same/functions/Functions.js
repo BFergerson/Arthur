@@ -10,73 +10,49 @@ function function3(param) {
     console.log("withArg");
 }
 
-var function4Var = function() {
-    console.log("anonymousNoArg");
-};
-
-var function5Var = function(param) {
-    console.log("anonymousWithArg");
-};
-
-var function6Var = function function6() {
+var function4Var = function function4() {
     console.log("namedNoArg");
 };
 
-var function7Var = function function7(param) {
+var function5Var = function function5(param) {
     console.log("namedWithArg");
 };
 
-var function8Var = () => {
-    console.log("anonymousArrowNoArg");
-};
-
-var function9Var = (param) => {
-    console.log("anonymousArrowWithArg");
-};
-
-var function11Var = 'function11';
-var function12Var = 'function12';
+var function7Var = 'function7';
+var function8Var = 'function8';
 var object1Var = {
-    function10() {
+    function6() {
         console.log("shorthandNoArg");
     },
-    [function11Var]() {
+    [function7Var]() {
         console.log("computedNoArg");
     },
-    [function12Var](param) {
+    [function8Var](param) {
         console.log("computedWithArg");
     }
 };
 
-function* function13() {
+function* function9() {
     console.log("generatorDeclarationNoArg");
 };
 
-function* function14(param) {
+function* function10(param) {
     console.log("generatorDeclarationWithArg");
 };
 
-var function15Var = function*() {
-    console.log("generatorExpressionAnonymousNoArg");
-};
-
-var function16Var = function*(param) {
-    console.log("generatorExpressionAnonymousWithArg");
-};
-
-var function17Var = function* function17() {
+var function11Var = function* function11() {
     console.log("generatorExpressionNamedNoArg");
 };
 
-var function18Var = function* function18(param) {
+var function12Var = function* function12(param) {
     console.log("generatorExpressionNamedWithArg");
 };
 
 var object2Var = {
-    *function19() {
+    *function13() {
         console.log("generatorShorthandNoArg");
     },
-    *function20(param) {
+    *function14(param) {
         console.log("generatorShorthandWithArg");
     }
 };
@@ -87,10 +63,6 @@ var newFunctionVar = new Function(number1, number2,
     'return number1 + number2'
 );
 
-(function() {
-    console.log("IIFE");
-})();
-
-function function21(param = 1) {
+function function15(param = 1) {
     console.log("defaultParam");
 }
