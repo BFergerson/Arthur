@@ -20,7 +20,7 @@ class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
                         new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
                         new TypeFilter("FunctionDeclaration", "FunctionExpression",
                                 "ArrowFunctionExpression", "ObjectMethod", "FuncDecl", "FunctionDef",
-                                "MethodDeclaration", "Stmt_Function", "def"),
+                                "MethodDeclaration", "Stmt_Function", "Expr_Closure", "def"),
                         new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
                 ),
                 MultiFilter.matchAll(

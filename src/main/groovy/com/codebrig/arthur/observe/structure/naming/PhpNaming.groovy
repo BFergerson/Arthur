@@ -18,6 +18,7 @@ class PhpNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "StmtFunction":
             case "Stmt_Function":
+            case "Expr_Closure":
                 return true
             default:
                 return false
@@ -29,6 +30,7 @@ class PhpNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "StmtFunction":
             case "Stmt_Function":
+            case "Expr_Closure":
                 return getFunctionName(node)
             default:
                 return null

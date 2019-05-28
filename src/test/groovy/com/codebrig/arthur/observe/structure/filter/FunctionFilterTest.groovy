@@ -34,7 +34,15 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Php() {
+        String anonymousFolder = "src/test/resources/same/functions/php/anonymous"
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousNoArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousWithArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousInheritArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousInheritByReferenceArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousStaticNoArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousStaticWithArg.php"))
+        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousAutomaticBindThis.php"))
     }
 
     @Test
