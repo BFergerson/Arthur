@@ -11,81 +11,44 @@ import static org.junit.Assert.assertTrue
 
 class PhpNamingTest extends ArthurTest {
 
-    private static final String functionsFile = "src/test/resources/same/functions/Functions.php"
-    private static final String anonymousFolder = "src/test/resources/same/functions/php/anonymous"
-
     @Test
     void noArgs() {
-        assertPhpNamingPresent("function1()", new File(functionsFile))
-        assertPhpNamingPresent("function2()", new File(functionsFile))
+        assertPhpNamingPresent("function1()")
+        assertPhpNamingPresent("function2()")
     }
 
     @Test
     void withArg() {
-        assertPhpNamingPresent("function3()", new File(functionsFile))
+        assertPhpNamingPresent("function3()")
     }
 
     @Test
     void defaultParam() {
-        assertPhpNamingPresent("function4()", new File(functionsFile))
+        assertPhpNamingPresent("function4()")
     }
 
     @Test
     void defaultArrayParam() {
-        assertPhpNamingPresent("function5()", new File(functionsFile))
+        assertPhpNamingPresent("function5()")
     }
 
     @Test
     void defaultNullParam() {
-        assertPhpNamingPresent("function6()", new File(functionsFile))
+        assertPhpNamingPresent("function6()")
     }
 
     @Test
     void typedIntArg() {
-        assertPhpNamingPresent("function7()", new File(functionsFile))
+        assertPhpNamingPresent("function7()")
     }
 
     @Test
     void passByReference() {
-        assertPhpNamingPresent("function8()", new File(functionsFile))
+        assertPhpNamingPresent("function8()")
     }
 
-    @Test
-    void anonymousNoArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousNoArg.php"))
-    }
-
-    @Test
-    void anonymousWithArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousWithArg.php"))
-    }
-
-    @Test
-    void anonymousInheritArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousInheritArg.php"))
-    }
-
-    @Test
-    void anonymousInheritByReferenceArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousInheritByReferenceArg.php"))
-    }
-
-    @Test
-    void anonymousStaticNoArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousStaticNoArg.php"))
-    }
-
-    @Test
-    void anonymousStaticWithArg() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousStaticWithArg.php"))
-    }
-
-    @Test
-    void anonymousAutomaticBindThis() {
-        assertPhpNamingPresent("()", new File("${anonymousFolder}/AnonymousAutomaticBindThis.php"))
-    }
-
-    private static void assertPhpNamingPresent(String functionName, File file) {
+    private static void assertPhpNamingPresent(String functionName) {
+        def file = new File("src/test/resources/same/functions/Functions.php")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

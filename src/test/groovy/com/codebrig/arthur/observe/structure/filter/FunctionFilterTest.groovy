@@ -16,15 +16,7 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Javascript() {
-        String anonymousFolder = "src/test/resources/same/functions/javascript/anonymous"
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousNoArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousWithArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousArrowNoArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousArrowWithArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousGeneratorExpressionNoArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousGeneratorExpressionWithArg.js"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousIIFE.js"))
     }
 
     @Test
@@ -34,15 +26,7 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Php() {
-        String anonymousFolder = "src/test/resources/same/functions/php/anonymous"
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousNoArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousWithArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousInheritArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousInheritByReferenceArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousStaticNoArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousStaticWithArg.php"))
-        assertFunctionsPresent(new File("${anonymousFolder}/AnonymousAutomaticBindThis.php"))
     }
 
     @Test
