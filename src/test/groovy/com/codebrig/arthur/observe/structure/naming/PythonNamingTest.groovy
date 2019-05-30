@@ -11,32 +11,43 @@ import static org.junit.Assert.assertTrue
 
 class PythonNamingTest extends ArthurTest {
 
-    private static final String functionsFile = "src/test/resources/same/functions/Functions.py"
-
     @Test
     void noArgs() {
-        assertPythonNamingPresent("function1()", new File(functionsFile))
-        assertPythonNamingPresent("function2()", new File(functionsFile))
+        assertPythonNamingPresent("function1()")
+        assertPythonNamingPresent("function2()")
     }
 
     @Test
     void withArg() {
-        assertPythonNamingPresent("function3()", new File(functionsFile))
+        assertPythonNamingPresent("function3()")
     }
 
     @Test
     void defaultArg() {
-        assertPythonNamingPresent("function4()", new File(functionsFile))
+        assertPythonNamingPresent("function4()")
     }
 
     /*
     @Test
-    void variadicArg() {
-        assertPythonNamingPresent("function5()", new File(functionsFile))
+    void variadicArgs() {
+        assertPythonNamingPresent("function5()")
     }
     */
 
-    private static void assertPythonNamingPresent(String functionName, File file) {
+    @Test
+    void keywordArgs() {
+        assertPythonNamingPresent("function6()")
+    }
+
+    /*
+    @Test
+    void variadicAndKeywordArgs() {
+        assertPythonNamingPresent("function7()")
+    }
+    */
+
+    private static void assertPythonNamingPresent(String functionName) {
+        def file = new File("src/test/resources/same/functions/Functions.py")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
