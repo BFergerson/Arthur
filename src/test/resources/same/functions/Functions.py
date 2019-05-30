@@ -18,3 +18,6 @@ def function6(a, **param):
 
 # def function7(a, *args, **kwargs):
 #     print "variadicAndKeywordArgs"
+
+# def function8(param: 'int'):
+#     print "functionAnnotation"

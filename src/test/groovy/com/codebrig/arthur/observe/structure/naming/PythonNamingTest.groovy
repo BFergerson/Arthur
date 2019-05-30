@@ -46,6 +46,13 @@ class PythonNamingTest extends ArthurTest {
     }
     */
 
+    /*
+    @Test
+    void functionAnnotation() {
+        assertPythonNamingPresent("function8()")
+    }
+    */
+
     private static void assertPythonNamingPresent(String functionName) {
         def file = new File("src/test/resources/same/functions/Functions.py")
         def language = SourceLanguage.getSourceLanguage(file)
