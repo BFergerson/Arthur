@@ -12,42 +12,42 @@ func function2() {
     fmt.Println("")
 }
 
-func function3(v uint64) {
-    fmt.Println("function3(v uint64)")
+func function3(param uint64) {
+    fmt.Println("uint64Arg")
 }
 
-func function4(v ...uint64) {
-    fmt.Println("function4(v ...uint64)")
+func function4(param ...uint64) {
+    fmt.Println("variadicFunc")
 }
 
-func function5(v [3]uint64) {
-    fmt.Println("function5(v [3]uint64)")
+func function5(param [3]uint64) {
+    fmt.Println("uint64ArrayArg")
 }
 
-func function6(v []uint64) {
-    fmt.Println("function6(v []uint64)")
+func function6(param []uint64) {
+    fmt.Println("uint64SliceArg")
 }
 
-func Function7(v uint64) {
-    fmt.Println("Function7(v uint64)")
+func Function7(param uint64) {
+    fmt.Println("exportedFunc")
 }
 
-func (receiverType) function8(v uint64) {
-    fmt.Println("function8(v uint64)")
+func (receiverType) function8(param uint64) {
+    fmt.Println("asMethodWithReceiver1")
 }
 
-func (t receiverType) function9(v uint64) {
-    fmt.Println("function9(v uint64)")
+func (t receiverType) function9(param uint64) {
+    fmt.Println("asMethodWithReceiver2")
 }
 
-func function10(v *uint64) {
-    fmt.Println("function10(v *uint64)")
+func function10(param *uint64) {
+    fmt.Println("pointerArg")
 }
 
-func (*receiverType) function11(v uint64) {
-    fmt.Println("function11(v uint64)")
+func (*receiverType) function11(param uint64) {
+    fmt.Println("asMethodWithPointerReceiverArg1")
 }
 
-func (t *receiverType) function12(v uint64) {
-    fmt.Println("function12(v uint64)")
+func (t *receiverType) function12(param uint64) {
+    fmt.Println("asMethodWithPointerReceiverArg2")
 }
