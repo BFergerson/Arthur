@@ -27,19 +27,20 @@ class PythonNamingTest extends ArthurTest {
         assertPythonNamingPresent("function4()")
     }
 
-    /*
-    @Test
-    void variadicArgs() {
-        assertPythonNamingPresent("function5()")
-    }
-    */
-
     @Test
     void keywordArgs() {
+        assertPythonNamingPresent("function5()")
+    }
+
+    /*
+     * Exception in variadic arguments
+     * https://github.com/bblfsh/python-driver/issues/199
+     *
+    @Test
+    void variadicArgs() {
         assertPythonNamingPresent("function6()")
     }
 
-    /*
     @Test
     void variadicAndKeywordArgs() {
         assertPythonNamingPresent("function7()")
@@ -47,6 +48,9 @@ class PythonNamingTest extends ArthurTest {
     */
 
     /*
+     * Exception in function annotations
+     * https://github.com/bblfsh/python-driver/issues/200
+     *
     @Test
     void functionAnnotation() {
         assertPythonNamingPresent("function8()")
