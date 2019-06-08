@@ -56,7 +56,8 @@ class JavascriptNaming implements StructureNaming {
         new InternalRoleFilter("id").getFilteredNodes(node.children).each {
             functionName = it.token
         }
-        return functionName + "()"
+        functionName += assembleParamNames(node)
+        return functionName
     }
 
     static String getFunctionExpressionName(SourceNode node) {
@@ -65,7 +66,8 @@ class JavascriptNaming implements StructureNaming {
         new InternalRoleFilter("id").getFilteredNodes(node.children).each {
             functionName = it.token
         }
-        return functionName + "()"
+        functionName += assembleParamNames(node)
+        return functionName
     }
 
     static String getArrowFunctionExpressionName(SourceNode node) {
@@ -74,7 +76,8 @@ class JavascriptNaming implements StructureNaming {
         new InternalRoleFilter("id").getFilteredNodes(node.children).each {
             functionName = it.token
         }
-        return functionName + "()"
+        functionName += assembleParamNames(node)
+        return functionName
     }
 
     static String getObjectMethodName(SourceNode node) {
@@ -84,7 +87,8 @@ class JavascriptNaming implements StructureNaming {
         ).getFilteredNodes(node.children).each {
             functionName = it.token
         }
-        return functionName + "()"
+        functionName += assembleParamNames(node)
+        return functionName
     }
 
     static String getNewExpressionName(SourceNode node) {
@@ -94,6 +98,72 @@ class JavascriptNaming implements StructureNaming {
         ).getFilteredNodes(node.children).each {
             functionName = it.token
         }
-        return functionName + "()"
+        functionName += "("
+        functionName += getArgumentNames(node)
+        functionName = trimTrailingComma(functionName)
+        functionName += ")"
+        return functionName
+    }
+
+    static String assembleParamNames(SourceNode node) {
+        def name = "("
+        MultiFilter.matchAll(
+                new TypeFilter("AssignmentPattern", "Identifier"),
+                new InternalRoleFilter("params", "arguments")
+        ).getFilteredNodes(node.children).each {
+            switch (it.internalType) {
+                case "Identifier":
+                    def paramsMatched = MultiFilter.matchAll(
+                            new InternalRoleFilter("params")
+                    ).getFilteredNodes(it)
+                    if (paramsMatched.hasNext()) {
+                        name += getRegularParamNames(it)
+                    }
+                    def argumentsMatched = MultiFilter.matchAll(
+                            new InternalRoleFilter("arguments")
+                    ).getFilteredNodes(it)
+                    if (argumentsMatched.hasNext()) {
+                        name += getArgumentNames(it)
+                    }
+                    break
+                case "AssignmentPattern":
+                    name += getAssignmentParamNames(it)
+                    break
+            }
+        }
+        name = trimTrailingComma(name)
+        name += ")"
+        return name
+    }
+
+    static String getRegularParamNames(SourceNode node) {
+        def name = ""
+        new InternalRoleFilter("params").getFilteredNodes(node).each {
+            name += it.token + ","
+        }
+        return name
+    }
+
+    static String getArgumentNames(SourceNode node) {
+        def name = ""
+        new InternalRoleFilter("arguments").getFilteredNodes(node).each {
+            name += it.token + ","
+        }
+        return name
+    }
+
+    static String getAssignmentParamNames(SourceNode node) {
+        def name = ""
+        new InternalRoleFilter("left").getFilteredNodes(node.children).each {
+            name += it.token + ","
+        }
+        return name
+    }
+
+    static String trimTrailingComma(String name) {
+        if (name.endsWith(",")) {
+            name = name.substring(0, name.length() - 1)
+        }
+        return name
     }
 }

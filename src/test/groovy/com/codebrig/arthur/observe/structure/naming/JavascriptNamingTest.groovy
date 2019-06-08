@@ -19,7 +19,7 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void withArg() {
-        assertJavascriptNamingPresent("function3()")
+        assertJavascriptNamingPresent("function3(param1,param2)")
     }
 
     @Test
@@ -29,7 +29,7 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void namedWithArg() {
-        assertJavascriptNamingPresent("function5()")
+        assertJavascriptNamingPresent("function5(param)")
     }
 
     @Test
@@ -44,7 +44,7 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void computedWithArg() {
-        assertJavascriptNamingPresent("function8Var()")
+        assertJavascriptNamingPresent("function8Var(param)")
     }
 
     @Test
@@ -54,7 +54,7 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void generatorDeclarationWithArg() {
-        assertJavascriptNamingPresent("function10()")
+        assertJavascriptNamingPresent("function10(param)")
     }
 
     @Test
@@ -64,7 +64,7 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void generatorExpressionNamedWithArg() {
-        assertJavascriptNamingPresent("function12()")
+        assertJavascriptNamingPresent("function12(param)")
     }
 
     @Test
@@ -74,17 +74,17 @@ class JavascriptNamingTest extends ArthurTest {
 
     @Test
     void generatorShorthandWithArg() {
-        assertJavascriptNamingPresent("function14()")
+        assertJavascriptNamingPresent("function14(param)")
     }
 
     @Test
     void newFunction() {
-        assertJavascriptNamingPresent("Function()")
+        assertJavascriptNamingPresent("Function(number1,number2,'return number1 + number2')")
     }
 
     @Test
     void defaultParam() {
-        assertJavascriptNamingPresent("function15()")
+        assertJavascriptNamingPresent("function15(param)")
     }
 
     private static void assertJavascriptNamingPresent(String functionName) {

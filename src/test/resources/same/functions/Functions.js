@@ -6,7 +6,7 @@ function function2() {
     console.log("");
 }
 
-function function3(param) {
+function function3(param1, param2) {
     console.log("withArg");
 }
 
