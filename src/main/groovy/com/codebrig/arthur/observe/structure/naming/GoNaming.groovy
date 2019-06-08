@@ -52,41 +52,13 @@ class GoNaming implements StructureNaming {
                                     name += getIdentTypeName(it)
                                     break
                                 case "ArrayType":
-                                    def isArray = false
-                                    MultiFilter.matchAll(
-                                            new TypeFilter("BasicLit", "Ident"),
-                                            new InternalRoleFilter("Len", "Elt")
-                                    ).getFilteredNodes(it.children).each {
-                                        def token = it.token
-                                        if (it.internalType == "BasicLit") {
-                                            name += ("[" + token + "]")
-                                            isArray = true
-                                        } else if (it.internalType == "Ident") {
-                                            def identName = getIdentTypeName(it)
-                                            if (!isArray) {
-                                                identName = ("[]" + identName)
-                                            }
-                                            name += identName
-                                        }
-                                    }
+                                    name += getArrayTypeName(it)
                                     break
                                 case "Ellipsis":
-                                    MultiFilter.matchAll(
-                                            new TypeFilter("Ident"),
-                                            new InternalRoleFilter("Elt")
-                                    ).getFilteredNodes(it.children).each {
-                                        name += "..."
-                                        name += getIdentTypeName(it)
-                                    }
+                                    name += getEllipsisTypeName(it)
                                     break
                                 case "StarExpr":
-                                    MultiFilter.matchAll(
-                                            new TypeFilter("Ident"),
-                                            new InternalRoleFilter("X")
-                                    ).getFilteredNodes(it.children).each {
-                                        name += "*"
-                                        name += getIdentTypeName(it)
-                                    }
+                                    name += getStarExprTypeName(it)
                                     break
                                 default:
                                     throw new IllegalStateException("Unsupported Go node type: " + it.internalType)
@@ -107,6 +79,52 @@ class GoNaming implements StructureNaming {
         def name = ""
         new TypeFilter("Ident").getFilteredNodes(node).each {
             name += it.token + ","
+        }
+        return name
+    }
+
+    static String getArrayTypeName(SourceNode node) {
+        def name = ""
+        def isArray = false
+        MultiFilter.matchAll(
+                new TypeFilter("BasicLit", "Ident"),
+                new InternalRoleFilter("Len", "Elt")
+        ).getFilteredNodes(node.children).each {
+            def token = it.token
+            if (it.internalType == "BasicLit") {
+                name += ("[" + token + "]")
+                isArray = true
+            } else if (it.internalType == "Ident") {
+                def identName = getIdentTypeName(it)
+                if (!isArray) {
+                    identName = ("[]" + identName)
+                }
+                name += identName
+            }
+        }
+        return name
+    }
+
+    static String getEllipsisTypeName(SourceNode node) {
+        def name = ""
+        MultiFilter.matchAll(
+                new TypeFilter("Ident"),
+                new InternalRoleFilter("Elt")
+        ).getFilteredNodes(node.children).each {
+            name += "..."
+            name += getIdentTypeName(it)
+        }
+        return name
+    }
+
+    static String getStarExprTypeName(SourceNode node) {
+        def name = ""
+        MultiFilter.matchAll(
+                new TypeFilter("Ident"),
+                new InternalRoleFilter("X")
+        ).getFilteredNodes(node.children).each {
+            name += "*"
+            name += getIdentTypeName(it)
         }
         return name
     }
