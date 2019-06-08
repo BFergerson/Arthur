@@ -36,10 +36,10 @@ class GoNaming implements StructureNaming {
     }
 
     static String getFuncDeclName(SourceNode node) {
-        def name = ""
+        def functionName = ""
         new InternalRoleFilter("Name").getFilteredNodes(node.children).each {
-            name = it.token
-            name += "("
+            functionName = it.token
+            functionName += "("
             new TypeFilter("FuncType").getFilteredNodes(node.children).each {
                 new TypeFilter("FieldList").getFilteredNodes(it.children).each {
                     new TypeFilter("Field").getFilteredNodes(it.children).each {
@@ -49,16 +49,16 @@ class GoNaming implements StructureNaming {
                         ).getFilteredNodes(it.children).each {
                             switch (it.internalType) {
                                 case "Ident":
-                                    name += getIdentTypeName(it)
+                                    functionName += getIdentTypeName(it)
                                     break
                                 case "ArrayType":
-                                    name += getArrayTypeName(it)
+                                    functionName += getArrayTypeName(it)
                                     break
                                 case "Ellipsis":
-                                    name += getEllipsisTypeName(it)
+                                    functionName += getEllipsisTypeName(it)
                                     break
                                 case "StarExpr":
-                                    name += getStarExprTypeName(it)
+                                    functionName += getStarExprTypeName(it)
                                     break
                                 default:
                                     throw new IllegalStateException("Unsupported Go node type: " + it.internalType)
@@ -67,12 +67,12 @@ class GoNaming implements StructureNaming {
                     }
                 }
             }
-            if (name.endsWith(",")) {
-                name = name.substring(0, name.length() - 1)
+            if (functionName.endsWith(",")) {
+                functionName = functionName.substring(0, functionName.length() - 1)
             }
-            name += ")"
+            functionName += ")"
         }
-        return name
+        return functionName
     }
 
     static String getIdentTypeName(SourceNode node) {
