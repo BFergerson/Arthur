@@ -20,52 +20,52 @@ class GoNamingTest extends ArthurTest {
 
     @Test
     void uint64Arg() {
-        assertGoNamingPresent("function3", "()")
+        assertGoNamingPresent("function3", "(uint64)")
     }
 
     @Test
     void variadicFunc() {
-        assertGoNamingPresent("function4", "()")
+        assertGoNamingPresent("function4", "(uint32,...uint64)")
     }
 
     @Test
     void uint64ArrayArg() {
-        assertGoNamingPresent("function5", "()")
+        assertGoNamingPresent("function5", "([3]uint64,...uint64)")
     }
 
     @Test
     void uint64SliceArg() {
-        assertGoNamingPresent("function6", "()")
+        assertGoNamingPresent("function6", "([]uint64)")
     }
 
     @Test
     void exportedFunc() {
-        assertGoNamingPresent("Function7", "()")
+        assertGoNamingPresent("Function7", "(uint64)")
     }
 
     @Test
     void asMethodWithReceiver1() {
-        assertGoNamingPresent("function8", "()")
+        assertGoNamingPresent("function8", "(uint64)")
     }
 
     @Test
     void asMethodWithReceiver2() {
-        assertGoNamingPresent("function9", "()")
+        assertGoNamingPresent("function9", "(uint64)")
     }
 
     @Test
     void pointerArg() {
-        assertGoNamingPresent("function10", "()")
+        assertGoNamingPresent("function10", "(*uint64)")
     }
 
     @Test
     void asMethodWithPointerReceiverArg1() {
-        assertGoNamingPresent("function11", "()")
+        assertGoNamingPresent("function11", "(uint64)")
     }
 
     @Test
     void asMethodWithPointerReceiverArg2() {
-        assertGoNamingPresent("function12", "()")
+        assertGoNamingPresent("function12", "(uint64)")
     }
 
     private static void assertGoNamingPresent(String functionName, String argsList) {

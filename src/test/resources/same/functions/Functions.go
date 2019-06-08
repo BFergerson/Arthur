@@ -16,11 +16,11 @@ func function3(param uint64) {
     fmt.Println("uint64Arg")
 }
 
-func function4(param ...uint64) {
+func function4(param1 uint32, param2 ...uint64) {
     fmt.Println("variadicFunc")
 }
 
-func function5(param [3]uint64) {
+func function5(param [3]uint64, param2 ...uint64) {
     fmt.Println("uint64ArrayArg")
 }
 
