@@ -4,20 +4,23 @@ def function1():
 def function2():
     print ""
 
-def function3(param):
+def function3(param1, param2):
     print "withArg"
 
 def function4(param = 'param'):
     print "defaultArg"
 
-def function5(a, **param):
+def function5(**param1):
     print "keywordArgs"
 
-# def function6(a, *param):
+# def function6(param1, *param2):
 #     print "variadicArgs"
 
-# def function7(a, *args, **kwargs):
+# def function7(param, *args, **kwargs):
 #     print "variadicAndKeywordArgs"
 
 # def function8(param: 'int'):
 #     print "functionAnnotation"
+
+# def function9(param1, **param2):
+#     print "keywordArgs"

@@ -19,17 +19,17 @@ class PythonNamingTest extends ArthurTest {
 
     @Test
     void withArg() {
-        assertPythonNamingPresent("function3()")
+        assertPythonNamingPresent("function3(param1,param2)")
     }
 
     @Test
     void defaultArg() {
-        assertPythonNamingPresent("function4()")
+        assertPythonNamingPresent("function4(param)")
     }
 
     @Test
     void keywordArgs() {
-        assertPythonNamingPresent("function5()")
+        assertPythonNamingPresent("function5(param1)")
     }
 
     /*
@@ -38,12 +38,12 @@ class PythonNamingTest extends ArthurTest {
      *
     @Test
     void variadicArgs() {
-        assertPythonNamingPresent("function6()")
+        assertPythonNamingPresent("function6(param1,param2)")
     }
 
     @Test
     void variadicAndKeywordArgs() {
-        assertPythonNamingPresent("function7()")
+        assertPythonNamingPresent("function7(param,args,kwargs)")
     }
     */
 
@@ -53,7 +53,17 @@ class PythonNamingTest extends ArthurTest {
      *
     @Test
     void functionAnnotation() {
-        assertPythonNamingPresent("function8()")
+        assertPythonNamingPresent("function8(param)")
+    }
+    */
+
+    /*
+     * Inconsistent ordering of arguments if one is a keyword argument
+     * https://github.com/bblfsh/python-driver/issues/201
+     *
+    @Test
+    void keywordArgs() {
+        assertPythonNamingPresent("function9(param1,param2)")
     }
     */
 

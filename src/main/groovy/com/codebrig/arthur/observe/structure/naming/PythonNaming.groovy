@@ -2,6 +2,10 @@ package com.codebrig.arthur.observe.structure.naming
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 
 /**
  * Used to get the names of Python AST nodes
@@ -34,6 +38,22 @@ class PythonNaming implements StructureNaming {
 
     static String getFunctionDefName(SourceNode node) {
         def functionName = node.token
-        return functionName + "()"
+        functionName += "("
+        MultiFilter.matchAll(
+                new TypeFilter("arguments"),
+                new InternalRoleFilter("args")
+        ).getFilteredNodes(node.children).each {
+            it.children.each {
+                switch (it.internalType) {
+                    case "arg":
+                    case "kwarg":
+                        functionName += it.token + ","
+                        break
+                }
+            }
+        }
+        functionName = Util.trimTrailingComma(functionName)
+        functionName += ")"
+        return functionName
     }
 }
