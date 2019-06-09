@@ -4,6 +4,7 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 
 /**
  * Used to get the names/qualified names of Java AST nodes
@@ -73,9 +74,7 @@ class JavaNaming implements StructureNaming {
         new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
             name += getSingleVariableDeclarationName(it) + ","
         }
-        if (name.endsWith(",")) {
-            name = name.substring(0, name.length() - 1)
-        }
+        name = Util.trimTrailingComma(name)
         return name + ")"
     }
 

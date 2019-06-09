@@ -5,6 +5,7 @@ import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -100,7 +101,7 @@ class JavascriptNaming implements StructureNaming {
         }
         functionName += "("
         functionName += getArgumentNames(node)
-        functionName = trimTrailingComma(functionName)
+        functionName = Util.trimTrailingComma(functionName)
         functionName += ")"
         return functionName
     }
@@ -113,18 +114,7 @@ class JavascriptNaming implements StructureNaming {
         ).getFilteredNodes(node.children).each {
             switch (it.internalType) {
                 case "Identifier":
-                    def paramsMatched = MultiFilter.matchAll(
-                            new InternalRoleFilter("params")
-                    ).getFilteredNodes(it)
-                    if (paramsMatched.hasNext()) {
-                        name += getRegularParamNames(it)
-                    }
-                    def argumentsMatched = MultiFilter.matchAll(
-                            new InternalRoleFilter("arguments")
-                    ).getFilteredNodes(it)
-                    if (argumentsMatched.hasNext()) {
-                        name += getArgumentNames(it)
-                    }
+                    name += getIdentifierParamNames(it)
                     break
                 case "AssignmentPattern":
                     name += getAssignmentParamNames(it)
@@ -134,8 +124,25 @@ class JavascriptNaming implements StructureNaming {
                     break
             }
         }
-        name = trimTrailingComma(name)
+        name = Util.trimTrailingComma(name)
         name += ")"
+        return name
+    }
+
+    static String getIdentifierParamNames(SourceNode node) {
+        def name = ""
+        def paramsMatched = MultiFilter.matchAll(
+                new InternalRoleFilter("params")
+        ).getFilteredNodes(node)
+        if (paramsMatched.hasNext()) {
+            name += getRegularParamNames(node)
+        }
+        def argumentsMatched = MultiFilter.matchAll(
+                new InternalRoleFilter("arguments")
+        ).getFilteredNodes(node)
+        if (argumentsMatched.hasNext()) {
+            name += getArgumentNames(node)
+        }
         return name
     }
 
@@ -159,13 +166,6 @@ class JavascriptNaming implements StructureNaming {
         def name = ""
         new InternalRoleFilter("left").getFilteredNodes(node.children).each {
             name += it.token + ","
-        }
-        return name
-    }
-
-    static String trimTrailingComma(String name) {
-        if (name.endsWith(",")) {
-            name = name.substring(0, name.length() - 1)
         }
         return name
     }
