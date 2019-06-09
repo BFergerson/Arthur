@@ -19,32 +19,32 @@ class RubyNamingTest extends ArthurTest {
 
     @Test
     void withArg() {
-        assertRubyNamingPresent("function3()")
+        assertRubyNamingPresent("function3(param1,param2)")
     }
 
     @Test
     void varargs() {
-        assertRubyNamingPresent("function4()")
+        assertRubyNamingPresent("function4(param)")
     }
 
     @Test
     void ampersandArg() {
-        assertRubyNamingPresent("function5()")
+        assertRubyNamingPresent("function5(param)")
     }
 
     @Test
     void keywordArg1() {
-        assertRubyNamingPresent("function6()")
+        assertRubyNamingPresent("function6(param)")
     }
 
     @Test
     void keywordArg2() {
-        assertRubyNamingPresent("function7()")
+        assertRubyNamingPresent("function7(param)")
     }
 
     @Test
     void keywordArg3() {
-        assertRubyNamingPresent("function8()")
+        assertRubyNamingPresent("function8(param)")
     }
 
     @Test

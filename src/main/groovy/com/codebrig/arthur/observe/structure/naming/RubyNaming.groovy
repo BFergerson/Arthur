@@ -2,6 +2,10 @@ package com.codebrig.arthur.observe.structure.naming
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 
 /**
  * Used to get the names of Ruby AST nodes
@@ -37,7 +41,18 @@ class RubyNaming implements StructureNaming {
     }
 
     static String getDefName(SourceNode node) {
-        def defName = node.token
-        return defName + "()"
+        def functionName = node.token
+        functionName += "("
+        MultiFilter.matchAll(
+                new TypeFilter("args"),
+                new InternalRoleFilter("args")
+        ).getFilteredNodes(node.children).each {
+            it.children.each {
+                functionName += it.token + ","
+            }
+        }
+        functionName = Util.trimTrailingComma(functionName)
+        functionName += ")"
+        return functionName
     }
 }

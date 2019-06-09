@@ -4,7 +4,7 @@ end
 def function2
 end
 
-def function3(param)
+def function3(param1, param2)
     puts "withArg"
 end
 
