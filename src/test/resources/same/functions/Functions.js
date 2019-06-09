@@ -70,3 +70,7 @@ function function15(param = 1) {
 function function16(param1, ...param2) {
     console.log("restOperatorParam");
 }
+
+function function17(param1: any, param2: number) {
+    console.log("withTypedArg");
+}
