@@ -3,7 +3,8 @@ package com.codebrig.arthur.observe.structure.naming
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.codebrig.arthur.util.Util
+
+import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
 /**
  * Used to get the names of PHP AST nodes
@@ -11,6 +12,7 @@ import com.codebrig.arthur.util.Util
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class PhpNaming implements StructureNaming {
 
@@ -56,7 +58,7 @@ class PhpNaming implements StructureNaming {
                     break
             }
         }
-        functionName = Util.trimTrailingComma(functionName)
+        functionName = trimTrailingComma(functionName)
         if (hasFunctionName) {
             functionName += ")"
         }

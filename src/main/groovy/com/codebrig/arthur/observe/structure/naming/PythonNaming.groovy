@@ -5,7 +5,8 @@ import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.codebrig.arthur.util.Util
+
+import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
 /**
  * Used to get the names of Python AST nodes
@@ -13,6 +14,7 @@ import com.codebrig.arthur.util.Util
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class PythonNaming implements StructureNaming {
 
@@ -54,7 +56,7 @@ class PythonNaming implements StructureNaming {
                 }
             }
         }
-        functionName = Util.trimTrailingComma(functionName)
+        functionName = trimTrailingComma(functionName)
         functionName += ")"
         return functionName
     }

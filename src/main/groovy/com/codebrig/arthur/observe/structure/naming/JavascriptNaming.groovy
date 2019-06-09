@@ -5,7 +5,8 @@ import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.codebrig.arthur.util.Util
+
+import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
 /**
  * Used to get the names of JavaScript AST nodes
@@ -13,6 +14,7 @@ import com.codebrig.arthur.util.Util
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class JavascriptNaming implements StructureNaming {
 
@@ -75,7 +77,7 @@ class JavascriptNaming implements StructureNaming {
         }
         functionName += "("
         functionName += getArgumentNames(node)
-        functionName = Util.trimTrailingComma(functionName)
+        functionName = trimTrailingComma(functionName)
         functionName += ")"
         return functionName
     }
@@ -100,7 +102,7 @@ class JavascriptNaming implements StructureNaming {
                     throw new IllegalStateException("Unsupported function argument node type: " + it.internalType)
             }
         }
-        name = Util.trimTrailingComma(name)
+        name = trimTrailingComma(name)
         name += ")"
         return name
     }

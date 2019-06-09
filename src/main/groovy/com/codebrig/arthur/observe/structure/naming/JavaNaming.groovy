@@ -4,7 +4,8 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.codebrig.arthur.util.Util
+
+import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
 /**
  * Used to get the names/qualified names of Java AST nodes
@@ -12,6 +13,7 @@ import com.codebrig.arthur.util.Util
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class JavaNaming implements StructureNaming {
 
@@ -74,7 +76,7 @@ class JavaNaming implements StructureNaming {
         new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
             name += getSingleVariableDeclarationName(it) + ","
         }
-        name = Util.trimTrailingComma(name)
+        name = trimTrailingComma(name)
         return name + ")"
     }
 
