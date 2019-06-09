@@ -2,7 +2,8 @@ package com.codebrig.arthur.observe.structure.naming
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
-import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 
 /**
  * Used to get the names of PHP AST nodes
@@ -39,9 +40,24 @@ class PhpNaming implements StructureNaming {
 
     static String getFunctionName(SourceNode node) {
         def functionName = ""
-        new InternalRoleFilter("Name").getFilteredNodes(node.children).each {
-            functionName = it.token
+        def hasFunctionName = false
+        node.children.each {
+            switch (it.internalType) {
+                case "Name":
+                    functionName += it.token + "("
+                    hasFunctionName = true
+                    break
+                case "Param":
+                    new TypeFilter("Name").getFilteredNodes(it.children).each {
+                        functionName += it.token + ","
+                    }
+                    break
+            }
         }
-        return functionName + "()"
+        functionName = Util.trimTrailingComma(functionName)
+        if (hasFunctionName) {
+            functionName += ")"
+        }
+        return functionName
     }
 }

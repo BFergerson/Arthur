@@ -8,7 +8,7 @@ function function2()
 {
 }
 
-function function3($param)
+function function3($param1, $param2)
 {
     echo "withArg";
 }
@@ -36,6 +36,11 @@ function function7(int $param)
 function function8(&$param)
 {
     echo "passByReference";
+}
+
+function function9($param1, ...$param2)
+{
+    echo "splatOperatorArg";
 }
 
 ?>

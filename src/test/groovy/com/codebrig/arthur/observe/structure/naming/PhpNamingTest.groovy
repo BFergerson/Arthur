@@ -19,32 +19,37 @@ class PhpNamingTest extends ArthurTest {
 
     @Test
     void withArg() {
-        assertPhpNamingPresent("function3()")
+        assertPhpNamingPresent("function3(param1,param2)")
     }
 
     @Test
     void defaultParam() {
-        assertPhpNamingPresent("function4()")
+        assertPhpNamingPresent("function4(param)")
     }
 
     @Test
     void defaultArrayParam() {
-        assertPhpNamingPresent("function5()")
+        assertPhpNamingPresent("function5(param)")
     }
 
     @Test
     void defaultNullParam() {
-        assertPhpNamingPresent("function6()")
+        assertPhpNamingPresent("function6(param)")
     }
 
     @Test
     void typedIntArg() {
-        assertPhpNamingPresent("function7()")
+        assertPhpNamingPresent("function7(param)")
     }
 
     @Test
     void passByReference() {
-        assertPhpNamingPresent("function8()")
+        assertPhpNamingPresent("function8(param)")
+    }
+
+    @Test
+    void splatOperatorArg() {
+        assertPhpNamingPresent("function9(param1,param2)")
     }
 
     private static void assertPhpNamingPresent(String functionName) {
