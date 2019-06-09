@@ -5,6 +5,7 @@ import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.util.Util
 
 /**
  * Used to get the names of Go AST nodes
@@ -67,9 +68,7 @@ class GoNaming implements StructureNaming {
                     }
                 }
             }
-            if (functionName.endsWith(",")) {
-                functionName = functionName.substring(0, functionName.length() - 1)
-            }
+            functionName = Util.trimTrailingComma(functionName)
             functionName += ")"
         }
         return functionName
