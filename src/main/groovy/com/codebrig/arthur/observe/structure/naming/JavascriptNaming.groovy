@@ -108,8 +108,8 @@ class JavascriptNaming implements StructureNaming {
     static String assembleParamNames(SourceNode node) {
         def name = "("
         MultiFilter.matchAll(
-                new TypeFilter("AssignmentPattern", "Identifier"),
-                new InternalRoleFilter("params", "arguments")
+                new TypeFilter("Identifier", "AssignmentPattern", "RestElement"),
+                new InternalRoleFilter("params", "argument", "arguments")
         ).getFilteredNodes(node.children).each {
             switch (it.internalType) {
                 case "Identifier":
@@ -129,6 +129,9 @@ class JavascriptNaming implements StructureNaming {
                 case "AssignmentPattern":
                     name += getAssignmentParamNames(it)
                     break
+                case "RestElement":
+                    name += getArgumentNames(it)
+                    break
             }
         }
         name = trimTrailingComma(name)
@@ -146,7 +149,7 @@ class JavascriptNaming implements StructureNaming {
 
     static String getArgumentNames(SourceNode node) {
         def name = ""
-        new InternalRoleFilter("arguments").getFilteredNodes(node).each {
+        new InternalRoleFilter("argument", "arguments").getFilteredNodes(node).each {
             name += it.token + ","
         }
         return name

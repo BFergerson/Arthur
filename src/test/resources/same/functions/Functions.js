@@ -66,3 +66,7 @@ var newFunctionVar = new Function(number1, number2,
 function function15(param = 1) {
     console.log("defaultParam");
 }
+
+function function16(param1, ...param2) {
+    console.log("restOperatorParam");
+}
