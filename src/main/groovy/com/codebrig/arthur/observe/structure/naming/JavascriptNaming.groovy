@@ -6,8 +6,6 @@ import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import com.codebrig.arthur.util.Util
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 /**
  * Used to get the names of JavaScript AST nodes
@@ -17,8 +15,6 @@ import org.slf4j.LoggerFactory
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class JavascriptNaming implements StructureNaming {
-
-    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     @Override
     boolean isNamedNodeType(String internalType) {
