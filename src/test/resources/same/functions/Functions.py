@@ -5,12 +5,12 @@ def function2():
     print ""
 
 def function3(param1, param2):
-    print "withArg"
+    print "withArgs"
 
 def function4(param = 'param'):
     print "defaultArg"
 
-def function5(**param1):
+def function5(**param):
     print "keywordArgs"
 
 # def function6(param1, *param2):

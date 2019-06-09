@@ -49,6 +49,8 @@ class PythonNaming implements StructureNaming {
                     case "kwarg":
                         functionName += it.token + ","
                         break
+                    default:
+                        throw new IllegalStateException("Unsupported function argument node type: " + it.internalType)
                 }
             }
         }

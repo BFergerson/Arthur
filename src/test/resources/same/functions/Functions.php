@@ -10,7 +10,7 @@ function function2()
 
 function function3($param1, $param2)
 {
-    echo "withArg";
+    echo "withArgs";
 }
 
 function function4($param = 1)

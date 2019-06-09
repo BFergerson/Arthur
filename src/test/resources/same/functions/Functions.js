@@ -7,7 +7,7 @@ function function2() {
 }
 
 function function3(param1, param2) {
-    console.log("withArg");
+    console.log("withArgs");
 }
 
 var function4Var = function function4() {

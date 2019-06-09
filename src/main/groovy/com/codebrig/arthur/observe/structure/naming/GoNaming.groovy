@@ -62,7 +62,7 @@ class GoNaming implements StructureNaming {
                                     functionName += getStarExprTypeName(it)
                                     break
                                 default:
-                                    throw new IllegalStateException("Unsupported Go node type: " + it.internalType)
+                                    throw new IllegalStateException("Unsupported function argument node type: " + it.internalType)
                             }
                         }
                     }

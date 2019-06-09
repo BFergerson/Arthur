@@ -5,7 +5,7 @@ def function2
 end
 
 def function3(param1, param2)
-    puts "withArg"
+    puts "withArgs"
 end
 
 def function4(*param)

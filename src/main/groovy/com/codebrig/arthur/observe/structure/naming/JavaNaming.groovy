@@ -133,7 +133,7 @@ class JavaNaming implements StructureNaming {
                     type = getQualifiedTypeName(it)
                     break
                 default:
-                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+                    throw new IllegalStateException("Unsupported variable declaration node type: " + it.internalType)
             }
         }
         return type
@@ -197,7 +197,7 @@ class JavaNaming implements StructureNaming {
                 type = getArrayTypeName(elementType)
                 break
             default:
-                throw new IllegalStateException("Unsupported type: " + elementType.internalType)
+                throw new IllegalStateException("Unsupported array argument node type: " + elementType.internalType)
         }
 
         def dimensions = ""
@@ -227,7 +227,7 @@ class JavaNaming implements StructureNaming {
                     qualifier += getQualifiedTypeName(it)
                     break
                 default:
-                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+                    throw new IllegalStateException("Unsupported qualified argument node type: " + it.internalType)
             }
         }
 

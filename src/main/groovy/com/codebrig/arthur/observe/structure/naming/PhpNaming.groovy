@@ -52,6 +52,8 @@ class PhpNaming implements StructureNaming {
                         functionName += it.token + ","
                     }
                     break
+                default:
+                    break
             }
         }
         functionName = Util.trimTrailingComma(functionName)

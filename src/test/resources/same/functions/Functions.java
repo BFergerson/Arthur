@@ -8,8 +8,8 @@ public class Functions {
         System.out.println("");
     }
 
-    public void function3(int param) {
-        System.out.println("intArg");
+    public void function3(int param1, String param2) {
+        System.out.println("withArgs");
     }
 
     public void function4(int... param) {

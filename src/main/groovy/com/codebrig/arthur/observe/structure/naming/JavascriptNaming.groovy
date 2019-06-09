@@ -38,11 +38,9 @@ class JavascriptNaming implements StructureNaming {
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
-                return getFunctionDeclarationName(node)
             case "FunctionExpression":
-                return getFunctionExpressionName(node)
             case "ArrowFunctionExpression":
-                return getArrowFunctionExpressionName(node)
+                return getFunctionDeclarationName(node)
             case "ObjectMethod":
                 return getObjectMethodName(node)
             case "NewExpression":
@@ -53,26 +51,6 @@ class JavascriptNaming implements StructureNaming {
     }
 
     static String getFunctionDeclarationName(SourceNode node) {
-        def functionName = ""
-        new InternalRoleFilter("id").getFilteredNodes(node.children).each {
-            functionName = it.token
-        }
-        functionName += assembleParamNames(node)
-        return functionName
-    }
-
-    static String getFunctionExpressionName(SourceNode node) {
-        log.info "function expression"
-        def functionName = ""
-        new InternalRoleFilter("id").getFilteredNodes(node.children).each {
-            functionName = it.token
-        }
-        functionName += assembleParamNames(node)
-        return functionName
-    }
-
-    static String getArrowFunctionExpressionName(SourceNode node) {
-        log.info "arrow expression"
         def functionName = ""
         new InternalRoleFilter("id").getFilteredNodes(node.children).each {
             functionName = it.token
@@ -122,6 +100,8 @@ class JavascriptNaming implements StructureNaming {
                 case "RestElement":
                     name += getArgumentNames(it)
                     break
+                default:
+                    throw new IllegalStateException("Unsupported function argument node type: " + it.internalType)
             }
         }
         name = Util.trimTrailingComma(name)

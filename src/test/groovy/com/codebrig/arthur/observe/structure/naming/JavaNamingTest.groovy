@@ -19,8 +19,8 @@ class JavaNamingTest extends ArthurTest {
     }
 
     @Test
-    void intArg() {
-        assertJavaNamingPresent("function3", "(int)")
+    void withArgs() {
+        assertJavaNamingPresent("function3", "(int,java.lang.String)")
     }
 
     @Test

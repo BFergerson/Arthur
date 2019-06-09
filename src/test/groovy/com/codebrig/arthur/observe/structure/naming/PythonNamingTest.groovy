@@ -4,32 +4,34 @@ import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.NameFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
+import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
 
 class PythonNamingTest extends ArthurTest {
 
     @Test
     void noArgs() {
-        assertPythonNamingPresent("function1()")
-        assertPythonNamingPresent("function2()")
+        assertPythonNamingPresent("function1", "()")
+        assertPythonNamingPresent("function2", "()")
     }
 
     @Test
-    void withArg() {
-        assertPythonNamingPresent("function3(param1,param2)")
+    void withArgs() {
+        assertPythonNamingPresent("function3", "(param1,param2)")
     }
 
     @Test
     void defaultArg() {
-        assertPythonNamingPresent("function4(param)")
+        assertPythonNamingPresent("function4", "(param)")
     }
 
     @Test
     void keywordArgs() {
-        assertPythonNamingPresent("function5(param1)")
+        assertPythonNamingPresent("function5", "(param)")
     }
 
     /*
@@ -38,12 +40,12 @@ class PythonNamingTest extends ArthurTest {
      *
     @Test
     void variadicArgs() {
-        assertPythonNamingPresent("function6(param1,param2)")
+        assertPythonNamingPresent("function6", "(param1,param2)")
     }
 
     @Test
     void variadicAndKeywordArgs() {
-        assertPythonNamingPresent("function7(param,args,kwargs)")
+        assertPythonNamingPresent("function7", "(param,args,kwargs)")
     }
     */
 
@@ -53,7 +55,7 @@ class PythonNamingTest extends ArthurTest {
      *
     @Test
     void functionAnnotation() {
-        assertPythonNamingPresent("function8(param)")
+        assertPythonNamingPresent("function8", "(param)")
     }
     */
 
@@ -63,21 +65,21 @@ class PythonNamingTest extends ArthurTest {
      *
     @Test
     void keywordArgs() {
-        assertPythonNamingPresent("function9(param1,param2)")
+        assertPythonNamingPresent("function9", "(param1,param2)")
     }
     */
 
-    private static void assertPythonNamingPresent(String functionName) {
+    private static void assertPythonNamingPresent(String functionName, String argsList) {
         def file = new File("src/test/resources/same/functions/Functions.py")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         def functionFilter = new FunctionFilter()
+        def nameFilter = new NameFilter(functionName)
         boolean foundFunction = false
-        MultiFilter.matchAll(functionFilter).getFilteredNodes(language, resp.uast).each {
-            if (functionName == it.name) {
-                foundFunction = true
-            }
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+            assertEquals(functionName + argsList, it.name)
+            foundFunction = true
         }
         assertTrue(foundFunction)
     }

@@ -24,9 +24,27 @@ class NameFilter extends StructureFilter<NameFilter, String> {
                 return evaluateProperty(node.token)
             }
 
-            def childNameFilter
+            def childNameFilter = null
             if (node.language == SourceLanguage.Javascript) {
-                childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
+                switch (Objects.requireNonNull(node).internalType) {
+                    case "FunctionDeclaration":
+                    case "FunctionExpression":
+                    case "ArrowFunctionExpression":
+                        childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
+                        break
+                    case "ObjectMethod":
+                        childNameFilter = MultiFilter.matchAll(
+                                new TypeFilter("Identifier"), new InternalRoleFilter("key")
+                        ).getFilteredNodes(node.children)
+                        break
+                    case "NewExpression":
+                        childNameFilter = MultiFilter.matchAll(
+                                new TypeFilter("Identifier"), new InternalRoleFilter("callee")
+                        ).getFilteredNodes(node.children)
+                        break
+                    default:
+                        break
+                }
             } else if (node.language == SourceLanguage.Java) {
                 if (node.internalType == "VariableDeclarationStatement") {
                     MultiFilter.matchAll(
