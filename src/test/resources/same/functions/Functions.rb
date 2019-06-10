@@ -27,8 +27,3 @@ end
 def function8(param:)
     puts "keywordArg3"
 end
-
-a = "b"
-def a.function9
-    puts "dynamicMethod"
-end

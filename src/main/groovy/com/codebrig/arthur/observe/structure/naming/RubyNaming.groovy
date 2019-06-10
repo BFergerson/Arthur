@@ -23,7 +23,6 @@ class RubyNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "Def":
             case "def":
-            case "defs":
                 return true
             default:
                 return false
@@ -35,7 +34,6 @@ class RubyNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "Def":
             case "def":
-            case "defs":
                 return getDefName(node)
             default:
                 return null

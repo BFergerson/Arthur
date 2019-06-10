@@ -23,9 +23,6 @@ class JavascriptNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "FunctionDeclaration":
             case "FunctionExpression":
-            case "ArrowFunctionExpression":
-            case "ObjectMethod":
-            case "NewExpression":
                 return true
             default:
                 return false
@@ -37,12 +34,7 @@ class JavascriptNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
             case "FunctionExpression":
-            case "ArrowFunctionExpression":
                 return getFunctionDeclarationName(node)
-            case "ObjectMethod":
-                return getObjectMethodName(node)
-            case "NewExpression":
-                return getNewExpressionName(node)
             default:
                 return null
         }
@@ -54,31 +46,6 @@ class JavascriptNaming implements StructureNaming {
             functionName = it.token
         }
         functionName += assembleParamNames(node)
-        return functionName
-    }
-
-    static String getObjectMethodName(SourceNode node) {
-        def functionName = ""
-        MultiFilter.matchAll(
-                new TypeFilter("Identifier"), new InternalRoleFilter("key")
-        ).getFilteredNodes(node.children).each {
-            functionName = it.token
-        }
-        functionName += assembleParamNames(node)
-        return functionName
-    }
-
-    static String getNewExpressionName(SourceNode node) {
-        def functionName = ""
-        MultiFilter.matchAll(
-                new TypeFilter("Identifier"), new InternalRoleFilter("callee")
-        ).getFilteredNodes(node.children).each {
-            functionName = it.token
-        }
-        functionName += "("
-        functionName += getArgumentNames(node)
-        functionName = trimTrailingComma(functionName)
-        functionName += ")"
         return functionName
     }
 

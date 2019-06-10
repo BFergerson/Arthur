@@ -25,78 +25,28 @@ class JavascriptNamingTest extends ArthurTest {
     }
 
     @Test
-    void namedNoArg() {
+    void generatorDeclarationNoArg() {
         assertJavascriptNamingPresent("function4", "()")
     }
 
     @Test
-    void namedWithArg() {
+    void generatorDeclarationWithArg() {
         assertJavascriptNamingPresent("function5", "(param)")
     }
 
     @Test
-    void shorthandNoArg() {
-        assertJavascriptNamingPresent("function6", "()")
-    }
-
-    @Test
-    void computedNoArg() {
-        assertJavascriptNamingPresent("function7Var", "()")
-    }
-
-    @Test
-    void computedWithArg() {
-        assertJavascriptNamingPresent("function8Var", "(param)")
-    }
-
-    @Test
-    void generatorDeclarationNoArg() {
-        assertJavascriptNamingPresent("function9", "()")
-    }
-
-    @Test
-    void generatorDeclarationWithArg() {
-        assertJavascriptNamingPresent("function10", "(param)")
-    }
-
-    @Test
-    void generatorExpressionNamedNoArg() {
-        assertJavascriptNamingPresent("function11", "()")
-    }
-
-    @Test
-    void generatorExpressionNamedWithArg() {
-        assertJavascriptNamingPresent("function12", "(param)")
-    }
-
-    @Test
-    void generatorShorthandNoArg() {
-        assertJavascriptNamingPresent("function13", "()")
-    }
-
-    @Test
-    void generatorShorthandWithArg() {
-        assertJavascriptNamingPresent("function14", "(param)")
-    }
-
-    @Test
-    void newFunction() {
-        assertJavascriptNamingPresent("Function", "(number1,number2,'return number1 + number2')")
-    }
-
-    @Test
     void defaultParam() {
-        assertJavascriptNamingPresent("function15", "(param)")
+        assertJavascriptNamingPresent("function6", "(param)")
     }
 
     @Test
     void restOperatorParam() {
-        assertJavascriptNamingPresent("function16", "(param1,param2)")
+        assertJavascriptNamingPresent("function7", "(param1,param2)")
     }
 
     @Test
     void withTypedArg() {
-        assertJavascriptNamingPresent("function17", "(param1,param2)")
+        assertJavascriptNamingPresent("function8", "(param1,param2)")
     }
 
     private static void assertJavascriptNamingPresent(String functionName, String argsList) {

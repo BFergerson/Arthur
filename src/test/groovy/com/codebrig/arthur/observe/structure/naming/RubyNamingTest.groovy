@@ -49,11 +49,6 @@ class RubyNamingTest extends ArthurTest {
         assertRubyNamingPresent("function8", "(param)")
     }
 
-    @Test
-    void dynamicMethod() {
-        assertRubyNamingPresent("function9", "()")
-    }
-
     private static void assertRubyNamingPresent(String functionName, String argsList) {
         def file = new File("src/test/resources/same/functions/Functions.rb")
         def language = SourceLanguage.getSourceLanguage(file)
