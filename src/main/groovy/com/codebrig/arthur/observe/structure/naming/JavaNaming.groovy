@@ -5,12 +5,15 @@ import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
+import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
+
 /**
  * Used to get the names/qualified names of Java AST nodes
  *
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class JavaNaming implements StructureNaming {
 
@@ -73,9 +76,7 @@ class JavaNaming implements StructureNaming {
         new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
             name += getSingleVariableDeclarationName(it) + ","
         }
-        if (name.endsWith(",")) {
-            name = name.substring(0, name.length() - 1)
-        }
+        name = trimTrailingComma(name)
         return name + ")"
     }
 
@@ -134,7 +135,7 @@ class JavaNaming implements StructureNaming {
                     type = getQualifiedTypeName(it)
                     break
                 default:
-                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+                    throw new IllegalStateException("Unsupported variable declaration node type: " + it.internalType)
             }
         }
         return type
@@ -198,7 +199,7 @@ class JavaNaming implements StructureNaming {
                 type = getArrayTypeName(elementType)
                 break
             default:
-                throw new IllegalStateException("Unsupported type: " + elementType.internalType)
+                throw new IllegalStateException("Unsupported array argument node type: " + elementType.internalType)
         }
 
         def dimensions = ""
@@ -228,7 +229,7 @@ class JavaNaming implements StructureNaming {
                     qualifier += getQualifiedTypeName(it)
                     break
                 default:
-                    throw new IllegalStateException("Unsupported type: " + it.internalType)
+                    throw new IllegalStateException("Unsupported qualified argument node type: " + it.internalType)
             }
         }
 
