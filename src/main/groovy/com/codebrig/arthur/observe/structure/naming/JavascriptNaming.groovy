@@ -22,7 +22,6 @@ class JavascriptNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "FunctionDeclaration":
-            case "FunctionExpression":
                 return true
             default:
                 return false
@@ -33,7 +32,6 @@ class JavascriptNaming implements StructureNaming {
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
-            case "FunctionExpression":
                 return getFunctionDeclarationName(node)
             default:
                 return null

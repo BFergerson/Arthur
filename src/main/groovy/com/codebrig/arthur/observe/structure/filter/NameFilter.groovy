@@ -29,7 +29,6 @@ class NameFilter extends StructureFilter<NameFilter, String> {
             if (node.language == SourceLanguage.Javascript) {
                 switch (Objects.requireNonNull(node).internalType) {
                     case "FunctionDeclaration":
-                    case "FunctionExpression":
                         childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
                         break
                     default:

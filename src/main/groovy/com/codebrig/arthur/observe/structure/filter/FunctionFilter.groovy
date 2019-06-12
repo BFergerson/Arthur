@@ -9,7 +9,6 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
- * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
 
@@ -19,8 +18,6 @@ class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
         filter = MultiFilter.matchAny(
                 MultiFilter.matchAll(
                         new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
-                        new TypeFilter("FunctionDeclaration", "FunctionExpression", "FuncDecl", "FunctionDef",
-                                "MethodDeclaration", "Stmt_Function", "Expr_Closure", "def"),
                         new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
                 )
         )
