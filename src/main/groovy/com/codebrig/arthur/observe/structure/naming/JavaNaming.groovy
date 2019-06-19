@@ -4,6 +4,7 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import com.codebrig.arthur.observe.structure.literal.JavaLiteral
 
 import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
@@ -25,6 +26,7 @@ class JavaNaming implements StructureNaming {
             case "CompilationUnit":
             case "MethodDeclaration":
             case "TypeDeclaration":
+            case "VariableDeclarationFragment":
                 return true
             default:
                 return false
@@ -49,6 +51,8 @@ class JavaNaming implements StructureNaming {
                 }
             case "TypeDeclaration":
                 return getTypeDeclarationName(node)
+            case "VariableDeclarationFragment":
+                return getVariableDeclarationFragmentName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }
@@ -84,6 +88,18 @@ class JavaNaming implements StructureNaming {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
             name += it.token
+        }
+        return name
+    }
+
+    static String getVariableDeclarationFragmentName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
+            name += it.token
+        }
+        name += ",type="
+        new TypeFilter("NumberLiteral").getFilteredNodes(node).each {
+            name += new JavaLiteral().getNodeLiteralAttribute(it)
         }
         return name
     }
