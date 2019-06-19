@@ -1,4 +1,4 @@
-package com.codebrig.arthur.observe.structure.filter.operator.relational
+package com.codebrig.arthur.observe.structure.filter.operator.relational.compare
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
