@@ -10,19 +10,19 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-class EqualTypeOperatorFilterTest extends ArthurTest {
+class IsEqualTypeOperatorFilterTest extends ArthurTest {
 
     @Test
-    void equalTypeOperator_Javascript() {
-        assertEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    void isEqualTypeOperator_Javascript() {
+        assertIsEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
     @Test
-    void equalTypeOperator_Php() {
-        assertEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
+    void isEqualTypeOperator_Php() {
+        assertIsEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
-    private static void assertEqualTypeOperatorPresent(File file) {
+    private static void assertIsEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -32,7 +32,7 @@ class EqualTypeOperatorFilterTest extends ArthurTest {
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals("equalTypeOperator()", it.name)
 
-            new EqualTypeOperatorFilter().getFilteredNodes(it).each {
+            new IsEqualTypeOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundEqualTypeOperator)
                 if (!it.token.isEmpty()) assertEquals("===", it.token)
                 foundEqualTypeOperator = true

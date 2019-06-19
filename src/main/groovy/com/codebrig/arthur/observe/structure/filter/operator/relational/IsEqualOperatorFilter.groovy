@@ -13,11 +13,11 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class EqualOperatorFilter extends StructureFilter<EqualOperatorFilter, Void> {
+class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void> {
 
     private final MultiFilter filter
 
-    EqualOperatorFilter() {
+    IsEqualOperatorFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"),
                 new RoleFilter("RELATIONAL"),

@@ -7,21 +7,21 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
- * Match by not equal type operator
+ * Match by equal type operator
  *
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-class NotEqualTypeOperatorFilter extends StructureFilter<NotEqualTypeOperatorFilter, Void> {
+class IsEqualTypeOperatorFilter extends StructureFilter<IsEqualTypeOperatorFilter, Void> {
 
     private final MultiFilter filter
 
-    NotEqualTypeOperatorFilter() {
+    IsEqualTypeOperatorFilter() {
         filter = MultiFilter.matchAll(
-                new RoleFilter("NOT"), new RoleFilter("IDENTICAL"),
-                new RoleFilter("OPERATOR"), new RoleFilter("RELATIONAL"),
-                new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("IDENTICAL"), new RoleFilter("OPERATOR"),
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"),
+                new RoleFilter("BINARY"),
                 new TypeFilter().reject("InfixExpression", "BinaryExpression")
         )
     }

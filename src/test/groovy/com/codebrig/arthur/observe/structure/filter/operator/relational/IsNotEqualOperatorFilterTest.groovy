@@ -10,32 +10,32 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-class NotEqualOperatorFilterTest extends ArthurTest {
+class IsNotEqualOperatorFilterTest extends ArthurTest {
 
     @Test
-    void notEqualOperator_Go() {
-        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.go"))
+    void isNotEqualOperator_Go() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.go"))
     }
 
     @Test
-    void notEqualOperator_Java() {
-        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+    void isNotEqualOperator_Java() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
                 "Operators.")
     }
 
     @Test
-    void notEqualOperator_Javascript() {
-        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    void isNotEqualOperator_Javascript() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
     @Test
-    void notEqualOperator_Php() {
-        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
+    void isNotEqualOperator_Php() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
     @Test
-    void notEqualOperator_Python() {
-        assertNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
+    void isNotEqualOperator_Python() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
     @Test
@@ -50,7 +50,7 @@ class NotEqualOperatorFilterTest extends ArthurTest {
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals("alternateNotEqualOperator()", it.name)
 
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
+            new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAlternateNotEqualOperator)
                 assertEquals("!=", it.token)
                 foundAlternateNotEqualOperator = true
@@ -59,11 +59,11 @@ class NotEqualOperatorFilterTest extends ArthurTest {
         assertTrue(foundAlternateNotEqualOperator)
     }
 
-    private static void assertNotEqualOperatorPresent(File file) {
-        assertNotEqualOperatorPresent(file, "")
+    private static void assertIsNotEqualOperatorPresent(File file) {
+        assertIsNotEqualOperatorPresent(file, "")
     }
 
-    private static void assertNotEqualOperatorPresent(File file, String qualifiedName) {
+    private static void assertIsNotEqualOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
@@ -73,7 +73,7 @@ class NotEqualOperatorFilterTest extends ArthurTest {
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "notEqualOperator()", it.name)
 
-            new NotEqualOperatorFilter().getFilteredNodes(it).each {
+            new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundNotEqualOperator)
                 if (!it.token.isEmpty()) assertEquals("!=", it.token)
                 foundNotEqualOperator = true
