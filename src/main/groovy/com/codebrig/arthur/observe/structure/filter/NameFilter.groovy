@@ -50,6 +50,8 @@ class NameFilter extends StructureFilter<NameFilter, String> {
                             new TypeFilter().reject("VariableDeclarationFragment")
                     ).getFilteredNodes(node.children)
                 }
+            } else if (node.language == SourceLanguage.CSharp) {
+                childNameFilter = new TypeFilter("IdentifierToken").getFilteredNodes(node.children)
             } else {
                 childNameFilter = new InternalRoleFilter("name").getFilteredNodes(node.children)
             }
