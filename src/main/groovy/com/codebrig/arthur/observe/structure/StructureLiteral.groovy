@@ -46,9 +46,9 @@ abstract class StructureLiteral {
             case booleanValueLiteral():
                 return Boolean.valueOf(node.token)
             case numberValueLiteral():
-                return node.language.structureLiteral.toLong(node.token)
+                return toLong(node.token)
             case doubleValueLiteral():
-                return node.language.structureLiteral.toDouble(node.token)
+                return toDouble(node.token)
             default:
                 return StringEscapeUtils.escapeJava(node.token) //treat as string
         }
