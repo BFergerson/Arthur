@@ -55,7 +55,7 @@ class TryFilterTest extends ArthurTest {
         def foundTry = false
         def foundCatch = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatch")
+        def nameFilter = new NameFilter(qualifiedName + "tryCatch()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "tryCatch()", it.name)
 
@@ -84,7 +84,7 @@ class TryFilterTest extends ArthurTest {
         def foundCatch = false
         def foundFinally = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatchFinally")
+        def nameFilter = new NameFilter(qualifiedName + "tryCatchFinally()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "tryCatchFinally()", it.name)
 

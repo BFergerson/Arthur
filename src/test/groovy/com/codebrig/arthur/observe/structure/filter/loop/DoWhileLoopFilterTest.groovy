@@ -32,7 +32,7 @@ class DoWhileLoopFilterTest extends ArthurTest {
 
         def foundDoWhileLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("doWhileLoop")
+        def nameFilter = new NameFilter(qualifiedName + "doWhileLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "doWhileLoop()", it.name)
 

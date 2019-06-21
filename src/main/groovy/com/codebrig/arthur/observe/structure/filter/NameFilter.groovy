@@ -1,11 +1,10 @@
 package com.codebrig.arthur.observe.structure.filter
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
- * Match by the name
+ * Match by the fully qualified name
  *
  * @version 0.4
  * @since 0.2
@@ -19,45 +18,6 @@ class NameFilter extends StructureFilter<NameFilter, String> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null) {
-            if (node.language in [SourceLanguage.Python, SourceLanguage.Ruby]) {
-                return evaluateProperty(node.token)
-            }
-
-            def childNameFilter
-            if (node.language == SourceLanguage.Javascript) {
-                childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
-            } else if (node.language == SourceLanguage.Java) {
-                if (node.internalType == "VariableDeclarationStatement") {
-                    MultiFilter.matchAll(
-                            new InternalRoleFilter("fragments"),
-                            new TypeFilter("VariableDeclarationFragment")
-                    ).getFilteredNodes(node).each {
-                        childNameFilter = MultiFilter.matchAll(
-                                new InternalRoleFilter("name"),
-                                new TypeFilter().reject("VariableDeclarationFragment")
-                        ).getFilteredNodes(it.children)
-                    }
-                }
-
-                if (childNameFilter == null) {
-                    if (node.internalType == "VariableDeclarationFragment") {
-                        return false
-                    }
-
-                    childNameFilter = MultiFilter.matchAll(
-                            new InternalRoleFilter("name"),
-                            new TypeFilter().reject("VariableDeclarationFragment")
-                    ).getFilteredNodes(node.children)
-                }
-            } else {
-                childNameFilter = new InternalRoleFilter("name").getFilteredNodes(node.children)
-            }
-            return new TokenFilter()
-                    .accept(acceptSet.toArray(new String[0]))
-                    .reject(rejectSet.toArray(new String[0]))
-                    .getFilteredNodes(childNameFilter).hasNext()
-        }
-        return false
+        return node != null && node.hasName() && evaluateProperty(node.name)
     }
 }

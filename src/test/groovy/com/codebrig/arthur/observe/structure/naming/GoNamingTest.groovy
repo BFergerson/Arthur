@@ -74,7 +74,7 @@ class GoNamingTest extends ArthurTest {
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(functionName)
+        def nameFilter = new NameFilter(functionName + argsList)
         boolean foundFunction = false
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(functionName + argsList, it.name)
