@@ -46,7 +46,7 @@ class OrOperatorFilterTest extends ArthurTest {
 
         def foundOrOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("orOperator")
+        def nameFilter = new NameFilter(qualifiedName + "orOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "orOperator()", it.name)
 

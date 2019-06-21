@@ -1,6 +1,7 @@
 package com.codebrig.arthur.observe.structure
 
 import com.codebrig.arthur.SourceNode
+import org.apache.commons.lang.StringEscapeUtils
 import org.apache.commons.lang.math.NumberUtils
 
 /**
@@ -38,6 +39,19 @@ abstract class StructureLiteral {
 
     boolean isNodeLiteral(SourceNode node) {
         return getNodeLiteralAttribute(node) != null
+    }
+
+    Object getNodeLiteralValue(SourceNode node) {
+        switch (node.getLiteralAttribute()) {
+            case booleanValueLiteral():
+                return Boolean.valueOf(node.token)
+            case numberValueLiteral():
+                return node.language.structureLiteral.toLong(node.token)
+            case doubleValueLiteral():
+                return node.language.structureLiteral.toDouble(node.token)
+            default:
+                return StringEscapeUtils.escapeJava(node.token) //treat as string
+        }
     }
 
     abstract String getNodeLiteralAttribute(SourceNode node)

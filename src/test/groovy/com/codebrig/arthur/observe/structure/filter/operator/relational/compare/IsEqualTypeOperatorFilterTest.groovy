@@ -28,9 +28,9 @@ class IsEqualTypeOperatorFilterTest extends ArthurTest {
 
         def foundEqualTypeOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("equalTypeOperator")
+        def nameFilter = new NameFilter("isEqualTypeOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("equalTypeOperator()", it.name)
+            assertEquals("isEqualTypeOperator()", it.name)
 
             new IsEqualTypeOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundEqualTypeOperator)

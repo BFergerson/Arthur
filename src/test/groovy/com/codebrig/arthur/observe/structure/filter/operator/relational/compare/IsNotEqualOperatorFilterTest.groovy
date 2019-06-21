@@ -46,9 +46,9 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
 
         def foundAlternateNotEqualOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("alternateNotEqualOperator")
+        def nameFilter = new NameFilter("alternateIsNotEqualOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("alternateNotEqualOperator()", it.name)
+            assertEquals("alternateIsNotEqualOperator()", it.name)
 
             new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAlternateNotEqualOperator)
@@ -69,9 +69,9 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
 
         def foundNotEqualOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualOperator")
+        def nameFilter = new NameFilter(qualifiedName + "isNotEqualOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals(qualifiedName + "notEqualOperator()", it.name)
+            assertEquals(qualifiedName + "isNotEqualOperator()", it.name)
 
             new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundNotEqualOperator)
