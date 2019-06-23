@@ -55,8 +55,6 @@ class JavaNaming implements StructureNaming {
                 return getTypeDeclarationName(node)
             case "FieldDeclaration":
                 return getFieldDeclarationName(node)
-            case "VariableDeclarationFragment":
-                return getVariableDeclarationFragmentName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }
@@ -99,18 +97,6 @@ class JavaNaming implements StructureNaming {
     static String getFieldDeclarationName(SourceNode node) {
         return MultiFilter.matchAll(new RoleFilter("EXPRESSION"), new RoleFilter("IDENTIFIER"))
                 .getFilteredNodes(node).next().token
-    }
-
-    static String getVariableDeclarationFragmentName(SourceNode node) {
-        def name = ""
-        new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
-            name += it.token
-        }
-        name += ",type="
-        new TypeFilter("NumberLiteral").getFilteredNodes(node).each {
-            name += new JavaLiteral().getNodeLiteralAttribute(it)
-        }
-        return name
     }
 
     static String getPackageDeclarationName(SourceNode node) {
