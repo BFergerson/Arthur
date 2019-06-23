@@ -33,6 +33,11 @@ class ElseConditionalFilterTest extends ArthurTest {
         assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.py"))
     }
 
+    @Test
+    void elseConditional_CSharp() {
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
     private static void assertElseConditionalPresent(File file) {
         assertElseConditionalPresent(file, "")
     }

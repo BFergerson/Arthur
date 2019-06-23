@@ -33,6 +33,11 @@ class IfConditionalFilterTest extends ArthurTest {
         assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.py"))
     }
 
+    @Test
+    void ifConditional_CSharp() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
     private static void assertIfConditionalPresent(File file) {
         assertIfConditionalPresent(file, "")
     }

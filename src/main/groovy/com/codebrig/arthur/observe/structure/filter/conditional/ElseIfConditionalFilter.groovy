@@ -49,6 +49,11 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
                     elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
             }
+            new TypeFilter("ElseClause").getFilteredNodes(node.children).each {
+                new TypeFilter("IfStatement").getFilteredNodes(it.children).each {
+                    elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
+                }
+            }
         }
 
         int nodeIdentity = System.identityHashCode(node.underlyingNode)
