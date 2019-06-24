@@ -6,7 +6,6 @@ import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import com.codebrig.arthur.observe.structure.literal.JavaLiteral
 
 import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
@@ -95,8 +94,13 @@ class JavaNaming implements StructureNaming {
     }
 
     static String getFieldDeclarationName(SourceNode node) {
-        return MultiFilter.matchAll(new RoleFilter("EXPRESSION"), new RoleFilter("IDENTIFIER"))
-                .getFilteredNodes(node).next().token
+        String fieldDeclarationName = ""
+        new TypeFilter("VariableDeclarationFragment").getFilteredNodes(node.children).each {
+            fieldDeclarationName = MultiFilter.matchAll(
+                    new RoleFilter("EXPRESSION"), new RoleFilter("IDENTIFIER"))
+                    .getFilteredNodes(it.children).next().token
+        }
+        return fieldDeclarationName
     }
 
     static String getPackageDeclarationName(SourceNode node) {

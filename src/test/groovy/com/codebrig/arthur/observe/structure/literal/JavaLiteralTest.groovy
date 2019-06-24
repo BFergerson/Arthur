@@ -8,6 +8,7 @@ import com.codebrig.arthur.observe.structure.filter.NameFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.RelationalOperatorFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import groovy.util.logging.Slf4j
+import org.apache.commons.lang.StringEscapeUtils
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -25,6 +26,11 @@ class JavaLiteralTest extends ArthurTest {
         assertJavaLiteralPresent("param2", "doubleValue", 200.1)
     }
 
+    @Test
+    void stringTest() {
+        assertJavaLiteralPresent("param3", "stringValue", StringEscapeUtils.escapeJava("\"stringParam3\""))
+    }
+
     private static void assertJavaLiteralPresent(String literalName, String literalType, Object literalValue) {
         def file = new File("src/test/resources/same/literals/Literals.java")
         def language = SourceLanguage.getSourceLanguage(file)
@@ -37,7 +43,11 @@ class JavaLiteralTest extends ArthurTest {
             def literalNode = new LiteralFilter().getFilteredNodes(it).next()
             assertNotNull(literalNode)
             assertEquals(literalType, literalNode.getLiteralAttribute())
-            assertEquals(literalValue as double, literalNode.getLiteralValue() as double, 0.0)
+            if (literalNode.getLiteralAttribute() == JavaLiteral.stringValueLiteral()) {
+                assertEquals(literalValue, literalNode.getLiteralValue())
+            } else {
+                assertEquals(literalValue as double, literalNode.getLiteralValue() as double, 0.0)
+            }
             foundLiteral = true
         }
         assertTrue(foundLiteral)

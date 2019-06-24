@@ -70,6 +70,10 @@ abstract class StructureLiteral {
         return "booleanValue"
     }
 
+    static String stringValueLiteral() {
+        return "stringValue"
+    }
+
     static Map<String, String> getAllLiteralAttributes() {
         def rtnMap = new LinkedHashMap<String, String>()
         rtnMap.put(booleanValueLiteral(), "boolean")

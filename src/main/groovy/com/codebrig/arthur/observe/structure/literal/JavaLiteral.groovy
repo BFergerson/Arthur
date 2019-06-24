@@ -24,6 +24,8 @@ class JavaLiteral extends StructureLiteral {
                     return doubleValueLiteral()
                 }
                 return numberValueLiteral()
+            case "StringLiteral":
+                return stringValueLiteral()
             default:
                 return null
         }
