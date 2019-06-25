@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.LiteralFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
-import com.codebrig.arthur.observe.structure.filter.operator.relational.RelationalOperatorFilter
+import com.codebrig.arthur.observe.structure.filter.operator.relational.define.InitializeVariableOperatorFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import groovy.util.logging.Slf4j
 import org.apache.commons.lang.StringEscapeUtils
@@ -37,7 +37,7 @@ class JavaLiteralTest extends ArthurTest {
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         boolean foundLiteral = false
-        MultiFilter.matchAll(new NameFilter(literalName), new RelationalOperatorFilter())
+        MultiFilter.matchAll(new NameFilter(literalName), new InitializeVariableOperatorFilter())
                 .getFilteredNodes(language, resp.uast).each {
             assertEquals(literalName, it.name)
             def literalNode = new LiteralFilter().getFilteredNodes(it).next()
