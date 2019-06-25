@@ -31,6 +31,11 @@ class JavaLiteralTest extends ArthurTest {
         assertJavaLiteralPresent("param3", "stringValue", StringEscapeUtils.escapeJava("\"stringParam3\""))
     }
 
+    @Test
+    void signedNegativeEngineeringNotationTest() {
+        assertJavaLiteralPresent("param4", "doubleValue", -1.2e55)
+    }
+
     private static void assertJavaLiteralPresent(String literalName, String literalType, Object literalValue) {
         def file = new File("src/test/resources/same/literals/Literals.java")
         def language = SourceLanguage.getSourceLanguage(file)
