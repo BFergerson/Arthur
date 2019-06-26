@@ -1,6 +1,7 @@
 package com.codebrig.arthur.observe.structure
 
 import com.codebrig.arthur.SourceNode
+import org.apache.commons.lang.StringEscapeUtils
 import org.apache.commons.lang.math.NumberUtils
 
 /**
@@ -40,6 +41,19 @@ abstract class StructureLiteral {
         return getNodeLiteralAttribute(node) != null
     }
 
+    Object getNodeLiteralValue(SourceNode node) {
+        switch (node.getLiteralAttribute()) {
+            case booleanValueLiteral():
+                return Boolean.valueOf(node.token)
+            case numberValueLiteral():
+                return toLong(node.token)
+            case doubleValueLiteral():
+                return toDouble(node.token)
+            default:
+                return StringEscapeUtils.escapeJava(node.token) //treat as string
+        }
+    }
+
     abstract String getNodeLiteralAttribute(SourceNode node)
 
     abstract List<String> getPossibleNodeLiteralAttributes(SourceNode node)
@@ -54,6 +68,10 @@ abstract class StructureLiteral {
 
     static String booleanValueLiteral() {
         return "booleanValue"
+    }
+
+    static String stringValueLiteral() {
+        return "stringValue"
     }
 
     static Map<String, String> getAllLiteralAttributes() {

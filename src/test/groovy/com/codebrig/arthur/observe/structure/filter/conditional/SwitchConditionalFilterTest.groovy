@@ -38,7 +38,7 @@ class SwitchConditionalFilterTest extends ArthurTest {
 
         def foundSwitchConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchConditional")
+        def nameFilter = new NameFilter(qualifiedName + "switchConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "switchConditional()", it.name)
 

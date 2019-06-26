@@ -24,6 +24,8 @@ class JavaLiteral extends StructureLiteral {
                     return doubleValueLiteral()
                 }
                 return numberValueLiteral()
+            case "StringLiteral":
+                return stringValueLiteral()
             default:
                 return null
         }
@@ -34,6 +36,8 @@ class JavaLiteral extends StructureLiteral {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumberLiteral":
                 return [numberValueLiteral(), doubleValueLiteral()]
+            case "StringLiteral":
+                return [stringValueLiteral()]
             default:
                 return Collections.emptyList()
         }

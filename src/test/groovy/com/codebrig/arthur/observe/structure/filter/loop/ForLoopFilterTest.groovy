@@ -52,7 +52,7 @@ class ForLoopFilterTest extends ArthurTest {
 
         def foundForLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
+        def nameFilter = new NameFilter(qualifiedName + "forLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "forLoop()", it.name)
 

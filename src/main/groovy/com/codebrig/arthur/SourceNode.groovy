@@ -64,6 +64,10 @@ class SourceNode {
         return underlyingNode.internalType()
     }
 
+    boolean hasName() {
+        return naming.isNamedNodeType(this)
+    }
+
     String getName() {
         return naming.getNodeName(this)
     }
@@ -95,6 +99,10 @@ class SourceNode {
 
     boolean isLiteralNode() {
         return literal.isNodeLiteral(this)
+    }
+
+    Object getLiteralValue() {
+        return literal.getNodeLiteralValue(this)
     }
 
     String getLiteralAttribute() {

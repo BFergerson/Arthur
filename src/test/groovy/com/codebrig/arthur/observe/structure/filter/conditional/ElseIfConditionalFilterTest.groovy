@@ -43,7 +43,7 @@ class ElseIfConditionalFilterTest extends ArthurTest {
 
         def foundElseIfConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
+        def nameFilter = new NameFilter(qualifiedName + "ifElseIfConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "ifElseIfConditional()", it.name)
 
