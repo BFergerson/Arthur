@@ -48,4 +48,10 @@ function ternaryOperator()
     $b = ($a == 1) ? 20 : 30;
 }
 
+function elvisOperator()
+{
+    $a = 20;
+    $b = $a ?: 30;
+}
+
 ?>
