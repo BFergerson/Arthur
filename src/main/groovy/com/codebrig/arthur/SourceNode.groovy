@@ -19,6 +19,7 @@ class SourceNode {
     private final SourceLanguage language
     private final Node rootNode
     private final Node underlyingNode
+    private final SourceNode parentSourceNode
     private final StructureNaming naming
     private final StructureLiteral literal
 
@@ -27,9 +28,14 @@ class SourceNode {
     }
 
     SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+        this(language, rootNode, underlyingNode, null)
+    }
+
+    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode, SourceNode parentNode) {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
+        this.parentSourceNode = parentNode
         this.naming = language.structureNaming
         this.literal = language.structureLiteral
     }
@@ -48,6 +54,10 @@ class SourceNode {
 
     Node getUnderlyingNode() {
         return underlyingNode
+    }
+
+    SourceNode getParentSourceNode() {
+        return parentSourceNode
     }
 
     String getInternalType() {
@@ -75,7 +85,7 @@ class SourceNode {
             if (node == null) {
                 return null
             }
-            return new SourceNode(language, this.rootNode, node)
+            return new SourceNode(language, this.rootNode, node, this)
         })
     }
 
