@@ -16,8 +16,26 @@ abstract class StructureLiteral {
     long toLong(String value) {
         value = value.replace("_", "")
         try {
-            if (value.toUpperCase().startsWith("0X") && value.toUpperCase().endsWith("L")) {
-                return new BigInteger(value.substring(2, value.length() - 1), 16).longValue()
+            if (value.toUpperCase().startsWith("0X")) {
+                int i = 0
+                if (value.toUpperCase().endsWith("L")) {
+                    i = 1
+                }
+                return new BigInteger(value.substring(2, value.length() - i), 16).longValue()
+            } else if (value.toUpperCase().startsWith("0B")) {
+                int i = 0
+                if (value.toUpperCase().endsWith("L")) {
+                    i = 1
+                }
+                return new BigInteger(value.substring(2, value.length() - i), 2).longValue()
+            } else if (value.startsWith("0")) {
+                if (value.matches(/0[1-7]*(l|L)?/)) {
+                    int i = 0
+                    if (value.toUpperCase().endsWith("L")) {
+                        i = 1
+                    }
+                    return new BigInteger(value.substring(1, value.length() - i), 8).longValue()
+                }
             }
             if (value.toUpperCase().endsWith("L")) {
                 return Long.decode(value.substring(0, value.length() - 1))

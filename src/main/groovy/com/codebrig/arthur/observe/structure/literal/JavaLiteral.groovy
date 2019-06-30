@@ -16,11 +16,13 @@ class JavaLiteral extends StructureLiteral {
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumberLiteral":
-                if (node.token.contains(".")
-                        || node.token.toUpperCase().contains("P")
-                        || node.token.toUpperCase().contains("E")
-                        || node.token.toUpperCase().endsWith("D")
-                        || node.token.toUpperCase().endsWith("F")) {
+                if (node.token.contains(".") ||
+                        (node.token.isDouble() &&
+                                (node.token.toUpperCase().contains("P")
+                                 || node.token.toUpperCase().contains("E")
+                                 || node.token.toUpperCase().endsWith("D")
+                                 || node.token.toUpperCase().endsWith("F"))
+                        )) {
                     return doubleValueLiteral()
                 }
                 return numberValueLiteral()

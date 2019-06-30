@@ -3,4 +3,23 @@ public class Literals {
     double param2 = 200.1;
     String param3 = "stringParam3";
     double param4 = -1.2e55;
+    double param5 = 9.234d;
+    long param6 = 0xFFFFFFFFFFFFL;
+    long param7 = 0xff1a618b7f65ea12L;
+    long param8 = 0xc4ceb9fe1a85ec53L;
+    double param9 = 0x1.0p31;
+    int param10 = 10_000;
+    double param11 = 0xAAAAAAAAAAAAAAAAAAp0d;
+    int param12 = 5_2;
+    int param13 = 5_______2;
+    int param14 = 0x5_2;
+    double param15 = 1.2e-55;
+    double param16 = -1.2e-55;
+    long param17 = 1234_5678_9012_3456L;
+    int param18 = 0757;
+    long param19 = 0123546263753256452432L;
+    int param20 = 0b101101;
+    long param21 = 0b1010000101000101101000010100010110100001010001011010000101000101L;
+    float param22 = 0x1.0p2f;
+    float param23 = -0x1.0p2f;
 }
