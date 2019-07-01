@@ -69,6 +69,8 @@ OperatorArtifact sub OmnilingualSourceArtifact;
 GoSourceArtifact sub SourceArtifact;
 
 GoAssignStmtArtifact sub GoSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_go_init_role,
 	plays has_go_lhs_role,

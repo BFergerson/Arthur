@@ -22,6 +22,7 @@ class GoNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "FuncDecl":
+            case "AssignStmt":
                 return true
             default:
                 return false
@@ -33,6 +34,8 @@ class GoNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "FuncDecl":
                 return getFuncDeclName(node)
+            case "AssignStmt":
+                return getAssignStmtName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Go node type: " + node.internalType)
         }
@@ -74,6 +77,14 @@ class GoNaming implements StructureNaming {
             functionName += ")"
         }
         return functionName
+    }
+
+    static String getAssignStmtName(SourceNode node) {
+        def name = ""
+        new TypeFilter("Ident").getFilteredNodes(node.children).each {
+            name += it.token
+        }
+        return name
     }
 
     static String getIdentTypeName(SourceNode node) {

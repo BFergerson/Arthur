@@ -24,6 +24,9 @@ class DeclareVariableOperatorFilter extends StructureFilter<DeclareVariableOpera
                         new TypeFilter().reject("VariableDeclarationFragment", "VariableDeclarator")
                 ),
                 MultiFilter.matchAll(
+                        new RoleFilter("DECLARATION"), new RoleFilter("ASSIGNMENT")
+                ),
+                MultiFilter.matchAll(
                         new RoleFilter("EXPRESSION"), new RoleFilter("ASSIGNMENT")
                 )
         )
