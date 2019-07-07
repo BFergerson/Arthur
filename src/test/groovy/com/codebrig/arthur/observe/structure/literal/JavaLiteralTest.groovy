@@ -41,7 +41,7 @@ class JavaLiteralTest extends ArthurTest {
     }
 
     @Test
-    void signedNegativeEngineeringNotationLiteralTest() {
+    void signedEngineeringNotationLiteralTest() {
         assertJavaLiteralPresent("param4", "doubleValue", -1.2e55)
         assertJavaLiteralPresent("param15", "doubleValue", 1.2e-55)
         assertJavaLiteralPresent("param16", "doubleValue", -1.2e-55)
