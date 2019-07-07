@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class GoLiteral extends StructureLiteral {
 
@@ -21,7 +22,7 @@ class GoLiteral extends StructureLiteral {
         switch (Objects.requireNonNull(node).internalType) {
             case "BasicLit":
                 if (node.properties.get("Kind") == "STRING" || node.properties.get("Kind") == "CHAR") {
-                    return null
+                    return stringValueLiteral()
                 } else if (node.properties.get("Kind") == "INT") {
                     return numberValueLiteral()
                 } else if (node.properties.get("Kind") == "FLOAT") {
@@ -39,7 +40,7 @@ class GoLiteral extends StructureLiteral {
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "BasicLit":
-                return [numberValueLiteral(), doubleValueLiteral()]
+                return [stringValueLiteral(), numberValueLiteral(), doubleValueLiteral()]
             default:
                 return Collections.emptyList()
         }

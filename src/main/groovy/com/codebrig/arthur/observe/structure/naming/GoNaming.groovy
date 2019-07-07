@@ -23,6 +23,7 @@ class GoNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "FuncDecl":
             case "AssignStmt":
+            case "GenDecl":
                 return true
             default:
                 return false
@@ -36,6 +37,8 @@ class GoNaming implements StructureNaming {
                 return getFuncDeclName(node)
             case "AssignStmt":
                 return getAssignStmtName(node)
+            case "GenDecl":
+                return getGenDeclName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Go node type: " + node.internalType)
         }
@@ -83,6 +86,19 @@ class GoNaming implements StructureNaming {
         def name = ""
         new TypeFilter("Ident").getFilteredNodes(node.children).each {
             name += it.token
+        }
+        return name
+    }
+
+    static String getGenDeclName(SourceNode node) {
+        def name = ""
+        new TypeFilter("ValueSpec").getFilteredNodes(node).each {
+            MultiFilter.matchAll(
+                    new TypeFilter("Ident"),
+                    new InternalRoleFilter("Names")
+            ).getFilteredNodes(it.children).each {
+                name += it.token
+            }
         }
         return name
     }

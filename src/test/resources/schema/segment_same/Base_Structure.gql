@@ -15,6 +15,7 @@ goColAttribute sub attribute, datatype string;
 goKindAttribute sub kindAttribute, datatype string;
 goLineAttribute sub attribute, datatype string;
 goOffsetAttribute sub attribute, datatype string;
+goStringValueAttribute sub attribute, datatype string;
 goTokAttribute sub attribute, datatype string;
 
 #####----- Java -----#####
@@ -83,6 +84,7 @@ GoBasicLitArtifact sub GoSourceArtifact,
 	has doubleValue,
 	has goKindAttribute,
 	has numberValue,
+	has goStringValueAttribute,
 	# Structural
 	plays is_go_path_role,
 	plays is_go_rhs_role,
@@ -158,6 +160,7 @@ GoFuncTypeArtifact sub GoSourceArtifact,
 GoGenDeclArtifact sub GoSourceArtifact,
 	# Attributes
 	has goTokAttribute,
+	has name,
 	# Structural
 	plays is_go_decls_role,
 	plays has_go_lparen_role,
