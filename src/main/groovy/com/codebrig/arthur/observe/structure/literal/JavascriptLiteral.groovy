@@ -17,6 +17,8 @@ class JavascriptLiteral extends StructureLiteral {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumericLiteral":
                 return numberValueLiteral()
+            case "StringLiteral":
+                return stringValueLiteral()
             default:
                 return null
         }
@@ -24,11 +26,26 @@ class JavascriptLiteral extends StructureLiteral {
 
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
-        def literalAttribute = getNodeLiteralAttribute(node)
-        if (literalAttribute == null) {
-            return Collections.emptyList()
-        } else {
-            return Collections.singletonList(literalAttribute)
+        switch (Objects.requireNonNull(node).internalType) {
+            case "NumberLiteral":
+                return [numberValueLiteral(), doubleValueLiteral()]
+            case "StringLiteral":
+                return [stringValueLiteral()]
+            default:
+                return Collections.emptyList()
+        }
+    }
+
+    @Override
+    Object getNodeLiteralValue(SourceNode node) {
+        boolean isNegative = node.parentSourceNode.children.any { it.roles.any { it.negative } }
+        switch (node.getLiteralAttribute()) {
+            case numberValueLiteral():
+                return toLong(((isNegative) ? "-" : "") + node.token)
+            case doubleValueLiteral():
+                return toDouble(((isNegative) ? "-" : "") + node.token)
+            default:
+                return super.getNodeLiteralValue(node)
         }
     }
 }
