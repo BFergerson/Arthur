@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -28,10 +29,11 @@ class TypeFilterTest_Java extends ArthurTest {
         def filter = new TypeFilter("CompilationUnit", "MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         boolean foundCompilationUnit = false
         boolean foundMethod = false
-        filter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        filter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             assertTrue(["CompilationUnit", "MethodDeclaration"].contains(it.internalType))
             switch (it.internalType) {
                 case "CompilationUnit":

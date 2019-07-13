@@ -2,9 +2,9 @@ package com.codebrig.arthur.generator
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguage
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.WildcardFilter
 import gopkg.in.bblfsh.sdk.v2.protocol.driver.ParseResponse
 import groovy.io.FileType
@@ -148,20 +148,13 @@ class SchemaGenerator {
             }
         }).map({
             if (it instanceof FileParseResponse) {
-                def test = new BblfshClient.UastMethods(it.parseResponse.uast())
-                def decoded = test.decode()
-                println decoded
-//                if (it.parseResponse.status().isOk()) {
-//                    def rootSourceNode = new SourceNode(observedLanguage.language, it.parseResponse.)
-//                    if (filter.evaluate(rootSourceNode)) {
-//                        observeSourceNode(observedLanguage, rootSourceNode)
-//                    }
-//                    extractSchema(observedLanguage, rootSourceNode)
-//                    parseCount.getAndIncrement()
-//                } else {
-//                    log.error "Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString()
-//                    failCount.getAndIncrement()
-//                }
+                def rootNode = new BblfshClient.UastMethods(it.parseResponse.uast()).decode().root().load()
+                def rootSourceNode = new SourceNode(observedLanguage.language, rootNode)
+                if (filter.evaluate(rootSourceNode)) {
+                    observeSourceNode(observedLanguage, rootSourceNode)
+                }
+                extractSchema(observedLanguage, rootSourceNode)
+                parseCount.getAndIncrement()
             }
         }).count()
         executorService.shutdown()

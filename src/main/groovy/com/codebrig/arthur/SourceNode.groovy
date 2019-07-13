@@ -4,7 +4,9 @@ import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.codebrig.arthur.observe.structure.StructureNaming
 import gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator
+import org.bblfsh.client.v2.JArray
 import org.bblfsh.client.v2.JNode
+import org.bblfsh.client.v2.JString
 import scala.collection.JavaConverters
 
 /**
@@ -52,6 +54,10 @@ class SourceNode {
         return new SourceNode(language, rootNode)
     }
 
+    /**
+     * todo: remove
+     */
+    @Deprecated
     JNode getUnderlyingNode() {
         return underlyingNode
     }
@@ -89,8 +95,26 @@ class SourceNode {
         return asJavaMap(underlyingNode.properties())
     }
 
-    Iterator<Role> getRoles() {
-        return asJavaIterator(underlyingNode.roles())
+    List<Role> getRoles() {
+        def roleIndex = -1
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "@role") {
+                roleIndex = i
+                break
+            }
+        }
+        if (roleIndex == -1) {
+            throw new IllegalStateException("Could not find @role")
+        }
+
+        def roleList = new ArrayList<Role>()
+        def roles = underlyingNode.valueAt(roleIndex) as JArray
+        for (int i = 0; i < roles.size(); i++) {
+            //todo: better
+            roleList += Eval.me("return new gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role."
+                    + (roles.valueAt(i) as JString).str().toUpperCase() + "\$()")
+        }
+        return roleList
     }
 
     boolean isLiteralNode() {

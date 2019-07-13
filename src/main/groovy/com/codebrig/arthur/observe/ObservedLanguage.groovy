@@ -95,10 +95,10 @@ class ObservedLanguage {
         }
     }
 
-    void observeRoles(String entity, Iterator<Role> entityRoles) {
+    void observeRoles(String entity, List<Role> entityRoles) {
         entity = toValidEntity(entity)
         roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe(entityRoles.toList().stream()
+        roles.get(entity).observe(entityRoles.stream()
                 .map({ it -> it.name() })
                 .collect(Collectors.toList()).iterator())
     }
