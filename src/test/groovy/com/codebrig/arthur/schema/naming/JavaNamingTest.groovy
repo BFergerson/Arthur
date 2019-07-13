@@ -4,7 +4,6 @@ import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -15,7 +14,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void fileQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -26,7 +25,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void fileQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def fileFilter = new RoleFilter("FILE")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -37,7 +36,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -48,7 +47,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -59,7 +58,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_variousStuff_noPackage_differentArgs() {
         def file = new File("src/test/resources/java/VariousStuff.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundQualifiedTypeArgs = false
@@ -101,7 +100,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_variousStuff_noPackage() {
         def file = new File("src/test/resources/java/VariousStuff.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundMethod3 = false
@@ -128,7 +127,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_variousStuff_withPackage() {
         def file = new File("src/test/resources/java/com/company/VariousStuff.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundMethod3 = false
@@ -157,7 +156,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_importQualified_noPackage() {
         def file = new File("src/test/resources/java/ImportQualifiedName.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundSetMethod = false
@@ -186,7 +185,7 @@ class JavaNamingTest extends ArthurTest {
     @Test
     void methodQualifiedName_importQualified_withPackage() {
         def file = new File("src/test/resources/java/com/company/ImportQualifiedName.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundSetMethod = false

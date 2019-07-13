@@ -2,9 +2,9 @@ package com.codebrig.arthur
 
 import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.codebrig.arthur.observe.structure.StructureNaming
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
+import gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator
+import org.bblfsh.client.v2.JNode
 import scala.collection.JavaConverters
 
 /**
@@ -17,21 +17,21 @@ import scala.collection.JavaConverters
 class SourceNode {
 
     private final SourceLanguage language
-    private final Node rootNode
-    private final Node underlyingNode
+    private final JNode rootNode
+    private final JNode underlyingNode
     private final SourceNode parentSourceNode
     private final StructureNaming naming
     private final StructureLiteral literal
 
-    SourceNode(SourceLanguage language, Node underlyingNode) {
+    SourceNode(SourceLanguage language, JNode underlyingNode) {
         this(language, underlyingNode, underlyingNode)
     }
 
-    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+    SourceNode(SourceLanguage language, JNode rootNode, JNode underlyingNode) {
         this(language, rootNode, underlyingNode, null)
     }
 
-    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode, SourceNode parentNode) {
+    SourceNode(SourceLanguage language, JNode rootNode, JNode underlyingNode, SourceNode parentNode) {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
@@ -44,7 +44,7 @@ class SourceNode {
         return language
     }
 
-    Node getRootNode() {
+    JNode getRootNode() {
         return rootNode
     }
 
@@ -52,7 +52,7 @@ class SourceNode {
         return new SourceNode(language, rootNode)
     }
 
-    Node getUnderlyingNode() {
+    JNode getUnderlyingNode() {
         return underlyingNode
     }
 

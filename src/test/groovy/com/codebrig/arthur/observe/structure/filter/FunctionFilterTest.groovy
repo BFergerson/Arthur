@@ -2,7 +2,6 @@ package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
 import static org.junit.Assert.assertTrue
@@ -41,7 +40,7 @@ class FunctionFilterTest extends ArthurTest {
 
     private static void assertFunctionsPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.key)
 
         boolean foundFunction = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {

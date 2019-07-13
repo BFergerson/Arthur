@@ -6,12 +6,11 @@ import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguage
 import com.codebrig.arthur.observe.structure.filter.WildcardFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
+import gopkg.in.bblfsh.sdk.v2.protocol.driver.ParseResponse
 import groovy.io.FileType
 import groovy.transform.Canonical
 import groovy.transform.TupleConstructor
-import org.bblfsh.client.BblfshClient
+import org.bblfsh.client.v2.BblfshClient
 import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
 import org.kohsuke.github.GHRepositorySearchBuilder
@@ -138,7 +137,7 @@ class SchemaGenerator {
             log.info "Parsing: " + file
             def fileResponse = new FileParseResponse(file)
             def task = executorService.submit({
-                fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
+                fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.key)
                 return fileResponse
             } as Callable<FileParseResponse>)
             try {
@@ -149,17 +148,20 @@ class SchemaGenerator {
             }
         }).map({
             if (it instanceof FileParseResponse) {
-                if (it.parseResponse.status().isOk()) {
-                    def rootSourceNode = new SourceNode(observedLanguage.language, it.parseResponse.uast)
-                    if (filter.evaluate(rootSourceNode)) {
-                        observeSourceNode(observedLanguage, rootSourceNode)
-                    }
-                    extractSchema(observedLanguage, rootSourceNode)
-                    parseCount.getAndIncrement()
-                } else {
-                    log.error "Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString()
-                    failCount.getAndIncrement()
-                }
+                def test = new BblfshClient.UastMethods(it.parseResponse.uast())
+                def decoded = test.decode()
+                println decoded
+//                if (it.parseResponse.status().isOk()) {
+//                    def rootSourceNode = new SourceNode(observedLanguage.language, it.parseResponse.)
+//                    if (filter.evaluate(rootSourceNode)) {
+//                        observeSourceNode(observedLanguage, rootSourceNode)
+//                    }
+//                    extractSchema(observedLanguage, rootSourceNode)
+//                    parseCount.getAndIncrement()
+//                } else {
+//                    log.error "Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString()
+//                    failCount.getAndIncrement()
+//                }
             }
         }).count()
         executorService.shutdown()

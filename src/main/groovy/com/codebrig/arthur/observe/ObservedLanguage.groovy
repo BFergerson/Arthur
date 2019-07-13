@@ -8,7 +8,7 @@ import com.codebrig.arthur.observe.observations.ObservedRoles
 import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.google.common.base.CaseFormat
 import com.google.common.collect.Maps
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
+import gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role
 
 import java.util.stream.Collectors
 

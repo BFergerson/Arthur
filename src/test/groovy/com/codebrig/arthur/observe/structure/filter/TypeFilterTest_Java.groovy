@@ -2,7 +2,6 @@ package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -14,7 +13,7 @@ class TypeFilterTest_Java extends ArthurTest {
     void onlyMethodsFilter() {
         def methodFilter = new TypeFilter("MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
 
         boolean foundMethod = false
         methodFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -28,7 +27,7 @@ class TypeFilterTest_Java extends ArthurTest {
     void compilationUnitsAndMethodsFilter() {
         def filter = new TypeFilter("CompilationUnit", "MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key)
 
         boolean foundCompilationUnit = false
         boolean foundMethod = false
