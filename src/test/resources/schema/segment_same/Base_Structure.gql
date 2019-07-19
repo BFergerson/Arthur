@@ -512,6 +512,8 @@ PhpNameArtifact sub NameArtifact,
 	plays is_php_name_role;
 
 PhpScalarLNumberArtifact sub PhpSourceArtifact,
+	# Attributes
+	has numberValue,
 	# Structural
 	plays is_php_expr_role,
 	plays is_php_right_role;
