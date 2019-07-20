@@ -23,6 +23,29 @@ class PythonLiteralTest extends ArthurTest {
         assertPythonLiteralPresent("param2", "stringValue", "stringParam2")
     }
 
+    @Test
+    void binaryLiteralTest() {
+        assertPythonLiteralPresent("param3", "numberValue", 0b01111111100000000000000000000000)
+        assertPythonLiteralPresent("param4", "numberValue", -0b01111111100000000000000000000000)
+    }
+
+    @Test
+    void octalLiteralTest() {
+        assertPythonLiteralPresent("param5", "numberValue", "0o10")
+        assertPythonLiteralPresent("param6", "numberValue", "-0o10")
+    }
+
+    @Test
+    void hexadecimalLiteralTest() {
+        assertPythonLiteralPresent("param7", "numberValue", 0xFFFFFFFFFFFFFFFF)
+    }
+
+    @Test
+    void signedEngineeringNotationLiteralTest() {
+        assertPythonLiteralPresent("param8", "numberValue", 1.2e-55)
+        assertPythonLiteralPresent("param9", "numberValue", -1.2e-55)
+        assertPythonLiteralPresent("param10", "numberValue", 0.1E3)
+    }
 
     private static void assertPythonLiteralPresent(String literalName, String literalType, Object literalValue) {
         def file = new File("src/test/resources/same/literals/Literals.py")
@@ -36,10 +59,10 @@ class PythonLiteralTest extends ArthurTest {
             def literalNode = new LiteralFilter().getFilteredNodes(it).next()
             assertNotNull(literalNode)
             assertEquals(literalType, literalNode.getLiteralAttribute())
-            if (literalNode.getLiteralAttribute() == JavascriptLiteral.stringValueLiteral()) {
+            if (literalNode.getLiteralAttribute() == PythonLiteral.stringValueLiteral()) {
                 assertEquals(literalValue, literalNode.getLiteralValue())
-            } else if (JavascriptLiteral.isOctalLiteral(literalValue as String)) {
-                assertEquals(JavascriptLiteral.getOctalValue(literalNode) as double, literalNode.getLiteralValue() as double, 0.0)
+            } else if (PythonLiteral.isOctalLiteral(literalValue as String)) {
+                assertEquals(PythonLiteral.getOctalValue(literalNode) as double, literalNode.getLiteralValue() as double, 0.0)
             } else {
                 assertEquals(literalValue as double, literalNode.getLiteralValue() as double, 0.0)
             }

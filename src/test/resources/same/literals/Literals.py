@@ -1,2 +1,11 @@
 param1 = 1
 param2 = "stringParam2"
+param3 = 0b01111111100000000000000000000000
+param4 = -0b01111111100000000000000000000000
+param5 = 0o10
+param6 = -0o10
+param7 = 0xFFFFFFFFFFFFFFFF
+param8 = 1.2e-55
+param9 = -1.2e-55
+param10 = .1E3
+param11 = 2+3j
