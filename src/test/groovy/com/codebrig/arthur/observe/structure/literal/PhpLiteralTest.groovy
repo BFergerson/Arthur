@@ -26,6 +26,7 @@ class PhpLiteralTest extends ArthurTest {
     @Test
     void binaryLiteralTest() {
         assertPhpLiteralPresent("param3", "numberValue", 0b01111111100000000000000000000000)
+        assertPhpLiteralPresent("param8", "numberValue", -0b01111111100000000000000000000000)
     }
 
     @Test
@@ -36,6 +37,13 @@ class PhpLiteralTest extends ArthurTest {
     @Test
     void hexadecimalLiteralTest() {
         assertPhpLiteralPresent("param5", "doubleValue", 0xFFFFFFFFFFFFFFFF)
+        assertPhpLiteralPresent("param9", "numberValue", -0x123456789ABCDEF)
+    }
+
+    @Test
+    void signedEngineeringNotationLiteralTest() {
+        assertPhpLiteralPresent("param6", "doubleValue", 7E-10)
+        assertPhpLiteralPresent("param7", "doubleValue", -1e-1)
     }
 
 
