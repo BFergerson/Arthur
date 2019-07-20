@@ -603,6 +603,7 @@ PythonNameArtifact sub NameArtifact,
 
 PythonNumArtifact sub PythonSourceArtifact,
 	# Attributes
+	has doubleValue,
 	has numberValue,
 	# Structural
 	plays is_python_args_role;

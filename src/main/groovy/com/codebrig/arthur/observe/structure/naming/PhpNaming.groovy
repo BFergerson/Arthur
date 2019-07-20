@@ -75,7 +75,7 @@ class PhpNaming implements StructureNaming {
                     new TypeFilter("Name"),
                     new InternalRoleFilter("name")
             ).getFilteredNodes(it.children).each {
-                name += it.token
+                name = it.token
             }
         }
         return name
