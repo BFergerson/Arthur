@@ -13,7 +13,7 @@ func main() {
     param8 := 123.E+2
     param9 := 1e-1
     param10 := -1e-1
-    param11 := 1.e+0i
+    param11 := 1.e+0i  // complex (imaginary) number
 
     fmt.Println(param1,param2,param3,param4,param5)
     fmt.Println(param6,param7,param8,param9,param10)

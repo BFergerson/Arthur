@@ -8,4 +8,4 @@ param7 = 0xFFFFFFFFFFFFFFFF
 param8 = 1.2e-55
 param9 = -1.2e-55
 param10 = .1E3
-param11 = 2+3j
+param11 = 2+3j  # complex (imaginary) number
