@@ -649,6 +649,7 @@ RubyIdentifierArtifact sub IdentifierArtifact,
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Attributes
+	has doubleValue,
 	has numberValue,
 	# Structural
 	plays is_ruby_body_role,
