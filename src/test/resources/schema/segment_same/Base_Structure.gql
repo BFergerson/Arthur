@@ -648,6 +648,8 @@ RubyIdentifierArtifact sub IdentifierArtifact,
 	plays is_ruby_qnames_role;
 
 RubyIntArtifact sub RubySourceArtifact,
+	# Attributes
+	has numberValue,
 	# Structural
 	plays is_ruby_body_role,
 	plays is_ruby_values_role;

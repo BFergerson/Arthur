@@ -23,6 +23,7 @@ class RubyNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "Def":
             case "def":
+            case "lvasgn":
                 return true
             default:
                 return false
@@ -35,6 +36,8 @@ class RubyNaming implements StructureNaming {
             case "Def":
             case "def":
                 return getDefName(node)
+            case "lvasgn":
+                return getLvasgnName(node)
             default:
                 return null
         }
@@ -54,5 +57,9 @@ class RubyNaming implements StructureNaming {
         functionName = trimTrailingComma(functionName)
         functionName += ")"
         return functionName
+    }
+
+    static String getLvasgnName(SourceNode node) {
+        return node.token
     }
 }
