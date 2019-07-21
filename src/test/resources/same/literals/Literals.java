@@ -22,4 +22,6 @@ public class Literals {
     long param21 = 0b1010000101000101101000010100010110100001010001011010000101000101L;
     float param22 = 0x1.0p2f;
     float param23 = -0x1.0p2f;
+    double param24 = 1_000.2e-55;
+    double param25 = -1_000.2e55;
 }

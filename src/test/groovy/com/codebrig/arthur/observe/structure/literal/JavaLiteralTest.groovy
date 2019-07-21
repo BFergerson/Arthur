@@ -45,6 +45,8 @@ class JavaLiteralTest extends ArthurTest {
         assertJavaLiteralPresent("param4", "doubleValue", -1.2e55)
         assertJavaLiteralPresent("param15", "doubleValue", 1.2e-55)
         assertJavaLiteralPresent("param16", "doubleValue", -1.2e-55)
+        assertJavaLiteralPresent("param24", "doubleValue", 1000.2e-55)
+        assertJavaLiteralPresent("param25", "doubleValue", -1000.2e55)
     }
 
     @Test
