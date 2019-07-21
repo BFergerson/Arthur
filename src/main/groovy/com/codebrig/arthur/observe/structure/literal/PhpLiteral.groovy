@@ -42,15 +42,7 @@ class PhpLiteral extends StructureLiteral {
     }
 
     @Override
-    Object getNodeLiteralValue(SourceNode node) {
-        boolean isNegative = node.parentSourceNode.any { it.internalType == "Expr_UnaryMinus" }
-        switch (node.getLiteralAttribute()) {
-            case numberValueLiteral():
-                return toLong(((isNegative) ? "-" : "") + node.token)
-            case doubleValueLiteral():
-                return toDouble(((isNegative) ? "-" : "") + node.token)
-            default:
-                return super.getNodeLiteralValue(node)
-        }
+    boolean isNegative(SourceNode node) {
+        return node.parentSourceNode.any { it.internalType == "Expr_UnaryMinus" }
     }
 }

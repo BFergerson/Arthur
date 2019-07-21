@@ -45,17 +45,4 @@ class GoLiteral extends StructureLiteral {
                 return Collections.emptyList()
         }
     }
-
-    @Override
-    Object getNodeLiteralValue(SourceNode node) {
-        boolean isNegative = node.parentSourceNode.children.any { it.roles.any { it.negative } }
-        switch (node.getLiteralAttribute()) {
-            case numberValueLiteral():
-                return toLong(((isNegative) ? "-" : "") + node.token)
-            case doubleValueLiteral():
-                return toDouble(((isNegative) ? "-" : "") + node.token)
-            default:
-                return super.getNodeLiteralValue(node)
-        }
-    }
 }

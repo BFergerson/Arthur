@@ -10,10 +10,11 @@ import org.apache.commons.lang.math.NumberUtils
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 abstract class StructureLiteral {
 
-    long toLong(String value) {
+    static long toLong(String value) {
         value = value.replace("_", "")
         try {
             if (value.toUpperCase().startsWith("0X")) {
@@ -46,7 +47,7 @@ abstract class StructureLiteral {
         }
     }
 
-    double toDouble(String value) {
+    static double toDouble(String value) {
         value = value.replace("_", "")
         try {
             return Double.valueOf(value)
@@ -59,14 +60,17 @@ abstract class StructureLiteral {
         return getNodeLiteralAttribute(node) != null
     }
 
+    boolean isNegative(SourceNode node) {
+        return node.parentSourceNode.children.any { it.roles.any { it.negative } }
+    }
+
     Object getNodeLiteralValue(SourceNode node) {
+        boolean isNegative = isNegative(node)
         switch (node.getLiteralAttribute()) {
-            case booleanValueLiteral():
-                return Boolean.valueOf(node.token)
             case numberValueLiteral():
-                return toLong(node.token)
+                return toLong(((isNegative) ? "-" : "") + node.token)
             case doubleValueLiteral():
-                return toDouble(node.token)
+                return toDouble(((isNegative) ? "-" : "") + node.token)
             default:
                 return StringEscapeUtils.escapeJava(node.token) //treat as string
         }

@@ -40,19 +40,6 @@ class JavascriptLiteral extends StructureLiteral {
         }
     }
 
-    @Override
-    Object getNodeLiteralValue(SourceNode node) {
-        boolean isNegative = node.parentSourceNode.children.any { it.roles.any { it.negative } }
-        switch (node.getLiteralAttribute()) {
-            case numberValueLiteral():
-                return toLong(((isNegative) ? "-" : "") + node.token)
-            case doubleValueLiteral():
-                return toDouble(((isNegative) ? "-" : "") + node.token)
-            default:
-                return super.getNodeLiteralValue(node)
-        }
-    }
-
     static boolean isOctalLiteral(String literal) {
         return literal.toUpperCase().contains("0O")
     }
@@ -60,6 +47,6 @@ class JavascriptLiteral extends StructureLiteral {
     static Object getOctalValue(SourceNode node) {
         boolean isNegative = node.parentSourceNode.children.any { it.roles.any { it.negative } }
         String octal = node.token.toUpperCase().replaceFirst("0O", "0")
-        return new JavascriptLiteral().toLong(((isNegative) ? "-" : "") + octal)
+        return toLong(((isNegative) ? "-" : "") + octal)
     }
 }
