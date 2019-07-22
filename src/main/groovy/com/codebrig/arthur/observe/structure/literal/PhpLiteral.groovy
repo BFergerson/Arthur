@@ -42,7 +42,7 @@ class PhpLiteral extends StructureLiteral {
     }
 
     @Override
-    boolean isNegative(SourceNode node) {
+    boolean isNodeLiteralNegative(SourceNode node) {
         return node.parentSourceNode.any { it.internalType == "Expr_UnaryMinus" }
     }
 }

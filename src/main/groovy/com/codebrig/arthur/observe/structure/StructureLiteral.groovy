@@ -60,12 +60,12 @@ abstract class StructureLiteral {
         return getNodeLiteralAttribute(node) != null
     }
 
-    boolean isNegative(SourceNode node) {
+    boolean isNodeLiteralNegative(SourceNode node) {
         return node.parentSourceNode.children.any { it.roles.any { it.negative } }
     }
 
     Object getNodeLiteralValue(SourceNode node) {
-        boolean isNegative = isNegative(node)
+        boolean isNegative = isNodeLiteralNegative(node)
         switch (node.getLiteralAttribute()) {
             case numberValueLiteral():
                 return toLong(((isNegative) ? "-" : "") + node.token)
