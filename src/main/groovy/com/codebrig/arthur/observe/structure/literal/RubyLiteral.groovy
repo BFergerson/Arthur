@@ -49,7 +49,7 @@ class RubyLiteral extends StructureLiteral {
     }
 
     static Object getOctalValue(SourceNode node) {
-        boolean isNegative = node.parentSourceNode.children.any { it.roles.any { it.negative } }
+        boolean isNegative = new RubyLiteral().isNodeLiteralNegative(node)
         String octal = node.token.toUpperCase().replaceFirst("0O", "0")
         return toLong(((isNegative) ? "-" : "") + octal)
     }
