@@ -1,6 +1,7 @@
 package com.codebrig.arthur.observe.structure
 
 import com.codebrig.arthur.SourceNode
+import org.apache.commons.lang.StringEscapeUtils
 import org.apache.commons.lang.math.NumberUtils
 
 /**
@@ -9,14 +10,33 @@ import org.apache.commons.lang.math.NumberUtils
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 abstract class StructureLiteral {
 
-    long toLong(String value) {
+    static long toLong(String value) {
         value = value.replace("_", "")
         try {
-            if (value.toUpperCase().startsWith("0X") && value.toUpperCase().endsWith("L")) {
-                return new BigInteger(value.substring(2, value.length() - 1), 16).longValue()
+            if (value.toUpperCase().startsWith("0X")) {
+                int i = 0
+                if (value.toUpperCase().endsWith("L")) {
+                    i = 1
+                }
+                return new BigInteger(value.substring(2, value.length() - i), 16).longValue()
+            } else if (value.toUpperCase().startsWith("0B")) {
+                int i = 0
+                if (value.toUpperCase().endsWith("L")) {
+                    i = 1
+                }
+                return new BigInteger(value.substring(2, value.length() - i), 2).longValue()
+            } else if (value.startsWith("0")) {
+                if (value.matches(/0[1-7]*(l|L)?/)) {
+                    int i = 0
+                    if (value.toUpperCase().endsWith("L")) {
+                        i = 1
+                    }
+                    return new BigInteger(value.substring(1, value.length() - i), 8).longValue()
+                }
             }
             if (value.toUpperCase().endsWith("L")) {
                 return Long.decode(value.substring(0, value.length() - 1))
@@ -27,7 +47,7 @@ abstract class StructureLiteral {
         }
     }
 
-    double toDouble(String value) {
+    static double toDouble(String value) {
         value = value.replace("_", "")
         try {
             return Double.valueOf(value)
@@ -38,6 +58,22 @@ abstract class StructureLiteral {
 
     boolean isNodeLiteral(SourceNode node) {
         return getNodeLiteralAttribute(node) != null
+    }
+
+    boolean isNodeLiteralNegative(SourceNode node) {
+        return node.parentSourceNode.children.any { it.roles.any { it.negative } }
+    }
+
+    Object getNodeLiteralValue(SourceNode node) {
+        boolean isNegative = isNodeLiteralNegative(node)
+        switch (node.getLiteralAttribute()) {
+            case numberValueLiteral():
+                return toLong(((isNegative) ? "-" : "") + node.token)
+            case doubleValueLiteral():
+                return toDouble(((isNegative) ? "-" : "") + node.token)
+            default:
+                return StringEscapeUtils.escapeJava(node.token) //treat as string
+        }
     }
 
     abstract String getNodeLiteralAttribute(SourceNode node)
@@ -54,6 +90,10 @@ abstract class StructureLiteral {
 
     static String booleanValueLiteral() {
         return "booleanValue"
+    }
+
+    static String stringValueLiteral() {
+        return "stringValue"
     }
 
     static Map<String, String> getAllLiteralAttributes() {

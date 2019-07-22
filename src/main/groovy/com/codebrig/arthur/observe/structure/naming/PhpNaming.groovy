@@ -2,6 +2,8 @@ package com.codebrig.arthur.observe.structure.naming
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
@@ -21,6 +23,7 @@ class PhpNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "StmtFunction":
             case "Stmt_Function":
+            case "Expr_Assign":
                 return true
             default:
                 return false
@@ -33,6 +36,8 @@ class PhpNaming implements StructureNaming {
             case "StmtFunction":
             case "Stmt_Function":
                 return getFunctionName(node)
+            case "Expr_Assign":
+                return getExprAssignName(node)
             default:
                 return null
         }
@@ -61,5 +66,18 @@ class PhpNaming implements StructureNaming {
             functionName += ")"
         }
         return functionName
+    }
+
+    static String getExprAssignName(SourceNode node) {
+        def name = ""
+        new TypeFilter("Expr_Variable").getFilteredNodes(node).each {
+            MultiFilter.matchAll(
+                    new TypeFilter("Name"),
+                    new InternalRoleFilter("name")
+            ).getFilteredNodes(it.children).each {
+                name = it.token
+            }
+        }
+        return name
     }
 }
