@@ -31,7 +31,7 @@ class JavascriptLiteral extends StructureLiteral {
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "NumberLiteral":
+            case "NumericLiteral":
                 return [numberValueLiteral(), doubleValueLiteral()]
             case "StringLiteral":
                 return [stringValueLiteral()]

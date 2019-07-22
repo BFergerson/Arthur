@@ -430,6 +430,9 @@ JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_property_role;
 
 JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has numberValue,
 	# Structural
 	plays is_javascript_init_role,
 	plays is_javascript_right_role;
