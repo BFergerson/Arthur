@@ -22,6 +22,7 @@ class JavascriptNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "FunctionDeclaration":
+            case "VariableDeclaration":
                 return true
             default:
                 return false
@@ -33,6 +34,8 @@ class JavascriptNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDeclaration":
                 return getFunctionDeclarationName(node)
+            case "VariableDeclaration":
+                return getVariableDeclarationName(node)
             default:
                 return null
         }
@@ -45,6 +48,19 @@ class JavascriptNaming implements StructureNaming {
         }
         functionName += assembleParamNames(node)
         return functionName
+    }
+
+    static String getVariableDeclarationName(SourceNode node) {
+        def name = ""
+        new TypeFilter("VariableDeclarator").getFilteredNodes(node).each {
+            MultiFilter.matchAll(
+                    new TypeFilter("Identifier"),
+                    new InternalRoleFilter("id")
+            ).getFilteredNodes(it.children).each {
+                name += it.token
+            }
+        }
+        return name
     }
 
     static String assembleParamNames(SourceNode node) {

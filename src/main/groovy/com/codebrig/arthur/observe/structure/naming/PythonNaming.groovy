@@ -22,6 +22,7 @@ class PythonNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "FunctionDef":
+            case "Assign":
                 return true
             default:
                 return false
@@ -33,6 +34,8 @@ class PythonNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "FunctionDef":
                 return getFunctionDefName(node)
+            case "Assign":
+                return getAssignName(node)
             default:
                 return null
         }
@@ -59,5 +62,13 @@ class PythonNaming implements StructureNaming {
         functionName = trimTrailingComma(functionName)
         functionName += ")"
         return functionName
+    }
+
+    static String getAssignName(SourceNode node) {
+        def name = ""
+        new TypeFilter("Name").getFilteredNodes(node.children).each {
+            name = it.token
+        }
+        return name
     }
 }

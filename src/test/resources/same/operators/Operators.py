@@ -8,16 +8,29 @@ def orOperator():
         print ""
 
 
-def equalOperator():
+def isEqualOperator():
     if True == True:
         print ""
 
 
-def notEqualOperator():
+def isNotEqualOperator():
     if True != True:
         print ""
 
 
-def alternateNotEqualOperator():
+def alternateIsNotEqualOperator():
     if True <> True:
         print ""
+
+
+def declareVariableOperator():
+    x = 0
+
+
+def initializeVariableOperator():
+    x = 0
+
+
+def assignVariableOperator():
+    x = 0
+    x = 1

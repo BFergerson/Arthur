@@ -33,7 +33,7 @@ class TernaryOperatorFilterTest extends ArthurTest {
 
         def foundTernaryOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ternaryOperator")
+        def nameFilter = new NameFilter(qualifiedName + "ternaryOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "ternaryOperator()", it.name)
 

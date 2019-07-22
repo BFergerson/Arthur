@@ -3,6 +3,8 @@ package com.codebrig.arthur.observe.structure.naming
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
@@ -20,11 +22,12 @@ class JavaNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
-            case "SimpleName":
             case "QualifiedName":
             case "CompilationUnit":
             case "MethodDeclaration":
             case "TypeDeclaration":
+            case "FieldDeclaration":
+            case "VariableDeclaration":
                 return true
             default:
                 return false
@@ -49,6 +52,8 @@ class JavaNaming implements StructureNaming {
                 }
             case "TypeDeclaration":
                 return getTypeDeclarationName(node)
+            case "FieldDeclaration":
+                return getFieldDeclarationName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }
@@ -86,6 +91,16 @@ class JavaNaming implements StructureNaming {
             name += it.token
         }
         return name
+    }
+
+    static String getFieldDeclarationName(SourceNode node) {
+        String fieldDeclarationName = ""
+        new TypeFilter("VariableDeclarationFragment").getFilteredNodes(node.children).each {
+            fieldDeclarationName = MultiFilter.matchAll(
+                    new RoleFilter("EXPRESSION"), new RoleFilter("IDENTIFIER"))
+                    .getFilteredNodes(it.children).next().token
+        }
+        return fieldDeclarationName
     }
 
     static String getPackageDeclarationName(SourceNode node) {
