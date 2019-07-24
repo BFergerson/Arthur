@@ -36,35 +36,70 @@ class CSharpNaming implements StructureNaming {
     }
 
     static String getMethodDeclarationName(SourceNode node) {
-        def name = ""
-        new TypeFilter("IdentifierToken").getFilteredNodes(node.children).each {
-            name += it.token
-        }
+        def name = getIdentifierToken(node.children)
 
         name += "("
         new TypeFilter("ParameterList").getFilteredNodes(node.children).each {
             new TypeFilter("Parameter").getFilteredNodes(it.children).each {
-                name += getSingleVariableDeclarationName(it) + ","
+                name += getParameterName(it) + ","
             }
         }
         name = trimTrailingComma(name)
         return name + ")"
     }
 
-    static String getSingleVariableDeclarationName(SourceNode node) {
-        def type = ""
+    static String getParameterName(SourceNode node) {
+        def name = ""
+        def matched = new TypeFilter("ArrayType").getFilteredNodes(node.children)
+        if (matched.hasNext()) {
+            name = getPredefinedTypeName(matched.next())
+        }
+        matched = new TypeFilter("GenericName").getFilteredNodes(node.children)
+        if (matched.hasNext()) {
+            name = getGenericNameName(matched.next())
+        }
+        new TypeFilter("IdentifierName").getFilteredNodes(node.children).each {
+            name = getIdentifierToken(it.children)
+        }
+        if (name.isEmpty()) {
+            name = getPredefinedTypeName(node)
+        }
+        return name
+    }
+
+    static String getPredefinedTypeName(SourceNode node) {
+        def name = ""
         new TypeFilter("PredefinedType").getFilteredNodes(node.children).each {
             it.children.each {
-                switch (it.internalType) {
-                    case "IntKeyword":
-                    case "StringKeyword":
-                        type = it.token
-                        break
-                    default:
-                        throw new IllegalStateException("Unsupported variable declaration node type: " + it.internalType)
-                }
+                name = it.token
             }
         }
-        return type
+        return name
+    }
+
+    static String getGenericNameName(SourceNode node) {
+        def name = getIdentifierToken(node.children)
+        new TypeFilter("TypeArgumentList").getFilteredNodes(node.children).each {
+            name += "<"
+            name += getIdentifierToken(it)
+            name += ">"
+        }
+        return name
+    }
+
+    static String getIdentifierToken(Iterator<SourceNode> node) {
+        def name = ""
+        new TypeFilter("IdentifierToken").getFilteredNodes(node).each {
+            name = it.token
+        }
+        return name
+    }
+
+    static String getIdentifierToken(SourceNode node) {
+        def name = ""
+        new TypeFilter("IdentifierToken").getFilteredNodes(node).each {
+            name = it.token
+        }
+        return name
     }
 }
