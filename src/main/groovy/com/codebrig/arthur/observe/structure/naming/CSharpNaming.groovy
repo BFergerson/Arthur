@@ -19,6 +19,7 @@ class CSharpNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "MethodDeclaration":
+            case "VariableDeclaration":
                 return true
             default:
                 return false
@@ -30,6 +31,8 @@ class CSharpNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "MethodDeclaration":
                 return getMethodDeclarationName(node)
+            case "VariableDeclaration":
+                return getVariableDeclarationName(node)
             default:
                 throw new IllegalArgumentException("Unsupported C# node type: " + node.internalType)
         }
@@ -46,6 +49,14 @@ class CSharpNaming implements StructureNaming {
         }
         name = trimTrailingComma(name)
         return name + ")"
+    }
+
+    static String getVariableDeclarationName(SourceNode node) {
+        def name = ""
+        new TypeFilter("VariableDeclarator").getFilteredNodes(node.children).each {
+            name = getIdentifierToken(it)
+        }
+        return name
     }
 
     static String getParameterName(SourceNode node) {
