@@ -28,6 +28,11 @@ class ForEachLoopFilterTest extends ArthurTest {
         assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
     }
 
+    @Test
+    void forEachLoop_CSharp() {
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
     private static void assertForEachLoopPresent(File file) {
         assertForEachLoopPresent(file, "")
     }
