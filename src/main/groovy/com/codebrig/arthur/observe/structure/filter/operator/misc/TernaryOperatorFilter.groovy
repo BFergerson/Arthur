@@ -11,21 +11,40 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void> {
 
     private final MultiFilter filter
 
     TernaryOperatorFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
-                new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
-                new RoleFilter("RIGHT")
+        filter = MultiFilter.matchAny(
+                MultiFilter.matchAll(
+                        new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
+                        new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
+                        new RoleFilter("RIGHT")
+                ),
+                MultiFilter.matchAll(
+                        new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION")
+                )
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return filter.evaluate(node)
+        if (node.internalType == "ConditionalExpression") {
+            return evaluateConditionalExpression(node)
+        } else {
+            return filter.evaluate(node)
+        }
+    }
+
+    static boolean evaluateConditionalExpression(SourceNode node) {
+        if (node.children.any { it.internalType == "QuestionToken" }) {
+            if (node.children.any { it.internalType == "ColonToken" }) {
+                return true
+            }
+        }
+        return false
     }
 }

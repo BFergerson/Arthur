@@ -23,6 +23,11 @@ class TernaryOperatorFilterTest extends ArthurTest {
         assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
+    @Test
+    void ternaryOperator_CSharp() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
     private static void assertTernaryOperatorPresent(File file) {
         assertTernaryOperatorPresent(file, "")
     }

@@ -36,6 +36,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and")
     }
 
+    @Test
+    void andOperator_CSharp() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "")
     }
@@ -52,7 +58,11 @@ class AndOperatorFilterTest extends ArthurTest {
 
             new AndOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAndOperator)
-                assertEquals(andToken, it.token)
+                def token = it.token
+                if (token.isEmpty()) {
+                    token = it.properties.get("Text")
+                }
+                assertEquals(andToken, token)
                 foundAndOperator = true
             }
         }

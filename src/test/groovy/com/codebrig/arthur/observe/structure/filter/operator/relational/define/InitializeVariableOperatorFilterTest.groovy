@@ -39,6 +39,11 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
         assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
+    @Test
+    void declareVariableOperator_CSharp() {
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
     private static void assertDeclareVariableOperatorPresent(File file) {
         assertDeclareVariableOperatorPresent(file, "")
     }

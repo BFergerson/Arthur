@@ -39,6 +39,11 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void isNotEqualOperator_CSharp() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
+    @Test
     void alternateNotEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)

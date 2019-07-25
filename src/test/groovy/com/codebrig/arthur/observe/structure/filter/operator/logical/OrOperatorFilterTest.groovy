@@ -36,6 +36,12 @@ class OrOperatorFilterTest extends ArthurTest {
                 "or", "")
     }
 
+    @Test
+    void orOperator_CSharp() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "||", "")
+    }
+
     private static void assertOrOperatorPresent(File file, String orToken) {
         assertOrOperatorPresent(file, orToken, "")
     }
@@ -52,7 +58,11 @@ class OrOperatorFilterTest extends ArthurTest {
 
             new OrOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundOrOperator)
-                assertEquals(orToken, it.token)
+                def token = it.token
+                if (token.isEmpty()) {
+                    token = it.properties.get("Text")
+                }
+                assertEquals(orToken, token)
                 foundOrOperator = true
             }
         }
