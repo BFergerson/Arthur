@@ -29,7 +29,7 @@ class TryFilter extends StructureFilter<TryFilter, Void> {
         boolean result = filter.evaluate(node)
         if (result) {
             def matched = MultiFilter.matchAll(
-                    new TypeFilter("TryExcept", "TryStatement")
+                    new TypeFilter("TryExcept", "TryStatement", "TryKeyword")
             ).getFilteredNodes(node)
             return matched.hasNext()
         }

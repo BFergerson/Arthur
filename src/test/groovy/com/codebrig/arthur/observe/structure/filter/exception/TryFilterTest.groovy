@@ -44,6 +44,16 @@ class TryFilterTest extends ArthurTest {
         assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.py"))
     }
 
+    @Test
+    void tryCatch_CSharp() {
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.cs"))
+    }
+
+    @Test
+    void tryCatchFinally_CSharp() {
+        assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.cs"))
+    }
+
     private static void assertTryCatchPresent(File file) {
         assertTryCatchPresent(file, "")
     }
