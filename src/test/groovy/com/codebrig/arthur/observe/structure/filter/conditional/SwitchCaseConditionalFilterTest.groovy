@@ -28,6 +28,11 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
         assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
     }
 
+    @Test
+    void switchCaseConditional_CSharp() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
     private static void assertSwitchCaseConditionalPresent(File file) {
         assertSwitchCaseConditionalPresent(file, "")
     }
