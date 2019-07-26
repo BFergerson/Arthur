@@ -24,7 +24,7 @@ public class Literals {
     long param21 = 0xFFFFFFFFFFFFL;
     long param22 = 0xff1a618b7f65ea12L;
     long param23 = -0x1000000;
-    long param24 = -0xc4ceb9fe1a85ec53L
+    long param24 = -0xc4ceb9fe1a85ec53L;
     double param25 = -1.2e55;
     double param26 = 1.2e-55;
     double param27 = -1.2e-55;
