@@ -17,12 +17,12 @@ class CSharpLiteral extends StructureLiteral {
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumericLiteralToken":
-                if (node.token.contains(".") ||
-                        (node.token.isDouble() &&
-                                (node.token.toUpperCase().contains("P")
-                                        || node.token.toUpperCase().contains("E")
-                                        || node.token.toUpperCase().endsWith("D")
-                                        || node.token.toUpperCase().endsWith("F"))
+                String text = node.properties.get("Text")
+                if (text.contains(".") ||
+                        (text.isDouble() &&
+                                (text.toUpperCase().endsWith("E")
+                                 || text.toUpperCase().endsWith("D")
+                                 || text.toUpperCase().endsWith("F"))
                         )) {
                     return doubleValueLiteral()
                 }
@@ -55,11 +55,27 @@ class CSharpLiteral extends StructureLiteral {
         boolean isNegative = isNodeLiteralNegative(node)
         switch (node.getLiteralAttribute()) {
             case numberValueLiteral():
+                if (name.toUpperCase().endsWith("U") || name.toUpperCase().endsWith("UL")) {
+                    int i = 1
+                    if (name.toUpperCase().endsWith("UL")) {
+                        i = 2
+                    }
+                    long ul = Long.parseUnsignedLong(name.substring(0, name.length() - i))
+                    return (((isNegative) ? "-" : "") + Long.toUnsignedString(ul))
+                }
                 return toLong(((isNegative) ? "-" : "") + name)
             case doubleValueLiteral():
+                if (name.toUpperCase().endsWith("M")) {
+                    return (((isNegative) ? "-" : "") + Double.valueOf(name.substring(0, name.length() - 1)))
+                }
                 return toDouble(((isNegative) ? "-" : "") + name)
             default:
                 return StringEscapeUtils.escapeJava(name) //treat as string
         }
+    }
+
+    @Override
+    boolean isNodeLiteralNegative(SourceNode node) {
+        return node.parentSourceNode.parentSourceNode.any { it.internalType == "PrefixUnaryExpression_UnaryMinusExpression" }
     }
 }
