@@ -21,8 +21,9 @@ class GraknSchemaWriterTest extends ArthurTest {
         def phpLanguage = schemaGenerator.observeLanguage(SourceLanguage.Php, new File("src/test/resources/same/program/"))
         def pythonLanguage = schemaGenerator.observeLanguage(SourceLanguage.Python, new File("src/test/resources/same/program/"))
         def rubyLanguage = schemaGenerator.observeLanguage(SourceLanguage.Ruby, new File("src/test/resources/same/program/"))
-        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage)
-        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage)
+        def cSharpLanguage = schemaGenerator.observeLanguage(SourceLanguage.CSharp, new File("src/test/resources/same/program/"))
+        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
+        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
 
         def baseStructure = schemaWriter.getSegmentedSchemaDefinition(ObservationConfig.baseStructure().asArray())
         assertEquals(new File("src/test/resources/schema/segment_same", "Base_Structure.gql").text, baseStructure)

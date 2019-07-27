@@ -41,6 +41,18 @@ pythonNlAttribute sub attribute, datatype string;
 #####----- Ruby -----#####
 rubySelectorAttribute sub attribute, datatype string;
 
+#####----- Csharp -----#####
+csharpAllowsAnyExpressionAttribute sub attribute, datatype string;
+csharpArityAttribute sub attribute, datatype string;
+csharpIsMissingAttribute sub attribute, datatype string;
+csharpIsStructuredTriviaAttribute sub attribute, datatype string;
+csharpIsUnmanagedAttribute sub attribute, datatype string;
+csharpIsVarAttribute sub attribute, datatype string;
+csharpRankAttribute sub attribute, datatype string;
+csharpTextAttribute sub attribute, datatype string;
+csharpValueAttribute sub attribute, datatype string;
+csharpValueTextAttribute sub attribute, datatype string;
+
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
 	has token,
@@ -49,6 +61,12 @@ SourceArtifact sub entity,
 
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
+
+ArrayTypeArtifact sub OmnilingualSourceArtifact;
+
+BlockArtifact sub OmnilingualSourceArtifact;
+
+CompilationUnitArtifact sub OmnilingualSourceArtifact;
 
 ExpressionStatementArtifact sub OmnilingualSourceArtifact;
 
@@ -60,11 +78,17 @@ ForStatementArtifact sub OmnilingualSourceArtifact;
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+MethodDeclarationArtifact sub OmnilingualSourceArtifact;
+
 ModuleArtifact sub OmnilingualSourceArtifact;
 
 NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
+
+VariableDeclarationArtifact sub OmnilingualSourceArtifact;
+
+VariableDeclaratorArtifact sub OmnilingualSourceArtifact;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
@@ -226,18 +250,18 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaArrayTypeArtifact sub JavaSourceArtifact,
+JavaArrayTypeArtifact sub ArrayTypeArtifact,
 	# Structural
 	plays is_java_type_role,
 	plays has_java_dimensions_role,
 	plays has_java_element_type_role;
 
-JavaBlockArtifact sub JavaSourceArtifact,
+JavaBlockArtifact sub BlockArtifact,
 	# Structural
 	plays is_java_body_role,
 	plays has_java_statements_role;
 
-JavaCompilationUnitArtifact sub JavaSourceArtifact,
+JavaCompilationUnitArtifact sub CompilationUnitArtifact,
 	# Attributes
 	has name,
 	# Structural
@@ -267,7 +291,7 @@ JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	plays has_java_operator_role,
 	plays has_java_right_operand_role;
 
-JavaMethodDeclarationArtifact sub JavaSourceArtifact,
+JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Attributes
 	has javaConstructorAttribute,
 	has name,
@@ -456,7 +480,7 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_argument_role,
 	plays has_javascript_operator_role;
 
-JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
+JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	# Attributes
 	has javascriptKindAttribute,
 	has name,
@@ -464,7 +488,7 @@ JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_init_role,
 	plays has_javascript_declarations_role;
 
-JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
+JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
 	# Structural
 	plays is_javascript_declarations_role,
 	plays has_javascript_id_role,
@@ -684,6 +708,478 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	plays has_ruby_qnames_role,
 	plays has_ruby_values_role;
 
+#####----- Csharp -----#####
+CsharpSourceArtifact sub SourceArtifact;
+
+CsharpArgumentArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_arguments_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_ref_kind_keyword_role,
+	plays has_csharp_ref_or_out_keyword_role;
+
+CsharpArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_argument_list_role,
+	plays has_csharp_arguments_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_open_paren_token_role;
+
+CsharpArrayRankSpecifierArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpRankAttribute,
+	# Structural
+	plays is_csharp_rank_specifiers_role,
+	plays has_csharp_close_bracket_token_role,
+	plays has_csharp_open_bracket_token_role,
+	plays has_csharp_sizes_role;
+
+CsharpArrayTypeArtifact sub ArrayTypeArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpIsUnmanagedAttribute,
+	has csharpIsVarAttribute,
+	# Structural
+	plays is_csharp_type_role,
+	plays has_csharp_element_type_role,
+	plays has_csharp_rank_specifiers_role;
+
+CsharpBinaryExpressionGreaterThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
+CsharpBlockArtifact sub BlockArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_body_role,
+	plays is_csharp_statement_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_open_brace_token_role,
+	plays has_csharp_statements_role;
+
+CsharpClassDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_keyword_role,
+	plays has_csharp_members_role,
+	plays has_csharp_modifiers_role,
+	plays has_csharp_open_brace_token_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpClassKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpCloseBraceTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_close_brace_token_role;
+
+CsharpCloseBracketTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_close_bracket_token_role;
+
+CsharpCloseParenTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_close_paren_token_role;
+
+CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays has_csharp_end_of_file_token_role,
+	plays has_csharp_members_role,
+	plays has_csharp_usings_role;
+
+CsharpDotTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
+CsharpEndOfFileTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_end_of_file_token_role;
+
+CsharpEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_equals_token_role;
+
+CsharpEqualsValueClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_initializer_role,
+	plays has_csharp_equals_token_role,
+	plays has_csharp_value_role;
+
+CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
+	# Attributes
+	has csharpAllowsAnyExpressionAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpForKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_for_keyword_role;
+
+CsharpForStatementArtifact sub ForStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_condition_role,
+	plays has_csharp_declaration_role,
+	plays has_csharp_first_semicolon_token_role,
+	plays has_csharp_for_keyword_role,
+	plays has_csharp_incrementors_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_second_semicolon_token_role,
+	plays has_csharp_statement_role;
+
+CsharpGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
+CsharpIdentifierNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpIsUnmanagedAttribute,
+	has csharpIsVarAttribute,
+	# Structural
+	plays is_csharp_expression_role,
+	plays is_csharp_left_role,
+	plays is_csharp_name_role,
+	plays is_csharp_operand_role,
+	plays has_csharp_identifier_role;
+
+CsharpIdentifierTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_identifier_role;
+
+CsharpIntKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpInvocationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_expression_role,
+	plays has_csharp_argument_list_role,
+	plays has_csharp_expression_role;
+
+CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has name,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_body_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_modifiers_role,
+	plays has_csharp_parameter_list_role,
+	plays has_csharp_return_type_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpMinusMinusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
+CsharpNoneArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	# Structural
+	plays is_csharp_ref_kind_keyword_role,
+	plays is_csharp_ref_or_out_keyword_role,
+	plays is_csharp_semicolon_token_role,
+	plays is_csharp_static_keyword_role;
+
+CsharpNumericLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_right_role,
+	plays is_csharp_value_role,
+	plays has_csharp_token_role;
+
+CsharpNumericLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has csharpIsMissingAttribute,
+	has numberValue,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_token_role;
+
+CsharpOmittedArraySizeExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_sizes_role,
+	plays has_csharp_omitted_array_size_expression_token_role;
+
+CsharpOmittedArraySizeExpressionTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_omitted_array_size_expression_token_role;
+
+CsharpOpenBraceTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_open_brace_token_role;
+
+CsharpOpenBracketTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_open_bracket_token_role;
+
+CsharpOpenParenTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_open_paren_token_role;
+
+CsharpParameterArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_parameters_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_type_role;
+
+CsharpParameterListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_parameter_list_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_parameters_role;
+
+CsharpPostfixUnaryExpressionPostDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_incrementors_role,
+	plays has_csharp_operand_role,
+	plays has_csharp_operator_token_role;
+
+CsharpPredefinedTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpIsUnmanagedAttribute,
+	has csharpIsVarAttribute,
+	# Structural
+	plays is_csharp_element_type_role,
+	plays is_csharp_return_type_role,
+	plays is_csharp_type_role,
+	plays has_csharp_keyword_role;
+
+CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_modifiers_role;
+
+CsharpSemicolonTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_first_semicolon_token_role,
+	plays is_csharp_second_semicolon_token_role,
+	plays is_csharp_semicolon_token_role;
+
+CsharpSimpleMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_expression_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_name_role,
+	plays has_csharp_operator_token_role;
+
+CsharpStaticKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_modifiers_role;
+
+CsharpStringKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpUsingDirectiveArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_usings_role,
+	plays has_csharp_name_role,
+	plays has_csharp_semicolon_token_role,
+	plays has_csharp_static_keyword_role,
+	plays has_csharp_using_keyword_role;
+
+CsharpUsingKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_using_keyword_role;
+
+CsharpVariableDeclarationArtifact sub VariableDeclarationArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has name,
+	# Structural
+	plays is_csharp_declaration_role,
+	plays has_csharp_type_role,
+	plays has_csharp_variables_role;
+
+CsharpVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_variables_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_initializer_role;
+
+CsharpVoidKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
@@ -701,6 +1197,9 @@ body_relation sub parent_child_relation,
 cond_relation sub parent_child_relation,
 	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
+element_type_relation sub parent_child_relation,
+	relates is_element_type_role as is_child, relates has_element_type_role as is_parent;
+
 expression_relation sub parent_child_relation,
 	relates is_expression_role as is_child, relates has_expression_role as is_parent;
 
@@ -710,17 +1209,35 @@ func_relation sub parent_child_relation,
 init_relation sub parent_child_relation,
 	relates is_init_role as is_child, relates has_init_role as is_parent;
 
+initializer_relation sub parent_child_relation,
+	relates is_initializer_role as is_child, relates has_initializer_role as is_parent;
+
 left_relation sub parent_child_relation,
 	relates is_left_role as is_child, relates has_left_role as is_parent;
+
+modifiers_relation sub parent_child_relation,
+	relates is_modifiers_role as is_child, relates has_modifiers_role as is_parent;
 
 name_relation sub parent_child_relation,
 	relates is_name_role as is_child, relates has_name_role as is_parent;
 
+operand_relation sub parent_child_relation,
+	relates is_operand_role as is_child, relates has_operand_role as is_parent;
+
 operator_relation sub parent_child_relation,
 	relates is_operator_role as is_child, relates has_operator_role as is_parent;
 
+parameters_relation sub parent_child_relation,
+	relates is_parameters_role as is_child, relates has_parameters_role as is_parent;
+
+return_type_relation sub parent_child_relation,
+	relates is_return_type_role as is_child, relates has_return_type_role as is_parent;
+
 right_relation sub parent_child_relation,
 	relates is_right_role as is_child, relates has_right_role as is_parent;
+
+statements_relation sub parent_child_relation,
+	relates is_statements_role as is_child, relates has_statements_role as is_parent;
 
 type_relation sub parent_child_relation,
 	relates is_type_role as is_child, relates has_type_role as is_parent;
@@ -847,8 +1364,8 @@ java_body_relation sub body_relation,
 java_dimensions_relation sub parent_child_relation,
 	relates is_java_dimensions_role as is_child, relates has_java_dimensions_role as is_parent;
 
-java_element_type_relation sub parent_child_relation,
-	relates is_java_element_type_role as is_child, relates has_java_element_type_role as is_parent;
+java_element_type_relation sub element_type_relation,
+	relates is_java_element_type_role as is_element_type_role, relates has_java_element_type_role as has_element_type_role;
 
 java_expression_relation sub expression_relation,
 	relates is_java_expression_role as is_expression_role, relates has_java_expression_role as has_expression_role;
@@ -856,8 +1373,8 @@ java_expression_relation sub expression_relation,
 java_fragments_relation sub parent_child_relation,
 	relates is_java_fragments_role as is_child, relates has_java_fragments_role as is_parent;
 
-java_initializer_relation sub parent_child_relation,
-	relates is_java_initializer_role as is_child, relates has_java_initializer_role as is_parent;
+java_initializer_relation sub initializer_relation,
+	relates is_java_initializer_role as is_initializer_role, relates has_java_initializer_role as has_initializer_role;
 
 java_initializers_relation sub parent_child_relation,
 	relates is_java_initializers_role as is_child, relates has_java_initializers_role as is_parent;
@@ -865,20 +1382,20 @@ java_initializers_relation sub parent_child_relation,
 java_left_operand_relation sub parent_child_relation,
 	relates is_java_left_operand_role as is_child, relates has_java_left_operand_role as is_parent;
 
-java_modifiers_relation sub parent_child_relation,
-	relates is_java_modifiers_role as is_child, relates has_java_modifiers_role as is_parent;
+java_modifiers_relation sub modifiers_relation,
+	relates is_java_modifiers_role as is_modifiers_role, relates has_java_modifiers_role as has_modifiers_role;
 
 java_name_relation sub name_relation,
 	relates is_java_name_role as is_name_role, relates has_java_name_role as has_name_role;
 
-java_operand_relation sub parent_child_relation,
-	relates is_java_operand_role as is_child, relates has_java_operand_role as is_parent;
+java_operand_relation sub operand_relation,
+	relates is_java_operand_role as is_operand_role, relates has_java_operand_role as has_operand_role;
 
 java_operator_relation sub operator_relation,
 	relates is_java_operator_role as is_operator_role, relates has_java_operator_role as has_operator_role;
 
-java_parameters_relation sub parent_child_relation,
-	relates is_java_parameters_role as is_child, relates has_java_parameters_role as is_parent;
+java_parameters_relation sub parameters_relation,
+	relates is_java_parameters_role as is_parameters_role, relates has_java_parameters_role as has_parameters_role;
 
 java_qualifier_relation sub parent_child_relation,
 	relates is_java_qualifier_role as is_child, relates has_java_qualifier_role as is_parent;
@@ -889,8 +1406,8 @@ java_return_type2_relation sub parent_child_relation,
 java_right_operand_relation sub parent_child_relation,
 	relates is_java_right_operand_role as is_child, relates has_java_right_operand_role as is_parent;
 
-java_statements_relation sub parent_child_relation,
-	relates is_java_statements_role as is_child, relates has_java_statements_role as is_parent;
+java_statements_relation sub statements_relation,
+	relates is_java_statements_role as is_statements_role, relates has_java_statements_role as has_statements_role;
 
 java_type_relation sub type_relation,
 	relates is_java_type_role as is_type_role, relates has_java_type_role as has_type_role;
@@ -978,8 +1495,8 @@ php_loop_relation sub parent_child_relation,
 php_name_relation sub name_relation,
 	relates is_php_name_role as is_name_role, relates has_php_name_role as has_name_role;
 
-php_return_type_relation sub parent_child_relation,
-	relates is_php_return_type_role as is_child, relates has_php_return_type_role as is_parent;
+php_return_type_relation sub return_type_relation,
+	relates is_php_return_type_role as is_return_type_role, relates has_php_return_type_role as has_return_type_role;
 
 php_right_relation sub right_relation,
 	relates is_php_right_role as is_right_role, relates has_php_right_role as has_right_role;
@@ -1042,3 +1559,145 @@ ruby_qnames_relation sub parent_child_relation,
 
 ruby_values_relation sub values_relation,
 	relates is_ruby_values_role as is_values_role, relates has_ruby_values_role as has_values_role;
+
+#####----- Csharp -----#####
+csharp_argument_list_relation sub parent_child_relation,
+	relates is_csharp_argument_list_role as is_child, relates has_csharp_argument_list_role as is_parent;
+
+csharp_arguments_relation sub arguments_relation,
+	relates is_csharp_arguments_role as is_arguments_role, relates has_csharp_arguments_role as has_arguments_role;
+
+csharp_body_relation sub body_relation,
+	relates is_csharp_body_role as is_body_role, relates has_csharp_body_role as has_body_role;
+
+csharp_close_brace_token_relation sub parent_child_relation,
+	relates is_csharp_close_brace_token_role as is_child, relates has_csharp_close_brace_token_role as is_parent;
+
+csharp_close_bracket_token_relation sub parent_child_relation,
+	relates is_csharp_close_bracket_token_role as is_child, relates has_csharp_close_bracket_token_role as is_parent;
+
+csharp_close_paren_token_relation sub parent_child_relation,
+	relates is_csharp_close_paren_token_role as is_child, relates has_csharp_close_paren_token_role as is_parent;
+
+csharp_condition_relation sub parent_child_relation,
+	relates is_csharp_condition_role as is_child, relates has_csharp_condition_role as is_parent;
+
+csharp_declaration_relation sub parent_child_relation,
+	relates is_csharp_declaration_role as is_child, relates has_csharp_declaration_role as is_parent;
+
+csharp_element_type_relation sub element_type_relation,
+	relates is_csharp_element_type_role as is_element_type_role, relates has_csharp_element_type_role as has_element_type_role;
+
+csharp_end_of_file_token_relation sub parent_child_relation,
+	relates is_csharp_end_of_file_token_role as is_child, relates has_csharp_end_of_file_token_role as is_parent;
+
+csharp_equals_token_relation sub parent_child_relation,
+	relates is_csharp_equals_token_role as is_child, relates has_csharp_equals_token_role as is_parent;
+
+csharp_expression_relation sub expression_relation,
+	relates is_csharp_expression_role as is_expression_role, relates has_csharp_expression_role as has_expression_role;
+
+csharp_first_semicolon_token_relation sub parent_child_relation,
+	relates is_csharp_first_semicolon_token_role as is_child, relates has_csharp_first_semicolon_token_role as is_parent;
+
+csharp_for_keyword_relation sub parent_child_relation,
+	relates is_csharp_for_keyword_role as is_child, relates has_csharp_for_keyword_role as is_parent;
+
+csharp_identifier_relation sub parent_child_relation,
+	relates is_csharp_identifier_role as is_child, relates has_csharp_identifier_role as is_parent;
+
+csharp_incrementors_relation sub parent_child_relation,
+	relates is_csharp_incrementors_role as is_child, relates has_csharp_incrementors_role as is_parent;
+
+csharp_initializer_relation sub initializer_relation,
+	relates is_csharp_initializer_role as is_initializer_role, relates has_csharp_initializer_role as has_initializer_role;
+
+csharp_keyword_relation sub parent_child_relation,
+	relates is_csharp_keyword_role as is_child, relates has_csharp_keyword_role as is_parent;
+
+csharp_left_relation sub left_relation,
+	relates is_csharp_left_role as is_left_role, relates has_csharp_left_role as has_left_role;
+
+csharp_members_relation sub parent_child_relation,
+	relates is_csharp_members_role as is_child, relates has_csharp_members_role as is_parent;
+
+csharp_modifiers_relation sub modifiers_relation,
+	relates is_csharp_modifiers_role as is_modifiers_role, relates has_csharp_modifiers_role as has_modifiers_role;
+
+csharp_name_relation sub name_relation,
+	relates is_csharp_name_role as is_name_role, relates has_csharp_name_role as has_name_role;
+
+csharp_omitted_array_size_expression_token_relation sub parent_child_relation,
+	relates is_csharp_omitted_array_size_expression_token_role as is_child, relates has_csharp_omitted_array_size_expression_token_role as is_parent;
+
+csharp_open_brace_token_relation sub parent_child_relation,
+	relates is_csharp_open_brace_token_role as is_child, relates has_csharp_open_brace_token_role as is_parent;
+
+csharp_open_bracket_token_relation sub parent_child_relation,
+	relates is_csharp_open_bracket_token_role as is_child, relates has_csharp_open_bracket_token_role as is_parent;
+
+csharp_open_paren_token_relation sub parent_child_relation,
+	relates is_csharp_open_paren_token_role as is_child, relates has_csharp_open_paren_token_role as is_parent;
+
+csharp_operand_relation sub operand_relation,
+	relates is_csharp_operand_role as is_operand_role, relates has_csharp_operand_role as has_operand_role;
+
+csharp_operator_token_relation sub parent_child_relation,
+	relates is_csharp_operator_token_role as is_child, relates has_csharp_operator_token_role as is_parent;
+
+csharp_parameter_list_relation sub parent_child_relation,
+	relates is_csharp_parameter_list_role as is_child, relates has_csharp_parameter_list_role as is_parent;
+
+csharp_parameters_relation sub parameters_relation,
+	relates is_csharp_parameters_role as is_parameters_role, relates has_csharp_parameters_role as has_parameters_role;
+
+csharp_rank_specifiers_relation sub parent_child_relation,
+	relates is_csharp_rank_specifiers_role as is_child, relates has_csharp_rank_specifiers_role as is_parent;
+
+csharp_ref_kind_keyword_relation sub parent_child_relation,
+	relates is_csharp_ref_kind_keyword_role as is_child, relates has_csharp_ref_kind_keyword_role as is_parent;
+
+csharp_ref_or_out_keyword_relation sub parent_child_relation,
+	relates is_csharp_ref_or_out_keyword_role as is_child, relates has_csharp_ref_or_out_keyword_role as is_parent;
+
+csharp_return_type_relation sub return_type_relation,
+	relates is_csharp_return_type_role as is_return_type_role, relates has_csharp_return_type_role as has_return_type_role;
+
+csharp_right_relation sub right_relation,
+	relates is_csharp_right_role as is_right_role, relates has_csharp_right_role as has_right_role;
+
+csharp_second_semicolon_token_relation sub parent_child_relation,
+	relates is_csharp_second_semicolon_token_role as is_child, relates has_csharp_second_semicolon_token_role as is_parent;
+
+csharp_semicolon_token_relation sub parent_child_relation,
+	relates is_csharp_semicolon_token_role as is_child, relates has_csharp_semicolon_token_role as is_parent;
+
+csharp_sizes_relation sub parent_child_relation,
+	relates is_csharp_sizes_role as is_child, relates has_csharp_sizes_role as is_parent;
+
+csharp_statement_relation sub parent_child_relation,
+	relates is_csharp_statement_role as is_child, relates has_csharp_statement_role as is_parent;
+
+csharp_statements_relation sub statements_relation,
+	relates is_csharp_statements_role as is_statements_role, relates has_csharp_statements_role as has_statements_role;
+
+csharp_static_keyword_relation sub parent_child_relation,
+	relates is_csharp_static_keyword_role as is_child, relates has_csharp_static_keyword_role as is_parent;
+
+csharp_token_relation sub parent_child_relation,
+	relates is_csharp_token_role as is_child, relates has_csharp_token_role as is_parent;
+
+csharp_type_relation sub type_relation,
+	relates is_csharp_type_role as is_type_role, relates has_csharp_type_role as has_type_role;
+
+csharp_using_keyword_relation sub parent_child_relation,
+	relates is_csharp_using_keyword_role as is_child, relates has_csharp_using_keyword_role as is_parent;
+
+csharp_usings_relation sub parent_child_relation,
+	relates is_csharp_usings_role as is_child, relates has_csharp_usings_role as is_parent;
+
+csharp_value_relation sub parent_child_relation,
+	relates is_csharp_value_role as is_child, relates has_csharp_value_role as is_parent;
+
+csharp_variables_relation sub parent_child_relation,
+	relates is_csharp_variables_role as is_child, relates has_csharp_variables_role as is_parent;
