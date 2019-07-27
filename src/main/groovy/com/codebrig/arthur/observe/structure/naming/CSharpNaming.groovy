@@ -40,7 +40,6 @@ class CSharpNaming implements StructureNaming {
 
     static String getMethodDeclarationName(SourceNode node) {
         def name = getIdentifierToken(node.children)
-
         name += "("
         new TypeFilter("ParameterList").getFilteredNodes(node.children).each {
             new TypeFilter("Parameter").getFilteredNodes(it.children).each {
