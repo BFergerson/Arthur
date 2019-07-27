@@ -36,6 +36,12 @@ class OrOperatorFilterTest extends ArthurTest {
                 "or", "")
     }
 
+    @Test
+    void orOperator_CSharp() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "||", "")
+    }
+
     private static void assertOrOperatorPresent(File file, String orToken) {
         assertOrOperatorPresent(file, orToken, "")
     }

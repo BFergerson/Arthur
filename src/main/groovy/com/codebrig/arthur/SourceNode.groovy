@@ -75,6 +75,8 @@ class SourceNode {
     String getToken() {
         if (underlyingNode.properties().contains("token")) {
             return underlyingNode.properties().get("token").get()
+        } else if (underlyingNode.token().isEmpty() && underlyingNode.properties().contains("Text")) {
+            return underlyingNode.properties().get("Text").get()
         }
         return underlyingNode.token()
     }

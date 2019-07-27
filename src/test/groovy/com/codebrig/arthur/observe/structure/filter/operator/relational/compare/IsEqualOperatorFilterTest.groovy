@@ -38,6 +38,11 @@ class IsEqualOperatorFilterTest extends ArthurTest {
         assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
+    @Test
+    void isEqualOperator_CSharp() {
+        assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
     private static void assertIsEqualOperatorPresent(File file) {
         assertIsEqualOperatorPresent(file, "")
     }

@@ -15,6 +15,7 @@ import groovy.transform.Memoized
  * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 enum SourceLanguage {
 
@@ -24,7 +25,8 @@ enum SourceLanguage {
     Javascript(["js"]),
     Php(["php"]),
     Python(["py"]),
-    Ruby(["rb"])
+    Ruby(["rb"]),
+    CSharp(["cs"])
 
     private final Set<String> fileExtensions
 
@@ -82,6 +84,8 @@ enum SourceLanguage {
                 return new PythonNaming()
             case Ruby:
                 return new RubyNaming()
+            case CSharp:
+                return new CSharpNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
@@ -102,6 +106,8 @@ enum SourceLanguage {
                 return new PythonLiteral()
             case Ruby:
                 return new RubyLiteral()
+            case CSharp:
+                return new CSharpLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }

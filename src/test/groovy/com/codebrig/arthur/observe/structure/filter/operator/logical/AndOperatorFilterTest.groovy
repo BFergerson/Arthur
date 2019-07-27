@@ -36,6 +36,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and")
     }
 
+    @Test
+    void andOperator_CSharp() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "")
     }

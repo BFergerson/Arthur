@@ -33,6 +33,11 @@ class WhileLoopFilterTest extends ArthurTest {
         assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.py"))
     }
 
+    @Test
+    void whileLoop_CSharp() {
+        assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
     private static void assertWhileLoopPresent(File file) {
         assertWhileLoopPresent(file, "")
     }

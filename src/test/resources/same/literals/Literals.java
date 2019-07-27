@@ -6,7 +6,7 @@ public class Literals {
     double param5 = 9.234d;
     long param6 = 0xFFFFFFFFFFFFL;
     long param7 = 0xff1a618b7f65ea12L;
-    long param8 = 0xc4ceb9fe1a85ec53L;
+    long param8 = -0xc4ceb9fe1a85ec53L;
     double param9 = 0x1.0p31;
     int param10 = 10_000;
     double param11 = 0xAAAAAAAAAAAAAAAAAAp0d;

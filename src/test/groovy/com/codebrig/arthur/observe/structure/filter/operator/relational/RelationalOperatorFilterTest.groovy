@@ -3,6 +3,7 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.DeclareVariableOperatorFilter
@@ -39,6 +40,11 @@ class RelationalOperatorFilterTest extends ArthurTest {
         assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
+    @Test
+    void relationalOperator_CSharp() {
+        assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
     private static void assertRelationalOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
@@ -48,8 +54,18 @@ class RelationalOperatorFilterTest extends ArthurTest {
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             MultiFilter.matchAll(new RelationalOperatorFilter()).reject(new DeclareVariableOperatorFilter())
                     .getFilteredNodes(it).each {
-                assertNotNull(new RoleFilter("LEFT").getFilteredNodes(it.children).next())
-                assertNotNull(new RoleFilter("RIGHT").getFilteredNodes(it.children).next())
+                assertNotNull(
+                        MultiFilter.matchAny(
+                                new RoleFilter("LEFT"),
+                                new InternalRoleFilter("Left")
+                        ).getFilteredNodes(it.children).next()
+                )
+                assertNotNull(
+                        MultiFilter.matchAny(
+                                new RoleFilter("RIGHT"),
+                                new InternalRoleFilter("Right")
+                        ).getFilteredNodes(it.children).next()
+                )
                 foundLeftOperands = true
                 foundRightOperands = true
             }

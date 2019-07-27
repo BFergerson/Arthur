@@ -14,36 +14,41 @@ import static org.junit.Assert.*
 class InitializeVariableOperatorFilterTest extends ArthurTest {
 
     @Test
-    void declareVariableOperator_Go() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.go"))
+    void initializeVariableOperator_Go() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.go"))
     }
 
     @Test
-    void declareVariableOperator_Java() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+    void initializeVariableOperator_Java() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
                 "Operators.")
     }
 
     @Test
-    void declareVariableOperator_Javascript() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    void initializeVariableOperator_Javascript() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
     @Test
-    void declareVariableOperator_Php() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
+    void initializeVariableOperator_Php() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
     @Test
-    void declareVariableOperator_Python() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
+    void initializeVariableOperator_Python() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.py"))
     }
 
-    private static void assertDeclareVariableOperatorPresent(File file) {
-        assertDeclareVariableOperatorPresent(file, "")
+    @Test
+    void initializeVariableOperator_CSharp() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
-    private static void assertDeclareVariableOperatorPresent(File file, String qualifiedName) {
+    private static void assertInitializeVariableOperatorPresent(File file) {
+        assertInitializeVariableOperatorPresent(file, "")
+    }
+
+    private static void assertInitializeVariableOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

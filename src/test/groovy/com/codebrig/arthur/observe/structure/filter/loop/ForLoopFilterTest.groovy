@@ -42,6 +42,11 @@ class ForLoopFilterTest extends ArthurTest {
         assertLoopPresent(new File("src/test/resources/same/loops/Loops.rb"))
     }
 
+    @Test
+    void forLoop_CSharp() {
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
     private static void assertLoopPresent(File file) {
         assertLoopPresent(file, "")
     }

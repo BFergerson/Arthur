@@ -53,7 +53,7 @@ class JavaLiteralTest extends ArthurTest {
     void hexadecimalLiteralTest() {
         assertJavaLiteralPresent("param6", "numberValue", 0xFFFFFFFFFFFFL)
         assertJavaLiteralPresent("param7", "numberValue", 0xff1a618b7f65ea12L)
-        assertJavaLiteralPresent("param8", "numberValue", 0xc4ceb9fe1a85ec53L)
+        assertJavaLiteralPresent("param8", "numberValue", -0xc4ceb9fe1a85ec53L)
         assertJavaLiteralPresent("param9", "doubleValue", Double.parseDouble('0x1.0p31'))
         assertJavaLiteralPresent("param11", "doubleValue", Double.parseDouble('0xAAAAAAAAAAAAAAAAAAp0d'))
         assertJavaLiteralPresent("param14", "numberValue", 0x52)

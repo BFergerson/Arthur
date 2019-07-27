@@ -5,6 +5,19 @@ define
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+ArrayTypeArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_LIST,
+	plays IS_TYPE;
+
+BlockArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_BLOCK;
+
+CompilationUnitArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
 ExpressionStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_STATEMENT;
@@ -25,6 +38,11 @@ ForStatementArtifact sub OmnilingualSourceArtifact,
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+MethodDeclarationArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
 ModuleArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_MODULE;
@@ -44,6 +62,16 @@ OperatorArtifact sub OmnilingualSourceArtifact,
 	plays IS_OPERATOR,
 	plays IS_RELATIONAL,
 	plays IS_UNARY;
+
+VariableDeclarationArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
+
+VariableDeclaratorArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
@@ -164,24 +192,19 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaArrayTypeArtifact sub JavaSourceArtifact,
+JavaArrayTypeArtifact sub ArrayTypeArtifact,
 	# Semantic
-	plays IS_LIST,
-	plays IS_PRIMITIVE,
-	plays IS_TYPE;
+	plays IS_PRIMITIVE;
 
-JavaBlockArtifact sub JavaSourceArtifact,
+JavaBlockArtifact sub BlockArtifact,
 	# Semantic
-	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
-JavaCompilationUnitArtifact sub JavaSourceArtifact,
-	# Semantic
-	plays IS_FILE;
+JavaCompilationUnitArtifact sub CompilationUnitArtifact;
 
 JavaDimensionArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -202,10 +225,8 @@ JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
 
-JavaMethodDeclarationArtifact sub JavaSourceArtifact,
+JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
@@ -384,18 +405,13 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays IS_UNARY,
 	plays IS_UPDATE;
 
-JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
+JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	# Semantic
-	plays IS_DECLARATION,
 	plays IS_FOR,
 	plays IS_INITIALIZATION,
-	plays IS_STATEMENT,
-	plays IS_VARIABLE;
+	plays IS_STATEMENT;
 
-JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_VARIABLE;
+JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
@@ -627,6 +643,239 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_QUALIFIED;
 
+#####----- Csharp -----#####
+CsharpSourceArtifact sub SourceArtifact;
+
+CsharpArgumentArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION;
+
+CsharpArgumentListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+CsharpArrayRankSpecifierArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+CsharpArrayTypeArtifact sub ArrayTypeArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpBinaryExpressionGreaterThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_RELATIONAL;
+
+CsharpBlockArtifact sub BlockArtifact;
+
+CsharpClassDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+CsharpClassKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+CsharpCloseBraceTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpCloseBracketTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpCloseParenTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+	# Semantic
+	plays IS_MODULE;
+
+CsharpDotTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpEndOfFileTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+CsharpEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_OPERATOR;
+
+CsharpEqualsValueClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_RIGHT;
+
+CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
+
+CsharpForKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR;
+
+CsharpForStatementArtifact sub ForStatementArtifact;
+
+CsharpGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+CsharpIdentifierNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER;
+
+CsharpIdentifierTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER;
+
+CsharpIntKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+CsharpInvocationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_FUNCTION;
+
+CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
+	# Semantic
+	plays IS_TYPE;
+
+CsharpMinusMinusTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECREMENT,
+	plays IS_OPERATOR,
+	plays IS_UNARY;
+
+CsharpNoneArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpNumericLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_NUMBER;
+
+CsharpNumericLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_VALUE;
+
+CsharpOmittedArraySizeExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+CsharpOmittedArraySizeExpressionTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpOpenBraceTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpOpenBracketTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpOpenParenTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpParameterArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+CsharpParameterListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+CsharpPostfixUnaryExpressionPostDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_POSTFIX,
+	plays IS_UNARY;
+
+CsharpPredefinedTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_PRIMITIVE,
+	plays IS_TYPE;
+
+CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_VISIBILITY,
+	plays IS_WORLD;
+
+CsharpSemicolonTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpSimpleMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_QUALIFIED;
+
+CsharpStaticKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CsharpStringKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_STRING;
+
+CsharpUsingDirectiveArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IMPORT,
+	plays IS_STATEMENT;
+
+CsharpUsingKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IMPORT,
+	plays IS_INCOMPLETE;
+
+CsharpVariableDeclarationArtifact sub VariableDeclarationArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
+
+CsharpVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
+	# Semantic
+	plays IS_RIGHT;
+
+CsharpVoidKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
 ##########---------- Semantic Roles ----------##########
 ARGS_LIST sub relation,
 	relates IS_ARGS_LIST;
@@ -666,6 +915,9 @@ DECREMENT sub relation,
 
 ELSE sub relation,
 	relates IS_ELSE;
+
+EQUAL sub relation,
+	relates IS_EQUAL;
 
 EXPRESSION sub relation,
 	relates IS_EXPRESSION;
@@ -711,6 +963,9 @@ MODULE sub relation,
 
 NAME sub relation,
 	relates IS_NAME;
+
+NOOP sub relation,
+	relates IS_NOOP;
 
 NUMBER sub relation,
 	relates IS_NUMBER;
@@ -762,6 +1017,9 @@ UNARY sub relation,
 
 UPDATE sub relation,
 	relates IS_UPDATE;
+
+VALUE sub relation,
+	relates IS_VALUE;
 
 VARIABLE sub relation,
 	relates IS_VARIABLE;

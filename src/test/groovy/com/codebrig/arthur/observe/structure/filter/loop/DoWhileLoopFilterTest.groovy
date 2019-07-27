@@ -22,6 +22,11 @@ class DoWhileLoopFilterTest extends ArthurTest {
         assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
     }
 
+    @Test
+    void doWhileLoop_CSharp() {
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
     private static void assertDoWhileLoopPresent(File file) {
         assertDoWhileLoopPresent(file, "")
     }
