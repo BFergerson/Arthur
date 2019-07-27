@@ -24,7 +24,7 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
                         new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
                         new RoleFilter().reject("DECLARATION", "VARIABLE")
                 ),
-                new TypeFilter("ForEachKeyword") //todo: needed because INCOMPLETE on C#
+                new TypeFilter("ForEachKeyword")
         )
     }
 
