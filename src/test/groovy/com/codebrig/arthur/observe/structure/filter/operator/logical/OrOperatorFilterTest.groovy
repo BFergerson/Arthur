@@ -58,11 +58,7 @@ class OrOperatorFilterTest extends ArthurTest {
 
             new OrOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundOrOperator)
-                def token = it.token
-                if (token.isEmpty()) {
-                    token = it.properties.get("Text")
-                }
-                assertEquals(orToken, token)
+                assertEquals(orToken, it.token)
                 foundOrOperator = true
             }
         }

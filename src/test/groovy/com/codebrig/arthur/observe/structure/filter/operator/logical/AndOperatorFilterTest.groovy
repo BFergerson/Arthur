@@ -58,11 +58,7 @@ class AndOperatorFilterTest extends ArthurTest {
 
             new AndOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAndOperator)
-                def token = it.token
-                if (token.isEmpty()) {
-                    token = it.properties.get("Text")
-                }
-                assertEquals(andToken, token)
+                assertEquals(andToken, it.token)
                 foundAndOperator = true
             }
         }
