@@ -26,7 +26,8 @@ enum SourceLanguage {
     Php(["php"]),
     Python(["py"]),
     Ruby(["rb"]),
-    CSharp(["cs"])
+    CSharp(["cs"]),
+    Bash(["sh"])
 
     private final Set<String> fileExtensions
 
@@ -86,6 +87,8 @@ enum SourceLanguage {
                 return new RubyNaming()
             case CSharp:
                 return new CSharpNaming()
+            case Bash:
+                return new BashNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
@@ -108,6 +111,8 @@ enum SourceLanguage {
                 return new RubyLiteral()
             case CSharp:
                 return new CSharpLiteral()
+            case Bash:
+                return new BashLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }
