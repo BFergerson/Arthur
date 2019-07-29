@@ -44,7 +44,7 @@ class IfConditionalFilterTest extends ArthurTest {
 
     private static void assertIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundIfConditional = false
         def functionFilter = new FunctionFilter()
