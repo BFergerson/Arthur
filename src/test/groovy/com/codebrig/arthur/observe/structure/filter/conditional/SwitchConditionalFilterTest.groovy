@@ -39,7 +39,7 @@ class SwitchConditionalFilterTest extends ArthurTest {
 
     private static void assertSwitchConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundSwitchConditional = false
         def functionFilter = new FunctionFilter()
