@@ -39,6 +39,15 @@ enum SourceLanguage {
         return name().toLowerCase()
     }
 
+    String getBabelfishName() {
+        switch (getKey()) {
+            case "cplusplus":
+                return "cpp"
+            default:
+                return getKey()
+        }
+    }
+
     String getQualifiedName() {
         if (this == Omnilingual) {
             return Omnilingual.name()

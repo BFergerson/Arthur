@@ -51,7 +51,7 @@ class FunctionFilterTest extends ArthurTest {
 
     private static void assertFunctionsPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         boolean foundFunction = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {

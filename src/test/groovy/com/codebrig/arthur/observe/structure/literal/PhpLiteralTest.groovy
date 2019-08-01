@@ -50,7 +50,7 @@ class PhpLiteralTest extends ArthurTest {
     private static void assertPhpLiteralPresent(String literalName, String literalType, Object literalValue) {
         def file = new File("src/test/resources/same/literals/Literals.php")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         boolean foundLiteral = false
         MultiFilter.matchAll(new NameFilter(literalName), new InitializeVariableOperatorFilter())
