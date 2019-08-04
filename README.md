@@ -13,7 +13,7 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 | --------------------------------------- | ------------------------------------------------------------ |
 | Go, Java, JavaScript, PHP, Python, Ruby | [Arthur_Omnilingual_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Base_Structure.gql) <br> [Arthur_Omnilingual_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Semantic_Roles.gql) |
 
-# Unilingual Schemas
+## Unilingual Schemas
 
 | Language   | Segments                                                     |
 | ---------- | ------------------------------------------------------------ |
