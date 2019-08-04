@@ -68,3 +68,9 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 
 - DeclareVariableOperator
 - InitializeVariableOperator
+
+## Misc
+
+- Function
+- Literal
+- Name/SimpleName
