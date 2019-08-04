@@ -73,4 +73,4 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 
 - Function
 - Literal
-- Name/SimpleName
+- Name
