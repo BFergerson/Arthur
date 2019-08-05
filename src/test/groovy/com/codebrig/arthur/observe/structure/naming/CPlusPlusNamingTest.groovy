@@ -73,8 +73,13 @@ class CPlusPlusNamingTest extends ArthurTest {
     }
 
     @Test
-    void genericsArg() {
+    void withGenericsArg() {
         assertCPlusPlusNamingPresent("function13", "(T)")
+    }
+
+    @Test
+    void withStructArg() {
+        assertCPlusPlusNamingPresent("function14", "(myStruct)")
     }
 
     private static void assertCPlusPlusNamingPresent(String functionName, String argsList) {

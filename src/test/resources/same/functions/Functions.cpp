@@ -3,6 +3,10 @@
 #include <initializer_list>
 #include <string>
 
+struct myStruct {
+    string name;
+}
+
 void function1() {
   std::cout << "noArgs\n";
 }
@@ -53,6 +57,10 @@ void function12(string param1, int param2[], int param3) {
 
 template <class T>
 T function13(T t) {
-  std::cout << "genericsArg\n";
+  std::cout << "withGenericsArg\n";
   return t;
+}
+
+void function14(myStruct param) {
+  std::cout << "withStructArg\n";
 }

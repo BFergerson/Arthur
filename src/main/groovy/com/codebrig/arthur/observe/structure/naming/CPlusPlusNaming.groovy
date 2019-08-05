@@ -39,39 +39,54 @@ class CPlusPlusNaming implements StructureNaming {
         def name = getAstName(node.children)
         name += "("
         node.children.each {
-            if (it.internalType == "CPPASTDeclarator") {
-                new TypeFilter("CPPASTDeclarator").getFilteredNodes(it).each {
-                    new TypeFilter("CPPASTSimpleDeclSpecifier", "CPPASTNamedTypeSpecifier").getFilteredNodes(it.children).each {
-                        if (it.internalType == "CPPASTNamedTypeSpecifier") {
-                            def matched = new TypeFilter("CPPASTQualifiedName").getFilteredNodes(it.children)
-                            if (matched.hasNext()) {
-                                it.children.each {
-                                    new TypeFilter("CPPASTTemplateId").getFilteredNodes(it.children).each {
-                                        new TypeFilter("CPPASTTypeId").getFilteredNodes(it.children).each {
-                                            new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(it.children).each {
-                                                name += it.token + ","
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
-                                name += getAstName(it.children) + ","
-                            }
-                        } else {
-                            name += it.token + ","
-                        }
-                    }
-                }
-            } else if (it.internalType == "CPPASTArrayDeclarator") {
-                new TypeFilter("CPPASTArrayDeclarator").getFilteredNodes(it).each {
-                    new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(it.children).each {
-                        name += it.token + ","
-                    }
-                }
+            switch (Objects.requireNonNull(it).internalType) {
+                case "CPPASTDeclarator":
+                    name += getAstDeclarator(it)
+                    break
+                case "CPPASTArrayDeclarator":
+                    name += getAstArrayDeclarator(it)
+                    break
+                default:
+                    break
             }
         }
         name = trimTrailingComma(name)
         return name + ")"
+    }
+
+    static String getAstDeclarator(SourceNode node) {
+        def name = ""
+        new TypeFilter("CPPASTSimpleDeclSpecifier", "CPPASTNamedTypeSpecifier").getFilteredNodes(node.children).each {
+            if (it.internalType == "CPPASTNamedTypeSpecifier") {
+                def matched = new TypeFilter("CPPASTQualifiedName").getFilteredNodes(it.children)
+                if (matched.hasNext()) {
+                    it.children.each {
+                        new TypeFilter("CPPASTTemplateId").getFilteredNodes(it.children).each {
+                            new TypeFilter("CPPASTTypeId").getFilteredNodes(it.children).each {
+                                name += getAstSimpleDeclSpecifier(it)
+                            }
+                        }
+                    }
+                } else {
+                    name += getAstName(it.children) + ","
+                }
+            } else {
+                name += it.token + ","
+            }
+        }
+        return name
+    }
+
+    static String getAstArrayDeclarator(SourceNode node) {
+        return getAstSimpleDeclSpecifier(node)
+    }
+
+    static String getAstSimpleDeclSpecifier(SourceNode node) {
+        def name = ""
+        new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(node.children).each {
+            name += it.token + ","
+        }
+        return name
     }
 
     static String getAstName(Iterator<SourceNode> node) {
