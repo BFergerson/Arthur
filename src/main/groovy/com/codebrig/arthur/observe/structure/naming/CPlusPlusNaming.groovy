@@ -19,7 +19,6 @@ class CPlusPlusNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "CPPASTFunctionDeclarator":
-            // case "CPPASTName":
                 return true
             default:
                 return false
@@ -30,7 +29,6 @@ class CPlusPlusNaming implements StructureNaming {
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "CPPASTFunctionDeclarator":
-                // case "CPPASTName":
                 return getFunctionDeclaratorName(node)
             default:
                 throw new IllegalArgumentException("Unsupported C++ node type: " + node.internalType)
@@ -40,8 +38,37 @@ class CPlusPlusNaming implements StructureNaming {
     static String getFunctionDeclaratorName(SourceNode node) {
         def name = getAstName(node.children)
         name += "("
-        new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(node).each {
-            name += it.token + ","
+        node.children.each {
+            if (it.internalType == "CPPASTDeclarator") {
+                new TypeFilter("CPPASTDeclarator").getFilteredNodes(it).each {
+                    new TypeFilter("CPPASTSimpleDeclSpecifier", "CPPASTNamedTypeSpecifier").getFilteredNodes(it.children).each {
+                        if (it.internalType == "CPPASTNamedTypeSpecifier") {
+                            def matched = new TypeFilter("CPPASTQualifiedName").getFilteredNodes(it.children)
+                            if (matched.hasNext()) {
+                                it.children.each {
+                                    new TypeFilter("CPPASTTemplateId").getFilteredNodes(it.children).each {
+                                        new TypeFilter("CPPASTTypeId").getFilteredNodes(it.children).each {
+                                            new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(it.children).each {
+                                                name += it.token + ","
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                name += getAstName(it.children) + ","
+                            }
+                        } else {
+                            name += it.token + ","
+                        }
+                    }
+                }
+            } else if (it.internalType == "CPPASTArrayDeclarator") {
+                new TypeFilter("CPPASTArrayDeclarator").getFilteredNodes(it).each {
+                    new TypeFilter("CPPASTSimpleDeclSpecifier").getFilteredNodes(it.children).each {
+                        name += it.token + ","
+                    }
+                }
+            }
         }
         name = trimTrailingComma(name)
         return name + ")"
