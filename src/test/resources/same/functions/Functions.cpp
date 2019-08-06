@@ -58,16 +58,16 @@ void function12(string param1, int param2[], int param3) {
 
 template <class T>
 T function13(T t) {
-  std::cout << "withGenericsArg\n";
+  std::cout << "withTemplateArg\n";
   return t;
 }
 
 void function14(list<T> param) {
-  std::cout << "withGenericsListArg1\n";
+  std::cout << "withTemplateListArg1\n";
 }
 
 void function15(string param1, list<T> param2) {
-  std::cout << "withGenericsListArg2\n";
+  std::cout << "withTemplateListArg2\n";
 }
 
 void function16(myStruct param) {

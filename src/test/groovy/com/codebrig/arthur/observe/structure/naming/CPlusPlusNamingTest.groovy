@@ -73,17 +73,17 @@ class CPlusPlusNamingTest extends ArthurTest {
     }
 
     @Test
-    void withGenericsArg() {
+    void withTemplateArg() {
         assertCPlusPlusNamingPresent("function13", "(T)")
     }
 
     @Test
-    void withGenericsListArg1() {
+    void withTemplateListArg1() {
         assertCPlusPlusNamingPresent("function14", "(list<T>)")
     }
 
     @Test
-    void withGenericsListArg2() {
+    void withTemplateListArg2() {
         assertCPlusPlusNamingPresent("function15", "(string,list<T>)")
     }
 
