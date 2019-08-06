@@ -2,6 +2,7 @@
 #include <vector>
 #include <initializer_list>
 #include <string>
+#include <list>
 
 struct myStruct {
     string name;
@@ -61,6 +62,14 @@ T function13(T t) {
   return t;
 }
 
-void function14(myStruct param) {
+void function14(list<T> param) {
+  std::cout << "withGenericsListArg1\n";
+}
+
+void function15(string param1, list<T> param2) {
+  std::cout << "withGenericsListArg2\n";
+}
+
+void function16(myStruct param) {
   std::cout << "withStructArg\n";
 }

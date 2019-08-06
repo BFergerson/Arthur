@@ -58,8 +58,8 @@ class CPlusPlusNaming implements StructureNaming {
         def name = ""
         new TypeFilter("CPPASTSimpleDeclSpecifier", "CPPASTNamedTypeSpecifier").getFilteredNodes(node.children).each {
             if (it.internalType == "CPPASTNamedTypeSpecifier") {
-                def matched = new TypeFilter("CPPASTQualifiedName").getFilteredNodes(it.children)
-                if (matched.hasNext()) {
+                def matchedASTQualifiedName = new TypeFilter("CPPASTQualifiedName").getFilteredNodes(it.children)
+                if (matchedASTQualifiedName.hasNext()) {
                     it.children.each {
                         new TypeFilter("CPPASTTemplateId").getFilteredNodes(it.children).each {
                             new TypeFilter("CPPASTTypeId").getFilteredNodes(it.children).each {
@@ -68,7 +68,12 @@ class CPlusPlusNaming implements StructureNaming {
                         }
                     }
                 } else {
-                    name += getAstName(it.children) + ","
+                    def matchedASTTemplateId = new TypeFilter("CPPASTTemplateId").getFilteredNodes(it.children)
+                    if (matchedASTTemplateId.hasNext()) {
+                        name += matchedASTTemplateId.next().properties.get("Name") + ","
+                    } else {
+                        name += getAstName(it.children) + ","
+                    }
                 }
             } else {
                 name += it.token + ","
