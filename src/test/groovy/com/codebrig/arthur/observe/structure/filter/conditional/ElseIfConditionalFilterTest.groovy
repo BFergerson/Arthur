@@ -38,6 +38,11 @@ class ElseIfConditionalFilterTest extends ArthurTest {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
 
+    @Test
+    void elseIfConditional_CPlusPlus() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
     private static void assertElseIfConditionalPresent(File file) {
         assertElseIfConditionalPresent(file, "")
     }

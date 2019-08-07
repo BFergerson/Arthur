@@ -18,7 +18,7 @@ class CPlusPlusNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
-            case "CPPASTFunctionDeclarator":
+            case "CPPASTFunctionDefinition":
                 return true
             default:
                 return false
@@ -28,30 +28,37 @@ class CPlusPlusNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "CPPASTFunctionDeclarator":
-                return getFunctionDeclaratorName(node)
+            case "CPPASTFunctionDefinition":
+                def name = getFunctionDefinition(node)
+                return name
             default:
                 throw new IllegalArgumentException("Unsupported C++ node type: " + node.internalType)
         }
     }
 
-    static String getFunctionDeclaratorName(SourceNode node) {
-        def name = getAstName(node.children)
-        name += "("
-        node.children.each {
-            switch (Objects.requireNonNull(it).internalType) {
-                case "CPPASTDeclarator":
-                    name += getAstDeclarator(it)
-                    break
-                case "CPPASTArrayDeclarator":
-                    name += getAstArrayDeclarator(it)
-                    break
-                default:
-                    break
+    static String getFunctionDefinition(SourceNode node) {
+        def name = ""
+        def matched = new TypeFilter("CPPASTFunctionDeclarator").getFilteredNodes(node.children)
+        if (matched.hasNext()) {
+            def next = matched.next()
+            name += getAstName(next.children)
+            name += "("
+            next.children.each {
+                switch (Objects.requireNonNull(it).internalType) {
+                    case "CPPASTDeclarator":
+                        name += getAstDeclarator(it)
+                        break
+                    case "CPPASTArrayDeclarator":
+                        name += getAstArrayDeclarator(it)
+                        break
+                    default:
+                        break
+                }
             }
+            name = trimTrailingComma(name)
+            return name + ")"
         }
-        name = trimTrailingComma(name)
-        return name + ")"
+        return name
     }
 
     static String getAstDeclarator(SourceNode node) {
