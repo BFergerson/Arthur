@@ -8,6 +8,9 @@ struct myStruct {
     string name;
 }
 
+int main() {
+}
+
 void function1() {
   std::cout << "noArgs\n";
 }
