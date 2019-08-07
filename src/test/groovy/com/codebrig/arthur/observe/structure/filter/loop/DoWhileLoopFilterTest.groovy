@@ -27,6 +27,11 @@ class DoWhileLoopFilterTest extends ArthurTest {
         assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
     }
 
+    @Test
+    void doWhileLoop_CPlusPlus() {
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertDoWhileLoopPresent(File file) {
         assertDoWhileLoopPresent(file, "")
     }
