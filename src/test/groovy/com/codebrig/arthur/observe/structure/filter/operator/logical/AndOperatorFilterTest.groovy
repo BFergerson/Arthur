@@ -42,6 +42,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "&&")
     }
 
+    @Test
+    void andOperator_CPlusPlus() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "")
     }
