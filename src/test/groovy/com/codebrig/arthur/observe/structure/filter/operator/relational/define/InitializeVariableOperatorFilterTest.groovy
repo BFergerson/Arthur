@@ -44,6 +44,11 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
         assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
+    @Test
+    void initializeVariableOperator_CPlusPlus() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertInitializeVariableOperatorPresent(File file) {
         assertInitializeVariableOperatorPresent(file, "")
     }

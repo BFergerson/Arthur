@@ -32,3 +32,16 @@ void isNotEqualOperator() {
         std::cout << "not equal\n";
     }
 }
+
+void declareVariableOperator() {
+    int x;
+}
+
+void initializeVariableOperator() {
+    int x = 0;
+}
+
+public void assignVariableOperator() {
+    int x = 0;
+    x = 1;
+}

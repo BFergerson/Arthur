@@ -44,6 +44,11 @@ class DeclareVariableOperatorFilterTest extends ArthurTest {
         assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
+    @Test
+    void declareVariableOperator_CPlusPlus() {
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertDeclareVariableOperatorPresent(File file) {
         assertDeclareVariableOperatorPresent(file, "")
     }
