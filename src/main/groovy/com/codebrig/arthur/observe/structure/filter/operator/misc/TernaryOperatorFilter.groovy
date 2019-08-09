@@ -34,7 +34,7 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node.internalType == "ConditionalExpression") {
+        if (Objects.requireNonNull(node).internalType == "ConditionalExpression") {
             return evaluateConditionalExpression(node)
         } else {
             return filter.evaluate(node)
