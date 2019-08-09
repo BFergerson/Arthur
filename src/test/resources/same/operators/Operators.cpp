@@ -20,3 +20,15 @@ void ternaryOperator() {
     a = 10;
     b = (a == 1) ? 20 : 30;
 }
+
+void isEqualOperator() {
+    if (true == true) {
+        std::cout << "equal\n";
+    }
+}
+
+void isNotEqualOperator() {
+    if (true != true) {
+        std::cout << "not equal\n";
+    }
+}
