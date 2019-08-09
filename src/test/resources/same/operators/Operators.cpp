@@ -14,3 +14,9 @@ void orOperator() {
         std::cout << "or\n";
     }
 }
+
+void ternaryOperator() {
+    int a, b;
+    a = 10;
+    b = (a == 1) ? 20 : 30;
+}

@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.operator.misc
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
@@ -25,7 +26,8 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
                         new RoleFilter("RIGHT")
                 ),
                 MultiFilter.matchAll(
-                        new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION")
+                        new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION"),
+                        new InternalRoleFilter().reject("Prop_InitOperand2")
                 )
         )
     }

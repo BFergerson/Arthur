@@ -28,6 +28,11 @@ class TernaryOperatorFilterTest extends ArthurTest {
         assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
+    @Test
+    void ternaryOperator_CPlusPlus() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertTernaryOperatorPresent(File file) {
         assertTernaryOperatorPresent(file, "")
     }
