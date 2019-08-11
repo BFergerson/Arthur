@@ -15,13 +15,24 @@ import static org.junit.Assert.*
 class CPlusPlusLiteralTest extends ArthurTest {
 
     @Test
-    void intLiteralTest() {
+    void intLongLiteralTest() {
         assertCPlusPlusLiteralPresent("param1", "numberValue", 100)
+        assertCPlusPlusLiteralPresent("param2", "numberValue", 200)
+        assertCPlusPlusLiteralPresent("param3", "numberValue", "300")
+        assertCPlusPlusLiteralPresent("param4", "numberValue", 400L)
+        assertCPlusPlusLiteralPresent("param5", "numberValue", "-500")
+        assertCPlusPlusLiteralPresent("param6", "numberValue", "600")
+        assertCPlusPlusLiteralPresent("param7", "numberValue", 700)
+        assertCPlusPlusLiteralPresent("param8", "numberValue", "800")
+        assertCPlusPlusLiteralPresent("param9", "numberValue", "-900")
+        assertCPlusPlusLiteralPresent("param10", "numberValue", 1000)
+        assertCPlusPlusLiteralPresent("param11", "numberValue", "1100")
+        assertCPlusPlusLiteralPresent("param12", "numberValue", "1200")
     }
 
     @Test
     void stringLiteralTest() {
-        assertCPlusPlusLiteralPresent("param2", "stringValue", StringEscapeUtils.escapeJava("\"stringParam2\""))
+        assertCPlusPlusLiteralPresent("param13", "stringValue", StringEscapeUtils.escapeJava("\"stringParam13\""))
     }
 
     private static void assertCPlusPlusLiteralPresent(String literalName, String literalType, Object literalValue) {
