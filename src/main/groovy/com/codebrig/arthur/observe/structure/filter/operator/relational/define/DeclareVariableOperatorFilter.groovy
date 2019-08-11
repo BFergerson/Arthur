@@ -22,6 +22,7 @@ class DeclareVariableOperatorFilter extends StructureFilter<DeclareVariableOpera
         filter = MultiFilter.matchAny(
                 MultiFilter.matchAll(
                         new RoleFilter("DECLARATION"), new RoleFilter("VARIABLE"),
+                        new RoleFilter().reject("NAME"),
                         new TypeFilter().reject("VariableDeclarationFragment", "VariableDeclarator")
                 ),
                 MultiFilter.matchAll(
@@ -31,6 +32,10 @@ class DeclareVariableOperatorFilter extends StructureFilter<DeclareVariableOpera
                 MultiFilter.matchAll(
                         new RoleFilter("EXPRESSION"), new RoleFilter("ASSIGNMENT"),
                         new TypeFilter().reject("CPPASTEqualsInitializer")
+                ),
+                MultiFilter.matchAll(
+                        new RoleFilter("DECLARATION"), new RoleFilter("STATEMENT"),
+                        new TypeFilter("CPPASTSimpleDeclaration")
                 )
         )
     }

@@ -20,6 +20,8 @@ class CPlusPlusNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "CPPASTFunctionDefinition":
                 return true
+            case "CPPASTSimpleDeclaration":
+                return true
             default:
                 return false
         }
@@ -30,6 +32,9 @@ class CPlusPlusNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "CPPASTFunctionDefinition":
                 def name = getFunctionDefinition(node)
+                return name
+            case "CPPASTSimpleDeclaration":
+                def name = getSimpleDeclaration(node)
                 return name
             default:
                 throw new IllegalArgumentException("Unsupported C++ node type: " + node.internalType)
@@ -58,6 +63,15 @@ class CPlusPlusNaming implements StructureNaming {
             name = trimTrailingComma(name)
             return name + ")"
         }
+        return name
+    }
+
+    static String getSimpleDeclaration(SourceNode node) {
+        def name = ""
+        new TypeFilter("CPPASTDeclarator").getFilteredNodes(node.children).each {
+            name += getAstName(it.children) + ","
+        }
+        name = trimTrailingComma(name)
         return name
     }
 
