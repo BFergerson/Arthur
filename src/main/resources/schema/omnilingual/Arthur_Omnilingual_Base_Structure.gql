@@ -5232,6 +5232,8 @@ PhpScalarEncapsedStringPartArtifact sub PhpSourceArtifact,
 	plays is_php_parts_role;
 
 PhpScalarLNumberArtifact sub PhpSourceArtifact,
+	# Attributes
+	has numberValue,
 	# Structural
 	plays is_php_cond_role,
 	plays is_php_default_role,

@@ -1325,6 +1325,8 @@ ScalarEncapsedStringPartArtifact sub PhpSourceArtifact,
 	plays is_parts_role;
 
 ScalarLNumberArtifact sub PhpSourceArtifact,
+	# Attributes
+	has numberValue,
 	# Structural
 	plays is_cond_role,
 	plays is_default_role,
