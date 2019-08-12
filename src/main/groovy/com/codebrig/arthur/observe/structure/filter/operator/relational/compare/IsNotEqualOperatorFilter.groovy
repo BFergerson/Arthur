@@ -28,7 +28,7 @@ class IsNotEqualOperatorFilter extends StructureFilter<IsNotEqualOperatorFilter,
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (Objects.requireNonNull(node).internalType == "CPPASTBinaryExpression" && node.token == "!=") {
+        if (node?.internalType == "CPPASTBinaryExpression" && node.token == "!=") {
             return true
         } else {
             return filter.evaluate(node)
