@@ -506,6 +506,7 @@ GoFuncTypeArtifact sub GoSourceArtifact,
 GoGenDeclArtifact sub GoSourceArtifact,
 	# Attributes
 	has goTokAttribute,
+	has name,
 	# Structural
 	plays is_go_decl_role,
 	plays is_go_decls_role,
@@ -3850,6 +3851,7 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptKindAttribute,
+	has name,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -5742,6 +5744,8 @@ PythonAssertArtifact sub PythonSourceArtifact,
 	plays has_python_test_role;
 
 PythonAssignArtifact sub PythonSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_python_body_role,
 	plays is_python_body_stmts_role,
@@ -7741,6 +7745,8 @@ RubyLvarArtifact sub RubySourceArtifact,
 	plays is_ruby_values_role;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_ruby_2_role,
 	plays is_ruby_alias_role,

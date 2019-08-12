@@ -13,6 +13,7 @@ kindAttribute sub attribute, datatype string;
 
 #####----- Go -----#####
 goColAttribute sub attribute, datatype string;
+goIncompleteAttribute sub attribute, datatype string;
 goKindAttribute sub kindAttribute, datatype string;
 goLineAttribute sub attribute, datatype string;
 goOffsetAttribute sub attribute, datatype string;
@@ -21,6 +22,7 @@ goTokAttribute sub attribute, datatype string;
 #####----- Java -----#####
 javaConstructorAttribute sub attribute, datatype string;
 javaInterfaceAttribute sub attribute, datatype string;
+javaUnescapedValueAttribute sub attribute, datatype string;
 javaVarargsAttribute sub attribute, datatype string;
 
 #####----- Javascript -----#####
@@ -28,11 +30,14 @@ javascriptAsyncAttribute sub attribute, datatype string;
 javascriptComputedAttribute sub attribute, datatype string;
 javascriptGeneratorAttribute sub attribute, datatype string;
 javascriptKindAttribute sub kindAttribute, datatype string;
+javascriptNormValueAttribute sub attribute, datatype string;
 javascriptPrefixAttribute sub attribute, datatype string;
 javascriptSourceTypeAttribute sub attribute, datatype string;
 
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
+phpTypeAttribute sub attribute, datatype string;
+phpVariadicAttribute sub attribute, datatype string;
 
 #####----- Python -----#####
 pythonCtxAttribute sub attribute, datatype string;
@@ -44,8 +49,10 @@ rubySelectorAttribute sub attribute, datatype string;
 #####----- Csharp -----#####
 csharpAllowsAnyExpressionAttribute sub attribute, datatype string;
 csharpArityAttribute sub attribute, datatype string;
+csharpIsConstAttribute sub attribute, datatype string;
 csharpIsMissingAttribute sub attribute, datatype string;
 csharpIsStructuredTriviaAttribute sub attribute, datatype string;
+csharpIsUnboundGenericNameAttribute sub attribute, datatype string;
 csharpIsUnmanagedAttribute sub attribute, datatype string;
 csharpIsVarAttribute sub attribute, datatype string;
 csharpRankAttribute sub attribute, datatype string;
@@ -62,13 +69,25 @@ SourceArtifact sub entity,
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+ArgArtifact sub OmnilingualSourceArtifact;
+
 ArrayTypeArtifact sub OmnilingualSourceArtifact;
 
 BlockArtifact sub OmnilingualSourceArtifact;
 
+BooleanLiteralArtifact sub OmnilingualSourceArtifact;
+
+CatchClauseArtifact sub OmnilingualSourceArtifact;
+
 CompilationUnitArtifact sub OmnilingualSourceArtifact;
 
+ConditionalExpressionArtifact sub OmnilingualSourceArtifact;
+
+DoStatementArtifact sub OmnilingualSourceArtifact;
+
 ExpressionStatementArtifact sub OmnilingualSourceArtifact;
+
+FieldDeclarationArtifact sub OmnilingualSourceArtifact;
 
 FileArtifact sub OmnilingualSourceArtifact;
 
@@ -78,6 +97,10 @@ ForStatementArtifact sub OmnilingualSourceArtifact;
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+IfStatementArtifact sub OmnilingualSourceArtifact;
+
+KwargArtifact sub OmnilingualSourceArtifact;
+
 MethodDeclarationArtifact sub OmnilingualSourceArtifact;
 
 ModuleArtifact sub OmnilingualSourceArtifact;
@@ -86,18 +109,42 @@ NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
 
+ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact;
+
+QualifiedNameArtifact sub OmnilingualSourceArtifact;
+
+StrArtifact sub OmnilingualSourceArtifact;
+
+StringLiteralArtifact sub OmnilingualSourceArtifact;
+
+SwitchCaseArtifact sub OmnilingualSourceArtifact;
+
+SwitchStatementArtifact sub OmnilingualSourceArtifact;
+
+TryStatementArtifact sub OmnilingualSourceArtifact;
+
 VariableDeclarationArtifact sub OmnilingualSourceArtifact;
 
 VariableDeclaratorArtifact sub OmnilingualSourceArtifact;
 
+WhileStatementArtifact sub OmnilingualSourceArtifact;
+
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
+
+GoArrayTypeArtifact sub ArrayTypeArtifact,
+	# Structural
+	plays is_go_type_role,
+	plays has_go_elt_role,
+	plays has_go_lbrack_role,
+	plays has_go_len_role;
 
 GoAssignStmtArtifact sub GoSourceArtifact,
 	# Attributes
 	has name,
 	# Structural
 	plays is_go_init_role,
+	plays is_go_list_role,
 	plays has_go_lhs_role,
 	plays has_go_op_role,
 	plays has_go_rhs_role,
@@ -110,8 +157,15 @@ GoBasicLitArtifact sub GoSourceArtifact,
 	has numberValue,
 	has stringValue,
 	# Structural
+	plays is_go_args_role,
+	plays is_go_elts_role,
+	plays is_go_len_role,
+	plays is_go_list_role,
 	plays is_go_path_role,
 	plays is_go_rhs_role,
+	plays is_go_tag_role,
+	plays is_go_values_role,
+	plays is_go_x_role,
 	plays is_go_y_role,
 	plays has_go_value_pos_role;
 
@@ -126,6 +180,7 @@ GoBinaryExprArtifact sub GoSourceArtifact,
 GoBlockStmtArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_body_role,
+	plays is_go_else_role,
 	plays has_go_lbrace_role,
 	plays has_go_list_role,
 	plays has_go_rbrace_role;
@@ -139,19 +194,68 @@ GoCallExprArtifact sub GoSourceArtifact,
 	plays has_go_lparen_role,
 	plays has_go_rparen_role;
 
-GoExprStmtArtifact sub GoSourceArtifact,
+GoCaseClauseArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_list_role,
+	plays has_go_body_role,
+	plays has_go_case_role,
+	plays has_go_colon_role,
+	plays has_go_list_role;
+
+GoCommentArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_list_role,
+	plays has_go_slash_role;
+
+GoCommentGroupArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_comments_role,
+	plays has_go_list_role;
+
+GoCompositeLitArtifact sub GoSourceArtifact,
+	# Attributes
+	has goIncompleteAttribute,
+	# Structural
+	plays is_go_rhs_role,
+	plays has_go_elts_role,
+	plays has_go_lbrace_role,
+	plays has_go_rbrace_role,
+	plays has_go_type_role;
+
+GoDeclStmtArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_list_role,
+	plays has_go_decl_role;
+
+GoEllipsisArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_type_role,
+	plays has_go_ellipsis_role,
+	plays has_go_elt_role;
+
+GoExprStmtArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_body_role,
+	plays is_go_list_role,
 	plays has_go_x_role;
+
+GoFieldArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_list_role,
+	plays has_go_names_role,
+	plays has_go_type_role;
 
 GoFieldListArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_params_role,
+	plays is_go_recv_role,
 	plays has_go_closing_role,
+	plays has_go_list_role,
 	plays has_go_opening_role;
 
 GoFileArtifact sub FileArtifact,
 	# Structural
+	plays has_go_comments_role,
 	plays has_go_decls_role,
 	plays has_go_imports_role,
 	plays has_go_name_role,
@@ -173,6 +277,7 @@ GoFuncDeclArtifact sub GoSourceArtifact,
 	plays is_go_decls_role,
 	plays has_go_body_role,
 	plays has_go_name_role,
+	plays has_go_recv_role,
 	plays has_go_type_role;
 
 GoFuncTypeArtifact sub GoSourceArtifact,
@@ -186,6 +291,7 @@ GoGenDeclArtifact sub GoSourceArtifact,
 	has goTokAttribute,
 	has name,
 	# Structural
+	plays is_go_decl_role,
 	plays is_go_decls_role,
 	plays has_go_lparen_role,
 	plays has_go_rparen_role,
@@ -195,11 +301,27 @@ GoGenDeclArtifact sub GoSourceArtifact,
 GoIdentArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_args_role,
+	plays is_go_cond_role,
+	plays is_go_elt_role,
+	plays is_go_key_role,
 	plays is_go_lhs_role,
 	plays is_go_name_role,
+	plays is_go_names_role,
 	plays is_go_sel_role,
+	plays is_go_type_role,
+	plays is_go_value_role,
 	plays is_go_x_role,
+	plays is_go_y_role,
 	plays has_go_name_pos_role;
+
+GoIfStmtArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_else_role,
+	plays is_go_list_role,
+	plays has_go_body_role,
+	plays has_go_cond_role,
+	plays has_go_else_role,
+	plays has_go_if_role;
 
 GoImportSpecArtifact sub GoSourceArtifact,
 	# Structural
@@ -225,12 +347,17 @@ GoPositionArtifact sub GoSourceArtifact,
 	has goLineAttribute,
 	has goOffsetAttribute,
 	# Structural
+	plays is_go_assign_role,
+	plays is_go_case_role,
 	plays is_go_closing_role,
+	plays is_go_colon_role,
 	plays is_go_ellipsis_role,
 	plays is_go_end_pos_role,
 	plays is_go_for_role,
 	plays is_go_func_role,
+	plays is_go_if_role,
 	plays is_go_lbrace_role,
+	plays is_go_lbrack_role,
 	plays is_go_lparen_role,
 	plays is_go_name_pos_role,
 	plays is_go_op_pos_role,
@@ -238,8 +365,23 @@ GoPositionArtifact sub GoSourceArtifact,
 	plays is_go_package_role,
 	plays is_go_rbrace_role,
 	plays is_go_rparen_role,
+	plays is_go_slash_role,
+	plays is_go_star_role,
+	plays is_go_switch_role,
 	plays is_go_tok_pos_role,
 	plays is_go_value_pos_role;
+
+GoRangeStmtArtifact sub GoSourceArtifact,
+	# Attributes
+	has goTokAttribute,
+	# Structural
+	plays is_go_list_role,
+	plays has_go_body_role,
+	plays has_go_for_role,
+	plays has_go_key_role,
+	plays has_go_tok_pos_role,
+	plays has_go_value_role,
+	plays has_go_x_role;
 
 GoSelectorExprArtifact sub GoSourceArtifact,
 	# Structural
@@ -247,8 +389,47 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 	plays has_go_sel_role,
 	plays has_go_x_role;
 
+GoStarExprArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_type_role,
+	plays has_go_star_role,
+	plays has_go_x_role;
+
+GoSwitchStmtArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_list_role,
+	plays has_go_body_role,
+	plays has_go_switch_role,
+	plays has_go_tag_role;
+
+GoTypeSpecArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_specs_role,
+	plays has_go_assign_role,
+	plays has_go_name_role,
+	plays has_go_type_role;
+
+GoUnaryExprArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_rhs_role,
+	plays has_go_op_pos_role,
+	plays has_go_op_role,
+	plays has_go_x_role;
+
+GoValueSpecArtifact sub GoSourceArtifact,
+	# Structural
+	plays is_go_specs_role,
+	plays has_go_names_role,
+	plays has_go_type_role,
+	plays has_go_values_role;
+
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
+
+JavaArrayInitializerArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_initializer_role,
+	plays has_java_expressions_role;
 
 JavaArrayTypeArtifact sub ArrayTypeArtifact,
 	# Structural
@@ -256,10 +437,32 @@ JavaArrayTypeArtifact sub ArrayTypeArtifact,
 	plays has_java_dimensions_role,
 	plays has_java_element_type_role;
 
+JavaAssignmentArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_expression_role,
+	plays has_java_left_hand_side_role,
+	plays has_java_operator_role,
+	plays has_java_right_hand_side_role;
+
 JavaBlockArtifact sub BlockArtifact,
 	# Structural
 	plays is_java_body_role,
+	plays is_java_else_statement_role,
+	plays is_java_finally_role,
+	plays is_java_then_statement_role,
 	plays has_java_statements_role;
+
+JavaBooleanLiteralArtifact sub BooleanLiteralArtifact,
+	# Structural
+	plays is_java_expression_role,
+	plays is_java_left_operand_role,
+	plays is_java_right_operand_role;
+
+JavaCatchClauseArtifact sub CatchClauseArtifact,
+	# Structural
+	plays is_java_catch_clauses_role,
+	plays has_java_body_role,
+	plays has_java_exception_role;
 
 JavaCompilationUnitArtifact sub CompilationUnitArtifact,
 	# Attributes
@@ -267,14 +470,44 @@ JavaCompilationUnitArtifact sub CompilationUnitArtifact,
 	# Structural
 	plays has_java_types_role;
 
+JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+	# Structural
+	plays is_java_right_hand_side_role,
+	plays has_java_else_expression_role,
+	plays has_java_expression_role,
+	plays has_java_then_expression_role;
+
 JavaDimensionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_java_dimensions_role;
+	plays is_java_dimensions_role,
+	plays is_java_extra_dimensions2_role;
+
+JavaDoStatementArtifact sub DoStatementArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaEnhancedForStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role,
+	plays has_java_parameter_role;
 
 JavaExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Structural
+	plays is_java_body_role,
 	plays is_java_statements_role,
 	plays has_java_expression_role;
+
+JavaFieldDeclarationArtifact sub FieldDeclarationArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_java_body_declarations_role,
+	plays has_java_fragments_role,
+	plays has_java_type_role;
 
 JavaForStatementArtifact sub ForStatementArtifact,
 	# Structural
@@ -283,6 +516,14 @@ JavaForStatementArtifact sub ForStatementArtifact,
 	plays has_java_expression_role,
 	plays has_java_initializers_role,
 	plays has_java_updaters_role;
+
+JavaIfStatementArtifact sub IfStatementArtifact,
+	# Structural
+	plays is_java_else_statement_role,
+	plays is_java_statements_role,
+	plays has_java_else_statement_role,
+	plays has_java_expression_role,
+	plays has_java_then_statement_role;
 
 JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
@@ -301,7 +542,8 @@ JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	plays has_java_modifiers_role,
 	plays has_java_name_role,
 	plays has_java_parameters_role,
-	plays has_java_return_type2_role;
+	plays has_java_return_type2_role,
+	plays has_java_type_parameters_role;
 
 JavaMethodInvocationArtifact sub JavaSourceArtifact,
 	# Structural
@@ -319,12 +561,29 @@ JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	has doubleValue,
 	has numberValue,
 	# Structural
+	plays is_java_else_expression_role,
+	plays is_java_expression_role,
+	plays is_java_expressions_role,
 	plays is_java_initializer_role,
-	plays is_java_right_operand_role;
+	plays is_java_operand_role,
+	plays is_java_right_hand_side_role,
+	plays is_java_right_operand_role,
+	plays is_java_then_expression_role;
 
 JavaOperatorArtifact sub OperatorArtifact,
 	# Structural
 	plays is_java_operator_role;
+
+JavaParameterizedTypeArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_type_role,
+	plays has_java_type_arguments_role,
+	plays has_java_type_role;
+
+JavaParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
+	# Structural
+	plays is_java_expression_role,
+	plays has_java_expression_role;
 
 JavaPostfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
@@ -332,12 +591,19 @@ JavaPostfixExpressionArtifact sub JavaSourceArtifact,
 	plays has_java_operand_role,
 	plays has_java_operator_role;
 
+JavaPrefixExpressionArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_initializer_role,
+	plays has_java_operand_role,
+	plays has_java_operator_role;
+
 JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
 	# Structural
+	plays is_java_element_type_role,
 	plays is_java_return_type2_role,
 	plays is_java_type_role;
 
-JavaQualifiedNameArtifact sub JavaSourceArtifact,
+JavaQualifiedNameArtifact sub QualifiedNameArtifact,
 	# Attributes
 	has name,
 	# Structural
@@ -348,6 +614,8 @@ JavaQualifiedNameArtifact sub JavaSourceArtifact,
 JavaSimpleNameArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_arguments_role,
+	plays is_java_expression_role,
+	plays is_java_left_hand_side_role,
 	plays is_java_left_operand_role,
 	plays is_java_name_role,
 	plays is_java_operand_role,
@@ -356,15 +624,47 @@ JavaSimpleNameArtifact sub JavaSourceArtifact,
 JavaSimpleTypeArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_element_type_role,
+	plays is_java_type_arguments_role,
+	plays is_java_type_role,
 	plays has_java_name_role;
 
 JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has javaVarargsAttribute,
 	# Structural
+	plays is_java_exception_role,
+	plays is_java_parameter_role,
 	plays is_java_parameters_role,
+	plays has_java_extra_dimensions2_role,
 	plays has_java_name_role,
 	plays has_java_type_role;
+
+JavaStringLiteralArtifact sub StringLiteralArtifact,
+	# Attributes
+	has stringValue,
+	has javaUnescapedValueAttribute,
+	# Structural
+	plays is_java_arguments_role,
+	plays is_java_initializer_role;
+
+JavaSwitchCaseArtifact sub SwitchCaseArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
+JavaSwitchStatementArtifact sub SwitchStatementArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_expression_role,
+	plays has_java_statements_role;
+
+JavaTryStatementArtifact sub TryStatementArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_catch_clauses_role,
+	plays has_java_finally_role;
 
 JavaTypeDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
@@ -374,6 +674,11 @@ JavaTypeDeclarationArtifact sub JavaSourceArtifact,
 	plays is_java_types_role,
 	plays has_java_body_declarations_role,
 	plays has_java_modifiers_role,
+	plays has_java_name_role;
+
+JavaTypeParameterArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_type_parameters_role,
 	plays has_java_name_role;
 
 JavaVariableDeclarationExpressionArtifact sub JavaSourceArtifact,
@@ -388,8 +693,42 @@ JavaVariableDeclarationFragmentArtifact sub JavaSourceArtifact,
 	plays has_java_initializer_role,
 	plays has_java_name_role;
 
+JavaVariableDeclarationStatementArtifact sub JavaSourceArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_fragments_role,
+	plays has_java_type_role;
+
+JavaWhileStatementArtifact sub WhileStatementArtifact,
+	# Structural
+	plays is_java_statements_role,
+	plays has_java_body_role,
+	plays has_java_expression_role;
+
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
+
+JavascriptAnyTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_type_annotation_role;
+
+JavascriptArrayExpressionArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_init_role,
+	plays has_javascript_elements_role;
+
+JavascriptAssignmentExpressionArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_expression_role,
+	plays has_javascript_left_role,
+	plays has_javascript_operator_role,
+	plays has_javascript_right_role;
+
+JavascriptAssignmentPatternArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_params_role,
+	plays has_javascript_left_role,
+	plays has_javascript_right_role;
 
 JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -400,8 +739,18 @@ JavascriptBinaryExpressionArtifact sub JavascriptSourceArtifact,
 
 JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
+	plays is_javascript_alternate_role,
+	plays is_javascript_block_role,
 	plays is_javascript_body_role,
+	plays is_javascript_consequent_role,
+	plays is_javascript_finalizer_role,
 	plays has_javascript_body_role;
+
+JavascriptBooleanLiteralArtifact sub BooleanLiteralArtifact,
+	# Structural
+	plays is_javascript_left_role,
+	plays is_javascript_right_role,
+	plays is_javascript_test_role;
 
 JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
@@ -409,14 +758,52 @@ JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_arguments_role,
 	plays has_javascript_callee_role;
 
+JavascriptCatchClauseArtifact sub CatchClauseArtifact,
+	# Structural
+	plays is_javascript_handler_role,
+	plays has_javascript_body_role,
+	plays has_javascript_param_role;
+
+JavascriptCommentLineArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_comments_role,
+	plays is_javascript_leading_comments_role,
+	plays is_javascript_trailing_comments_role;
+
+JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+	# Structural
+	plays is_javascript_right_role,
+	plays has_javascript_alternate_role,
+	plays has_javascript_consequent_role,
+	plays has_javascript_test_role;
+
+JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_test_role;
+
+JavascriptEmptyStatementArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role;
+
 JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Structural
 	plays is_javascript_body_role,
+	plays is_javascript_consequent_role,
 	plays has_javascript_expression_role;
 
 JavascriptFileArtifact sub FileArtifact,
 	# Structural
+	plays has_javascript_comments_role,
 	plays has_javascript_program_role;
+
+JavascriptForInStatementArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_left_role,
+	plays has_javascript_right_role;
 
 JavascriptForStatementArtifact sub ForStatementArtifact,
 	# Structural
@@ -434,7 +821,8 @@ JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_body_role,
-	plays has_javascript_id_role;
+	plays has_javascript_id_role,
+	plays has_javascript_params_role;
 
 JavascriptIdentifierArtifact sub IdentifierArtifact,
 	# Structural
@@ -443,7 +831,26 @@ JavascriptIdentifierArtifact sub IdentifierArtifact,
 	plays is_javascript_id_role,
 	plays is_javascript_left_role,
 	plays is_javascript_object_role,
-	plays is_javascript_property_role;
+	plays is_javascript_param_role,
+	plays is_javascript_params_role,
+	plays is_javascript_property_role,
+	plays is_javascript_right_role,
+	plays has_javascript_type_annotation_role;
+
+JavascriptIfStatementArtifact sub IfStatementArtifact,
+	# Structural
+	plays is_javascript_alternate_role,
+	plays is_javascript_body_role,
+	plays has_javascript_alternate_role,
+	plays has_javascript_consequent_role,
+	plays has_javascript_test_role;
+
+JavascriptLogicalExpressionArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_test_role,
+	plays has_javascript_left_role,
+	plays has_javascript_operator_role,
+	plays has_javascript_right_role;
 
 JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -453,13 +860,23 @@ JavascriptMemberExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_object_role,
 	plays has_javascript_property_role;
 
+JavascriptNumberTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_type_annotation_role;
+
 JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has doubleValue,
 	has numberValue,
 	# Structural
+	plays is_javascript_alternate_role,
+	plays is_javascript_argument_role,
+	plays is_javascript_consequent_role,
+	plays is_javascript_discriminant_role,
+	plays is_javascript_elements_role,
 	plays is_javascript_init_role,
-	plays is_javascript_right_role;
+	plays is_javascript_right_role,
+	plays is_javascript_test_role;
 
 JavascriptOperatorArtifact sub OperatorArtifact,
 	# Structural
@@ -471,6 +888,51 @@ JavascriptProgramArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_program_role,
 	plays has_javascript_body_role;
+
+JavascriptRestElementArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_params_role,
+	plays has_javascript_argument_role;
+
+JavascriptStringLiteralArtifact sub StringLiteralArtifact,
+	# Attributes
+	has javascriptNormValueAttribute,
+	has stringValue,
+	# Structural
+	plays is_javascript_arguments_role,
+	plays is_javascript_init_role;
+
+JavascriptSwitchCaseArtifact sub SwitchCaseArtifact,
+	# Structural
+	plays is_javascript_cases_role,
+	plays has_javascript_consequent_role,
+	plays has_javascript_test_role;
+
+JavascriptSwitchStatementArtifact sub SwitchStatementArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_cases_role,
+	plays has_javascript_discriminant_role;
+
+JavascriptTryStatementArtifact sub TryStatementArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_block_role,
+	plays has_javascript_finalizer_role,
+	plays has_javascript_handler_role;
+
+JavascriptTypeAnnotationArtifact sub JavascriptSourceArtifact,
+	# Structural
+	plays is_javascript_type_annotation_role,
+	plays has_javascript_type_annotation_role;
+
+JavascriptUnaryExpressionArtifact sub JavascriptSourceArtifact,
+	# Attributes
+	has javascriptPrefixAttribute,
+	# Structural
+	plays is_javascript_init_role,
+	plays has_javascript_argument_role,
+	plays has_javascript_operator_role;
 
 JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -485,8 +947,12 @@ JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	has javascriptKindAttribute,
 	has name,
 	# Structural
+	plays is_javascript_body_role,
 	plays is_javascript_init_role,
-	plays has_javascript_declarations_role;
+	plays is_javascript_left_role,
+	plays has_javascript_declarations_role,
+	plays has_javascript_leading_comments_role,
+	plays has_javascript_trailing_comments_role;
 
 JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
 	# Structural
@@ -494,14 +960,52 @@ JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
 	plays has_javascript_id_role,
 	plays has_javascript_init_role;
 
+JavascriptWhileStatementArtifact sub WhileStatementArtifact,
+	# Structural
+	plays is_javascript_body_role,
+	plays has_javascript_body_role,
+	plays has_javascript_test_role;
+
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
+PhpExprArrayArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_default_role,
+	plays has_php_items_role;
+
+PhpExprArrayItemArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpByRefAttribute,
+	# Structural
+	plays is_php_items_role,
+	plays has_php_value_role;
+
 PhpExprAssignArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_body_role,
+	plays is_php_children_role,
 	plays is_php_init_role,
 	plays has_php_expr_role,
 	plays has_php_var_role;
+
+PhpExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprBinaryOpEqualArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
 
 PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
 	# Structural
@@ -509,10 +1013,47 @@ PhpExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
 	plays has_php_left_role,
 	plays has_php_right_role;
 
+PhpExprBinaryOpIdenticalArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprBinaryOpNotEqualArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cond_role,
+	plays has_php_left_role,
+	plays has_php_right_role;
+
+PhpExprConstFetchArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_default_role,
+	plays is_php_left_role,
+	plays is_php_right_role,
+	plays has_php_name_role;
+
 PhpExprPostDecArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_loop_role,
 	plays has_php_var_role;
+
+PhpExprTernaryArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_expr_role,
+	plays has_php_cond_role,
+	plays has_php_else_role,
+	plays has_php_if_role;
+
+PhpExprUnaryMinusArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_expr_role,
+	plays has_php_expr_role;
 
 PhpExprVariableArtifact sub PhpSourceArtifact,
 	# Structural
@@ -538,15 +1079,41 @@ PhpNameArtifact sub NameArtifact,
 	# Structural
 	plays is_php_name_role;
 
+PhpParamArtifact sub PhpSourceArtifact,
+	# Attributes
+	has phpByRefAttribute,
+	has phpTypeAttribute,
+	has phpVariadicAttribute,
+	# Structural
+	plays is_php_params_role,
+	plays has_php_default_role,
+	plays has_php_name_role;
+
+PhpScalarDNumberArtifact sub PhpSourceArtifact,
+	# Attributes
+	has doubleValue,
+	# Structural
+	plays is_php_expr_role;
+
 PhpScalarLNumberArtifact sub PhpSourceArtifact,
 	# Attributes
 	has numberValue,
 	# Structural
+	plays is_php_default_role,
+	plays is_php_else_role,
 	plays is_php_expr_role,
+	plays is_php_if_role,
 	plays is_php_right_role;
+
+PhpScalarStringArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_expr_role,
+	plays is_php_exprs_role,
+	plays is_php_value_role;
 
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_body_role,
 	plays is_php_stmts_role,
 	plays has_php_exprs_role;
 
@@ -565,21 +1132,94 @@ PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_children_role,
 	plays has_php_name_role,
+	plays has_php_params_role,
 	plays has_php_return_type_role,
+	plays has_php_stmts_role;
+
+PhpStmtIfArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_body_role,
+	plays has_php_cond_role,
 	plays has_php_stmts_role;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
+PythonAddArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_op_role;
+
+PythonAndArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_op_role;
+
+PythonArgArtifact sub ArgArtifact,
+	# Attributes
+	has pythonCtxAttribute,
+	# Structural
+	plays is_python_args_role,
+	plays has_python_default_role,
+	plays has_python_noops_previous_role;
+
 PythonArgumentsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_python_args_role;
+	plays is_python_args_role,
+	plays has_python_args_role;
+
+PythonAssignArtifact sub PythonSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_python_body_role,
+	plays is_python_body_stmts_role,
+	plays has_python_targets_role,
+	plays has_python_value_role;
+
+PythonBinOpArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_value_role,
+	plays has_python_left_role,
+	plays has_python_op_role,
+	plays has_python_right_role;
+
+PythonBoolOpArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_test_role,
+	plays has_python_op_role,
+	plays has_python_values_role;
 
 PythonCallArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_iter_role,
 	plays has_python_args_role,
 	plays has_python_func_role;
+
+PythonCompareArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_test_role,
+	plays has_python_comparators_role,
+	plays has_python_left_role,
+	plays has_python_ops_role;
+
+PythonCompareComparatorsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_comparators_role,
+	plays has_python_comparators_role;
+
+PythonCompareOpsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_ops_role,
+	plays has_python_ops_role;
+
+PythonEqArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_ops_role;
+
+PythonExceptHandlerArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_handlers_role,
+	plays has_python_body_role,
+	plays has_python_type_role;
 
 PythonForArtifact sub ForArtifact,
 	# Structural
@@ -616,50 +1256,175 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_decorator_list_role;
 
+PythonIfArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_stmts_role,
+	plays is_python_else_stmts_role,
+	plays has_python_body_role,
+	plays has_python_orelse_role,
+	plays has_python_test_role;
+
+PythonIfBodyArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_role,
+	plays has_python_body_stmts_role;
+
+PythonIfOrelseArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_orelse_role,
+	plays has_python_else_stmts_role;
+
+PythonKwargArtifact sub KwargArtifact,
+	# Structural
+	plays is_python_args_role;
+
 PythonModuleArtifact sub ModuleArtifact,
 	# Structural
-	plays has_python_body_role;
+	plays has_python_body_role,
+	plays has_python_noops_remainder_role;
 
 PythonNameArtifact sub NameArtifact,
 	# Attributes
 	has pythonCtxAttribute,
 	# Structural
+	plays is_python_comparators_role,
 	plays is_python_func_role,
+	plays is_python_left_role,
 	plays is_python_target_role,
-	plays is_python_values_role;
+	plays is_python_targets_role,
+	plays is_python_test_role,
+	plays is_python_type_role,
+	plays is_python_values_role,
+	plays has_python_noops_previous_role,
+	plays has_python_noops_sameline_role;
+
+PythonNoopLineArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_lines_role;
+
+PythonNoopSameLineArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_noop_lines_role;
+
+PythonNotEqArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_ops_role;
 
 PythonNumArtifact sub PythonSourceArtifact,
 	# Attributes
 	has numberValue,
 	# Structural
-	plays is_python_args_role;
+	plays is_python_args_role,
+	plays is_python_left_role,
+	plays is_python_operand_role,
+	plays is_python_right_role,
+	plays is_python_value_role;
+
+PythonOrArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_op_role;
+
+PythonPreviousNoopsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_noops_previous_role;
 
 PythonPrintArtifact sub PythonSourceArtifact,
 	# Attributes
 	has pythonNlAttribute,
 	# Structural
+	plays is_python_body_role,
 	plays is_python_body_stmts_role,
+	plays is_python_else_stmts_role,
+	plays is_python_finalbody_role,
+	plays is_python_orelse_role,
 	plays has_python_values_role;
+
+PythonRemainderNoopsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_noops_remainder_role,
+	plays has_python_lines_role;
+
+PythonSameLineNoopsArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_noops_sameline_role,
+	plays has_python_noop_lines_role;
+
+PythonStrArtifact sub StrArtifact,
+	# Attributes
+	has stringValue,
+	# Structural
+	plays is_python_default_role,
+	plays is_python_value_role,
+	plays is_python_values_role,
+	plays has_python_noops_previous_role;
+
+PythonTryExceptArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_role,
+	plays is_python_body_stmts_role,
+	plays has_python_body_role,
+	plays has_python_handlers_role,
+	plays has_python_orelse_role;
+
+PythonTryFinallyArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_stmts_role,
+	plays has_python_body_role,
+	plays has_python_finalbody_role;
+
+PythonUnaryOpArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_value_role,
+	plays has_python_op_role,
+	plays has_python_operand_role;
+
+PythonUSubArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_op_role;
+
+PythonWhileArtifact sub PythonSourceArtifact,
+	# Structural
+	plays is_python_body_stmts_role,
+	plays has_python_body_role,
+	plays has_python_orelse_role,
+	plays has_python_test_role;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyArgArtifact sub ArgArtifact,
+	# Structural
+	plays is_ruby_children_role;
+
 RubyArgsArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_ruby_args_role;
+	plays is_ruby_args_role,
+	plays has_ruby_children_role;
 
 RubyBeginArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_base_role,
+	plays is_ruby_file_role,
 	plays has_ruby_body_role;
+
+RubyBlockargArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_children_role;
 
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
 	has name,
 	# Structural
+	plays is_ruby_body_role,
 	plays is_ruby_file_role,
 	plays has_ruby_args_role,
 	plays has_ruby_body_role;
+
+RubyFloatArtifact sub RubySourceArtifact,
+	# Attributes
+	has doubleValue,
+	# Structural
+	plays is_ruby_value_role;
 
 RubyForArtifact sub ForArtifact,
 	# Structural
@@ -680,19 +1445,47 @@ RubyIntArtifact sub RubySourceArtifact,
 	has numberValue,
 	# Structural
 	plays is_ruby_body_role,
+	plays is_ruby_default_role,
+	plays is_ruby_value_role,
 	plays is_ruby_values_role;
+
+RubyKwargArtifact sub KwargArtifact,
+	# Structural
+	plays is_ruby_children_role;
+
+RubyKwoptargArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_children_role,
+	plays has_ruby_default_role;
 
 RubyLvarArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_values_role;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
+	# Attributes
+	has name,
 	# Structural
-	plays is_ruby_iterators_role;
+	plays is_ruby_body_role,
+	plays is_ruby_iterators_role,
+	plays has_ruby_value_role;
 
 RubyModuleArtifact sub ModuleArtifact,
 	# Structural
 	plays has_ruby_file_role;
+
+RubyNilNodeArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role;
+
+RubyOptargArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_children_role,
+	plays has_ruby_default_role;
+
+RubyRestargArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_children_role;
 
 RubySendCallArtifact sub RubySourceArtifact,
 	# Structural
@@ -708,8 +1501,24 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	plays has_ruby_qnames_role,
 	plays has_ruby_values_role;
 
+RubyStrArtifact sub StrArtifact,
+	# Attributes
+	has stringValue,
+	# Structural
+	plays is_ruby_value_role,
+	plays is_ruby_values_role;
+
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
+
+CsharpAmpersandAmpersandTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
 
 CsharpArgumentArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -730,6 +1539,16 @@ CsharpArgumentListArtifact sub CsharpSourceArtifact,
 	plays has_csharp_arguments_role,
 	plays has_csharp_close_paren_token_role,
 	plays has_csharp_open_paren_token_role;
+
+CsharpArrayInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_value_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_expressions_role,
+	plays has_csharp_open_brace_token_role;
 
 CsharpArrayRankSpecifierArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -753,7 +1572,67 @@ CsharpArrayTypeArtifact sub ArrayTypeArtifact,
 	plays has_csharp_element_type_role,
 	plays has_csharp_rank_specifiers_role;
 
+CsharpBarBarTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
+CsharpBinaryExpressionEqualsExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays is_csharp_expression_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
 CsharpBinaryExpressionGreaterThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
+CsharpBinaryExpressionLessThanExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
+CsharpBinaryExpressionLogicalAndExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
+CsharpBinaryExpressionLogicalOrExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
+
+CsharpBinaryExpressionNotEqualsExpressionArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -768,11 +1647,92 @@ CsharpBlockArtifact sub BlockArtifact,
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
 	# Structural
+	plays is_csharp_block_role,
 	plays is_csharp_body_role,
 	plays is_csharp_statement_role,
 	plays has_csharp_close_brace_token_role,
 	plays has_csharp_open_brace_token_role,
 	plays has_csharp_statements_role;
+
+CsharpBoolKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpBreakKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_break_keyword_role;
+
+CsharpBreakStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_break_keyword_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpByteKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpCaseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpCaseSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_labels_role,
+	plays has_csharp_colon_token_role,
+	plays has_csharp_keyword_role,
+	plays has_csharp_value_role;
+
+CsharpCatchClauseArtifact sub CatchClauseArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_catches_role,
+	plays has_csharp_block_role,
+	plays has_csharp_catch_keyword_role,
+	plays has_csharp_declaration_role;
+
+CsharpCatchDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_declaration_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_type_role;
+
+CsharpCatchKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_catch_keyword_role;
 
 CsharpClassDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -824,6 +1784,15 @@ CsharpCloseParenTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_close_paren_token_role;
 
+CsharpColonTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_colon_token_role;
+
 CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -833,6 +1802,48 @@ CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
 	plays has_csharp_members_role,
 	plays has_csharp_usings_role;
 
+CsharpConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_right_role,
+	plays has_csharp_colon_token_role,
+	plays has_csharp_condition_role,
+	plays has_csharp_question_token_role,
+	plays has_csharp_when_false_role,
+	plays has_csharp_when_true_role;
+
+CsharpDecimalKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpDoKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_do_keyword_role;
+
+CsharpDoStatementArtifact sub DoStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_condition_role,
+	plays has_csharp_do_keyword_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_semicolon_token_role,
+	plays has_csharp_statement_role,
+	plays has_csharp_while_keyword_role;
+
 CsharpDotTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -840,7 +1851,33 @@ CsharpDotTokenArtifact sub CsharpSourceArtifact,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
+	plays is_csharp_dot_token_role,
 	plays is_csharp_operator_token_role;
+
+CsharpDoubleKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpElseClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_else_role,
+	plays has_csharp_else_keyword_role,
+	plays has_csharp_statement_role;
+
+CsharpElseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_else_keyword_role;
 
 CsharpEndOfFileTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -851,6 +1888,44 @@ CsharpEndOfFileTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_end_of_file_token_role;
 
+CsharpEnumDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_enum_keyword_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_members_role,
+	plays has_csharp_open_brace_token_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpEnumKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_enum_keyword_role;
+
+CsharpEnumMemberDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_identifier_role;
+
+CsharpEqualsEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
 CsharpEqualsTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -858,7 +1933,8 @@ CsharpEqualsTokenArtifact sub CsharpSourceArtifact,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
-	plays is_csharp_equals_token_role;
+	plays is_csharp_equals_token_role,
+	plays is_csharp_operator_token_role;
 
 CsharpEqualsValueClauseArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -869,6 +1945,15 @@ CsharpEqualsValueClauseArtifact sub CsharpSourceArtifact,
 	plays has_csharp_equals_token_role,
 	plays has_csharp_value_role;
 
+CsharpExclamationEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
 CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
 	# Attributes
 	has csharpAllowsAnyExpressionAttribute,
@@ -878,6 +1963,65 @@ CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
 	plays is_csharp_statements_role,
 	plays has_csharp_expression_role,
 	plays has_csharp_semicolon_token_role;
+
+CsharpFieldDeclarationArtifact sub FieldDeclarationArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_declaration_role,
+	plays has_csharp_modifiers_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpFinallyClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_finally_role,
+	plays has_csharp_block_role,
+	plays has_csharp_finally_keyword_role;
+
+CsharpFinallyKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_finally_keyword_role;
+
+CsharpFloatKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpForEachKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_for_each_keyword_role;
+
+CsharpForEachStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_for_each_keyword_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_in_keyword_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_statement_role,
+	plays has_csharp_type_role;
 
 CsharpForKeywordArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -903,6 +2047,19 @@ CsharpForStatementArtifact sub ForStatementArtifact,
 	plays has_csharp_second_semicolon_token_role,
 	plays has_csharp_statement_role;
 
+CsharpGenericNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpIsUnboundGenericNameAttribute,
+	has csharpIsUnmanagedAttribute,
+	has csharpIsVarAttribute,
+	# Structural
+	plays is_csharp_type_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_type_argument_list_role;
+
 CsharpGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -912,6 +2069,15 @@ CsharpGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_operator_token_role;
 
+CsharpGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_greater_than_token_role;
+
 CsharpIdentifierNameArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpArityAttribute,
@@ -920,10 +2086,13 @@ CsharpIdentifierNameArtifact sub CsharpSourceArtifact,
 	has csharpIsUnmanagedAttribute,
 	has csharpIsVarAttribute,
 	# Structural
+	plays is_csharp_arguments_role,
 	plays is_csharp_expression_role,
 	plays is_csharp_left_role,
 	plays is_csharp_name_role,
 	plays is_csharp_operand_role,
+	plays is_csharp_right_role,
+	plays is_csharp_type_role,
 	plays has_csharp_identifier_role;
 
 CsharpIdentifierTokenArtifact sub CsharpSourceArtifact,
@@ -933,6 +2102,36 @@ CsharpIdentifierTokenArtifact sub CsharpSourceArtifact,
 	has csharpValueTextAttribute,
 	# Structural
 	plays is_csharp_identifier_role;
+
+CsharpIfKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_if_keyword_role;
+
+CsharpIfStatementArtifact sub IfStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statement_role,
+	plays is_csharp_statements_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_condition_role,
+	plays has_csharp_else_role,
+	plays has_csharp_if_keyword_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_statement_role;
+
+CsharpInKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_in_keyword_role;
 
 CsharpIntKeywordArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -950,6 +2149,34 @@ CsharpInvocationExpressionArtifact sub CsharpSourceArtifact,
 	plays is_csharp_expression_role,
 	plays has_csharp_argument_list_role,
 	plays has_csharp_expression_role;
+
+CsharpLessThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_less_than_token_role,
+	plays is_csharp_operator_token_role;
+
+CsharpLocalDeclarationStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsConstAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_declaration_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpLongKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
 
 CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Attributes
@@ -975,6 +2202,15 @@ CsharpMinusMinusTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_operator_token_role;
 
+CsharpMinusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
 CsharpNoneArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -990,8 +2226,13 @@ CsharpNumericLiteralExpressionArtifact sub CsharpSourceArtifact,
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
 	# Structural
+	plays is_csharp_expression_role,
+	plays is_csharp_expressions_role,
+	plays is_csharp_operand_role,
 	plays is_csharp_right_role,
 	plays is_csharp_value_role,
+	plays is_csharp_when_false_role,
+	plays is_csharp_when_true_role,
 	plays has_csharp_token_role;
 
 CsharpNumericLiteralTokenArtifact sub CsharpSourceArtifact,
@@ -1056,6 +2297,7 @@ CsharpParameterArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_parameters_role,
 	plays has_csharp_identifier_role,
+	plays has_csharp_modifiers_role,
 	plays has_csharp_type_role;
 
 CsharpParameterListArtifact sub CsharpSourceArtifact,
@@ -1068,7 +2310,43 @@ CsharpParameterListArtifact sub CsharpSourceArtifact,
 	plays has_csharp_open_paren_token_role,
 	plays has_csharp_parameters_role;
 
+CsharpParamsKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_modifiers_role;
+
+CsharpParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_open_paren_token_role;
+
+CsharpPlusPlusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_operator_token_role;
+
 CsharpPostfixUnaryExpressionPostDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_incrementors_role,
+	plays has_csharp_operand_role,
+	plays has_csharp_operator_token_role;
+
+CsharpPostfixUnaryExpressionPostIncrementExpressionArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1089,6 +2367,15 @@ CsharpPredefinedTypeArtifact sub CsharpSourceArtifact,
 	plays is_csharp_type_role,
 	plays has_csharp_keyword_role;
 
+CsharpPrefixUnaryExpressionUnaryMinusExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_value_role,
+	plays has_csharp_operand_role,
+	plays has_csharp_operator_token_role;
+
 CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
@@ -1096,6 +2383,37 @@ CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
 	has csharpValueTextAttribute,
 	# Structural
 	plays is_csharp_modifiers_role;
+
+CsharpQualifiedNameArtifact sub QualifiedNameArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has csharpIsUnmanagedAttribute,
+	has csharpIsVarAttribute,
+	# Structural
+	plays is_csharp_left_role,
+	plays is_csharp_name_role,
+	plays has_csharp_dot_token_role,
+	plays has_csharp_left_role,
+	plays has_csharp_right_role;
+
+CsharpQuestionTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_question_token_role;
+
+CsharpSByteKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
 
 CsharpSemicolonTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -1107,6 +2425,24 @@ CsharpSemicolonTokenArtifact sub CsharpSourceArtifact,
 	plays is_csharp_first_semicolon_token_role,
 	plays is_csharp_second_semicolon_token_role,
 	plays is_csharp_semicolon_token_role;
+
+CsharpShortKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpSimpleAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_expression_role,
+	plays has_csharp_left_role,
+	plays has_csharp_operator_token_role,
+	plays has_csharp_right_role;
 
 CsharpSimpleMemberAccessExpressionArtifact sub CsharpSourceArtifact,
 	# Attributes
@@ -1127,6 +2463,150 @@ CsharpStaticKeywordArtifact sub CsharpSourceArtifact,
 	plays is_csharp_modifiers_role;
 
 CsharpStringKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpStringLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_expression_role,
+	plays is_csharp_value_role,
+	plays has_csharp_token_role;
+
+CsharpStringLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has stringValue,
+	has csharpTextAttribute,
+	has csharpValueAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_token_role;
+
+CsharpStructDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_members_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_identifier_role,
+	plays has_csharp_keyword_role,
+	plays has_csharp_members_role,
+	plays has_csharp_modifiers_role,
+	plays has_csharp_open_brace_token_role,
+	plays has_csharp_semicolon_token_role;
+
+CsharpStructKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpSwitchKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_switch_keyword_role;
+
+CsharpSwitchSectionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_sections_role,
+	plays has_csharp_labels_role,
+	plays has_csharp_statements_role;
+
+CsharpSwitchStatementArtifact sub SwitchStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_close_brace_token_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_expression_role,
+	plays has_csharp_open_brace_token_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_sections_role,
+	plays has_csharp_switch_keyword_role;
+
+CsharpTrueKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_token_role;
+
+CsharpTrueLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_condition_role,
+	plays is_csharp_left_role,
+	plays is_csharp_right_role,
+	plays has_csharp_token_role;
+
+CsharpTryKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_try_keyword_role;
+
+CsharpTryStatementArtifact sub TryStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_block_role,
+	plays has_csharp_catches_role,
+	plays has_csharp_finally_role,
+	plays has_csharp_try_keyword_role;
+
+CsharpTypeArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_type_argument_list_role,
+	plays has_csharp_arguments_role,
+	plays has_csharp_greater_than_token_role,
+	plays has_csharp_less_than_token_role;
+
+CsharpUIntKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpULongKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_keyword_role;
+
+CsharpUShortKeywordArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpTextAttribute,
@@ -1180,6 +2660,26 @@ CsharpVoidKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_keyword_role;
 
+CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpTextAttribute,
+	has csharpValueTextAttribute,
+	# Structural
+	plays is_csharp_while_keyword_role;
+
+CsharpWhileStatementArtifact sub WhileStatementArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_csharp_statements_role,
+	plays has_csharp_close_paren_token_role,
+	plays has_csharp_condition_role,
+	plays has_csharp_open_paren_token_role,
+	plays has_csharp_statement_role,
+	plays has_csharp_while_keyword_role;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
@@ -1191,20 +2691,44 @@ args_relation sub parent_child_relation,
 arguments_relation sub parent_child_relation,
 	relates is_arguments_role as is_child, relates has_arguments_role as is_parent;
 
+block_relation sub parent_child_relation,
+	relates is_block_role as is_child, relates has_block_role as is_parent;
+
 body_relation sub parent_child_relation,
 	relates is_body_role as is_child, relates has_body_role as is_parent;
+
+children_relation sub parent_child_relation,
+	relates is_children_role as is_child, relates has_children_role as is_parent;
+
+comments_relation sub parent_child_relation,
+	relates is_comments_role as is_child, relates has_comments_role as is_parent;
 
 cond_relation sub parent_child_relation,
 	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
+default_relation sub parent_child_relation,
+	relates is_default_role as is_child, relates has_default_role as is_parent;
+
 element_type_relation sub parent_child_relation,
 	relates is_element_type_role as is_child, relates has_element_type_role as is_parent;
+
+else_relation sub parent_child_relation,
+	relates is_else_role as is_child, relates has_else_role as is_parent;
 
 expression_relation sub parent_child_relation,
 	relates is_expression_role as is_child, relates has_expression_role as is_parent;
 
+expressions_relation sub parent_child_relation,
+	relates is_expressions_role as is_child, relates has_expressions_role as is_parent;
+
+finally_relation sub parent_child_relation,
+	relates is_finally_role as is_child, relates has_finally_role as is_parent;
+
 func_relation sub parent_child_relation,
 	relates is_func_role as is_child, relates has_func_role as is_parent;
+
+if_relation sub parent_child_relation,
+	relates is_if_role as is_child, relates has_if_role as is_parent;
 
 init_relation sub parent_child_relation,
 	relates is_init_role as is_child, relates has_init_role as is_parent;
@@ -1221,6 +2745,9 @@ modifiers_relation sub parent_child_relation,
 name_relation sub parent_child_relation,
 	relates is_name_role as is_child, relates has_name_role as is_parent;
 
+op_relation sub parent_child_relation,
+	relates is_op_role as is_child, relates has_op_role as is_parent;
+
 operand_relation sub parent_child_relation,
 	relates is_operand_role as is_child, relates has_operand_role as is_parent;
 
@@ -1229,6 +2756,9 @@ operator_relation sub parent_child_relation,
 
 parameters_relation sub parent_child_relation,
 	relates is_parameters_role as is_child, relates has_parameters_role as is_parent;
+
+params_relation sub parent_child_relation,
+	relates is_params_role as is_child, relates has_params_role as is_parent;
 
 return_type_relation sub parent_child_relation,
 	relates is_return_type_role as is_child, relates has_return_type_role as is_parent;
@@ -1239,8 +2769,14 @@ right_relation sub parent_child_relation,
 statements_relation sub parent_child_relation,
 	relates is_statements_role as is_child, relates has_statements_role as is_parent;
 
+test_relation sub parent_child_relation,
+	relates is_test_role as is_child, relates has_test_role as is_parent;
+
 type_relation sub parent_child_relation,
 	relates is_type_role as is_child, relates has_type_role as is_parent;
+
+value_relation sub parent_child_relation,
+	relates is_value_role as is_child, relates has_value_role as is_parent;
 
 values_relation sub parent_child_relation,
 	relates is_values_role as is_child, relates has_values_role as is_parent;
@@ -1249,20 +2785,44 @@ values_relation sub parent_child_relation,
 go_args_relation sub args_relation,
 	relates is_go_args_role as is_args_role, relates has_go_args_role as has_args_role;
 
+go_assign_relation sub parent_child_relation,
+	relates is_go_assign_role as is_child, relates has_go_assign_role as is_parent;
+
 go_body_relation sub body_relation,
 	relates is_go_body_role as is_body_role, relates has_go_body_role as has_body_role;
+
+go_case_relation sub parent_child_relation,
+	relates is_go_case_role as is_child, relates has_go_case_role as is_parent;
 
 go_closing_relation sub parent_child_relation,
 	relates is_go_closing_role as is_child, relates has_go_closing_role as is_parent;
 
+go_colon_relation sub parent_child_relation,
+	relates is_go_colon_role as is_child, relates has_go_colon_role as is_parent;
+
+go_comments_relation sub comments_relation,
+	relates is_go_comments_role as is_comments_role, relates has_go_comments_role as has_comments_role;
+
 go_cond_relation sub cond_relation,
 	relates is_go_cond_role as is_cond_role, relates has_go_cond_role as has_cond_role;
+
+go_decl_relation sub parent_child_relation,
+	relates is_go_decl_role as is_child, relates has_go_decl_role as is_parent;
 
 go_decls_relation sub parent_child_relation,
 	relates is_go_decls_role as is_child, relates has_go_decls_role as is_parent;
 
 go_ellipsis_relation sub parent_child_relation,
 	relates is_go_ellipsis_role as is_child, relates has_go_ellipsis_role as is_parent;
+
+go_else_relation sub else_relation,
+	relates is_go_else_role as is_else_role, relates has_go_else_role as has_else_role;
+
+go_elt_relation sub parent_child_relation,
+	relates is_go_elt_role as is_child, relates has_go_elt_role as is_parent;
+
+go_elts_relation sub parent_child_relation,
+	relates is_go_elts_role as is_child, relates has_go_elts_role as is_parent;
 
 go_end_pos_relation sub parent_child_relation,
 	relates is_go_end_pos_role as is_child, relates has_go_end_pos_role as is_parent;
@@ -1276,14 +2836,26 @@ go_fun_relation sub parent_child_relation,
 go_func_relation sub func_relation,
 	relates is_go_func_role as is_func_role, relates has_go_func_role as has_func_role;
 
+go_if_relation sub if_relation,
+	relates is_go_if_role as is_if_role, relates has_go_if_role as has_if_role;
+
 go_imports_relation sub parent_child_relation,
 	relates is_go_imports_role as is_child, relates has_go_imports_role as is_parent;
 
 go_init_relation sub init_relation,
 	relates is_go_init_role as is_init_role, relates has_go_init_role as has_init_role;
 
+go_key_relation sub parent_child_relation,
+	relates is_go_key_role as is_child, relates has_go_key_role as is_parent;
+
 go_lbrace_relation sub parent_child_relation,
 	relates is_go_lbrace_role as is_child, relates has_go_lbrace_role as is_parent;
+
+go_lbrack_relation sub parent_child_relation,
+	relates is_go_lbrack_role as is_child, relates has_go_lbrack_role as is_parent;
+
+go_len_relation sub parent_child_relation,
+	relates is_go_len_role as is_child, relates has_go_len_role as is_parent;
 
 go_lhs_relation sub parent_child_relation,
 	relates is_go_lhs_role as is_child, relates has_go_lhs_role as is_parent;
@@ -1300,11 +2872,14 @@ go_name_pos_relation sub parent_child_relation,
 go_name_relation sub name_relation,
 	relates is_go_name_role as is_name_role, relates has_go_name_role as has_name_role;
 
+go_names_relation sub parent_child_relation,
+	relates is_go_names_role as is_child, relates has_go_names_role as is_parent;
+
 go_op_pos_relation sub parent_child_relation,
 	relates is_go_op_pos_role as is_child, relates has_go_op_pos_role as is_parent;
 
-go_op_relation sub parent_child_relation,
-	relates is_go_op_role as is_child, relates has_go_op_role as is_parent;
+go_op_relation sub op_relation,
+	relates is_go_op_role as is_op_role, relates has_go_op_role as has_op_role;
 
 go_opening_relation sub parent_child_relation,
 	relates is_go_opening_role as is_child, relates has_go_opening_role as is_parent;
@@ -1312,8 +2887,8 @@ go_opening_relation sub parent_child_relation,
 go_package_relation sub parent_child_relation,
 	relates is_go_package_role as is_child, relates has_go_package_role as is_parent;
 
-go_params_relation sub parent_child_relation,
-	relates is_go_params_role as is_child, relates has_go_params_role as is_parent;
+go_params_relation sub params_relation,
+	relates is_go_params_role as is_params_role, relates has_go_params_role as has_params_role;
 
 go_path_relation sub parent_child_relation,
 	relates is_go_path_role as is_child, relates has_go_path_role as is_parent;
@@ -1324,6 +2899,9 @@ go_post_relation sub parent_child_relation,
 go_rbrace_relation sub parent_child_relation,
 	relates is_go_rbrace_role as is_child, relates has_go_rbrace_role as is_parent;
 
+go_recv_relation sub parent_child_relation,
+	relates is_go_recv_role as is_child, relates has_go_recv_role as is_parent;
+
 go_rhs_relation sub parent_child_relation,
 	relates is_go_rhs_role as is_child, relates has_go_rhs_role as is_parent;
 
@@ -1333,8 +2911,20 @@ go_rparen_relation sub parent_child_relation,
 go_sel_relation sub parent_child_relation,
 	relates is_go_sel_role as is_child, relates has_go_sel_role as is_parent;
 
+go_slash_relation sub parent_child_relation,
+	relates is_go_slash_role as is_child, relates has_go_slash_role as is_parent;
+
 go_specs_relation sub parent_child_relation,
 	relates is_go_specs_role as is_child, relates has_go_specs_role as is_parent;
+
+go_star_relation sub parent_child_relation,
+	relates is_go_star_role as is_child, relates has_go_star_role as is_parent;
+
+go_switch_relation sub parent_child_relation,
+	relates is_go_switch_role as is_child, relates has_go_switch_role as is_parent;
+
+go_tag_relation sub parent_child_relation,
+	relates is_go_tag_role as is_child, relates has_go_tag_role as is_parent;
 
 go_tok_pos_relation sub parent_child_relation,
 	relates is_go_tok_pos_role as is_child, relates has_go_tok_pos_role as is_parent;
@@ -1344,6 +2934,12 @@ go_type_relation sub type_relation,
 
 go_value_pos_relation sub parent_child_relation,
 	relates is_go_value_pos_role as is_child, relates has_go_value_pos_role as is_parent;
+
+go_value_relation sub value_relation,
+	relates is_go_value_role as is_value_role, relates has_go_value_role as has_value_role;
+
+go_values_relation sub values_relation,
+	relates is_go_values_role as is_values_role, relates has_go_values_role as has_values_role;
 
 go_x_relation sub parent_child_relation,
 	relates is_go_x_role as is_child, relates has_go_x_role as is_parent;
@@ -1361,14 +2957,35 @@ java_body_declarations_relation sub parent_child_relation,
 java_body_relation sub body_relation,
 	relates is_java_body_role as is_body_role, relates has_java_body_role as has_body_role;
 
+java_catch_clauses_relation sub parent_child_relation,
+	relates is_java_catch_clauses_role as is_child, relates has_java_catch_clauses_role as is_parent;
+
 java_dimensions_relation sub parent_child_relation,
 	relates is_java_dimensions_role as is_child, relates has_java_dimensions_role as is_parent;
 
 java_element_type_relation sub element_type_relation,
 	relates is_java_element_type_role as is_element_type_role, relates has_java_element_type_role as has_element_type_role;
 
+java_else_expression_relation sub parent_child_relation,
+	relates is_java_else_expression_role as is_child, relates has_java_else_expression_role as is_parent;
+
+java_else_statement_relation sub parent_child_relation,
+	relates is_java_else_statement_role as is_child, relates has_java_else_statement_role as is_parent;
+
+java_exception_relation sub parent_child_relation,
+	relates is_java_exception_role as is_child, relates has_java_exception_role as is_parent;
+
 java_expression_relation sub expression_relation,
 	relates is_java_expression_role as is_expression_role, relates has_java_expression_role as has_expression_role;
+
+java_expressions_relation sub expressions_relation,
+	relates is_java_expressions_role as is_expressions_role, relates has_java_expressions_role as has_expressions_role;
+
+java_extra_dimensions2_relation sub parent_child_relation,
+	relates is_java_extra_dimensions2_role as is_child, relates has_java_extra_dimensions2_role as is_parent;
+
+java_finally_relation sub finally_relation,
+	relates is_java_finally_role as is_finally_role, relates has_java_finally_role as has_finally_role;
 
 java_fragments_relation sub parent_child_relation,
 	relates is_java_fragments_role as is_child, relates has_java_fragments_role as is_parent;
@@ -1378,6 +2995,9 @@ java_initializer_relation sub initializer_relation,
 
 java_initializers_relation sub parent_child_relation,
 	relates is_java_initializers_role as is_child, relates has_java_initializers_role as is_parent;
+
+java_left_hand_side_relation sub parent_child_relation,
+	relates is_java_left_hand_side_role as is_child, relates has_java_left_hand_side_role as is_parent;
 
 java_left_operand_relation sub parent_child_relation,
 	relates is_java_left_operand_role as is_child, relates has_java_left_operand_role as is_parent;
@@ -1394,6 +3014,9 @@ java_operand_relation sub operand_relation,
 java_operator_relation sub operator_relation,
 	relates is_java_operator_role as is_operator_role, relates has_java_operator_role as has_operator_role;
 
+java_parameter_relation sub parent_child_relation,
+	relates is_java_parameter_role as is_child, relates has_java_parameter_role as is_parent;
+
 java_parameters_relation sub parameters_relation,
 	relates is_java_parameters_role as is_parameters_role, relates has_java_parameters_role as has_parameters_role;
 
@@ -1403,11 +3026,26 @@ java_qualifier_relation sub parent_child_relation,
 java_return_type2_relation sub parent_child_relation,
 	relates is_java_return_type2_role as is_child, relates has_java_return_type2_role as is_parent;
 
+java_right_hand_side_relation sub parent_child_relation,
+	relates is_java_right_hand_side_role as is_child, relates has_java_right_hand_side_role as is_parent;
+
 java_right_operand_relation sub parent_child_relation,
 	relates is_java_right_operand_role as is_child, relates has_java_right_operand_role as is_parent;
 
 java_statements_relation sub statements_relation,
 	relates is_java_statements_role as is_statements_role, relates has_java_statements_role as has_statements_role;
+
+java_then_expression_relation sub parent_child_relation,
+	relates is_java_then_expression_role as is_child, relates has_java_then_expression_role as is_parent;
+
+java_then_statement_relation sub parent_child_relation,
+	relates is_java_then_statement_role as is_child, relates has_java_then_statement_role as is_parent;
+
+java_type_arguments_relation sub parent_child_relation,
+	relates is_java_type_arguments_role as is_child, relates has_java_type_arguments_role as is_parent;
+
+java_type_parameters_relation sub parent_child_relation,
+	relates is_java_type_parameters_role as is_child, relates has_java_type_parameters_role as is_parent;
 
 java_type_relation sub type_relation,
 	relates is_java_type_role as is_type_role, relates has_java_type_role as has_type_role;
@@ -1419,11 +3057,17 @@ java_updaters_relation sub parent_child_relation,
 	relates is_java_updaters_role as is_child, relates has_java_updaters_role as is_parent;
 
 #####----- Javascript -----#####
+javascript_alternate_relation sub parent_child_relation,
+	relates is_javascript_alternate_role as is_child, relates has_javascript_alternate_role as is_parent;
+
 javascript_argument_relation sub parent_child_relation,
 	relates is_javascript_argument_role as is_child, relates has_javascript_argument_role as is_parent;
 
 javascript_arguments_relation sub arguments_relation,
 	relates is_javascript_arguments_role as is_arguments_role, relates has_javascript_arguments_role as has_arguments_role;
+
+javascript_block_relation sub block_relation,
+	relates is_javascript_block_role as is_block_role, relates has_javascript_block_role as has_block_role;
 
 javascript_body_relation sub body_relation,
 	relates is_javascript_body_role as is_body_role, relates has_javascript_body_role as has_body_role;
@@ -1431,17 +3075,41 @@ javascript_body_relation sub body_relation,
 javascript_callee_relation sub parent_child_relation,
 	relates is_javascript_callee_role as is_child, relates has_javascript_callee_role as is_parent;
 
+javascript_cases_relation sub parent_child_relation,
+	relates is_javascript_cases_role as is_child, relates has_javascript_cases_role as is_parent;
+
+javascript_comments_relation sub comments_relation,
+	relates is_javascript_comments_role as is_comments_role, relates has_javascript_comments_role as has_comments_role;
+
+javascript_consequent_relation sub parent_child_relation,
+	relates is_javascript_consequent_role as is_child, relates has_javascript_consequent_role as is_parent;
+
 javascript_declarations_relation sub parent_child_relation,
 	relates is_javascript_declarations_role as is_child, relates has_javascript_declarations_role as is_parent;
 
+javascript_discriminant_relation sub parent_child_relation,
+	relates is_javascript_discriminant_role as is_child, relates has_javascript_discriminant_role as is_parent;
+
+javascript_elements_relation sub parent_child_relation,
+	relates is_javascript_elements_role as is_child, relates has_javascript_elements_role as is_parent;
+
 javascript_expression_relation sub expression_relation,
 	relates is_javascript_expression_role as is_expression_role, relates has_javascript_expression_role as has_expression_role;
+
+javascript_finalizer_relation sub parent_child_relation,
+	relates is_javascript_finalizer_role as is_child, relates has_javascript_finalizer_role as is_parent;
+
+javascript_handler_relation sub parent_child_relation,
+	relates is_javascript_handler_role as is_child, relates has_javascript_handler_role as is_parent;
 
 javascript_id_relation sub parent_child_relation,
 	relates is_javascript_id_role as is_child, relates has_javascript_id_role as is_parent;
 
 javascript_init_relation sub init_relation,
 	relates is_javascript_init_role as is_init_role, relates has_javascript_init_role as has_init_role;
+
+javascript_leading_comments_relation sub parent_child_relation,
+	relates is_javascript_leading_comments_role as is_child, relates has_javascript_leading_comments_role as is_parent;
 
 javascript_left_relation sub left_relation,
 	relates is_javascript_left_role as is_left_role, relates has_javascript_left_role as has_left_role;
@@ -1452,6 +3120,12 @@ javascript_object_relation sub parent_child_relation,
 javascript_operator_relation sub operator_relation,
 	relates is_javascript_operator_role as is_operator_role, relates has_javascript_operator_role as has_operator_role;
 
+javascript_param_relation sub parent_child_relation,
+	relates is_javascript_param_role as is_child, relates has_javascript_param_role as is_parent;
+
+javascript_params_relation sub params_relation,
+	relates is_javascript_params_role as is_params_role, relates has_javascript_params_role as has_params_role;
+
 javascript_program_relation sub parent_child_relation,
 	relates is_javascript_program_role as is_child, relates has_javascript_program_role as is_parent;
 
@@ -1461,8 +3135,14 @@ javascript_property_relation sub parent_child_relation,
 javascript_right_relation sub right_relation,
 	relates is_javascript_right_role as is_right_role, relates has_javascript_right_role as has_right_role;
 
-javascript_test_relation sub parent_child_relation,
-	relates is_javascript_test_role as is_child, relates has_javascript_test_role as is_parent;
+javascript_test_relation sub test_relation,
+	relates is_javascript_test_role as is_test_role, relates has_javascript_test_role as has_test_role;
+
+javascript_trailing_comments_relation sub parent_child_relation,
+	relates is_javascript_trailing_comments_role as is_child, relates has_javascript_trailing_comments_role as is_parent;
+
+javascript_type_annotation_relation sub parent_child_relation,
+	relates is_javascript_type_annotation_role as is_child, relates has_javascript_type_annotation_role as is_parent;
 
 javascript_update_relation sub parent_child_relation,
 	relates is_javascript_update_role as is_child, relates has_javascript_update_role as is_parent;
@@ -1471,11 +3151,17 @@ javascript_update_relation sub parent_child_relation,
 php_body_relation sub body_relation,
 	relates is_php_body_role as is_body_role, relates has_php_body_role as has_body_role;
 
-php_children_relation sub parent_child_relation,
-	relates is_php_children_role as is_child, relates has_php_children_role as is_parent;
+php_children_relation sub children_relation,
+	relates is_php_children_role as is_children_role, relates has_php_children_role as has_children_role;
 
 php_cond_relation sub cond_relation,
 	relates is_php_cond_role as is_cond_role, relates has_php_cond_role as has_cond_role;
+
+php_default_relation sub default_relation,
+	relates is_php_default_role as is_default_role, relates has_php_default_role as has_default_role;
+
+php_else_relation sub else_relation,
+	relates is_php_else_role as is_else_role, relates has_php_else_role as has_else_role;
 
 php_expr_relation sub parent_child_relation,
 	relates is_php_expr_role as is_child, relates has_php_expr_role as is_parent;
@@ -1483,8 +3169,14 @@ php_expr_relation sub parent_child_relation,
 php_exprs_relation sub parent_child_relation,
 	relates is_php_exprs_role as is_child, relates has_php_exprs_role as is_parent;
 
+php_if_relation sub if_relation,
+	relates is_php_if_role as is_if_role, relates has_php_if_role as has_if_role;
+
 php_init_relation sub init_relation,
 	relates is_php_init_role as is_init_role, relates has_php_init_role as has_init_role;
+
+php_items_relation sub parent_child_relation,
+	relates is_php_items_role as is_child, relates has_php_items_role as is_parent;
 
 php_left_relation sub left_relation,
 	relates is_php_left_role as is_left_role, relates has_php_left_role as has_left_role;
@@ -1495,6 +3187,9 @@ php_loop_relation sub parent_child_relation,
 php_name_relation sub name_relation,
 	relates is_php_name_role as is_name_role, relates has_php_name_role as has_name_role;
 
+php_params_relation sub params_relation,
+	relates is_php_params_role as is_params_role, relates has_php_params_role as has_params_role;
+
 php_return_type_relation sub return_type_relation,
 	relates is_php_return_type_role as is_return_type_role, relates has_php_return_type_role as has_return_type_role;
 
@@ -1503,6 +3198,9 @@ php_right_relation sub right_relation,
 
 php_stmts_relation sub parent_child_relation,
 	relates is_php_stmts_role as is_child, relates has_php_stmts_role as is_parent;
+
+php_value_relation sub value_relation,
+	relates is_php_value_role as is_value_role, relates has_php_value_role as has_value_role;
 
 php_var_relation sub parent_child_relation,
 	relates is_php_var_role as is_child, relates has_php_var_role as is_parent;
@@ -1517,20 +3215,77 @@ python_body_relation sub body_relation,
 python_body_stmts_relation sub parent_child_relation,
 	relates is_python_body_stmts_role as is_child, relates has_python_body_stmts_role as is_parent;
 
+python_comparators_relation sub parent_child_relation,
+	relates is_python_comparators_role as is_child, relates has_python_comparators_role as is_parent;
+
 python_decorator_list_relation sub parent_child_relation,
 	relates is_python_decorator_list_role as is_child, relates has_python_decorator_list_role as is_parent;
+
+python_default_relation sub default_relation,
+	relates is_python_default_role as is_default_role, relates has_python_default_role as has_default_role;
+
+python_else_stmts_relation sub parent_child_relation,
+	relates is_python_else_stmts_role as is_child, relates has_python_else_stmts_role as is_parent;
+
+python_finalbody_relation sub parent_child_relation,
+	relates is_python_finalbody_role as is_child, relates has_python_finalbody_role as is_parent;
 
 python_func_relation sub func_relation,
 	relates is_python_func_role as is_func_role, relates has_python_func_role as has_func_role;
 
+python_handlers_relation sub parent_child_relation,
+	relates is_python_handlers_role as is_child, relates has_python_handlers_role as is_parent;
+
 python_iter_relation sub parent_child_relation,
 	relates is_python_iter_role as is_child, relates has_python_iter_role as is_parent;
+
+python_left_relation sub left_relation,
+	relates is_python_left_role as is_left_role, relates has_python_left_role as has_left_role;
+
+python_lines_relation sub parent_child_relation,
+	relates is_python_lines_role as is_child, relates has_python_lines_role as is_parent;
+
+python_noop_lines_relation sub parent_child_relation,
+	relates is_python_noop_lines_role as is_child, relates has_python_noop_lines_role as is_parent;
+
+python_noops_previous_relation sub parent_child_relation,
+	relates is_python_noops_previous_role as is_child, relates has_python_noops_previous_role as is_parent;
+
+python_noops_remainder_relation sub parent_child_relation,
+	relates is_python_noops_remainder_role as is_child, relates has_python_noops_remainder_role as is_parent;
+
+python_noops_sameline_relation sub parent_child_relation,
+	relates is_python_noops_sameline_role as is_child, relates has_python_noops_sameline_role as is_parent;
+
+python_op_relation sub op_relation,
+	relates is_python_op_role as is_op_role, relates has_python_op_role as has_op_role;
+
+python_operand_relation sub operand_relation,
+	relates is_python_operand_role as is_operand_role, relates has_python_operand_role as has_operand_role;
+
+python_ops_relation sub parent_child_relation,
+	relates is_python_ops_role as is_child, relates has_python_ops_role as is_parent;
 
 python_orelse_relation sub parent_child_relation,
 	relates is_python_orelse_role as is_child, relates has_python_orelse_role as is_parent;
 
+python_right_relation sub right_relation,
+	relates is_python_right_role as is_right_role, relates has_python_right_role as has_right_role;
+
 python_target_relation sub parent_child_relation,
 	relates is_python_target_role as is_child, relates has_python_target_role as is_parent;
+
+python_targets_relation sub parent_child_relation,
+	relates is_python_targets_role as is_child, relates has_python_targets_role as is_parent;
+
+python_test_relation sub test_relation,
+	relates is_python_test_role as is_test_role, relates has_python_test_role as has_test_role;
+
+python_type_relation sub type_relation,
+	relates is_python_type_role as is_type_role, relates has_python_type_role as has_type_role;
+
+python_value_relation sub value_relation,
+	relates is_python_value_role as is_value_role, relates has_python_value_role as has_value_role;
 
 python_values_relation sub values_relation,
 	relates is_python_values_role as is_values_role, relates has_python_values_role as has_values_role;
@@ -1545,6 +3300,12 @@ ruby_base_relation sub parent_child_relation,
 ruby_body_relation sub body_relation,
 	relates is_ruby_body_role as is_body_role, relates has_ruby_body_role as has_body_role;
 
+ruby_children_relation sub children_relation,
+	relates is_ruby_children_role as is_children_role, relates has_ruby_children_role as has_children_role;
+
+ruby_default_relation sub default_relation,
+	relates is_ruby_default_role as is_default_role, relates has_ruby_default_role as has_default_role;
+
 ruby_file_relation sub parent_child_relation,
 	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
 
@@ -1557,6 +3318,9 @@ ruby_iterators_relation sub parent_child_relation,
 ruby_qnames_relation sub parent_child_relation,
 	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
 
+ruby_value_relation sub value_relation,
+	relates is_ruby_value_role as is_value_role, relates has_ruby_value_role as has_value_role;
+
 ruby_values_relation sub values_relation,
 	relates is_ruby_values_role as is_values_role, relates has_ruby_values_role as has_values_role;
 
@@ -1567,8 +3331,20 @@ csharp_argument_list_relation sub parent_child_relation,
 csharp_arguments_relation sub arguments_relation,
 	relates is_csharp_arguments_role as is_arguments_role, relates has_csharp_arguments_role as has_arguments_role;
 
+csharp_block_relation sub block_relation,
+	relates is_csharp_block_role as is_block_role, relates has_csharp_block_role as has_block_role;
+
 csharp_body_relation sub body_relation,
 	relates is_csharp_body_role as is_body_role, relates has_csharp_body_role as has_body_role;
+
+csharp_break_keyword_relation sub parent_child_relation,
+	relates is_csharp_break_keyword_role as is_child, relates has_csharp_break_keyword_role as is_parent;
+
+csharp_catch_keyword_relation sub parent_child_relation,
+	relates is_csharp_catch_keyword_role as is_child, relates has_csharp_catch_keyword_role as is_parent;
+
+csharp_catches_relation sub parent_child_relation,
+	relates is_csharp_catches_role as is_child, relates has_csharp_catches_role as is_parent;
 
 csharp_close_brace_token_relation sub parent_child_relation,
 	relates is_csharp_close_brace_token_role as is_child, relates has_csharp_close_brace_token_role as is_parent;
@@ -1579,17 +3355,35 @@ csharp_close_bracket_token_relation sub parent_child_relation,
 csharp_close_paren_token_relation sub parent_child_relation,
 	relates is_csharp_close_paren_token_role as is_child, relates has_csharp_close_paren_token_role as is_parent;
 
+csharp_colon_token_relation sub parent_child_relation,
+	relates is_csharp_colon_token_role as is_child, relates has_csharp_colon_token_role as is_parent;
+
 csharp_condition_relation sub parent_child_relation,
 	relates is_csharp_condition_role as is_child, relates has_csharp_condition_role as is_parent;
 
 csharp_declaration_relation sub parent_child_relation,
 	relates is_csharp_declaration_role as is_child, relates has_csharp_declaration_role as is_parent;
 
+csharp_do_keyword_relation sub parent_child_relation,
+	relates is_csharp_do_keyword_role as is_child, relates has_csharp_do_keyword_role as is_parent;
+
+csharp_dot_token_relation sub parent_child_relation,
+	relates is_csharp_dot_token_role as is_child, relates has_csharp_dot_token_role as is_parent;
+
 csharp_element_type_relation sub element_type_relation,
 	relates is_csharp_element_type_role as is_element_type_role, relates has_csharp_element_type_role as has_element_type_role;
 
+csharp_else_keyword_relation sub parent_child_relation,
+	relates is_csharp_else_keyword_role as is_child, relates has_csharp_else_keyword_role as is_parent;
+
+csharp_else_relation sub else_relation,
+	relates is_csharp_else_role as is_else_role, relates has_csharp_else_role as has_else_role;
+
 csharp_end_of_file_token_relation sub parent_child_relation,
 	relates is_csharp_end_of_file_token_role as is_child, relates has_csharp_end_of_file_token_role as is_parent;
+
+csharp_enum_keyword_relation sub parent_child_relation,
+	relates is_csharp_enum_keyword_role as is_child, relates has_csharp_enum_keyword_role as is_parent;
 
 csharp_equals_token_relation sub parent_child_relation,
 	relates is_csharp_equals_token_role as is_child, relates has_csharp_equals_token_role as is_parent;
@@ -1597,14 +3391,35 @@ csharp_equals_token_relation sub parent_child_relation,
 csharp_expression_relation sub expression_relation,
 	relates is_csharp_expression_role as is_expression_role, relates has_csharp_expression_role as has_expression_role;
 
+csharp_expressions_relation sub expressions_relation,
+	relates is_csharp_expressions_role as is_expressions_role, relates has_csharp_expressions_role as has_expressions_role;
+
+csharp_finally_keyword_relation sub parent_child_relation,
+	relates is_csharp_finally_keyword_role as is_child, relates has_csharp_finally_keyword_role as is_parent;
+
+csharp_finally_relation sub finally_relation,
+	relates is_csharp_finally_role as is_finally_role, relates has_csharp_finally_role as has_finally_role;
+
 csharp_first_semicolon_token_relation sub parent_child_relation,
 	relates is_csharp_first_semicolon_token_role as is_child, relates has_csharp_first_semicolon_token_role as is_parent;
+
+csharp_for_each_keyword_relation sub parent_child_relation,
+	relates is_csharp_for_each_keyword_role as is_child, relates has_csharp_for_each_keyword_role as is_parent;
 
 csharp_for_keyword_relation sub parent_child_relation,
 	relates is_csharp_for_keyword_role as is_child, relates has_csharp_for_keyword_role as is_parent;
 
+csharp_greater_than_token_relation sub parent_child_relation,
+	relates is_csharp_greater_than_token_role as is_child, relates has_csharp_greater_than_token_role as is_parent;
+
 csharp_identifier_relation sub parent_child_relation,
 	relates is_csharp_identifier_role as is_child, relates has_csharp_identifier_role as is_parent;
+
+csharp_if_keyword_relation sub parent_child_relation,
+	relates is_csharp_if_keyword_role as is_child, relates has_csharp_if_keyword_role as is_parent;
+
+csharp_in_keyword_relation sub parent_child_relation,
+	relates is_csharp_in_keyword_role as is_child, relates has_csharp_in_keyword_role as is_parent;
 
 csharp_incrementors_relation sub parent_child_relation,
 	relates is_csharp_incrementors_role as is_child, relates has_csharp_incrementors_role as is_parent;
@@ -1615,8 +3430,14 @@ csharp_initializer_relation sub initializer_relation,
 csharp_keyword_relation sub parent_child_relation,
 	relates is_csharp_keyword_role as is_child, relates has_csharp_keyword_role as is_parent;
 
+csharp_labels_relation sub parent_child_relation,
+	relates is_csharp_labels_role as is_child, relates has_csharp_labels_role as is_parent;
+
 csharp_left_relation sub left_relation,
 	relates is_csharp_left_role as is_left_role, relates has_csharp_left_role as has_left_role;
+
+csharp_less_than_token_relation sub parent_child_relation,
+	relates is_csharp_less_than_token_role as is_child, relates has_csharp_less_than_token_role as is_parent;
 
 csharp_members_relation sub parent_child_relation,
 	relates is_csharp_members_role as is_child, relates has_csharp_members_role as is_parent;
@@ -1651,6 +3472,9 @@ csharp_parameter_list_relation sub parent_child_relation,
 csharp_parameters_relation sub parameters_relation,
 	relates is_csharp_parameters_role as is_parameters_role, relates has_csharp_parameters_role as has_parameters_role;
 
+csharp_question_token_relation sub parent_child_relation,
+	relates is_csharp_question_token_role as is_child, relates has_csharp_question_token_role as is_parent;
+
 csharp_rank_specifiers_relation sub parent_child_relation,
 	relates is_csharp_rank_specifiers_role as is_child, relates has_csharp_rank_specifiers_role as is_parent;
 
@@ -1669,6 +3493,9 @@ csharp_right_relation sub right_relation,
 csharp_second_semicolon_token_relation sub parent_child_relation,
 	relates is_csharp_second_semicolon_token_role as is_child, relates has_csharp_second_semicolon_token_role as is_parent;
 
+csharp_sections_relation sub parent_child_relation,
+	relates is_csharp_sections_role as is_child, relates has_csharp_sections_role as is_parent;
+
 csharp_semicolon_token_relation sub parent_child_relation,
 	relates is_csharp_semicolon_token_role as is_child, relates has_csharp_semicolon_token_role as is_parent;
 
@@ -1684,8 +3511,17 @@ csharp_statements_relation sub statements_relation,
 csharp_static_keyword_relation sub parent_child_relation,
 	relates is_csharp_static_keyword_role as is_child, relates has_csharp_static_keyword_role as is_parent;
 
+csharp_switch_keyword_relation sub parent_child_relation,
+	relates is_csharp_switch_keyword_role as is_child, relates has_csharp_switch_keyword_role as is_parent;
+
 csharp_token_relation sub parent_child_relation,
 	relates is_csharp_token_role as is_child, relates has_csharp_token_role as is_parent;
+
+csharp_try_keyword_relation sub parent_child_relation,
+	relates is_csharp_try_keyword_role as is_child, relates has_csharp_try_keyword_role as is_parent;
+
+csharp_type_argument_list_relation sub parent_child_relation,
+	relates is_csharp_type_argument_list_role as is_child, relates has_csharp_type_argument_list_role as is_parent;
 
 csharp_type_relation sub type_relation,
 	relates is_csharp_type_role as is_type_role, relates has_csharp_type_role as has_type_role;
@@ -1696,8 +3532,17 @@ csharp_using_keyword_relation sub parent_child_relation,
 csharp_usings_relation sub parent_child_relation,
 	relates is_csharp_usings_role as is_child, relates has_csharp_usings_role as is_parent;
 
-csharp_value_relation sub parent_child_relation,
-	relates is_csharp_value_role as is_child, relates has_csharp_value_role as is_parent;
+csharp_value_relation sub value_relation,
+	relates is_csharp_value_role as is_value_role, relates has_csharp_value_role as has_value_role;
 
 csharp_variables_relation sub parent_child_relation,
 	relates is_csharp_variables_role as is_child, relates has_csharp_variables_role as is_parent;
+
+csharp_when_false_relation sub parent_child_relation,
+	relates is_csharp_when_false_role as is_child, relates has_csharp_when_false_role as is_parent;
+
+csharp_when_true_relation sub parent_child_relation,
+	relates is_csharp_when_true_role as is_child, relates has_csharp_when_true_role as is_parent;
+
+csharp_while_keyword_relation sub parent_child_relation,
+	relates is_csharp_while_keyword_role as is_child, relates has_csharp_while_keyword_role as is_parent;

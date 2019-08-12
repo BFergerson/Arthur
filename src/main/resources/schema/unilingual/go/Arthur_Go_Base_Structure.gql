@@ -341,6 +341,7 @@ FuncTypeArtifact sub GoSourceArtifact,
 GenDeclArtifact sub GoSourceArtifact,
 	# Attributes
 	has tokAttribute,
+	has name,
 	# Structural
 	plays is_decl_role,
 	plays is_decls_role,
