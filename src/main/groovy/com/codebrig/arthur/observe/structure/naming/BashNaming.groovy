@@ -2,13 +2,14 @@ package com.codebrig.arthur.observe.structure.naming
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureNaming
+import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Used to get the names/qualified names of Bash AST nodes
  *
- * @version 0.4
- * @since 0.4
- * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
+ * @version 0.4* @since 0.4* @author <ahref="mailto:valpecaoco@gmail.com" > Val Pecaoco</a>
  */
 class BashNaming implements StructureNaming {
 
@@ -33,6 +34,12 @@ class BashNaming implements StructureNaming {
     }
 
     static String getFunctionDefElementName(SourceNode node) {
-        return node.name + "()"
+        def name = ""
+        new TypeFilter("named_symbol").getFilteredNodes(node.children).each {
+            name += MultiFilter.matchAll(
+                    new RoleFilter("EXPRESSION"), new RoleFilter("IDENTIFIER"))
+                    .getFilteredNodes(it.children).next().token
+        }
+        return name + "()"
     }
 }
