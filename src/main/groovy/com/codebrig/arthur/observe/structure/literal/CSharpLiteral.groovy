@@ -48,29 +48,29 @@ class CSharpLiteral extends StructureLiteral {
 
     @Override
     Object getNodeLiteralValue(SourceNode node) {
-        def name = node.token
-        if (name.isEmpty()) {
-            name = node.properties.get("Text")
+        def value = node.token
+        if (value.isEmpty()) {
+            value = node.properties.get("Text")
         }
         boolean isNegative = isNodeLiteralNegative(node)
         switch (node.getLiteralAttribute()) {
             case numberValueLiteral():
-                if (name.toUpperCase().endsWith("U") || name.toUpperCase().endsWith("UL")) {
+                if (value.toUpperCase().endsWith("U") || value.toUpperCase().endsWith("UL")) {
                     int i = 1
-                    if (name.toUpperCase().endsWith("UL")) {
+                    if (value.toUpperCase().endsWith("UL")) {
                         i = 2
                     }
-                    long ul = Long.parseUnsignedLong(name.substring(0, name.length() - i))
+                    long ul = Long.parseUnsignedLong(value.substring(0, value.length() - i))
                     return (((isNegative) ? "-" : "") + Long.toUnsignedString(ul))
                 }
-                return toLong(((isNegative) ? "-" : "") + name)
+                return toLong(((isNegative) ? "-" : "") + value)
             case doubleValueLiteral():
-                if (name.toUpperCase().endsWith("M")) {
-                    return (((isNegative) ? "-" : "") + Double.valueOf(name.substring(0, name.length() - 1)))
+                if (value.toUpperCase().endsWith("M")) {
+                    return (((isNegative) ? "-" : "") + Double.valueOf(value.substring(0, value.length() - 1)))
                 }
-                return toDouble(((isNegative) ? "-" : "") + name)
+                return toDouble(((isNegative) ? "-" : "") + value)
             default:
-                return StringEscapeUtils.escapeJava(name) //treat as string
+                return StringEscapeUtils.escapeJava(value) //treat as string
         }
     }
 
