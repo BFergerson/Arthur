@@ -18,6 +18,15 @@ class NameFilter extends StructureFilter<NameFilter, String> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return node != null && node.hasName() && evaluateProperty(node.name)
+        if (node != null && node.hasName()) {
+            def name = node.name
+            if (name.contains("(")) {
+                return evaluateProperty(name) || evaluateProperty(name.substring(0, name.indexOf("(")))
+            } else {
+                return evaluateProperty(name)
+            }
+        } else {
+            return false
+        }
     }
 }
