@@ -207,6 +207,8 @@ GoArrayTypeArtifact sub ArrayTypeArtifact,
 	plays has_go_len_role;
 
 GoAssignStmtArtifact sub GoSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_go_assign_role,
 	plays is_go_body_role,
@@ -7601,6 +7603,9 @@ RubyIfArtifact sub IfArtifact,
 	plays has_ruby_else_role;
 
 RubyIntArtifact sub RubySourceArtifact,
+	# Attributes
+	has doubleValue,
+	has numberValue,
 	# Structural
 	plays is_ruby_1_role,
 	plays is_ruby_2_role,

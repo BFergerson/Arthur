@@ -545,6 +545,9 @@ IfArtifact sub RubySourceArtifact,
 	plays has_else_role;
 
 IntArtifact sub RubySourceArtifact,
+	# Attributes
+	has doubleValue,
+	has numberValue,
 	# Structural
 	plays is_1_role,
 	plays is_2_role,
