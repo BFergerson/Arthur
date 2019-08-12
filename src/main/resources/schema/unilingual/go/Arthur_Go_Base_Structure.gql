@@ -60,6 +60,7 @@ BasicLitArtifact sub GoSourceArtifact,
 	has doubleValue,
 	has kindAttribute,
 	has numberValue,
+	has stringValue,
 	# Structural
 	plays is_args_role,
 	plays is_cond_role,

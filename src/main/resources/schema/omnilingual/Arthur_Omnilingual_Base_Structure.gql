@@ -5,6 +5,7 @@ booleanValue sub attribute, datatype boolean;
 doubleValue sub attribute, datatype double;
 name sub attribute, datatype string;
 numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Omnilingual -----#####
@@ -224,6 +225,7 @@ GoBasicLitArtifact sub GoSourceArtifact,
 	has doubleValue,
 	has goKindAttribute,
 	has numberValue,
+	has stringValue,
 	# Structural
 	plays is_go_args_role,
 	plays is_go_cond_role,
@@ -1742,6 +1744,8 @@ JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	plays has_java_varargs_annotations_role;
 
 JavaStringLiteralArtifact sub StringLiteralArtifact,
+	# Attributes
+	has stringValue,
 	# Structural
 	plays is_java_arguments_role,
 	plays is_java_body_role,

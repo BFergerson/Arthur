@@ -5,6 +5,7 @@ booleanValue sub attribute, datatype boolean;
 doubleValue sub attribute, datatype double;
 name sub attribute, datatype string;
 numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Java -----#####
@@ -826,6 +827,8 @@ SingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	plays has_varargs_annotations_role;
 
 StringLiteralArtifact sub JavaSourceArtifact,
+	# Attributes
+	has stringValue,
 	# Structural
 	plays is_arguments_role,
 	plays is_body_role,

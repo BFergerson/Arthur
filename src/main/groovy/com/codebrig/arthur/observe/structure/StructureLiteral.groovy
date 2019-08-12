@@ -95,16 +95,16 @@ abstract class StructureLiteral {
 
     abstract List<String> getPossibleNodeLiteralAttributes(SourceNode node)
 
-    static String numberValueLiteral() {
-        return "numberValue"
+    static String booleanValueLiteral() {
+        return "booleanValue"
     }
 
     static String doubleValueLiteral() {
         return "doubleValue"
     }
 
-    static String booleanValueLiteral() {
-        return "booleanValue"
+    static String numberValueLiteral() {
+        return "numberValue"
     }
 
     static String stringValueLiteral() {
@@ -117,13 +117,14 @@ abstract class StructureLiteral {
         rtnMap.put(doubleValueLiteral(), "double")
         rtnMap.put("name", "string")
         rtnMap.put(numberValueLiteral(), "long")
+        rtnMap.put(stringValueLiteral(), "string")
         rtnMap.put("token", "string")
         return rtnMap
     }
 
     static String extractIfNegativeLiteral(String value, String base, int p, int s) {
         String v = value.substring(p, value.length() - s)
-        v = value.toUpperCase().startsWith(base) ? "-"+v : v
+        v = value.toUpperCase().startsWith(base) ? "-" + v : v
         return v
     }
 }
