@@ -20,8 +20,10 @@ class RubyNaming implements StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
-        switch (Objects.requireNonNull(internalType).toLowerCase()) {
+        switch (Objects.requireNonNull(internalType)) {
+            case "Def":
             case "def":
+            case "Lvasgn":
             case "lvasgn":
                 return true
             default:
@@ -31,9 +33,11 @@ class RubyNaming implements StructureNaming {
 
     @Override
     String getNodeName(SourceNode node) {
-        switch (Objects.requireNonNull(node).internalType.toLowerCase()) {
+        switch (Objects.requireNonNull(node).internalType) {
+            case "Def":
             case "def":
                 return getDefName(node)
+            case "Lvasgn":
             case "lvasgn":
                 return getLvasgnName(node)
             default:

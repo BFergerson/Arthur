@@ -982,6 +982,8 @@ PhpExprArrayItemArtifact sub PhpSourceArtifact,
 	plays has_php_value_role;
 
 PhpExprAssignArtifact sub PhpSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_children_role,
