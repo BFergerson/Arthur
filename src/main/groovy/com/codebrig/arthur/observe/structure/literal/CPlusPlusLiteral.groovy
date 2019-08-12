@@ -7,7 +7,7 @@ import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import org.apache.commons.lang.StringEscapeUtils
 
 /**
- * Used to get the names/qualified names of C++ AST nodes
+ * Used to determine and get the literal type of C++ AST nodes
  *
  * @version 0.4
  * @since 0.4
@@ -26,9 +26,8 @@ class CPlusPlusLiteral extends StructureLiteral {
                     if (node.token.contains(".") ||
                             (node.token.isDouble() &&
                                     (node.token.toUpperCase().contains("P")
-                                     || node.token.toUpperCase().contains("E")
-                                     || node.token.toUpperCase().endsWith("D")
-                                     || node.token.toUpperCase().endsWith("F"))
+                                    || node.token.toUpperCase().contains("E")
+                                    || node.token.toUpperCase().endsWith("F"))
                             )) {
                         return doubleValueLiteral()
                     }
@@ -70,11 +69,12 @@ class CPlusPlusLiteral extends StructureLiteral {
 
     @Override
     Object getNodeLiteralValue(SourceNode node) {
-        def name = node.token
+        def value = node.token
+        value = value.replace("'", "")
         boolean isNegative = isNodeLiteralNegative(node)
         switch (node.getLiteralAttribute()) {
             case numberValueLiteral():
-                def uc = name.toUpperCase()
+                def uc = value.toUpperCase()
                 if (uc.endsWith("U") || uc.endsWith("UL") || uc.endsWith("LU") || uc.endsWith("LL") ||
                     uc.endsWith("ULL") || uc.endsWith("LLU")) {
                     int i = 1
@@ -84,17 +84,17 @@ class CPlusPlusLiteral extends StructureLiteral {
                     if (uc.endsWith("ULL") || uc.endsWith("LLU")) {
                         i = 3
                     }
-                    long ul = Long.parseUnsignedLong(name.substring(0, name.length() - i))
+                    long ul = Long.parseUnsignedLong(value.substring(0, value.length() - i))
                     return (((isNegative) ? "-" : "") + Long.toUnsignedString(ul))
                 }
-                return toLong(((isNegative) ? "-" : "") + name)
+                return toLong(((isNegative) ? "-" : "") + value)
             case doubleValueLiteral():
-                if (name.toUpperCase().endsWith("M")) {
-                    return (((isNegative) ? "-" : "") + Double.valueOf(name.substring(0, name.length() - 1)))
+                if (value.toUpperCase().endsWith("L")) {
+                    return (((isNegative) ? "-" : "") + Double.valueOf(value.substring(0, value.length() - 1)))
                 }
-                return toDouble(((isNegative) ? "-" : "") + name)
+                return toDouble(((isNegative) ? "-" : "") + value)
             default:
-                return StringEscapeUtils.escapeJava(name) //treat as string
+                return StringEscapeUtils.escapeJava(value) //treat as string
         }
     }
 

@@ -28,11 +28,52 @@ class CPlusPlusLiteralTest extends ArthurTest {
         assertCPlusPlusLiteralPresent("param10", "numberValue", 1000)
         assertCPlusPlusLiteralPresent("param11", "numberValue", "1100")
         assertCPlusPlusLiteralPresent("param12", "numberValue", "1200")
+        assertCPlusPlusLiteralPresent("param13", "numberValue", 100000)
+        assertCPlusPlusLiteralPresent("param14", "numberValue", -4000)
+        assertCPlusPlusLiteralPresent("param15", "numberValue", 12000000)
     }
 
     @Test
     void stringLiteralTest() {
-        assertCPlusPlusLiteralPresent("param13", "stringValue", StringEscapeUtils.escapeJava("\"stringParam13\""))
+        assertCPlusPlusLiteralPresent("param16", "stringValue", StringEscapeUtils.escapeJava("\"stringParam16\""))
+    }
+
+    @Test
+    void doubleLiteralTest() {
+        assertCPlusPlusLiteralPresent("param17", "doubleValue", 9.234)
+        assertCPlusPlusLiteralPresent("param18", "doubleValue", 100.72)
+        assertCPlusPlusLiteralPresent("param19", "doubleValue", -100.72)
+        assertCPlusPlusLiteralPresent("param20", "doubleValue", 100.72)
+        assertCPlusPlusLiteralPresent("param21", "doubleValue", 1000.72)
+    }
+
+    @Test
+    void octalLiteralTest() {
+        assertCPlusPlusLiteralPresent("param22", "numberValue", 0123567)
+        assertCPlusPlusLiteralPresent("param23", "numberValue", 0123546263753256452432L)
+        assertCPlusPlusLiteralPresent("param24", "numberValue", -0123546263753256452432L)
+    }
+
+    @Test
+    void hexadecimalLiteralTest() {
+        assertCPlusPlusLiteralPresent("param25", "numberValue", 0xFFFFFFFFFFFFL)
+        assertCPlusPlusLiteralPresent("param26", "numberValue", 0xff1a618b7f65ea12L)
+        assertCPlusPlusLiteralPresent("param27", "numberValue", -0x1000000)
+        assertCPlusPlusLiteralPresent("param28", "numberValue", -0xc4ceb9fe1a85ec53L)
+        assertCPlusPlusLiteralPresent("param29", "doubleValue", Double.parseDouble('0x1.0p31'))
+        assertCPlusPlusLiteralPresent("param30", "doubleValue", Float.parseFloat('0x1.0p2f'))
+        assertCPlusPlusLiteralPresent("param31", "doubleValue", Float.parseFloat('-0x1.0p2f'))
+        assertCPlusPlusLiteralPresent("param32", "doubleValue", Double.parseDouble('0xa.bp10d'))
+    }
+
+    @Test
+    void signedEngineeringNotationLiteralTest() {
+        assertCPlusPlusLiteralPresent("param33", "doubleValue", -1.2e55)
+        assertCPlusPlusLiteralPresent("param34", "doubleValue", 1.2e-55)
+        assertCPlusPlusLiteralPresent("param35", "doubleValue", -1.2e-55)
+        assertCPlusPlusLiteralPresent("param36", "doubleValue", 1000.2e-55)
+        assertCPlusPlusLiteralPresent("param37", "doubleValue", -1000.2e55)
+        assertCPlusPlusLiteralPresent("param38", "doubleValue", 2000.123e55)
     }
 
     private static void assertCPlusPlusLiteralPresent(String literalName, String literalType, Object literalValue) {

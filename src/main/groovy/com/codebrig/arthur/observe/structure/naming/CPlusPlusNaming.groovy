@@ -7,7 +7,7 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trimTrailingComma
 
 /**
- * Used to get the names/qualified names of C# AST nodes
+ * Used to get the names/qualified names of C++ AST nodes
  *
  * @version 0.4
  * @since 0.4
