@@ -367,6 +367,8 @@ FieldAccessArtifact sub JavaSourceArtifact,
 	plays has_name_role;
 
 FieldDeclarationArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_body_declarations_role,
 	plays has_fragments_role,
