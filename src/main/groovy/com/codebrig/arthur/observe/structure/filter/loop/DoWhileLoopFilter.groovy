@@ -24,6 +24,7 @@ class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
                         new RoleFilter("DO_WHILE"), new RoleFilter("STATEMENT"),
                         new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
                 ),
+                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/57)
                 new TypeFilter("CPPASTDoStatement")
         )
     }
