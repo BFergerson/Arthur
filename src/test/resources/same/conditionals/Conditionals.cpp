@@ -1,8 +1,5 @@
 #include <iostream>
 
-int main() {
-}
-
 void ifConditional() {
     if (true) {
         std::cout << "\n";
