@@ -31,11 +31,9 @@ class CPlusPlusNaming implements StructureNaming {
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "CPPASTFunctionDefinition":
-                def name = getFunctionDefinition(node)
-                return name
+                return getFunctionDefinition(node)
             case "CPPASTSimpleDeclaration":
-                def name = getSimpleDeclaration(node)
-                return name
+                return getSimpleDeclaration(node)
             default:
                 throw new IllegalArgumentException("Unsupported C++ node type: " + node.internalType)
         }
