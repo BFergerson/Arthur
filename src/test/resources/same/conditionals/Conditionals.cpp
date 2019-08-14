@@ -2,23 +2,23 @@
 
 void ifConditional() {
     if (true) {
-        std::cout << "\n";
+        std::cout << "";
     }
 }
 
 void ifElseConditional() {
     if (true) {
-        std::cout << "if\n";
+        std::cout << "";
     } else {
-        std::cout << "else\n";
+        std::cout << "";
     }
 }
 
 void ifElseIfConditional() {
     if (true) {
-        std::cout << "if\n";
+        std::cout << "";
     } else if (true) {
-         std::cout << "else if\n";
+         std::cout << "";
     }
 }
 
@@ -30,6 +30,6 @@ void switchConditional() {
 void switchCaseConditional() {
     switch (1) {
         case 1:
-            std::cout << "case 1\n";
+            std::cout << "";
     }
 }
