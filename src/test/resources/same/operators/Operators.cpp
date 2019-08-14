@@ -2,13 +2,13 @@
 
 void andOperator() {
     if (true && true) {
-        std::cout << "and\n";
+        std::cout << "";
     }
 }
 
 void orOperator() {
     if (true || true) {
-        std::cout << "or\n";
+        std::cout << "";
     }
 }
 
@@ -20,13 +20,13 @@ void ternaryOperator() {
 
 void isEqualOperator() {
     if (true == true) {
-        std::cout << "equal\n";
+        std::cout << "";
     }
 }
 
 void isNotEqualOperator() {
     if (true != true) {
-        std::cout << "not equal\n";
+        std::cout << "";
     }
 }
 
