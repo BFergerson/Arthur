@@ -1,8 +1,5 @@
 #include <iostream>
 
-int main() {
-}
-
 void forLoop() {
     for (int i = 0; i < 10; i++) {
     }
