@@ -10,9 +10,6 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-/**
- * Note: C++ does not have "finally" implemented; try-finally is Microsoft-specific
- */
 class TryFilterTest extends ArthurTest {
 
     @Test
@@ -57,6 +54,9 @@ class TryFilterTest extends ArthurTest {
         assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.cs"))
     }
 
+    /**
+     * Note: C++ does not have "finally" implemented; try-finally is Microsoft-specific
+     */
     @Test
     void tryCatch_CPlusPlus() {
         assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.cpp"))
