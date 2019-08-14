@@ -1,8 +1,5 @@
 #include <iostream>
 
-int main() {
-}
-
 void andOperator() {
     if (true && true) {
         std::cout << "and\n";
@@ -41,7 +38,7 @@ void initializeVariableOperator() {
     int x = 0;
 }
 
-public void assignVariableOperator() {
+void assignVariableOperator() {
     int x = 0;
     x = 1;
 }
