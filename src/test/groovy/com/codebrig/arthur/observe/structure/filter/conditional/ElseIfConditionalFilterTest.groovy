@@ -34,6 +34,11 @@ class ElseIfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void elseIfConditional_Ruby() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
+    @Test
     void elseIfConditional_CSharp() {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }

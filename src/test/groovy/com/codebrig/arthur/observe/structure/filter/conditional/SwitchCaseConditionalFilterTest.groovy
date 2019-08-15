@@ -29,6 +29,11 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void switchCaseConditional_Ruby() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
+    @Test
     void switchCaseConditional_CSharp() {
         assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
