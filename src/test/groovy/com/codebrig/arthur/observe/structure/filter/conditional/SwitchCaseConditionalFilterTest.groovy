@@ -38,6 +38,11 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
         assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
 
+    @Test
+    void switchCaseConditional_Php() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
     private static void assertSwitchCaseConditionalPresent(File file) {
         assertSwitchCaseConditionalPresent(file, "")
     }

@@ -973,8 +973,10 @@ PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprConstFetchArtifact sub PhpSourceArtifact,
 	# Semantic
+	plays IS_CONDITION,
 	plays IS_DEFAULT,
 	plays IS_EXPRESSION,
+	plays IS_IF,
 	plays IS_INCOMPLETE,
 	plays IS_LEFT,
 	plays IS_RIGHT,
@@ -1040,6 +1042,8 @@ PhpScalarDNumberArtifact sub PhpSourceArtifact,
 
 PhpScalarLNumberArtifact sub PhpSourceArtifact,
 	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
 	plays IS_DEFAULT,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
@@ -1055,14 +1059,31 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 	plays IS_RIGHT,
 	plays IS_STRING;
 
+PhpStmtCaseArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_CASE;
+
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_CALL,
+	plays IS_CASE,
+	plays IS_ELSE,
 	plays IS_FOR,
 	plays IS_IF,
 	plays IS_STATEMENT,
 	plays IS_THEN;
+
+PhpStmtElseArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
+
+PhpStmtElseIfArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT;
 
 PhpStmtForArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -1078,6 +1099,10 @@ PhpStmtIfArtifact sub PhpSourceArtifact,
 	# Semantic
 	plays IS_IF,
 	plays IS_STATEMENT;
+
+PhpStmtSwitchArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_SWITCH;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;

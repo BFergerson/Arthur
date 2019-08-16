@@ -1037,6 +1037,7 @@ PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprConstFetchArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_default_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
@@ -1103,6 +1104,7 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact,
 	# Attributes
 	has numberValue,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_default_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
@@ -1115,11 +1117,28 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 	plays is_php_exprs_role,
 	plays is_php_value_role;
 
+PhpStmtCaseArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cases_role,
+	plays has_php_cond_role,
+	plays has_php_stmts_role;
+
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_stmts_role,
 	plays has_php_exprs_role;
+
+PhpStmtElseArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_else_role,
+	plays has_php_stmts_role;
+
+PhpStmtElseIfArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_elseifs_role,
+	plays has_php_cond_role,
+	plays has_php_stmts_role;
 
 PhpStmtForArtifact sub PhpSourceArtifact,
 	# Structural
@@ -1144,7 +1163,15 @@ PhpStmtIfArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays has_php_cond_role,
+	plays has_php_else_role,
+	plays has_php_elseifs_role,
 	plays has_php_stmts_role;
+
+PhpStmtSwitchArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_body_role,
+	plays has_php_cases_role,
+	plays has_php_cond_role;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
@@ -2733,6 +2760,9 @@ block_relation sub parent_child_relation,
 body_relation sub parent_child_relation,
 	relates is_body_role as is_child, relates has_body_role as is_parent;
 
+cases_relation sub parent_child_relation,
+	relates is_cases_role as is_child, relates has_cases_role as is_parent;
+
 children_relation sub parent_child_relation,
 	relates is_children_role as is_child, relates has_children_role as is_parent;
 
@@ -3114,8 +3144,8 @@ javascript_body_relation sub body_relation,
 javascript_callee_relation sub parent_child_relation,
 	relates is_javascript_callee_role as is_child, relates has_javascript_callee_role as is_parent;
 
-javascript_cases_relation sub parent_child_relation,
-	relates is_javascript_cases_role as is_child, relates has_javascript_cases_role as is_parent;
+javascript_cases_relation sub cases_relation,
+	relates is_javascript_cases_role as is_cases_role, relates has_javascript_cases_role as has_cases_role;
 
 javascript_comments_relation sub comments_relation,
 	relates is_javascript_comments_role as is_comments_role, relates has_javascript_comments_role as has_comments_role;
@@ -3190,6 +3220,9 @@ javascript_update_relation sub parent_child_relation,
 php_body_relation sub body_relation,
 	relates is_php_body_role as is_body_role, relates has_php_body_role as has_body_role;
 
+php_cases_relation sub cases_relation,
+	relates is_php_cases_role as is_cases_role, relates has_php_cases_role as has_cases_role;
+
 php_children_relation sub children_relation,
 	relates is_php_children_role as is_children_role, relates has_php_children_role as has_children_role;
 
@@ -3201,6 +3234,9 @@ php_default_relation sub default_relation,
 
 php_else_relation sub else_relation,
 	relates is_php_else_role as is_else_role, relates has_php_else_role as has_else_role;
+
+php_elseifs_relation sub parent_child_relation,
+	relates is_php_elseifs_role as is_child, relates has_php_elseifs_role as is_parent;
 
 php_expr_relation sub parent_child_relation,
 	relates is_php_expr_role as is_child, relates has_php_expr_role as is_parent;

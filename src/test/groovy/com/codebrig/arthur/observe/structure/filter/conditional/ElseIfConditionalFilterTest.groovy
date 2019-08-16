@@ -43,6 +43,11 @@ class ElseIfConditionalFilterTest extends ArthurTest {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
 
+    @Test
+    void elseIfConditional_Php() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
     private static void assertElseIfConditionalPresent(File file) {
         assertElseIfConditionalPresent(file, "")
     }

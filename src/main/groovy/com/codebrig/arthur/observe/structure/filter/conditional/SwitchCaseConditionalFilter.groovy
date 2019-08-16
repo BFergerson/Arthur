@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
@@ -28,6 +29,11 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
                 MultiFilter.matchAll(
                         new RoleFilter("SWITCH"),  new RoleFilter("STATEMENT"),
                         new TypeFilter("case")
+                ),
+                MultiFilter.matchAll(
+                        new InternalRoleFilter("cases"),
+                        new TypeFilter("Stmt_Case")
+
                 )
         )
     }

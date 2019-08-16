@@ -43,6 +43,11 @@ class ElseConditionalFilterTest extends ArthurTest {
         assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
 
+    @Test
+    void elseConditional_Php() {
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
     private static void assertElseConditionalPresent(File file) {
         assertElseConditionalPresent(file, "")
     }
