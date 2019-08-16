@@ -34,7 +34,6 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = filter.evaluate(node)
-        return result
+        return filter.evaluate(node)
     }
 }
