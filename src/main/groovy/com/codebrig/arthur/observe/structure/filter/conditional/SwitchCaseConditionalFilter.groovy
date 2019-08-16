@@ -33,7 +33,6 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
                 MultiFilter.matchAll(
                         new InternalRoleFilter("cases"),
                         new TypeFilter("Stmt_Case")
-
                 )
         )
     }
