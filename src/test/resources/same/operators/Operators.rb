@@ -21,3 +21,8 @@ def orOperator2
     puts ""
   end
 end
+
+def ternaryOperator
+  a = 10
+  b = a == 1 ? 20 : 30
+end

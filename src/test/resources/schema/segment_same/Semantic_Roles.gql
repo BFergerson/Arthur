@@ -1390,19 +1390,24 @@ RubyIdentifierArtifact sub IdentifierArtifact;
 
 RubyIfArtifact sub IfArtifact,
 	# Semantic
+	plays IS_BINARY,
+	plays IS_RIGHT,
 	plays IS_STATEMENT;
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_CALL,
+	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FUNCTION,
 	plays IS_LITERAL,
 	plays IS_NUMBER,
 	plays IS_PRIMITIVE,
-	plays IS_RIGHT;
+	plays IS_RIGHT,
+	plays IS_THEN;
 
 RubyKwargArtifact sub KwargArtifact,
 	# Semantic
@@ -1419,7 +1424,8 @@ RubyKwoptargArtifact sub RubySourceArtifact,
 RubyLvarArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
+	plays IS_IDENTIFIER,
+	plays IS_LEFT;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1467,6 +1473,15 @@ RubySendCallArtifact sub RubySourceArtifact,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_UPDATE;
+
+RubySendOperatorArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
 
 RubySendQualifiedArtifact sub RubySourceArtifact,
 	# Semantic

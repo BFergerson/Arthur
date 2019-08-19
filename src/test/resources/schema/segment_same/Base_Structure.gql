@@ -1418,6 +1418,7 @@ RubyArgsArtifact sub RubySourceArtifact,
 RubyBeginArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_base_role,
+	plays is_ruby_body_role,
 	plays is_ruby_file_role,
 	plays has_ruby_body_role;
 
@@ -1456,8 +1457,10 @@ RubyIdentifierArtifact sub IdentifierArtifact,
 RubyIfArtifact sub IfArtifact,
 	# Structural
 	plays is_ruby_body_role,
+	plays is_ruby_value_role,
 	plays has_ruby_body_role,
-	plays has_ruby_condition_role;
+	plays has_ruby_condition_role,
+	plays has_ruby_else_role;
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Attributes
@@ -1466,6 +1469,7 @@ RubyIntArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_body_role,
 	plays is_ruby_default_role,
+	plays is_ruby_else_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
 
@@ -1480,6 +1484,7 @@ RubyKwoptargArtifact sub RubySourceArtifact,
 
 RubyLvarArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_base_role,
 	plays is_ruby_values_role;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
@@ -1516,6 +1521,12 @@ RubyRestargArtifact sub RubySourceArtifact,
 RubySendCallArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_iterated_role,
+	plays has_ruby_base_role,
+	plays has_ruby_values_role;
+
+RubySendOperatorArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role,
 	plays has_ruby_base_role,
 	plays has_ruby_values_role;
 
@@ -3342,6 +3353,9 @@ ruby_condition_relation sub condition_relation,
 
 ruby_default_relation sub default_relation,
 	relates is_ruby_default_role as is_default_role, relates has_ruby_default_role as has_default_role;
+
+ruby_else_relation sub else_relation,
+	relates is_ruby_else_role as is_else_role, relates has_ruby_else_role as has_else_role;
 
 ruby_file_relation sub parent_child_relation,
 	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
