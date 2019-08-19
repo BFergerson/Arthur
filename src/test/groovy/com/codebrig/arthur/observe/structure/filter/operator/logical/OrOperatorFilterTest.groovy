@@ -42,19 +42,34 @@ class OrOperatorFilterTest extends ArthurTest {
                 "||", "")
     }
 
+    /**
+     * Babelfish treats both Ruby "||" and "or" operators as "or" token
+     */
+    @Test
+    void orOperator_Ruby() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "or", "", "orOperator1()")
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "or", "", "orOperator2()")
+    }
+
     private static void assertOrOperatorPresent(File file, String orToken) {
-        assertOrOperatorPresent(file, orToken, "")
+        assertOrOperatorPresent(file, orToken, "", "orOperator()")
     }
 
     private static void assertOrOperatorPresent(File file, String orToken, String qualifiedName) {
+        assertOrOperatorPresent(file, orToken, qualifiedName, "orOperator()")
+    }
+
+    private static void assertOrOperatorPresent(File file, String orToken, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 
         def foundOrOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "orOperator()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals(qualifiedName + "orOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new OrOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundOrOperator)

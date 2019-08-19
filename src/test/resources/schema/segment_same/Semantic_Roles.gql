@@ -5,6 +5,12 @@ define
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+AndArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR;
+
 ArgArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
@@ -81,6 +87,10 @@ ForStatementArtifact sub OmnilingualSourceArtifact,
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+IfArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_IF;
+
 IfStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_BODY,
@@ -126,6 +136,12 @@ OperatorArtifact sub OmnilingualSourceArtifact,
 	plays IS_OR,
 	plays IS_RELATIONAL,
 	plays IS_UNARY;
+
+OrArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR,
+	plays IS_OR;
 
 ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact,
 	# Semantic
@@ -1084,11 +1100,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	plays IS_BINARY,
 	plays IS_OPERATOR;
 
-PythonAndArtifact sub PythonSourceArtifact,
-	# Semantic
-	plays IS_AND,
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR;
+PythonAndArtifact sub AndArtifact;
 
 PythonArgArtifact sub ArgArtifact,
 	# Semantic
@@ -1193,10 +1205,9 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_INCOMPLETE;
 
-PythonIfArtifact sub PythonSourceArtifact,
+PythonIfArtifact sub IfArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IF;
+	plays IS_EXPRESSION;
 
 PythonIfBodyArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -1265,11 +1276,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays IS_PRIMITIVE,
 	plays IS_RIGHT;
 
-PythonOrArtifact sub PythonSourceArtifact,
-	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR,
-	plays IS_OR;
+PythonOrArtifact sub OrArtifact;
 
 PythonPreviousNoopsArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -1333,6 +1340,12 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyAndArtifact sub AndArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
 RubyArgArtifact sub ArgArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
@@ -1374,6 +1387,10 @@ RubyFloatArtifact sub RubySourceArtifact,
 RubyForArtifact sub ForArtifact;
 
 RubyIdentifierArtifact sub IdentifierArtifact;
+
+RubyIfArtifact sub IfArtifact,
+	# Semantic
+	plays IS_STATEMENT;
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1430,6 +1447,12 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_NAME;
 
+RubyOrArtifact sub OrArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
 RubyRestargArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
@@ -1451,11 +1474,20 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_IDENTIFIER,
-	plays IS_QUALIFIED;
+	plays IS_QUALIFIED,
+	plays IS_THEN;
 
 RubyStrArtifact sub StrArtifact,
 	# Semantic
 	plays IS_BINARY;
+
+RubyTrueArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_EXPRESSION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_RIGHT;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;

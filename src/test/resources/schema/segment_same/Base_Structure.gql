@@ -69,6 +69,8 @@ SourceArtifact sub entity,
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+AndArtifact sub OmnilingualSourceArtifact;
+
 ArgArtifact sub OmnilingualSourceArtifact;
 
 ArrayTypeArtifact sub OmnilingualSourceArtifact;
@@ -97,6 +99,8 @@ ForStatementArtifact sub OmnilingualSourceArtifact;
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+IfArtifact sub OmnilingualSourceArtifact;
+
 IfStatementArtifact sub OmnilingualSourceArtifact;
 
 KwargArtifact sub OmnilingualSourceArtifact;
@@ -108,6 +112,8 @@ ModuleArtifact sub OmnilingualSourceArtifact;
 NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
+
+OrArtifact sub OmnilingualSourceArtifact;
 
 ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact;
 
@@ -1151,7 +1157,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
-PythonAndArtifact sub PythonSourceArtifact,
+PythonAndArtifact sub AndArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1258,7 +1264,7 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_decorator_list_role;
 
-PythonIfArtifact sub PythonSourceArtifact,
+PythonIfArtifact sub IfArtifact,
 	# Structural
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
@@ -1322,7 +1328,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_value_role;
 
-PythonOrArtifact sub PythonSourceArtifact,
+PythonOrArtifact sub OrArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1394,6 +1400,12 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyAndArtifact sub AndArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyArgArtifact sub ArgArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1441,6 +1453,12 @@ RubyIdentifierArtifact sub IdentifierArtifact,
 	# Structural
 	plays is_ruby_qnames_role;
 
+RubyIfArtifact sub IfArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_body_role,
+	plays has_ruby_condition_role;
+
 RubyIntArtifact sub RubySourceArtifact,
 	# Attributes
 	has doubleValue,
@@ -1485,6 +1503,12 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays is_ruby_children_role,
 	plays has_ruby_default_role;
 
+RubyOrArtifact sub OrArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyRestargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1509,6 +1533,11 @@ RubyStrArtifact sub StrArtifact,
 	# Structural
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
+
+RubyTrueArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_left_role,
+	plays is_ruby_right_role;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
@@ -2708,6 +2737,9 @@ comments_relation sub parent_child_relation,
 cond_relation sub parent_child_relation,
 	relates is_cond_role as is_child, relates has_cond_role as is_parent;
 
+condition_relation sub parent_child_relation,
+	relates is_condition_role as is_child, relates has_condition_role as is_parent;
+
 default_relation sub parent_child_relation,
 	relates is_default_role as is_child, relates has_default_role as is_parent;
 
@@ -3305,6 +3337,9 @@ ruby_body_relation sub body_relation,
 ruby_children_relation sub children_relation,
 	relates is_ruby_children_role as is_children_role, relates has_ruby_children_role as has_children_role;
 
+ruby_condition_relation sub condition_relation,
+	relates is_ruby_condition_role as is_condition_role, relates has_ruby_condition_role as has_condition_role;
+
 ruby_default_relation sub default_relation,
 	relates is_ruby_default_role as is_default_role, relates has_ruby_default_role as has_default_role;
 
@@ -3317,8 +3352,14 @@ ruby_iterated_relation sub parent_child_relation,
 ruby_iterators_relation sub parent_child_relation,
 	relates is_ruby_iterators_role as is_child, relates has_ruby_iterators_role as is_parent;
 
+ruby_left_relation sub left_relation,
+	relates is_ruby_left_role as is_left_role, relates has_ruby_left_role as has_left_role;
+
 ruby_qnames_relation sub parent_child_relation,
 	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
+
+ruby_right_relation sub right_relation,
+	relates is_ruby_right_role as is_right_role, relates has_ruby_right_role as has_right_role;
 
 ruby_value_relation sub value_relation,
 	relates is_ruby_value_role as is_value_role, relates has_ruby_value_role as has_value_role;
@@ -3360,8 +3401,8 @@ csharp_close_paren_token_relation sub parent_child_relation,
 csharp_colon_token_relation sub parent_child_relation,
 	relates is_csharp_colon_token_role as is_child, relates has_csharp_colon_token_role as is_parent;
 
-csharp_condition_relation sub parent_child_relation,
-	relates is_csharp_condition_role as is_child, relates has_csharp_condition_role as is_parent;
+csharp_condition_relation sub condition_relation,
+	relates is_csharp_condition_role as is_condition_role, relates has_csharp_condition_role as has_condition_role;
 
 csharp_declaration_relation sub parent_child_relation,
 	relates is_csharp_declaration_role as is_child, relates has_csharp_declaration_role as is_parent;
