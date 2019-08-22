@@ -11,6 +11,9 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
+/**
+ * Note: Ruby has no variable declaration expression only
+ */
 class DeclareVariableOperatorFilterTest extends ArthurTest {
 
     @Test

@@ -1426,6 +1426,10 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
 
+RubyConstArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_base_role;
+
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
 	has name,
@@ -1547,8 +1551,10 @@ RubyStrArtifact sub StrArtifact,
 
 RubyTrueArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_base_role,
 	plays is_ruby_left_role,
-	plays is_ruby_right_role;
+	plays is_ruby_right_role,
+	plays is_ruby_values_role;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;

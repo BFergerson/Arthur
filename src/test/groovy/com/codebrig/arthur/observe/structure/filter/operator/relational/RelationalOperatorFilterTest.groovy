@@ -3,9 +3,7 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
-import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
-import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.DeclareVariableOperatorFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
@@ -59,18 +57,8 @@ class RelationalOperatorFilterTest extends ArthurTest {
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             MultiFilter.matchAll(new RelationalOperatorFilter()).reject(new DeclareVariableOperatorFilter())
                     .getFilteredNodes(it).each {
-                assertNotNull(
-                        MultiFilter.matchAny(
-                                new RoleFilter("LEFT"),
-                                new InternalRoleFilter("Left")
-                        ).getFilteredNodes(it.children).next()
-                )
-                assertNotNull(
-                        MultiFilter.matchAny(
-                                new RoleFilter("RIGHT"),
-                                new InternalRoleFilter("Right")
-                        ).getFilteredNodes(it.children).next()
-                )
+                assertNotNull(RelationalOperatorFilter.getLeftOperand(it))
+                assertNotNull(RelationalOperatorFilter.getRightOperand(it))
                 foundLeftOperands = true
                 foundRightOperands = true
             }

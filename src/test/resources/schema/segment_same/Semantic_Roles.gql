@@ -1368,6 +1368,13 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_NAME;
 
+RubyConstArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT;
+
 RubyDefArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
@@ -1480,6 +1487,8 @@ RubySendOperatorArtifact sub RubySourceArtifact,
 	plays IS_CONDITION,
 	plays IS_EQUAL,
 	plays IS_EXPRESSION,
+	plays IS_IDENTICAL,
+	plays IS_NOT,
 	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
 

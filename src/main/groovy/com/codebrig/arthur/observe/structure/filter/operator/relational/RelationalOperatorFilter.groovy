@@ -3,7 +3,10 @@ package com.codebrig.arthur.observe.structure.filter.operator.relational
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
+import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.compare.IsEqualOperatorFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.compare.IsEqualTypeOperatorFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.compare.IsNotEqualOperatorFilter
@@ -57,5 +60,53 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
             }
         }
         return false
+    }
+
+    static SourceNode getLeftOperand(SourceNode node) {
+        def matchedLeft = MultiFilter.matchAny(
+                new RoleFilter("LEFT"),
+                new InternalRoleFilter("Left")
+        ).getFilteredNodes(node.children)
+        def leftOp = (matchedLeft.hasNext()) ? matchedLeft.next() : null
+        leftOp = (leftOp == null) ? getSendOperatorLeft(node.children) : leftOp
+        return leftOp
+    }
+
+    static SourceNode getRightOperand(SourceNode node) {
+        def matchedRight = MultiFilter.matchAny(
+                new RoleFilter("RIGHT"),
+                new InternalRoleFilter("Right")
+        ).getFilteredNodes(node.children)
+        def rightOp = (matchedRight.hasNext()) ? matchedRight.next() : null
+        rightOp = (rightOp == null) ? getSendOperatorRight(node.children) : rightOp
+        return rightOp
+    }
+
+    static SourceNode getSendOperatorLeft(Iterator<SourceNode> children) {
+        def node = null
+        MultiFilter.matchAll(
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("OPERATOR"), new RoleFilter("CONDITION"), new RoleFilter("RELATIONAL"),
+                new TypeFilter("send_operator")
+        ).getFilteredNodes(children).each {
+            new RoleFilter("LEFT").getFilteredNodes(it.children).each {
+                node = it
+            }
+        }
+        return node
+    }
+
+    static SourceNode getSendOperatorRight(Iterator<SourceNode> children) {
+        def node = null
+        MultiFilter.matchAll(
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("OPERATOR"), new RoleFilter("CONDITION"), new RoleFilter("RELATIONAL"),
+                new TypeFilter("send_operator")
+        ).getFilteredNodes(children).each {
+            new RoleFilter("RIGHT").getFilteredNodes(it.children).each {
+                node = it
+            }
+        }
+        return node
     }
 }
