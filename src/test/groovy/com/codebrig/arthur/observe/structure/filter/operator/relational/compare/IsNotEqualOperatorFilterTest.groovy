@@ -44,6 +44,11 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void isNotEqualOperator_Ruby() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
+    @Test
     void alternateNotEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)
