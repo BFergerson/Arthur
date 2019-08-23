@@ -13,8 +13,16 @@ import static org.junit.Assert.*
 class BashNamingTest extends ArthurTest {
 
     @Test
-    void noArgs() {
+    void notUsingArgs() {
         assertBashNamingPresent("function1", "()")
+        assertBashNamingPresent("function2", "()")
+    }
+
+    @Test
+    void usingArgs() {
+        assertBashNamingPresent("function3", "()")
+        assertBashNamingPresent("function4", "()")
+        assertBashNamingPresent("function5", "()")
     }
 
     private static void assertBashNamingPresent(String functionName, String argsList) {

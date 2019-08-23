@@ -2043,6 +2043,101 @@ CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
 
 CsharpWhileStatementArtifact sub WhileStatementArtifact;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+Bash--Artifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashCombinedWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE;
+
+BashEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_OPERATOR;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
+BashForShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+BashGenericBashCommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashGTEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+BashLogicalBlockArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK;
+
+BashLPLPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashNumberArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashRPRPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashSimple-commandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
+
+BashVar-def-elementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_VARIABLE;
+
+BashVar-use-elementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashVariableArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER;
+
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,
 	relates IS_ADD;
