@@ -10,6 +10,9 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
+/**
+ * Note: Languages not tested here do not have the !== operator
+ */
 class IsNotEqualTypeOperatorFilterTest extends ArthurTest {
 
     @Test
