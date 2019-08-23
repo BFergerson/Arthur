@@ -22,9 +22,14 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
     private final Set<Integer> elseIfNodeIdentities = Sets.newConcurrentHashSet()
 
     ElseIfConditionalFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("IF"),
-                new RoleFilter("STATEMENT", "EXPRESSION")
+        filter = MultiFilter.matchAny(
+                MultiFilter.matchAll(
+                        new RoleFilter("IF"),
+                        new RoleFilter("STATEMENT", "EXPRESSION")
+                ),
+                MultiFilter.matchAll(
+                        new TypeFilter("if_shellcommand")
+                )
         )
     }
 
@@ -53,6 +58,11 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
                 new TypeFilter("IfStatement").getFilteredNodes(it.children).each {
                     elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
                 }
+            }
+            MultiFilter.matchAll(
+                    new TypeFilter("elif")
+            ).getFilteredNodes(node.children).each {
+                elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }
         }
 

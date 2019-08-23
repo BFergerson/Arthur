@@ -19,10 +19,15 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
     private final MultiFilter filter
 
     SwitchCaseConditionalFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("CASE"),  new RoleFilter("SWITCH", "STATEMENT"),
-                new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY"),
-                new TypeFilter().reject("CaseSwitchLabel")
+        filter = MultiFilter.matchAny(
+                MultiFilter.matchAll(
+                        new RoleFilter("CASE"),  new RoleFilter("SWITCH", "STATEMENT"),
+                        new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY"),
+                        new TypeFilter().reject("CaseSwitchLabel")
+                ),
+                MultiFilter.matchAll(
+                        new TypeFilter("case_pattern_list")
+                )
         )
     }
 
