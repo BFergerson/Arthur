@@ -24,12 +24,34 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
                         new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
                         new RoleFilter().reject("DECLARATION", "VARIABLE")
                 ),
-                new TypeFilter("ForEachKeyword")
+                new TypeFilter("ForEachKeyword"), new TypeFilter("for_shellcommand")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return filter.evaluate(node)
+        boolean result = filter.evaluate(node)
+        if (result) {
+            if (node.internalType == "for_shellcommand") {
+                return evaluateForShellCommand(node)
+            } else {
+                return true
+            }
+        }
+        return result
+    }
+
+    static boolean evaluateForShellCommand(SourceNode node) {
+        def a = new TypeFilter("for_shellcommand").getFilteredNodes(node)
+        if (a?.hasNext()) {
+            def b = MultiFilter.matchAll(
+                    new RoleFilter("FOR"), new RoleFilter("EXPRESSION"), new RoleFilter("ITERATOR"),
+                    new RoleFilter("DECLARATION"), new RoleFilter("VARIABLE")
+            ).getFilteredNodes(a.next().children)
+            if (b?.hasNext()) {
+                return true
+            }
+        }
+        return false
     }
 }
