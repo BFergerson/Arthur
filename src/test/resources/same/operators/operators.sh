@@ -19,7 +19,7 @@ isEqualOperator1() {
 }
 
 isEqualOperator2() {
-  if $1 -eq "a"; then
+  if $1 -eq 1; then
      echo ""
   fi
 }
@@ -31,7 +31,7 @@ isNotEqualOperator1() {
 }
 
 isNotEqualOperator2() {
-  if $1 -ne "a"; then
+  if $1 -ne 1; then
      echo ""
   fi
 }

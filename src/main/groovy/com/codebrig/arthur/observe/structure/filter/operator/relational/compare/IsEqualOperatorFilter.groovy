@@ -34,8 +34,6 @@ class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void>
         if (result) {
             if (node.internalType == "combined_word") {
                 return evaluateCombinedWordIsEqual(node)
-            } else {
-                return true
             }
         }
         return result
@@ -47,7 +45,6 @@ class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void>
             if (isEqualToken == "==" || isEqualToken == "-eq") {
                 return true
             }
-            return false
         }
         return false
     }
