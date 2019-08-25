@@ -18,15 +18,48 @@ class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void>
     private final MultiFilter filter
 
     IsEqualOperatorFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"),
-                new RoleFilter("RELATIONAL"),
-                new TypeFilter().reject("InfixExpression", "BinaryExpression")
+        filter = MultiFilter.matchAny(
+                MultiFilter.matchAll(
+                        new RoleFilter("EQUAL"), new RoleFilter("OPERATOR"),
+                        new RoleFilter("RELATIONAL"),
+                        new TypeFilter().reject("InfixExpression", "BinaryExpression")
+                ),
+                new TypeFilter("combined_word")
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        return filter.evaluate(node)
+        boolean result = filter.evaluate(node)
+        if (result) {
+            if (node.internalType == "combined_word") {
+                return evaluateCombinedWordIsEqual(node)
+            } else {
+                return true
+            }
+        }
+        return result
+    }
+
+    static boolean evaluateCombinedWordIsEqual(SourceNode node) {
+        if (node.parentSourceNode.internalType == "simple-command") {
+            def isEqualToken = getIsEqualToken(node)
+            if (isEqualToken == "==" || isEqualToken == "-eq") {
+                return true
+            }
+            return false
+        }
+        return false
+    }
+
+    static String getIsEqualToken(SourceNode node) {
+        if (node.parentSourceNode.internalType == "simple-command") {
+            def op = ""
+            new TypeFilter("word").getFilteredNodes(node.children).each {
+                op += it.token
+            }
+            return (op == "==" || op == "-eq") ? op : ""
+        }
+        return node.token
     }
 }
