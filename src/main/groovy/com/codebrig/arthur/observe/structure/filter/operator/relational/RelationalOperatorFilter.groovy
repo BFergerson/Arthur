@@ -70,6 +70,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
         ).getFilteredNodes(node.children)
         def leftOp = (matchedLeft.hasNext()) ? matchedLeft.next() : null
         leftOp = (leftOp == null) ? getPropOperand1(node.children) : leftOp
+        leftOp = (leftOp == null) ? getSendOperatorLeft(node.children) : leftOp
         return leftOp
     }
 
@@ -80,6 +81,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
         ).getFilteredNodes(node.children)
         def rightOp = (matchedRight.hasNext()) ? matchedRight.next() : null
         rightOp = (rightOp == null) ? getPropOperand2(node.children) : rightOp
+        rightOp = (rightOp == null) ? getSendOperatorRight(node.children) : rightOp
         return rightOp
     }
 
@@ -97,6 +99,34 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
         def node = null
         new TypeFilter("CPPASTBinaryExpression").getFilteredNodes(children).each {
             new InternalRoleFilter("Prop_Operand2").getFilteredNodes(it).each {
+                node = it
+            }
+        }
+        return node
+    }
+
+    static SourceNode getSendOperatorLeft(Iterator<SourceNode> children) {
+        def node = null
+        MultiFilter.matchAll(
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("OPERATOR"), new RoleFilter("CONDITION"), new RoleFilter("RELATIONAL"),
+                new TypeFilter("send_operator")
+        ).getFilteredNodes(children).each {
+            new RoleFilter("LEFT").getFilteredNodes(it.children).each {
+                node = it
+            }
+        }
+        return node
+    }
+
+    static SourceNode getSendOperatorRight(Iterator<SourceNode> children) {
+        def node = null
+        MultiFilter.matchAll(
+                new RoleFilter("RELATIONAL"), new RoleFilter("EXPRESSION"), new RoleFilter("BINARY"),
+                new RoleFilter("OPERATOR"), new RoleFilter("CONDITION"), new RoleFilter("RELATIONAL"),
+                new TypeFilter("send_operator")
+        ).getFilteredNodes(children).each {
+            new RoleFilter("RIGHT").getFilteredNodes(it.children).each {
                 node = it
             }
         }
