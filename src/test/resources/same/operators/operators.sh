@@ -35,3 +35,7 @@ isNotEqualOperator2() {
      echo ""
   fi
 }
+
+initializeVariableOperator() {
+  x=0
+}
