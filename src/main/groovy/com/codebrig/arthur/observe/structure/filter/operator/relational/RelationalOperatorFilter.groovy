@@ -20,6 +20,7 @@ import com.codebrig.arthur.observe.structure.filter.operator.relational.define.I
  * @version 0.4
  * @since 0.4
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter, Void> {
 
@@ -68,6 +69,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
                 new InternalRoleFilter("Left")
         ).getFilteredNodes(node.children)
         def leftOp = (matchedLeft.hasNext()) ? matchedLeft.next() : null
+        leftOp = (leftOp == null) ? getPropOperand1(node.children) : leftOp
         leftOp = (leftOp == null) ? getSendOperatorLeft(node.children) : leftOp
         return leftOp
     }
@@ -78,8 +80,29 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
                 new InternalRoleFilter("Right")
         ).getFilteredNodes(node.children)
         def rightOp = (matchedRight.hasNext()) ? matchedRight.next() : null
+        rightOp = (rightOp == null) ? getPropOperand2(node.children) : rightOp
         rightOp = (rightOp == null) ? getSendOperatorRight(node.children) : rightOp
         return rightOp
+    }
+
+    static SourceNode getPropOperand1(Iterator<SourceNode> children) {
+        def node = null
+        new TypeFilter("CPPASTBinaryExpression").getFilteredNodes(children).each {
+            new InternalRoleFilter("Prop_Operand1").getFilteredNodes(it).each {
+                node = it
+            }
+        }
+        return node
+    }
+
+    static SourceNode getPropOperand2(Iterator<SourceNode> children) {
+        def node = null
+        new TypeFilter("CPPASTBinaryExpression").getFilteredNodes(children).each {
+            new InternalRoleFilter("Prop_Operand2").getFilteredNodes(it).each {
+                node = it
+            }
+        }
+        return node
     }
 
     static SourceNode getSendOperatorLeft(Iterator<SourceNode> children) {
