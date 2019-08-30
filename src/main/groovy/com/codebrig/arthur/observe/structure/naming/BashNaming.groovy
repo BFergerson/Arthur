@@ -9,7 +9,9 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
 /**
  * Used to get the names/qualified names of Bash AST nodes
  *
- * @version 0.4* @since 0.4* @author <ahref="mailto:valpecaoco@gmail.com" > Val Pecaoco</a>
+ * @version 0.4
+ * @since 0.4
+ * @author <a href="mailto:valpecaoco@gmail.com"> Val Pecaoco</a>
  */
 class BashNaming implements StructureNaming {
 
@@ -17,6 +19,7 @@ class BashNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "function-def-element":
+            case "var-def-element":
                 return true
             default:
                 return false
@@ -28,6 +31,8 @@ class BashNaming implements StructureNaming {
         switch (Objects.requireNonNull(node).internalType) {
             case "function-def-element":
                 return getFunctionDefElementName(node)
+            case "var-def-element":
+                return getVarDefElementName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Bash node type: " + node.internalType)
         }
@@ -41,5 +46,13 @@ class BashNaming implements StructureNaming {
                     .getFilteredNodes(it.children).next().token
         }
         return name + "()"
+    }
+
+    static String getVarDefElementName(SourceNode node) {
+        def name = ""
+        new TypeFilter("assignment_word").getFilteredNodes(node.children).each {
+            name += it.token
+        }
+        return name
     }
 }

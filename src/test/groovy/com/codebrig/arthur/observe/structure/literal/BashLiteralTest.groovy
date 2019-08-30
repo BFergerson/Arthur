@@ -7,7 +7,6 @@ import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.InitializeVariableOperatorFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
-import org.apache.commons.lang.StringEscapeUtils
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -21,7 +20,7 @@ class BashLiteralTest extends ArthurTest {
 
     @Test
     void stringLiteralTest() {
-        assertBashLiteralPresent("param100", "stringValue", StringEscapeUtils.escapeJava("\"stringParam100\""))
+        assertBashLiteralPresent("param2", "stringValue", "stringParam2")
     }
 
     private static void assertBashLiteralPresent(String literalName, String literalType, Object literalValue) {
@@ -32,7 +31,6 @@ class BashLiteralTest extends ArthurTest {
         boolean foundLiteral = false
         MultiFilter.matchAll(new NameFilter(literalName), new InitializeVariableOperatorFilter())
                 .getFilteredNodes(language, resp.uast).each {
-            println ">>>>> it.name = ${it.name}"
             assertEquals(literalName, it.name)
             def literalNode = new LiteralFilter().getFilteredNodes(it).next()
             assertNotNull(literalNode)

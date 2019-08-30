@@ -15,7 +15,7 @@ class BashLiteral extends StructureLiteral {
     @Override
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "NumberLiteral":
+            case "int_literal":
                 if (node.token.contains(".") ||
                         (node.token.isDouble() &&
                                 (node.token.toUpperCase().contains("P")
@@ -26,7 +26,7 @@ class BashLiteral extends StructureLiteral {
                     return doubleValueLiteral()
                 }
                 return numberValueLiteral()
-            case "StringLiteral":
+            case "string_content":
                 return stringValueLiteral()
             default:
                 return null
@@ -36,9 +36,9 @@ class BashLiteral extends StructureLiteral {
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "NumberLiteral":
+            case "int_literal":
                 return [numberValueLiteral(), doubleValueLiteral()]
-            case "StringLiteral":
+            case "string_content":
                 return [stringValueLiteral()]
             default:
                 return Collections.emptyList()
