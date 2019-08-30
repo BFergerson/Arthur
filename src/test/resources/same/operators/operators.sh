@@ -36,6 +36,19 @@ isNotEqualOperator2() {
   fi
 }
 
+declareVariableOperator1() {
+  declare -i x
+}
+
+declareVariableOperator2() {
+  typeset -a x
+}
+
 initializeVariableOperator() {
   x=0
+}
+
+assignVariableOperator() {
+  declare -i x=0
+  x=1
 }
