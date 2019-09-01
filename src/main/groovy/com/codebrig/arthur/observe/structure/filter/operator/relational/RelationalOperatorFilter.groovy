@@ -71,6 +71,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
         def leftOp = (matchedLeft.hasNext()) ? matchedLeft.next() : null
         leftOp = (leftOp == null) ? getPropOperand1(node.children) : leftOp
         leftOp = (leftOp == null) ? getSendOperatorLeft(node.children) : leftOp
+        leftOp = (leftOp == null) ? getSimpleCommandLeftOperand(node) : leftOp
         return leftOp
     }
 
@@ -82,6 +83,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
         def rightOp = (matchedRight.hasNext()) ? matchedRight.next() : null
         rightOp = (rightOp == null) ? getPropOperand2(node.children) : rightOp
         rightOp = (rightOp == null) ? getSendOperatorRight(node.children) : rightOp
+        rightOp = (rightOp == null) ? getSimpleCommandRightOperand(node) : rightOp
         return rightOp
     }
 
@@ -131,5 +133,21 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
             }
         }
         return node
+    }
+
+    static SourceNode getSimpleCommandLeftOperand(SourceNode node) {
+        if (node.internalType == "simple-command" && node.children.size() == 3)  {
+            def left = node.children[0]
+            return left
+        }
+        return null
+    }
+
+    static SourceNode getSimpleCommandRightOperand(SourceNode node) {
+        if (node.internalType == "simple-command" && node.children.size() == 3)  {
+            def right = node.children[2]
+            return right
+        }
+        return null
     }
 }
