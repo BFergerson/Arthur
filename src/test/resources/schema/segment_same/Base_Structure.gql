@@ -2768,6 +2768,8 @@ BashVariableArtifact sub BashSourceArtifact,
 	plays is_bash_children_role;
 
 BashWordArtifact sub BashSourceArtifact,
+	# Attributes
+	has stringValue,
 	# Structural
 	plays is_bash_children_role;
 
