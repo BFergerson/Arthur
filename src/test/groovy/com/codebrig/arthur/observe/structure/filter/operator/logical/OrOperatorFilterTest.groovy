@@ -44,7 +44,7 @@ class OrOperatorFilterTest extends ArthurTest {
 
     @Test
     void orOperator_Bash() {
-        assertOrOperatorPresent(new File("src/test/resources/same/operators/operators.sh"),
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "||", "")
     }
 

@@ -54,7 +54,7 @@ class BashLiteralTest extends ArthurTest {
     }
 
     private static void assertBashLiteralPresent(String literalName, String literalType, Object literalValue) {
-        def file = new File("src/test/resources/same/literals/literals.sh")
+        def file = new File("src/test/resources/same/literals/Literals.sh")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

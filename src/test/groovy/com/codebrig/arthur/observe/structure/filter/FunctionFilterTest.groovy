@@ -46,7 +46,7 @@ class FunctionFilterTest extends ArthurTest {
 
     @Test
     void onlyFunctions_Bash() {
-        assertFunctionsPresent(new File("src/test/resources/same/functions/functions.sh"))
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.sh"))
     }
 
     private static void assertFunctionsPresent(File file) {

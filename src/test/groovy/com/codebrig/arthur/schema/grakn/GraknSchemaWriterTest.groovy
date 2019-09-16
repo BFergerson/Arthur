@@ -22,7 +22,7 @@ class GraknSchemaWriterTest extends ArthurTest {
         def pythonLanguage = schemaGenerator.observeLanguage(SourceLanguage.Python, new File("src/test/resources/same/"))
         def rubyLanguage = schemaGenerator.observeLanguage(SourceLanguage.Ruby, new File("src/test/resources/same/"))
         def cSharpLanguage = schemaGenerator.observeLanguage(SourceLanguage.CSharp, new File("src/test/resources/same/"))
-        def bashLanguage = schemaGenerator.observeLanguage(SourceLanguage.Bash, new File("src/test/resources/same/program/"))
+        def bashLanguage = schemaGenerator.observeLanguage(SourceLanguage.Bash, new File("src/test/resources/same/"))
         def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage)
 

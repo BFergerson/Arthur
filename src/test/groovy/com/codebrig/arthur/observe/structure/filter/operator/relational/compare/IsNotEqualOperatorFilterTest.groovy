@@ -45,9 +45,9 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
 
     @Test
     void isNotEqualOperator_Bash() {
-        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/operators.sh"),
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "", "isNotEqualOperator1()", "!=")
-        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/operators.sh"),
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "", "isNotEqualOperator2()", "-ne")
     }
 

@@ -26,7 +26,7 @@ class BashNamingTest extends ArthurTest {
     }
 
     private static void assertBashNamingPresent(String functionName, String argsList) {
-        def file = new File("src/test/resources/same/functions/functions.sh")
+        def file = new File("src/test/resources/same/functions/Functions.sh")
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
 

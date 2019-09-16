@@ -40,7 +40,7 @@ class ElseConditionalFilterTest extends ArthurTest {
 
     @Test
     void elseConditional_Bash() {
-        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/conditionals.sh"))
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
     }
 
     private static void assertElseConditionalPresent(File file) {

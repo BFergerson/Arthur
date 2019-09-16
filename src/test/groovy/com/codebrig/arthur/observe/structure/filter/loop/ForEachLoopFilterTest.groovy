@@ -35,7 +35,7 @@ class ForEachLoopFilterTest extends ArthurTest {
 
     @Test
     void forEachLoop_Bash() {
-        assertForEachLoopPresent(new File("src/test/resources/same/loops/loops.sh"))
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.sh"))
     }
 
     private static void assertForEachLoopPresent(File file) {

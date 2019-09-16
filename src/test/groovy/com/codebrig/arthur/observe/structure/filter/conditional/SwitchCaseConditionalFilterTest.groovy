@@ -35,7 +35,7 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
 
     @Test
     void switchCaseConditional_Bash() {
-        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/conditionals.sh"))
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
     }
 
     private static void assertSwitchCaseConditionalPresent(File file) {

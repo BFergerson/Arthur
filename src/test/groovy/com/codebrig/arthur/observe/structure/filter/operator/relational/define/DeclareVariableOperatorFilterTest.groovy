@@ -46,9 +46,9 @@ class DeclareVariableOperatorFilterTest extends ArthurTest {
 
     @Test
     void declareVariableOperator_Bash() {
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/operators.sh"),
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "", "declareVariableOperator1()")
-        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/operators.sh"),
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "", "declareVariableOperator2()")
     }
 
