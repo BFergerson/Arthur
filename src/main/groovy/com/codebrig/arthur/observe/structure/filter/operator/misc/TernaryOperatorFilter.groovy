@@ -25,6 +25,7 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
                         new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
                         new RoleFilter("RIGHT")
                 ),
+                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
                 MultiFilter.matchAll(
                         new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION"),
                         new InternalRoleFilter().reject("Prop_InitOperand2")
