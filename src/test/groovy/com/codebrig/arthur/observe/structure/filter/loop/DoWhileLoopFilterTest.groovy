@@ -27,13 +27,18 @@ class DoWhileLoopFilterTest extends ArthurTest {
         assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
     }
 
+    @Test
+    void doWhileLoop_CPlusPlus() {
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertDoWhileLoopPresent(File file) {
         assertDoWhileLoopPresent(file, "")
     }
 
     private static void assertDoWhileLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundDoWhileLoop = false
         def functionFilter = new FunctionFilter()

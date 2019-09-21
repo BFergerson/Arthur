@@ -38,13 +38,18 @@ class IfConditionalFilterTest extends ArthurTest {
         assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
 
+    @Test
+    void ifConditional_CPlusPlus() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
     private static void assertIfConditionalPresent(File file) {
         assertIfConditionalPresent(file, "")
     }
 
     private static void assertIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundIfConditional = false
         def functionFilter = new FunctionFilter()

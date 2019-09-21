@@ -33,8 +33,8 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
         boolean result = filter.evaluate(node)
         if (result) {
             MultiFilter.matchAll(
-                    new InternalRoleFilter("elseStatement", "alternate", "Else"),
-                    new TypeFilter("If", "IfStatement", "IfStmt")
+                    new InternalRoleFilter("elseStatement", "alternate", "Else", "Prop_ElseClause"),
+                    new TypeFilter("If", "IfStatement", "IfStmt", "CPPASTIfStatement")
             ).getFilteredNodes(node.children).each {
                 elseIfNodeIdentities.add(System.identityHashCode(it.underlyingNode))
             }

@@ -44,13 +44,18 @@ class DeclareVariableOperatorFilterTest extends ArthurTest {
         assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
+    @Test
+    void declareVariableOperator_CPlusPlus() {
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertDeclareVariableOperatorPresent(File file) {
         assertDeclareVariableOperatorPresent(file, "")
     }
 
     private static void assertDeclareVariableOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundDeclareVariableOperator = false
         def functionFilter = new FunctionFilter()

@@ -43,13 +43,18 @@ class IsEqualOperatorFilterTest extends ArthurTest {
         assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
     }
 
+    @Test
+    void isEqualOperator_CPlusPlus() {
+        assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertIsEqualOperatorPresent(File file) {
         assertIsEqualOperatorPresent(file, "")
     }
 
     private static void assertIsEqualOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundEqualOperator = false
         def functionFilter = new FunctionFilter()
