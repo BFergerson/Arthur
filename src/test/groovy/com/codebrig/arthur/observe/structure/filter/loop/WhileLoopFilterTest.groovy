@@ -32,17 +32,27 @@ class WhileLoopFilterTest extends ArthurTest {
         assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.py"))
     }
 
+    @Test
+    void whileLoop_CSharp() {
+        assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
+    @Test
+    void whileLoop_CPlusPlus() {
+        assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertWhileLoopPresent(File file) {
         assertWhileLoopPresent(file, "")
     }
 
     private static void assertWhileLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundWhileLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("whileLoop")
+        def nameFilter = new NameFilter(qualifiedName + "whileLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "whileLoop()", it.name)
 

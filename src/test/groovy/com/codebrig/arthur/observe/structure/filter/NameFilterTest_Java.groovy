@@ -11,7 +11,7 @@ class NameFilterTest_Java extends ArthurTest {
     @Test
     void simpleName() {
         def file = new File("src/test/resources/java/ImportQualifiedName.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
         def fileFilter = new NameFilter("arg")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -22,7 +22,7 @@ class NameFilterTest_Java extends ArthurTest {
     @Test
     void innerVariable() {
         def file = new File("src/test/resources/java/ImportQualifiedName.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
         def fileFilter = new NameFilter("arrayList")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {

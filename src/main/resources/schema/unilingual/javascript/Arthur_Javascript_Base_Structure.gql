@@ -1909,6 +1909,7 @@ UpdateExpressionArtifact sub JavascriptSourceArtifact,
 VariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has kindAttribute,
+	has name,
 	# Structural
 	plays is_alternate_role,
 	plays is_body_role,

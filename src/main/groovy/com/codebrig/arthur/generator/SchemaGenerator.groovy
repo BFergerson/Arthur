@@ -137,7 +137,7 @@ class SchemaGenerator {
             log.info "Parsing: " + file
             def fileResponse = new FileParseResponse(file)
             def task = executorService.submit({
-                fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.key)
+                fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.babelfishName)
                 return fileResponse
             } as Callable<FileParseResponse>)
             try {

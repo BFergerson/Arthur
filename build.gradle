@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.26'
     implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.2'
     implementation 'org.codehaus.groovy:groovy-all:2.4.15'
     implementation 'org.bblfsh:bblfsh-client:2.0.0-SNAPSHOT'

@@ -21,17 +21,27 @@ class DoWhileLoopFilterTest extends ArthurTest {
         assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
     }
 
+    @Test
+    void doWhileLoop_CSharp() {
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
+    @Test
+    void doWhileLoop_CPlusPlus() {
+        assertDoWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertDoWhileLoopPresent(File file) {
         assertDoWhileLoopPresent(file, "")
     }
 
     private static void assertDoWhileLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundDoWhileLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("doWhileLoop")
+        def nameFilter = new NameFilter(qualifiedName + "doWhileLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "doWhileLoop()", it.name)
 

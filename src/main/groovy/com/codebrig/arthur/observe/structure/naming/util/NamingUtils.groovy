@@ -1,7 +1,7 @@
 package com.codebrig.arthur.observe.structure.naming.util
 
 /**
- * Various common utility methods for AST naming.
+ * Various common utility methods for AST naming
  *
  * @version 0.4
  * @since 0.4

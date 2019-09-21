@@ -32,17 +32,27 @@ class ElseIfConditionalFilterTest extends ArthurTest {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.py"))
     }
 
+    @Test
+    void elseIfConditional_CSharp() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
+    @Test
+    void elseIfConditional_CPlusPlus() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
     private static void assertElseIfConditionalPresent(File file) {
         assertElseIfConditionalPresent(file, "")
     }
 
     private static void assertElseIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundElseIfConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
+        def nameFilter = new NameFilter(qualifiedName + "ifElseIfConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "ifElseIfConditional()", it.name)
 

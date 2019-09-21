@@ -16,7 +16,7 @@ class RoleFilterTest extends ArthurTest {
         def forLoopFilter = new ForLoopFilter()
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
-            def resp = client.parse(file.name, file.text, language.key)
+            def resp = client.parse(file.name, file.text, language.babelfishName)
 
             boolean foundForStatement = false
             filter.getFilteredNodes(language, resp.uast).each {

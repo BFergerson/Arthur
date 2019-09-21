@@ -12,13 +12,13 @@ public class Operators {
         }
     }
 
-    public void equalOperator() {
+    public void isEqualOperator() {
         if (true == true) {
             System.out.println("");
         }
     }
 
-    public void notEqualOperator() {
+    public void isNotEqualOperator() {
         if (true != true) {
             System.out.println("");
         }
@@ -28,5 +28,18 @@ public class Operators {
         int a, b;
         a = 10;
         b = (a == 1) ? 20 : 30;
+    }
+
+    public void declareVariableOperator() {
+        int x;
+    }
+
+    public void initializeVariableOperator() {
+        int x = 0;
+    }
+
+    public void assignVariableOperator() {
+        int x = 0;
+        x = 1;
     }
 }

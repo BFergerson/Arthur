@@ -51,10 +51,10 @@ class JavascriptNamingTest extends ArthurTest {
     private static void assertJavascriptNamingPresent(String functionName, String argsList) {
         def file = new File("src/test/resources/same/functions/Functions.js")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(functionName)
+        def nameFilter = new NameFilter(functionName + argsList)
         boolean foundFunction = false
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(functionName + argsList, it.name)

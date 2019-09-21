@@ -35,17 +35,29 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and")
     }
 
+    @Test
+    void andOperator_CSharp() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "&&")
+    }
+
+    @Test
+    void andOperator_CPlusPlus() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "")
     }
 
     private static void assertAndOperatorPresent(File file, String andToken, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundAndOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("andOperator")
+        def nameFilter = new NameFilter(qualifiedName + "andOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "andOperator()", it.name)
 

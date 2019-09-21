@@ -27,17 +27,27 @@ class SwitchConditionalFilterTest extends ArthurTest {
         assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
     }
 
+    @Test
+    void switchConditional_CSharp() {
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
+    @Test
+    void switchConditional_CPlusPlus() {
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
     private static void assertSwitchConditionalPresent(File file) {
         assertSwitchConditionalPresent(file, "")
     }
 
     private static void assertSwitchConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundSwitchConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchConditional")
+        def nameFilter = new NameFilter(qualifiedName + "switchConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "switchConditional()", it.name)
 

@@ -43,18 +43,36 @@ class TryFilterTest extends ArthurTest {
         assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.py"))
     }
 
+    @Test
+    void tryCatch_CSharp() {
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.cs"))
+    }
+
+    @Test
+    void tryCatchFinally_CSharp() {
+        assertTryCatchFinallyPresent(new File("src/test/resources/same/exceptions/Exceptions.cs"))
+    }
+
+    /**
+     * Note: C++ does not have "finally" implemented; try-finally is Microsoft-specific
+     */
+    @Test
+    void tryCatch_CPlusPlus() {
+        assertTryCatchPresent(new File("src/test/resources/same/exceptions/Exceptions.cpp"))
+    }
+
     private static void assertTryCatchPresent(File file) {
         assertTryCatchPresent(file, "")
     }
 
     private static void assertTryCatchPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundTry = false
         def foundCatch = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatch")
+        def nameFilter = new NameFilter(qualifiedName + "tryCatch()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "tryCatch()", it.name)
 
@@ -77,13 +95,13 @@ class TryFilterTest extends ArthurTest {
 
     private static void assertTryCatchFinallyPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundTry = false
         def foundCatch = false
         def foundFinally = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("tryCatchFinally")
+        def nameFilter = new NameFilter(qualifiedName + "tryCatchFinally()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "tryCatchFinally()", it.name)
 

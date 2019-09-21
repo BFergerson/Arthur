@@ -27,17 +27,27 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
         assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
     }
 
+    @Test
+    void switchCaseConditional_CSharp() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
+    @Test
+    void switchCaseConditional_CPlusPlus() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
     private static void assertSwitchCaseConditionalPresent(File file) {
         assertSwitchCaseConditionalPresent(file, "")
     }
 
     private static void assertSwitchCaseConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundSwitchCaseConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("switchCaseConditional")
+        def nameFilter = new NameFilter(qualifiedName + "switchCaseConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "switchCaseConditional()", it.name)
 

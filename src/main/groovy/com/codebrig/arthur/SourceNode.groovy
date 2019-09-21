@@ -70,6 +70,10 @@ class SourceNode {
         return underlyingNode.internalType()
     }
 
+    boolean hasName() {
+        return naming.isNamedNodeType(this)
+    }
+
     String getName() {
         return naming.getNodeName(this)
     }
@@ -77,6 +81,8 @@ class SourceNode {
     String getToken() {
         if (underlyingNode.properties().contains("token")) {
             return underlyingNode.properties().get("token").get()
+        } else if (underlyingNode.token().isEmpty() && underlyingNode.properties().contains("Text")) {
+            return underlyingNode.properties().get("Text").get()
         }
         return underlyingNode.token()
     }
@@ -119,6 +125,10 @@ class SourceNode {
 
     boolean isLiteralNode() {
         return literal.isNodeLiteral(this)
+    }
+
+    Object getLiteralValue() {
+        return literal.getNodeLiteralValue(this)
     }
 
     String getLiteralAttribute() {

@@ -41,17 +41,27 @@ class ForLoopFilterTest extends ArthurTest {
         assertLoopPresent(new File("src/test/resources/same/loops/Loops.rb"))
     }
 
+    @Test
+    void forLoop_CSharp() {
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
+    @Test
+    void forLoop_CPlusPlus() {
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertLoopPresent(File file) {
         assertLoopPresent(file, "")
     }
 
     private static void assertLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundForLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forLoop")
+        def nameFilter = new NameFilter(qualifiedName + "forLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "forLoop()", it.name)
 

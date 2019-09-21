@@ -5,6 +5,7 @@ booleanValue sub attribute, datatype boolean;
 doubleValue sub attribute, datatype double;
 name sub attribute, datatype string;
 numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Java -----#####
@@ -18,6 +19,11 @@ javascriptSourceTypeAttribute sub attribute, datatype string;
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
 
+#####----- Csharp -----#####
+csharpArityAttribute sub attribute, datatype string;
+csharpIsMissingAttribute sub attribute, datatype string;
+csharpIsStructuredTriviaAttribute sub attribute, datatype string;
+
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
 	has token,
@@ -27,9 +33,18 @@ SourceArtifact sub entity,
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+CompilationUnitArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
 FileArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_FILE;
+
+MethodDeclarationArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
 
 ModuleArtifact sub OmnilingualSourceArtifact,
 	# Semantic
@@ -54,23 +69,19 @@ GoFuncDeclArtifact sub GoSourceArtifact,
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaCompilationUnitArtifact sub JavaSourceArtifact,
+JavaCompilationUnitArtifact sub CompilationUnitArtifact,
 	# Attributes
 	has name,
 	# Structural
-	plays is_parent,
-	# Semantic
-	plays IS_FILE;
+	plays is_parent;
 
-JavaMethodDeclarationArtifact sub JavaSourceArtifact,
+JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Attributes
 	has javaConstructorAttribute,
 	has name,
 	# Structural
 	plays is_child,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
@@ -160,6 +171,29 @@ RubyModuleArtifact sub ModuleArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_STATEMENT;
 
+#####----- Csharp -----#####
+CsharpSourceArtifact sub SourceArtifact;
+
+CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+	# Attributes
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	# Structural
+	plays is_parent,
+	# Semantic
+	plays IS_MODULE;
+
+CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
+	# Attributes
+	has csharpArityAttribute,
+	has csharpIsMissingAttribute,
+	has csharpIsStructuredTriviaAttribute,
+	has name,
+	# Structural
+	plays is_child,
+	# Semantic
+	plays IS_TYPE;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
@@ -212,6 +246,9 @@ NAME sub relation,
 
 STATEMENT sub relation,
 	relates IS_STATEMENT;
+
+TYPE sub relation,
+	relates IS_TYPE;
 
 VISIBILITY sub relation,
 	relates IS_VISIBILITY;

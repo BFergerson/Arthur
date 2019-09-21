@@ -14,7 +14,7 @@ class TypeFilterTest_Java extends ArthurTest {
     void onlyMethodsFilter() {
         def methodFilter = new TypeFilter("MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.Java.key)
+        def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
 
         boolean foundMethod = false
         methodFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
@@ -28,7 +28,7 @@ class TypeFilterTest_Java extends ArthurTest {
     void compilationUnitsAndMethodsFilter() {
         def filter = new TypeFilter("CompilationUnit", "MethodDeclaration")
         def file = new File("src/test/resources/java/Complex.java")
-        def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).key)
+        def resp = client.parse(file.name, file.text, SourceLanguage.getSourceLanguage(file).babelfishName)
         def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         boolean foundCompilationUnit = false

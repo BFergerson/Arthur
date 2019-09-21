@@ -5,6 +5,8 @@
 Arthur is a semantic omnilingual UAST (universal abstract syntax tree) schema generator which uses source code as input and outputs unilingual and omnilingual ontologies derived from those language(s).
 Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) and constructs the observed schema for use in a [Grakn](https://github.com/graknlabs/grakn) knowledge graph. 
 
+# Schemas
+
 ## Omnilingual Schema
 
 | Languages                               | Segments                                                     |
@@ -21,3 +23,54 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 | PHP        | [Arthur_Php_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/php/Arthur_Php_Base_Structure.gql) <br> [Arthur_Php_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/php/Arthur_Php_Semantic_Roles.gql) |
 | Python     | [Arthur_Python_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/python/Arthur_Python_Base_Structure.gql) <br> [Arthur_Python_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/python/Arthur_Python_Semantic_Roles.gql) |
 | Ruby       | [Arthur_Ruby_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/ruby/Arthur_Ruby_Base_Structure.gql) <br> [Arthur_Ruby_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/ruby/Arthur_Ruby_Semantic_Roles.gql) |
+
+# Supported Concepts
+
+## Structural
+
+### Conditional
+
+- If/ElseIf/Else
+- Switch/SwitchCase
+
+### Exception
+
+- Try/Catch/Finally
+
+### Loop
+
+- ForLoop
+- ForEachLoop
+- WhileLoop
+- DoWhileLoop
+
+### Operator
+
+#### Logical
+
+- AndOperator
+- OrOperator
+
+#### Misc
+
+- TernaryOperator
+
+#### Relational
+
+- RelationalOperator
+
+##### Compare
+
+- IsEqualOperator/IsNotEqualOperator
+- IsEqualTypeOperator/IsNotEqualTypeOperator
+
+##### Define
+
+- DeclareVariableOperator
+- InitializeVariableOperator
+
+## Misc
+
+- Function
+- Literal
+- Name

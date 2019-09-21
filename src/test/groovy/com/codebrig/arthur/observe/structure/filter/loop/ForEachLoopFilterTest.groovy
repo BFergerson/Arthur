@@ -27,17 +27,27 @@ class ForEachLoopFilterTest extends ArthurTest {
         assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.js"))
     }
 
+    @Test
+    void forEachLoop_CSharp() {
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.cs"))
+    }
+
+    @Test
+    void forEachLoop_CPlusPlus() {
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
     private static void assertForEachLoopPresent(File file) {
         assertForEachLoopPresent(file, "")
     }
 
     private static void assertForEachLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundForEachLoop = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("forEachLoop")
+        def nameFilter = new NameFilter(qualifiedName + "forEachLoop()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "forEachLoop()", it.name)
 

@@ -22,17 +22,27 @@ class TernaryOperatorFilterTest extends ArthurTest {
         assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
+    @Test
+    void ternaryOperator_CSharp() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"))
+    }
+
+    @Test
+    void ternaryOperator_CPlusPlus() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
     private static void assertTernaryOperatorPresent(File file) {
         assertTernaryOperatorPresent(file, "")
     }
 
     private static void assertTernaryOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundTernaryOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ternaryOperator")
+        def nameFilter = new NameFilter(qualifiedName + "ternaryOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "ternaryOperator()", it.name)
 
