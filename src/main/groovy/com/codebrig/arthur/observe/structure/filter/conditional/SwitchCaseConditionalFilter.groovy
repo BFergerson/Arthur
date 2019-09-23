@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.conditional
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
@@ -19,10 +20,22 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
     private final MultiFilter filter
 
     SwitchCaseConditionalFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("CASE"),  new RoleFilter("SWITCH", "STATEMENT"),
-                new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY"),
-                new TypeFilter().reject("CaseSwitchLabel")
+        filter = MultiFilter.matchAny(
+                MultiFilter.matchAll(
+                        new RoleFilter("CASE"), new RoleFilter("SWITCH", "STATEMENT"),
+                        new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY"),
+                        new TypeFilter().reject("CaseSwitchLabel")
+                ),
+                //todo: remove following line (https://github.com/bblfsh/ruby-driver/pull/53
+                MultiFilter.matchAll(
+                        new RoleFilter("SWITCH"), new RoleFilter("STATEMENT"),
+                        new TypeFilter("case")
+                ),
+                //todo: remove following line (https://github.com/bblfsh/php-driver/pull/56)
+                MultiFilter.matchAll(
+                        new InternalRoleFilter("cases"),
+                        new TypeFilter("Stmt_Case")
+                )
         )
     }
 
