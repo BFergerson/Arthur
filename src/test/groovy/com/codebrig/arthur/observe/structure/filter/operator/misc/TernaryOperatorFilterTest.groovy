@@ -29,6 +29,11 @@ class TernaryOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void ternaryOperator_CPlusPlus() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
+    @Test
     void ternaryOperator_Ruby() {
         assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
     }
@@ -39,7 +44,7 @@ class TernaryOperatorFilterTest extends ArthurTest {
 
     private static void assertTernaryOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundTernaryOperator = false
         def functionFilter = new FunctionFilter()

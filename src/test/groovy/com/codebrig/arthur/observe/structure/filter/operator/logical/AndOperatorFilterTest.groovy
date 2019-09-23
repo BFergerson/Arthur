@@ -53,6 +53,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and", "", "andOperator2()")
     }
 
+    @Test
+    void andOperator_CPlusPlus() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "", "andOperator()")
     }
@@ -63,7 +69,7 @@ class AndOperatorFilterTest extends ArthurTest {
 
     private static void assertAndOperatorPresent(File file, String andToken, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundAndOperator = false
         def functionFilter = new FunctionFilter()

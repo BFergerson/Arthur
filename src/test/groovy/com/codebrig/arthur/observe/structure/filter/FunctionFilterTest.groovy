@@ -44,9 +44,14 @@ class FunctionFilterTest extends ArthurTest {
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.cs"))
     }
 
+    @Test
+    void onlyFunctions_CPlusPlus() {
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.cpp"))
+    }
+
     private static void assertFunctionsPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         boolean foundFunction = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {

@@ -26,7 +26,8 @@ enum SourceLanguage {
     Php(["php"]),
     Python(["py"]),
     Ruby(["rb"]),
-    CSharp(["cs"])
+    CSharp(["cs"]),
+    CPlusPlus(["cpp"])
 
     private final Set<String> fileExtensions
 
@@ -36,6 +37,15 @@ enum SourceLanguage {
 
     String getKey() {
         return name().toLowerCase()
+    }
+
+    String getBabelfishName() {
+        switch (getKey()) {
+            case "cplusplus":
+                return "cpp"
+            default:
+                return getKey()
+        }
     }
 
     String getQualifiedName() {
@@ -86,6 +96,8 @@ enum SourceLanguage {
                 return new RubyNaming()
             case CSharp:
                 return new CSharpNaming()
+            case CPlusPlus:
+                return new CPlusPlusNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
@@ -108,6 +120,8 @@ enum SourceLanguage {
                 return new RubyLiteral()
             case CSharp:
                 return new CSharpLiteral()
+            case CPlusPlus:
+                return new CPlusPlusLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }

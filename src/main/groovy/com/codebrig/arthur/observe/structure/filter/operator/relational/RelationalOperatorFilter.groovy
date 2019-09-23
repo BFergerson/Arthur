@@ -88,6 +88,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
     }
 
     static SourceNode getPropOperand1(Iterator<SourceNode> children) {
+        //todo: may need to re-implement (https://github.com/bblfsh/cpp-driver/pull/59)
         def node = null
         new TypeFilter("CPPASTBinaryExpression").getFilteredNodes(children).each {
             new InternalRoleFilter("Prop_Operand1").getFilteredNodes(it).each {
@@ -98,6 +99,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
     }
 
     static SourceNode getPropOperand2(Iterator<SourceNode> children) {
+        //todo: may need to re-implement (https://github.com/bblfsh/cpp-driver/pull/59)
         def node = null
         new TypeFilter("CPPASTBinaryExpression").getFilteredNodes(children).each {
             new InternalRoleFilter("Prop_Operand2").getFilteredNodes(it).each {
@@ -136,7 +138,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
     }
 
     static SourceNode getSimpleCommandLeftOperand(SourceNode node) {
-        if (node.internalType == "simple-command" && node.children.size() == 3)  {
+        if (node.internalType == "simple-command" && node.children.size() == 3) {
             def left = node.children[0]
             return left
         }
@@ -144,7 +146,7 @@ class RelationalOperatorFilter extends StructureFilter<RelationalOperatorFilter,
     }
 
     static SourceNode getSimpleCommandRightOperand(SourceNode node) {
-        if (node.internalType == "simple-command" && node.children.size() == 3)  {
+        if (node.internalType == "simple-command" && node.children.size() == 3) {
             def right = node.children[2]
             return right
         }

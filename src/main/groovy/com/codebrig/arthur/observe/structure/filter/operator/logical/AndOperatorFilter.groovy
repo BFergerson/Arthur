@@ -30,6 +30,11 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
                         new RoleFilter("BINARY"), new RoleFilter("EXPRESSION"), new RoleFilter("CONDITION"),
                         new TypeFilter("and"),
                         new InternalRoleFilter("condition")
+                ),
+                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
+                MultiFilter.matchAll(
+                        new RoleFilter("AND"), new RoleFilter("EXPRESSION"), new RoleFilter("BOOLEAN", "BINARY"),
+                        new TypeFilter("CPPASTBinaryExpression")
                 )
         )
     }
