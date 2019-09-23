@@ -97,6 +97,8 @@ ForStatementArtifact sub OmnilingualSourceArtifact;
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+IfArtifact sub OmnilingualSourceArtifact;
+
 IfStatementArtifact sub OmnilingualSourceArtifact;
 
 KwargArtifact sub OmnilingualSourceArtifact;
@@ -1035,6 +1037,7 @@ PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprConstFetchArtifact sub PhpSourceArtifact,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_default_role,
 	plays is_php_left_role,
 	plays is_php_right_role,
@@ -1101,6 +1104,7 @@ PhpScalarLNumberArtifact sub PhpSourceArtifact,
 	# Attributes
 	has numberValue,
 	# Structural
+	plays is_php_cond_role,
 	plays is_php_default_role,
 	plays is_php_else_role,
 	plays is_php_expr_role,
@@ -1113,11 +1117,28 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 	plays is_php_exprs_role,
 	plays is_php_value_role;
 
+PhpStmtCaseArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_cases_role,
+	plays has_php_cond_role,
+	plays has_php_stmts_role;
+
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays is_php_stmts_role,
 	plays has_php_exprs_role;
+
+PhpStmtElseArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_else_role,
+	plays has_php_stmts_role;
+
+PhpStmtElseIfArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_elseifs_role,
+	plays has_php_cond_role,
+	plays has_php_stmts_role;
 
 PhpStmtForArtifact sub PhpSourceArtifact,
 	# Structural
@@ -1142,7 +1163,15 @@ PhpStmtIfArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_body_role,
 	plays has_php_cond_role,
+	plays has_php_else_role,
+	plays has_php_elseifs_role,
 	plays has_php_stmts_role;
+
+PhpStmtSwitchArtifact sub PhpSourceArtifact,
+	# Structural
+	plays is_php_body_role,
+	plays has_php_cases_role,
+	plays has_php_cond_role;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
@@ -1258,7 +1287,7 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_decorator_list_role;
 
-PythonIfArtifact sub PythonSourceArtifact,
+PythonIfArtifact sub IfArtifact,
 	# Structural
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
@@ -1413,6 +1442,13 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
 
+RubyCaseArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays has_ruby_casevar_role,
+	plays has_ruby_else_role,
+	plays has_ruby_when_clauses_role;
+
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
 	has name,
@@ -1421,6 +1457,10 @@ RubyDefArtifact sub RubySourceArtifact,
 	plays is_ruby_file_role,
 	plays has_ruby_args_role,
 	plays has_ruby_body_role;
+
+RubyFalseArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role;
 
 RubyFloatArtifact sub RubySourceArtifact,
 	# Attributes
@@ -1441,12 +1481,22 @@ RubyIdentifierArtifact sub IdentifierArtifact,
 	# Structural
 	plays is_ruby_qnames_role;
 
+RubyIfArtifact sub IfArtifact,
+	# Structural
+	plays is_ruby_body_role,
+	plays is_ruby_else_role,
+	plays has_ruby_body_role,
+	plays has_ruby_condition_role,
+	plays has_ruby_else_role;
+
 RubyIntArtifact sub RubySourceArtifact,
 	# Attributes
 	has doubleValue,
 	has numberValue,
 	# Structural
 	plays is_ruby_body_role,
+	plays is_ruby_casevar_role,
+	plays is_ruby_conditions_role,
 	plays is_ruby_default_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
@@ -1500,6 +1550,7 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	has rubySelectorAttribute,
 	# Structural
 	plays is_ruby_body_role,
+	plays is_ruby_else_role,
 	plays has_ruby_qnames_role,
 	plays has_ruby_values_role;
 
@@ -1509,6 +1560,16 @@ RubyStrArtifact sub StrArtifact,
 	# Structural
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
+
+RubyTrueArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role;
+
+RubyWhenArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_when_clauses_role,
+	plays has_ruby_body_role,
+	plays has_ruby_conditions_role;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
@@ -2699,6 +2760,9 @@ block_relation sub parent_child_relation,
 body_relation sub parent_child_relation,
 	relates is_body_role as is_child, relates has_body_role as is_parent;
 
+cases_relation sub parent_child_relation,
+	relates is_cases_role as is_child, relates has_cases_role as is_parent;
+
 children_relation sub parent_child_relation,
 	relates is_children_role as is_child, relates has_children_role as is_parent;
 
@@ -2707,6 +2771,9 @@ comments_relation sub parent_child_relation,
 
 cond_relation sub parent_child_relation,
 	relates is_cond_role as is_child, relates has_cond_role as is_parent;
+
+condition_relation sub parent_child_relation,
+	relates is_condition_role as is_child, relates has_condition_role as is_parent;
 
 default_relation sub parent_child_relation,
 	relates is_default_role as is_child, relates has_default_role as is_parent;
@@ -3077,8 +3144,8 @@ javascript_body_relation sub body_relation,
 javascript_callee_relation sub parent_child_relation,
 	relates is_javascript_callee_role as is_child, relates has_javascript_callee_role as is_parent;
 
-javascript_cases_relation sub parent_child_relation,
-	relates is_javascript_cases_role as is_child, relates has_javascript_cases_role as is_parent;
+javascript_cases_relation sub cases_relation,
+	relates is_javascript_cases_role as is_cases_role, relates has_javascript_cases_role as has_cases_role;
 
 javascript_comments_relation sub comments_relation,
 	relates is_javascript_comments_role as is_comments_role, relates has_javascript_comments_role as has_comments_role;
@@ -3153,6 +3220,9 @@ javascript_update_relation sub parent_child_relation,
 php_body_relation sub body_relation,
 	relates is_php_body_role as is_body_role, relates has_php_body_role as has_body_role;
 
+php_cases_relation sub cases_relation,
+	relates is_php_cases_role as is_cases_role, relates has_php_cases_role as has_cases_role;
+
 php_children_relation sub children_relation,
 	relates is_php_children_role as is_children_role, relates has_php_children_role as has_children_role;
 
@@ -3164,6 +3234,9 @@ php_default_relation sub default_relation,
 
 php_else_relation sub else_relation,
 	relates is_php_else_role as is_else_role, relates has_php_else_role as has_else_role;
+
+php_elseifs_relation sub parent_child_relation,
+	relates is_php_elseifs_role as is_child, relates has_php_elseifs_role as is_parent;
 
 php_expr_relation sub parent_child_relation,
 	relates is_php_expr_role as is_child, relates has_php_expr_role as is_parent;
@@ -3302,11 +3375,23 @@ ruby_base_relation sub parent_child_relation,
 ruby_body_relation sub body_relation,
 	relates is_ruby_body_role as is_body_role, relates has_ruby_body_role as has_body_role;
 
+ruby_casevar_relation sub parent_child_relation,
+	relates is_ruby_casevar_role as is_child, relates has_ruby_casevar_role as is_parent;
+
 ruby_children_relation sub children_relation,
 	relates is_ruby_children_role as is_children_role, relates has_ruby_children_role as has_children_role;
 
+ruby_condition_relation sub condition_relation,
+	relates is_ruby_condition_role as is_condition_role, relates has_ruby_condition_role as has_condition_role;
+
+ruby_conditions_relation sub parent_child_relation,
+	relates is_ruby_conditions_role as is_child, relates has_ruby_conditions_role as is_parent;
+
 ruby_default_relation sub default_relation,
 	relates is_ruby_default_role as is_default_role, relates has_ruby_default_role as has_default_role;
+
+ruby_else_relation sub else_relation,
+	relates is_ruby_else_role as is_else_role, relates has_ruby_else_role as has_else_role;
 
 ruby_file_relation sub parent_child_relation,
 	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
@@ -3325,6 +3410,9 @@ ruby_value_relation sub value_relation,
 
 ruby_values_relation sub values_relation,
 	relates is_ruby_values_role as is_values_role, relates has_ruby_values_role as has_values_role;
+
+ruby_when_clauses_relation sub parent_child_relation,
+	relates is_ruby_when_clauses_role as is_child, relates has_ruby_when_clauses_role as is_parent;
 
 #####----- Csharp -----#####
 csharp_argument_list_relation sub parent_child_relation,
@@ -3360,8 +3448,8 @@ csharp_close_paren_token_relation sub parent_child_relation,
 csharp_colon_token_relation sub parent_child_relation,
 	relates is_csharp_colon_token_role as is_child, relates has_csharp_colon_token_role as is_parent;
 
-csharp_condition_relation sub parent_child_relation,
-	relates is_csharp_condition_role as is_child, relates has_csharp_condition_role as is_parent;
+csharp_condition_relation sub condition_relation,
+	relates is_csharp_condition_role as is_condition_role, relates has_csharp_condition_role as has_condition_role;
 
 csharp_declaration_relation sub parent_child_relation,
 	relates is_csharp_declaration_role as is_child, relates has_csharp_declaration_role as is_parent;

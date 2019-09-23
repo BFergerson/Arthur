@@ -10,6 +10,9 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
+/**
+ * Note: Ruby and PHP have no switch-only conditional
+ */
 class SwitchConditionalFilterTest extends ArthurTest {
 
     @Test
