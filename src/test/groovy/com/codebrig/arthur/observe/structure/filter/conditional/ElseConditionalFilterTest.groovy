@@ -34,6 +34,11 @@ class ElseConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void elseConditional_Php() {
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
+    @Test
     void elseConditional_CSharp() {
         assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
@@ -41,6 +46,11 @@ class ElseConditionalFilterTest extends ArthurTest {
     @Test
     void elseConditional_CPlusPlus() {
         assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
+    @Test
+    void elseConditional_Ruby() {
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
     }
 
     @Test

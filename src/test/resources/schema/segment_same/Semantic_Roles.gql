@@ -81,6 +81,11 @@ ForStatementArtifact sub OmnilingualSourceArtifact,
 
 IdentifierArtifact sub OmnilingualSourceArtifact;
 
+IfArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IF;
+
 IfStatementArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_BODY,
@@ -968,8 +973,10 @@ PhpExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 
 PhpExprConstFetchArtifact sub PhpSourceArtifact,
 	# Semantic
+	plays IS_CONDITION,
 	plays IS_DEFAULT,
 	plays IS_EXPRESSION,
+	plays IS_IF,
 	plays IS_INCOMPLETE,
 	plays IS_LEFT,
 	plays IS_RIGHT,
@@ -1035,6 +1042,8 @@ PhpScalarDNumberArtifact sub PhpSourceArtifact,
 
 PhpScalarLNumberArtifact sub PhpSourceArtifact,
 	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
 	plays IS_DEFAULT,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
@@ -1050,14 +1059,31 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 	plays IS_RIGHT,
 	plays IS_STRING;
 
+PhpStmtCaseArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_CASE;
+
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_CALL,
+	plays IS_CASE,
+	plays IS_ELSE,
 	plays IS_FOR,
 	plays IS_IF,
 	plays IS_STATEMENT,
 	plays IS_THEN;
+
+PhpStmtElseArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
+
+PhpStmtElseIfArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT;
 
 PhpStmtForArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -1073,6 +1099,10 @@ PhpStmtIfArtifact sub PhpSourceArtifact,
 	# Semantic
 	plays IS_IF,
 	plays IS_STATEMENT;
+
+PhpStmtSwitchArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_SWITCH;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
@@ -1193,10 +1223,7 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_INCOMPLETE;
 
-PythonIfArtifact sub PythonSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IF;
+PythonIfArtifact sub IfArtifact;
 
 PythonIfBodyArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -1355,12 +1382,24 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_NAME;
 
+RubyCaseArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
+
 RubyDefArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION,
 	plays IS_IDENTIFIER,
 	plays IS_STATEMENT;
+
+RubyFalseArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL;
 
 RubyFloatArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1374,6 +1413,11 @@ RubyFloatArtifact sub RubySourceArtifact,
 RubyForArtifact sub ForArtifact;
 
 RubyIdentifierArtifact sub IdentifierArtifact;
+
+RubyIfArtifact sub IfArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1448,14 +1492,28 @@ RubySendCallArtifact sub RubySourceArtifact,
 RubySendQualifiedArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BODY,
+	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_IDENTIFIER,
-	plays IS_QUALIFIED;
+	plays IS_QUALIFIED,
+	plays IS_THEN;
 
 RubyStrArtifact sub StrArtifact,
 	# Semantic
 	plays IS_BINARY;
+
+RubyTrueArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL;
+
+RubyWhenArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_EXPRESSION;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
