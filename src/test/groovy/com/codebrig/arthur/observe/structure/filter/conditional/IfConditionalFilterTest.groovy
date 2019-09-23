@@ -33,6 +33,11 @@ class IfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void ifConditional_Php() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
+    @Test
     void ifConditional_CSharp() {
         assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
@@ -42,19 +47,30 @@ class IfConditionalFilterTest extends ArthurTest {
         assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
     }
 
+    @Test
+    void ifConditional_Ruby() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"),
+                "", "unlessConditional()")
+    }
+
     private static void assertIfConditionalPresent(File file) {
-        assertIfConditionalPresent(file, "")
+        assertIfConditionalPresent(file, "", "ifConditional()")
     }
 
     private static void assertIfConditionalPresent(File file, String qualifiedName) {
+        assertIfConditionalPresent(file, qualifiedName, "ifConditional()")
+    }
+
+    private static void assertIfConditionalPresent(File file, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundIfConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "ifConditional()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals(qualifiedName + "ifConditional()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new IfConditionalFilter().getFilteredNodes(it).each {
                 assertFalse(foundIfConditional)

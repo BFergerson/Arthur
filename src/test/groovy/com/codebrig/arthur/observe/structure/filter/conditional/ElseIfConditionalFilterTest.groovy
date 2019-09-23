@@ -33,6 +33,11 @@ class ElseIfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void elseIfConditional_Php() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
+    @Test
     void elseIfConditional_CSharp() {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
     }
@@ -44,6 +49,11 @@ class ElseIfConditionalFilterTest extends ArthurTest {
 
     private static void assertElseIfConditionalPresent(File file) {
         assertElseIfConditionalPresent(file, "")
+    }
+
+    @Test
+    void elseIfConditional_Ruby() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
     }
 
     private static void assertElseIfConditionalPresent(File file, String qualifiedName) {
