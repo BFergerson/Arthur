@@ -12,7 +12,12 @@ import com.codebrig.arthur.SourceNode
 trait StructureNaming {
 
     boolean isNamedNodeType(SourceNode node) {
-        return isNamedNodeType(node.internalType)
+        def internalType = node.internalType
+        switch (internalType) {
+            case "uast:FunctionGroup":
+                return true
+        }
+        return isNamedNodeType(internalType)
     }
 
     abstract boolean isNamedNodeType(String internalType)

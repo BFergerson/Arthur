@@ -4,6 +4,7 @@ import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -15,9 +16,10 @@ class JavaNamingTest extends ArthurTest {
     void fileQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
         def fileFilter = new RoleFilter("FILE")
 
-        fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        fileFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             assertEquals("ForStmt", it.name)
         }
     }
@@ -26,9 +28,10 @@ class JavaNamingTest extends ArthurTest {
     void fileQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
         def fileFilter = new RoleFilter("FILE")
 
-        fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        fileFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             assertEquals("com.company.ForStmt", it.name)
         }
     }
@@ -37,9 +40,10 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
         def functionFilter = new TypeFilter("MethodDeclaration")
 
-        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        functionFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             assertEquals("ForStmt.method()", it.name)
         }
     }
@@ -48,9 +52,10 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
         def functionFilter = new TypeFilter("MethodDeclaration")
 
-        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        functionFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             assertEquals("com.company.ForStmt.method()", it.name)
         }
     }
@@ -59,6 +64,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_variousStuff_noPackage_differentArgs() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
         def functionFilter = new TypeFilter("MethodDeclaration")
 
         boolean foundQualifiedTypeArgs = false
@@ -67,7 +73,7 @@ class JavaNamingTest extends ArthurTest {
         boolean foundStringArrayArgs2 = false
         boolean foundIterableArgs = false
         boolean foundListMapArgs = false
-        functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        functionFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
             switch (it.name) {
                 case "VariousStuff.method_QualifiedTypeArgs(TypeToken<?>.TypeSet)":
                     foundQualifiedTypeArgs = true

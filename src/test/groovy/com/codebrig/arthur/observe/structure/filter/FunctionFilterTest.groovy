@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertTrue
@@ -51,9 +52,10 @@ class FunctionFilterTest extends ArthurTest {
     private static void assertFunctionsPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         boolean foundFunction = false
-        new FunctionFilter().getFilteredNodes(language, resp.uast).each {
+        new FunctionFilter().getFilteredNodes(language, rootNode).each {
             foundFunction = true
         }
         assertTrue(foundFunction)

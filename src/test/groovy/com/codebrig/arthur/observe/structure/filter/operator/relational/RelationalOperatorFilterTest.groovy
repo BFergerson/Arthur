@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.DeclareVariableOperatorFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertNotNull
@@ -50,11 +50,12 @@ class RelationalOperatorFilterTest extends ArthurTest {
 
     private static void assertRelationalOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundLeftOperands = false
         def foundRightOperands = false
-        new FunctionFilter().getFilteredNodes(language, resp.uast).each {
+        new FunctionFilter().getFilteredNodes(language, rootNode).each {
             MultiFilter.matchAll(new RelationalOperatorFilter()).reject(new DeclareVariableOperatorFilter())
                     .getFilteredNodes(it).each {
                 assertNotNull(RelationalOperatorFilter.getLeftOperand(it))

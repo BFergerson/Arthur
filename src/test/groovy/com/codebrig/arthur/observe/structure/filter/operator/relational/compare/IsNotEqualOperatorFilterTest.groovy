@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -52,12 +52,13 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     void alternateNotEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundAlternateNotEqualOperator = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("alternateIsNotEqualOperator()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals("alternateIsNotEqualOperator()", it.name)
 
             new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
@@ -75,12 +76,13 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
 
     private static void assertIsNotEqualOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundNotEqualOperator = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(qualifiedName + "isNotEqualOperator()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals(qualifiedName + "isNotEqualOperator()", it.name)
 
             new IsNotEqualOperatorFilter().getFilteredNodes(it).each {

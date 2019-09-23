@@ -5,6 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -39,11 +40,12 @@ class TernaryOperatorFilterTest extends ArthurTest {
     private static void assertTernaryOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundTernaryOperator = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(qualifiedName + "ternaryOperator()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals(qualifiedName + "ternaryOperator()", it.name)
 
             new TernaryOperatorFilter().getFilteredNodes(it).each {

@@ -5,6 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -24,11 +25,12 @@ class IsNotEqualTypeOperatorFilterTest extends ArthurTest {
     private static void assertIsNotEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundNotEqualTypeOperator = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("isNotEqualTypeOperator()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals("isNotEqualTypeOperator()", it.name)
 
             new IsNotEqualTypeOperatorFilter().getFilteredNodes(it).each {
