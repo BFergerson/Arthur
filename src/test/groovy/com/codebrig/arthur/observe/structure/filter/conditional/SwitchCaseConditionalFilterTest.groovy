@@ -29,8 +29,8 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void switchCaseConditional_Ruby() {
-        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    void switchCaseConditional_Php() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
     }
 
     @Test
@@ -39,17 +39,22 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void switchCaseConditional_Php() {
-        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    void switchCaseConditional_CPlusPlus() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
     }
 
     private static void assertSwitchCaseConditionalPresent(File file) {
         assertSwitchCaseConditionalPresent(file, "")
     }
 
+    @Test
+    void switchCaseConditional_Ruby() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
     private static void assertSwitchCaseConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundSwitchCaseConditional = false
         def functionFilter = new FunctionFilter()

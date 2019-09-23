@@ -34,10 +34,8 @@ class IfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void ifConditional_Ruby() {
-        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
-        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"),
-                 "", "unlessConditional()")
+    void ifConditional_Php() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
     }
 
     @Test
@@ -46,8 +44,15 @@ class IfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void ifConditional_Php() {
-        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    void ifConditional_CPlusPlus() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
+    @Test
+    void ifConditional_Ruby() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"),
+                "", "unlessConditional()")
     }
 
     private static void assertIfConditionalPresent(File file) {
@@ -60,7 +65,7 @@ class IfConditionalFilterTest extends ArthurTest {
 
     private static void assertIfConditionalPresent(File file, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundIfConditional = false
         def functionFilter = new FunctionFilter()

@@ -34,8 +34,8 @@ class ElseIfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void elseIfConditional_Ruby() {
-        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    void elseIfConditional_Php() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
     }
 
     @Test
@@ -44,17 +44,22 @@ class ElseIfConditionalFilterTest extends ArthurTest {
     }
 
     @Test
-    void elseIfConditional_Php() {
-        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    void elseIfConditional_CPlusPlus() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
     }
 
     private static void assertElseIfConditionalPresent(File file) {
         assertElseIfConditionalPresent(file, "")
     }
 
+    @Test
+    void elseIfConditional_Ruby() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
     private static void assertElseIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundElseIfConditional = false
         def functionFilter = new FunctionFilter()

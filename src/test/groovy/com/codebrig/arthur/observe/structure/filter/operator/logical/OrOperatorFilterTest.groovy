@@ -15,7 +15,7 @@ class OrOperatorFilterTest extends ArthurTest {
     @Test
     void orOperator_Go() {
         assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.go"),
-                "||", "")
+                "||")
     }
 
     @Test
@@ -33,13 +33,19 @@ class OrOperatorFilterTest extends ArthurTest {
     @Test
     void orOperator_Python() {
         assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.py"),
-                "or", "")
+                "or")
     }
 
     @Test
     void orOperator_CSharp() {
         assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
-                "||", "")
+                "||")
+    }
+
+    @Test
+    void orOperator_CPlusPlus() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "||")
     }
 
     private static void assertOrOperatorPresent(File file, String orToken) {
@@ -48,7 +54,7 @@ class OrOperatorFilterTest extends ArthurTest {
 
     private static void assertOrOperatorPresent(File file, String orToken, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundOrOperator = false
         def functionFilter = new FunctionFilter()

@@ -12,6 +12,7 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void> {
 
@@ -27,6 +28,11 @@ class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void>
 
     @Override
     boolean evaluate(SourceNode node) {
-        return filter.evaluate(node)
+        //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
+        if (node?.internalType == "CPPASTBinaryExpression" && node.token == "==") {
+            return true
+        } else {
+            return filter.evaluate(node)
+        }
     }
 }

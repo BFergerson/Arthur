@@ -44,10 +44,15 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void isNotEqualOperator_CPlusPlus() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
+    @Test
     void alternateNotEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundAlternateNotEqualOperator = false
         def functionFilter = new FunctionFilter()
@@ -70,7 +75,7 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
 
     private static void assertIsNotEqualOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundNotEqualOperator = false
         def functionFilter = new FunctionFilter()
