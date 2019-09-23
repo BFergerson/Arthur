@@ -42,6 +42,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "&&")
     }
 
+    @Test
+    void andOperator_CPlusPlus() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "&&")
+    }
+
     /**
      * Babelfish treats both Ruby "&&" and "and" operators as "and" token
      */
@@ -51,12 +57,6 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and", "", "andOperator1()")
         assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
                 "and", "", "andOperator2()")
-    }
-
-    @Test
-    void andOperator_CPlusPlus() {
-        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
-                "&&")
     }
 
     private static void assertAndOperatorPresent(File file, String andToken) {
