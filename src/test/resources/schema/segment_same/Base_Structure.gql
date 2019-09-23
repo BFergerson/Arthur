@@ -1593,20 +1593,17 @@ RubyStrArtifact sub StrArtifact,
 
 RubyTrueArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_ruby_condition_role;
+	plays is_ruby_base_role,
+	plays is_ruby_condition_role,
+	plays is_ruby_left_role,
+	plays is_ruby_right_role,
+	plays is_ruby_values_role;
 
 RubyWhenArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_when_clauses_role,
 	plays has_ruby_body_role,
 	plays has_ruby_conditions_role;
-
-RubyTrueArtifact sub RubySourceArtifact,
-	# Structural
-	plays is_ruby_base_role,
-	plays is_ruby_left_role,
-	plays is_ruby_right_role,
-	plays is_ruby_values_role;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
@@ -3417,9 +3414,6 @@ ruby_casevar_relation sub parent_child_relation,
 
 ruby_children_relation sub children_relation,
 	relates is_ruby_children_role as is_children_role, relates has_ruby_children_role as has_children_role;
-
-ruby_condition_relation sub condition_relation,
-	relates is_ruby_condition_role as is_condition_role, relates has_ruby_condition_role as has_condition_role;
 
 ruby_condition_relation sub condition_relation,
 	relates is_ruby_condition_role as is_condition_role, relates has_ruby_condition_role as has_condition_role;

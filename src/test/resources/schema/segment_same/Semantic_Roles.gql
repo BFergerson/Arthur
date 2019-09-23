@@ -1232,8 +1232,6 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	plays IS_INCOMPLETE;
 
 PythonIfArtifact sub IfArtifact;
-	# Semantic
-	plays IS_EXPRESSION;
 
 PythonIfBodyArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -1436,12 +1434,8 @@ RubyIdentifierArtifact sub IdentifierArtifact;
 RubyIfArtifact sub IfArtifact,
 	# Semantic
 	plays IS_BINARY,
-	plays IS_RIGHT,
-	plays IS_STATEMENT;
-
-RubyIfArtifact sub IfArtifact,
-	# Semantic
 	plays IS_ELSE,
+	plays IS_RIGHT,
 	plays IS_STATEMENT;
 
 RubyIntArtifact sub RubySourceArtifact,
