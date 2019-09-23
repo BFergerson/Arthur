@@ -87,7 +87,7 @@ class CSharpNamingTest extends ArthurTest {
     private static void assertCSharpNamingPresent(String functionName, String argsList) {
         def file = new File("src/test/resources/same/functions/Functions.cs")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(functionName + argsList)

@@ -12,6 +12,7 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
  * @version 0.4
  * @since 0.3
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void> {
 
@@ -30,13 +31,18 @@ class IsEqualOperatorFilter extends StructureFilter<IsEqualOperatorFilter, Void>
 
     @Override
     boolean evaluate(SourceNode node) {
-        boolean result = filter.evaluate(node)
-        if (result) {
-            if (node.internalType == "combined_word") {
-                return evaluateCombinedWordIsEqual(node)
+        //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
+        if (node?.internalType == "CPPASTBinaryExpression" && node.token == "==") {
+            return true
+        } else {
+            boolean result = filter.evaluate(node)
+            if (result) {
+                if (node.internalType == "combined_word") {
+                    return evaluateCombinedWordIsEqual(node)
+                }
             }
+            return result
         }
-        return result
     }
 
     static boolean evaluateCombinedWordIsEqual(SourceNode node) {

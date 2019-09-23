@@ -39,8 +39,8 @@ class ElseConditionalFilter extends StructureFilter<ElseConditionalFilter, Void>
         if (result) {
             MultiFilter.matchAny(
                     MultiFilter.matchAll(
-                            new InternalRoleFilter("orelse", "elseStatement", "alternate", "Else"),
-                            new TypeFilter().reject("If", "IfStmt", "IfStatement")
+                            new InternalRoleFilter("orelse", "elseStatement", "alternate", "Else", "Prop_ElseClause"),
+                            new TypeFilter().reject("If", "IfStmt", "IfStatement", "CPPASTIfStatement")
                     ),
                     MultiFilter.matchAll(
                             new TypeFilter("else")

@@ -27,6 +27,7 @@ enum SourceLanguage {
     Python(["py"]),
     Ruby(["rb"]),
     CSharp(["cs"]),
+    CPlusPlus(["cpp"]),
     Bash(["sh"])
 
     private final Set<String> fileExtensions
@@ -37,6 +38,15 @@ enum SourceLanguage {
 
     String getKey() {
         return name().toLowerCase()
+    }
+
+    String getBabelfishName() {
+        switch (getKey()) {
+            case "cplusplus":
+                return "cpp"
+            default:
+                return getKey()
+        }
     }
 
     String getQualifiedName() {
@@ -87,6 +97,8 @@ enum SourceLanguage {
                 return new RubyNaming()
             case CSharp:
                 return new CSharpNaming()
+            case CPlusPlus:
+                return new CPlusPlusNaming()
             case Bash:
                 return new BashNaming()
             default:
@@ -111,6 +123,8 @@ enum SourceLanguage {
                 return new RubyLiteral()
             case CSharp:
                 return new CSharpLiteral()
+            case CPlusPlus:
+                return new CPlusPlusLiteral()
             case Bash:
                 return new BashLiteral()
             default:

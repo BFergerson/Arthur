@@ -45,6 +45,11 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void initializeVariableOperator_CPlusPlus() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
+    }
+
+    @Test
     void initializeVariableOperator_Bash() {
         assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"))
     }
@@ -55,7 +60,7 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
 
     private static void assertInitializeVariableOperatorPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundInitializeVariableOperator = false
         def functionFilter = new FunctionFilter()

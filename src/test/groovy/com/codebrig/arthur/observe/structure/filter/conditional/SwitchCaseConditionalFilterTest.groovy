@@ -34,6 +34,11 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void switchCaseConditional_CPlusPlus() {
+        assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
+    @Test
     void switchCaseConditional_Bash() {
         assertSwitchCaseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
     }
@@ -44,7 +49,7 @@ class SwitchCaseConditionalFilterTest extends ArthurTest {
 
     private static void assertSwitchCaseConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundSwitchCaseConditional = false
         def functionFilter = new FunctionFilter()

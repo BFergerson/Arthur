@@ -34,6 +34,11 @@ class ForEachLoopFilterTest extends ArthurTest {
     }
 
     @Test
+    void forEachLoop_CPlusPlus() {
+        assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
+    @Test
     void forEachLoop_Bash() {
         assertForEachLoopPresent(new File("src/test/resources/same/loops/Loops.sh"))
     }
@@ -44,7 +49,7 @@ class ForEachLoopFilterTest extends ArthurTest {
 
     private static void assertForEachLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundForEachLoop = false
         def functionFilter = new FunctionFilter()

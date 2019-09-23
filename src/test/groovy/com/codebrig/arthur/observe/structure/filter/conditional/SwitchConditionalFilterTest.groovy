@@ -34,6 +34,11 @@ class SwitchConditionalFilterTest extends ArthurTest {
     }
 
     @Test
+    void switchConditional_CPlusPlus() {
+        assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
+    @Test
     void switchConditional_Bash() {
         assertSwitchConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
     }
@@ -44,7 +49,7 @@ class SwitchConditionalFilterTest extends ArthurTest {
 
     private static void assertSwitchConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundSwitchConditional = false
         def functionFilter = new FunctionFilter()

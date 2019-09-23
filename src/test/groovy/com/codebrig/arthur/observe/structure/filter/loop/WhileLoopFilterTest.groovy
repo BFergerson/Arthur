@@ -39,6 +39,11 @@ class WhileLoopFilterTest extends ArthurTest {
     }
 
     @Test
+    void whileLoop_CPlusPlus() {
+        assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
+    }
+
+    @Test
     void whileLoop_Bash() {
         assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.sh"))
     }
@@ -49,7 +54,7 @@ class WhileLoopFilterTest extends ArthurTest {
 
     private static void assertWhileLoopPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundWhileLoop = false
         def functionFilter = new FunctionFilter()
