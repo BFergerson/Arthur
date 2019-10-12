@@ -2,7 +2,6 @@ package com.codebrig.arthur.observe.structure.filter.operator.misc
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
-import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 
@@ -21,14 +20,17 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
     TernaryOperatorFilter() {
         filter = MultiFilter.matchAny(
                 MultiFilter.matchAll(
-                        new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
-                        new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
-                        new RoleFilter("RIGHT")
+                        new RoleFilter("IF", "CONDITION"), new RoleFilter("EXPRESSION"),
+                        new RoleFilter("ASSIGNMENT", "INITIALIZATION"), new RoleFilter("BINARY"), new RoleFilter("RIGHT")
                 ),
-                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
                 MultiFilter.matchAll(
-                        new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION"),
-                        new InternalRoleFilter().reject("Prop_InitOperand2")
+                        new RoleFilter("IF"), new RoleFilter("CONDITION"),
+                        MultiFilter.matchAny(
+                                new RoleFilter("EXPRESSION"),
+                                MultiFilter.matchAll(
+                                        new RoleFilter("OPERATOR"), new RoleFilter("BINARY")
+                                )
+                        )
                 )
         )
     }

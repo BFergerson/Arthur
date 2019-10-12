@@ -31,6 +31,7 @@ class IsNotEqualOperatorFilter extends StructureFilter<IsNotEqualOperatorFilter,
 
     @Override
     boolean evaluate(SourceNode node) {
+        /*
         //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
         if (node?.internalType == "CPPASTBinaryExpression" && node.token == "!=") {
             return true
@@ -43,6 +44,14 @@ class IsNotEqualOperatorFilter extends StructureFilter<IsNotEqualOperatorFilter,
             }
             return result
         }
+        */
+        boolean result = filter.evaluate(node)
+        if (result) {
+            if (node.internalType == "combined_word") {
+                return evaluateCombinedWordIsNotEqual(node)
+            }
+        }
+        return result
     }
 
     static boolean evaluateCombinedWordIsNotEqual(SourceNode node) {

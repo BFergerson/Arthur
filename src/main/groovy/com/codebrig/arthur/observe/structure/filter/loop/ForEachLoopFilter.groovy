@@ -24,9 +24,7 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
                         new RoleFilter("FOR"), new RoleFilter("STATEMENT"), new RoleFilter("ITERATOR"),
                         new RoleFilter().reject("DECLARATION", "VARIABLE")
                 ),
-                new TypeFilter("ForEachKeyword"), new TypeFilter("for_shellcommand"),
-                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/58)
-                new TypeFilter("CPPASTRangeBasedForStatement")
+                new TypeFilter("ForEachKeyword"), new TypeFilter("for_shellcommand")
         )
     }
 

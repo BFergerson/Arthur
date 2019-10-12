@@ -23,7 +23,7 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
         filter = MultiFilter.matchAny(
                 MultiFilter.matchAll(
                         new RoleFilter("CASE"), new RoleFilter("SWITCH", "STATEMENT"),
-                        new RoleFilter().reject("EXPRESSION", "LITERAL", "NUMBER", "CONDITION", "BODY"),
+                        new RoleFilter().reject("LITERAL", "NUMBER", "CONDITION", "BODY"),
                         new TypeFilter().reject("CaseSwitchLabel")
                 ),
                 //todo: remove following line (https://github.com/bblfsh/ruby-driver/pull/53
