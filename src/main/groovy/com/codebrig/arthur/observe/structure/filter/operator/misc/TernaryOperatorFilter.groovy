@@ -31,6 +31,10 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
                                         new RoleFilter("OPERATOR"), new RoleFilter("BINARY")
                                 )
                         )
+                ),
+                MultiFilter.matchAll(
+                        new RoleFilter("IF"), new RoleFilter("STATEMENT"),
+                        new RoleFilter("BINARY"), new RoleFilter("RIGHT")
                 )
         )
     }
