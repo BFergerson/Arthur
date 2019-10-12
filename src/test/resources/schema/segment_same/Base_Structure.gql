@@ -10,6 +10,7 @@ token sub attribute, datatype string;
 
 #####----- Omnilingual -----#####
 kindAttribute sub attribute, datatype string;
+valueAttribute sub attribute, datatype string;
 
 #####----- Go -----#####
 goColAttribute sub attribute, datatype string;
@@ -30,9 +31,9 @@ javascriptAsyncAttribute sub attribute, datatype string;
 javascriptComputedAttribute sub attribute, datatype string;
 javascriptGeneratorAttribute sub attribute, datatype string;
 javascriptKindAttribute sub kindAttribute, datatype string;
-javascriptNormValueAttribute sub attribute, datatype string;
 javascriptPrefixAttribute sub attribute, datatype string;
 javascriptSourceTypeAttribute sub attribute, datatype string;
+javascriptValueAttribute sub valueAttribute, datatype string;
 
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
@@ -57,7 +58,7 @@ csharpIsUnmanagedAttribute sub attribute, datatype string;
 csharpIsVarAttribute sub attribute, datatype string;
 csharpRankAttribute sub attribute, datatype string;
 csharpTextAttribute sub attribute, datatype string;
-csharpValueAttribute sub attribute, datatype string;
+csharpValueAttribute sub valueAttribute, datatype string;
 csharpValueTextAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
@@ -902,8 +903,8 @@ JavascriptRestElementArtifact sub JavascriptSourceArtifact,
 
 JavascriptStringLiteralArtifact sub StringLiteralArtifact,
 	# Attributes
-	has javascriptNormValueAttribute,
 	has stringValue,
+	has javascriptValueAttribute,
 	# Structural
 	plays is_javascript_arguments_role,
 	plays is_javascript_init_role;
@@ -2337,7 +2338,6 @@ CsharpNumericLiteralTokenArtifact sub CsharpSourceArtifact,
 	has doubleValue,
 	has csharpIsMissingAttribute,
 	has numberValue,
-	has csharpTextAttribute,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
@@ -2580,7 +2580,6 @@ CsharpStringLiteralTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has stringValue,
-	has csharpTextAttribute,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
