@@ -383,7 +383,7 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_CALLEE,
 	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
+	plays IS_QUALIFIED;
 
 GoStarExprArtifact sub GoSourceArtifact,
 	# Semantic
@@ -1061,7 +1061,9 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 
 PhpStmtCaseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE;
+	plays IS_CASE,
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
 
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -1513,7 +1515,8 @@ RubyTrueArtifact sub RubySourceArtifact,
 RubyWhenArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_CASE,
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION,
+	plays IS_SWITCH;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
