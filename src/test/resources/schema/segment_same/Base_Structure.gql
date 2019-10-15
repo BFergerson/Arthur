@@ -70,6 +70,8 @@ SourceArtifact sub entity,
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+AndArtifact sub OmnilingualSourceArtifact;
+
 ArgArtifact sub OmnilingualSourceArtifact;
 
 ArrayTypeArtifact sub OmnilingualSourceArtifact;
@@ -111,6 +113,8 @@ ModuleArtifact sub OmnilingualSourceArtifact;
 NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
+
+OrArtifact sub OmnilingualSourceArtifact;
 
 ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact;
 
@@ -1181,7 +1185,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
-PythonAndArtifact sub PythonSourceArtifact,
+PythonAndArtifact sub AndArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1352,7 +1356,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_value_role;
 
-PythonOrArtifact sub PythonSourceArtifact,
+PythonOrArtifact sub OrArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1424,6 +1428,12 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyAndArtifact sub AndArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyArgArtifact sub ArgArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1436,6 +1446,7 @@ RubyArgsArtifact sub RubySourceArtifact,
 RubyBeginArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_base_role,
+	plays is_ruby_body_role,
 	plays is_ruby_file_role,
 	plays has_ruby_body_role;
 
@@ -1449,6 +1460,10 @@ RubyCaseArtifact sub RubySourceArtifact,
 	plays has_ruby_casevar_role,
 	plays has_ruby_else_role,
 	plays has_ruby_when_clauses_role;
+
+RubyConstArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_base_role;
 
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
@@ -1486,6 +1501,7 @@ RubyIfArtifact sub IfArtifact,
 	# Structural
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
+	plays is_ruby_value_role,
 	plays has_ruby_body_role,
 	plays has_ruby_condition_role,
 	plays has_ruby_else_role;
@@ -1499,6 +1515,7 @@ RubyIntArtifact sub RubySourceArtifact,
 	plays is_ruby_casevar_role,
 	plays is_ruby_conditions_role,
 	plays is_ruby_default_role,
+	plays is_ruby_else_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
 
@@ -1513,6 +1530,7 @@ RubyKwoptargArtifact sub RubySourceArtifact,
 
 RubyLvarArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_base_role,
 	plays is_ruby_values_role;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
@@ -1536,6 +1554,12 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays is_ruby_children_role,
 	plays has_ruby_default_role;
 
+RubyOrArtifact sub OrArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyRestargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1543,6 +1567,12 @@ RubyRestargArtifact sub RubySourceArtifact,
 RubySendCallArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_iterated_role,
+	plays has_ruby_base_role,
+	plays has_ruby_values_role;
+
+RubySendOperatorArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role,
 	plays has_ruby_base_role,
 	plays has_ruby_values_role;
 
@@ -1564,7 +1594,11 @@ RubyStrArtifact sub StrArtifact,
 
 RubyTrueArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_ruby_condition_role;
+	plays is_ruby_base_role,
+	plays is_ruby_condition_role,
+	plays is_ruby_left_role,
+	plays is_ruby_right_role,
+	plays is_ruby_values_role;
 
 RubyWhenArtifact sub RubySourceArtifact,
 	# Structural
@@ -3401,8 +3435,14 @@ ruby_iterated_relation sub parent_child_relation,
 ruby_iterators_relation sub parent_child_relation,
 	relates is_ruby_iterators_role as is_child, relates has_ruby_iterators_role as is_parent;
 
+ruby_left_relation sub left_relation,
+	relates is_ruby_left_role as is_left_role, relates has_ruby_left_role as has_left_role;
+
 ruby_qnames_relation sub parent_child_relation,
 	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
+
+ruby_right_relation sub right_relation,
+	relates is_ruby_right_role as is_right_role, relates has_ruby_right_role as has_right_role;
 
 ruby_value_relation sub value_relation,
 	relates is_ruby_value_role as is_value_role, relates has_ruby_value_role as has_value_role;

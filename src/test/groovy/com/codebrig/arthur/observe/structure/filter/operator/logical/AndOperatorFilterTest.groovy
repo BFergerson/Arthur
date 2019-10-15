@@ -48,19 +48,34 @@ class AndOperatorFilterTest extends ArthurTest {
                 "&&")
     }
 
+    /**
+     * Babelfish treats both Ruby "&&" and "and" operators as "and" token
+     */
+    @Test
+    void andOperator_Ruby() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "and", "", "andOperator1()")
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "and", "", "andOperator2()")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
-        assertAndOperatorPresent(file, andToken, "")
+        assertAndOperatorPresent(file, andToken, "", "andOperator()")
     }
 
     private static void assertAndOperatorPresent(File file, String andToken, String qualifiedName) {
+        assertAndOperatorPresent(file, andToken, qualifiedName, "andOperator()")
+    }
+
+    private static void assertAndOperatorPresent(File file, String andToken, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundAndOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "andOperator()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals(qualifiedName + "andOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new AndOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundAndOperator)

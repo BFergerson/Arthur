@@ -48,6 +48,11 @@ class RelationalOperatorFilterTest extends ArthurTest {
         assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
     }
 
+    @Test
+    void relationalOperator_Ruby() {
+        assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
     private static void assertRelationalOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)

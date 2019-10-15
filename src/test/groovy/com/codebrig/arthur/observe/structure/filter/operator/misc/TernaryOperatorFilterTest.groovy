@@ -33,6 +33,11 @@ class TernaryOperatorFilterTest extends ArthurTest {
         assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
     }
 
+    @Test
+    void ternaryOperator_Ruby() {
+        assertTernaryOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
     private static void assertTernaryOperatorPresent(File file) {
         assertTernaryOperatorPresent(file, "")
     }
