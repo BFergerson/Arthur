@@ -23,7 +23,6 @@ import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.stream.Collectors
 
 import static com.google.common.io.Files.getFileExtension
 
@@ -163,7 +162,7 @@ class SchemaGenerator {
                     failCount.getAndIncrement()
                 }
             }
-        }).collect(Collectors.counting())
+        }).count()
         executorService.shutdown()
 
         log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
