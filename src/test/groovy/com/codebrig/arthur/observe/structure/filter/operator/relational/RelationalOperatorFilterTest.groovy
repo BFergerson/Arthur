@@ -49,6 +49,11 @@ class RelationalOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void relationalOperator_Ruby() {
+        assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
+    @Test
     void relationalOperator_Bash() {
         assertRelationalOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"))
     }

@@ -49,6 +49,11 @@ class IsEqualOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void isEqualOperator_Ruby() {
+        assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
+    @Test
     void isEqualOperator_Bash() {
         assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
                 "", "isEqualOperator1()", "==")
