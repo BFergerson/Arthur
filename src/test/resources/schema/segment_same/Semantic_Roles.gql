@@ -159,7 +159,7 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_CALLEE,
 	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
+	plays IS_QUALIFIED;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
