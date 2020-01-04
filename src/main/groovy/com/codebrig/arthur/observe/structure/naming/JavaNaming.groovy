@@ -22,7 +22,6 @@ class JavaNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
-            case "QualifiedName":
             case "CompilationUnit":
             case "MethodDeclaration":
             case "TypeDeclaration":
@@ -37,10 +36,6 @@ class JavaNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "SimpleName":
-                return getSimpleNameName(node)
-            case "QualifiedName":
-                return getQualifiedNameName(node)
             case "CompilationUnit":
                 return getCompilationUnitName(node)
             case "MethodDeclaration":
