@@ -23,9 +23,10 @@ class JavaNaming implements StructureNaming {
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
             case "CompilationUnit":
-            case "MethodDeclaration":
-            case "TypeDeclaration":
             case "FieldDeclaration":
+            case "MethodDeclaration":
+            case "SingleVariableDeclaration":
+            case "TypeDeclaration":
             case "VariableDeclaration":
                 return true
             default:
@@ -49,6 +50,8 @@ class JavaNaming implements StructureNaming {
                 return getTypeDeclarationName(node)
             case "FieldDeclaration":
                 return getFieldDeclarationName(node)
+            case "SingleVariableDeclaration":
+                return getSingleVariableDeclarationName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }

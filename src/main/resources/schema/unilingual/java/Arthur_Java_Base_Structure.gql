@@ -816,6 +816,7 @@ SingleMemberAnnotationArtifact sub JavaSourceArtifact,
 SingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has varargsAttribute,
+	has name,
 	# Structural
 	plays is_exception_role,
 	plays is_parameter_role,

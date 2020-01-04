@@ -26,8 +26,8 @@ class GraknSchemaWriterTest extends ArthurTest {
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
 
         def baseStructure = schemaWriter.getSegmentedSchemaDefinition(ObservationConfig.baseStructure().asArray())
-        assertEquals(new File("src/test/resources/schema/segment_same", "Base_Structure.gql").text, baseStructure)
+        assertEquals(baseStructure, new File("src/test/resources/schema/segment_same", "Base_Structure.gql").text)
         def semanticRoles = schemaWriter.getSegmentedSchemaDefinition(SchemaSegment.SEMANTIC_ROLES)
-        assertEquals(new File("src/test/resources/schema/segment_same", "Semantic_Roles.gql").text, semanticRoles)
+        assertEquals(semanticRoles, new File("src/test/resources/schema/segment_same", "Semantic_Roles.gql").text)
     }
 }
