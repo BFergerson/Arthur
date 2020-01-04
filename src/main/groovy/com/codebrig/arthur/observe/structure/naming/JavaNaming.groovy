@@ -77,13 +77,21 @@ class JavaNaming implements StructureNaming {
 
         name += "("
         new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
-            name += getSingleVariableDeclarationName(it) + ","
+            name += getSingleVariableDeclarationTypeName(it) + ","
         }
         name = trimTrailingComma(name)
         return name + ")"
     }
 
     static String getTypeDeclarationName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
+            name += it.token
+        }
+        return name
+    }
+
+    static String getSingleVariableDeclarationName(SourceNode node) {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
             name += it.token
@@ -128,7 +136,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    static String getSingleVariableDeclarationName(SourceNode node) {
+    static String getSingleVariableDeclarationTypeName(SourceNode node) {
         def type = ""
         new InternalRoleFilter("type").getFilteredNodes(node.children).each {
             switch (it.internalType) {
