@@ -20,7 +20,8 @@ class WhileLoopFilter extends StructureFilter<WhileLoopFilter, Void> {
     WhileLoopFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("WHILE", "FOR"), new RoleFilter("STATEMENT"),
-                new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
+                //todo: probably easier to have a "reject everything else" filter
+                new RoleFilter().reject("BLOCK", "SCOPE", "BODY", "DECLARATION", "UPDATE")
         )
     }
 
