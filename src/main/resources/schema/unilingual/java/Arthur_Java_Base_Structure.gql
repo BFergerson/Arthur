@@ -713,6 +713,8 @@ PrimitiveTypeArtifact sub JavaSourceArtifact,
 	plays is_type_role;
 
 QualifiedNameArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_arguments_role,
 	plays is_array_role,

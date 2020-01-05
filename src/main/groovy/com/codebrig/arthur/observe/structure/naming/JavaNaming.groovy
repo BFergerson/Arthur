@@ -25,9 +25,11 @@ class JavaNaming implements StructureNaming {
             case "CompilationUnit":
             case "FieldDeclaration":
             case "MethodDeclaration":
+            case "SimpleName":
             case "SingleVariableDeclaration":
             case "TypeDeclaration":
             case "VariableDeclaration":
+            case "QualifiedName":
                 return true
             default:
                 return false
@@ -52,6 +54,10 @@ class JavaNaming implements StructureNaming {
                 return getFieldDeclarationName(node)
             case "SingleVariableDeclaration":
                 return getSingleVariableDeclarationName(node)
+            case "SimpleName":
+                return getSimpleNameName(node)
+            case "QualifiedName":
+                return getQualifiedNameName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }

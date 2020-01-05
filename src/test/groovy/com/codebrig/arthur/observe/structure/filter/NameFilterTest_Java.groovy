@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
-import static org.junit.Assert.assertEquals
+import static org.junit.Assert.assertTrue
 
 class NameFilterTest_Java extends ArthurTest {
 
@@ -16,7 +16,9 @@ class NameFilterTest_Java extends ArthurTest {
         def fileFilter = new NameFilter("arg")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("SingleVariableDeclaration", it.internalType)
+            assertTrue(["SimpleName", "SingleVariableDeclaration"].stream().anyMatch(
+                    { t -> t == it.internalType })
+            )
         }
     }
 
@@ -27,7 +29,9 @@ class NameFilterTest_Java extends ArthurTest {
         def fileFilter = new NameFilter("arrayList")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
-            assertEquals("VariableDeclarationStatement", it.internalType)
+            assertTrue(["SimpleName", "VariableDeclarationStatement"].stream().anyMatch(
+                    { t -> t == it.internalType })
+            )
         }
     }
 }
