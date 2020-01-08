@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.literal
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureLiteral
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 
 /**
  * Used to determine and get the literal type of C# AST nodes
