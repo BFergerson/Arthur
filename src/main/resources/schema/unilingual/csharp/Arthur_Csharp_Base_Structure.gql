@@ -1,0 +1,5481 @@
+define
+
+##########---------- Attributes ----------##########
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
+token sub attribute, datatype string;
+
+#####----- Csharp -----#####
+allowsAnyExpressionAttribute sub attribute, datatype string;
+arityAttribute sub attribute, datatype string;
+isConstAttribute sub attribute, datatype string;
+isDirectiveAttribute sub attribute, datatype string;
+isMissingAttribute sub attribute, datatype string;
+isStructuredTriviaAttribute sub attribute, datatype string;
+isUnboundGenericNameAttribute sub attribute, datatype string;
+isUnmanagedAttribute sub attribute, datatype string;
+isVarAttribute sub attribute, datatype string;
+rankAttribute sub attribute, datatype string;
+textAttribute sub attribute, datatype string;
+valueAttribute sub attribute, datatype string;
+valueTextAttribute sub attribute, datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
+	plays is_parent;
+
+#####----- Csharp -----#####
+CsharpSourceArtifact sub SourceArtifact;
+
+AbstractKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+AccessorListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessor_list_role,
+	plays has_accessors_role,
+	plays has_close_brace_token_role,
+	plays has_open_brace_token_role;
+
+AddAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessors_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_keyword_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+AddAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+AddKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+AliasKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_alias_keyword_role;
+
+AliasQualifiedNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_return_type_role,
+	plays is_type_role,
+	plays has_alias_role,
+	plays has_colon_colon_token_role,
+	plays has_name_role;
+
+AmpersandAmpersandTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+AmpersandEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+AmpersandTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+AndAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+AnonymousMethodExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays has_async_keyword_role,
+	plays has_block_role,
+	plays has_body_role,
+	plays has_delegate_keyword_role,
+	plays has_parameter_list_role;
+
+AnonymousObjectCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_group_expression_role,
+	plays is_left_expression_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_brace_token_role,
+	plays has_initializers_role,
+	plays has_new_keyword_role,
+	plays has_open_brace_token_role;
+
+AnonymousObjectMemberDeclaratorArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_initializers_role,
+	plays has_expression_role,
+	plays has_name_equals_role;
+
+ArgListKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role,
+	plays is_token_role;
+
+ArgumentArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays has_expression_role,
+	plays has_name_colon_role,
+	plays has_ref_kind_keyword_role,
+	plays has_ref_or_out_keyword_role;
+
+ArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_argument_list_role,
+	plays has_arguments_role,
+	plays has_close_paren_token_role,
+	plays has_open_paren_token_role;
+
+ArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_in_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_initializer_role,
+	plays has_new_keyword_role,
+	plays has_type_role;
+
+ArrayInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expressions_role,
+	plays is_initializer_role,
+	plays is_value_role,
+	plays has_close_brace_token_role,
+	plays has_expressions_role,
+	plays has_open_brace_token_role;
+
+ArrayRankSpecifierArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has rankAttribute,
+	# Structural
+	plays is_rank_specifiers_role,
+	plays has_close_bracket_token_role,
+	plays has_open_bracket_token_role,
+	plays has_sizes_role;
+
+ArrayTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_return_type_role,
+	plays is_right_role,
+	plays is_type_role,
+	plays has_element_type_role,
+	plays has_rank_specifiers_role;
+
+ArrowExpressionClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_body_role,
+	plays has_arrow_token_role,
+	plays has_expression_role;
+
+AscendingKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_ascending_or_descending_keyword_role;
+
+AscendingOrderingArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_orderings_role,
+	plays has_ascending_or_descending_keyword_role,
+	plays has_expression_role;
+
+AsKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+AssemblyKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+AsteriskEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+AsteriskTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_asterisk_token_role,
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+AsyncKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_async_keyword_role,
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+AttributeArgumentArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays has_expression_role,
+	plays has_name_colon_role,
+	plays has_name_equals_role;
+
+AttributeArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_argument_list_role,
+	plays has_arguments_role,
+	plays has_close_paren_token_role,
+	plays has_open_paren_token_role;
+
+AttributeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_attributes_role,
+	plays has_argument_list_role,
+	plays has_name_role;
+
+AttributeListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_attribute_lists_role,
+	plays has_attributes_role,
+	plays has_close_bracket_token_role,
+	plays has_open_bracket_token_role,
+	plays has_target_role;
+
+AttributeTargetSpecifierArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_target_role,
+	plays has_colon_token_role,
+	plays has_identifier_role;
+
+AwaitExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_await_keyword_role,
+	plays has_expression_role;
+
+AwaitKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_await_keyword_role,
+	plays has_leading_trivia_role;
+
+BadDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+BarBarTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+BarEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+BarTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+BaseConstructorInitializerArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_initializer_role,
+	plays has_argument_list_role,
+	plays has_colon_token_role,
+	plays has_this_or_base_keyword_role;
+
+BaseExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_left_role,
+	plays has_token_role;
+
+BaseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_this_or_base_keyword_role,
+	plays is_token_role,
+	plays has_leading_trivia_role;
+
+BaseListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_base_list_role,
+	plays has_colon_token_role,
+	plays has_types_role;
+
+BinaryExpressionAddExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionAsExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionBitwiseAndExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionBitwiseOrExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionCoalesceExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionDivideExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionEqualsExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionExclusiveOrExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionGreaterThanExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionGreaterThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_incrementors_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionIsExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionLeftShiftExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionLessThanExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_filter_expression_role,
+	plays is_incrementors_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_variable_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionLessThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionLogicalAndExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionLogicalOrExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionModuloExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionMultiplyExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionNotEqualsExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_incrementors_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionRightShiftExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BinaryExpressionSubtractExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+BlockArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_block_role,
+	plays is_body_role,
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_brace_token_role,
+	plays has_open_brace_token_role,
+	plays has_statements_role;
+
+BoolKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+BracketedArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_argument_list_role,
+	plays has_arguments_role,
+	plays has_close_bracket_token_role,
+	plays has_open_bracket_token_role;
+
+BracketedParameterListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_parameter_list_role,
+	plays has_close_bracket_token_role,
+	plays has_open_bracket_token_role,
+	plays has_parameters_role;
+
+BreakKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_break_keyword_role,
+	plays is_return_or_break_keyword_role,
+	plays has_leading_trivia_role;
+
+BreakStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_break_keyword_role,
+	plays has_semicolon_token_role;
+
+ByKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_by_keyword_role;
+
+ByteKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CaretEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+CaretTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+CaseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_case_or_default_keyword_role,
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+CasePatternSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_labels_role,
+	plays has_colon_token_role,
+	plays has_keyword_role,
+	plays has_pattern_role,
+	plays has_when_clause_role;
+
+CaseSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_labels_role,
+	plays has_colon_token_role,
+	plays has_keyword_role,
+	plays has_value_role;
+
+CastExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+CatchClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_catches_role,
+	plays has_block_role,
+	plays has_catch_keyword_role,
+	plays has_declaration_role,
+	plays has_filter_role;
+
+CatchDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_declaration_role,
+	plays has_close_paren_token_role,
+	plays has_identifier_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+CatchFilterClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_filter_role,
+	plays has_close_paren_token_role,
+	plays has_filter_expression_role,
+	plays has_open_paren_token_role,
+	plays has_when_keyword_role;
+
+CatchKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_catch_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CharacterLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+CharacterLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CharKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+CheckedExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role;
+
+CheckedExpressionUncheckedExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role;
+
+CheckedKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CheckedStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_block_role,
+	plays has_keyword_role;
+
+CheckedStatementUncheckedStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_block_role,
+	plays has_keyword_role;
+
+ClassDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_base_list_role,
+	plays has_close_brace_token_role,
+	plays has_constraint_clauses_role,
+	plays has_identifier_role,
+	plays has_keyword_role,
+	plays has_members_role,
+	plays has_modifiers_role,
+	plays has_open_brace_token_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+ClassKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_class_or_struct_keyword_role,
+	plays is_identifier_role,
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ClassOrStructConstraintClassConstraintArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_constraints_role,
+	plays has_class_or_struct_keyword_role;
+
+ClassOrStructConstraintStructConstraintArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_constraints_role,
+	plays has_class_or_struct_keyword_role;
+
+CloseBraceTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_close_brace_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CloseBracketTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_close_bracket_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CloseParenTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_close_paren_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CollectionInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_initializer_role,
+	plays is_right_role,
+	plays has_close_brace_token_role,
+	plays has_expressions_role,
+	plays has_open_brace_token_role;
+
+ColonColonTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_colon_colon_token_role;
+
+ColonTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_colon_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+CommaTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_comma_role,
+	plays is_comma_token_role,
+	plays is_commas_role;
+
+CompilationUnitArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays has_attribute_lists_role,
+	plays has_end_of_file_token_role,
+	plays has_externs_role,
+	plays has_members_role,
+	plays has_usings_role;
+
+ComplexElementInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expressions_role,
+	plays has_close_brace_token_role,
+	plays has_expressions_role,
+	plays has_open_brace_token_role;
+
+ConditionalAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_not_null_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_operator_token_role,
+	plays has_when_not_null_role;
+
+ConditionalExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_colon_token_role,
+	plays has_condition_role,
+	plays has_question_token_role,
+	plays has_when_false_role,
+	plays has_when_true_role;
+
+ConstantPatternArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_pattern_role,
+	plays has_expression_role;
+
+ConstKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+ConstructorConstraintArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_constraints_role,
+	plays has_close_paren_token_role,
+	plays has_new_keyword_role,
+	plays has_open_paren_token_role;
+
+ConstructorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_identifier_role,
+	plays has_initializer_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_semicolon_token_role;
+
+ContinueKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_continue_keyword_role,
+	plays has_leading_trivia_role;
+
+ContinueStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_continue_keyword_role,
+	plays has_semicolon_token_role;
+
+ConversionOperatorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_implicit_or_explicit_keyword_role,
+	plays has_modifiers_role,
+	plays has_operator_keyword_role,
+	plays has_parameter_list_role,
+	plays has_semicolon_token_role,
+	plays has_type_role;
+
+DecimalKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+DeclarationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_variable_role,
+	plays has_designation_role,
+	plays has_type_role;
+
+DeclarationPatternArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_pattern_role,
+	plays has_designation_role,
+	plays has_type_role;
+
+DefaultExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+DefaultKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_case_or_default_keyword_role,
+	plays is_keyword_role,
+	plays is_token_role,
+	plays has_leading_trivia_role;
+
+DefaultLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+DefaultSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_labels_role,
+	plays has_colon_token_role,
+	plays has_keyword_role;
+
+DefineDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+DelegateDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_constraint_clauses_role,
+	plays has_delegate_keyword_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_return_type_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+DelegateKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_delegate_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+DescendingKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_ascending_or_descending_keyword_role;
+
+DescendingOrderingArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_orderings_role,
+	plays has_ascending_or_descending_keyword_role,
+	plays has_expression_role;
+
+DestructorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_semicolon_token_role,
+	plays has_tilde_token_role;
+
+DisabledTextTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+DiscardDesignationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_designation_role,
+	plays is_variables_role,
+	plays has_underscore_token_role;
+
+DivideAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_value_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+DoKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_do_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+DoStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_condition_role,
+	plays has_do_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_semicolon_token_role,
+	plays has_statement_role,
+	plays has_while_keyword_role;
+
+DotTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_dot_token_role,
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+DoubleKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+ElementAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_not_null_role,
+	plays is_when_true_role,
+	plays has_argument_list_role,
+	plays has_expression_role;
+
+ElementBindingExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_when_not_null_role,
+	plays has_argument_list_role;
+
+ElifDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+ElseClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_else_role,
+	plays has_else_keyword_role,
+	plays has_statement_role;
+
+ElseDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+ElseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_else_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+EmptyStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_semicolon_token_role;
+
+EndIfDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+EndOfFileTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_end_of_file_token_role,
+	plays has_leading_trivia_role;
+
+EndRegionDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+EnumDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_base_list_role,
+	plays has_close_brace_token_role,
+	plays has_enum_keyword_role,
+	plays has_identifier_role,
+	plays has_members_role,
+	plays has_modifiers_role,
+	plays has_open_brace_token_role,
+	plays has_semicolon_token_role;
+
+EnumKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_enum_keyword_role,
+	plays has_leading_trivia_role;
+
+EnumMemberDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_equals_value_role,
+	plays has_identifier_role;
+
+EqualsEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_trailing_trivia_role;
+
+EqualsGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_arrow_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+EqualsKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_equals_keyword_role;
+
+EqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_equals_token_role,
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+EqualsValueClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_default_role,
+	plays is_equals_value_role,
+	plays is_initializer_role,
+	plays has_equals_token_role,
+	plays has_value_role;
+
+ErrorDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+EventDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_accessor_list_role,
+	plays has_attribute_lists_role,
+	plays has_event_keyword_role,
+	plays has_explicit_interface_specifier_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_type_role;
+
+EventFieldDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_declaration_role,
+	plays has_event_keyword_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+EventKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_event_keyword_role,
+	plays is_identifier_role,
+	plays has_leading_trivia_role;
+
+ExclamationEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+ExclamationTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role;
+
+ExclusiveOrAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_right_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+ExplicitInterfaceSpecifierArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_explicit_interface_specifier_role,
+	plays has_dot_token_role,
+	plays has_name_role;
+
+ExplicitKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_implicit_or_explicit_keyword_role;
+
+ExpressionStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has allowsAnyExpressionAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_expression_role,
+	plays has_semicolon_token_role;
+
+ExternAliasDirectiveArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_externs_role,
+	plays has_alias_keyword_role,
+	plays has_extern_keyword_role,
+	plays has_identifier_role,
+	plays has_semicolon_token_role;
+
+ExternKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_extern_keyword_role,
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+FalseKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+FalseLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+FieldDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_declaration_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+FieldKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+FinallyClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_finally_role,
+	plays has_block_role,
+	plays has_finally_keyword_role;
+
+FinallyKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_finally_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+FixedKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_fixed_keyword_role,
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+FixedStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_declaration_role,
+	plays has_fixed_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role;
+
+FloatKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+ForEachKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_for_each_keyword_role,
+	plays has_leading_trivia_role;
+
+ForEachStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_for_each_keyword_role,
+	plays has_identifier_role,
+	plays has_in_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role,
+	plays has_type_role;
+
+ForEachVariableStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_for_each_keyword_role,
+	plays has_in_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role,
+	plays has_variable_role;
+
+ForKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_for_keyword_role,
+	plays has_leading_trivia_role;
+
+ForStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_condition_role,
+	plays has_declaration_role,
+	plays has_first_semicolon_token_role,
+	plays has_for_keyword_role,
+	plays has_incrementors_role,
+	plays has_initializers_role,
+	plays has_open_paren_token_role,
+	plays has_second_semicolon_token_role,
+	plays has_statement_role;
+
+FromClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_clauses_role,
+	plays is_from_clause_role,
+	plays has_expression_role,
+	plays has_from_keyword_role,
+	plays has_identifier_role,
+	plays has_in_keyword_role,
+	plays has_type_role;
+
+FromKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_from_keyword_role,
+	plays has_leading_trivia_role;
+
+GenericNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnboundGenericNameAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_return_type_role,
+	plays is_right_role,
+	plays is_type_role,
+	plays is_value_role,
+	plays has_identifier_role,
+	plays has_type_argument_list_role;
+
+GetAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessors_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_keyword_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+GetKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+GlobalKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role,
+	plays has_leading_trivia_role;
+
+GotoKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_goto_keyword_role,
+	plays has_leading_trivia_role;
+
+GotoStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_case_or_default_keyword_role,
+	plays has_expression_role,
+	plays has_goto_keyword_role,
+	plays has_semicolon_token_role;
+
+GotoStatementGotoCaseStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_case_or_default_keyword_role,
+	plays has_expression_role,
+	plays has_goto_keyword_role,
+	plays has_semicolon_token_role;
+
+GotoStatementGotoDefaultStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_case_or_default_keyword_role,
+	plays has_goto_keyword_role,
+	plays has_semicolon_token_role;
+
+GreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+GreaterThanGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+GreaterThanGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+GreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_greater_than_token_role,
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+GroupClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_select_or_group_role,
+	plays has_by_expression_role,
+	plays has_by_keyword_role,
+	plays has_group_expression_role,
+	plays has_group_keyword_role;
+
+GroupKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_group_keyword_role,
+	plays has_leading_trivia_role;
+
+IdentifierNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_alias_role,
+	plays is_arguments_role,
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_condition_role,
+	plays is_element_type_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_group_expression_role,
+	plays is_in_expression_role,
+	plays is_left_expression_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_operand_role,
+	plays is_return_type_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_type_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_identifier_role;
+
+IdentifierTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role,
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+IfDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+IfKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_if_keyword_role,
+	plays has_leading_trivia_role;
+
+IfStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_condition_role,
+	plays has_else_role,
+	plays has_if_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role;
+
+ImplicitArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_bracket_token_role,
+	plays has_commas_role,
+	plays has_initializer_role,
+	plays has_new_keyword_role,
+	plays has_open_bracket_token_role;
+
+ImplicitElementAccessArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_left_role,
+	plays has_argument_list_role;
+
+ImplicitKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_implicit_or_explicit_keyword_role;
+
+IncompleteMemberArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_modifiers_role,
+	plays has_type_role;
+
+IndexerDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_accessor_list_role,
+	plays has_attribute_lists_role,
+	plays has_explicit_interface_specifier_role,
+	plays has_expression_body_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_semicolon_role,
+	plays has_semicolon_token_role,
+	plays has_this_keyword_role,
+	plays has_type_role;
+
+InKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_in_keyword_role,
+	plays is_modifiers_role,
+	plays is_ref_kind_keyword_role,
+	plays is_ref_or_out_keyword_role,
+	plays is_variance_keyword_role;
+
+InterfaceDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_base_list_role,
+	plays has_close_brace_token_role,
+	plays has_constraint_clauses_role,
+	plays has_identifier_role,
+	plays has_keyword_role,
+	plays has_members_role,
+	plays has_modifiers_role,
+	plays has_open_brace_token_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+InterfaceKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+InternalKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+InterpolatedStringEndTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_string_end_token_role,
+	plays has_trailing_trivia_role;
+
+InterpolatedStringExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_contents_role,
+	plays has_string_end_token_role,
+	plays has_string_start_token_role;
+
+InterpolatedStringStartTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_string_start_token_role,
+	plays has_leading_trivia_role;
+
+InterpolatedStringTextArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_contents_role,
+	plays has_text_token_role;
+
+InterpolatedStringTextTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_format_string_token_role,
+	plays is_text_token_role;
+
+InterpolatedVerbatimStringStartTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_string_start_token_role;
+
+InterpolationAlignmentClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_alignment_clause_role,
+	plays has_comma_token_role,
+	plays has_value_role;
+
+InterpolationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_contents_role,
+	plays has_alignment_clause_role,
+	plays has_close_brace_token_role,
+	plays has_expression_role,
+	plays has_format_clause_role,
+	plays has_open_brace_token_role;
+
+InterpolationFormatClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_format_clause_role,
+	plays has_colon_token_role,
+	plays has_format_string_token_role;
+
+IntKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+IntoKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_into_keyword_role;
+
+InvocationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_group_expression_role,
+	plays is_in_expression_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_left_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_not_null_role,
+	plays is_when_true_role,
+	plays has_argument_list_role,
+	plays has_expression_role;
+
+IsKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_is_keyword_role,
+	plays is_operator_token_role;
+
+IsPatternExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_filter_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_is_keyword_role,
+	plays has_pattern_role;
+
+JoinClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_clauses_role,
+	plays has_equals_keyword_role,
+	plays has_identifier_role,
+	plays has_in_expression_role,
+	plays has_in_keyword_role,
+	plays has_into_role,
+	plays has_join_keyword_role,
+	plays has_left_expression_role,
+	plays has_on_keyword_role,
+	plays has_right_expression_role,
+	plays has_type_role;
+
+JoinIntoClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_into_role,
+	plays has_identifier_role,
+	plays has_into_keyword_role;
+
+JoinKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_join_keyword_role;
+
+LabeledStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_colon_token_role,
+	plays has_identifier_role,
+	plays has_statement_role;
+
+LeftShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+LessThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+LessThanLessThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+LessThanLessThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+LessThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_less_than_token_role,
+	plays is_operator_token_role,
+	plays has_trailing_trivia_role;
+
+LetClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_clauses_role,
+	plays has_equals_token_role,
+	plays has_expression_role,
+	plays has_identifier_role,
+	plays has_let_keyword_role;
+
+LetKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_let_keyword_role,
+	plays has_leading_trivia_role;
+
+LineDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+LiteralExpressionArgListExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_token_role;
+
+LocalDeclarationStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isConstAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_declaration_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+LocalFunctionStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statements_role,
+	plays has_body_role,
+	plays has_constraint_clauses_role,
+	plays has_expression_body_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_return_type_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+LockKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_lock_keyword_role,
+	plays has_leading_trivia_role;
+
+LockStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_lock_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role;
+
+LongKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+MakeRefExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role;
+
+MakeRefKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role;
+
+MemberBindingExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_when_not_null_role,
+	plays has_name_role,
+	plays has_operator_token_role;
+
+MethodDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has name,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_constraint_clauses_role,
+	plays has_explicit_interface_specifier_role,
+	plays has_expression_body_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_parameter_list_role,
+	plays has_return_type_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+MethodKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+MinusEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+MinusGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+MinusMinusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+MinusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ModuleKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+ModuloAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+MultiLineCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+MultiLineDocumentationCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+MultiplyAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+NameColonArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_name_colon_role,
+	plays has_colon_token_role,
+	plays has_name_role;
+
+NameEqualsArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_alias_role,
+	plays is_name_equals_role,
+	plays has_equals_token_role,
+	plays has_name_role;
+
+NamespaceDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_close_brace_token_role,
+	plays has_externs_role,
+	plays has_members_role,
+	plays has_name_role,
+	plays has_namespace_keyword_role,
+	plays has_open_brace_token_role,
+	plays has_semicolon_token_role,
+	plays has_usings_role;
+
+NamespaceKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_namespace_keyword_role,
+	plays has_leading_trivia_role;
+
+NewKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_new_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+NoneArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	# Structural
+	plays is_ascending_or_descending_keyword_role,
+	plays is_async_keyword_role,
+	plays is_case_or_default_keyword_role,
+	plays is_identifier_role,
+	plays is_read_only_keyword_role,
+	plays is_ref_kind_keyword_role,
+	plays is_ref_or_out_keyword_role,
+	plays is_semicolon_role,
+	plays is_semicolon_token_role,
+	plays is_static_keyword_role,
+	plays is_variance_keyword_role;
+
+NullableTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_return_type_role,
+	plays is_right_role,
+	plays is_type_role,
+	plays has_element_type_role,
+	plays has_question_token_role;
+
+NullKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+NullLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+NumericLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_group_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+NumericLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has isMissingAttribute,
+	has numberValue,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ObjectCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_argument_list_role,
+	plays has_initializer_role,
+	plays has_new_keyword_role,
+	plays has_type_role;
+
+ObjectInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_initializer_role,
+	plays is_right_role,
+	plays has_close_brace_token_role,
+	plays has_expressions_role,
+	plays has_open_brace_token_role;
+
+ObjectKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+OmittedArraySizeExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_sizes_role,
+	plays has_omitted_array_size_expression_token_role;
+
+OmittedArraySizeExpressionTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_omitted_array_size_expression_token_role;
+
+OmittedTypeArgumentArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays has_omitted_type_argument_token_role;
+
+OmittedTypeArgumentTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_omitted_type_argument_token_role;
+
+OnKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_on_keyword_role;
+
+OpenBraceTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_open_brace_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+OpenBracketTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_open_bracket_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+OpenParenTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_open_paren_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+OperatorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_modifiers_role,
+	plays has_operator_keyword_role,
+	plays has_operator_token_role,
+	plays has_parameter_list_role,
+	plays has_return_type_role,
+	plays has_semicolon_token_role;
+
+OperatorKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_keyword_role;
+
+OrAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+OrderByClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_clauses_role,
+	plays has_order_by_keyword_role,
+	plays has_orderings_role;
+
+OrderByKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_order_by_keyword_role;
+
+OutKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_ref_kind_keyword_role,
+	plays is_ref_or_out_keyword_role,
+	plays is_variance_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+OverrideKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+ParameterArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_parameter_role,
+	plays is_parameters_role,
+	plays has_attribute_lists_role,
+	plays has_default_role,
+	plays has_identifier_role,
+	plays has_modifiers_role,
+	plays has_type_role;
+
+ParameterListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_parameter_list_role,
+	plays has_close_paren_token_role,
+	plays has_open_paren_token_role,
+	plays has_parameters_role;
+
+ParamKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+ParamsKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+ParenthesizedExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_in_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_open_paren_token_role;
+
+ParenthesizedLambdaExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_arrow_token_role,
+	plays has_async_keyword_role,
+	plays has_body_role,
+	plays has_parameter_list_role;
+
+ParenthesizedVariableDesignationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_designation_role,
+	plays is_variables_role,
+	plays has_close_paren_token_role,
+	plays has_open_paren_token_role,
+	plays has_variables_role;
+
+PartialKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+PercentEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+PercentTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+PlusEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_trailing_trivia_role;
+
+PlusPlusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+PlusTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+PointerMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_name_role,
+	plays has_operator_token_role;
+
+PointerTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_element_type_role,
+	plays is_return_type_role,
+	plays is_type_role,
+	plays has_asterisk_token_role,
+	plays has_element_type_role;
+
+PostfixUnaryExpressionPostDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PostfixUnaryExpressionPostIncrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PragmaChecksumDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+PragmaWarningDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+PredefinedTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_return_type_role,
+	plays is_right_role,
+	plays is_type_role,
+	plays is_variable_role,
+	plays has_keyword_role;
+
+PrefixUnaryExpressionAddressOfExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionBitwiseNotExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionLogicalNotExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_incrementors_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionPointerIndirectionExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionPreDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionPreIncrementExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionUnaryMinusExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrefixUnaryExpressionUnaryPlusExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_operand_role,
+	plays has_operator_token_role;
+
+PrivateKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+PropertyDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_accessor_list_role,
+	plays has_attribute_lists_role,
+	plays has_explicit_interface_specifier_role,
+	plays has_expression_body_role,
+	plays has_identifier_role,
+	plays has_initializer_role,
+	plays has_modifiers_role,
+	plays has_semicolon_role,
+	plays has_semicolon_token_role,
+	plays has_type_role;
+
+PropertyKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+ProtectedKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+PublicKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+QualifiedNameArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_left_role,
+	plays is_name_role,
+	plays is_return_type_role,
+	plays is_right_role,
+	plays is_type_role,
+	plays has_dot_token_role,
+	plays has_left_role,
+	plays has_right_role;
+
+QueryBodyArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays has_clauses_role,
+	plays has_continuation_role,
+	plays has_select_or_group_role;
+
+QueryContinuationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_continuation_role,
+	plays has_body_role,
+	plays has_identifier_role,
+	plays has_into_keyword_role;
+
+QueryExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_body_role,
+	plays has_from_clause_role;
+
+QuestionQuestionTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+QuestionTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays is_question_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ReadOnlyKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_read_only_keyword_role,
+	plays has_leading_trivia_role;
+
+RefExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_ref_keyword_role;
+
+RefKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_ref_keyword_role,
+	plays is_ref_kind_keyword_role,
+	plays is_ref_or_out_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+RefTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_return_type_role,
+	plays is_type_role,
+	plays has_read_only_keyword_role,
+	plays has_ref_keyword_role,
+	plays has_type_role;
+
+RefTypeExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_value_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role;
+
+RefTypeKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role;
+
+RefValueExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_close_paren_token_role,
+	plays has_comma_role,
+	plays has_expression_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+RefValueKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role;
+
+RegionDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+RemoveAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessors_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_keyword_role,
+	plays has_semicolon_token_role;
+
+RemoveKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+ReturnKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role,
+	plays is_return_keyword_role,
+	plays is_return_or_break_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ReturnStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_expression_role,
+	plays has_return_keyword_role,
+	plays has_semicolon_token_role;
+
+RightShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+SByteKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+SealedKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+SelectClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_select_or_group_role,
+	plays has_expression_role,
+	plays has_select_keyword_role;
+
+SelectKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_select_keyword_role,
+	plays has_leading_trivia_role;
+
+SemicolonTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_first_semicolon_token_role,
+	plays is_second_semicolon_token_role,
+	plays is_semicolon_role,
+	plays is_semicolon_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+SetAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessors_role,
+	plays has_attribute_lists_role,
+	plays has_body_role,
+	plays has_expression_body_role,
+	plays has_keyword_role,
+	plays has_modifiers_role,
+	plays has_semicolon_token_role;
+
+SetKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ShortKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+SimpleAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_incrementors_role,
+	plays is_initializers_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+SimpleBaseTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_types_role,
+	plays has_type_role;
+
+SimpleLambdaExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_arrow_token_role,
+	plays has_async_keyword_role,
+	plays has_body_role,
+	plays has_parameter_role;
+
+SimpleMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_by_expression_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_group_expression_role,
+	plays is_in_expression_role,
+	plays is_left_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_not_null_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_name_role,
+	plays has_operator_token_role;
+
+SingleLineCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role,
+	plays is_trailing_trivia_role;
+
+SingleLineDocumentationCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+SingleVariableDesignationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_designation_role,
+	plays is_variables_role,
+	plays has_identifier_role;
+
+SizeOfExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_sizes_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+SizeOfKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+SlashEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role;
+
+SlashTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays has_trailing_trivia_role;
+
+StackAllocArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_initializer_role,
+	plays has_stack_alloc_keyword_role,
+	plays has_type_role;
+
+StackAllocKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_stack_alloc_keyword_role,
+	plays has_leading_trivia_role;
+
+StaticKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_static_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+StringKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+StringLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_in_expression_role,
+	plays is_left_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+StringLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has stringValue,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+StructDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has arityAttribute,
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_members_role,
+	plays has_attribute_lists_role,
+	plays has_base_list_role,
+	plays has_close_brace_token_role,
+	plays has_constraint_clauses_role,
+	plays has_identifier_role,
+	plays has_keyword_role,
+	plays has_members_role,
+	plays has_modifiers_role,
+	plays has_open_brace_token_role,
+	plays has_semicolon_token_role,
+	plays has_type_parameter_list_role;
+
+StructKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_class_or_struct_keyword_role,
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+SubtractAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_incrementors_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays has_left_role,
+	plays has_operator_token_role,
+	plays has_right_role;
+
+SwitchKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_switch_keyword_role,
+	plays has_leading_trivia_role;
+
+SwitchSectionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_sections_role,
+	plays has_labels_role,
+	plays has_statements_role;
+
+SwitchStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_brace_token_role,
+	plays has_close_paren_token_role,
+	plays has_expression_role,
+	plays has_open_brace_token_role,
+	plays has_open_paren_token_role,
+	plays has_sections_role,
+	plays has_switch_keyword_role;
+
+ThisConstructorInitializerArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_initializer_role,
+	plays has_argument_list_role,
+	plays has_colon_token_role,
+	plays has_this_or_base_keyword_role;
+
+ThisExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+ThisKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_this_keyword_role,
+	plays is_this_or_base_keyword_role,
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+ThrowExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_right_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_expression_role,
+	plays has_throw_keyword_role;
+
+ThrowKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_throw_keyword_role,
+	plays has_leading_trivia_role;
+
+ThrowStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_expression_role,
+	plays has_semicolon_token_role,
+	plays has_throw_keyword_role;
+
+TildeTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays is_tilde_token_role,
+	plays has_leading_trivia_role;
+
+TrueKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_operator_token_role,
+	plays is_token_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+TrueLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_condition_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_filter_expression_role,
+	plays is_left_expression_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_expression_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_token_role;
+
+TryKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_try_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+TryStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_block_role,
+	plays has_catches_role,
+	plays has_finally_role,
+	plays has_try_keyword_role;
+
+TupleElementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_elements_role,
+	plays has_identifier_role,
+	plays has_type_role;
+
+TupleExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_operand_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_variable_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_arguments_role,
+	plays has_close_paren_token_role,
+	plays has_open_paren_token_role;
+
+TupleTypeArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has isUnmanagedAttribute,
+	has isVarAttribute,
+	# Structural
+	plays is_arguments_role,
+	plays is_element_type_role,
+	plays is_return_type_role,
+	plays is_type_role,
+	plays has_close_paren_token_role,
+	plays has_elements_role,
+	plays has_open_paren_token_role;
+
+TypeArgumentListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_type_argument_list_role,
+	plays has_arguments_role,
+	plays has_greater_than_token_role,
+	plays has_less_than_token_role;
+
+TypeConstraintArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_constraints_role,
+	plays has_type_role;
+
+TypeKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+TypeOfExpressionArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_body_role,
+	plays is_expression_role,
+	plays is_expressions_role,
+	plays is_left_role,
+	plays is_right_role,
+	plays is_value_role,
+	plays is_when_false_role,
+	plays is_when_true_role,
+	plays has_close_paren_token_role,
+	plays has_keyword_role,
+	plays has_open_paren_token_role,
+	plays has_type_role;
+
+TypeOfKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+TypeParameterArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_parameters_role,
+	plays has_attribute_lists_role,
+	plays has_identifier_role,
+	plays has_variance_keyword_role;
+
+TypeParameterConstraintClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_constraint_clauses_role,
+	plays has_colon_token_role,
+	plays has_constraints_role,
+	plays has_name_role,
+	plays has_where_keyword_role;
+
+TypeParameterListArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_type_parameter_list_role,
+	plays has_greater_than_token_role,
+	plays has_less_than_token_role,
+	plays has_parameters_role;
+
+TypeVarKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_identifier_role;
+
+UIntKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+ULongKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+UncheckedKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+UndefDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+UnderscoreTokenArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_underscore_token_role;
+
+UnknownAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_accessors_role,
+	plays has_expression_body_role,
+	plays has_keyword_role,
+	plays has_semicolon_token_role;
+
+UnsafeKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays is_unsafe_keyword_role,
+	plays has_leading_trivia_role,
+	plays has_trailing_trivia_role;
+
+UnsafeStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_block_role,
+	plays has_unsafe_keyword_role;
+
+UShortKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+UsingDirectiveArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_usings_role,
+	plays has_alias_role,
+	plays has_name_role,
+	plays has_semicolon_token_role,
+	plays has_static_keyword_role,
+	plays has_using_keyword_role;
+
+UsingKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_using_keyword_role,
+	plays has_leading_trivia_role;
+
+UsingStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_declaration_role,
+	plays has_expression_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role,
+	plays has_using_keyword_role;
+
+VariableDeclarationArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	has name,
+	# Structural
+	plays is_declaration_role,
+	plays has_type_role,
+	plays has_variables_role;
+
+VariableDeclaratorArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_variables_role,
+	plays has_argument_list_role,
+	plays has_identifier_role,
+	plays has_initializer_role;
+
+VirtualKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+VoidKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_keyword_role,
+	plays has_leading_trivia_role;
+
+VolatileKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_modifiers_role,
+	plays has_leading_trivia_role;
+
+WarningDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isDirectiveAttribute,
+	# Structural
+	plays is_leading_trivia_role;
+
+WhenClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_when_clause_role,
+	plays has_condition_role,
+	plays has_when_keyword_role;
+
+WhenKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_when_keyword_role,
+	plays has_leading_trivia_role;
+
+WhereClauseArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_clauses_role,
+	plays has_condition_role,
+	plays has_where_keyword_role;
+
+WhereKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_where_keyword_role,
+	plays has_leading_trivia_role;
+
+WhileKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_while_keyword_role,
+	plays has_leading_trivia_role;
+
+WhileStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_close_paren_token_role,
+	plays has_condition_role,
+	plays has_open_paren_token_role,
+	plays has_statement_role,
+	plays has_while_keyword_role;
+
+YieldKeywordArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has textAttribute,
+	has valueTextAttribute,
+	# Structural
+	plays is_yield_keyword_role,
+	plays has_leading_trivia_role;
+
+YieldStatementYieldBreakStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_return_or_break_keyword_role,
+	plays has_semicolon_token_role,
+	plays has_yield_keyword_role;
+
+YieldStatementYieldReturnStatementArtifact sub CsharpSourceArtifact,
+	# Attributes
+	has isMissingAttribute,
+	has isStructuredTriviaAttribute,
+	# Structural
+	plays is_statement_role,
+	plays is_statements_role,
+	plays has_expression_role,
+	plays has_return_or_break_keyword_role,
+	plays has_semicolon_token_role,
+	plays has_yield_keyword_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relation,
+	relates is_parent, relates is_child;
+
+#####----- Csharp -----#####
+accessor_list_relation sub parent_child_relation,
+	relates is_accessor_list_role as is_child, relates has_accessor_list_role as is_parent;
+
+accessors_relation sub parent_child_relation,
+	relates is_accessors_role as is_child, relates has_accessors_role as is_parent;
+
+alias_keyword_relation sub parent_child_relation,
+	relates is_alias_keyword_role as is_child, relates has_alias_keyword_role as is_parent;
+
+alias_relation sub parent_child_relation,
+	relates is_alias_role as is_child, relates has_alias_role as is_parent;
+
+alignment_clause_relation sub parent_child_relation,
+	relates is_alignment_clause_role as is_child, relates has_alignment_clause_role as is_parent;
+
+argument_list_relation sub parent_child_relation,
+	relates is_argument_list_role as is_child, relates has_argument_list_role as is_parent;
+
+arguments_relation sub parent_child_relation,
+	relates is_arguments_role as is_child, relates has_arguments_role as is_parent;
+
+arrow_token_relation sub parent_child_relation,
+	relates is_arrow_token_role as is_child, relates has_arrow_token_role as is_parent;
+
+ascending_or_descending_keyword_relation sub parent_child_relation,
+	relates is_ascending_or_descending_keyword_role as is_child, relates has_ascending_or_descending_keyword_role as is_parent;
+
+asterisk_token_relation sub parent_child_relation,
+	relates is_asterisk_token_role as is_child, relates has_asterisk_token_role as is_parent;
+
+async_keyword_relation sub parent_child_relation,
+	relates is_async_keyword_role as is_child, relates has_async_keyword_role as is_parent;
+
+attribute_lists_relation sub parent_child_relation,
+	relates is_attribute_lists_role as is_child, relates has_attribute_lists_role as is_parent;
+
+attributes_relation sub parent_child_relation,
+	relates is_attributes_role as is_child, relates has_attributes_role as is_parent;
+
+await_keyword_relation sub parent_child_relation,
+	relates is_await_keyword_role as is_child, relates has_await_keyword_role as is_parent;
+
+base_list_relation sub parent_child_relation,
+	relates is_base_list_role as is_child, relates has_base_list_role as is_parent;
+
+block_relation sub parent_child_relation,
+	relates is_block_role as is_child, relates has_block_role as is_parent;
+
+body_relation sub parent_child_relation,
+	relates is_body_role as is_child, relates has_body_role as is_parent;
+
+break_keyword_relation sub parent_child_relation,
+	relates is_break_keyword_role as is_child, relates has_break_keyword_role as is_parent;
+
+by_expression_relation sub parent_child_relation,
+	relates is_by_expression_role as is_child, relates has_by_expression_role as is_parent;
+
+by_keyword_relation sub parent_child_relation,
+	relates is_by_keyword_role as is_child, relates has_by_keyword_role as is_parent;
+
+case_or_default_keyword_relation sub parent_child_relation,
+	relates is_case_or_default_keyword_role as is_child, relates has_case_or_default_keyword_role as is_parent;
+
+catch_keyword_relation sub parent_child_relation,
+	relates is_catch_keyword_role as is_child, relates has_catch_keyword_role as is_parent;
+
+catches_relation sub parent_child_relation,
+	relates is_catches_role as is_child, relates has_catches_role as is_parent;
+
+class_or_struct_keyword_relation sub parent_child_relation,
+	relates is_class_or_struct_keyword_role as is_child, relates has_class_or_struct_keyword_role as is_parent;
+
+clauses_relation sub parent_child_relation,
+	relates is_clauses_role as is_child, relates has_clauses_role as is_parent;
+
+close_brace_token_relation sub parent_child_relation,
+	relates is_close_brace_token_role as is_child, relates has_close_brace_token_role as is_parent;
+
+close_bracket_token_relation sub parent_child_relation,
+	relates is_close_bracket_token_role as is_child, relates has_close_bracket_token_role as is_parent;
+
+close_paren_token_relation sub parent_child_relation,
+	relates is_close_paren_token_role as is_child, relates has_close_paren_token_role as is_parent;
+
+colon_colon_token_relation sub parent_child_relation,
+	relates is_colon_colon_token_role as is_child, relates has_colon_colon_token_role as is_parent;
+
+colon_token_relation sub parent_child_relation,
+	relates is_colon_token_role as is_child, relates has_colon_token_role as is_parent;
+
+comma_relation sub parent_child_relation,
+	relates is_comma_role as is_child, relates has_comma_role as is_parent;
+
+comma_token_relation sub parent_child_relation,
+	relates is_comma_token_role as is_child, relates has_comma_token_role as is_parent;
+
+commas_relation sub parent_child_relation,
+	relates is_commas_role as is_child, relates has_commas_role as is_parent;
+
+condition_relation sub parent_child_relation,
+	relates is_condition_role as is_child, relates has_condition_role as is_parent;
+
+constraint_clauses_relation sub parent_child_relation,
+	relates is_constraint_clauses_role as is_child, relates has_constraint_clauses_role as is_parent;
+
+constraints_relation sub parent_child_relation,
+	relates is_constraints_role as is_child, relates has_constraints_role as is_parent;
+
+contents_relation sub parent_child_relation,
+	relates is_contents_role as is_child, relates has_contents_role as is_parent;
+
+continuation_relation sub parent_child_relation,
+	relates is_continuation_role as is_child, relates has_continuation_role as is_parent;
+
+continue_keyword_relation sub parent_child_relation,
+	relates is_continue_keyword_role as is_child, relates has_continue_keyword_role as is_parent;
+
+declaration_relation sub parent_child_relation,
+	relates is_declaration_role as is_child, relates has_declaration_role as is_parent;
+
+default_relation sub parent_child_relation,
+	relates is_default_role as is_child, relates has_default_role as is_parent;
+
+delegate_keyword_relation sub parent_child_relation,
+	relates is_delegate_keyword_role as is_child, relates has_delegate_keyword_role as is_parent;
+
+designation_relation sub parent_child_relation,
+	relates is_designation_role as is_child, relates has_designation_role as is_parent;
+
+do_keyword_relation sub parent_child_relation,
+	relates is_do_keyword_role as is_child, relates has_do_keyword_role as is_parent;
+
+dot_token_relation sub parent_child_relation,
+	relates is_dot_token_role as is_child, relates has_dot_token_role as is_parent;
+
+element_type_relation sub parent_child_relation,
+	relates is_element_type_role as is_child, relates has_element_type_role as is_parent;
+
+elements_relation sub parent_child_relation,
+	relates is_elements_role as is_child, relates has_elements_role as is_parent;
+
+else_keyword_relation sub parent_child_relation,
+	relates is_else_keyword_role as is_child, relates has_else_keyword_role as is_parent;
+
+else_relation sub parent_child_relation,
+	relates is_else_role as is_child, relates has_else_role as is_parent;
+
+end_of_file_token_relation sub parent_child_relation,
+	relates is_end_of_file_token_role as is_child, relates has_end_of_file_token_role as is_parent;
+
+enum_keyword_relation sub parent_child_relation,
+	relates is_enum_keyword_role as is_child, relates has_enum_keyword_role as is_parent;
+
+equals_keyword_relation sub parent_child_relation,
+	relates is_equals_keyword_role as is_child, relates has_equals_keyword_role as is_parent;
+
+equals_token_relation sub parent_child_relation,
+	relates is_equals_token_role as is_child, relates has_equals_token_role as is_parent;
+
+equals_value_relation sub parent_child_relation,
+	relates is_equals_value_role as is_child, relates has_equals_value_role as is_parent;
+
+event_keyword_relation sub parent_child_relation,
+	relates is_event_keyword_role as is_child, relates has_event_keyword_role as is_parent;
+
+explicit_interface_specifier_relation sub parent_child_relation,
+	relates is_explicit_interface_specifier_role as is_child, relates has_explicit_interface_specifier_role as is_parent;
+
+expression_body_relation sub parent_child_relation,
+	relates is_expression_body_role as is_child, relates has_expression_body_role as is_parent;
+
+expression_relation sub parent_child_relation,
+	relates is_expression_role as is_child, relates has_expression_role as is_parent;
+
+expressions_relation sub parent_child_relation,
+	relates is_expressions_role as is_child, relates has_expressions_role as is_parent;
+
+extern_keyword_relation sub parent_child_relation,
+	relates is_extern_keyword_role as is_child, relates has_extern_keyword_role as is_parent;
+
+externs_relation sub parent_child_relation,
+	relates is_externs_role as is_child, relates has_externs_role as is_parent;
+
+filter_expression_relation sub parent_child_relation,
+	relates is_filter_expression_role as is_child, relates has_filter_expression_role as is_parent;
+
+filter_relation sub parent_child_relation,
+	relates is_filter_role as is_child, relates has_filter_role as is_parent;
+
+finally_keyword_relation sub parent_child_relation,
+	relates is_finally_keyword_role as is_child, relates has_finally_keyword_role as is_parent;
+
+finally_relation sub parent_child_relation,
+	relates is_finally_role as is_child, relates has_finally_role as is_parent;
+
+first_semicolon_token_relation sub parent_child_relation,
+	relates is_first_semicolon_token_role as is_child, relates has_first_semicolon_token_role as is_parent;
+
+fixed_keyword_relation sub parent_child_relation,
+	relates is_fixed_keyword_role as is_child, relates has_fixed_keyword_role as is_parent;
+
+for_each_keyword_relation sub parent_child_relation,
+	relates is_for_each_keyword_role as is_child, relates has_for_each_keyword_role as is_parent;
+
+for_keyword_relation sub parent_child_relation,
+	relates is_for_keyword_role as is_child, relates has_for_keyword_role as is_parent;
+
+format_clause_relation sub parent_child_relation,
+	relates is_format_clause_role as is_child, relates has_format_clause_role as is_parent;
+
+format_string_token_relation sub parent_child_relation,
+	relates is_format_string_token_role as is_child, relates has_format_string_token_role as is_parent;
+
+from_clause_relation sub parent_child_relation,
+	relates is_from_clause_role as is_child, relates has_from_clause_role as is_parent;
+
+from_keyword_relation sub parent_child_relation,
+	relates is_from_keyword_role as is_child, relates has_from_keyword_role as is_parent;
+
+goto_keyword_relation sub parent_child_relation,
+	relates is_goto_keyword_role as is_child, relates has_goto_keyword_role as is_parent;
+
+greater_than_token_relation sub parent_child_relation,
+	relates is_greater_than_token_role as is_child, relates has_greater_than_token_role as is_parent;
+
+group_expression_relation sub parent_child_relation,
+	relates is_group_expression_role as is_child, relates has_group_expression_role as is_parent;
+
+group_keyword_relation sub parent_child_relation,
+	relates is_group_keyword_role as is_child, relates has_group_keyword_role as is_parent;
+
+identifier_relation sub parent_child_relation,
+	relates is_identifier_role as is_child, relates has_identifier_role as is_parent;
+
+if_keyword_relation sub parent_child_relation,
+	relates is_if_keyword_role as is_child, relates has_if_keyword_role as is_parent;
+
+implicit_or_explicit_keyword_relation sub parent_child_relation,
+	relates is_implicit_or_explicit_keyword_role as is_child, relates has_implicit_or_explicit_keyword_role as is_parent;
+
+in_expression_relation sub parent_child_relation,
+	relates is_in_expression_role as is_child, relates has_in_expression_role as is_parent;
+
+in_keyword_relation sub parent_child_relation,
+	relates is_in_keyword_role as is_child, relates has_in_keyword_role as is_parent;
+
+incrementors_relation sub parent_child_relation,
+	relates is_incrementors_role as is_child, relates has_incrementors_role as is_parent;
+
+initializer_relation sub parent_child_relation,
+	relates is_initializer_role as is_child, relates has_initializer_role as is_parent;
+
+initializers_relation sub parent_child_relation,
+	relates is_initializers_role as is_child, relates has_initializers_role as is_parent;
+
+into_keyword_relation sub parent_child_relation,
+	relates is_into_keyword_role as is_child, relates has_into_keyword_role as is_parent;
+
+into_relation sub parent_child_relation,
+	relates is_into_role as is_child, relates has_into_role as is_parent;
+
+is_keyword_relation sub parent_child_relation,
+	relates is_is_keyword_role as is_child, relates has_is_keyword_role as is_parent;
+
+join_keyword_relation sub parent_child_relation,
+	relates is_join_keyword_role as is_child, relates has_join_keyword_role as is_parent;
+
+keyword_relation sub parent_child_relation,
+	relates is_keyword_role as is_child, relates has_keyword_role as is_parent;
+
+labels_relation sub parent_child_relation,
+	relates is_labels_role as is_child, relates has_labels_role as is_parent;
+
+leading_trivia_relation sub parent_child_relation,
+	relates is_leading_trivia_role as is_child, relates has_leading_trivia_role as is_parent;
+
+left_expression_relation sub parent_child_relation,
+	relates is_left_expression_role as is_child, relates has_left_expression_role as is_parent;
+
+left_relation sub parent_child_relation,
+	relates is_left_role as is_child, relates has_left_role as is_parent;
+
+less_than_token_relation sub parent_child_relation,
+	relates is_less_than_token_role as is_child, relates has_less_than_token_role as is_parent;
+
+let_keyword_relation sub parent_child_relation,
+	relates is_let_keyword_role as is_child, relates has_let_keyword_role as is_parent;
+
+lock_keyword_relation sub parent_child_relation,
+	relates is_lock_keyword_role as is_child, relates has_lock_keyword_role as is_parent;
+
+members_relation sub parent_child_relation,
+	relates is_members_role as is_child, relates has_members_role as is_parent;
+
+modifiers_relation sub parent_child_relation,
+	relates is_modifiers_role as is_child, relates has_modifiers_role as is_parent;
+
+name_colon_relation sub parent_child_relation,
+	relates is_name_colon_role as is_child, relates has_name_colon_role as is_parent;
+
+name_equals_relation sub parent_child_relation,
+	relates is_name_equals_role as is_child, relates has_name_equals_role as is_parent;
+
+name_relation sub parent_child_relation,
+	relates is_name_role as is_child, relates has_name_role as is_parent;
+
+namespace_keyword_relation sub parent_child_relation,
+	relates is_namespace_keyword_role as is_child, relates has_namespace_keyword_role as is_parent;
+
+new_keyword_relation sub parent_child_relation,
+	relates is_new_keyword_role as is_child, relates has_new_keyword_role as is_parent;
+
+omitted_array_size_expression_token_relation sub parent_child_relation,
+	relates is_omitted_array_size_expression_token_role as is_child, relates has_omitted_array_size_expression_token_role as is_parent;
+
+omitted_type_argument_token_relation sub parent_child_relation,
+	relates is_omitted_type_argument_token_role as is_child, relates has_omitted_type_argument_token_role as is_parent;
+
+on_keyword_relation sub parent_child_relation,
+	relates is_on_keyword_role as is_child, relates has_on_keyword_role as is_parent;
+
+open_brace_token_relation sub parent_child_relation,
+	relates is_open_brace_token_role as is_child, relates has_open_brace_token_role as is_parent;
+
+open_bracket_token_relation sub parent_child_relation,
+	relates is_open_bracket_token_role as is_child, relates has_open_bracket_token_role as is_parent;
+
+open_paren_token_relation sub parent_child_relation,
+	relates is_open_paren_token_role as is_child, relates has_open_paren_token_role as is_parent;
+
+operand_relation sub parent_child_relation,
+	relates is_operand_role as is_child, relates has_operand_role as is_parent;
+
+operator_keyword_relation sub parent_child_relation,
+	relates is_operator_keyword_role as is_child, relates has_operator_keyword_role as is_parent;
+
+operator_token_relation sub parent_child_relation,
+	relates is_operator_token_role as is_child, relates has_operator_token_role as is_parent;
+
+order_by_keyword_relation sub parent_child_relation,
+	relates is_order_by_keyword_role as is_child, relates has_order_by_keyword_role as is_parent;
+
+orderings_relation sub parent_child_relation,
+	relates is_orderings_role as is_child, relates has_orderings_role as is_parent;
+
+parameter_list_relation sub parent_child_relation,
+	relates is_parameter_list_role as is_child, relates has_parameter_list_role as is_parent;
+
+parameter_relation sub parent_child_relation,
+	relates is_parameter_role as is_child, relates has_parameter_role as is_parent;
+
+parameters_relation sub parent_child_relation,
+	relates is_parameters_role as is_child, relates has_parameters_role as is_parent;
+
+pattern_relation sub parent_child_relation,
+	relates is_pattern_role as is_child, relates has_pattern_role as is_parent;
+
+question_token_relation sub parent_child_relation,
+	relates is_question_token_role as is_child, relates has_question_token_role as is_parent;
+
+rank_specifiers_relation sub parent_child_relation,
+	relates is_rank_specifiers_role as is_child, relates has_rank_specifiers_role as is_parent;
+
+read_only_keyword_relation sub parent_child_relation,
+	relates is_read_only_keyword_role as is_child, relates has_read_only_keyword_role as is_parent;
+
+ref_keyword_relation sub parent_child_relation,
+	relates is_ref_keyword_role as is_child, relates has_ref_keyword_role as is_parent;
+
+ref_kind_keyword_relation sub parent_child_relation,
+	relates is_ref_kind_keyword_role as is_child, relates has_ref_kind_keyword_role as is_parent;
+
+ref_or_out_keyword_relation sub parent_child_relation,
+	relates is_ref_or_out_keyword_role as is_child, relates has_ref_or_out_keyword_role as is_parent;
+
+return_keyword_relation sub parent_child_relation,
+	relates is_return_keyword_role as is_child, relates has_return_keyword_role as is_parent;
+
+return_or_break_keyword_relation sub parent_child_relation,
+	relates is_return_or_break_keyword_role as is_child, relates has_return_or_break_keyword_role as is_parent;
+
+return_type_relation sub parent_child_relation,
+	relates is_return_type_role as is_child, relates has_return_type_role as is_parent;
+
+right_expression_relation sub parent_child_relation,
+	relates is_right_expression_role as is_child, relates has_right_expression_role as is_parent;
+
+right_relation sub parent_child_relation,
+	relates is_right_role as is_child, relates has_right_role as is_parent;
+
+second_semicolon_token_relation sub parent_child_relation,
+	relates is_second_semicolon_token_role as is_child, relates has_second_semicolon_token_role as is_parent;
+
+sections_relation sub parent_child_relation,
+	relates is_sections_role as is_child, relates has_sections_role as is_parent;
+
+select_keyword_relation sub parent_child_relation,
+	relates is_select_keyword_role as is_child, relates has_select_keyword_role as is_parent;
+
+select_or_group_relation sub parent_child_relation,
+	relates is_select_or_group_role as is_child, relates has_select_or_group_role as is_parent;
+
+semicolon_relation sub parent_child_relation,
+	relates is_semicolon_role as is_child, relates has_semicolon_role as is_parent;
+
+semicolon_token_relation sub parent_child_relation,
+	relates is_semicolon_token_role as is_child, relates has_semicolon_token_role as is_parent;
+
+sizes_relation sub parent_child_relation,
+	relates is_sizes_role as is_child, relates has_sizes_role as is_parent;
+
+stack_alloc_keyword_relation sub parent_child_relation,
+	relates is_stack_alloc_keyword_role as is_child, relates has_stack_alloc_keyword_role as is_parent;
+
+statement_relation sub parent_child_relation,
+	relates is_statement_role as is_child, relates has_statement_role as is_parent;
+
+statements_relation sub parent_child_relation,
+	relates is_statements_role as is_child, relates has_statements_role as is_parent;
+
+static_keyword_relation sub parent_child_relation,
+	relates is_static_keyword_role as is_child, relates has_static_keyword_role as is_parent;
+
+string_end_token_relation sub parent_child_relation,
+	relates is_string_end_token_role as is_child, relates has_string_end_token_role as is_parent;
+
+string_start_token_relation sub parent_child_relation,
+	relates is_string_start_token_role as is_child, relates has_string_start_token_role as is_parent;
+
+switch_keyword_relation sub parent_child_relation,
+	relates is_switch_keyword_role as is_child, relates has_switch_keyword_role as is_parent;
+
+target_relation sub parent_child_relation,
+	relates is_target_role as is_child, relates has_target_role as is_parent;
+
+text_token_relation sub parent_child_relation,
+	relates is_text_token_role as is_child, relates has_text_token_role as is_parent;
+
+this_keyword_relation sub parent_child_relation,
+	relates is_this_keyword_role as is_child, relates has_this_keyword_role as is_parent;
+
+this_or_base_keyword_relation sub parent_child_relation,
+	relates is_this_or_base_keyword_role as is_child, relates has_this_or_base_keyword_role as is_parent;
+
+throw_keyword_relation sub parent_child_relation,
+	relates is_throw_keyword_role as is_child, relates has_throw_keyword_role as is_parent;
+
+tilde_token_relation sub parent_child_relation,
+	relates is_tilde_token_role as is_child, relates has_tilde_token_role as is_parent;
+
+token_relation sub parent_child_relation,
+	relates is_token_role as is_child, relates has_token_role as is_parent;
+
+trailing_trivia_relation sub parent_child_relation,
+	relates is_trailing_trivia_role as is_child, relates has_trailing_trivia_role as is_parent;
+
+try_keyword_relation sub parent_child_relation,
+	relates is_try_keyword_role as is_child, relates has_try_keyword_role as is_parent;
+
+type_argument_list_relation sub parent_child_relation,
+	relates is_type_argument_list_role as is_child, relates has_type_argument_list_role as is_parent;
+
+type_parameter_list_relation sub parent_child_relation,
+	relates is_type_parameter_list_role as is_child, relates has_type_parameter_list_role as is_parent;
+
+type_relation sub parent_child_relation,
+	relates is_type_role as is_child, relates has_type_role as is_parent;
+
+types_relation sub parent_child_relation,
+	relates is_types_role as is_child, relates has_types_role as is_parent;
+
+underscore_token_relation sub parent_child_relation,
+	relates is_underscore_token_role as is_child, relates has_underscore_token_role as is_parent;
+
+unsafe_keyword_relation sub parent_child_relation,
+	relates is_unsafe_keyword_role as is_child, relates has_unsafe_keyword_role as is_parent;
+
+using_keyword_relation sub parent_child_relation,
+	relates is_using_keyword_role as is_child, relates has_using_keyword_role as is_parent;
+
+usings_relation sub parent_child_relation,
+	relates is_usings_role as is_child, relates has_usings_role as is_parent;
+
+value_relation sub parent_child_relation,
+	relates is_value_role as is_child, relates has_value_role as is_parent;
+
+variable_relation sub parent_child_relation,
+	relates is_variable_role as is_child, relates has_variable_role as is_parent;
+
+variables_relation sub parent_child_relation,
+	relates is_variables_role as is_child, relates has_variables_role as is_parent;
+
+variance_keyword_relation sub parent_child_relation,
+	relates is_variance_keyword_role as is_child, relates has_variance_keyword_role as is_parent;
+
+when_clause_relation sub parent_child_relation,
+	relates is_when_clause_role as is_child, relates has_when_clause_role as is_parent;
+
+when_false_relation sub parent_child_relation,
+	relates is_when_false_role as is_child, relates has_when_false_role as is_parent;
+
+when_keyword_relation sub parent_child_relation,
+	relates is_when_keyword_role as is_child, relates has_when_keyword_role as is_parent;
+
+when_not_null_relation sub parent_child_relation,
+	relates is_when_not_null_role as is_child, relates has_when_not_null_role as is_parent;
+
+when_true_relation sub parent_child_relation,
+	relates is_when_true_role as is_child, relates has_when_true_role as is_parent;
+
+where_keyword_relation sub parent_child_relation,
+	relates is_where_keyword_role as is_child, relates has_where_keyword_role as is_parent;
+
+while_keyword_relation sub parent_child_relation,
+	relates is_while_keyword_role as is_child, relates has_while_keyword_role as is_parent;
+
+yield_keyword_relation sub parent_child_relation,
+	relates is_yield_keyword_role as is_child, relates has_yield_keyword_role as is_parent;
