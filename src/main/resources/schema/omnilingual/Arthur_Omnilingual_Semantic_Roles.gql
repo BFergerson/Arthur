@@ -798,6 +798,7 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 	plays IS_KEY,
 	plays IS_LEFT,
 	plays IS_POSITIONAL,
+	plays IS_QUALIFIED,
 	plays IS_RIGHT,
 	plays IS_TYPE,
 	plays IS_VALUE;
