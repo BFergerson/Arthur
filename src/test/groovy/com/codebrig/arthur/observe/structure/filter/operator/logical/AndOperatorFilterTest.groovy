@@ -59,6 +59,12 @@ class AndOperatorFilterTest extends ArthurTest {
                 "and", "", "andOperator2()")
     }
 
+    @Test
+    void andOperator_Bash() {
+        assertAndOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "&&")
+    }
+
     private static void assertAndOperatorPresent(File file, String andToken) {
         assertAndOperatorPresent(file, andToken, "", "andOperator()")
     }

@@ -2779,6 +2779,199 @@ CsharpWhileStatementArtifact sub WhileStatementArtifact,
 	plays has_csharp_statement_role,
 	plays has_csharp_while_keyword_role;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+Bash++Artifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+Bash--Artifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashANDANDArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashArithLTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashAssignmentWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashCasePatternArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashCasePatternListArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashCombinedWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashConditionalShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashElifArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashElseArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Structural
+	plays has_bash_children_role;
+
+BashForShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashFunction-def-elementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGenericBashCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGroupElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGTEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashIfShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashIntLiteralArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	# Structural
+	plays is_bash_children_role;
+
+BashLogicalBlockArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashLPLPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashNamedSymbolArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashNumberArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashORORArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashRPRPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashSEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashSimple-commandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashSingleBashExpansionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashStringArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashStringContentArtifact sub BashSourceArtifact,
+	# Attributes
+	has stringValue,
+	# Structural
+	plays is_bash_children_role;
+
+BashThenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashVar-def-elementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashVar-use-elementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashVariableArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashWhileLoopArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashWordArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	has stringValue,
+	# Structural
+	plays is_bash_children_role;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
@@ -3678,3 +3871,7 @@ csharp_when_true_relation sub parent_child_relation,
 
 csharp_while_keyword_relation sub parent_child_relation,
 	relates is_csharp_while_keyword_role as is_child, relates has_csharp_while_keyword_role as is_parent;
+
+#####----- Bash -----#####
+bash_children_relation sub children_relation,
+	relates is_bash_children_role as is_children_role, relates has_bash_children_role as has_children_role;

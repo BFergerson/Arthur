@@ -53,23 +53,35 @@ class IsEqualOperatorFilterTest extends ArthurTest {
         assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
     }
 
+    @Test
+    void isEqualOperator_Bash() {
+        assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "isEqualOperator1()", "==")
+        assertIsEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "isEqualOperator2()", "-eq")
+    }
+
     private static void assertIsEqualOperatorPresent(File file) {
-        assertIsEqualOperatorPresent(file, "")
+        assertIsEqualOperatorPresent(file, "", "isEqualOperator()", "==")
     }
 
     private static void assertIsEqualOperatorPresent(File file, String qualifiedName) {
+        assertIsEqualOperatorPresent(file, qualifiedName, "isEqualOperator()", "==")
+    }
+
+    private static void assertIsEqualOperatorPresent(File file, String qualifiedName, String functionName, String operator) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundEqualOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "isEqualOperator()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals(qualifiedName + "isEqualOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new IsEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundEqualOperator)
-                if (!it.token.isEmpty()) assertEquals("==", it.token)
+                if (!IsEqualOperatorFilter.getIsEqualToken(it).isEmpty()) assertEquals(operator, IsEqualOperatorFilter.getIsEqualToken(it))
                 foundEqualOperator = true
             }
         }

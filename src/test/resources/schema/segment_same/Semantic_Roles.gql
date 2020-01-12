@@ -2146,6 +2146,232 @@ CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
 
 CsharpWhileStatementArtifact sub WhileStatementArtifact;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+Bash++Artifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+Bash--Artifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashANDANDArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR;
+
+BashArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithLTArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_LEFT_SHIFT,
+	plays IS_OPERATOR;
+
+BashArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashAssignmentWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_LEFT;
+
+BashCasePatternArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
+
+BashCasePatternListArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CASE;
+
+BashCombinedWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_RIGHT,
+	plays IS_UPDATE;
+
+BashConditionalShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_IF;
+
+BashElifArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+BashElseArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
+
+BashEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_OPERATOR;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
+BashForShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+BashFunction-def-elementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+BashGenericBashCommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashGroupElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY;
+
+BashGTEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+BashIfShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+BashIntLiteralArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE;
+
+BashLogicalBlockArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+BashLPLPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashNamedSymbolArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+BashNumberArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashORORArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR,
+	plays IS_OR;
+
+BashRPRPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashSEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashSimple-commandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_WHILE;
+
+BashSingleBashExpansionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashStringArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_STRING;
+
+BashStringContentArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_STRING;
+
+BashThenArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN;
+
+BashVar-def-elementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_ITERATOR,
+	plays IS_VARIABLE;
+
+BashVar-use-elementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashVariableArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashWhileLoopArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
+
+BashWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER;
+
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,
 	relates IS_ADD;
@@ -2278,6 +2504,9 @@ KEY sub relation,
 
 LEFT sub relation,
 	relates IS_LEFT;
+
+LEFT_SHIFT sub relation,
+	relates IS_LEFT_SHIFT;
 
 LESS_THAN sub relation,
 	relates IS_LESS_THAN;

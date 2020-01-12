@@ -55,6 +55,11 @@ class IfConditionalFilterTest extends ArthurTest {
                 "", "unlessConditional()")
     }
 
+    @Test
+    void ifConditional_Bash() {
+        assertIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
+    }
+
     private static void assertIfConditionalPresent(File file) {
         assertIfConditionalPresent(file, "", "ifConditional()")
     }

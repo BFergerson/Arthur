@@ -54,6 +54,11 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
         assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
     }
 
+    @Test
+    void initializeVariableOperator_Bash() {
+        assertInitializeVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"))
+    }
+
     private static void assertInitializeVariableOperatorPresent(File file) {
         assertInitializeVariableOperatorPresent(file, "")
     }

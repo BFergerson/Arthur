@@ -29,8 +29,9 @@ class SchemaGeneratorTest {
         def pythonLanguage = schemaGenerator.observeLanguage(SourceLanguage.Python, new File("src/test/resources/same/program/"))
         def rubyLanguage = schemaGenerator.observeLanguage(SourceLanguage.Ruby, new File("src/test/resources/same/program/"))
         def cSharpLanguage = schemaGenerator.observeLanguage(SourceLanguage.CSharp, new File("src/test/resources/same/program/"))
-        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
-        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
+        def bashLanguage = schemaGenerator.observeLanguage(SourceLanguage.Bash, new File("src/test/resources/same/program/"))
+        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage)
+        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage)
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
         assertEquals(verifyFile.text, schemaWriter.fullSchemaDefinition)
     }

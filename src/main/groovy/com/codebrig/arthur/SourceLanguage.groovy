@@ -20,6 +20,7 @@ import groovy.transform.Memoized
 enum SourceLanguage {
 
     Omnilingual([]),
+    Bash(["sh"]),
     CPlusPlus(["cpp", "cc", "cxx"]),
     CSharp(["cs"]),
     Go(["go"]),
@@ -98,6 +99,8 @@ enum SourceLanguage {
                 return new CSharpNaming()
             case CPlusPlus:
                 return new CPlusPlusNaming()
+            case Bash:
+                return new BashNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
@@ -122,6 +125,8 @@ enum SourceLanguage {
                 return new CSharpLiteral()
             case CPlusPlus:
                 return new CPlusPlusLiteral()
+            case Bash:
+                return new BashLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }

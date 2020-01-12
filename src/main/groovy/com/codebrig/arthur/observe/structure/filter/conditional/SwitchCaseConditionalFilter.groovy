@@ -24,6 +24,9 @@ class SwitchCaseConditionalFilter extends StructureFilter<SwitchCaseConditionalF
                         new RoleFilter("CASE"), new RoleFilter("SWITCH", "STATEMENT"),
                         new RoleFilter().reject("LITERAL", "NUMBER", "CONDITION", "BODY"),
                         new TypeFilter().reject("CaseSwitchLabel")
+                ),
+                MultiFilter.matchAll(
+                        new TypeFilter("case_pattern_list")
                 )
         )
     }

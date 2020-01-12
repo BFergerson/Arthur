@@ -6,6 +6,7 @@ import com.codebrig.arthur.observe.structure.filter.ChildFilter
 import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by else if conditional
@@ -24,7 +25,7 @@ class ElseIfConditionalFilter extends StructureFilter<ElseIfConditionalFilter, V
                 new RoleFilter("STATEMENT", "BODY").reject("CALL"),
                 ChildFilter.matchAll(new InternalRoleFilter(
                         "else_stmts", "thenStatement", "Cond", "Prop_ThenClause", "condition", "consequent"))
-        ), new InternalRoleFilter("Else"))
+        ), new InternalRoleFilter("Else"), new TypeFilter("elif"))
     }
 
     @Override

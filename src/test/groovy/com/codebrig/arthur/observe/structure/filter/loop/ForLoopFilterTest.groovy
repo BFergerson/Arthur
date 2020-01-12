@@ -52,6 +52,11 @@ class ForLoopFilterTest extends ArthurTest {
         assertLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
     }
 
+    @Test
+    void forLoop_Bash() {
+        assertLoopPresent(new File("src/test/resources/same/loops/Loops.sh"))
+    }
+
     private static void assertLoopPresent(File file) {
         assertLoopPresent(file, "")
     }

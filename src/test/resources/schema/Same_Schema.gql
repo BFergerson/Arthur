@@ -194,6 +194,13 @@ CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Semantic
 	plays IS_TYPE;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
