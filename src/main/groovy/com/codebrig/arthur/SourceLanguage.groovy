@@ -20,6 +20,7 @@ import groovy.transform.Memoized
 enum SourceLanguage {
 
     Omnilingual([]),
+    Bash(["sh"]),
     CPlusPlus(["cpp", "cc", "cxx"]),
     CSharp(["cs"]),
     Go(["go"]),
@@ -27,8 +28,7 @@ enum SourceLanguage {
     Javascript(["js"]),
     Php(["php"]),
     Python(["py"]),
-    Ruby(["rb"]),
-    Bash(["sh"])
+    Ruby(["rb"])
 
     private final Set<String> fileExtensions
 
