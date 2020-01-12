@@ -4,6 +4,7 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by ternary operator
@@ -24,32 +25,15 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
                         new RoleFilter("ASSIGNMENT", "INITIALIZATION"), new RoleFilter("BINARY"), new RoleFilter("RIGHT")
                 ),
                 MultiFilter.matchAll(
-                        new RoleFilter("IF"), new RoleFilter("CONDITION"),
-                        MultiFilter.matchAny(
-                                new RoleFilter("EXPRESSION"),
-                                MultiFilter.matchAll(
-                                        new RoleFilter("OPERATOR"), new RoleFilter("BINARY")
-                                )
-                        )
-                )
+                        new RoleFilter("IF"), new RoleFilter("STATEMENT"),
+                        new RoleFilter("BINARY"), new RoleFilter("RIGHT")
+                ),
+                new TypeFilter("ConditionalExpression") //todo: filter by roles
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node?.internalType == "ConditionalExpression") {
-            return evaluateConditionalExpression(node)
-        } else {
-            return filter.evaluate(node)
-        }
-    }
-
-    static boolean evaluateConditionalExpression(SourceNode node) {
-        if (node.children.any { it.internalType == "QuestionToken" }) {
-            if (node.children.any { it.internalType == "ColonToken" }) {
-                return true
-            }
-        }
-        return false
+        return filter.evaluate(node)
     }
 }

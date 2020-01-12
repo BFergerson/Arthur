@@ -1,0 +1,1185 @@
+define
+
+##########---------- Entities ----------##########
+
+#####----- Cplusplus -----#####
+CplusplusSourceArtifact sub SourceArtifact;
+
+ASTElifArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_INCOMPLETE;
+
+ASTElseArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_INCOMPLETE;
+
+ASTEndifArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+ASTErrorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ASTFunctionStyleMacroDefinitionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
+ASTIfArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ASTIfdefArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_INCOMPLETE,
+	plays IS_THEN;
+
+ASTIfndefArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ASTInclusionStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_IMPORT;
+
+ASTMacroDefinitionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_VARIABLE;
+
+ASTPragmaArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ASTPragmaOperatorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ASTUndefArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BodyPositionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_NOOP;
+
+CommentArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
+
+CPPASTAliasDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ALIAS,
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+CPPASTArrayDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+CPPASTArrayModifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_TYPE;
+
+CPPASTArraySubscriptExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_LIST,
+	plays IS_NAME,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTASMDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE;
+
+CPPASTBaseSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BASE,
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+CPPASTBinaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARGUMENT,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_DIVIDE,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_GREATER_THAN,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_NOT,
+	plays IS_OR,
+	plays IS_QUALIFIED,
+	plays IS_RELATIONAL,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_SWITCH,
+	plays IS_UNANNOTATED,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_WHILE,
+	plays IS_XOR;
+
+CPPASTBreakStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BREAK,
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN;
+
+CPPASTCaseStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_SWITCH;
+
+CPPASTCastExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_VALUE;
+
+CPPASTCatchHandlerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_TRY,
+	plays IS_UNANNOTATED;
+
+CPPASTClassVirtSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTCompositeTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_RETURN,
+	plays IS_TYPE,
+	plays IS_UNANNOTATED;
+
+CPPASTCompoundStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_CATCH,
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_TRY,
+	plays IS_WHILE;
+
+CPPASTCompoundStatementExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LEFT,
+	plays IS_RIGHT,
+	plays IS_UNANNOTATED;
+
+CPPASTConditionalExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTConstructorChainInitializerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_TYPE;
+
+CPPASTConstructorInitializerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LIST,
+	plays IS_RIGHT;
+
+CPPASTContinueStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CONTINUE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTConversionNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_UNANNOTATED;
+
+CPPASTDeclarationStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_INITIALIZATION,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_NAME,
+	plays IS_VARIABLE;
+
+CPPASTDefaultStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_DEFAULT,
+	plays IS_SWITCH;
+
+CPPASTDeleteExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
+CPPASTDesignatedInitializerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INITIALIZATION;
+
+CPPASTDoStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTElaboratedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_FUNCTION,
+	plays IS_RETURN,
+	plays IS_TYPE,
+	plays IS_UNANNOTATED;
+
+CPPASTEnumerationSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_TYPE;
+
+CPPASTEqualsInitializerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_INITIALIZATION,
+	plays IS_LIST,
+	plays IS_RIGHT;
+
+CPPASTExplicitTemplateInstantiationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTExpressionListArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_RETURN,
+	plays IS_UNANNOTATED,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTExpressionStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_INITIALIZATION,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTFieldDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CPPASTFieldReferenceArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTForStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTFunctionCallExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_NUMBER,
+	plays IS_QUALIFIED,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_TYPE,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_TYPE;
+
+CPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CPPASTFunctionWithTryBlockArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_UNANNOTATED;
+
+CPPASTGotoStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_GOTO,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN;
+
+CPPASTIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_NUMBER,
+	plays IS_QUALIFIED,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_TYPE,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_VARIABLE,
+	plays IS_WHILE;
+
+CPPASTIfStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTInitCaptureArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_UNANNOTATED;
+
+CPPASTInitializerListArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LIST,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_VALUE;
+
+CPPASTLabelStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_INCOMPLETE,
+	plays IS_NAME,
+	plays IS_THEN;
+
+CPPASTLambdaExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_NAME,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_UNANNOTATED,
+	plays IS_VALUE;
+
+CPPASTLinkageSpecificationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE;
+
+CPPASTLiteralExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CHARACTER,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_INSTANCE,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NAME,
+	plays IS_NULL,
+	plays IS_NUMBER,
+	plays IS_QUALIFIED,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_TYPE,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ALIAS,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_TYPE;
+
+CPPASTNamedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INSTANCE,
+	plays IS_RETURN,
+	plays IS_TYPE;
+
+CPPASTNamespaceAliasArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTNaryTypeIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTNewExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_INSTANCE,
+	plays IS_LEFT,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_VALUE;
+
+CPPASTNullStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_INITIALIZATION,
+	plays IS_LITERAL,
+	plays IS_NULL,
+	plays IS_PRIMITIVE,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTOperatorNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_UNANNOTATED;
+
+CPPASTPackExpansionExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_UNANNOTATED,
+	plays IS_VALUE;
+
+CPPASTProblemDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NOOP,
+	plays IS_TYPE;
+
+CPPASTProblemExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_SWITCH,
+	plays IS_UNANNOTATED,
+	plays IS_WHILE;
+
+CPPASTProblemStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CPPASTQualifiedNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_TYPE;
+
+CPPASTRangeBasedForStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTReturnStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_RETURN,
+	plays IS_STATEMENT,
+	plays IS_THEN;
+
+CPPASTSimpleDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CATCH,
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
+	plays IS_TYPE,
+	plays IS_VARIABLE;
+
+CPPASTSimpleDeclSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_CHARACTER,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_NULL,
+	plays IS_NUMBER,
+	plays IS_RETURN,
+	plays IS_TYPE;
+
+CPPASTSimpleTypeConstructorExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_UNANNOTATED,
+	plays IS_VALUE;
+
+CPPASTSimpleTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CPPASTStaticAssertionDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_UNANNOTATED;
+
+CPPASTSwitchStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+CPPASTTemplateDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CPPASTTemplatedTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTTemplateIdArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_NAME,
+	plays IS_QUALIFIED,
+	plays IS_TYPE;
+
+CPPASTTemplateSpecializationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_FILE,
+	plays IS_MODULE;
+
+CPPASTTryBlockStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_TRY,
+	plays IS_WHILE;
+
+CPPASTTypeIdArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ALIAS,
+	plays IS_RIGHT,
+	plays IS_TYPE;
+
+CPPASTTypeIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LEFT,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_UNANNOTATED,
+	plays IS_VALUE;
+
+CPPASTTypeIdInitializerExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_UNANNOTATED,
+	plays IS_VALUE;
+
+CPPASTUnaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_ARGUMENT,
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_DEREFERENCE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_NAME,
+	plays IS_NOOP,
+	plays IS_NOT,
+	plays IS_QUALIFIED,
+	plays IS_RELATIONAL,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_SUBSTRACT,
+	plays IS_SWITCH,
+	plays IS_THROW,
+	plays IS_UNARY,
+	plays IS_UPDATE,
+	plays IS_VALUE,
+	plays IS_WHILE;
+
+CPPASTUsingDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_UNANNOTATED;
+
+CPPASTUsingDirectiveArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ALIAS,
+	plays IS_SCOPE;
+
+CPPASTVirtSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CPPASTVisibilityLabelArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CPPASTWhileStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+ExpansionLocationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_NOOP;
+
+GNUCPPASTGotoStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relation,
+	relates IS_ADD;
+
+ALIAS sub relation,
+	relates IS_ALIAS;
+
+AND sub relation,
+	relates IS_AND;
+
+ANONYMOUS sub relation,
+	relates IS_ANONYMOUS;
+
+ARGUMENT sub relation,
+	relates IS_ARGUMENT;
+
+ARITHMETIC sub relation,
+	relates IS_ARITHMETIC;
+
+ASSIGNMENT sub relation,
+	relates IS_ASSIGNMENT;
+
+BASE sub relation,
+	relates IS_BASE;
+
+BINARY sub relation,
+	relates IS_BINARY;
+
+BITWISE sub relation,
+	relates IS_BITWISE;
+
+BLOCK sub relation,
+	relates IS_BLOCK;
+
+BODY sub relation,
+	relates IS_BODY;
+
+BOOLEAN sub relation,
+	relates IS_BOOLEAN;
+
+BREAK sub relation,
+	relates IS_BREAK;
+
+CALL sub relation,
+	relates IS_CALL;
+
+CASE sub relation,
+	relates IS_CASE;
+
+CATCH sub relation,
+	relates IS_CATCH;
+
+CHARACTER sub relation,
+	relates IS_CHARACTER;
+
+COMMENT sub relation,
+	relates IS_COMMENT;
+
+CONDITION sub relation,
+	relates IS_CONDITION;
+
+CONTINUE sub relation,
+	relates IS_CONTINUE;
+
+DECLARATION sub relation,
+	relates IS_DECLARATION;
+
+DEFAULT sub relation,
+	relates IS_DEFAULT;
+
+DEREFERENCE sub relation,
+	relates IS_DEREFERENCE;
+
+DIVIDE sub relation,
+	relates IS_DIVIDE;
+
+ELSE sub relation,
+	relates IS_ELSE;
+
+ENUMERATION sub relation,
+	relates IS_ENUMERATION;
+
+EQUAL sub relation,
+	relates IS_EQUAL;
+
+EXPRESSION sub relation,
+	relates IS_EXPRESSION;
+
+FILE sub relation,
+	relates IS_FILE;
+
+FOR sub relation,
+	relates IS_FOR;
+
+FUNCTION sub relation,
+	relates IS_FUNCTION;
+
+GOTO sub relation,
+	relates IS_GOTO;
+
+GREATER_THAN sub relation,
+	relates IS_GREATER_THAN;
+
+GREATER_THAN_OR_EQUAL sub relation,
+	relates IS_GREATER_THAN_OR_EQUAL;
+
+IDENTIFIER sub relation,
+	relates IS_IDENTIFIER;
+
+IF sub relation,
+	relates IS_IF;
+
+IMPORT sub relation,
+	relates IS_IMPORT;
+
+INCOMPLETE sub relation,
+	relates IS_INCOMPLETE;
+
+INITIALIZATION sub relation,
+	relates IS_INITIALIZATION;
+
+INSTANCE sub relation,
+	relates IS_INSTANCE;
+
+ITERATOR sub relation,
+	relates IS_ITERATOR;
+
+LEFT sub relation,
+	relates IS_LEFT;
+
+LEFT_SHIFT sub relation,
+	relates IS_LEFT_SHIFT;
+
+LESS_THAN sub relation,
+	relates IS_LESS_THAN;
+
+LESS_THAN_OR_EQUAL sub relation,
+	relates IS_LESS_THAN_OR_EQUAL;
+
+LIST sub relation,
+	relates IS_LIST;
+
+LITERAL sub relation,
+	relates IS_LITERAL;
+
+MODULE sub relation,
+	relates IS_MODULE;
+
+MODULO sub relation,
+	relates IS_MODULO;
+
+MULTIPLY sub relation,
+	relates IS_MULTIPLY;
+
+NAME sub relation,
+	relates IS_NAME;
+
+NOOP sub relation,
+	relates IS_NOOP;
+
+NOT sub relation,
+	relates IS_NOT;
+
+NULL sub relation,
+	relates IS_NULL;
+
+NUMBER sub relation,
+	relates IS_NUMBER;
+
+OR sub relation,
+	relates IS_OR;
+
+PRIMITIVE sub relation,
+	relates IS_PRIMITIVE;
+
+QUALIFIED sub relation,
+	relates IS_QUALIFIED;
+
+RELATIONAL sub relation,
+	relates IS_RELATIONAL;
+
+RETURN sub relation,
+	relates IS_RETURN;
+
+RIGHT sub relation,
+	relates IS_RIGHT;
+
+RIGHT_SHIFT sub relation,
+	relates IS_RIGHT_SHIFT;
+
+SCOPE sub relation,
+	relates IS_SCOPE;
+
+STATEMENT sub relation,
+	relates IS_STATEMENT;
+
+STRING sub relation,
+	relates IS_STRING;
+
+SUBSTRACT sub relation,
+	relates IS_SUBSTRACT;
+
+SWITCH sub relation,
+	relates IS_SWITCH;
+
+THEN sub relation,
+	relates IS_THEN;
+
+THROW sub relation,
+	relates IS_THROW;
+
+TRY sub relation,
+	relates IS_TRY;
+
+TYPE sub relation,
+	relates IS_TYPE;
+
+UNANNOTATED sub relation,
+	relates IS_UNANNOTATED;
+
+UNARY sub relation,
+	relates IS_UNARY;
+
+UPDATE sub relation,
+	relates IS_UPDATE;
+
+VALUE sub relation,
+	relates IS_VALUE;
+
+VARIABLE sub relation,
+	relates IS_VARIABLE;
+
+WHILE sub relation,
+	relates IS_WHILE;
+
+XOR sub relation,
+	relates IS_XOR;

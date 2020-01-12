@@ -1738,6 +1738,7 @@ JavaSingleMemberAnnotationArtifact sub JavaSourceArtifact,
 JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has javaVarargsAttribute,
+	has name,
 	# Structural
 	plays is_java_exception_role,
 	plays is_java_parameter_role,

@@ -8,7 +8,7 @@ import com.codebrig.arthur.observe.structure.filter.NameFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.InitializeVariableOperatorFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import groovy.util.logging.Slf4j
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 import org.junit.Test
 
 import static org.junit.Assert.*
