@@ -91,7 +91,7 @@ class SourceNode {
     }
 
     Iterator<SourceNode> getChildren() {
-        def itr = asJavaIterator(BblfshClient$.MODULE$.iterator(underlyingNode, BblfshClient.ChildrenOrder()).seq())
+        def itr = asJavaIterator(BblfshClient$.MODULE$.iterator(underlyingNode, new BblfshClient.ChildrenOrder$()).seq())
         return new TransformIterator<JNode, SourceNode>(itr, { JNode node ->
             if (node == null) {
                 return null
