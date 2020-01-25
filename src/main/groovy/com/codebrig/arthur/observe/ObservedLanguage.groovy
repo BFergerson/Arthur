@@ -389,6 +389,18 @@ class ObservedLanguage {
         if (relation.startsWith("_")) {
             relation = relation.substring(1)
         }
+        if (relation.isNumber()) {
+            switch (relation) {
+                case "1":
+                    relation = "one"
+                    break
+                case "2":
+                    relation = "two"
+                    break
+                default:
+                    throw new UnsupportedOperationException("Unsupported relation: $relation")
+            }
+        }
         return relation + "_relation"
     }
 
