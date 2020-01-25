@@ -18,6 +18,8 @@ class BashNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
+            case "function-def-element":
+            case "var-def-element":
             case "FunctionDefElement":
             case "VarDefElement":
                 return true
@@ -29,8 +31,10 @@ class BashNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
+            case "function-def-element":
             case "FunctionDefElement":
                 return getFunctionDefElementName(node)
+            case "var-def-element":
             case "VarDefElement":
                 return getVarDefElementName(node)
             default:
