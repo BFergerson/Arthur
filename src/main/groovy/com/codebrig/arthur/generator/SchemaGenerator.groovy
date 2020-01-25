@@ -2,21 +2,22 @@ package com.codebrig.arthur.generator
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguage
+import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.WildcardFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
-import groovy.io.FileType
 import groovy.transform.Canonical
 import groovy.transform.TupleConstructor
+import groovy.util.logging.Slf4j
 import org.bblfsh.client.BblfshClient
 import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
 import org.kohsuke.github.GHRepositorySearchBuilder
 import org.kohsuke.github.GitHub
 
+import java.nio.file.Files
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -27,10 +28,11 @@ import static com.google.common.io.Files.getFileExtension
 /**
  * Used to observe a source code language and generate the resulting schema
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class SchemaGenerator {
 
     private static final int MAX_PARSE_WAIT_SECONDS = 15
@@ -75,7 +77,7 @@ class SchemaGenerator {
         GitHub.connectAnonymously().searchRepositories()
                 .sort(GHRepositorySearchBuilder.Sort.STARS)
                 .order(GHDirection.DESC)
-                .language(language.key)
+                .language(language.babelfishName)
                 .list().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
@@ -98,7 +100,7 @@ class SchemaGenerator {
     void parseGithubRepository(String repoName, ObservedLanguage observedLanguage, int parseFileLimit) {
         def outputFolder = new File("/tmp/arthur/out/$repoName")
         if (new File(outputFolder, "cloned.arthur").exists()) {
-            println "$repoName already exists. Repository cloning skipped."
+            log.info "$repoName already exists. Repository cloning skipped."
         } else {
             if (outputFolder.exists()) outputFolder.deleteDir()
             outputFolder.mkdirs()
@@ -113,15 +115,16 @@ class SchemaGenerator {
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
         def sourceFiles = new ArrayList<File>()
-        localRoot.eachFileRecurse(FileType.FILES) { file ->
+        Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
+            def file = p.toFile()
             if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
                 if (file.exists()) {
                     sourceFiles.add(file)
                 } else {
-                    System.err.println("Skipping non-existent file: " + file)
+                    log.error "Skipping non-existent file: " + file
                 }
             }
-        }
+        })
 
         def failCount = new AtomicInteger(0)
         def parseCount = new AtomicInteger(0)
@@ -131,16 +134,17 @@ class SchemaGenerator {
                 return null
             }
 
-            println "Parsing: " + file
+            log.info "Parsing: " + file
             def fileResponse = new FileParseResponse(file)
             def task = executorService.submit({
-                fileResponse.parseResponse = client.parse(file.name, file.text, observedLanguage.language.key, Encoding.UTF8$.MODULE$)
+                fileResponse.parseResponse = client.parse(
+                        file.name, file.text, observedLanguage.language.babelfishName, Encoding.UTF8$.MODULE$)
                 return fileResponse
             } as Callable<FileParseResponse>)
             try {
                 return task.get(MAX_PARSE_WAIT_SECONDS, TimeUnit.SECONDS)
             } catch (Exception e) {
-                System.err.println("Failed to parse: " + file + " - Reason: " + e.message)
+                log.error "Failed to parse: " + file + " - Reason: " + e.message
                 return null
             }
         }).map({
@@ -153,16 +157,16 @@ class SchemaGenerator {
                     extractSchema(observedLanguage, rootSourceNode)
                     parseCount.getAndIncrement()
                 } else {
-                    System.err.println("Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString())
+                    log.error "Failed to parse: " + it.parsedFile + " - Reason: " + it.parseResponse.errors().toList().toString()
                     failCount.getAndIncrement()
                 }
             }
         }).count()
         executorService.shutdown()
 
-        println "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
+        log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
         if (failCount.get() > 0) {
-            System.err.println("Failed to parse " + failCount.get() + " " + observedLanguage.language.qualifiedName + " files")
+            log.error "Failed to parse " + failCount.get() + " " + observedLanguage.language.qualifiedName + " files"
         }
     }
 
@@ -212,7 +216,7 @@ class SchemaGenerator {
     }
 
     static void cloneRepo(String githubRepository, File outputDirectory) {
-        println "Cloning: $githubRepository"
+        log.info "Cloning: $githubRepository"
         Git.cloneRepository()
                 .setURI("https://github.com/" + githubRepository + ".git")
                 .setDirectory(outputDirectory)
@@ -220,7 +224,7 @@ class SchemaGenerator {
                 .setTimeout(TimeUnit.MINUTES.toSeconds(5) as int)
                 .call()
         new File(outputDirectory, "cloned.arthur").createNewFile()
-        println "Cloned: $githubRepository"
+        log.info "Cloned: $githubRepository"
     }
 
     @Canonical

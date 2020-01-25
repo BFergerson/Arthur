@@ -8,16 +8,18 @@ import com.codebrig.arthur.observe.ObservedLanguages
 import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SegmentedSchemaConfig
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
+import groovy.util.logging.Slf4j
 
 import java.util.concurrent.TimeUnit
 
 /**
  * Generate a multi-language schema by observing source code on GitHub
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     public static final int PARSE_PROJECTS_PER_LANGUAGE = 75
@@ -33,16 +35,16 @@ class OmnilingualGithubSchemaGenerator extends SchemaGenerator {
             }
         }
 
-        println "Merging common language features"
+        log.info "Merging common language features"
         def omniLanguage = ObservedLanguages.mergeLanguages(observedLanguages)
 
-        println "Writing segmented Grakn schema"
+        log.info "Writing segmented Grakn schema"
         def schemaWriter = new GraknSchemaWriter(omniLanguage, observedLanguages.toArray(new ObservedLanguage[0]))
         schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
                 .withFileSegment(new File("src/main/resources/schema/omnilingual/",
                 "Arthur_" + SourceLanguage.Omnilingual.qualifiedName + "_Base_Structure.gql"), ObservationConfig.baseStructure().asArray())
                 .withFileSegment(new File("src/main/resources/schema/omnilingual/",
                 "Arthur_" + SourceLanguage.Omnilingual.qualifiedName + "_Semantic_Roles.gql"), SchemaSegment.SEMANTIC_ROLES))
-        println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
+        log.info "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

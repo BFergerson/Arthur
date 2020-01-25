@@ -7,7 +7,7 @@ import com.codebrig.arthur.schema.SchemaSegment
 /**
  * Represents multiple observed languages
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

@@ -7,17 +7,22 @@ import com.codebrig.arthur.observe.structure.naming.*
 import com.google.common.base.Charsets
 import com.google.common.io.Files
 import com.google.common.io.Resources
+import groovy.transform.Memoized
 
 /**
  * The supported source code languages
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 enum SourceLanguage {
 
     Omnilingual([]),
+    Bash(["sh"]),
+    CPlusPlus(["cpp", "cc", "cxx"]),
+    CSharp(["cs"]),
     Go(["go"]),
     Java(["java"]),
     Javascript(["js"]),
@@ -26,8 +31,6 @@ enum SourceLanguage {
     Ruby(["rb"])
 
     private final Set<String> fileExtensions
-    private StructureNaming namingCache
-    private StructureLiteral literalCache
 
     SourceLanguage(List<String> fileExtensions) {
         this.fileExtensions = new HashSet<>(fileExtensions)
@@ -35,6 +38,15 @@ enum SourceLanguage {
 
     String getKey() {
         return name().toLowerCase()
+    }
+
+    String getBabelfishName() {
+        switch (getKey()) {
+            case "cplusplus":
+                return "cpp"
+            default:
+                return getKey()
+        }
     }
 
     String getQualifiedName() {
@@ -68,45 +80,53 @@ enum SourceLanguage {
         return fileExtensions.contains(extension.toLowerCase())
     }
 
+    @Memoized
     StructureNaming getStructureNaming() {
-        if (namingCache != null) {
-            return namingCache
-        }
         switch (this) {
             case Go:
-                return namingCache = new GoNaming()
+                return new GoNaming()
             case Java:
-                return namingCache = new JavaNaming()
+                return new JavaNaming()
             case Javascript:
-                return namingCache = new JavascriptNaming()
+                return new JavascriptNaming()
             case Php:
-                return namingCache = new PhpNaming()
+                return new PhpNaming()
             case Python:
-                return namingCache = new PythonNaming()
+                return new PythonNaming()
             case Ruby:
-                return namingCache = new RubyNaming()
+                return new RubyNaming()
+            case CSharp:
+                return new CSharpNaming()
+            case CPlusPlus:
+                return new CPlusPlusNaming()
+            case Bash:
+                return new BashNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
     }
 
+    @Memoized
     StructureLiteral getStructureLiteral() {
-        if (literalCache != null) {
-            return literalCache
-        }
         switch (this) {
             case Go:
-                return literalCache = new GoLiteral()
+                return new GoLiteral()
             case Java:
-                return literalCache = new JavaLiteral()
+                return new JavaLiteral()
             case Javascript:
-                return literalCache = new JavascriptLiteral()
+                return new JavascriptLiteral()
             case Php:
-                return literalCache = new PhpLiteral()
+                return new PhpLiteral()
             case Python:
-                return literalCache = new PythonLiteral()
+                return new PythonLiteral()
             case Ruby:
-                return literalCache = new RubyLiteral()
+                return new RubyLiteral()
+            case CSharp:
+                return new CSharpLiteral()
+            case CPlusPlus:
+                return new CPlusPlusLiteral()
+            case Bash:
+                return new BashLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }
@@ -135,7 +155,8 @@ enum SourceLanguage {
     static SourceLanguage getSourceLanguageByName(String languageName) {
         def sourceLanguage
         values().each {
-            if (it.name().toLowerCase() == languageName.toLowerCase()) {
+            if (it.name().toLowerCase() == languageName.toLowerCase()
+                    || languageName.toLowerCase() == it.babelfishName.toLowerCase()) {
                 sourceLanguage = it
             }
         }

@@ -5,7 +5,7 @@ import groovy.transform.Canonical
 /**
  * Allows for segmenting the generated schema into multiple files by SchemaSegment
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */

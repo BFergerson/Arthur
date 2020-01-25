@@ -10,7 +10,7 @@ import scala.collection.JavaConverters
 /**
  * Represents a single UAST unit extracted from source code.
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
@@ -19,6 +19,7 @@ class SourceNode {
     private final SourceLanguage language
     private final Node rootNode
     private final Node underlyingNode
+    private final SourceNode parentSourceNode
     private final StructureNaming naming
     private final StructureLiteral literal
 
@@ -27,9 +28,14 @@ class SourceNode {
     }
 
     SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+        this(language, rootNode, underlyingNode, null)
+    }
+
+    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode, SourceNode parentNode) {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
+        this.parentSourceNode = parentNode
         this.naming = language.structureNaming
         this.literal = language.structureLiteral
     }
@@ -50,8 +56,16 @@ class SourceNode {
         return underlyingNode
     }
 
+    SourceNode getParentSourceNode() {
+        return parentSourceNode
+    }
+
     String getInternalType() {
         return underlyingNode.internalType()
+    }
+
+    boolean hasName() {
+        return naming.isNamedNodeType(this)
     }
 
     String getName() {
@@ -61,6 +75,8 @@ class SourceNode {
     String getToken() {
         if (underlyingNode.properties().contains("token")) {
             return underlyingNode.properties().get("token").get()
+        } else if (underlyingNode.token().isEmpty() && underlyingNode.properties().contains("Text")) {
+            return underlyingNode.properties().get("Text").get()
         }
         return underlyingNode.token()
     }
@@ -71,7 +87,7 @@ class SourceNode {
             if (node == null) {
                 return null
             }
-            return new SourceNode(language, this.rootNode, node)
+            return new SourceNode(language, this.rootNode, node, this)
         })
     }
 
@@ -85,6 +101,10 @@ class SourceNode {
 
     boolean isLiteralNode() {
         return literal.isNodeLiteral(this)
+    }
+
+    Object getLiteralValue() {
+        return literal.getNodeLiteralValue(this)
     }
 
     String getLiteralAttribute() {

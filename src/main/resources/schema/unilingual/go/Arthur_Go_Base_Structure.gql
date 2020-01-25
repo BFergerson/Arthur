@@ -5,6 +5,7 @@ booleanValue sub attribute, datatype boolean;
 doubleValue sub attribute, datatype double;
 name sub attribute, datatype string;
 numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Go -----#####
@@ -42,6 +43,8 @@ ArrayTypeArtifact sub GoSourceArtifact,
 	plays has_len_role;
 
 AssignStmtArtifact sub GoSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_assign_role,
 	plays is_body_role,
@@ -60,6 +63,7 @@ BasicLitArtifact sub GoSourceArtifact,
 	has doubleValue,
 	has kindAttribute,
 	has numberValue,
+	has stringValue,
 	# Structural
 	plays is_args_role,
 	plays is_cond_role,
@@ -340,6 +344,7 @@ FuncTypeArtifact sub GoSourceArtifact,
 GenDeclArtifact sub GoSourceArtifact,
 	# Attributes
 	has tokAttribute,
+	has name,
 	# Structural
 	plays is_decl_role,
 	plays is_decls_role,

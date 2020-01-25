@@ -6,24 +6,51 @@ import com.codebrig.arthur.observe.structure.StructureLiteral
 /**
  * Used to determine and get the literal type of Ruby AST nodes
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
 class RubyLiteral extends StructureLiteral {
 
     @Override
     String getNodeLiteralAttribute(SourceNode node) {
-        return null
+        switch (Objects.requireNonNull(node).internalType) {
+            case "int":
+                if (node.token.contains(".") || (node.token.isDouble() && node.token.toUpperCase().contains("E"))) {
+                    return doubleValueLiteral()
+                }
+                return numberValueLiteral()
+            case "float":
+                return doubleValueLiteral()
+            case "str":
+                return stringValueLiteral()
+            default:
+                return null
+        }
     }
 
     @Override
     List<String> getPossibleNodeLiteralAttributes(SourceNode node) {
-        def literalAttribute = getNodeLiteralAttribute(node)
-        if (literalAttribute == null) {
-            return Collections.emptyList()
-        } else {
-            return Collections.singletonList(literalAttribute)
+        switch (Objects.requireNonNull(node).internalType) {
+            case "int":
+                return [numberValueLiteral(), doubleValueLiteral()]
+            case "float":
+                return [doubleValueLiteral()]
+            case "str":
+                return [stringValueLiteral()]
+            default:
+                return Collections.emptyList()
         }
+    }
+
+    static boolean isOctalLiteral(String literal) {
+        return literal.toUpperCase().contains("0O")
+    }
+
+    static Object getOctalValue(SourceNode node) {
+        boolean isNegative = new RubyLiteral().isNodeLiteralNegative(node)
+        String octal = node.token.toUpperCase().replaceFirst("0O", "0")
+        return toLong(((isNegative) ? "-" : "") + octal)
     }
 }

@@ -6,16 +6,18 @@ import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SegmentedSchemaConfig
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
+import groovy.util.logging.Slf4j
 
 import java.util.concurrent.TimeUnit
 
 /**
  * Generate a single language schema by observing source code on GitHub
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class UnilingualGithubSchemaGenerator extends SchemaGenerator {
 
     static void main(String[] args) {
@@ -26,12 +28,12 @@ class UnilingualGithubSchemaGenerator extends SchemaGenerator {
         def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
         def schemaWriter = new GraknSchemaWriter(schemaGenerator.observeLanguage(language, parseProjectsCount))
 
-        println "Writing segmented Grakn schema"
+        log.info "Writing segmented Grakn schema"
         schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
                 .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
                 "Arthur_" + language.qualifiedName + "_Base_Structure.gql"), ObservationConfig.baseStructure().asArray())
                 .withFileSegment(new File("src/main/resources/schema/unilingual/" + language.key,
                 "Arthur_" + language.qualifiedName + "_Semantic_Roles.gql"), SchemaSegment.SEMANTIC_ROLES))
-        println "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
+        log.info "Completed in: " + TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - startTime) + "s"
     }
 }

@@ -9,11 +9,11 @@ import org.apache.commons.collections4.iterators.FilterIterator
 /**
  * Used to filter through SourceNodes
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
-abstract class StructureFilter<T extends StructureFilter<T, P>, P> implements Predicate<SourceNode> {
+abstract class StructureFilter<T extends StructureFilter, P> implements Predicate<SourceNode> {
 
     protected final Set<P> acceptSet = new LinkedHashSet<>()
     protected final Set<P> rejectSet = new LinkedHashSet<>()

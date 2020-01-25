@@ -14,82 +14,78 @@ class OrOperatorFilterTest extends ArthurTest {
 
     @Test
     void orOperator_Go() {
-        def file = new File("src/test/resources/same/operators/Operators.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundOrOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("orOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("orOperator()", it.name)
-
-            new OrOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundOrOperator)
-                assertEquals("||", it.token)
-                foundOrOperator = true
-            }
-        }
-        assertTrue(foundOrOperator)
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.go"),
+                "||")
     }
 
     @Test
     void orOperator_Java() {
-        def file = new File("src/test/resources/same/operators/Operators.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundOrOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("orOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Operators.orOperator()", it.name)
-
-            new OrOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundOrOperator)
-                assertEquals("||", it.token)
-                foundOrOperator = true
-            }
-        }
-        assertTrue(foundOrOperator)
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.java"),
+                "||", "Operators.")
     }
 
     @Test
     void orOperator_Javascript() {
-        def file = new File("src/test/resources/same/operators/Operators.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundOrOperator = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("orOperator")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("orOperator()", it.name)
-
-            new OrOperatorFilter().getFilteredNodes(it).each {
-                assertFalse(foundOrOperator)
-                assertEquals("||", it.token)
-                foundOrOperator = true
-            }
-        }
-        assertTrue(foundOrOperator)
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.js"),
+                "||")
     }
 
     @Test
     void orOperator_Python() {
-        def file = new File("src/test/resources/same/operators/Operators.py")
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.py"),
+                "or")
+    }
+
+    @Test
+    void orOperator_CSharp() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cs"),
+                "||")
+    }
+
+    @Test
+    void orOperator_CPlusPlus() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"),
+                "||")
+    }
+
+    /**
+     * Babelfish treats both Ruby "||" and "or" operators as "or" token
+     */
+    @Test
+    void orOperator_Ruby() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "or", "", "orOperator1()")
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"),
+                "or", "", "orOperator2()")
+    }
+
+    @Test
+    void orOperator_Bash() {
+        assertOrOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "||", "")
+    }
+
+    private static void assertOrOperatorPresent(File file, String orToken) {
+        assertOrOperatorPresent(file, orToken, "", "orOperator()")
+    }
+
+    private static void assertOrOperatorPresent(File file, String orToken, String qualifiedName) {
+        assertOrOperatorPresent(file, orToken, qualifiedName, "orOperator()")
+    }
+
+    private static void assertOrOperatorPresent(File file, String orToken, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundOrOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("orOperator")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("orOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new OrOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundOrOperator)
-                assertEquals("or", it.token)
+                assertEquals(orToken, it.token)
                 foundOrOperator = true
             }
         }

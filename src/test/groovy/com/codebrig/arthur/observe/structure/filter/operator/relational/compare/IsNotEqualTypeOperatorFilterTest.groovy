@@ -1,4 +1,4 @@
-package com.codebrig.arthur.observe.structure.filter.operator.relational
+package com.codebrig.arthur.observe.structure.filter.operator.relational.compare
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
@@ -10,29 +10,29 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-class NotEqualTypeOperatorFilterTest extends ArthurTest {
+class IsNotEqualTypeOperatorFilterTest extends ArthurTest {
 
     @Test
-    void notEqualTypeOperator_Javascript() {
-        assertNotEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
+    void isNotEqualTypeOperator_Javascript() {
+        assertIsNotEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.js"))
     }
 
     @Test
-    void notEqualTypeOperator_Php() {
-        assertNotEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
+    void isNotEqualTypeOperator_Php() {
+        assertIsNotEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
-    private static void assertNotEqualTypeOperatorPresent(File file) {
+    private static void assertIsNotEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundNotEqualTypeOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("notEqualTypeOperator")
+        def nameFilter = new NameFilter("isNotEqualTypeOperator()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("notEqualTypeOperator()", it.name)
+            assertEquals("isNotEqualTypeOperator()", it.name)
 
-            new NotEqualTypeOperatorFilter().getFilteredNodes(it).each {
+            new IsNotEqualTypeOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundNotEqualTypeOperator)
                 if (!it.token.isEmpty()) assertEquals("!==", it.token)
                 foundNotEqualTypeOperator = true

@@ -5,6 +5,7 @@ booleanValue sub attribute, datatype boolean;
 doubleValue sub attribute, datatype double;
 name sub attribute, datatype string;
 numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Php -----#####
@@ -109,6 +110,8 @@ ExprArrayItemArtifact sub PhpSourceArtifact,
 	plays has_value_role;
 
 ExprAssignArtifact sub PhpSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_body_role,
 	plays is_children_role,
@@ -1323,6 +1326,8 @@ ScalarEncapsedStringPartArtifact sub PhpSourceArtifact,
 	plays is_parts_role;
 
 ScalarLNumberArtifact sub PhpSourceArtifact,
+	# Attributes
+	has numberValue,
 	# Structural
 	plays is_cond_role,
 	plays is_default_role,
@@ -1569,6 +1574,7 @@ StmtForeachArtifact sub PhpSourceArtifact,
 StmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
 	has byRefAttribute,
+	has name,
 	# Structural
 	plays is_body_role,
 	plays is_children_role,

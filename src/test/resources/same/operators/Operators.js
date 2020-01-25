@@ -10,25 +10,25 @@ function orOperator() {
     }
 }
 
-function equalOperator() {
+function isEqualOperator() {
     if (true == true) {
         console.log("");
     }
 }
 
-function notEqualOperator() {
+function isNotEqualOperator() {
     if (true != true) {
         console.log("");
     }
 }
 
-function equalTypeOperator() {
+function isEqualTypeOperator() {
     if (true === true) {
         console.log("");
     }
 }
 
-function notEqualTypeOperator() {
+function isNotEqualTypeOperator() {
     if (true !== true) {
         console.log("");
     }
@@ -38,4 +38,17 @@ function ternaryOperator() {
     var a, b;
     a = 10;
     b = (a == 1) ? 20 : 30;
+}
+
+function declareVariableOperator() {
+    var x;
+}
+
+function initializeVariableOperator() {
+    var x = 0;
+}
+
+function assignVariableOperator() {
+    var x = 0;
+    x = 1;
 }

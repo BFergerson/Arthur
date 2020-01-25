@@ -1,0 +1,2024 @@
+define
+
+##########---------- Attributes ----------##########
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
+token sub attribute, datatype string;
+
+#####----- Cplusplus -----#####
+castOperatorAttribute sub attribute, datatype string;
+conditionAttribute sub attribute, datatype string;
+declaresParameterPackAttribute sub attribute, datatype string;
+errorMsgAttribute sub attribute, datatype string;
+expandedFromMacroAttribute sub attribute, datatype string;
+expressionTypeAttribute sub attribute, datatype string;
+expressionValueCategoryAttribute sub attribute, datatype string;
+isActiveAttribute sub attribute, datatype string;
+isArrayAllocationAttribute sub attribute, datatype string;
+isBlockCommentAttribute sub attribute, datatype string;
+isCatchAllAttribute sub attribute, datatype string;
+isComplexAttribute sub attribute, datatype string;
+isConstAttribute sub attribute, datatype string;
+isConstExprAttribute sub attribute, datatype string;
+isConversionOperatorAttribute sub attribute, datatype string;
+isDefaultedAttribute sub attribute, datatype string;
+isDeletedAttribute sub attribute, datatype string;
+isExplicitAttribute sub attribute, datatype string;
+isExportedAttribute sub attribute, datatype string;
+isFinalAttribute sub attribute, datatype string;
+isFriendAttribute sub attribute, datatype string;
+isFullyQualifiedAttribute sub attribute, datatype string;
+isGlobalAttribute sub attribute, datatype string;
+isImaginaryAttribute sub attribute, datatype string;
+isInlineAttribute sub attribute, datatype string;
+isLongAttribute sub attribute, datatype string;
+isLongLongAttribute sub attribute, datatype string;
+isLValueAttribute sub attribute, datatype string;
+isMutableAttribute sub attribute, datatype string;
+isNewTypeIdAttribute sub attribute, datatype string;
+isOpaqueAttribute sub attribute, datatype string;
+isOverrideAttribute sub attribute, datatype string;
+isParameterPackAttribute sub attribute, datatype string;
+isPointerDereferenceAttribute sub attribute, datatype string;
+isPragmaOperatorAttribute sub attribute, datatype string;
+isPureVirtualAttribute sub attribute, datatype string;
+isRestrictAttribute sub attribute, datatype string;
+isScopedAttribute sub attribute, datatype string;
+isShortAttribute sub attribute, datatype string;
+isSignedAttribute sub attribute, datatype string;
+isSystemAttribute sub attribute, datatype string;
+isTakenAttribute sub attribute, datatype string;
+isTemplateAttribute sub attribute, datatype string;
+isThreadLocalAttribute sub attribute, datatype string;
+isTypeNameAttribute sub attribute, datatype string;
+isUnsignedAttribute sub attribute, datatype string;
+isVectoredAttribute sub attribute, datatype string;
+isVirtualAttribute sub attribute, datatype string;
+isVolatileAttribute sub attribute, datatype string;
+keyAttribute sub attribute, datatype string;
+kindAttribute sub attribute, datatype string;
+macroBodyTextAttribute sub attribute, datatype string;
+macroReferenceAttribute sub attribute, datatype string;
+messageAttribute sub attribute, datatype string;
+modifierAttribute sub attribute, datatype string;
+naryTypeIdOperatorAttribute sub attribute, datatype string;
+operatorAttribute sub attribute, datatype string;
+overloadedByAttribute sub attribute, datatype string;
+pathAttribute sub attribute, datatype string;
+resolvedAttribute sub attribute, datatype string;
+sizeAttribute sub attribute, datatype string;
+storageClassAttribute sub attribute, datatype string;
+takesVarArgsAttribute sub attribute, datatype string;
+visibilityAttribute sub attribute, datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
+	plays is_parent;
+
+#####----- Cplusplus -----#####
+CplusplusSourceArtifact sub SourceArtifact;
+
+ASTElifArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has conditionAttribute,
+	has isTakenAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTElseArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isTakenAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTEndifArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTErrorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has errorMsgAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTFunctionStyleMacroDefinitionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isActiveAttribute,
+	has macroBodyTextAttribute,
+	has name,
+	# Structural
+	plays is_prop__preproc_statements_role,
+	plays has_prop__expansions_role,
+	plays has_prop__macro_body_location_role;
+
+ASTIfArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has conditionAttribute,
+	has isTakenAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTIfdefArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has conditionAttribute,
+	has isTakenAttribute,
+	has macroReferenceAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTIfndefArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has conditionAttribute,
+	has isTakenAttribute,
+	has macroReferenceAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTInclusionStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isSystemAttribute,
+	has pathAttribute,
+	has resolvedAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTMacroDefinitionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isActiveAttribute,
+	has macroBodyTextAttribute,
+	has name,
+	# Structural
+	plays is_prop__preproc_statements_role,
+	plays has_prop__expansions_role,
+	plays has_prop__macro_body_location_role;
+
+ASTPragmaArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isPragmaOperatorAttribute,
+	has messageAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTPragmaOperatorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isPragmaOperatorAttribute,
+	has messageAttribute,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+ASTUndefArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isActiveAttribute,
+	has name,
+	# Structural
+	plays is_prop__preproc_statements_role;
+
+BodyPositionArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_prop__macro_body_location_role;
+
+CommentArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isBlockCommentAttribute,
+	# Structural
+	plays is_freestading_comments_role,
+	plays is_leading_comments_role,
+	plays is_trailing_comments_role;
+
+CPPASTAliasDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_leading_comments_role,
+	plays has_prop__alias_role,
+	plays has_prop__mapping_type_id_role,
+	plays has_trailing_comments_role;
+
+CPPASTArrayDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has declaresParameterPackAttribute,
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__abstract_declarator_role,
+	plays is_prop__declarators_role,
+	plays is_prop__nested_declarator_role,
+	plays is_prop__parameters_role,
+	plays has_leading_comments_role,
+	plays has_prop__array_modifiers_role,
+	plays has_prop__initializer_role,
+	plays has_prop__name_role,
+	plays has_prop__nested_declarator_role,
+	plays has_prop__type_node_role,
+	plays has_trailing_comments_role;
+
+CPPASTArrayModifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__array_modifiers_role,
+	plays has_prop__constant_expression_role;
+
+CPPASTArraySubscriptExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__argument_role,
+	plays has_prop__array_expression_role,
+	plays has_prop__subscript_expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTASMDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays has_trailing_comments_role;
+
+CPPASTBaseSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isVirtualAttribute,
+	# Structural
+	plays is_prop__base_specifiers_role,
+	plays has_prop__name_role,
+	plays has_prop__name_specifier_role;
+
+CPPASTBinaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has operatorAttribute,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__init_operand2_role,
+	plays has_prop__operand1_role,
+	plays has_prop__operand2_role,
+	plays has_trailing_comments_role;
+
+CPPASTBreakStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTCaseStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays has_leading_comments_role,
+	plays has_prop__expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTCastExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has castOperatorAttribute,
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__operand_role,
+	plays has_prop__type_id_role,
+	plays has_trailing_comments_role;
+
+CPPASTCatchHandlerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isCatchAllAttribute,
+	# Structural
+	plays is_prop__catch_handlers_role,
+	plays has_leading_comments_role,
+	plays has_prop__catch_body_role,
+	plays has_prop__declaration_role,
+	plays has_trailing_comments_role;
+
+CPPASTClassVirtSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has kindAttribute,
+	# Structural
+	plays is_prop__virt_specifier_role;
+
+CPPASTCompositeTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConstAttribute,
+	has isConstExprAttribute,
+	has isExplicitAttribute,
+	has isFinalAttribute,
+	has isFriendAttribute,
+	has isInlineAttribute,
+	has isRestrictAttribute,
+	has isThreadLocalAttribute,
+	has isVirtualAttribute,
+	has isVolatileAttribute,
+	has keyAttribute,
+	has storageClassAttribute,
+	# Structural
+	plays is_prop__decl_specifier_role,
+	plays has_freestading_comments_role,
+	plays has_prop__attribute_specifiers_role,
+	plays has_prop__base_specifiers_role,
+	plays has_prop__members_role,
+	plays has_prop__name_role,
+	plays has_prop__virt_specifier_role,
+	plays has_trailing_comments_role;
+
+CPPASTCompoundStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__catch_body_role,
+	plays is_prop__compound_statement_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays is_prop__try_body_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__statements_role,
+	plays has_trailing_comments_role;
+
+CPPASTCompoundStatementExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays has_prop__compound_statement_role;
+
+CPPASTConditionalExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__logical_condition_expression_role,
+	plays has_prop__negative_result_expression_role,
+	plays has_prop__positive_result_expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTConstructorChainInitializerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__constructor_chain_role,
+	plays is_prop__member_initializers_role,
+	plays has_leading_comments_role,
+	plays has_prop__initializer_role,
+	plays has_prop__initializer_value_role,
+	plays has_prop__member_initializer_id_role,
+	plays has_trailing_comments_role;
+
+CPPASTConstructorInitializerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__initializer_role,
+	plays has_leading_comments_role,
+	plays has_prop__arguments_role,
+	plays has_prop__expression_role;
+
+CPPASTContinueStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTConversionNameArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has name,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__field_name_role,
+	plays is_prop__name_role,
+	plays has_prop__type_id_role;
+
+CPPASTDeclarationStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__initializer_statement_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__declaration_role;
+
+CPPASTDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has declaresParameterPackAttribute,
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__abstract_declarator_role,
+	plays is_prop__declarator_role,
+	plays is_prop__declarators_role,
+	plays is_prop__nested_declarator_role,
+	plays is_prop__parameters_role,
+	plays is_prop__template_parameters_role,
+	plays has_leading_comments_role,
+	plays has_prop__initializer_role,
+	plays has_prop__name_role,
+	plays has_prop__nested_declarator_role,
+	plays has_prop__pointer_operators_role,
+	plays has_prop__type_node_role,
+	plays has_trailing_comments_role;
+
+CPPASTDefaultStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTDeleteExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isGlobalAttribute,
+	has isLValueAttribute,
+	has isVectoredAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays has_prop__operand_role;
+
+CPPASTDesignatedInitializerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__clauses_role,
+	plays is_prop__initializers_role,
+	plays has_leading_comments_role,
+	plays has_prop__designators_role,
+	plays has_prop__operand_role,
+	plays has_trailing_comments_role;
+
+CPPASTDoStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__condition_role,
+	plays has_trailing_comments_role;
+
+CPPASTElaboratedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConstAttribute,
+	has isConstExprAttribute,
+	has isExplicitAttribute,
+	has isFriendAttribute,
+	has isInlineAttribute,
+	has isRestrictAttribute,
+	has isThreadLocalAttribute,
+	has isVirtualAttribute,
+	has isVolatileAttribute,
+	has kindAttribute,
+	has storageClassAttribute,
+	# Structural
+	plays is_prop__decl_specifier_role,
+	plays is_prop__parameters_role,
+	plays is_prop__template_parameters_role,
+	plays has_prop__name_role;
+
+CPPASTEnumerationSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConstAttribute,
+	has isConstExprAttribute,
+	has isExplicitAttribute,
+	has isFriendAttribute,
+	has isInlineAttribute,
+	has isOpaqueAttribute,
+	has isRestrictAttribute,
+	has isScopedAttribute,
+	has isThreadLocalAttribute,
+	has isVirtualAttribute,
+	has isVolatileAttribute,
+	has storageClassAttribute,
+	# Structural
+	plays is_prop__decl_specifier_role,
+	plays has_prop__base_type_role,
+	plays has_prop__enumerators_role,
+	plays has_prop__name_role;
+
+CPPASTEqualsInitializerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__initializer_role,
+	plays has_leading_comments_role,
+	plays has_prop__expression_role,
+	plays has_prop__initializer_clause_role;
+
+CPPASTExplicitTemplateInstantiationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has modifierAttribute,
+	# Structural
+	plays is_prop__declarations_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__declaration_role;
+
+CPPASTExpressionListArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__operand_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays has_leading_comments_role,
+	plays has_prop__expressions_role,
+	plays has_trailing_comments_role;
+
+CPPASTExpressionStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__initializer_statement_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTFieldDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has declaresParameterPackAttribute,
+	# Structural
+	plays is_prop__declarators_role,
+	plays has_prop__bit_field_size_role,
+	plays has_prop__name_role;
+
+CPPASTFieldReferenceArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has isPointerDereferenceAttribute,
+	has isTemplateAttribute,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__field_name_role,
+	plays has_prop__field_owner_role,
+	plays has_trailing_comments_role;
+
+CPPASTForStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__condition_declaration_role,
+	plays has_prop__condition_expression_role,
+	plays has_prop__initializer_statement_role,
+	plays has_prop__iteration_expression_role;
+
+CPPASTFunctionCallExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__bit_field_size_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__arguments_role,
+	plays has_prop__function_name_expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConstAttribute,
+	has isFinalAttribute,
+	has isMutableAttribute,
+	has isOverrideAttribute,
+	has isPureVirtualAttribute,
+	has isVolatileAttribute,
+	has takesVarArgsAttribute,
+	# Structural
+	plays is_prop__abstract_declarator_role,
+	plays is_prop__declarator_role,
+	plays is_prop__declarators_role,
+	plays is_prop__nested_declarator_role,
+	plays is_prop__parameters_role,
+	plays is_prop__template_parameters_role,
+	plays has_leading_comments_role,
+	plays has_prop__constructor_chain_role,
+	plays has_prop__exception_specification_role,
+	plays has_prop__initializer_role,
+	plays has_prop__name_role,
+	plays has_prop__nested_declarator_role,
+	plays has_prop__noexcept_expression_role,
+	plays has_prop__parameters_role,
+	plays has_prop__pointer_operators_role,
+	plays has_prop__trailing_return_type_role,
+	plays has_prop__virt_specifiers_role,
+	plays has_trailing_comments_role;
+
+CPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isDefaultedAttribute,
+	has isDeletedAttribute,
+	has name,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__decl_specifier_role,
+	plays has_prop__declarator_role,
+	plays has_prop__member_initializers_role;
+
+CPPASTFunctionWithTryBlockArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isDefaultedAttribute,
+	has isDeletedAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__catch_handlers_role,
+	plays has_prop__decl_specifier_role,
+	plays has_prop__declarator_role,
+	plays has_prop__member_initializers_role;
+
+CPPASTGotoStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__name_role,
+	plays has_trailing_comments_role;
+
+CPPASTIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__attribute_specifiers_role,
+	plays is_prop__bit_field_size_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__default_value_role,
+	plays is_prop__designators_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__noexcept_expression_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__name_role,
+	plays has_trailing_comments_role;
+
+CPPASTIfStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__condition_declaration_role,
+	plays has_prop__condition_expression_role,
+	plays has_prop__else_clause_role,
+	plays has_prop__initializer_statement_role,
+	plays has_prop__then_clause_role;
+
+CPPASTInitCaptureArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__captures_role,
+	plays has_leading_comments_role,
+	plays has_prop__declarator_role,
+	plays has_prop__identifier_role;
+
+CPPASTInitializerListArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has sizeAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_role,
+	plays is_prop__initializers_role,
+	plays is_prop__operand_role,
+	plays is_prop__return_argument_role,
+	plays has_leading_comments_role,
+	plays has_prop__clauses_role,
+	plays has_prop__initializers_role,
+	plays has_trailing_comments_role;
+
+CPPASTLabelStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__name_role,
+	plays has_prop__nested_statement_role;
+
+CPPASTLambdaExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__captures_role,
+	plays has_prop__declarator_role,
+	plays has_trailing_comments_role;
+
+CPPASTLinkageSpecificationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declarations_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__declarations_role;
+
+CPPASTLiteralExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has kindAttribute,
+	has numberValue,
+	has stringValue,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__attribute_specifiers_role,
+	plays is_prop__bit_field_size_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__designators_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__message_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__noexcept_expression_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTNameArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__alias_role,
+	plays is_prop__all_segments_role,
+	plays is_prop__captures_role,
+	plays is_prop__declarations_role,
+	plays is_prop__designators_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__field_name_role,
+	plays is_prop__identifier_role,
+	plays is_prop__mapping_name_role,
+	plays is_prop__member_initializer_id_role,
+	plays is_prop__name_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__qualified_name_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__template_name_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTNamedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConstAttribute,
+	has isConstExprAttribute,
+	has isExplicitAttribute,
+	has isFriendAttribute,
+	has isInlineAttribute,
+	has isRestrictAttribute,
+	has isThreadLocalAttribute,
+	has isTypeNameAttribute,
+	has isVirtualAttribute,
+	has isVolatileAttribute,
+	has storageClassAttribute,
+	# Structural
+	plays is_prop__base_type_role,
+	plays is_prop__decl_specifier_role,
+	plays is_prop__type_node_role,
+	plays has_prop__name_role,
+	plays has_trailing_comments_role;
+
+CPPASTNamespaceAliasArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays has_leading_comments_role,
+	plays has_prop__alias_role,
+	plays has_prop__mapping_name_role,
+	plays has_trailing_comments_role;
+
+CPPASTNaryTypeIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has naryTypeIdOperatorAttribute,
+	# Structural
+	plays is_prop__condition_role,
+	plays has_prop__operands_role;
+
+CPPASTNewExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isArrayAllocationAttribute,
+	has isGlobalAttribute,
+	has isLValueAttribute,
+	has isNewTypeIdAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays has_leading_comments_role,
+	plays has_prop__initializer_role,
+	plays has_prop__new_initializer_role,
+	plays has_prop__new_placement_role,
+	plays has_prop__new_type_id_array_expressions_role,
+	plays has_prop__placement_arguments_role,
+	plays has_prop__type_id_role;
+
+CPPASTNullStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__initializer_statement_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTOperatorNameArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has name,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__field_name_role,
+	plays is_prop__name_role,
+	plays is_prop__template_name_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTPackExpansionExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__clauses_role,
+	plays is_prop__expression_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__pattern_role;
+
+CPPASTProblemDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTProblemExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__controller_expression_role,
+	plays has_leading_comments_role;
+
+CPPASTProblemStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__statements_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTQualifiedNameArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isConversionOperatorAttribute,
+	has isFullyQualifiedAttribute,
+	has name,
+	# Structural
+	plays is_prop__field_name_role,
+	plays is_prop__mapping_name_role,
+	plays is_prop__member_initializer_id_role,
+	plays is_prop__name_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__pointer_operators_role,
+	plays is_prop__qualified_name_role,
+	plays has_leading_comments_role,
+	plays has_prop__all_segments_role,
+	plays has_prop__qualifier_role,
+	plays has_trailing_comments_role;
+
+CPPASTRangeBasedForStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__declaration_role,
+	plays has_prop__initializer_clause_role,
+	plays has_trailing_comments_role;
+
+CPPASTReturnStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__return_argument_role,
+	plays has_prop__return_value_role,
+	plays has_trailing_comments_role;
+
+CPPASTSimpleDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has name,
+	# Structural
+	plays is_prop__condition_declaration_role,
+	plays is_prop__controller_declaration_role,
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__attribute_specifiers_role,
+	plays has_prop__decl_specifier_role,
+	plays has_prop__declarators_role,
+	plays has_trailing_comments_role;
+
+CPPASTSimpleDeclSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isComplexAttribute,
+	has isConstAttribute,
+	has isConstExprAttribute,
+	has isExplicitAttribute,
+	has isFriendAttribute,
+	has isImaginaryAttribute,
+	has isInlineAttribute,
+	has isLongAttribute,
+	has isLongLongAttribute,
+	has isRestrictAttribute,
+	has isShortAttribute,
+	has isSignedAttribute,
+	has isThreadLocalAttribute,
+	has isUnsignedAttribute,
+	has isVirtualAttribute,
+	has isVolatileAttribute,
+	has storageClassAttribute,
+	# Structural
+	plays is_prop__base_type_role,
+	plays is_prop__decl_specifier_role,
+	plays is_prop__type_node_role,
+	plays has_prop__decl_type_expression_role,
+	plays has_trailing_comments_role;
+
+CPPASTSimpleTypeConstructorExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__decl_specifier_role,
+	plays has_prop__initial_value_role,
+	plays has_prop__initializer_role,
+	plays has_trailing_comments_role;
+
+CPPASTSimpleTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isParameterPackAttribute,
+	# Structural
+	plays is_prop__template_parameters_role,
+	plays has_leading_comments_role,
+	plays has_prop__default_type_role,
+	plays has_prop__name_role,
+	plays has_trailing_comments_role;
+
+CPPASTStaticAssertionDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__condition_role,
+	plays has_prop__message_role,
+	plays has_trailing_comments_role;
+
+CPPASTSwitchStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__controller_declaration_role,
+	plays has_prop__controller_expression_role,
+	plays has_prop__initializer_statement_role;
+
+CPPASTTemplateDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isExportedAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__declaration_role,
+	plays has_prop__template_parameters_role;
+
+CPPASTTemplatedTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has isParameterPackAttribute,
+	# Structural
+	plays is_prop__template_parameters_role,
+	plays has_prop__default_value_role,
+	plays has_prop__name_role,
+	plays has_prop__template_parameters_role;
+
+CPPASTTemplateIdArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has name,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__field_name_role,
+	plays is_prop__member_initializer_id_role,
+	plays is_prop__name_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__qualifier_role,
+	plays has_leading_comments_role,
+	plays has_prop__template_arguments_role,
+	plays has_prop__template_name_role,
+	plays has_trailing_comments_role;
+
+CPPASTTemplateSpecializationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isExportedAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__declaration_role,
+	plays has_trailing_comments_role;
+
+CPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays has_prop__declarations_role,
+	plays has_prop__preproc_statements_role;
+
+CPPASTTryBlockStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__catch_handlers_role,
+	plays has_prop__try_body_role,
+	plays has_trailing_comments_role;
+
+CPPASTTypeIdArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__attribute_specifiers_role,
+	plays is_prop__default_type_role,
+	plays is_prop__exception_specification_role,
+	plays is_prop__mapping_type_id_role,
+	plays is_prop__operands_role,
+	plays is_prop__template_arguments_role,
+	plays is_prop__trailing_return_type_role,
+	plays is_prop__type_id_role,
+	plays has_leading_comments_role,
+	plays has_prop__abstract_declarator_role,
+	plays has_prop__decl_specifier_role,
+	plays has_trailing_comments_role;
+
+CPPASTTypeIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has operatorAttribute,
+	# Structural
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__attribute_specifiers_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__type_id_role,
+	plays has_trailing_comments_role;
+
+CPPASTTypeIdInitializerExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	# Structural
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__operand2_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays has_prop__initializer_role,
+	plays has_prop__type_id_role;
+
+CPPASTUnaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has expressionTypeAttribute,
+	has expressionValueCategoryAttribute,
+	has isLValueAttribute,
+	has operatorAttribute,
+	has overloadedByAttribute,
+	# Structural
+	plays is_prop__all_segments_role,
+	plays is_prop__argument_role,
+	plays is_prop__arguments_role,
+	plays is_prop__array_expression_role,
+	plays is_prop__clauses_role,
+	plays is_prop__condition_expression_role,
+	plays is_prop__condition_role,
+	plays is_prop__constant_expression_role,
+	plays is_prop__controller_expression_role,
+	plays is_prop__decl_type_expression_role,
+	plays is_prop__enumerators_role,
+	plays is_prop__expression_role,
+	plays is_prop__expressions_role,
+	plays is_prop__field_owner_role,
+	plays is_prop__function_name_expression_role,
+	plays is_prop__init_operand2_role,
+	plays is_prop__initial_value_role,
+	plays is_prop__initializer_clause_role,
+	plays is_prop__initializer_value_role,
+	plays is_prop__iteration_expression_role,
+	plays is_prop__label_name_expression_role,
+	plays is_prop__logical_condition_expression_role,
+	plays is_prop__name_specifier_role,
+	plays is_prop__negative_result_expression_role,
+	plays is_prop__new_initializer_role,
+	plays is_prop__new_placement_role,
+	plays is_prop__new_type_id_array_expressions_role,
+	plays is_prop__noexcept_expression_role,
+	plays is_prop__operand1_role,
+	plays is_prop__operand2_role,
+	plays is_prop__operand_role,
+	plays is_prop__pattern_role,
+	plays is_prop__placement_arguments_role,
+	plays is_prop__positive_result_expression_role,
+	plays is_prop__qualifier_role,
+	plays is_prop__return_argument_role,
+	plays is_prop__return_value_role,
+	plays is_prop__subscript_expression_role,
+	plays is_prop__template_arguments_role,
+	plays has_leading_comments_role,
+	plays has_prop__operand_role,
+	plays has_trailing_comments_role;
+
+CPPASTUsingDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has isTypeNameAttribute,
+	has name,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays is_prop__members_role,
+	plays has_leading_comments_role,
+	plays has_prop__name_role,
+	plays has_trailing_comments_role;
+
+CPPASTUsingDirectiveArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__declaration_role,
+	plays is_prop__declarations_role,
+	plays has_freestading_comments_role,
+	plays has_leading_comments_role,
+	plays has_prop__qualified_name_role,
+	plays has_trailing_comments_role;
+
+CPPASTVirtSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has kindAttribute,
+	# Structural
+	plays is_prop__virt_specifiers_role;
+
+CPPASTVisibilityLabelArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	has visibilityAttribute,
+	# Structural
+	plays is_prop__members_role,
+	plays has_leading_comments_role,
+	plays has_trailing_comments_role;
+
+CPPASTWhileStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__body_role,
+	plays is_prop__else_clause_role,
+	plays is_prop__nested_statement_role,
+	plays is_prop__statements_role,
+	plays is_prop__then_clause_role,
+	plays has_leading_comments_role,
+	plays has_prop__body_role,
+	plays has_prop__condition_declaration_role,
+	plays has_prop__condition_role;
+
+ExpansionLocationArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_prop__expansions_role;
+
+GNUCPPASTGotoStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has expandedFromMacroAttribute,
+	# Structural
+	plays is_prop__statements_role,
+	plays has_prop__label_name_expression_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relation,
+	relates is_parent, relates is_child;
+
+#####----- Cplusplus -----#####
+freestading_comments_relation sub parent_child_relation,
+	relates is_freestading_comments_role as is_child, relates has_freestading_comments_role as is_parent;
+
+leading_comments_relation sub parent_child_relation,
+	relates is_leading_comments_role as is_child, relates has_leading_comments_role as is_parent;
+
+prop__abstract_declarator_relation sub parent_child_relation,
+	relates is_prop__abstract_declarator_role as is_child, relates has_prop__abstract_declarator_role as is_parent;
+
+prop__alias_relation sub parent_child_relation,
+	relates is_prop__alias_role as is_child, relates has_prop__alias_role as is_parent;
+
+prop__all_segments_relation sub parent_child_relation,
+	relates is_prop__all_segments_role as is_child, relates has_prop__all_segments_role as is_parent;
+
+prop__argument_relation sub parent_child_relation,
+	relates is_prop__argument_role as is_child, relates has_prop__argument_role as is_parent;
+
+prop__arguments_relation sub parent_child_relation,
+	relates is_prop__arguments_role as is_child, relates has_prop__arguments_role as is_parent;
+
+prop__array_expression_relation sub parent_child_relation,
+	relates is_prop__array_expression_role as is_child, relates has_prop__array_expression_role as is_parent;
+
+prop__array_modifiers_relation sub parent_child_relation,
+	relates is_prop__array_modifiers_role as is_child, relates has_prop__array_modifiers_role as is_parent;
+
+prop__attribute_specifiers_relation sub parent_child_relation,
+	relates is_prop__attribute_specifiers_role as is_child, relates has_prop__attribute_specifiers_role as is_parent;
+
+prop__base_specifiers_relation sub parent_child_relation,
+	relates is_prop__base_specifiers_role as is_child, relates has_prop__base_specifiers_role as is_parent;
+
+prop__base_type_relation sub parent_child_relation,
+	relates is_prop__base_type_role as is_child, relates has_prop__base_type_role as is_parent;
+
+prop__bit_field_size_relation sub parent_child_relation,
+	relates is_prop__bit_field_size_role as is_child, relates has_prop__bit_field_size_role as is_parent;
+
+prop__body_relation sub parent_child_relation,
+	relates is_prop__body_role as is_child, relates has_prop__body_role as is_parent;
+
+prop__captures_relation sub parent_child_relation,
+	relates is_prop__captures_role as is_child, relates has_prop__captures_role as is_parent;
+
+prop__catch_body_relation sub parent_child_relation,
+	relates is_prop__catch_body_role as is_child, relates has_prop__catch_body_role as is_parent;
+
+prop__catch_handlers_relation sub parent_child_relation,
+	relates is_prop__catch_handlers_role as is_child, relates has_prop__catch_handlers_role as is_parent;
+
+prop__clauses_relation sub parent_child_relation,
+	relates is_prop__clauses_role as is_child, relates has_prop__clauses_role as is_parent;
+
+prop__compound_statement_relation sub parent_child_relation,
+	relates is_prop__compound_statement_role as is_child, relates has_prop__compound_statement_role as is_parent;
+
+prop__condition_declaration_relation sub parent_child_relation,
+	relates is_prop__condition_declaration_role as is_child, relates has_prop__condition_declaration_role as is_parent;
+
+prop__condition_expression_relation sub parent_child_relation,
+	relates is_prop__condition_expression_role as is_child, relates has_prop__condition_expression_role as is_parent;
+
+prop__condition_relation sub parent_child_relation,
+	relates is_prop__condition_role as is_child, relates has_prop__condition_role as is_parent;
+
+prop__constant_expression_relation sub parent_child_relation,
+	relates is_prop__constant_expression_role as is_child, relates has_prop__constant_expression_role as is_parent;
+
+prop__constructor_chain_relation sub parent_child_relation,
+	relates is_prop__constructor_chain_role as is_child, relates has_prop__constructor_chain_role as is_parent;
+
+prop__controller_declaration_relation sub parent_child_relation,
+	relates is_prop__controller_declaration_role as is_child, relates has_prop__controller_declaration_role as is_parent;
+
+prop__controller_expression_relation sub parent_child_relation,
+	relates is_prop__controller_expression_role as is_child, relates has_prop__controller_expression_role as is_parent;
+
+prop__decl_specifier_relation sub parent_child_relation,
+	relates is_prop__decl_specifier_role as is_child, relates has_prop__decl_specifier_role as is_parent;
+
+prop__decl_type_expression_relation sub parent_child_relation,
+	relates is_prop__decl_type_expression_role as is_child, relates has_prop__decl_type_expression_role as is_parent;
+
+prop__declaration_relation sub parent_child_relation,
+	relates is_prop__declaration_role as is_child, relates has_prop__declaration_role as is_parent;
+
+prop__declarations_relation sub parent_child_relation,
+	relates is_prop__declarations_role as is_child, relates has_prop__declarations_role as is_parent;
+
+prop__declarator_relation sub parent_child_relation,
+	relates is_prop__declarator_role as is_child, relates has_prop__declarator_role as is_parent;
+
+prop__declarators_relation sub parent_child_relation,
+	relates is_prop__declarators_role as is_child, relates has_prop__declarators_role as is_parent;
+
+prop__default_type_relation sub parent_child_relation,
+	relates is_prop__default_type_role as is_child, relates has_prop__default_type_role as is_parent;
+
+prop__default_value_relation sub parent_child_relation,
+	relates is_prop__default_value_role as is_child, relates has_prop__default_value_role as is_parent;
+
+prop__designators_relation sub parent_child_relation,
+	relates is_prop__designators_role as is_child, relates has_prop__designators_role as is_parent;
+
+prop__else_clause_relation sub parent_child_relation,
+	relates is_prop__else_clause_role as is_child, relates has_prop__else_clause_role as is_parent;
+
+prop__enumerators_relation sub parent_child_relation,
+	relates is_prop__enumerators_role as is_child, relates has_prop__enumerators_role as is_parent;
+
+prop__exception_specification_relation sub parent_child_relation,
+	relates is_prop__exception_specification_role as is_child, relates has_prop__exception_specification_role as is_parent;
+
+prop__expansions_relation sub parent_child_relation,
+	relates is_prop__expansions_role as is_child, relates has_prop__expansions_role as is_parent;
+
+prop__expression_relation sub parent_child_relation,
+	relates is_prop__expression_role as is_child, relates has_prop__expression_role as is_parent;
+
+prop__expressions_relation sub parent_child_relation,
+	relates is_prop__expressions_role as is_child, relates has_prop__expressions_role as is_parent;
+
+prop__field_name_relation sub parent_child_relation,
+	relates is_prop__field_name_role as is_child, relates has_prop__field_name_role as is_parent;
+
+prop__field_owner_relation sub parent_child_relation,
+	relates is_prop__field_owner_role as is_child, relates has_prop__field_owner_role as is_parent;
+
+prop__function_name_expression_relation sub parent_child_relation,
+	relates is_prop__function_name_expression_role as is_child, relates has_prop__function_name_expression_role as is_parent;
+
+prop__identifier_relation sub parent_child_relation,
+	relates is_prop__identifier_role as is_child, relates has_prop__identifier_role as is_parent;
+
+prop__init_operand2_relation sub parent_child_relation,
+	relates is_prop__init_operand2_role as is_child, relates has_prop__init_operand2_role as is_parent;
+
+prop__initial_value_relation sub parent_child_relation,
+	relates is_prop__initial_value_role as is_child, relates has_prop__initial_value_role as is_parent;
+
+prop__initializer_clause_relation sub parent_child_relation,
+	relates is_prop__initializer_clause_role as is_child, relates has_prop__initializer_clause_role as is_parent;
+
+prop__initializer_relation sub parent_child_relation,
+	relates is_prop__initializer_role as is_child, relates has_prop__initializer_role as is_parent;
+
+prop__initializer_statement_relation sub parent_child_relation,
+	relates is_prop__initializer_statement_role as is_child, relates has_prop__initializer_statement_role as is_parent;
+
+prop__initializer_value_relation sub parent_child_relation,
+	relates is_prop__initializer_value_role as is_child, relates has_prop__initializer_value_role as is_parent;
+
+prop__initializers_relation sub parent_child_relation,
+	relates is_prop__initializers_role as is_child, relates has_prop__initializers_role as is_parent;
+
+prop__iteration_expression_relation sub parent_child_relation,
+	relates is_prop__iteration_expression_role as is_child, relates has_prop__iteration_expression_role as is_parent;
+
+prop__label_name_expression_relation sub parent_child_relation,
+	relates is_prop__label_name_expression_role as is_child, relates has_prop__label_name_expression_role as is_parent;
+
+prop__logical_condition_expression_relation sub parent_child_relation,
+	relates is_prop__logical_condition_expression_role as is_child, relates has_prop__logical_condition_expression_role as is_parent;
+
+prop__macro_body_location_relation sub parent_child_relation,
+	relates is_prop__macro_body_location_role as is_child, relates has_prop__macro_body_location_role as is_parent;
+
+prop__mapping_name_relation sub parent_child_relation,
+	relates is_prop__mapping_name_role as is_child, relates has_prop__mapping_name_role as is_parent;
+
+prop__mapping_type_id_relation sub parent_child_relation,
+	relates is_prop__mapping_type_id_role as is_child, relates has_prop__mapping_type_id_role as is_parent;
+
+prop__member_initializer_id_relation sub parent_child_relation,
+	relates is_prop__member_initializer_id_role as is_child, relates has_prop__member_initializer_id_role as is_parent;
+
+prop__member_initializers_relation sub parent_child_relation,
+	relates is_prop__member_initializers_role as is_child, relates has_prop__member_initializers_role as is_parent;
+
+prop__members_relation sub parent_child_relation,
+	relates is_prop__members_role as is_child, relates has_prop__members_role as is_parent;
+
+prop__message_relation sub parent_child_relation,
+	relates is_prop__message_role as is_child, relates has_prop__message_role as is_parent;
+
+prop__name_relation sub parent_child_relation,
+	relates is_prop__name_role as is_child, relates has_prop__name_role as is_parent;
+
+prop__name_specifier_relation sub parent_child_relation,
+	relates is_prop__name_specifier_role as is_child, relates has_prop__name_specifier_role as is_parent;
+
+prop__negative_result_expression_relation sub parent_child_relation,
+	relates is_prop__negative_result_expression_role as is_child, relates has_prop__negative_result_expression_role as is_parent;
+
+prop__nested_declarator_relation sub parent_child_relation,
+	relates is_prop__nested_declarator_role as is_child, relates has_prop__nested_declarator_role as is_parent;
+
+prop__nested_statement_relation sub parent_child_relation,
+	relates is_prop__nested_statement_role as is_child, relates has_prop__nested_statement_role as is_parent;
+
+prop__new_initializer_relation sub parent_child_relation,
+	relates is_prop__new_initializer_role as is_child, relates has_prop__new_initializer_role as is_parent;
+
+prop__new_placement_relation sub parent_child_relation,
+	relates is_prop__new_placement_role as is_child, relates has_prop__new_placement_role as is_parent;
+
+prop__new_type_id_array_expressions_relation sub parent_child_relation,
+	relates is_prop__new_type_id_array_expressions_role as is_child, relates has_prop__new_type_id_array_expressions_role as is_parent;
+
+prop__noexcept_expression_relation sub parent_child_relation,
+	relates is_prop__noexcept_expression_role as is_child, relates has_prop__noexcept_expression_role as is_parent;
+
+prop__operand1_relation sub parent_child_relation,
+	relates is_prop__operand1_role as is_child, relates has_prop__operand1_role as is_parent;
+
+prop__operand2_relation sub parent_child_relation,
+	relates is_prop__operand2_role as is_child, relates has_prop__operand2_role as is_parent;
+
+prop__operand_relation sub parent_child_relation,
+	relates is_prop__operand_role as is_child, relates has_prop__operand_role as is_parent;
+
+prop__operands_relation sub parent_child_relation,
+	relates is_prop__operands_role as is_child, relates has_prop__operands_role as is_parent;
+
+prop__parameters_relation sub parent_child_relation,
+	relates is_prop__parameters_role as is_child, relates has_prop__parameters_role as is_parent;
+
+prop__pattern_relation sub parent_child_relation,
+	relates is_prop__pattern_role as is_child, relates has_prop__pattern_role as is_parent;
+
+prop__placement_arguments_relation sub parent_child_relation,
+	relates is_prop__placement_arguments_role as is_child, relates has_prop__placement_arguments_role as is_parent;
+
+prop__pointer_operators_relation sub parent_child_relation,
+	relates is_prop__pointer_operators_role as is_child, relates has_prop__pointer_operators_role as is_parent;
+
+prop__positive_result_expression_relation sub parent_child_relation,
+	relates is_prop__positive_result_expression_role as is_child, relates has_prop__positive_result_expression_role as is_parent;
+
+prop__preproc_statements_relation sub parent_child_relation,
+	relates is_prop__preproc_statements_role as is_child, relates has_prop__preproc_statements_role as is_parent;
+
+prop__qualified_name_relation sub parent_child_relation,
+	relates is_prop__qualified_name_role as is_child, relates has_prop__qualified_name_role as is_parent;
+
+prop__qualifier_relation sub parent_child_relation,
+	relates is_prop__qualifier_role as is_child, relates has_prop__qualifier_role as is_parent;
+
+prop__return_argument_relation sub parent_child_relation,
+	relates is_prop__return_argument_role as is_child, relates has_prop__return_argument_role as is_parent;
+
+prop__return_value_relation sub parent_child_relation,
+	relates is_prop__return_value_role as is_child, relates has_prop__return_value_role as is_parent;
+
+prop__statements_relation sub parent_child_relation,
+	relates is_prop__statements_role as is_child, relates has_prop__statements_role as is_parent;
+
+prop__subscript_expression_relation sub parent_child_relation,
+	relates is_prop__subscript_expression_role as is_child, relates has_prop__subscript_expression_role as is_parent;
+
+prop__template_arguments_relation sub parent_child_relation,
+	relates is_prop__template_arguments_role as is_child, relates has_prop__template_arguments_role as is_parent;
+
+prop__template_name_relation sub parent_child_relation,
+	relates is_prop__template_name_role as is_child, relates has_prop__template_name_role as is_parent;
+
+prop__template_parameters_relation sub parent_child_relation,
+	relates is_prop__template_parameters_role as is_child, relates has_prop__template_parameters_role as is_parent;
+
+prop__then_clause_relation sub parent_child_relation,
+	relates is_prop__then_clause_role as is_child, relates has_prop__then_clause_role as is_parent;
+
+prop__trailing_return_type_relation sub parent_child_relation,
+	relates is_prop__trailing_return_type_role as is_child, relates has_prop__trailing_return_type_role as is_parent;
+
+prop__try_body_relation sub parent_child_relation,
+	relates is_prop__try_body_role as is_child, relates has_prop__try_body_role as is_parent;
+
+prop__type_id_relation sub parent_child_relation,
+	relates is_prop__type_id_role as is_child, relates has_prop__type_id_role as is_parent;
+
+prop__type_node_relation sub parent_child_relation,
+	relates is_prop__type_node_role as is_child, relates has_prop__type_node_role as is_parent;
+
+prop__virt_specifier_relation sub parent_child_relation,
+	relates is_prop__virt_specifier_role as is_child, relates has_prop__virt_specifier_role as is_parent;
+
+prop__virt_specifiers_relation sub parent_child_relation,
+	relates is_prop__virt_specifiers_role as is_child, relates has_prop__virt_specifiers_role as is_parent;
+
+trailing_comments_relation sub parent_child_relation,
+	relates is_trailing_comments_role as is_child, relates has_trailing_comments_role as is_parent;

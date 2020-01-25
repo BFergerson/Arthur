@@ -14,75 +14,63 @@ class ElseIfConditionalFilterTest extends ArthurTest {
 
     @Test
     void elseIfConditional_Go() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.go")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundElseIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifElseIfConditional()", it.name)
-
-            new ElseIfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundElseIfConditional)
-                foundElseIfConditional = true
-            }
-        }
-        assertTrue(foundElseIfConditional)
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.go"))
     }
 
     @Test
     void elseIfConditional_Java() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.java")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundElseIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("Conditionals.ifElseIfConditional()", it.name)
-
-            new ElseIfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundElseIfConditional)
-                foundElseIfConditional = true
-            }
-        }
-        assertTrue(foundElseIfConditional)
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.java"),
+                "Conditionals.")
     }
 
     @Test
     void elseIfConditional_Javascript() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.js")
-        def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
-
-        def foundElseIfConditional = false
-        def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifElseIfConditional()", it.name)
-
-            new ElseIfConditionalFilter().getFilteredNodes(it).each {
-                assertFalse(foundElseIfConditional)
-                foundElseIfConditional = true
-            }
-        }
-        assertTrue(foundElseIfConditional)
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.js"))
     }
 
     @Test
     void elseIfConditional_Python() {
-        def file = new File("src/test/resources/same/conditionals/Conditionals.py")
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.py"))
+    }
+
+    @Test
+    void elseIfConditional_Php() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.php"))
+    }
+
+    @Test
+    void elseIfConditional_CSharp() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cs"))
+    }
+
+    @Test
+    void elseIfConditional_CPlusPlus() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
+    }
+
+    @Test
+    void elseIfConditional_Ruby() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
+    @Test
+    void elseIfConditional_Bash() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
+    }
+
+    private static void assertElseIfConditionalPresent(File file) {
+        assertElseIfConditionalPresent(file, "")
+    }
+
+    private static void assertElseIfConditionalPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundElseIfConditional = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter("ifElseIfConditional")
+        def nameFilter = new NameFilter(qualifiedName + "ifElseIfConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
-            assertEquals("ifElseIfConditional()", it.name)
+            assertEquals(qualifiedName + "ifElseIfConditional()", it.name)
 
             new ElseIfConditionalFilter().getFilteredNodes(it).each {
                 assertFalse(foundElseIfConditional)

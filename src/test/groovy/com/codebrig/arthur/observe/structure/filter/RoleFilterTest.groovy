@@ -14,13 +14,14 @@ class RoleFilterTest extends ArthurTest {
     void onlyForStatementsFilter() {
         def filter = new RoleFilter("FOR_ITERATOR_STATEMENT", "FOR_STATEMENT")
         def parseFolder = new File("src/test/resources/same/program")
+        def forLoopFilter = new ForLoopFilter()
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
-            def resp = client.parse(file.name, file.text, language.key, Encoding.UTF8$.MODULE$)
+            def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
             boolean foundForStatement = false
             filter.getFilteredNodes(language, resp.uast).each {
-                assertTrue(ForLoopFilter.LOOP_TYPES.contains(it.internalType))
+                assertTrue(forLoopFilter.evaluate(it))
                 foundForStatement = true
             }
             assertTrue(foundForStatement)

@@ -1,0 +1,640 @@
+define
+
+##########---------- Attributes ----------##########
+booleanValue sub attribute, datatype boolean;
+doubleValue sub attribute, datatype double;
+name sub attribute, datatype string;
+numberValue sub attribute, datatype long;
+stringValue sub attribute, datatype string;
+token sub attribute, datatype string;
+
+##########---------- Entities ----------##########
+SourceArtifact sub entity,
+	has token,
+	plays is_child,
+	plays is_parent;
+
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+AmpersandGreaterThanArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ANDANDArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ANDArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithEQEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ArithGTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ArithLTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ArithmeticBaseCharLeftParenthesesHashRightParenthesesArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ArithmeticBitwiseAndArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticBitwiseXorArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticEqualityArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticLogicAndArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticMultiplicationArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticParenthesisExprArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticPreIncrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticShiftArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArithmeticSumArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ArrayAssignmentListArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+AssignmentWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+AsteriskArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+BackquoteArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+BackquoteShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+BADCHARACTERArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CaretArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CasePatternArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+CasePatternListArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+CombinedWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+CommaArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CommentArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ComposedCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ComposedVariableArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ConditionalShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+CondOpArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CondOpEQEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CondOpEqualsTildeArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+CondOpNOTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+DOLLARArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ElifArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ElseArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+EQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+EqualsApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ERRORELEMENTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ExclamationArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+FILEArtifact sub BashSourceArtifact,
+	# Structural
+	plays has_children_role;
+
+FileRefArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ForShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ForwardSlashArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+FunctionDefElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+GenericBashCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+GreaterThanAmpersandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+GreaterThanPipeArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+GroupElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+GTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+GTEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+GTGTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HereDocContentArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HeredocContentElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+HeredocEndElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+HeredocEndElementIgnoringTabsArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+HeredocEndMarkerArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HeredocEndMarkerIgnoringTabsArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HeredocMarkerTagArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HeredocStartElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+HeredocStartMarkerArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HyphenApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HyphenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HyphenEqualsArithmeticArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+HyphenHyphenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+IfShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+IncludeCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+IntLiteralArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	# Structural
+	plays is_children_role;
+
+LazyLetExprArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LBForArithmeticArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LBLBLeftBracketArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LBLeftSquareArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LessThanGreaterThanArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LessThanLessThanLessThanArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LetArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LetCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+LogicalBlockArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+LPLPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+LTEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+NamedSymbolArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+NOTEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+NumberArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+NumrangeFiledescriptorArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ORArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ORORArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostropheAsteriskApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostropheExclamationApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostropheHyphenApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostrophePlusApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostropheQuestionApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorUnknownArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpATArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpCOLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpNUMArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpNUMNUMArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpPERCArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParamExpSLASHArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PercentArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PipeAmpersandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PipelineCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+PlusApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PlusArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PlusEqualsArithmeticArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PlusEqualsArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+PlusPlusArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ProcessSubstitutionElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+QuestionApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+RBForArithmeticArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+RBRBRightBracketArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+RBRightSquareArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+RedirectElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+RedirectListArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+RPRPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+SEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+SimpleCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+SingleBashExpansionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+StringArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+StringContentArtifact sub BashSourceArtifact,
+	# Attributes
+	has stringValue,
+	# Structural
+	plays is_children_role;
+
+SubshellShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+ThenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+TimeArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+TimeWithOptionalPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+TrapArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+UnevaluatedString2Artifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+UntilLoopArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+VarDefElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+VariableArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+VarSubstitutionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+VarUseElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+WhileLoopArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
+WordArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	has stringValue,
+	# Structural
+	plays is_children_role;
+
+##########---------- Structural Relationships ----------##########
+parent_child_relation sub relation,
+	relates is_parent, relates is_child;
+
+#####----- Bash -----#####
+children_relation sub parent_child_relation,
+	relates is_children_role as is_child, relates has_children_role as is_parent;

@@ -1,15 +1,15 @@
 package com.codebrig.arthur.observe.structure.filter
 
-import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 
 /**
- * Match by the name
+ * Match by the fully qualified name
  *
- * @version 0.3.2
+ * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com"> Val Pecaoco</a>
  */
 class NameFilter extends StructureFilter<NameFilter, String> {
 
@@ -19,45 +19,21 @@ class NameFilter extends StructureFilter<NameFilter, String> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node != null) {
-            if (node.language in [SourceLanguage.Python, SourceLanguage.Ruby]) {
-                return evaluateProperty(node.token)
-            }
-
-            def childNameFilter
-            if (node.language == SourceLanguage.Javascript) {
-                childNameFilter = new InternalRoleFilter("id").getFilteredNodes(node.children)
-            } else if (node.language == SourceLanguage.Java) {
-                if (node.internalType == "VariableDeclarationStatement") {
-                    MultiFilter.matchAll(
-                            new InternalRoleFilter("fragments"),
-                            new TypeFilter("VariableDeclarationFragment")
-                    ).getFilteredNodes(node).each {
-                        childNameFilter = MultiFilter.matchAll(
-                                new InternalRoleFilter("name"),
-                                new TypeFilter().reject("VariableDeclarationFragment")
-                        ).getFilteredNodes(it.children)
-                    }
-                }
-
-                if (childNameFilter == null) {
-                    if (node.internalType == "VariableDeclarationFragment") {
-                        return false
-                    }
-
-                    childNameFilter = MultiFilter.matchAll(
-                            new InternalRoleFilter("name"),
-                            new TypeFilter().reject("VariableDeclarationFragment")
-                    ).getFilteredNodes(node.children)
-                }
+        if (node != null && node.hasName()) {
+            def name = node.name
+            if (name.contains("(")) {
+                return evaluateProperty(name) || evaluateProperty(name.substring(0, name.indexOf("(")))
             } else {
-                childNameFilter = new InternalRoleFilter("name").getFilteredNodes(node.children)
+                return evaluateProperty(name)
             }
-            return new TokenFilter()
-                    .accept(acceptSet.toArray(new String[0]))
-                    .reject(rejectSet.toArray(new String[0]))
-                    .getFilteredNodes(childNameFilter).hasNext()
+        } else {
+            if (node?.internalType == "var-def-element") {
+                def matched = new TypeFilter("assignment_word").getFilteredNodes(node.children)
+                if (matched.hasNext()) {
+                    return evaluateProperty(matched.next().token)
+                }
+            }
+            return false
         }
-        return false
     }
 }
