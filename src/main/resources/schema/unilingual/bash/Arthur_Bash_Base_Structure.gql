@@ -55,6 +55,11 @@ ArithmeticBitwiseAndArtifact sub BashSourceArtifact,
 	plays is_children_role,
 	plays has_children_role;
 
+ArithmeticBitwiseOrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
 ArithmeticBitwiseXorArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role,
@@ -244,6 +249,8 @@ ForwardSlashArtifact sub BashSourceArtifact,
 	plays is_children_role;
 
 FunctionDefElementArtifact sub BashSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_children_role,
 	plays has_children_role;
@@ -430,6 +437,10 @@ ParameterExpansionOperatorApostropheAsteriskApostropheArtifact sub BashSourceArt
 	# Structural
 	plays is_children_role;
 
+ParameterExpansionOperatorApostropheEqualsApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
 ParameterExpansionOperatorApostropheExclamationApostropheArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
@@ -601,6 +612,8 @@ UntilLoopArtifact sub BashSourceArtifact,
 	plays has_children_role;
 
 VarDefElementArtifact sub BashSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_children_role,
 	plays has_children_role;

@@ -9869,6 +9869,10 @@ BashArithmeticBitwiseAndArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
+BashArithmeticBitwiseOrArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 BashArithmeticBitwiseXorArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
@@ -9883,6 +9887,7 @@ BashArithmeticCommandArtifact sub BashSourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_IF,
 	plays IS_INCOMPLETE,
+	plays IS_RIGHT,
 	plays IS_WHILE;
 
 BashArithmeticEqualityArtifact sub BashSourceArtifact,
@@ -9933,6 +9938,7 @@ BashAssignmentWordArtifact sub BashSourceArtifact,
 	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_LEFT,
+	plays IS_OPERATOR,
 	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
@@ -9976,10 +9982,12 @@ BashCasePatternListArtifact sub BashSourceArtifact,
 
 BashCombinedWordArtifact sub BashSourceArtifact,
 	# Semantic
+	plays IS_ASSIGNMENT,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_IDENTIFIER,
 	plays IS_INCOMPLETE,
+	plays IS_LEFT,
 	plays IS_RIGHT,
 	plays IS_UPDATE;
 
@@ -10321,6 +10329,10 @@ BashParameterExpansionOperatorApostropheAsteriskApostropheArtifact sub BashSourc
 	# Semantic
 	plays IS_UNANNOTATED;
 
+BashParameterExpansionOperatorApostropheEqualsApostropheArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 BashParameterExpansionOperatorApostropheExclamationApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
@@ -10530,6 +10542,7 @@ BashVarDefElementArtifact sub BashSourceArtifact,
 	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_DECLARATION,
+	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_ITERATOR,
@@ -10551,8 +10564,10 @@ BashVarSubstitutionArtifact sub BashSourceArtifact,
 
 BashVarUseElementArtifact sub BashSourceArtifact,
 	# Semantic
+	plays IS_ASSIGNMENT,
 	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER,
+	plays IS_LEFT,
 	plays IS_VARIABLE;
 
 BashWhileLoopArtifact sub BashSourceArtifact,
