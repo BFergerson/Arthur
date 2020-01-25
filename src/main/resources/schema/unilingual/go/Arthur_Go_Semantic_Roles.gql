@@ -751,6 +751,9 @@ POSITIVE sub relation,
 PRIMITIVE sub relation,
 	relates IS_PRIMITIVE;
 
+QUALIFIED sub relation,
+	relates IS_QUALIFIED;
+
 RECEIVER sub relation,
 	relates IS_RECEIVER;
 

@@ -6,6 +6,7 @@ import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SchemaWriter
 import com.google.common.base.CaseFormat
+import groovy.util.logging.Slf4j
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -18,9 +19,8 @@ import static com.codebrig.arthur.schema.SchemaSegment.*
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class GraknSchemaWriter implements SchemaWriter {
-
-    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     private final ObservedLanguage rootLanguage
     private final List<ObservedLanguage> observedLanguages
