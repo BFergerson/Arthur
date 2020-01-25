@@ -6,8 +6,7 @@ import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SegmentedSchemaConfig
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import groovy.util.logging.Slf4j
 
 import java.util.concurrent.TimeUnit
 
@@ -18,9 +17,8 @@ import java.util.concurrent.TimeUnit
  * @since 0.1
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class UnilingualGithubSchemaGenerator extends SchemaGenerator {
-
-    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     static void main(String[] args) {
         def language = SourceLanguage.getSourceLanguageByName(args[0])

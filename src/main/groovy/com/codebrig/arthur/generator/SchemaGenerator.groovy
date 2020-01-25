@@ -10,13 +10,12 @@ import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.ParseResponse
 import groovy.transform.Canonical
 import groovy.transform.TupleConstructor
+import groovy.util.logging.Slf4j
 import org.bblfsh.client.BblfshClient
 import org.eclipse.jgit.api.Git
 import org.kohsuke.github.GHDirection
 import org.kohsuke.github.GHRepositorySearchBuilder
 import org.kohsuke.github.GitHub
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import java.nio.file.Files
 import java.util.concurrent.Callable
@@ -33,9 +32,8 @@ import static com.google.common.io.Files.getFileExtension
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
+@Slf4j
 class SchemaGenerator {
-
-    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     private static final int MAX_PARSE_WAIT_SECONDS = 15
     private static final int MAX_FILE_PARSE_COUNT = Integer.MAX_VALUE

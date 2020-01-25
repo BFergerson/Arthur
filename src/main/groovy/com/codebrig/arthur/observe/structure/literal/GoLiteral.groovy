@@ -2,8 +2,7 @@ package com.codebrig.arthur.observe.structure.literal
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureLiteral
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import groovy.util.logging.Slf4j
 
 /**
  * Used to determine and get the literal type of Go AST nodes
@@ -13,9 +12,8 @@ import org.slf4j.LoggerFactory
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
+@Slf4j
 class GoLiteral extends StructureLiteral {
-
-    private static final Logger log = LoggerFactory.getLogger(this.name)
 
     @Override
     String getNodeLiteralAttribute(SourceNode node) {
