@@ -74,6 +74,14 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 
 ## Misc
 
+- Child
 - Function
+- InternalRole
+- Language
 - Literal
+- Multi
 - Name
+- Role
+- Token
+- Type
+- Wildcard
