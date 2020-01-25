@@ -11,12 +11,15 @@ Arthur parses source code using [Babelfish](https://github.com/bblfsh/bblfshd) a
 
 | Languages                               | Segments                                                     |
 | --------------------------------------- | ------------------------------------------------------------ |
-| Go, Java, JavaScript, PHP, Python, Ruby | [Arthur_Omnilingual_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Base_Structure.gql) <br> [Arthur_Omnilingual_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Semantic_Roles.gql) |
+| Bash, C#, C++, Go, Java, JavaScript, PHP, Python, Ruby | [Arthur_Omnilingual_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Base_Structure.gql) <br> [Arthur_Omnilingual_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/omnilingual/Arthur_Omnilingual_Semantic_Roles.gql) |
 
 ## Unilingual Schemas
 
 | Language   | Segments                                                     |
 | ---------- | ------------------------------------------------------------ |
+| Bash       | [Arthur_Bash_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/bash/Arthur_Bash_Base_Structure.gql) <br> [Arthur_Bash_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/bash/Arthur_Bash_Semantic_Roles.gql) |
+| C#         | [Arthur_Csharp_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/csharp/Arthur_Csharp_Base_Structure.gql) <br> [Arthur_Csharp_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/csharp/Arthur_Csharp_Semantic_Roles.gql) |
+| C++        | [Arthur_Cplusplus_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/cplusplus/Arthur_Cplusplus_Base_Structure.gql) <br> [Arthur_Cplusplus_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/cplusplus/Arthur_Cplusplus_Semantic_Roles.gql) |
 | Go         | [Arthur_Go_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/go/Arthur_Go_Base_Structure.gql) <br> [Arthur_Go_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/go/Arthur_Go_Semantic_Roles.gql) |
 | Java       | [Arthur_Java_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/java/Arthur_Java_Base_Structure.gql) <br> [Arthur_Java_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/java/Arthur_Java_Semantic_Roles.gql) |
 | JavaScript | [Arthur_Javascript_Base_Structure.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/javascript/Arthur_Javascript_Base_Structure.gql) <br> [Arthur_Javascript_Semantic_Roles.gql](https://github.com/CodeBrig/Arthur/blob/master/src/main/resources/schema/unilingual/javascript/Arthur_Javascript_Semantic_Roles.gql) |
