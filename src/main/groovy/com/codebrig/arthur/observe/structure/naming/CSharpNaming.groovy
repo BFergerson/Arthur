@@ -13,7 +13,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @since 0.4
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class CSharpNaming implements StructureNaming {
+class CSharpNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -34,7 +34,7 @@ class CSharpNaming implements StructureNaming {
             case "VariableDeclaration":
                 return getVariableDeclarationName(node)
             default:
-                throw new IllegalArgumentException("Unsupported C# node type: " + node.internalType)
+                return super.getNodeName(node)
         }
     }
 

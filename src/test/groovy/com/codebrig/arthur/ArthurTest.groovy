@@ -1,6 +1,6 @@
 package com.codebrig.arthur
 
-import org.bblfsh.client.BblfshClient
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.AfterClass
 import org.junit.BeforeClass
 

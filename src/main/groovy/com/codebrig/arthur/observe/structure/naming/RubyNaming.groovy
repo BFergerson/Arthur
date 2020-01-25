@@ -16,7 +16,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class RubyNaming implements StructureNaming {
+class RubyNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -41,7 +41,7 @@ class RubyNaming implements StructureNaming {
             case "lvasgn":
                 return getLvasgnName(node)
             default:
-                return null
+                return super.getNodeName(node)
         }
     }
 

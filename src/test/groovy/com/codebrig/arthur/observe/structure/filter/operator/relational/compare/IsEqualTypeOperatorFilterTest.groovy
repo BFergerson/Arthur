@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -29,12 +29,13 @@ class IsEqualTypeOperatorFilterTest extends ArthurTest {
 
     private static void assertIsEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundEqualTypeOperator = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter("isEqualTypeOperator()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals("isEqualTypeOperator()", it.name)
 
             new IsEqualTypeOperatorFilter().getFilteredNodes(it).each {

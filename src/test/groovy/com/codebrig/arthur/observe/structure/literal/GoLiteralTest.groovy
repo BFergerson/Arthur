@@ -6,8 +6,8 @@ import com.codebrig.arthur.observe.structure.filter.LiteralFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.InitializeVariableOperatorFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.apache.commons.text.StringEscapeUtils
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -50,11 +50,12 @@ class GoLiteralTest extends ArthurTest {
     private static void assertGoLiteralPresent(String literalName, String literalType, Object literalValue) {
         def file = new File("src/test/resources/same/literals/Literals.go")
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         boolean foundLiteral = false
         MultiFilter.matchAll(new NameFilter(literalName), new InitializeVariableOperatorFilter())
-                .getFilteredNodes(language, resp.uast).each {
+                .getFilteredNodes(language, rootNode).each {
             assertEquals(literalName, it.name)
             def literalNode = new LiteralFilter().getFilteredNodes(it).next()
             assertNotNull(literalNode)

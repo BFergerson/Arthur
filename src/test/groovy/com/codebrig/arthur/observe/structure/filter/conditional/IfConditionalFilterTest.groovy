@@ -5,7 +5,6 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -70,7 +69,7 @@ class IfConditionalFilterTest extends ArthurTest {
 
     private static void assertIfConditionalPresent(File file, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
 
         def foundIfConditional = false
         def functionFilter = new FunctionFilter()

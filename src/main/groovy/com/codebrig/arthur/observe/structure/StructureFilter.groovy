@@ -2,9 +2,9 @@ package com.codebrig.arthur.observe.structure
 
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
 import org.apache.commons.collections4.Predicate
 import org.apache.commons.collections4.iterators.FilterIterator
+import org.bblfsh.client.v2.JNode
 
 /**
  * Used to filter through SourceNodes
@@ -40,7 +40,7 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return new FilterIterator(sourceNodes, this)
     }
 
-    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node) {
+    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, JNode node) {
         return getFilteredNodes(new SourceNode(language, node))
     }
 

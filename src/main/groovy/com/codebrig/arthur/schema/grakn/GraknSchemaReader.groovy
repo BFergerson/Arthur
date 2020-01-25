@@ -114,7 +114,7 @@ class GraknSchemaReader {
                 }
             }
 
-            observedLanguage.observeRoles(name, playsRoles)
+            observedLanguage.observeRoles(name, playsRoles.iterator())
         }
 
         def schemaWriter = new GraknSchemaWriter(observedLanguage)

@@ -16,7 +16,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class JavascriptNaming implements StructureNaming {
+class JavascriptNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -37,7 +37,7 @@ class JavascriptNaming implements StructureNaming {
             case "VariableDeclaration":
                 return getVariableDeclarationName(node)
             default:
-                return null
+                return super.getNodeName(node)
         }
     }
 

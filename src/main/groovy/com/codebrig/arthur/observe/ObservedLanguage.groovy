@@ -8,7 +8,7 @@ import com.codebrig.arthur.observe.observations.ObservedRoles
 import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.google.common.base.CaseFormat
 import com.google.common.collect.Maps
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
+import gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role
 
 import java.util.stream.Collectors
 
@@ -107,18 +107,18 @@ class ObservedLanguage {
         }
     }
 
-    void observeRoles(String entity, Iterator<Role> entityRoles) {
+    void observeRoles(String entity, List<Role> entityRoles) {
         entity = toValidEntity(entity)
         roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe(entityRoles.toList().stream()
+        roles.get(entity).observe(entityRoles.stream()
                 .map({ it -> it.name() })
                 .collect(Collectors.toList()).iterator())
     }
 
-    void observeRoles(String entity, List<String> entityRoles) {
+    void observeRoles(String entity, Iterator<String> entityRoles) {
         entity = toValidEntity(entity)
         roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe(entityRoles.iterator())
+        roles.get(entity).observe(entityRoles)
     }
 
     void addEntityExtends(String entity) {

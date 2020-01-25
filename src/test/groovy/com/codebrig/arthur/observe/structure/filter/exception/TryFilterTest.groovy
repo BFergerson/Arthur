@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
-import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -68,13 +68,14 @@ class TryFilterTest extends ArthurTest {
 
     private static void assertTryCatchPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundTry = false
         def foundCatch = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(qualifiedName + "tryCatch()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals(qualifiedName + "tryCatch()", it.name)
 
             new TryFilter().getFilteredNodes(it).each {
@@ -96,14 +97,15 @@ class TryFilterTest extends ArthurTest {
 
     private static void assertTryCatchFinallyPresent(File file, String qualifiedName) {
         def language = SourceLanguage.getSourceLanguage(file)
-        def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
+        def resp = client.parse(file.name, file.text, language.babelfishName)
+        def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundTry = false
         def foundCatch = false
         def foundFinally = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(qualifiedName + "tryCatchFinally()")
-        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
+        MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
             assertEquals(qualifiedName + "tryCatchFinally()", it.name)
 
             new TryFilter().getFilteredNodes(it).each {

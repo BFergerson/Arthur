@@ -13,7 +13,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @since 0.4
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class CPlusPlusNaming implements StructureNaming {
+class CPlusPlusNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -35,7 +35,7 @@ class CPlusPlusNaming implements StructureNaming {
             case "CPPASTSimpleDeclaration":
                 return getSimpleDeclaration(node)
             default:
-                throw new IllegalArgumentException("Unsupported C++ node type: " + node.internalType)
+                return super.getNodeName(node)
         }
     }
 

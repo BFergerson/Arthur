@@ -15,9 +15,12 @@ class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
     private final MultiFilter filter
 
     FunctionFilter() {
-        filter = MultiFilter.matchAll(
-                new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
-                new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
+        filter = MultiFilter.matchAny(
+                new TypeFilter("uast:FunctionGroup"),
+                MultiFilter.matchAll(
+                        new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
+                        new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
+                )
         )
     }
 

@@ -2,9 +2,9 @@ package com.codebrig.arthur
 
 import com.codebrig.arthur.observe.structure.StructureLiteral
 import com.codebrig.arthur.observe.structure.StructureNaming
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Node
-import gopkg.in.bblfsh.sdk.v1.uast.generated.Role
+import gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role
 import org.apache.commons.collections4.iterators.TransformIterator
+import org.bblfsh.client.v2.*
 import scala.collection.JavaConverters
 
 /**
@@ -17,21 +17,21 @@ import scala.collection.JavaConverters
 class SourceNode {
 
     private final SourceLanguage language
-    private final Node rootNode
-    private final Node underlyingNode
+    private final JNode rootNode
+    private final JNode underlyingNode
     private final SourceNode parentSourceNode
     private final StructureNaming naming
     private final StructureLiteral literal
 
-    SourceNode(SourceLanguage language, Node underlyingNode) {
+    SourceNode(SourceLanguage language, JNode underlyingNode) {
         this(language, underlyingNode, underlyingNode)
     }
 
-    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode) {
+    SourceNode(SourceLanguage language, JNode rootNode, JNode underlyingNode) {
         this(language, rootNode, underlyingNode, null)
     }
 
-    SourceNode(SourceLanguage language, Node rootNode, Node underlyingNode, SourceNode parentNode) {
+    SourceNode(SourceLanguage language, JNode rootNode, JNode underlyingNode, SourceNode parentNode) {
         this.language = Objects.requireNonNull(language)
         this.rootNode = Objects.requireNonNull(rootNode)
         this.underlyingNode = Objects.requireNonNull(underlyingNode)
@@ -44,7 +44,7 @@ class SourceNode {
         return language
     }
 
-    Node getRootNode() {
+    JNode getRootNode() {
         return rootNode
     }
 
@@ -52,7 +52,11 @@ class SourceNode {
         return new SourceNode(language, rootNode)
     }
 
-    Node getUnderlyingNode() {
+    /**
+     * todo: remove
+     */
+    @Deprecated
+    JNode getUnderlyingNode() {
         return underlyingNode
     }
 
@@ -61,14 +65,38 @@ class SourceNode {
     }
 
     String getInternalType() {
-        return underlyingNode.internalType()
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "@type") {
+                return (underlyingNode.valueAt(i) as JString).str().replace(language.key + ":", "")
+            }
+        }
+        return "unknown"
     }
 
     boolean hasName() {
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "Name") {
+                return true
+            }
+        }
         return naming.isNamedNodeType(this)
     }
 
     String getName() {
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "Name") {
+                if (underlyingNode.valueAt(i) instanceof JObject) {
+                    def jobject = (underlyingNode.valueAt(i) as JObject)
+                    for (int z = 0; z < jobject.size(); z++) {
+                        if (jobject.keyAt(z) == "Name") {
+                            return (jobject.valueAt(z) as JString).str()
+                        }
+                    }
+                } else {
+                    return (underlyingNode.valueAt(i) as JString).str()
+                }
+            }
+        }
         return naming.getNodeName(this)
     }
 
@@ -82,8 +110,8 @@ class SourceNode {
     }
 
     Iterator<SourceNode> getChildren() {
-        def itr = asJavaIterator(underlyingNode.children())
-        return new TransformIterator<Node, SourceNode>(itr, { Node node ->
+        def itr = asJavaIterator(BblfshClient$.MODULE$.iterator(underlyingNode, new BblfshClient.ChildrenOrder$()).seq())
+        return new TransformIterator<JNode, SourceNode>(itr, { JNode node ->
             if (node == null) {
                 return null
             }
@@ -95,8 +123,48 @@ class SourceNode {
         return asJavaMap(underlyingNode.properties())
     }
 
-    Iterator<Role> getRoles() {
-        return asJavaIterator(underlyingNode.roles())
+    List<Role> getRoles() {
+        def roleIndex = -1
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "@role") {
+                roleIndex = i
+                break
+            }
+        }
+
+        def roleList = new ArrayList<Role>()
+        if (roleIndex == -1) {
+            return roleList
+            //throw new IllegalStateException("Could not find @role")
+        }
+
+        def roles = underlyingNode.valueAt(roleIndex) as JArray
+        for (int i = 0; i < roles.size(); i++) {
+            //todo: better
+            def roleName = (roles.valueAt(i) as JString).str().toUpperCase()
+            switch (roleName) {
+                case "DOWHILE":
+                    roleName = "DO_WHILE"
+                    break
+                case "GREATERTHAN":
+                    roleName = "GREATER_THAN"
+                    break
+                case "GREATERTHANOREQUAL":
+                    roleName = "GREATER_THAN_OR_EQUAL"
+                    break
+                case "LEFTSHIFT":
+                    roleName = "LEFT_SHIFT"
+                    break
+                case "LESSTHAN":
+                    roleName = "LESS_THAN"
+                    break
+                case "LESSTHANOREQUAL":
+                    roleName = "LESS_THAN_OR_EQUAL"
+                    break
+            }
+            roleList += Eval.me("return new gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role." + roleName + "\$()")
+        }
+        return roleList
     }
 
     boolean isLiteralNode() {
@@ -122,6 +190,10 @@ class SourceNode {
 
     static <T> Iterator<T> asJavaIterator(scala.collection.Iterable<T> scalaIterator) {
         return JavaConverters.asJavaCollectionConverter(scalaIterator).asJavaCollection().iterator()
+    }
+
+    static <T> Iterator<T> asJavaIterator(scala.collection.Iterator<T> scalaIterator) {
+        return JavaConverters.asJavaIteratorConverter(scalaIterator).asJava()
     }
 
     static Map<String, String> asJavaMap(scala.collection.Map<String, String> scalaMap) {
