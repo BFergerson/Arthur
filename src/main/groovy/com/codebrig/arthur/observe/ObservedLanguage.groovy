@@ -95,12 +95,30 @@ class ObservedLanguage {
         }
     }
 
+    void observeRelations(String entity, List<String> entityRelations) {
+        entity = toValidEntity(entity)
+        relations.putIfAbsent(entity, new ObservedRelations())
+        entityRelations.each {
+            if (it.startsWith("has")) {
+                relations.get(entity).observeHas(it.substring(4))
+            } else {
+                relations.get(entity).observeIs(it.substring(3))
+            }
+        }
+    }
+
     void observeRoles(String entity, Iterator<Role> entityRoles) {
         entity = toValidEntity(entity)
         roles.putIfAbsent(entity, new ObservedRoles())
         roles.get(entity).observe(entityRoles.toList().stream()
                 .map({ it -> it.name() })
                 .collect(Collectors.toList()).iterator())
+    }
+
+    void observeRoles(String entity, List<String> entityRoles) {
+        entity = toValidEntity(entity)
+        roles.putIfAbsent(entity, new ObservedRoles())
+        roles.get(entity).observe(entityRoles.iterator())
     }
 
     void addEntityExtends(String entity) {
@@ -320,10 +338,30 @@ class ObservedLanguage {
 
     static String toValidEntity(String entity) {
         //ex. EntityName
+        if (entity.contains("?")) {
+            println "here"
+        }
+        switch (entity) {
+            case "!":
+                entity = "ExclamationPoint"
+                break
+            case "%":
+                entity = "PercentSign"
+                break
+            case "&>":
+                entity = "AmpersandGreaterThanSign"
+                break
+        }
+        //ArithmeticBaseChar(#)Artifact
+        //(#), CondOp=~
         entity = entity.replace("?", "")
         entity = handleBreaker(".", entity)
         entity = handleBreaker("_", entity)
-        entity = entity.substring(0, 1).toUpperCase() + entity.substring(1)
+        try {
+            entity = entity.substring(0, 1).toUpperCase() + entity.substring(1)
+        } catch (all) {
+            all.printStackTrace()
+        }
         return entity + "Artifact"
     }
 
