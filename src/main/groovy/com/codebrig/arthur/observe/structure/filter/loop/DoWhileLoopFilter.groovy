@@ -4,7 +4,6 @@ import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
-import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by do while loop
@@ -23,9 +22,7 @@ class DoWhileLoopFilter extends StructureFilter<DoWhileLoopFilter, Void> {
                 MultiFilter.matchAll(
                         new RoleFilter("DO_WHILE"), new RoleFilter("STATEMENT"),
                         new RoleFilter().reject("BLOCK", "SCOPE", "BODY")
-                ),
-                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/57)
-                new TypeFilter("CPPASTDoStatement")
+                )
         )
     }
 

@@ -5,7 +5,7 @@ import com.codebrig.arthur.SourceLanguage
 import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
-import static org.junit.Assert.assertEquals
+import static org.junit.Assert.assertTrue
 
 class NameFilterTest_Java extends ArthurTest {
 
@@ -17,7 +17,9 @@ class NameFilterTest_Java extends ArthurTest {
         def fileFilter = new NameFilter("arg")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
-            assertEquals("SingleVariableDeclaration", it.internalType)
+            assertTrue(["SimpleName", "SingleVariableDeclaration"].stream().anyMatch(
+                    { t -> t == it.internalType })
+            )
         }
     }
 
@@ -29,7 +31,9 @@ class NameFilterTest_Java extends ArthurTest {
         def fileFilter = new NameFilter("arrayList")
 
         fileFilter.getFilteredNodes(SourceLanguage.Java, rootNode).each {
-            assertEquals("VariableDeclarationStatement", it.internalType)
+            assertTrue(["SimpleName", "VariableDeclarationStatement"].stream().anyMatch(
+                    { t -> t == it.internalType })
+            )
         }
     }
 }

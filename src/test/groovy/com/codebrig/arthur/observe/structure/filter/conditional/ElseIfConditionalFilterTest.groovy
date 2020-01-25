@@ -47,13 +47,18 @@ class ElseIfConditionalFilterTest extends ArthurTest {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.cpp"))
     }
 
-    private static void assertElseIfConditionalPresent(File file) {
-        assertElseIfConditionalPresent(file, "")
-    }
-
     @Test
     void elseIfConditional_Ruby() {
         assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
+    }
+
+    @Test
+    void elseIfConditional_Bash() {
+        assertElseIfConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
+    }
+
+    private static void assertElseIfConditionalPresent(File file) {
+        assertElseIfConditionalPresent(file, "")
     }
 
     private static void assertElseIfConditionalPresent(File file, String qualifiedName) {

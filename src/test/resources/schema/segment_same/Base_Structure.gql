@@ -9,7 +9,9 @@ stringValue sub attribute, datatype string;
 token sub attribute, datatype string;
 
 #####----- Omnilingual -----#####
+isConstAttribute sub attribute, datatype string;
 kindAttribute sub attribute, datatype string;
+valueAttribute sub attribute, datatype string;
 
 #####----- Go -----#####
 goColAttribute sub attribute, datatype string;
@@ -30,9 +32,9 @@ javascriptAsyncAttribute sub attribute, datatype string;
 javascriptComputedAttribute sub attribute, datatype string;
 javascriptGeneratorAttribute sub attribute, datatype string;
 javascriptKindAttribute sub kindAttribute, datatype string;
-javascriptNormValueAttribute sub attribute, datatype string;
 javascriptPrefixAttribute sub attribute, datatype string;
 javascriptSourceTypeAttribute sub attribute, datatype string;
+javascriptValueAttribute sub valueAttribute, datatype string;
 
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
@@ -49,7 +51,7 @@ rubySelectorAttribute sub attribute, datatype string;
 #####----- Csharp -----#####
 csharpAllowsAnyExpressionAttribute sub attribute, datatype string;
 csharpArityAttribute sub attribute, datatype string;
-csharpIsConstAttribute sub attribute, datatype string;
+csharpIsConstAttribute sub isConstAttribute, datatype string;
 csharpIsMissingAttribute sub attribute, datatype string;
 csharpIsStructuredTriviaAttribute sub attribute, datatype string;
 csharpIsUnboundGenericNameAttribute sub attribute, datatype string;
@@ -57,8 +59,51 @@ csharpIsUnmanagedAttribute sub attribute, datatype string;
 csharpIsVarAttribute sub attribute, datatype string;
 csharpRankAttribute sub attribute, datatype string;
 csharpTextAttribute sub attribute, datatype string;
-csharpValueAttribute sub attribute, datatype string;
+csharpValueAttribute sub valueAttribute, datatype string;
 csharpValueTextAttribute sub attribute, datatype string;
+
+#####----- Cplusplus -----#####
+cplusplusDeclaresParameterPackAttribute sub attribute, datatype string;
+cplusplusExpressionTypeAttribute sub attribute, datatype string;
+cplusplusExpressionValueCategoryAttribute sub attribute, datatype string;
+cplusplusIsCatchAllAttribute sub attribute, datatype string;
+cplusplusIsComplexAttribute sub attribute, datatype string;
+cplusplusIsConstAttribute sub isConstAttribute, datatype string;
+cplusplusIsConstExprAttribute sub attribute, datatype string;
+cplusplusIsConversionOperatorAttribute sub attribute, datatype string;
+cplusplusIsDefaultedAttribute sub attribute, datatype string;
+cplusplusIsDeletedAttribute sub attribute, datatype string;
+cplusplusIsExplicitAttribute sub attribute, datatype string;
+cplusplusIsExportedAttribute sub attribute, datatype string;
+cplusplusIsFinalAttribute sub attribute, datatype string;
+cplusplusIsFriendAttribute sub attribute, datatype string;
+cplusplusIsFullyQualifiedAttribute sub attribute, datatype string;
+cplusplusIsImaginaryAttribute sub attribute, datatype string;
+cplusplusIsInlineAttribute sub attribute, datatype string;
+cplusplusIsLongAttribute sub attribute, datatype string;
+cplusplusIsLongLongAttribute sub attribute, datatype string;
+cplusplusIsLValueAttribute sub attribute, datatype string;
+cplusplusIsMutableAttribute sub attribute, datatype string;
+cplusplusIsOverrideAttribute sub attribute, datatype string;
+cplusplusIsParameterPackAttribute sub attribute, datatype string;
+cplusplusIsPureVirtualAttribute sub attribute, datatype string;
+cplusplusIsRestrictAttribute sub attribute, datatype string;
+cplusplusIsShortAttribute sub attribute, datatype string;
+cplusplusIsSignedAttribute sub attribute, datatype string;
+cplusplusIsSystemAttribute sub attribute, datatype string;
+cplusplusIsThreadLocalAttribute sub attribute, datatype string;
+cplusplusIsTypeNameAttribute sub attribute, datatype string;
+cplusplusIsUnsignedAttribute sub attribute, datatype string;
+cplusplusIsVirtualAttribute sub attribute, datatype string;
+cplusplusIsVolatileAttribute sub attribute, datatype string;
+cplusplusKeyAttribute sub attribute, datatype string;
+cplusplusKindAttribute sub kindAttribute, datatype string;
+cplusplusOperatorAttribute sub attribute, datatype string;
+cplusplusPathAttribute sub attribute, datatype string;
+cplusplusResolvedAttribute sub attribute, datatype string;
+cplusplusSizeAttribute sub attribute, datatype string;
+cplusplusStorageClassAttribute sub attribute, datatype string;
+cplusplusTakesVarArgsAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
@@ -68,6 +113,8 @@ SourceArtifact sub entity,
 
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
+
+AndArtifact sub OmnilingualSourceArtifact;
 
 ArgArtifact sub OmnilingualSourceArtifact;
 
@@ -110,6 +157,8 @@ ModuleArtifact sub OmnilingualSourceArtifact;
 NameArtifact sub OmnilingualSourceArtifact;
 
 OperatorArtifact sub OmnilingualSourceArtifact;
+
+OrArtifact sub OmnilingualSourceArtifact;
 
 ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact;
 
@@ -614,6 +663,8 @@ JavaQualifiedNameArtifact sub QualifiedNameArtifact,
 	plays has_java_qualifier_role;
 
 JavaSimpleNameArtifact sub JavaSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_java_arguments_role,
 	plays is_java_expression_role,
@@ -633,6 +684,7 @@ JavaSimpleTypeArtifact sub JavaSourceArtifact,
 JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has javaVarargsAttribute,
+	has name,
 	# Structural
 	plays is_java_exception_role,
 	plays is_java_parameter_role,
@@ -898,8 +950,8 @@ JavascriptRestElementArtifact sub JavascriptSourceArtifact,
 
 JavascriptStringLiteralArtifact sub StringLiteralArtifact,
 	# Attributes
-	has javascriptNormValueAttribute,
 	has stringValue,
+	has javascriptValueAttribute,
 	# Structural
 	plays is_javascript_arguments_role,
 	plays is_javascript_init_role;
@@ -1180,7 +1232,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
-PythonAndArtifact sub PythonSourceArtifact,
+PythonAndArtifact sub AndArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1351,7 +1403,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_value_role;
 
-PythonOrArtifact sub PythonSourceArtifact,
+PythonOrArtifact sub OrArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1423,6 +1475,12 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyAndArtifact sub AndArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyArgArtifact sub ArgArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1435,6 +1493,7 @@ RubyArgsArtifact sub RubySourceArtifact,
 RubyBeginArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_base_role,
+	plays is_ruby_body_role,
 	plays is_ruby_file_role,
 	plays has_ruby_body_role;
 
@@ -1448,6 +1507,10 @@ RubyCaseArtifact sub RubySourceArtifact,
 	plays has_ruby_casevar_role,
 	plays has_ruby_else_role,
 	plays has_ruby_when_clauses_role;
+
+RubyConstArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_base_role;
 
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
@@ -1485,6 +1548,7 @@ RubyIfArtifact sub IfArtifact,
 	# Structural
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
+	plays is_ruby_value_role,
 	plays has_ruby_body_role,
 	plays has_ruby_condition_role,
 	plays has_ruby_else_role;
@@ -1498,6 +1562,7 @@ RubyIntArtifact sub RubySourceArtifact,
 	plays is_ruby_casevar_role,
 	plays is_ruby_conditions_role,
 	plays is_ruby_default_role,
+	plays is_ruby_else_role,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
 
@@ -1512,6 +1577,7 @@ RubyKwoptargArtifact sub RubySourceArtifact,
 
 RubyLvarArtifact sub RubySourceArtifact,
 	# Structural
+	plays is_ruby_base_role,
 	plays is_ruby_values_role;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
@@ -1535,6 +1601,12 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays is_ruby_children_role,
 	plays has_ruby_default_role;
 
+RubyOrArtifact sub OrArtifact,
+	# Structural
+	plays is_ruby_condition_role,
+	plays has_ruby_left_role,
+	plays has_ruby_right_role;
+
 RubyRestargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
@@ -1542,6 +1614,12 @@ RubyRestargArtifact sub RubySourceArtifact,
 RubySendCallArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_iterated_role,
+	plays has_ruby_base_role,
+	plays has_ruby_values_role;
+
+RubySendOperatorArtifact sub RubySourceArtifact,
+	# Structural
+	plays is_ruby_condition_role,
 	plays has_ruby_base_role,
 	plays has_ruby_values_role;
 
@@ -1563,7 +1641,11 @@ RubyStrArtifact sub StrArtifact,
 
 RubyTrueArtifact sub RubySourceArtifact,
 	# Structural
-	plays is_ruby_condition_role;
+	plays is_ruby_base_role,
+	plays is_ruby_condition_role,
+	plays is_ruby_left_role,
+	plays is_ruby_right_role,
+	plays is_ruby_values_role;
 
 RubyWhenArtifact sub RubySourceArtifact,
 	# Structural
@@ -2303,7 +2385,6 @@ CsharpNumericLiteralTokenArtifact sub CsharpSourceArtifact,
 	has doubleValue,
 	has csharpIsMissingAttribute,
 	has numberValue,
-	has csharpTextAttribute,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
@@ -2546,7 +2627,6 @@ CsharpStringLiteralTokenArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has stringValue,
-	has csharpTextAttribute,
 	has csharpValueAttribute,
 	has csharpValueTextAttribute,
 	# Structural
@@ -2742,6 +2822,566 @@ CsharpWhileStatementArtifact sub WhileStatementArtifact,
 	plays has_csharp_open_paren_token_role,
 	plays has_csharp_statement_role,
 	plays has_csharp_while_keyword_role;
+
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+BashANDANDArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashArithLTArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashAssignmentWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashCasePatternArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashCasePatternListArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashCombinedWordArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashConditionalShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashElifArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashElseArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Structural
+	plays has_bash_children_role;
+
+BashForShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashFunctionDefElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGenericBashCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGroupElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashGTEQArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashHyphenHyphenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashIfShellcommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashIntLiteralArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	# Structural
+	plays is_bash_children_role;
+
+BashLogicalBlockArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashLPLPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashNamedSymbolArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashNumberArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashORORArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashPlusPlusArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashRPRPArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashSEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashSimpleCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashSingleBashExpansionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashStringArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashStringContentArtifact sub BashSourceArtifact,
+	# Attributes
+	has stringValue,
+	# Structural
+	plays is_bash_children_role;
+
+BashThenArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashVarDefElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashVariableArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashVarUseElementArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashWhileLoopArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
+BashWordArtifact sub BashSourceArtifact,
+	# Attributes
+	has numberValue,
+	has stringValue,
+	# Structural
+	plays is_bash_children_role;
+
+#####----- Cplusplus -----#####
+CplusplusSourceArtifact sub SourceArtifact;
+
+CplusplusASTInclusionStatementArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsSystemAttribute,
+	has cplusplusPathAttribute,
+	has cplusplusResolvedAttribute,
+	# Structural
+	plays is_cplusplus_prop__preproc_statements_role;
+
+CplusplusCPPASTArrayDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusDeclaresParameterPackAttribute,
+	# Structural
+	plays is_cplusplus_prop__declarators_role,
+	plays is_cplusplus_prop__parameters_role,
+	plays has_cplusplus_prop__array_modifiers_role,
+	plays has_cplusplus_prop__initializer_role,
+	plays has_cplusplus_prop__name_role,
+	plays has_cplusplus_prop__type_node_role;
+
+CplusplusCPPASTArrayModifierArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__array_modifiers_role,
+	plays has_cplusplus_prop__constant_expression_role;
+
+CplusplusCPPASTBinaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusExpressionTypeAttribute,
+	has cplusplusExpressionValueCategoryAttribute,
+	has cplusplusIsLValueAttribute,
+	# Structural
+	plays is_cplusplus_prop__condition_expression_role,
+	plays is_cplusplus_prop__expression_role,
+	plays is_cplusplus_prop__operand1_role,
+	plays is_cplusplus_prop__operand_role,
+	plays has_cplusplus_prop__init_operand2_role,
+	plays has_cplusplus_prop__operand1_role,
+	plays has_cplusplus_prop__operand2_role;
+
+CplusplusCPPASTCaseStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__expression_role;
+
+CplusplusCPPASTCatchHandlerArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsCatchAllAttribute,
+	# Structural
+	plays is_cplusplus_prop__catch_handlers_role,
+	plays has_cplusplus_prop__catch_body_role,
+	plays has_cplusplus_prop__declaration_role;
+
+CplusplusCPPASTCompositeTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsConstAttribute,
+	has cplusplusIsConstExprAttribute,
+	has cplusplusIsExplicitAttribute,
+	has cplusplusIsFinalAttribute,
+	has cplusplusIsFriendAttribute,
+	has cplusplusIsInlineAttribute,
+	has cplusplusIsRestrictAttribute,
+	has cplusplusIsThreadLocalAttribute,
+	has cplusplusIsVirtualAttribute,
+	has cplusplusIsVolatileAttribute,
+	has cplusplusKeyAttribute,
+	has cplusplusStorageClassAttribute,
+	# Structural
+	plays is_cplusplus_prop__decl_specifier_role,
+	plays has_cplusplus_prop__members_role,
+	plays has_cplusplus_prop__name_role;
+
+CplusplusCPPASTCompoundStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__body_role,
+	plays is_cplusplus_prop__catch_body_role,
+	plays is_cplusplus_prop__else_clause_role,
+	plays is_cplusplus_prop__then_clause_role,
+	plays is_cplusplus_prop__try_body_role,
+	plays has_cplusplus_prop__statements_role;
+
+CplusplusCPPASTConditionalExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusExpressionTypeAttribute,
+	has cplusplusExpressionValueCategoryAttribute,
+	has cplusplusIsLValueAttribute,
+	# Structural
+	plays is_cplusplus_prop__init_operand2_role,
+	plays is_cplusplus_prop__operand2_role,
+	plays has_cplusplus_prop__logical_condition_expression_role,
+	plays has_cplusplus_prop__negative_result_expression_role,
+	plays has_cplusplus_prop__positive_result_expression_role;
+
+CplusplusCPPASTDeclarationStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__initializer_statement_role,
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__declaration_role;
+
+CplusplusCPPASTDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusDeclaresParameterPackAttribute,
+	# Structural
+	plays is_cplusplus_prop__abstract_declarator_role,
+	plays is_cplusplus_prop__declarators_role,
+	plays is_cplusplus_prop__parameters_role,
+	plays has_cplusplus_prop__initializer_role,
+	plays has_cplusplus_prop__name_role,
+	plays has_cplusplus_prop__type_node_role;
+
+CplusplusCPPASTDoStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__condition_role;
+
+CplusplusCPPASTEqualsInitializerArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__initializer_role,
+	plays has_cplusplus_prop__expression_role,
+	plays has_cplusplus_prop__initializer_clause_role;
+
+CplusplusCPPASTExpressionStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__expression_role;
+
+CplusplusCPPASTForStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__condition_expression_role,
+	plays has_cplusplus_prop__initializer_statement_role,
+	plays has_cplusplus_prop__iteration_expression_role;
+
+CplusplusCPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsConstAttribute,
+	has cplusplusIsFinalAttribute,
+	has cplusplusIsMutableAttribute,
+	has cplusplusIsOverrideAttribute,
+	has cplusplusIsPureVirtualAttribute,
+	has cplusplusIsVolatileAttribute,
+	has cplusplusTakesVarArgsAttribute,
+	# Structural
+	plays is_cplusplus_prop__declarator_role,
+	plays has_cplusplus_prop__name_role,
+	plays has_cplusplus_prop__parameters_role;
+
+CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsDefaultedAttribute,
+	has cplusplusIsDeletedAttribute,
+	has name,
+	# Structural
+	plays is_cplusplus_prop__declaration_role,
+	plays is_cplusplus_prop__declarations_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__decl_specifier_role,
+	plays has_cplusplus_prop__declarator_role;
+
+CplusplusCPPASTIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusExpressionTypeAttribute,
+	has cplusplusExpressionValueCategoryAttribute,
+	has cplusplusIsLValueAttribute,
+	# Structural
+	plays is_cplusplus_prop__init_operand2_role,
+	plays is_cplusplus_prop__initializer_clause_role,
+	plays is_cplusplus_prop__operand1_role,
+	plays is_cplusplus_prop__operand2_role,
+	plays is_cplusplus_prop__operand_role,
+	plays is_cplusplus_prop__return_argument_role,
+	plays is_cplusplus_prop__return_value_role,
+	plays has_cplusplus_prop__name_role;
+
+CplusplusCPPASTIfStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__else_clause_role,
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__condition_expression_role,
+	plays has_cplusplus_prop__else_clause_role,
+	plays has_cplusplus_prop__then_clause_role;
+
+CplusplusCPPASTInitializerListArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusSizeAttribute,
+	# Structural
+	plays is_cplusplus_prop__initializer_clause_role,
+	plays has_cplusplus_prop__clauses_role;
+
+CplusplusCPPASTLiteralExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has doubleValue,
+	has cplusplusExpressionTypeAttribute,
+	has cplusplusExpressionValueCategoryAttribute,
+	has cplusplusIsLValueAttribute,
+	has cplusplusKindAttribute,
+	has numberValue,
+	has stringValue,
+	# Structural
+	plays is_cplusplus_prop__clauses_role,
+	plays is_cplusplus_prop__condition_expression_role,
+	plays is_cplusplus_prop__condition_role,
+	plays is_cplusplus_prop__constant_expression_role,
+	plays is_cplusplus_prop__controller_expression_role,
+	plays is_cplusplus_prop__expression_role,
+	plays is_cplusplus_prop__init_operand2_role,
+	plays is_cplusplus_prop__initializer_clause_role,
+	plays is_cplusplus_prop__negative_result_expression_role,
+	plays is_cplusplus_prop__operand1_role,
+	plays is_cplusplus_prop__operand2_role,
+	plays is_cplusplus_prop__operand_role,
+	plays is_cplusplus_prop__positive_result_expression_role;
+
+CplusplusCPPASTNameArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__all_segments_role,
+	plays is_cplusplus_prop__name_role,
+	plays is_cplusplus_prop__qualifier_role,
+	plays is_cplusplus_prop__template_name_role;
+
+CplusplusCPPASTNamedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsConstAttribute,
+	has cplusplusIsConstExprAttribute,
+	has cplusplusIsExplicitAttribute,
+	has cplusplusIsFriendAttribute,
+	has cplusplusIsInlineAttribute,
+	has cplusplusIsRestrictAttribute,
+	has cplusplusIsThreadLocalAttribute,
+	has cplusplusIsTypeNameAttribute,
+	has cplusplusIsVirtualAttribute,
+	has cplusplusIsVolatileAttribute,
+	has cplusplusStorageClassAttribute,
+	# Structural
+	plays is_cplusplus_prop__decl_specifier_role,
+	plays is_cplusplus_prop__type_node_role,
+	plays has_cplusplus_prop__name_role;
+
+CplusplusCPPASTProblemDeclarationArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__declarations_role;
+
+CplusplusCPPASTQualifiedNameArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsConversionOperatorAttribute,
+	has cplusplusIsFullyQualifiedAttribute,
+	has name,
+	# Structural
+	plays is_cplusplus_prop__name_role,
+	plays has_cplusplus_prop__all_segments_role,
+	plays has_cplusplus_prop__qualifier_role;
+
+CplusplusCPPASTRangeBasedForStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__declaration_role,
+	plays has_cplusplus_prop__initializer_clause_role;
+
+CplusplusCPPASTReturnStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__return_argument_role,
+	plays has_cplusplus_prop__return_value_role;
+
+CplusplusCPPASTSimpleDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_cplusplus_prop__declaration_role,
+	plays is_cplusplus_prop__declarations_role,
+	plays is_cplusplus_prop__members_role,
+	plays has_cplusplus_prop__decl_specifier_role,
+	plays has_cplusplus_prop__declarators_role;
+
+CplusplusCPPASTSimpleDeclSpecifierArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsComplexAttribute,
+	has cplusplusIsConstAttribute,
+	has cplusplusIsConstExprAttribute,
+	has cplusplusIsExplicitAttribute,
+	has cplusplusIsFriendAttribute,
+	has cplusplusIsImaginaryAttribute,
+	has cplusplusIsInlineAttribute,
+	has cplusplusIsLongAttribute,
+	has cplusplusIsLongLongAttribute,
+	has cplusplusIsRestrictAttribute,
+	has cplusplusIsShortAttribute,
+	has cplusplusIsSignedAttribute,
+	has cplusplusIsThreadLocalAttribute,
+	has cplusplusIsUnsignedAttribute,
+	has cplusplusIsVirtualAttribute,
+	has cplusplusIsVolatileAttribute,
+	has cplusplusStorageClassAttribute,
+	# Structural
+	plays is_cplusplus_prop__decl_specifier_role,
+	plays is_cplusplus_prop__type_node_role;
+
+CplusplusCPPASTSimpleTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsParameterPackAttribute,
+	# Structural
+	plays is_cplusplus_prop__template_parameters_role,
+	plays has_cplusplus_prop__name_role;
+
+CplusplusCPPASTSwitchStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__controller_expression_role;
+
+CplusplusCPPASTTemplateDeclarationArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsExportedAttribute,
+	# Structural
+	plays is_cplusplus_prop__declarations_role,
+	plays has_cplusplus_prop__declaration_role,
+	plays has_cplusplus_prop__template_parameters_role;
+
+CplusplusCPPASTTemplateIdArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has name,
+	# Structural
+	plays is_cplusplus_prop__all_segments_role,
+	plays is_cplusplus_prop__name_role,
+	plays has_cplusplus_prop__template_arguments_role,
+	plays has_cplusplus_prop__template_name_role;
+
+CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays has_cplusplus_prop__declarations_role,
+	plays has_cplusplus_prop__preproc_statements_role;
+
+CplusplusCPPASTTryBlockStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__catch_handlers_role,
+	plays has_cplusplus_prop__try_body_role;
+
+CplusplusCPPASTTypeIdArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__template_arguments_role,
+	plays has_cplusplus_prop__abstract_declarator_role,
+	plays has_cplusplus_prop__decl_specifier_role;
+
+CplusplusCPPASTUnaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusExpressionTypeAttribute,
+	has cplusplusExpressionValueCategoryAttribute,
+	has cplusplusIsLValueAttribute,
+	has cplusplusOperatorAttribute,
+	# Structural
+	plays is_cplusplus_prop__expression_role,
+	plays is_cplusplus_prop__initializer_clause_role,
+	plays is_cplusplus_prop__iteration_expression_role,
+	plays is_cplusplus_prop__logical_condition_expression_role,
+	plays has_cplusplus_prop__operand_role;
+
+CplusplusCPPASTWhileStatementArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__statements_role,
+	plays has_cplusplus_prop__body_role,
+	plays has_cplusplus_prop__condition_role;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
@@ -3402,8 +4042,14 @@ ruby_iterated_relation sub parent_child_relation,
 ruby_iterators_relation sub parent_child_relation,
 	relates is_ruby_iterators_role as is_child, relates has_ruby_iterators_role as is_parent;
 
+ruby_left_relation sub left_relation,
+	relates is_ruby_left_role as is_left_role, relates has_ruby_left_role as has_left_role;
+
 ruby_qnames_relation sub parent_child_relation,
 	relates is_ruby_qnames_role as is_child, relates has_ruby_qnames_role as is_parent;
+
+ruby_right_relation sub right_relation,
+	relates is_ruby_right_role as is_right_role, relates has_ruby_right_role as has_right_role;
 
 ruby_value_relation sub value_relation,
 	relates is_ruby_value_role as is_value_role, relates has_ruby_value_role as has_value_role;
@@ -3636,3 +4282,137 @@ csharp_when_true_relation sub parent_child_relation,
 
 csharp_while_keyword_relation sub parent_child_relation,
 	relates is_csharp_while_keyword_role as is_child, relates has_csharp_while_keyword_role as is_parent;
+
+#####----- Bash -----#####
+bash_children_relation sub children_relation,
+	relates is_bash_children_role as is_children_role, relates has_bash_children_role as has_children_role;
+
+#####----- Cplusplus -----#####
+cplusplus_prop__abstract_declarator_relation sub parent_child_relation,
+	relates is_cplusplus_prop__abstract_declarator_role as is_child, relates has_cplusplus_prop__abstract_declarator_role as is_parent;
+
+cplusplus_prop__all_segments_relation sub parent_child_relation,
+	relates is_cplusplus_prop__all_segments_role as is_child, relates has_cplusplus_prop__all_segments_role as is_parent;
+
+cplusplus_prop__array_modifiers_relation sub parent_child_relation,
+	relates is_cplusplus_prop__array_modifiers_role as is_child, relates has_cplusplus_prop__array_modifiers_role as is_parent;
+
+cplusplus_prop__body_relation sub parent_child_relation,
+	relates is_cplusplus_prop__body_role as is_child, relates has_cplusplus_prop__body_role as is_parent;
+
+cplusplus_prop__catch_body_relation sub parent_child_relation,
+	relates is_cplusplus_prop__catch_body_role as is_child, relates has_cplusplus_prop__catch_body_role as is_parent;
+
+cplusplus_prop__catch_handlers_relation sub parent_child_relation,
+	relates is_cplusplus_prop__catch_handlers_role as is_child, relates has_cplusplus_prop__catch_handlers_role as is_parent;
+
+cplusplus_prop__clauses_relation sub parent_child_relation,
+	relates is_cplusplus_prop__clauses_role as is_child, relates has_cplusplus_prop__clauses_role as is_parent;
+
+cplusplus_prop__condition_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__condition_expression_role as is_child, relates has_cplusplus_prop__condition_expression_role as is_parent;
+
+cplusplus_prop__condition_relation sub parent_child_relation,
+	relates is_cplusplus_prop__condition_role as is_child, relates has_cplusplus_prop__condition_role as is_parent;
+
+cplusplus_prop__constant_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__constant_expression_role as is_child, relates has_cplusplus_prop__constant_expression_role as is_parent;
+
+cplusplus_prop__controller_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__controller_expression_role as is_child, relates has_cplusplus_prop__controller_expression_role as is_parent;
+
+cplusplus_prop__decl_specifier_relation sub parent_child_relation,
+	relates is_cplusplus_prop__decl_specifier_role as is_child, relates has_cplusplus_prop__decl_specifier_role as is_parent;
+
+cplusplus_prop__declaration_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declaration_role as is_child, relates has_cplusplus_prop__declaration_role as is_parent;
+
+cplusplus_prop__declarations_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declarations_role as is_child, relates has_cplusplus_prop__declarations_role as is_parent;
+
+cplusplus_prop__declarator_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declarator_role as is_child, relates has_cplusplus_prop__declarator_role as is_parent;
+
+cplusplus_prop__declarators_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declarators_role as is_child, relates has_cplusplus_prop__declarators_role as is_parent;
+
+cplusplus_prop__else_clause_relation sub parent_child_relation,
+	relates is_cplusplus_prop__else_clause_role as is_child, relates has_cplusplus_prop__else_clause_role as is_parent;
+
+cplusplus_prop__expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__expression_role as is_child, relates has_cplusplus_prop__expression_role as is_parent;
+
+cplusplus_prop__init_operand2_relation sub parent_child_relation,
+	relates is_cplusplus_prop__init_operand2_role as is_child, relates has_cplusplus_prop__init_operand2_role as is_parent;
+
+cplusplus_prop__initializer_clause_relation sub parent_child_relation,
+	relates is_cplusplus_prop__initializer_clause_role as is_child, relates has_cplusplus_prop__initializer_clause_role as is_parent;
+
+cplusplus_prop__initializer_relation sub parent_child_relation,
+	relates is_cplusplus_prop__initializer_role as is_child, relates has_cplusplus_prop__initializer_role as is_parent;
+
+cplusplus_prop__initializer_statement_relation sub parent_child_relation,
+	relates is_cplusplus_prop__initializer_statement_role as is_child, relates has_cplusplus_prop__initializer_statement_role as is_parent;
+
+cplusplus_prop__iteration_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__iteration_expression_role as is_child, relates has_cplusplus_prop__iteration_expression_role as is_parent;
+
+cplusplus_prop__logical_condition_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__logical_condition_expression_role as is_child, relates has_cplusplus_prop__logical_condition_expression_role as is_parent;
+
+cplusplus_prop__members_relation sub parent_child_relation,
+	relates is_cplusplus_prop__members_role as is_child, relates has_cplusplus_prop__members_role as is_parent;
+
+cplusplus_prop__name_relation sub parent_child_relation,
+	relates is_cplusplus_prop__name_role as is_child, relates has_cplusplus_prop__name_role as is_parent;
+
+cplusplus_prop__negative_result_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__negative_result_expression_role as is_child, relates has_cplusplus_prop__negative_result_expression_role as is_parent;
+
+cplusplus_prop__operand1_relation sub parent_child_relation,
+	relates is_cplusplus_prop__operand1_role as is_child, relates has_cplusplus_prop__operand1_role as is_parent;
+
+cplusplus_prop__operand2_relation sub parent_child_relation,
+	relates is_cplusplus_prop__operand2_role as is_child, relates has_cplusplus_prop__operand2_role as is_parent;
+
+cplusplus_prop__operand_relation sub parent_child_relation,
+	relates is_cplusplus_prop__operand_role as is_child, relates has_cplusplus_prop__operand_role as is_parent;
+
+cplusplus_prop__parameters_relation sub parent_child_relation,
+	relates is_cplusplus_prop__parameters_role as is_child, relates has_cplusplus_prop__parameters_role as is_parent;
+
+cplusplus_prop__positive_result_expression_relation sub parent_child_relation,
+	relates is_cplusplus_prop__positive_result_expression_role as is_child, relates has_cplusplus_prop__positive_result_expression_role as is_parent;
+
+cplusplus_prop__preproc_statements_relation sub parent_child_relation,
+	relates is_cplusplus_prop__preproc_statements_role as is_child, relates has_cplusplus_prop__preproc_statements_role as is_parent;
+
+cplusplus_prop__qualifier_relation sub parent_child_relation,
+	relates is_cplusplus_prop__qualifier_role as is_child, relates has_cplusplus_prop__qualifier_role as is_parent;
+
+cplusplus_prop__return_argument_relation sub parent_child_relation,
+	relates is_cplusplus_prop__return_argument_role as is_child, relates has_cplusplus_prop__return_argument_role as is_parent;
+
+cplusplus_prop__return_value_relation sub parent_child_relation,
+	relates is_cplusplus_prop__return_value_role as is_child, relates has_cplusplus_prop__return_value_role as is_parent;
+
+cplusplus_prop__statements_relation sub parent_child_relation,
+	relates is_cplusplus_prop__statements_role as is_child, relates has_cplusplus_prop__statements_role as is_parent;
+
+cplusplus_prop__template_arguments_relation sub parent_child_relation,
+	relates is_cplusplus_prop__template_arguments_role as is_child, relates has_cplusplus_prop__template_arguments_role as is_parent;
+
+cplusplus_prop__template_name_relation sub parent_child_relation,
+	relates is_cplusplus_prop__template_name_role as is_child, relates has_cplusplus_prop__template_name_role as is_parent;
+
+cplusplus_prop__template_parameters_relation sub parent_child_relation,
+	relates is_cplusplus_prop__template_parameters_role as is_child, relates has_cplusplus_prop__template_parameters_role as is_parent;
+
+cplusplus_prop__then_clause_relation sub parent_child_relation,
+	relates is_cplusplus_prop__then_clause_role as is_child, relates has_cplusplus_prop__then_clause_role as is_parent;
+
+cplusplus_prop__try_body_relation sub parent_child_relation,
+	relates is_cplusplus_prop__try_body_role as is_child, relates has_cplusplus_prop__try_body_role as is_parent;
+
+cplusplus_prop__type_node_relation sub parent_child_relation,
+	relates is_cplusplus_prop__type_node_role as is_child, relates has_cplusplus_prop__type_node_role as is_parent;

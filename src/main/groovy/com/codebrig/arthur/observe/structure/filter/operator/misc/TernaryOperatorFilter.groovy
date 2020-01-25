@@ -2,9 +2,9 @@ package com.codebrig.arthur.observe.structure.filter.operator.misc
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
-import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
+import com.codebrig.arthur.observe.structure.filter.TypeFilter
 
 /**
  * Match by ternary operator
@@ -21,33 +21,19 @@ class TernaryOperatorFilter extends StructureFilter<TernaryOperatorFilter, Void>
     TernaryOperatorFilter() {
         filter = MultiFilter.matchAny(
                 MultiFilter.matchAll(
-                        new RoleFilter("IF"), new RoleFilter("EXPRESSION"),
-                        new RoleFilter("ASSIGNMENT"), new RoleFilter("BINARY"),
-                        new RoleFilter("RIGHT")
+                        new RoleFilter("IF", "CONDITION"), new RoleFilter("EXPRESSION"),
+                        new RoleFilter("ASSIGNMENT", "INITIALIZATION"), new RoleFilter("BINARY"), new RoleFilter("RIGHT")
                 ),
-                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
                 MultiFilter.matchAll(
-                        new RoleFilter("CONDITION"), new RoleFilter("EXPRESSION"),
-                        new InternalRoleFilter().reject("Prop_InitOperand2")
-                )
+                        new RoleFilter("IF"), new RoleFilter("STATEMENT"),
+                        new RoleFilter("BINARY"), new RoleFilter("RIGHT")
+                ),
+                new TypeFilter("ConditionalExpression") //todo: filter by roles
         )
     }
 
     @Override
     boolean evaluate(SourceNode node) {
-        if (node?.internalType == "ConditionalExpression") {
-            return evaluateConditionalExpression(node)
-        } else {
-            return filter.evaluate(node)
-        }
-    }
-
-    static boolean evaluateConditionalExpression(SourceNode node) {
-        if (node.children.any { it.internalType == "QuestionToken" }) {
-            if (node.children.any { it.internalType == "ColonToken" }) {
-                return true
-            }
-        }
-        return false
+        return filter.evaluate(node)
     }
 }

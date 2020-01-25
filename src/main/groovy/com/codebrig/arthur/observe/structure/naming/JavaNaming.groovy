@@ -22,12 +22,14 @@ class JavaNaming implements StructureNaming {
     @Override
     boolean isNamedNodeType(String internalType) {
         switch (Objects.requireNonNull(internalType)) {
-            case "QualifiedName":
             case "CompilationUnit":
-            case "MethodDeclaration":
-            case "TypeDeclaration":
             case "FieldDeclaration":
+            case "MethodDeclaration":
+            case "SimpleName":
+            case "SingleVariableDeclaration":
+            case "TypeDeclaration":
             case "VariableDeclaration":
+            case "QualifiedName":
                 return true
             default:
                 return false
@@ -37,10 +39,6 @@ class JavaNaming implements StructureNaming {
     @Override
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
-            case "SimpleName":
-                return getSimpleNameName(node)
-            case "QualifiedName":
-                return getQualifiedNameName(node)
             case "CompilationUnit":
                 return getCompilationUnitName(node)
             case "MethodDeclaration":
@@ -54,6 +52,12 @@ class JavaNaming implements StructureNaming {
                 return getTypeDeclarationName(node)
             case "FieldDeclaration":
                 return getFieldDeclarationName(node)
+            case "SingleVariableDeclaration":
+                return getSingleVariableDeclarationName(node)
+            case "SimpleName":
+                return getSimpleNameName(node)
+            case "QualifiedName":
+                return getQualifiedNameName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
         }
@@ -79,13 +83,21 @@ class JavaNaming implements StructureNaming {
 
         name += "("
         new InternalRoleFilter("parameters").getFilteredNodes(node.children).each {
-            name += getSingleVariableDeclarationName(it) + ","
+            name += getSingleVariableDeclarationTypeName(it) + ","
         }
         name = trimTrailingComma(name)
         return name + ")"
     }
 
     static String getTypeDeclarationName(SourceNode node) {
+        def name = ""
+        new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
+            name += it.token
+        }
+        return name
+    }
+
+    static String getSingleVariableDeclarationName(SourceNode node) {
         def name = ""
         new TypeFilter("SimpleName").getFilteredNodes(node.children).each {
             name += it.token
@@ -130,7 +142,7 @@ class JavaNaming implements StructureNaming {
         return name
     }
 
-    static String getSingleVariableDeclarationName(SourceNode node) {
+    static String getSingleVariableDeclarationTypeName(SourceNode node) {
         def type = ""
         new InternalRoleFilter("type").getFilteredNodes(node.children).each {
             switch (it.internalType) {

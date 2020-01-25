@@ -5,6 +5,12 @@ define
 #####----- Omnilingual -----#####
 OmnilingualSourceArtifact sub SourceArtifact;
 
+AndArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR;
+
 ArgArtifact sub OmnilingualSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
@@ -131,6 +137,12 @@ OperatorArtifact sub OmnilingualSourceArtifact,
 	plays IS_OR,
 	plays IS_RELATIONAL,
 	plays IS_UNARY;
+
+OrArtifact sub OmnilingualSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR,
+	plays IS_OR;
 
 ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact,
 	# Semantic
@@ -383,7 +395,7 @@ GoSelectorExprArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_CALLEE,
 	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
+	plays IS_QUALIFIED;
 
 GoStarExprArtifact sub GoSourceArtifact,
 	# Semantic
@@ -1061,7 +1073,9 @@ PhpScalarStringArtifact sub PhpSourceArtifact,
 
 PhpStmtCaseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE;
+	plays IS_CASE,
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
 
 PhpStmtEchoArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -1114,11 +1128,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	plays IS_BINARY,
 	plays IS_OPERATOR;
 
-PythonAndArtifact sub PythonSourceArtifact,
-	# Semantic
-	plays IS_AND,
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR;
+PythonAndArtifact sub AndArtifact;
 
 PythonArgArtifact sub ArgArtifact,
 	# Semantic
@@ -1292,11 +1302,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays IS_PRIMITIVE,
 	plays IS_RIGHT;
 
-PythonOrArtifact sub PythonSourceArtifact,
-	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR,
-	plays IS_OR;
+PythonOrArtifact sub OrArtifact;
 
 PythonPreviousNoopsArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -1360,6 +1366,12 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
+RubyAndArtifact sub AndArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
 RubyArgArtifact sub ArgArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
@@ -1386,6 +1398,13 @@ RubyCaseArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_STATEMENT,
 	plays IS_SWITCH;
+
+RubyConstArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT;
 
 RubyDefArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1416,20 +1435,25 @@ RubyIdentifierArtifact sub IdentifierArtifact;
 
 RubyIfArtifact sub IfArtifact,
 	# Semantic
+	plays IS_BINARY,
 	plays IS_ELSE,
+	plays IS_RIGHT,
 	plays IS_STATEMENT;
 
 RubyIntArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_CALL,
+	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FUNCTION,
 	plays IS_LITERAL,
 	plays IS_NUMBER,
 	plays IS_PRIMITIVE,
-	plays IS_RIGHT;
+	plays IS_RIGHT,
+	plays IS_THEN;
 
 RubyKwargArtifact sub KwargArtifact,
 	# Semantic
@@ -1446,7 +1470,8 @@ RubyKwoptargArtifact sub RubySourceArtifact,
 RubyLvarArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
+	plays IS_IDENTIFIER,
+	plays IS_LEFT;
 
 RubyLvasgnArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1474,6 +1499,12 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_NAME;
 
+RubyOrArtifact sub OrArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
 RubyRestargArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
@@ -1488,6 +1519,17 @@ RubySendCallArtifact sub RubySourceArtifact,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_UPDATE;
+
+RubySendOperatorArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_IDENTICAL,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
 
 RubySendQualifiedArtifact sub RubySourceArtifact,
 	# Semantic
@@ -1508,12 +1550,15 @@ RubyTrueArtifact sub RubySourceArtifact,
 	plays IS_BOOLEAN,
 	plays IS_CONDITION,
 	plays IS_EXPRESSION,
-	plays IS_LITERAL;
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_RIGHT;
 
 RubyWhenArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_CASE,
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION,
+	plays IS_SWITCH;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
@@ -2101,6 +2146,508 @@ CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
 
 CsharpWhileStatementArtifact sub WhileStatementArtifact;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+BashANDANDArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR;
+
+BashArithCompundComparisionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithLTArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_LEFT_SHIFT,
+	plays IS_OPERATOR;
+
+BashArithmeticPostIncrArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashArithmeticSimpleArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashAssignmentWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_LEFT;
+
+BashCasePatternArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
+
+BashCasePatternListArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_CASE;
+
+BashCombinedWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
+	plays IS_RIGHT,
+	plays IS_UPDATE;
+
+BashConditionalShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_IF;
+
+BashElifArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+BashElseArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
+
+BashEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_OPERATOR;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
+BashForShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+BashFunctionDefElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+BashGenericBashCommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BashGroupElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY;
+
+BashGTEQArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+BashHyphenHyphenArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashIfShellcommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+BashIntLiteralArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_PRIMITIVE;
+
+BashLogicalBlockArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_THEN,
+	plays IS_WHILE;
+
+BashLPLPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashNamedSymbolArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+BashNumberArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashORORArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR,
+	plays IS_OR;
+
+BashPlusPlusArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashRPRPArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashSEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BashSimpleCommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_WHILE;
+
+BashSingleBashExpansionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BashStringArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_STRING;
+
+BashStringContentArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_STRING;
+
+BashThenArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN;
+
+BashVarDefElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_ITERATOR,
+	plays IS_VARIABLE;
+
+BashVariableArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashVarUseElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
+BashWhileLoopArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
+
+BashWordArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER;
+
+#####----- Cplusplus -----#####
+CplusplusSourceArtifact sub SourceArtifact;
+
+CplusplusASTInclusionStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_IMPORT;
+
+CplusplusCPPASTArrayDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+CplusplusCPPASTArrayModifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_TYPE;
+
+CplusplusCPPASTBinaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BOOLEAN,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_LEFT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RELATIONAL;
+
+CplusplusCPPASTCaseStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_SWITCH;
+
+CplusplusCPPASTCatchHandlerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_TRY;
+
+CplusplusCPPASTCompositeTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+CplusplusCPPASTCompoundStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_CATCH,
+	plays IS_DECLARATION,
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_TRY,
+	plays IS_WHILE;
+
+CplusplusCPPASTConditionalExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_RIGHT;
+
+CplusplusCPPASTDeclarationStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_INITIALIZATION,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_NAME,
+	plays IS_VARIABLE;
+
+CplusplusCPPASTDoStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DO_WHILE,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTEqualsInitializerArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_INITIALIZATION,
+	plays IS_LIST,
+	plays IS_RIGHT;
+
+CplusplusCPPASTExpressionStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
+
+CplusplusCPPASTForStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+CplusplusCPPASTIdExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_ITERATOR,
+	plays IS_LEFT,
+	plays IS_RETURN,
+	plays IS_RIGHT,
+	plays IS_VALUE,
+	plays IS_VARIABLE;
+
+CplusplusCPPASTIfStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTInitializerListArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_INITIALIZATION,
+	plays IS_LIST;
+
+CplusplusCPPASTLiteralExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_BOOLEAN,
+	plays IS_CONDITION,
+	plays IS_DO_WHILE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_SWITCH,
+	plays IS_WHILE;
+
+CplusplusCPPASTNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_NAME,
+	plays IS_QUALIFIED;
+
+CplusplusCPPASTNamedTypeSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INSTANCE,
+	plays IS_RETURN,
+	plays IS_TYPE;
+
+CplusplusCPPASTProblemDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_NOOP;
+
+CplusplusCPPASTQualifiedNameArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_QUALIFIED;
+
+CplusplusCPPASTRangeBasedForStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_ITERATOR,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTReturnStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_RETURN,
+	plays IS_STATEMENT;
+
+CplusplusCPPASTSimpleDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CATCH,
+	plays IS_DECLARATION,
+	plays IS_FOR,
+	plays IS_STATEMENT,
+	plays IS_TYPE,
+	plays IS_VARIABLE;
+
+CplusplusCPPASTSimpleDeclSpecifierArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_NULL,
+	plays IS_NUMBER,
+	plays IS_RETURN,
+	plays IS_TYPE;
+
+CplusplusCPPASTSimpleTypeTemplateParameterArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CplusplusCPPASTSwitchStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
+
+CplusplusCPPASTTemplateDeclarationArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CplusplusCPPASTTemplateIdArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_QUALIFIED,
+	plays IS_TYPE;
+
+CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_FILE,
+	plays IS_MODULE;
+
+CplusplusCPPASTTryBlockStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_TRY;
+
+CplusplusCPPASTTypeIdArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_TYPE;
+
+CplusplusCPPASTUnaryExpressionArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_INCOMPLETE,
+	plays IS_SUBSTRACT,
+	plays IS_UNARY,
+	plays IS_UPDATE;
+
+CplusplusCPPASTWhileStatementArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
+
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,
 	relates IS_ADD;
@@ -2233,6 +2780,9 @@ KEY sub relation,
 
 LEFT sub relation,
 	relates IS_LEFT;
+
+LEFT_SHIFT sub relation,
+	relates IS_LEFT_SHIFT;
 
 LESS_THAN sub relation,
 	relates IS_LESS_THAN;

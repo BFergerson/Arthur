@@ -9,6 +9,7 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  * @version 0.4
  * @since 0.2
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
+ * @author <a href="mailto:valpecaoco@gmail.com"> Val Pecaoco</a>
  */
 class NameFilter extends StructureFilter<NameFilter, String> {
 
@@ -26,6 +27,12 @@ class NameFilter extends StructureFilter<NameFilter, String> {
                 return evaluateProperty(name)
             }
         } else {
+            if (node?.internalType == "var-def-element") {
+                def matched = new TypeFilter("assignment_word").getFilteredNodes(node.children)
+                if (matched.hasNext()) {
+                    return evaluateProperty(matched.next().token)
+                }
+            }
             return false
         }
     }

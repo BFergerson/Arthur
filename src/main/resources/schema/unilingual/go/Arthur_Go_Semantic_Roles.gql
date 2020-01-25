@@ -454,6 +454,7 @@ SelectorExprArtifact sub GoSourceArtifact,
 	plays IS_KEY,
 	plays IS_LEFT,
 	plays IS_POSITIONAL,
+	plays IS_QUALIFIED,
 	plays IS_RIGHT,
 	plays IS_TYPE,
 	plays IS_VALUE;
@@ -749,6 +750,9 @@ POSITIVE sub relation,
 
 PRIMITIVE sub relation,
 	relates IS_PRIMITIVE;
+
+QUALIFIED sub relation,
+	relates IS_QUALIFIED;
 
 RECEIVER sub relation,
 	relates IS_RECEIVER;

@@ -49,6 +49,19 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     }
 
     @Test
+    void isNotEqualOperator_Ruby() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
+    @Test
+    void isNotEqualOperator_Bash() {
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "isNotEqualOperator1()", "!=")
+        assertIsNotEqualOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "isNotEqualOperator2()", "-ne")
+    }
+
+    @Test
     void alternateNotEqualOperator_Python() {
         def file = new File("src/test/resources/same/operators/Operators.py")
         def language = SourceLanguage.getSourceLanguage(file)
@@ -71,23 +84,27 @@ class IsNotEqualOperatorFilterTest extends ArthurTest {
     }
 
     private static void assertIsNotEqualOperatorPresent(File file) {
-        assertIsNotEqualOperatorPresent(file, "")
+        assertIsNotEqualOperatorPresent(file, "", "isNotEqualOperator()", "!=")
     }
 
     private static void assertIsNotEqualOperatorPresent(File file, String qualifiedName) {
+        assertIsNotEqualOperatorPresent(file, qualifiedName, "isNotEqualOperator()", "!=")
+    }
+
+    private static void assertIsNotEqualOperatorPresent(File file, String qualifiedName, String functionName, String operator) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
         def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundNotEqualOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "isNotEqualOperator()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
-            assertEquals(qualifiedName + "isNotEqualOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new IsNotEqualOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundNotEqualOperator)
-                if (!it.token.isEmpty()) assertEquals("!=", it.token)
+                if (!IsNotEqualOperatorFilter.getIsNotEqualToken(it).isEmpty()) assertEquals(operator, IsNotEqualOperatorFilter.getIsNotEqualToken(it))
                 foundNotEqualOperator = true
             }
         }

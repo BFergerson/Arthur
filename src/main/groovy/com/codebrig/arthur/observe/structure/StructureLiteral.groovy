@@ -1,8 +1,8 @@
 package com.codebrig.arthur.observe.structure
 
 import com.codebrig.arthur.SourceNode
-import org.apache.commons.lang.StringEscapeUtils
-import org.apache.commons.lang.math.NumberUtils
+import org.apache.commons.text.StringEscapeUtils
+import org.apache.commons.lang3.math.NumberUtils
 
 /**
  * Used to determine and get the literal type of UAST nodes

@@ -2,6 +2,7 @@ package com.codebrig.arthur.observe.structure.filter.operator.logical
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
+import com.codebrig.arthur.observe.structure.filter.InternalRoleFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.observe.structure.filter.TypeFilter
@@ -24,10 +25,11 @@ class AndOperatorFilter extends StructureFilter<AndOperatorFilter, Void> {
                         new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN", "RELATIONAL"),
                         new RoleFilter().reject("IF", "CONDITION")
                 ),
-                //todo: remove following line (https://github.com/bblfsh/cpp-driver/pull/59)
                 MultiFilter.matchAll(
-                        new RoleFilter("AND"), new RoleFilter("EXPRESSION"), new RoleFilter("BOOLEAN", "BINARY"),
-                        new TypeFilter("CPPASTBinaryExpression")
+                        new RoleFilter("AND"), new RoleFilter("OPERATOR"), new RoleFilter("BOOLEAN"),
+                        new RoleFilter("BINARY"), new RoleFilter("EXPRESSION"), new RoleFilter("CONDITION"),
+                        new TypeFilter("and"),
+                        new InternalRoleFilter("condition")
                 )
         )
     }

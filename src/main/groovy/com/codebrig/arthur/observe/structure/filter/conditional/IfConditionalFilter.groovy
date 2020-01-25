@@ -19,7 +19,7 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
     IfConditionalFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("IF"), new RoleFilter("STATEMENT", "EXPRESSION"),
-                new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY", "IDENTIFIER", "CONDITION")
+                new RoleFilter().reject("BLOCK", "SCOPE", "THEN", "BODY", "IDENTIFIER", "CONDITION", "ELSE")
         )
     }
 

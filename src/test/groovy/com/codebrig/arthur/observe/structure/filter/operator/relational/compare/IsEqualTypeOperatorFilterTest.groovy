@@ -22,6 +22,11 @@ class IsEqualTypeOperatorFilterTest extends ArthurTest {
         assertIsEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.php"))
     }
 
+    @Test
+    void isEqualTypeOperator_Ruby() {
+        assertIsEqualTypeOperatorPresent(new File("src/test/resources/same/operators/Operators.rb"))
+    }
+
     private static void assertIsEqualTypeOperatorPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)

@@ -52,6 +52,11 @@ class ElseConditionalFilterTest extends ArthurTest {
         assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.rb"))
     }
 
+    @Test
+    void elseConditional_Bash() {
+        assertElseConditionalPresent(new File("src/test/resources/same/conditionals/Conditionals.sh"))
+    }
+
     private static void assertElseConditionalPresent(File file) {
         assertElseConditionalPresent(file, "")
     }

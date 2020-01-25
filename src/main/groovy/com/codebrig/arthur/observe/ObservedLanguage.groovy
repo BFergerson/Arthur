@@ -95,12 +95,30 @@ class ObservedLanguage {
         }
     }
 
+    void observeRelations(String entity, List<String> entityRelations) {
+        entity = toValidEntity(entity)
+        relations.putIfAbsent(entity, new ObservedRelations())
+        entityRelations.each {
+            if (it.startsWith("has")) {
+                relations.get(entity).observeHas(it.substring(4))
+            } else {
+                relations.get(entity).observeIs(it.substring(3))
+            }
+        }
+    }
+
     void observeRoles(String entity, List<Role> entityRoles) {
         entity = toValidEntity(entity)
         roles.putIfAbsent(entity, new ObservedRoles())
         roles.get(entity).observe(entityRoles.stream()
                 .map({ it -> it.name() })
                 .collect(Collectors.toList()).iterator())
+    }
+
+    void observeRoles(String entity, List<String> entityRoles) {
+        entity = toValidEntity(entity)
+        roles.putIfAbsent(entity, new ObservedRoles())
+        roles.get(entity).observe(entityRoles.iterator())
     }
 
     void addEntityExtends(String entity) {
@@ -320,9 +338,112 @@ class ObservedLanguage {
 
     static String toValidEntity(String entity) {
         //ex. EntityName
+        //todo: better
+        switch (entity) {
+            case "?'":
+                entity = "QuestionApostrophe"
+                break
+            case ">&":
+                entity = "GreaterThanAmpersand"
+                break
+            case "<>":
+                entity = "LessThanGreaterThan"
+                break
+            case "+=":
+                entity = "PlusEquals"
+                break
+            case "=":
+                entity = "Equals"
+                break
+            case "^":
+                entity = "Caret"
+                break
+            case "'":
+                entity = "Apostrophe"
+                break
+            case "!":
+                entity = "Exclamation"
+                break
+            case "%":
+                entity = "Percent"
+                break
+            case "&>":
+                entity = "AmpersandGreaterThan"
+                break
+            case "-":
+                entity = "Hyphen"
+                break
+            case "--":
+                entity = "HyphenHyphen"
+                break
+            case "*":
+                entity = "Asterisk"
+                break
+            case "+'":
+                entity = "PlusApostrophe"
+                break
+            case "+":
+                entity = "Plus"
+                break
+            case "++":
+                entity = "PlusPlus"
+                break
+            case ",":
+                entity = "Comma"
+                break
+            case "-'":
+                entity = "HyphenApostrophe"
+                break
+            case "/":
+                entity = "ForwardSlash"
+                break
+            case "<<<":
+                entity = "LessThanLessThanLessThan"
+                break
+            case "='":
+                entity = "EqualsApostrophe"
+                break
+            case ">|":
+                entity = "GreaterThanPipe"
+                break
+            case "|&":
+                entity = "PipeAmpersand"
+                break
+            case "cond_op_=~":
+                entity = "CondOpEqualsTilde"
+                break
+            case "-=_arithmetic":
+                entity = "HyphenEqualsArithmetic"
+                break
+            case "+=_arithmetic":
+                entity = "PlusEqualsArithmetic"
+                break
+            case "Parameter_expansion_operator_'-'":
+                entity = "ParameterExpansionOperatorApostropheHyphenApostrophe"
+                break
+            case "Parameter_expansion_operator_'+'":
+                entity = "ParameterExpansionOperatorApostrophePlusApostrophe"
+                break
+            case "Parameter_expansion_operator_'*'":
+                entity = "ParameterExpansionOperatorApostropheAsteriskApostrophe"
+                break
+            case "Parameter_expansion_operator_'!'":
+                entity = "ParameterExpansionOperatorApostropheExclamationApostrophe"
+                break
+            case "Parameter_expansion_operator_'?'":
+                entity = "ParameterExpansionOperatorApostropheQuestionApostrophe"
+                break
+            case "arithmetic_base_char_(#)":
+                entity = "ArithmeticBaseCharLeftParenthesesHashRightParentheses"
+                break
+        }
         entity = entity.replace("?", "")
+        entity = entity.replace("(", "")
+        entity = entity.replace(")", "")
+        entity = entity.replace("#", "")
         entity = handleBreaker(".", entity)
         entity = handleBreaker("_", entity)
+        entity = handleBreaker("-", entity)
         entity = entity.substring(0, 1).toUpperCase() + entity.substring(1)
         return entity + "Artifact"
     }
@@ -350,6 +471,18 @@ class ObservedLanguage {
         }
         if (relation.startsWith("_")) {
             relation = relation.substring(1)
+        }
+        if (relation.isNumber()) {
+            switch (relation) {
+                case "1":
+                    relation = "one"
+                    break
+                case "2":
+                    relation = "two"
+                    break
+                default:
+                    throw new UnsupportedOperationException("Unsupported relation: $relation")
+            }
         }
         return relation + "_relation"
     }

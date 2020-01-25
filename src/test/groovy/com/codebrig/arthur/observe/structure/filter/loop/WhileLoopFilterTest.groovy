@@ -43,6 +43,11 @@ class WhileLoopFilterTest extends ArthurTest {
         assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.cpp"))
     }
 
+    @Test
+    void whileLoop_Bash() {
+        assertWhileLoopPresent(new File("src/test/resources/same/loops/Loops.sh"))
+    }
+
     private static void assertWhileLoopPresent(File file) {
         assertWhileLoopPresent(file, "")
     }

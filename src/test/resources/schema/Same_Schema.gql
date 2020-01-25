@@ -24,6 +24,17 @@ csharpArityAttribute sub attribute, datatype string;
 csharpIsMissingAttribute sub attribute, datatype string;
 csharpIsStructuredTriviaAttribute sub attribute, datatype string;
 
+#####----- Cplusplus -----#####
+cplusplusIsConstAttribute sub attribute, datatype string;
+cplusplusIsDefaultedAttribute sub attribute, datatype string;
+cplusplusIsDeletedAttribute sub attribute, datatype string;
+cplusplusIsFinalAttribute sub attribute, datatype string;
+cplusplusIsMutableAttribute sub attribute, datatype string;
+cplusplusIsOverrideAttribute sub attribute, datatype string;
+cplusplusIsPureVirtualAttribute sub attribute, datatype string;
+cplusplusIsVolatileAttribute sub attribute, datatype string;
+cplusplusTakesVarArgsAttribute sub attribute, datatype string;
+
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
 	has token,
@@ -194,6 +205,60 @@ CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Semantic
 	plays IS_TYPE;
 
+#####----- Bash -----#####
+BashSourceArtifact sub SourceArtifact;
+
+BashFILEArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_FILE;
+
+#####----- Cplusplus -----#####
+CplusplusSourceArtifact sub SourceArtifact;
+
+CplusplusCPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsConstAttribute,
+	has cplusplusIsFinalAttribute,
+	has cplusplusIsMutableAttribute,
+	has cplusplusIsOverrideAttribute,
+	has cplusplusIsPureVirtualAttribute,
+	has cplusplusIsVolatileAttribute,
+	has cplusplusTakesVarArgsAttribute,
+	# Structural
+	plays is_cplusplus_prop__declarator_role,
+	plays has_cplusplus_prop__name_role,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
+	# Attributes
+	has cplusplusIsDefaultedAttribute,
+	has cplusplusIsDeletedAttribute,
+	has name,
+	# Structural
+	plays is_cplusplus_prop__declarations_role,
+	plays has_cplusplus_prop__declarator_role,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+CplusplusCPPASTNameArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays is_cplusplus_prop__name_role,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
+
+CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
+	# Structural
+	plays has_cplusplus_prop__declarations_role,
+	# Semantic
+	plays IS_FILE,
+	plays IS_MODULE;
+
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
@@ -224,6 +289,16 @@ python_body_relation sub body_relation,
 #####----- Ruby -----#####
 ruby_file_relation sub parent_child_relation,
 	relates is_ruby_file_role as is_child, relates has_ruby_file_role as is_parent;
+
+#####----- Cplusplus -----#####
+cplusplus_prop__declarations_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declarations_role as is_child, relates has_cplusplus_prop__declarations_role as is_parent;
+
+cplusplus_prop__declarator_relation sub parent_child_relation,
+	relates is_cplusplus_prop__declarator_role as is_child, relates has_cplusplus_prop__declarator_role as is_parent;
+
+cplusplus_prop__name_relation sub parent_child_relation,
+	relates is_cplusplus_prop__name_role as is_child, relates has_cplusplus_prop__name_role as is_parent;
 
 ##########---------- Semantic Roles ----------##########
 DECLARATION sub relation,

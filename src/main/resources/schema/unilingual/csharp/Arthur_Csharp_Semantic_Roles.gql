@@ -1,0 +1,2495 @@
+define
+
+##########---------- Entities ----------##########
+
+#####----- Csharp -----#####
+CsharpSourceArtifact sub SourceArtifact;
+
+AbstractKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AccessorListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+AddAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+AddAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION;
+
+AddKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AliasKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+AliasQualifiedNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+AmpersandAmpersandTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+AmpersandEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_EQUAL,
+	plays IS_OPERATOR;
+
+AmpersandTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BITWISE,
+	plays IS_OPERATOR;
+
+AndAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION;
+
+AnonymousMethodExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION;
+
+AnonymousObjectCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_INSTANCE,
+	plays IS_TYPE;
+
+AnonymousObjectMemberDeclaratorArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_TYPE,
+	plays IS_VALUE,
+	plays IS_VARIABLE;
+
+ArgListKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGS_LIST,
+	plays IS_INCOMPLETE;
+
+ArgumentArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION;
+
+ArgumentListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+ArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_INSTANCE,
+	plays IS_LIST;
+
+ArrayInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_INSTANCE,
+	plays IS_LIST;
+
+ArrayRankSpecifierArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+ArrayTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_TYPE;
+
+ArrowExpressionClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
+	plays IS_FUNCTION;
+
+AscendingKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AscendingOrderingArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+AsKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AssemblyKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AsteriskEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EQUAL,
+	plays IS_MULTIPLY,
+	plays IS_OPERATOR;
+
+AsteriskTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_MULTIPLY,
+	plays IS_OPERATOR;
+
+AsyncKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AttributeArgumentArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE;
+
+AttributeArgumentListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+AttributeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+AttributeListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+AttributeTargetSpecifierArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE;
+
+AwaitExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+AwaitKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BadDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+BarBarTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RELATIONAL;
+
+BarEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_OR;
+
+BarTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_OPERATOR,
+	plays IS_OR;
+
+BaseConstructorInitializerArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_BASE,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_INITIALIZATION;
+
+BaseExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BASE,
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_TYPE;
+
+BaseKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+BaseListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BASE,
+	plays IS_LIST;
+
+BinaryExpressionAddExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_EXPRESSION;
+
+BinaryExpressionAsExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ALIAS,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+BinaryExpressionBitwiseAndExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_EXPRESSION;
+
+BinaryExpressionBitwiseOrExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_EXPRESSION;
+
+BinaryExpressionCoalesceExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_NOT,
+	plays IS_NULL;
+
+BinaryExpressionDivideExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_DIVIDE,
+	plays IS_EXPRESSION;
+
+BinaryExpressionEqualsExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_RELATIONAL;
+
+BinaryExpressionExclusiveOrExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_EXPRESSION;
+
+BinaryExpressionGreaterThanExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_RELATIONAL;
+
+BinaryExpressionGreaterThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_RELATIONAL;
+
+BinaryExpressionIsExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_CONDITION,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION;
+
+BinaryExpressionLeftShiftExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_EXPRESSION,
+	plays IS_LEFT_SHIFT;
+
+BinaryExpressionLessThanExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_LESS_THAN,
+	plays IS_RELATIONAL;
+
+BinaryExpressionLessThanOrEqualExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_RELATIONAL;
+
+BinaryExpressionLogicalAndExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_OR,
+	plays IS_RELATIONAL;
+
+BinaryExpressionLogicalOrExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_OR,
+	plays IS_RELATIONAL;
+
+BinaryExpressionModuloExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_MODULO;
+
+BinaryExpressionMultiplyExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_MULTIPLY;
+
+BinaryExpressionNotEqualsExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_NOT,
+	plays IS_RELATIONAL;
+
+BinaryExpressionRightShiftExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_EXPRESSION,
+	plays IS_LEFT_SHIFT;
+
+BinaryExpressionSubtractExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_EXPRESSION,
+	plays IS_SUBSTRACT;
+
+BlockArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK;
+
+BoolKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_DECLARATION;
+
+BracketedArgumentListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_VALUE;
+
+BracketedParameterListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+BreakKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BREAK;
+
+BreakStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BREAK,
+	plays IS_STATEMENT;
+
+ByKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+ByteKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+CaretEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_XOR;
+
+CaretTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_OPERATOR,
+	plays IS_XOR;
+
+CaseKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_SWITCH;
+
+CasePatternSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_SWITCH;
+
+CaseSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_NAME,
+	plays IS_SWITCH;
+
+CastExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+CatchClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_STATEMENT;
+
+CatchDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_CATCH;
+
+CatchFilterClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CATCH,
+	plays IS_INCOMPLETE;
+
+CatchKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_INCOMPLETE;
+
+CharacterLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CHARACTER,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL;
+
+CharacterLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CHARACTER,
+	plays IS_LITERAL;
+
+CharKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CHARACTER,
+	plays IS_DECLARATION;
+
+CheckedExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+CheckedExpressionUncheckedExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+CheckedKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CheckedStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE;
+
+CheckedStatementUncheckedStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
+
+ClassDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+ClassKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+ClassOrStructConstraintClassConstraintArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+ClassOrStructConstraintStructConstraintArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+CloseBraceTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CloseBracketTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CloseParenTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CollectionInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+ColonColonTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ColonTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CommaTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+CompilationUnitArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FILE,
+	plays IS_MODULE;
+
+ComplexElementInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ConditionalAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_NOT,
+	plays IS_NULL;
+
+ConditionalExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
+ConstantPatternArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+ConstKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE;
+
+ConstructorConstraintArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+ConstructorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_THIS,
+	plays IS_TYPE;
+
+ContinueKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONTINUE;
+
+ContinueStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONTINUE,
+	plays IS_STATEMENT;
+
+ConversionOperatorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_OPERATOR;
+
+DecimalKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+DeclarationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION;
+
+DeclarationPatternArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+DefaultExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEFAULT,
+	plays IS_EXPRESSION,
+	plays IS_VALUE;
+
+DefaultKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEFAULT;
+
+DefaultLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEFAULT,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_VALUE;
+
+DefaultSwitchLabelArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_DEFAULT,
+	plays IS_SWITCH;
+
+DefineDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+DelegateDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
+DelegateKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+DescendingKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+DescendingOrderingArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+DestructorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+DisabledTextTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+DiscardDesignationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+DivideAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_DIVIDE,
+	plays IS_EXPRESSION;
+
+DoKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+DoStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DO_WHILE,
+	plays IS_STATEMENT;
+
+DotTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+DoubleKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+ElementAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_VALUE;
+
+ElementBindingExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ElifDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_INCOMPLETE;
+
+ElseClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ELSE,
+	plays IS_STATEMENT;
+
+ElseDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_ELSE,
+	plays IS_INCOMPLETE;
+
+ElseKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ELSE;
+
+EmptyStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_NOOP,
+	plays IS_STATEMENT;
+
+EndIfDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_IF,
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+EndOfFileTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+EndRegionDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+EnumDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_TYPE;
+
+EnumKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+EnumMemberDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_TYPE,
+	plays IS_VALUE;
+
+EqualsEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+EqualsGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+EqualsKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+EqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_OPERATOR;
+
+EqualsValueClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_RIGHT;
+
+ErrorDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+EventDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
+
+EventFieldDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
+
+EventKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ExclamationEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+ExclamationTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_NOT,
+	plays IS_OPERATOR;
+
+ExclusiveOrAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_XOR;
+
+ExplicitInterfaceSpecifierArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_NAME,
+	plays IS_TYPE;
+
+ExplicitKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ExpressionStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT;
+
+ExternAliasDirectiveArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ExternKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+FalseKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_LITERAL;
+
+FalseLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL;
+
+FieldDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_VARIABLE;
+
+FieldKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+FinallyClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+FinallyKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+FixedKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+FixedStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE;
+
+FloatKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+ForEachKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_INCOMPLETE;
+
+ForEachStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+ForEachVariableStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_ITERATOR;
+
+ForKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR;
+
+ForStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
+
+FromClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+FromKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+GenericNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE;
+
+GetAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+GetKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+GlobalKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+GotoKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GOTO;
+
+GotoStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GOTO,
+	plays IS_STATEMENT;
+
+GotoStatementGotoCaseStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+GotoStatementGotoDefaultStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEFAULT,
+	plays IS_GOTO,
+	plays IS_STATEMENT;
+
+GreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+GreaterThanGreaterThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RIGHT_SHIFT;
+
+GreaterThanGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_OPERATOR,
+	plays IS_RIGHT_SHIFT;
+
+GreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_GREATER_THAN,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+GroupClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+GroupKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+IdentifierNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER;
+
+IdentifierTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER;
+
+IfDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_IF,
+	plays IS_INCOMPLETE;
+
+IfKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IF;
+
+IfStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT;
+
+ImplicitArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_VALUE;
+
+ImplicitElementAccessArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ImplicitKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+IncompleteMemberArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
+IndexerDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+InKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+InterfaceDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+InterfaceKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+InternalKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+InterpolatedStringEndTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_STRING;
+
+InterpolatedStringExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_STRING;
+
+InterpolatedStringStartTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_STRING;
+
+InterpolatedStringTextArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_LITERAL,
+	plays IS_STRING;
+
+InterpolatedStringTextTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_STRING;
+
+InterpolatedVerbatimStringStartTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+InterpolationAlignmentClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+InterpolationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+InterpolationFormatClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+IntKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+IntoKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+InvocationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_FUNCTION;
+
+IsKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+IsPatternExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION;
+
+JoinClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+JoinIntoClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+JoinKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+LabeledStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
+
+LeftShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_LEFT_SHIFT;
+
+LessThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+LessThanLessThanEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_EQUAL,
+	plays IS_LEFT_SHIFT,
+	plays IS_OPERATOR;
+
+LessThanLessThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_LEFT_SHIFT,
+	plays IS_OPERATOR;
+
+LessThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LESS_THAN,
+	plays IS_OPERATOR,
+	plays IS_RELATIONAL;
+
+LetClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+LetKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+LineDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+LiteralExpressionArgListExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGS_LIST;
+
+LocalDeclarationStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION;
+
+LocalFunctionStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_SCOPE;
+
+LockKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+LockStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
+
+LongKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+MakeRefExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+MakeRefKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+MemberBindingExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_QUALIFIED;
+
+MethodDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_TYPE;
+
+MethodKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+MinusEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EQUAL,
+	plays IS_OPERATOR,
+	plays IS_SUBSTRACT;
+
+MinusGreaterThanTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEREFERENCE,
+	plays IS_OPERATOR;
+
+MinusMinusTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECREMENT,
+	plays IS_OPERATOR,
+	plays IS_UNARY;
+
+MinusTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_OPERATOR,
+	plays IS_SUBSTRACT;
+
+ModuleKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ModuloAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_MODULO;
+
+MultiLineCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
+
+MultiLineDocumentationCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+MultiplyAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_MULTIPLY;
+
+NameColonArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION,
+	plays IS_NAME;
+
+NameEqualsArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_RIGHT;
+
+NamespaceDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_SCOPE;
+
+NamespaceKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK;
+
+NewKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INSTANCE;
+
+NoneArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+NullableTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_NULL,
+	plays IS_TYPE;
+
+NullKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_NULL;
+
+NullLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_NULL;
+
+NumericLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_NUMBER;
+
+NumericLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_NUMBER,
+	plays IS_VALUE;
+
+ObjectCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INSTANCE,
+	plays IS_TYPE;
+
+ObjectInitializerExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_CALL,
+	plays IS_INSTANCE,
+	plays IS_TYPE;
+
+ObjectKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+OmittedArraySizeExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+OmittedArraySizeExpressionTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OmittedTypeArgumentArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+OmittedTypeArgumentTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+OnKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EQUAL,
+	plays IS_INCOMPLETE;
+
+OpenBraceTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OpenBracketTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OpenParenTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OperatorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+OperatorKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OrAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_OR;
+
+OrderByClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+OrderByKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+OutKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+OverrideKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ParameterArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION;
+
+ParameterListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_LIST;
+
+ParamKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ParamsKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ParenthesizedExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
+
+ParenthesizedLambdaExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION;
+
+ParenthesizedVariableDesignationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+PartialKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+PercentEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EQUAL,
+	plays IS_MODULO,
+	plays IS_OPERATOR;
+
+PercentTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_MODULO,
+	plays IS_OPERATOR;
+
+PlusEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_ARITHMETIC,
+	plays IS_EQUAL,
+	plays IS_OPERATOR;
+
+PlusPlusTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_INCREMENT,
+	plays IS_UNARY;
+
+PlusTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_OPERATOR,
+	plays IS_SUBSTRACT;
+
+PointerMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEREFERENCE,
+	plays IS_OPERATOR;
+
+PointerTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
+
+PostfixUnaryExpressionPostDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_POSTFIX,
+	plays IS_UNARY;
+
+PostfixUnaryExpressionPostIncrementExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_INCREMENT,
+	plays IS_POSTFIX,
+	plays IS_UNARY;
+
+PragmaChecksumDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+PragmaWarningDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+PredefinedTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_PRIMITIVE,
+	plays IS_TYPE;
+
+PrefixUnaryExpressionAddressOfExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_TAKE_ADDRESS,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionBitwiseNotExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_EXPRESSION,
+	plays IS_NOT,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionLogicalNotExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_NOT,
+	plays IS_RELATIONAL,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionPointerIndirectionExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DEREFERENCE,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionPreDecrementExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_DECREMENT,
+	plays IS_EXPRESSION,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionPreIncrementExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_EXPRESSION,
+	plays IS_INCREMENT,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionUnaryMinusExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_NEGATIVE,
+	plays IS_UNARY;
+
+PrefixUnaryExpressionUnaryPlusExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_POSITIVE,
+	plays IS_UNARY;
+
+PrivateKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INSTANCE,
+	plays IS_VISIBILITY;
+
+PropertyDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+PropertyKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ProtectedKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_SUBTYPE,
+	plays IS_VISIBILITY;
+
+PublicKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_VISIBILITY,
+	plays IS_WORLD;
+
+QualifiedNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_QUALIFIED;
+
+QueryBodyArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+QueryContinuationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+QueryExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+QuestionQuestionTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_OPERATOR;
+
+QuestionTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_OPERATOR;
+
+ReadOnlyKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+RefExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+RefKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+RefTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE;
+
+RefTypeExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+RefTypeKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+RefValueExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+RefValueKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+RegionDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE;
+
+RemoveAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+RemoveKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ReturnKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_RETURN;
+
+ReturnStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_RETURN,
+	plays IS_STATEMENT;
+
+RightShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_RIGHT_SHIFT;
+
+SByteKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+SealedKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+SelectClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+SelectKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+SemicolonTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+SetAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+SetKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ShortKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+SimpleAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION;
+
+SimpleBaseTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BASE,
+	plays IS_TYPE;
+
+SimpleLambdaExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ANONYMOUS,
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION;
+
+SimpleMemberAccessExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_QUALIFIED;
+
+SingleLineCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
+
+SingleLineDocumentationCommentTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_DOCUMENTATION,
+	plays IS_NOOP;
+
+SingleVariableDesignationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NAME,
+	plays IS_VARIABLE;
+
+SizeOfExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CALL,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+SizeOfKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+SlashEqualsTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_DIVIDE,
+	plays IS_EQUAL,
+	plays IS_OPERATOR;
+
+SlashTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARITHMETIC,
+	plays IS_DIVIDE,
+	plays IS_OPERATOR;
+
+StackAllocArrayCreationExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_INSTANCE,
+	plays IS_LIST;
+
+StackAllocKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+StaticKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+StringKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_STRING;
+
+StringLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LITERAL,
+	plays IS_STRING;
+
+StringLiteralTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LITERAL,
+	plays IS_STRING;
+
+StructDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+StructKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
+
+SubtractAssignmentExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_EXPRESSION,
+	plays IS_SUBSTRACT;
+
+SwitchKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_SWITCH;
+
+SwitchSectionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_SWITCH;
+
+SwitchStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
+
+ThisConstructorInitializerArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ThisExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_THIS;
+
+ThisKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ThrowExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_THROW;
+
+ThrowKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+ThrowStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_THROW;
+
+TildeTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BITWISE,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_UNARY;
+
+TrueKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_LITERAL;
+
+TrueLiteralExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_EXPRESSION,
+	plays IS_LITERAL;
+
+TryKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_TRY;
+
+TryStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_TRY;
+
+TupleElementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_LIST,
+	plays IS_VALUE;
+
+TupleExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_LIST,
+	plays IS_VALUE;
+
+TupleTypeArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_LIST;
+
+TypeArgumentListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE,
+	plays IS_INSTANCE,
+	plays IS_LIST;
+
+TypeConstraintArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_NAME,
+	plays IS_TYPE;
+
+TypeKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+TypeOfExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+TypeOfKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+TypeParameterArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE;
+
+TypeParameterConstraintClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CONDITION,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE;
+
+TypeParameterListArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE,
+	plays IS_LIST;
+
+TypeVarKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+UIntKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+ULongKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+UncheckedKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+UndefDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_INCOMPLETE,
+	plays IS_VALUE;
+
+UnderscoreTokenArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+UnknownAccessorDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+UnsafeKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+UnsafeStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
+
+UShortKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_NUMBER;
+
+UsingDirectiveArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IMPORT,
+	plays IS_STATEMENT;
+
+UsingKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IMPORT,
+	plays IS_INCOMPLETE;
+
+UsingStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+VariableDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_VARIABLE;
+
+VariableDeclaratorArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_RIGHT,
+	plays IS_VARIABLE;
+
+VirtualKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+VoidKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+VolatileKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+WarningDirectiveTriviaArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_NOOP;
+
+WhenClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
+
+WhenKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+WhereClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
+
+WhereKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
+
+WhileKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_WHILE;
+
+WhileStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
+
+YieldKeywordArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_RETURN;
+
+YieldStatementYieldBreakStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BREAK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
+
+YieldStatementYieldReturnStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_RETURN,
+	plays IS_STATEMENT;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relation,
+	relates IS_ADD;
+
+ALIAS sub relation,
+	relates IS_ALIAS;
+
+AND sub relation,
+	relates IS_AND;
+
+ANONYMOUS sub relation,
+	relates IS_ANONYMOUS;
+
+ARGS_LIST sub relation,
+	relates IS_ARGS_LIST;
+
+ARGUMENT sub relation,
+	relates IS_ARGUMENT;
+
+ARITHMETIC sub relation,
+	relates IS_ARITHMETIC;
+
+ASSIGNMENT sub relation,
+	relates IS_ASSIGNMENT;
+
+BASE sub relation,
+	relates IS_BASE;
+
+BINARY sub relation,
+	relates IS_BINARY;
+
+BITWISE sub relation,
+	relates IS_BITWISE;
+
+BLOCK sub relation,
+	relates IS_BLOCK;
+
+BODY sub relation,
+	relates IS_BODY;
+
+BOOLEAN sub relation,
+	relates IS_BOOLEAN;
+
+BREAK sub relation,
+	relates IS_BREAK;
+
+CALL sub relation,
+	relates IS_CALL;
+
+CASE sub relation,
+	relates IS_CASE;
+
+CATCH sub relation,
+	relates IS_CATCH;
+
+CHARACTER sub relation,
+	relates IS_CHARACTER;
+
+COMMENT sub relation,
+	relates IS_COMMENT;
+
+CONDITION sub relation,
+	relates IS_CONDITION;
+
+CONTINUE sub relation,
+	relates IS_CONTINUE;
+
+DECLARATION sub relation,
+	relates IS_DECLARATION;
+
+DECREMENT sub relation,
+	relates IS_DECREMENT;
+
+DEFAULT sub relation,
+	relates IS_DEFAULT;
+
+DEREFERENCE sub relation,
+	relates IS_DEREFERENCE;
+
+DIVIDE sub relation,
+	relates IS_DIVIDE;
+
+DO_WHILE sub relation,
+	relates IS_DO_WHILE;
+
+DOCUMENTATION sub relation,
+	relates IS_DOCUMENTATION;
+
+ELSE sub relation,
+	relates IS_ELSE;
+
+ENUMERATION sub relation,
+	relates IS_ENUMERATION;
+
+EQUAL sub relation,
+	relates IS_EQUAL;
+
+EXPRESSION sub relation,
+	relates IS_EXPRESSION;
+
+FILE sub relation,
+	relates IS_FILE;
+
+FOR sub relation,
+	relates IS_FOR;
+
+FUNCTION sub relation,
+	relates IS_FUNCTION;
+
+GOTO sub relation,
+	relates IS_GOTO;
+
+GREATER_THAN sub relation,
+	relates IS_GREATER_THAN;
+
+GREATER_THAN_OR_EQUAL sub relation,
+	relates IS_GREATER_THAN_OR_EQUAL;
+
+IDENTIFIER sub relation,
+	relates IS_IDENTIFIER;
+
+IF sub relation,
+	relates IS_IF;
+
+IMPORT sub relation,
+	relates IS_IMPORT;
+
+INCOMPLETE sub relation,
+	relates IS_INCOMPLETE;
+
+INCREMENT sub relation,
+	relates IS_INCREMENT;
+
+INITIALIZATION sub relation,
+	relates IS_INITIALIZATION;
+
+INSTANCE sub relation,
+	relates IS_INSTANCE;
+
+ITERATOR sub relation,
+	relates IS_ITERATOR;
+
+LEFT_SHIFT sub relation,
+	relates IS_LEFT_SHIFT;
+
+LESS_THAN sub relation,
+	relates IS_LESS_THAN;
+
+LESS_THAN_OR_EQUAL sub relation,
+	relates IS_LESS_THAN_OR_EQUAL;
+
+LIST sub relation,
+	relates IS_LIST;
+
+LITERAL sub relation,
+	relates IS_LITERAL;
+
+MODULE sub relation,
+	relates IS_MODULE;
+
+MODULO sub relation,
+	relates IS_MODULO;
+
+MULTIPLY sub relation,
+	relates IS_MULTIPLY;
+
+NAME sub relation,
+	relates IS_NAME;
+
+NEGATIVE sub relation,
+	relates IS_NEGATIVE;
+
+NOOP sub relation,
+	relates IS_NOOP;
+
+NOT sub relation,
+	relates IS_NOT;
+
+NULL sub relation,
+	relates IS_NULL;
+
+NUMBER sub relation,
+	relates IS_NUMBER;
+
+OPERATOR sub relation,
+	relates IS_OPERATOR;
+
+OR sub relation,
+	relates IS_OR;
+
+POSITIVE sub relation,
+	relates IS_POSITIVE;
+
+POSTFIX sub relation,
+	relates IS_POSTFIX;
+
+PRIMITIVE sub relation,
+	relates IS_PRIMITIVE;
+
+QUALIFIED sub relation,
+	relates IS_QUALIFIED;
+
+RELATIONAL sub relation,
+	relates IS_RELATIONAL;
+
+RETURN sub relation,
+	relates IS_RETURN;
+
+RIGHT sub relation,
+	relates IS_RIGHT;
+
+RIGHT_SHIFT sub relation,
+	relates IS_RIGHT_SHIFT;
+
+SCOPE sub relation,
+	relates IS_SCOPE;
+
+STATEMENT sub relation,
+	relates IS_STATEMENT;
+
+STRING sub relation,
+	relates IS_STRING;
+
+SUBSTRACT sub relation,
+	relates IS_SUBSTRACT;
+
+SUBTYPE sub relation,
+	relates IS_SUBTYPE;
+
+SWITCH sub relation,
+	relates IS_SWITCH;
+
+TAKE_ADDRESS sub relation,
+	relates IS_TAKE_ADDRESS;
+
+THIS sub relation,
+	relates IS_THIS;
+
+THROW sub relation,
+	relates IS_THROW;
+
+TRY sub relation,
+	relates IS_TRY;
+
+TYPE sub relation,
+	relates IS_TYPE;
+
+UNANNOTATED sub relation,
+	relates IS_UNANNOTATED;
+
+UNARY sub relation,
+	relates IS_UNARY;
+
+VALUE sub relation,
+	relates IS_VALUE;
+
+VARIABLE sub relation,
+	relates IS_VARIABLE;
+
+VISIBILITY sub relation,
+	relates IS_VISIBILITY;
+
+WHILE sub relation,
+	relates IS_WHILE;
+
+WORLD sub relation,
+	relates IS_WORLD;
+
+XOR sub relation,
+	relates IS_XOR;

@@ -49,20 +49,32 @@ class DeclareVariableOperatorFilterTest extends ArthurTest {
         assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.cpp"))
     }
 
+    @Test
+    void declareVariableOperator_Bash() {
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "declareVariableOperator1()")
+        assertDeclareVariableOperatorPresent(new File("src/test/resources/same/operators/Operators.sh"),
+                "", "declareVariableOperator2()")
+    }
+
     private static void assertDeclareVariableOperatorPresent(File file) {
-        assertDeclareVariableOperatorPresent(file, "")
+        assertDeclareVariableOperatorPresent(file, "", "declareVariableOperator()")
     }
 
     private static void assertDeclareVariableOperatorPresent(File file, String qualifiedName) {
+        assertDeclareVariableOperatorPresent(file, qualifiedName, "declareVariableOperator()")
+    }
+
+    private static void assertDeclareVariableOperatorPresent(File file, String qualifiedName, String functionName) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)
         def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
         def foundDeclareVariableOperator = false
         def functionFilter = new FunctionFilter()
-        def nameFilter = new NameFilter(qualifiedName + "declareVariableOperator()")
+        def nameFilter = new NameFilter(qualifiedName + functionName)
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, rootNode).each {
-            assertEquals(qualifiedName + "declareVariableOperator()", it.name)
+            assertEquals(qualifiedName + functionName, it.name)
 
             new DeclareVariableOperatorFilter().getFilteredNodes(it).each {
                 assertFalse(foundDeclareVariableOperator)

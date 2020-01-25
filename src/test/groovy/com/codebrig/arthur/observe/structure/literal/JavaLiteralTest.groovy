@@ -6,6 +6,8 @@ import com.codebrig.arthur.observe.structure.filter.LiteralFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.observe.structure.filter.NameFilter
 import com.codebrig.arthur.observe.structure.filter.operator.relational.define.InitializeVariableOperatorFilter
+import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
+import org.apache.commons.text.StringEscapeUtils
 import org.apache.commons.lang.StringEscapeUtils
 import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test

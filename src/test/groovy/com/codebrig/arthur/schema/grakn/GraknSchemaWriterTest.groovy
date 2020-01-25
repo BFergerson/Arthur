@@ -22,12 +22,14 @@ class GraknSchemaWriterTest extends ArthurTest {
         def pythonLanguage = schemaGenerator.observeLanguage(SourceLanguage.Python, new File("src/test/resources/same/"))
         def rubyLanguage = schemaGenerator.observeLanguage(SourceLanguage.Ruby, new File("src/test/resources/same/"))
         def cSharpLanguage = schemaGenerator.observeLanguage(SourceLanguage.CSharp, new File("src/test/resources/same/"))
-        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
-        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage)
+        def bashLanguage = schemaGenerator.observeLanguage(SourceLanguage.Bash, new File("src/test/resources/same/"))
+        def cppLanguage = schemaGenerator.observeLanguage(SourceLanguage.CPlusPlus, new File("src/test/resources/same/"))
+        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
+        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
 
         def baseStructure = schemaWriter.getSegmentedSchemaDefinition(ObservationConfig.baseStructure().asArray())
-        assertEquals(new File("src/test/resources/schema/segment_same", "Base_Structure.gql").text, baseStructure)
+        assertEquals(baseStructure, new File("src/test/resources/schema/segment_same", "Base_Structure.gql").text)
         def semanticRoles = schemaWriter.getSegmentedSchemaDefinition(SchemaSegment.SEMANTIC_ROLES)
-        assertEquals(new File("src/test/resources/schema/segment_same", "Semantic_Roles.gql").text, semanticRoles)
+        assertEquals(semanticRoles, new File("src/test/resources/schema/segment_same", "Semantic_Roles.gql").text)
     }
 }

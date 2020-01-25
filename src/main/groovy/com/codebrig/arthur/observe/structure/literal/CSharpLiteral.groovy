@@ -2,7 +2,7 @@ package com.codebrig.arthur.observe.structure.literal
 
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureLiteral
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 
 /**
  * Used to determine and get the literal type of C# AST nodes
@@ -17,12 +17,12 @@ class CSharpLiteral extends StructureLiteral {
     String getNodeLiteralAttribute(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "NumericLiteralToken":
-                String text = node.properties.get("Text")
-                if (text.contains(".") ||
-                        (text.isDouble() &&
-                                (text.toUpperCase().endsWith("E")
-                                 || text.toUpperCase().endsWith("D")
-                                 || text.toUpperCase().endsWith("F"))
+                String token = node.token
+                if (token.contains(".") ||
+                        (token.isDouble() &&
+                                (token.toUpperCase().endsWith("E")
+                                 || token.toUpperCase().endsWith("D")
+                                 || token.toUpperCase().endsWith("F"))
                         )) {
                     return doubleValueLiteral()
                 }
@@ -50,7 +50,7 @@ class CSharpLiteral extends StructureLiteral {
     Object getNodeLiteralValue(SourceNode node) {
         def value = node.token
         if (value.isEmpty()) {
-            value = node.properties.get("Text")
+            value = node.token
         }
         boolean isNegative = isNodeLiteralNegative(node)
         switch (node.getLiteralAttribute()) {

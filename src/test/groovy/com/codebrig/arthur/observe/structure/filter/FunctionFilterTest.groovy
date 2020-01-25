@@ -49,6 +49,11 @@ class FunctionFilterTest extends ArthurTest {
         assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.cpp"))
     }
 
+    @Test
+    void onlyFunctions_Bash() {
+        assertFunctionsPresent(new File("src/test/resources/same/functions/Functions.sh"))
+    }
+
     private static void assertFunctionsPresent(File file) {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName)

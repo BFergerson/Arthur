@@ -20,14 +20,15 @@ import groovy.transform.Memoized
 enum SourceLanguage {
 
     Omnilingual([]),
+    Bash(["sh"]),
+    CPlusPlus(["cpp", "cc", "cxx"]),
+    CSharp(["cs"]),
     Go(["go"]),
     Java(["java"]),
     Javascript(["js"]),
     Php(["php"]),
     Python(["py"]),
-    Ruby(["rb"]),
-    CSharp(["cs"]),
-    CPlusPlus(["cpp"])
+    Ruby(["rb"])
 
     private final Set<String> fileExtensions
 
@@ -98,6 +99,8 @@ enum SourceLanguage {
                 return new CSharpNaming()
             case CPlusPlus:
                 return new CPlusPlusNaming()
+            case Bash:
+                return new BashNaming()
             default:
                 throw new IllegalStateException("Missing structure naming for language: " + this)
         }
@@ -122,6 +125,8 @@ enum SourceLanguage {
                 return new CSharpLiteral()
             case CPlusPlus:
                 return new CPlusPlusLiteral()
+            case Bash:
+                return new BashLiteral()
             default:
                 throw new IllegalStateException("Missing structure literal for language: " + this)
         }
@@ -150,7 +155,8 @@ enum SourceLanguage {
     static SourceLanguage getSourceLanguageByName(String languageName) {
         def sourceLanguage
         values().each {
-            if (it.name().toLowerCase() == languageName.toLowerCase()) {
+            if (it.name().toLowerCase() == languageName.toLowerCase()
+                    || languageName.toLowerCase() == it.babelfishName.toLowerCase()) {
                 sourceLanguage = it
             }
         }

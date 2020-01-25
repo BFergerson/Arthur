@@ -7,7 +7,6 @@ import com.codebrig.arthur.observe.ObservedLanguage
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.WildcardFilter
 import gopkg.in.bblfsh.sdk.v2.protocol.driver.ParseResponse
-import groovy.io.FileType
 import groovy.transform.Canonical
 import groovy.transform.TupleConstructor
 import org.bblfsh.client.v2.BblfshClient
@@ -18,6 +17,7 @@ import org.kohsuke.github.GitHub
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import java.nio.file.Files
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -78,7 +78,7 @@ class SchemaGenerator {
         GitHub.connectAnonymously().searchRepositories()
                 .sort(GHRepositorySearchBuilder.Sort.STARS)
                 .order(GHDirection.DESC)
-                .language(language.key)
+                .language(language.babelfishName)
                 .list().find {
             if (parsedProjects++ >= parseProjectCount) return true
 
@@ -116,7 +116,8 @@ class SchemaGenerator {
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
         def sourceFiles = new ArrayList<File>()
-        localRoot.eachFileRecurse(FileType.FILES) { file ->
+        Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
+            def file = p.toFile()
             if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
                 if (file.exists()) {
                     sourceFiles.add(file)
@@ -124,7 +125,7 @@ class SchemaGenerator {
                     log.error "Skipping non-existent file: " + file
                 }
             }
-        }
+        })
 
         def failCount = new AtomicInteger(0)
         def parseCount = new AtomicInteger(0)
