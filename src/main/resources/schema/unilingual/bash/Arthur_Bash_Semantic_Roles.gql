@@ -5,92 +5,7 @@ define
 #####----- Bash -----#####
 BashSourceArtifact sub SourceArtifact;
 
-!Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_UNANNOTATED;
-
-%Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-&>Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-'Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-*Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-+'Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-++Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-+=Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_OPERATOR,
-	plays IS_UNANNOTATED;
-
-+Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-,Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
--'Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
---Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
--=ArithmeticArtifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
--Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-/Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-<<<Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-<>Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-='Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
->&Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
->|Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
-^Artifact sub BashSourceArtifact,
+AmpersandGreaterThanArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -128,7 +43,7 @@ ArithLTArtifact sub BashSourceArtifact,
 	plays IS_LEFT_SHIFT,
 	plays IS_OPERATOR;
 
-ArithmeticBaseChar(#)Artifact sub BashSourceArtifact,
+ArithmeticBaseCharLeftParenthesesHashRightParenthesesArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -148,10 +63,15 @@ ArithmeticCommandArtifact sub BashSourceArtifact,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
+	plays IS_IF,
 	plays IS_INCOMPLETE,
 	plays IS_WHILE;
 
 ArithmeticEqualityArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+ArithmeticLogicAndArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -198,6 +118,10 @@ AssignmentWordArtifact sub BashSourceArtifact,
 	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
+AsteriskArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 BackquoteArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
@@ -211,6 +135,10 @@ BackquoteShellcommandArtifact sub BashSourceArtifact,
 	plays IS_STRING;
 
 BADCHARACTERArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+CaretArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -236,6 +164,10 @@ CombinedWordArtifact sub BashSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_RIGHT,
 	plays IS_UPDATE;
+
+CommaArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 CommentArtifact sub BashSourceArtifact,
 	# Semantic
@@ -268,10 +200,6 @@ ConditionalShellcommandArtifact sub BashSourceArtifact,
 	plays IS_THEN,
 	plays IS_WHILE;
 
-CondOp=~Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
 CondOpArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_EQUAL,
@@ -291,6 +219,10 @@ CondOpEQEQArtifact sub BashSourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
+
+CondOpEqualsTildeArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 CondOpNOTArtifact sub BashSourceArtifact,
 	# Semantic
@@ -318,12 +250,23 @@ EQArtifact sub BashSourceArtifact,
 	plays IS_ASSIGNMENT,
 	plays IS_OPERATOR;
 
+EqualsApostropheArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 ERRORELEMENTArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_INCOMPLETE,
 	plays IS_THEN;
+
+ExclamationArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_UNANNOTATED;
 
 FILEArtifact sub BashSourceArtifact,
 	# Semantic
@@ -340,7 +283,11 @@ ForShellcommandArtifact sub BashSourceArtifact,
 	plays IS_FOR,
 	plays IS_STATEMENT;
 
-Function-def-elementArtifact sub BashSourceArtifact,
+ForwardSlashArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+FunctionDefElementArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION;
@@ -349,6 +296,14 @@ GenericBashCommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
 	plays IS_INCOMPLETE;
+
+GreaterThanAmpersandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+GreaterThanPipeArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 GroupElementArtifact sub BashSourceArtifact,
 	# Semantic
@@ -380,19 +335,19 @@ HeredocContentElementArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-HeredocEndElement(ignoringTabs)Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
-
 HeredocEndElementArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-HeredocEndMarker(ignoringTabs)Artifact sub BashSourceArtifact,
+HeredocEndElementIgnoringTabsArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
 HeredocEndMarkerArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+HeredocEndMarkerIgnoringTabsArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -408,6 +363,22 @@ HeredocStartMarkerArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
+HyphenApostropheArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+HyphenArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+HyphenEqualsArithmeticArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+HyphenHyphenArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 IfShellcommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
@@ -416,7 +387,7 @@ IfShellcommandArtifact sub BashSourceArtifact,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
-Include-commandArtifact sub BashSourceArtifact,
+IncludeCommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_IMPORT,
 	plays IS_STATEMENT;
@@ -444,6 +415,14 @@ LBLBLeftBracketArtifact sub BashSourceArtifact,
 LBLeftSquareArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
+
+LessThanGreaterThanArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+LessThanLessThanLessThanArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 LetArtifact sub BashSourceArtifact,
 	# Semantic
@@ -522,27 +501,27 @@ ORORArtifact sub BashSourceArtifact,
 	plays IS_OPERATOR,
 	plays IS_OR;
 
-ParameterExpansionOperator'!'Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorApostropheAsteriskApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-ParameterExpansionOperator''Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorApostropheExclamationApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-ParameterExpansionOperator'*'Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorApostropheHyphenApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-ParameterExpansionOperator'+'Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorApostrophePlusApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-ParameterExpansionOperator'-'Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorApostropheQuestionApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-ParameterExpansionOperator(unknown)Artifact sub BashSourceArtifact,
+ParameterExpansionOperatorUnknownArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -576,6 +555,14 @@ ParamExpSLASHArtifact sub BashSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_OPERATOR;
 
+PercentArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+PipeAmpersandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 PipelineCommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_CALL,
@@ -586,7 +573,33 @@ PipelineCommandArtifact sub BashSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_WHILE;
 
+PlusApostropheArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+PlusArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+PlusEqualsArithmeticArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+PlusEqualsArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_ASSIGNMENT,
+	plays IS_OPERATOR,
+	plays IS_UNANNOTATED;
+
+PlusPlusArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 ProcessSubstitutionElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+QuestionApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -621,7 +634,7 @@ SEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-Simple-commandArtifact sub BashSourceArtifact,
+SimpleCommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
 	plays IS_BODY,
@@ -638,10 +651,12 @@ SingleBashExpansionArtifact sub BashSourceArtifact,
 
 StringArtifact sub BashSourceArtifact,
 	# Semantic
+	plays IS_ASSIGNMENT,
 	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
+	plays IS_LEFT,
 	plays IS_LITERAL,
 	plays IS_PRIMITIVE,
 	plays IS_RIGHT,
@@ -658,8 +673,10 @@ StringContentArtifact sub BashSourceArtifact,
 SubshellShellcommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_CALL,
+	plays IS_CONDITION,
 	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
+	plays IS_INCOMPLETE,
+	plays IS_WHILE;
 
 ThenArtifact sub BashSourceArtifact,
 	# Semantic
@@ -671,7 +688,7 @@ TimeArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-TimeWithOptional-pArtifact sub BashSourceArtifact,
+TimeWithOptionalPArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
@@ -691,7 +708,7 @@ UntilLoopArtifact sub BashSourceArtifact,
 	plays IS_STATEMENT,
 	plays IS_WHILE;
 
-Var-def-elementArtifact sub BashSourceArtifact,
+VarDefElementArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_ASSIGNMENT,
 	plays IS_BLOCK,
@@ -701,12 +718,6 @@ Var-def-elementArtifact sub BashSourceArtifact,
 	plays IS_FOR,
 	plays IS_ITERATOR,
 	plays IS_THEN,
-	plays IS_VARIABLE;
-
-Var-use-elementArtifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
 	plays IS_VARIABLE;
 
 VariableArtifact sub BashSourceArtifact,
@@ -722,6 +733,12 @@ VarSubstitutionArtifact sub BashSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_VARIABLE;
 
+VarUseElementArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
+	plays IS_VARIABLE;
+
 WhileLoopArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_STATEMENT,
@@ -731,10 +748,6 @@ WordArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER;
-
-|&Artifact sub BashSourceArtifact,
-	# Semantic
-	plays IS_UNANNOTATED;
 
 ##########---------- Semantic Roles ----------##########
 AND sub relation,

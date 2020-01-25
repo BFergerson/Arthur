@@ -1,7 +1,11 @@
 package com.codebrig.arthur.schema.grakn
 
 import com.codebrig.arthur.SourceLanguage
+import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguage
+import com.codebrig.arthur.observe.ObservedLanguages
+import com.codebrig.arthur.schema.SchemaSegment
+import com.codebrig.arthur.schema.SegmentedSchemaConfig
 import graql.lang.Graql
 import graql.lang.property.*
 import graql.lang.query.GraqlDefine
@@ -9,23 +13,39 @@ import graql.lang.query.GraqlDefine
 class GraknSchemaReader {
 
     static void main(String[] args) {
-        SourceLanguage.values().each {
-            if (it != SourceLanguage.Omnilingual && it != SourceLanguage.Bash) {
-                readTest(it)
-            }
-        }
+        def goLanguage = readGraqlDefinitions(SourceLanguage.Go)
+        def javaLanguage = readGraqlDefinitions(SourceLanguage.Java)
+        def javascriptLanguage = readGraqlDefinitions(SourceLanguage.Javascript)
+        def phpLanguage = readGraqlDefinitions(SourceLanguage.Php)
+        def pythonLanguage = readGraqlDefinitions(SourceLanguage.Python)
+        def rubyLanguage = readGraqlDefinitions(SourceLanguage.Ruby)
+        def cSharpLanguage = readGraqlDefinitions(SourceLanguage.CSharp)
+        def bashLanguage = readGraqlDefinitions(SourceLanguage.Bash)
+        def cppLanguage = readGraqlDefinitions(SourceLanguage.CPlusPlus)
+        def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage,
+                pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
+        def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage,
+                pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
+        schemaWriter.storeSegmentedSchemaDefinition(new SegmentedSchemaConfig()
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                        "Arthur_" + SourceLanguage.Omnilingual.qualifiedName + "_Base_Structure.gql"), ObservationConfig.baseStructure().asArray())
+                .withFileSegment(new File("src/main/resources/schema/omnilingual/",
+                        "Arthur_" + SourceLanguage.Omnilingual.qualifiedName + "_Semantic_Roles.gql"), SchemaSegment.SEMANTIC_ROLES))
     }
 
-    static void readTest(SourceLanguage language) {
-        def defineQuery = Graql.parse(language.baseStructureSchemaDefinition) as GraqlDefine
+    static ObservedLanguage readGraqlDefinitions(SourceLanguage language) {
+        return readGraqlDefinitions(language, language.baseStructureSchemaDefinition, language.semanticRolesSchemaDefinition)
+    }
 
+    static ObservedLanguage readGraqlDefinitions(SourceLanguage language,
+                                                 String structureDefinition, String roleDefinition) {
         def observedLanguage = new ObservedLanguage(language)
-        defineQuery.statements().each {
+        (Graql.parse(structureDefinition) as GraqlDefine).statements().each {
             def name = ""
             def type = ""
             def dataType = ""
-            def hasAttributes = []
-            def playsRelations = []
+            List<String> hasAttributes = []
+            List<String> playsRelations = []
 
             it.properties().each {
                 switch (it) {
@@ -76,8 +96,30 @@ class GraknSchemaReader {
                     }
             }
         }
+        (Graql.parse(roleDefinition) as GraqlDefine).statements().each {
+            def name = ""
+            List<String> playsRoles = []
+
+            it.properties().each {
+                switch (it) {
+                    case TypeProperty:
+                        name = (it as TypeProperty).name()
+                        if (name.endsWith("Artifact")) {
+                            name = name[0..-9]
+                        }
+                        break
+                    case PlaysProperty:
+                        playsRoles << (it as PlaysProperty).role().type.get().substring(3)
+                        break
+                }
+            }
+
+            observedLanguage.observeRoles(name, playsRoles)
+        }
 
         def schemaWriter = new GraknSchemaWriter(observedLanguage)
-        assert schemaWriter.fullSchemaDefinition == language.baseStructureSchemaDefinition
+        assert schemaWriter.getSegmentedSchemaDefinition(ObservationConfig.baseStructure().asArray()) == language.baseStructureSchemaDefinition
+        assert schemaWriter.getSegmentedSchemaDefinition(SchemaSegment.SEMANTIC_ROLES) == language.semanticRolesSchemaDefinition
+        return observedLanguage
     }
 }

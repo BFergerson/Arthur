@@ -338,30 +338,113 @@ class ObservedLanguage {
 
     static String toValidEntity(String entity) {
         //ex. EntityName
-        if (entity.contains("?")) {
-            println "here"
-        }
+        //todo: better
         switch (entity) {
+            case "?'":
+                entity = "QuestionApostrophe"
+                break
+            case ">&":
+                entity = "GreaterThanAmpersand"
+                break
+            case "<>":
+                entity = "LessThanGreaterThan"
+                break
+            case "+=":
+                entity = "PlusEquals"
+                break
+            case "=":
+                entity = "Equals"
+                break
+            case "^":
+                entity = "Caret"
+                break
+            case "'":
+                entity = "Apostrophe"
+                break
             case "!":
-                entity = "ExclamationPoint"
+                entity = "Exclamation"
                 break
             case "%":
-                entity = "PercentSign"
+                entity = "Percent"
                 break
             case "&>":
-                entity = "AmpersandGreaterThanSign"
+                entity = "AmpersandGreaterThan"
+                break
+            case "-":
+                entity = "Hyphen"
+                break
+            case "--":
+                entity = "HyphenHyphen"
+                break
+            case "*":
+                entity = "Asterisk"
+                break
+            case "+'":
+                entity = "PlusApostrophe"
+                break
+            case "+":
+                entity = "Plus"
+                break
+            case "++":
+                entity = "PlusPlus"
+                break
+            case ",":
+                entity = "Comma"
+                break
+            case "-'":
+                entity = "HyphenApostrophe"
+                break
+            case "/":
+                entity = "ForwardSlash"
+                break
+            case "<<<":
+                entity = "LessThanLessThanLessThan"
+                break
+            case "='":
+                entity = "EqualsApostrophe"
+                break
+            case ">|":
+                entity = "GreaterThanPipe"
+                break
+            case "|&":
+                entity = "PipeAmpersand"
+                break
+            case "cond_op_=~":
+                entity = "CondOpEqualsTilde"
+                break
+            case "-=_arithmetic":
+                entity = "HyphenEqualsArithmetic"
+                break
+            case "+=_arithmetic":
+                entity = "PlusEqualsArithmetic"
+                break
+            case "Parameter_expansion_operator_'-'":
+                entity = "ParameterExpansionOperatorApostropheHyphenApostrophe"
+                break
+            case "Parameter_expansion_operator_'+'":
+                entity = "ParameterExpansionOperatorApostrophePlusApostrophe"
+                break
+            case "Parameter_expansion_operator_'*'":
+                entity = "ParameterExpansionOperatorApostropheAsteriskApostrophe"
+                break
+            case "Parameter_expansion_operator_'!'":
+                entity = "ParameterExpansionOperatorApostropheExclamationApostrophe"
+                break
+            case "Parameter_expansion_operator_'?'":
+                entity = "ParameterExpansionOperatorApostropheQuestionApostrophe"
+                break
+            case "arithmetic_base_char_(#)":
+                entity = "ArithmeticBaseCharLeftParenthesesHashRightParentheses"
                 break
         }
-        //ArithmeticBaseChar(#)Artifact
-        //(#), CondOp=~
         entity = entity.replace("?", "")
+        entity = entity.replace("(", "")
+        entity = entity.replace(")", "")
+        entity = entity.replace("#", "")
         entity = handleBreaker(".", entity)
         entity = handleBreaker("_", entity)
-        try {
-            entity = entity.substring(0, 1).toUpperCase() + entity.substring(1)
-        } catch (all) {
-            all.printStackTrace()
-        }
+        entity = handleBreaker("-", entity)
+        entity = entity.substring(0, 1).toUpperCase() + entity.substring(1)
         return entity + "Artifact"
     }
 
