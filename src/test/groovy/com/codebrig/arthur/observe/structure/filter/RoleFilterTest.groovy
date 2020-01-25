@@ -3,6 +3,7 @@ package com.codebrig.arthur.observe.structure.filter
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.structure.filter.loop.ForLoopFilter
+import org.bblfsh.client.v2.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertTrue
@@ -16,10 +17,11 @@ class RoleFilterTest extends ArthurTest {
         def forLoopFilter = new ForLoopFilter()
         parseFolder.listFiles().each { file ->
             def language = SourceLanguage.getSourceLanguage(file)
-            def resp = client.parse(file.name, file.text, language.babelfishName)
+            def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName)
+            def rootNode = new BblfshClient.UastMethods(resp.uast()).decode().root().load()
 
             boolean foundForStatement = false
-            filter.getFilteredNodes(language, resp.uast).each {
+            filter.getFilteredNodes(language, rootNode).each {
                 assertTrue(forLoopFilter.evaluate(it))
                 foundForStatement = true
             }

@@ -13,7 +13,7 @@ import com.codebrig.arthur.observe.structure.filter.TypeFilter
  * @since 0.4
  * @author <a href="mailto:valpecaoco@gmail.com"> Val Pecaoco</a>
  */
-class BashNaming implements StructureNaming {
+class BashNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -34,7 +34,7 @@ class BashNaming implements StructureNaming {
             case "var-def-element":
                 return getVarDefElementName(node)
             default:
-                throw new IllegalArgumentException("Unsupported Bash node type: " + node.internalType)
+                return super.getNodeName(node)
         }
     }
 

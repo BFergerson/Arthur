@@ -16,7 +16,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class PhpNaming implements StructureNaming {
+class PhpNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -41,7 +41,7 @@ class PhpNaming implements StructureNaming {
             case "Expr_Assign":
                 return getExprAssignName(node)
             default:
-                return null
+                return super.getNodeName(node)
         }
     }
 

@@ -16,7 +16,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class PythonNaming implements StructureNaming {
+class PythonNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -37,7 +37,7 @@ class PythonNaming implements StructureNaming {
             case "Assign":
                 return getAssignName(node)
             default:
-                return null
+                return super.getNodeName(node)
         }
     }
 

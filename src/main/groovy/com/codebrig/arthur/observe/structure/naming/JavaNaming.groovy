@@ -17,7 +17,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class JavaNaming implements StructureNaming {
+class JavaNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -59,7 +59,7 @@ class JavaNaming implements StructureNaming {
             case "QualifiedName":
                 return getQualifiedNameName(node)
             default:
-                throw new IllegalArgumentException("Unsupported Java node type: " + node.internalType)
+                return super.getNodeName(node)
         }
     }
 

@@ -74,10 +74,29 @@ class SourceNode {
     }
 
     boolean hasName() {
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "Name") {
+                return true
+            }
+        }
         return naming.isNamedNodeType(this)
     }
 
     String getName() {
+        for (int i = 0; i < underlyingNode.size(); i++) {
+            if (underlyingNode.keyAt(i) == "Name") {
+                if (underlyingNode.valueAt(i) instanceof JObject) {
+                    def jobject = (underlyingNode.valueAt(i) as JObject)
+                    for (int z = 0; z < jobject.size(); z++) {
+                        if (jobject.keyAt(z) == "Name") {
+                            return (jobject.valueAt(z) as JString).str()
+                        }
+                    }
+                } else {
+                    return (underlyingNode.valueAt(i) as JString).str()
+                }
+            }
+        }
         return naming.getNodeName(this)
     }
 
@@ -138,6 +157,9 @@ class SourceNode {
                     break
                 case "LESSTHAN":
                     roleName = "LESS_THAN"
+                    break
+                case "LESSTHANOREQUAL":
+                    roleName = "LESS_THAN_OR_EQUAL"
                     break
             }
             roleList += Eval.me("return new gopkg.in.bblfsh.sdk.v1.uast.role.generated.Role." + roleName + "\$()")

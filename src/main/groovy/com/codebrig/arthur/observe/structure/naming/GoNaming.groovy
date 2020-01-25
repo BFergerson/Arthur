@@ -16,7 +16,7 @@ import static com.codebrig.arthur.observe.structure.naming.util.NamingUtils.trim
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  * @author <a href="mailto:valpecaoco@gmail.com">Val Pecaoco</a>
  */
-class GoNaming implements StructureNaming {
+class GoNaming extends StructureNaming {
 
     @Override
     boolean isNamedNodeType(String internalType) {
@@ -40,7 +40,7 @@ class GoNaming implements StructureNaming {
             case "GenDecl":
                 return getGenDeclName(node)
             default:
-                throw new IllegalArgumentException("Unsupported Go node type: " + node.internalType)
+                return super.getNodeName(node)
         }
     }
 
