@@ -20,6 +20,8 @@ class BashNaming implements StructureNaming {
         switch (Objects.requireNonNull(internalType)) {
             case "function-def-element":
             case "var-def-element":
+            case "FunctionDefElement":
+            case "VarDefElement":
                 return true
             default:
                 return false
@@ -30,8 +32,10 @@ class BashNaming implements StructureNaming {
     String getNodeName(SourceNode node) {
         switch (Objects.requireNonNull(node).internalType) {
             case "function-def-element":
+            case "FunctionDefElement":
                 return getFunctionDefElementName(node)
             case "var-def-element":
+            case "VarDefElement":
                 return getVarDefElementName(node)
             default:
                 throw new IllegalArgumentException("Unsupported Bash node type: " + node.internalType)

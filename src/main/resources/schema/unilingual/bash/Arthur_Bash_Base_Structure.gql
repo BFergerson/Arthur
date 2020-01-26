@@ -55,6 +55,11 @@ ArithmeticBitwiseAndArtifact sub BashSourceArtifact,
 	plays is_children_role,
 	plays has_children_role;
 
+ArithmeticBitwiseOrArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
 ArithmeticBitwiseXorArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role,
@@ -110,6 +115,11 @@ ArithmeticSumArtifact sub BashSourceArtifact,
 	plays is_children_role,
 	plays has_children_role;
 
+ArithmeticTernaryOperatorArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
+
 ArrayAssignmentListArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role,
@@ -149,6 +159,10 @@ CasePatternListArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role,
 	plays has_children_role;
+
+COLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
 
 CombinedWordArtifact sub BashSourceArtifact,
 	# Structural
@@ -244,6 +258,8 @@ ForwardSlashArtifact sub BashSourceArtifact,
 	plays is_children_role;
 
 FunctionDefElementArtifact sub BashSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_children_role,
 	plays has_children_role;
@@ -418,6 +434,10 @@ NumrangeFiledescriptorArtifact sub BashSourceArtifact,
 	plays is_children_role,
 	plays has_children_role;
 
+OctalLiteralArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
 ORArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
@@ -427,6 +447,10 @@ ORORArtifact sub BashSourceArtifact,
 	plays is_children_role;
 
 ParameterExpansionOperatorApostropheAsteriskApostropheArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+ParameterExpansionOperatorApostropheEqualsApostropheArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
 
@@ -516,6 +540,10 @@ QuestionApostropheArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
 
+QuestionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
 RBForArithmeticArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
@@ -541,6 +569,15 @@ RedirectListArtifact sub BashSourceArtifact,
 RPRPArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_children_role;
+
+SelectArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role;
+
+SelectCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_children_role,
+	plays has_children_role;
 
 SEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
 	# Structural
@@ -601,6 +638,8 @@ UntilLoopArtifact sub BashSourceArtifact,
 	plays has_children_role;
 
 VarDefElementArtifact sub BashSourceArtifact,
+	# Attributes
+	has name,
 	# Structural
 	plays is_children_role,
 	plays has_children_role;

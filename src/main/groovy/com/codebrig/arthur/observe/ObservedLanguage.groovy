@@ -340,6 +340,9 @@ class ObservedLanguage {
         //ex. EntityName
         //todo: better
         switch (entity) {
+            case "?":
+                entity = "Question"
+                break
             case "?'":
                 entity = "QuestionApostrophe"
                 break
@@ -417,6 +420,9 @@ class ObservedLanguage {
                 break
             case "+=_arithmetic":
                 entity = "PlusEqualsArithmetic"
+                break
+            case "Parameter_expansion_operator_'='":
+                entity = "ParameterExpansionOperatorApostropheEqualsApostrophe"
                 break
             case "Parameter_expansion_operator_'-'":
                 entity = "ParameterExpansionOperatorApostropheHyphenApostrophe"
