@@ -67,6 +67,7 @@ class ElseIfConditionalFilterTest extends ArthurTest {
         def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
         def foundElseIfConditional = false
+        def foundIfConditional = false
         def functionFilter = new FunctionFilter()
         def nameFilter = new NameFilter(qualifiedName + "ifElseIfConditional()")
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
@@ -76,7 +77,13 @@ class ElseIfConditionalFilterTest extends ArthurTest {
                 assertFalse(foundElseIfConditional)
                 foundElseIfConditional = true
             }
+
+            new IfConditionalFilter().getFilteredNodes(it).each {
+                assertFalse(foundIfConditional)
+                foundIfConditional = true
+            }
         }
         assertTrue(foundElseIfConditional)
+        assertTrue(foundIfConditional)
     }
 }

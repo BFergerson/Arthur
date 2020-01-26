@@ -1,5 +1,6 @@
 package com.codebrig.arthur.observe.structure.filter.conditional
 
+import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.SourceNode
 import com.codebrig.arthur.observe.structure.StructureFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
@@ -25,6 +26,15 @@ class IfConditionalFilter extends StructureFilter<IfConditionalFilter, Void> {
 
     @Override
     boolean evaluate(SourceNode node) {
-        return filter.evaluate(node)
+        if (filter.evaluate(node)) {
+            if (node.language == SourceLanguage.CSharp) {
+                return node.parentSourceNode?.internalType != "ElseClause"
+            } else if (node.language == SourceLanguage.Python) {
+                return node.parentSourceNode?.internalType != "If.orelse"
+            }
+
+            return true
+        }
+        return false
     }
 }
