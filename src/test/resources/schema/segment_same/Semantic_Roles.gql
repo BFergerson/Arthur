@@ -2716,3 +2716,253 @@ CplusplusCPPASTWhileStatementArtifact sub CplusplusSourceArtifact,
 	# Semantic
 	plays IS_STATEMENT,
 	plays IS_WHILE;
+
+##########---------- Semantic Roles ----------##########
+ADD sub relation,
+	relates IS_ADD;
+
+AND sub relation,
+	relates IS_AND;
+
+ARGS_LIST sub relation,
+	relates IS_ARGS_LIST;
+
+ARGUMENT sub relation,
+	relates IS_ARGUMENT;
+
+ARITHMETIC sub relation,
+	relates IS_ARITHMETIC;
+
+ASSIGNMENT sub relation,
+	relates IS_ASSIGNMENT;
+
+BINARY sub relation,
+	relates IS_BINARY;
+
+BITWISE sub relation,
+	relates IS_BITWISE;
+
+BLOCK sub relation,
+	relates IS_BLOCK;
+
+BODY sub relation,
+	relates IS_BODY;
+
+BOOLEAN sub relation,
+	relates IS_BOOLEAN;
+
+BREAK sub relation,
+	relates IS_BREAK;
+
+CALL sub relation,
+	relates IS_CALL;
+
+CALLEE sub relation,
+	relates IS_CALLEE;
+
+CASE sub relation,
+	relates IS_CASE;
+
+CATCH sub relation,
+	relates IS_CATCH;
+
+COMMENT sub relation,
+	relates IS_COMMENT;
+
+CONDITION sub relation,
+	relates IS_CONDITION;
+
+DECLARATION sub relation,
+	relates IS_DECLARATION;
+
+DECREMENT sub relation,
+	relates IS_DECREMENT;
+
+DEFAULT sub relation,
+	relates IS_DEFAULT;
+
+DO_WHILE sub relation,
+	relates IS_DO_WHILE;
+
+ELSE sub relation,
+	relates IS_ELSE;
+
+ENTRY sub relation,
+	relates IS_ENTRY;
+
+ENUMERATION sub relation,
+	relates IS_ENUMERATION;
+
+EQUAL sub relation,
+	relates IS_EQUAL;
+
+EXPRESSION sub relation,
+	relates IS_EXPRESSION;
+
+FILE sub relation,
+	relates IS_FILE;
+
+FINALLY sub relation,
+	relates IS_FINALLY;
+
+FOR sub relation,
+	relates IS_FOR;
+
+FUNCTION sub relation,
+	relates IS_FUNCTION;
+
+GREATER_THAN sub relation,
+	relates IS_GREATER_THAN;
+
+GREATER_THAN_OR_EQUAL sub relation,
+	relates IS_GREATER_THAN_OR_EQUAL;
+
+IDENTICAL sub relation,
+	relates IS_IDENTICAL;
+
+IDENTIFIER sub relation,
+	relates IS_IDENTIFIER;
+
+IF sub relation,
+	relates IS_IF;
+
+IMPORT sub relation,
+	relates IS_IMPORT;
+
+INCOMPLETE sub relation,
+	relates IS_INCOMPLETE;
+
+INCREMENT sub relation,
+	relates IS_INCREMENT;
+
+INITIALIZATION sub relation,
+	relates IS_INITIALIZATION;
+
+INSTANCE sub relation,
+	relates IS_INSTANCE;
+
+ITERATOR sub relation,
+	relates IS_ITERATOR;
+
+KEY sub relation,
+	relates IS_KEY;
+
+LEFT sub relation,
+	relates IS_LEFT;
+
+LEFT_SHIFT sub relation,
+	relates IS_LEFT_SHIFT;
+
+LESS_THAN sub relation,
+	relates IS_LESS_THAN;
+
+LIST sub relation,
+	relates IS_LIST;
+
+LITERAL sub relation,
+	relates IS_LITERAL;
+
+MAP sub relation,
+	relates IS_MAP;
+
+MODULE sub relation,
+	relates IS_MODULE;
+
+NAME sub relation,
+	relates IS_NAME;
+
+NEGATIVE sub relation,
+	relates IS_NEGATIVE;
+
+NOOP sub relation,
+	relates IS_NOOP;
+
+NOT sub relation,
+	relates IS_NOT;
+
+NULL sub relation,
+	relates IS_NULL;
+
+NUMBER sub relation,
+	relates IS_NUMBER;
+
+OPERATOR sub relation,
+	relates IS_OPERATOR;
+
+OR sub relation,
+	relates IS_OR;
+
+PATHNAME sub relation,
+	relates IS_PATHNAME;
+
+POSITIONAL sub relation,
+	relates IS_POSITIONAL;
+
+POSTFIX sub relation,
+	relates IS_POSTFIX;
+
+PRIMITIVE sub relation,
+	relates IS_PRIMITIVE;
+
+QUALIFIED sub relation,
+	relates IS_QUALIFIED;
+
+RECEIVER sub relation,
+	relates IS_RECEIVER;
+
+RELATIONAL sub relation,
+	relates IS_RELATIONAL;
+
+RETURN sub relation,
+	relates IS_RETURN;
+
+RIGHT sub relation,
+	relates IS_RIGHT;
+
+SCOPE sub relation,
+	relates IS_SCOPE;
+
+STATEMENT sub relation,
+	relates IS_STATEMENT;
+
+STRING sub relation,
+	relates IS_STRING;
+
+SUBSTRACT sub relation,
+	relates IS_SUBSTRACT;
+
+SWITCH sub relation,
+	relates IS_SWITCH;
+
+THEN sub relation,
+	relates IS_THEN;
+
+TRY sub relation,
+	relates IS_TRY;
+
+TYPE sub relation,
+	relates IS_TYPE;
+
+UNANNOTATED sub relation,
+	relates IS_UNANNOTATED;
+
+UNARY sub relation,
+	relates IS_UNARY;
+
+UPDATE sub relation,
+	relates IS_UPDATE;
+
+VALUE sub relation,
+	relates IS_VALUE;
+
+VARIABLE sub relation,
+	relates IS_VARIABLE;
+
+VISIBILITY sub relation,
+	relates IS_VISIBILITY;
+
+WHILE sub relation,
+	relates IS_WHILE;
+
+WORLD sub relation,
+	relates IS_WORLD;

@@ -281,3 +281,34 @@ cplusplus_prop__declarations_relation sub parent_child_relation,
 
 cplusplus_prop__declarator_relation sub parent_child_relation,
 	relates is_cplusplus_prop__declarator_role as is_child, relates has_cplusplus_prop__declarator_role as is_parent;
+
+##########---------- Semantic Roles ----------##########
+DECLARATION sub relation,
+	relates IS_DECLARATION;
+
+FILE sub relation,
+	relates IS_FILE;
+
+FUNCTION sub relation,
+	relates IS_FUNCTION;
+
+IDENTIFIER sub relation,
+	relates IS_IDENTIFIER;
+
+MODULE sub relation,
+	relates IS_MODULE;
+
+NAME sub relation,
+	relates IS_NAME;
+
+STATEMENT sub relation,
+	relates IS_STATEMENT;
+
+TYPE sub relation,
+	relates IS_TYPE;
+
+VISIBILITY sub relation,
+	relates IS_VISIBILITY;
+
+WORLD sub relation,
+	relates IS_WORLD;

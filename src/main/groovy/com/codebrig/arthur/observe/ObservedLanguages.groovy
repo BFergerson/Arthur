@@ -44,18 +44,8 @@ class ObservedLanguages extends ObservedLanguage {
                     }
                 }
             }
-        }
-        omniLanguage.getObservedSemanticRoles(true).each { role ->
-            observedLanguages.each { lang ->
-                lang.getEntitiesWithRole(role).each { entity ->
-                    observedLanguages.each {
-                        if (lang.language != it.language && it.observedEntityRole(entity, role)) {
-                            omniLanguage.addEntitySemanticRole(entity, role)
-                            it.removeEntityRole(entity, role)
-                            lang.removeEntityRole(entity, role)
-                        }
-                    }
-                }
+            lang.getObservedSemanticRoles(true).each {
+                omniLanguage.observeGlobalSemanticRole(it)
             }
         }
         return omniLanguage
@@ -63,16 +53,13 @@ class ObservedLanguages extends ObservedLanguage {
 
     final Set<String> globalAttributes
     final Set<String> globalRelations
+    final Set<String> globalSemanticRoles
 
     private ObservedLanguages(ObservationConfig observationConfig) {
         super(SourceLanguage.Omnilingual, observationConfig)
         this.globalAttributes = new HashSet<>()
         this.globalRelations = new HashSet<>()
-    }
-
-    void addEntitySemanticRole(String entity, String role) {
-        roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe([role].iterator())
+        this.globalSemanticRoles = new HashSet<>()
     }
 
     void observeGlobalAttribute(String attribute) {
@@ -83,6 +70,10 @@ class ObservedLanguages extends ObservedLanguage {
         globalRelations.add(relation)
     }
 
+    void observeGlobalSemanticRole(String role) {
+        globalSemanticRoles.add(role)
+    }
+
     @Override
     List<String> getObservedAttributes(boolean naturalOrdering) {
         if (naturalOrdering) {
@@ -91,6 +82,17 @@ class ObservedLanguages extends ObservedLanguage {
             return rtnAttributes
         } else {
             return globalAttributes.toList()
+        }
+    }
+
+    @Override
+    List<String> getObservedSemanticRoles(boolean naturalOrdering) {
+        if (naturalOrdering) {
+            def rtnRoles = globalSemanticRoles.toList()
+            rtnRoles.sort(String.CASE_INSENSITIVE_ORDER)
+            return rtnRoles
+        } else {
+            return globalSemanticRoles.toList()
         }
     }
 
