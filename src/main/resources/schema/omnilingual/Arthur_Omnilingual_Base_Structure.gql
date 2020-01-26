@@ -13571,6 +13571,11 @@ BashArithmeticSumArtifact sub BashSourceArtifact,
 	plays is_bash_children_role,
 	plays has_bash_children_role;
 
+BashArithmeticTernaryOperatorArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
+
 BashArrayAssignmentListArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role,
@@ -13610,6 +13615,10 @@ BashCasePatternListArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role,
 	plays has_bash_children_role;
+
+BashCOLONArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
 
 BashCombinedWordArtifact sub BashSourceArtifact,
 	# Structural
@@ -13881,6 +13890,10 @@ BashNumrangeFiledescriptorArtifact sub BashSourceArtifact,
 	plays is_bash_children_role,
 	plays has_bash_children_role;
 
+BashOctalLiteralArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
 BashORArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role;
@@ -13983,6 +13996,10 @@ BashQuestionApostropheArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role;
 
+BashQuestionArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
 BashRBForArithmeticArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role;
@@ -14008,6 +14025,15 @@ BashRedirectListArtifact sub BashSourceArtifact,
 BashRPRPArtifact sub BashSourceArtifact,
 	# Structural
 	plays is_bash_children_role;
+
+BashSelectArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role;
+
+BashSelectCommandArtifact sub BashSourceArtifact,
+	# Structural
+	plays is_bash_children_role,
+	plays has_bash_children_role;
 
 BashSEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
 	# Structural

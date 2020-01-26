@@ -340,6 +340,9 @@ class ObservedLanguage {
         //ex. EntityName
         //todo: better
         switch (entity) {
+            case "?":
+                entity = "Question"
+                break
             case "?'":
                 entity = "QuestionApostrophe"
                 break

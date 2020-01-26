@@ -110,6 +110,10 @@ ArithmeticSumArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
+ArithmeticTernaryOperatorArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 ArrayAssignmentListArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_RIGHT;
@@ -161,6 +165,10 @@ CasePatternListArtifact sub BashSourceArtifact,
 	plays IS_BLOCK,
 	plays IS_BODY,
 	plays IS_CASE;
+
+COLONArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE;
 
 CombinedWordArtifact sub BashSourceArtifact,
 	# Semantic
@@ -271,9 +279,12 @@ ERRORELEMENTArtifact sub BashSourceArtifact,
 
 ExclamationArtifact sub BashSourceArtifact,
 	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_IF,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
 FILEArtifact sub BashSourceArtifact,
@@ -391,6 +402,7 @@ IfShellcommandArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
 	plays IS_BODY,
+	plays IS_ELSE,
 	plays IS_IF,
 	plays IS_STATEMENT,
 	plays IS_THEN;
@@ -496,6 +508,10 @@ NumrangeFiledescriptorArtifact sub BashSourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_INCOMPLETE,
 	plays IS_RECEIVER;
+
+OctalLiteralArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 ORArtifact sub BashSourceArtifact,
 	# Semantic
@@ -615,6 +631,10 @@ QuestionApostropheArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
+QuestionArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
 RBForArithmeticArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
@@ -641,6 +661,14 @@ RPRPArtifact sub BashSourceArtifact,
 	plays IS_FOR,
 	plays IS_INCOMPLETE,
 	plays IS_UPDATE;
+
+SelectArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
+
+SelectCommandArtifact sub BashSourceArtifact,
+	# Semantic
+	plays IS_UNANNOTATED;
 
 SEMICOLONSEMICOLONArtifact sub BashSourceArtifact,
 	# Semantic
