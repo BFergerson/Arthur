@@ -2,470 +2,19 @@ define
 
 ##########---------- Entities ----------##########
 
-#####----- Omnilingual -----#####
-OmnilingualSourceArtifact sub SourceArtifact;
-
-AliasArtifact sub OmnilingualSourceArtifact;
-
-AndArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_AND,
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR;
-
-ArgArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_NAME;
-
-ArrayTypeArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_LIST,
-	plays IS_TYPE;
-
-AttributeArtifact sub OmnilingualSourceArtifact;
-
-AwaitExpressionArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
-
-BlockArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BLOCK,
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_THEN;
-
-BooleanLiteralArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_WHILE;
-
-BreakArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BREAK,
-	plays IS_STATEMENT;
-
-BreakStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_BREAK,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
-
-CastExpressionArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
-
-CatchClauseArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_CATCH,
-	plays IS_STATEMENT,
-	plays IS_TRY;
-
-ClassDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_TYPE;
-
-CommentArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_COMMENT,
-	plays IS_NOOP;
-
-CompilationUnitArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_FILE;
-
-ConditionalExpressionArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_WHILE;
-
-ConstArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE;
-
-ContinueStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_CONTINUE,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
-
-DoStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DO_WHILE,
-	plays IS_STATEMENT;
-
-EllipsisArtifact sub OmnilingualSourceArtifact;
-
-EmptyStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_FOR,
-	plays IS_NOOP,
-	plays IS_STATEMENT,
-	plays IS_WHILE;
-
-EnumDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_ENUMERATION,
-	plays IS_TYPE;
-
-ExpressionStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
-
-FieldDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_VARIABLE;
-
-FileArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_FILE;
-
-ForArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_FOR,
-	plays IS_STATEMENT;
-
-ForStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
-
-IdentifierArtifact sub OmnilingualSourceArtifact;
-
-IfArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IF;
-
-IfStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
-
-ImportArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_IMPORT;
-
-ImportDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_IMPORT;
-
-InterfaceDeclarationArtifact sub OmnilingualSourceArtifact;
-
-KwargArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_MAP,
-	plays IS_NAME;
-
-LabeledStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
-
-MethodDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_TYPE;
-
-ModuleArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_MODULE;
-
-NameArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALL,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
-
-NullableTypeArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_TYPE;
-
-NullLiteralArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_NULL,
-	plays IS_RIGHT,
-	plays IS_THEN;
-
-OperatorArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BOOLEAN,
-	plays IS_DECREMENT,
-	plays IS_DIVIDE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_GREATER_THAN,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_INCOMPLETE,
-	plays IS_INCREMENT,
-	plays IS_LEFT_SHIFT,
-	plays IS_LESS_THAN,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NEGATIVE,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_POSITIVE,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_UNARY,
-	plays IS_UNSIGNED,
-	plays IS_XOR;
-
-OrArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_OPERATOR,
-	plays IS_OR;
-
-ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_EXPRESSION;
-
-QualifiedNameArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_QUALIFIED;
-
-ReturnArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_RETURN,
-	plays IS_STATEMENT;
-
-ReturnStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_RETURN,
-	plays IS_STATEMENT,
-	plays IS_THEN;
-
-StrArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_PRIMITIVE,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN,
-	plays IS_VALUE;
-
-StringLiteralArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_SWITCH,
-	plays IS_THEN;
-
-SuperArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BASE,
-	plays IS_CALL,
-	plays IS_EXPRESSION;
-
-SwitchCaseArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_CASE,
-	plays IS_SWITCH;
-
-SwitchStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_STATEMENT,
-	plays IS_SWITCH;
-
-ThisExpressionArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_THIS;
-
-ThrowStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_THROW;
-
-TryStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_TRY;
-
-TypeParameterArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
-
-VariableDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_VARIABLE;
-
-VariableDeclaratorArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_VARIABLE;
-
-WhileArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_STATEMENT,
-	plays IS_WHILE;
-
-WhileStatementArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
-
-YieldArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALL,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RETURN,
-	plays IS_RIGHT;
-
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoArrayTypeArtifact sub ArrayTypeArtifact,
+GoArrayTypeArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_CALLEE,
 	plays IS_ENTRY,
 	plays IS_EXPRESSION,
 	plays IS_KEY,
-	plays IS_POSITIONAL;
+	plays IS_LIST,
+	plays IS_POSITIONAL,
+	plays IS_TYPE;
 
 GoAssignStmtArtifact sub GoSourceArtifact,
 	# Semantic
@@ -611,7 +160,9 @@ GoCommClauseArtifact sub GoSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_STATEMENT;
 
-GoCommentArtifact sub CommentArtifact;
+GoCommentArtifact sub GoSourceArtifact,
+	# Semantic
+	plays IS_COMMENT;
 
 GoCommentGroupArtifact sub GoSourceArtifact,
 	# Semantic
@@ -640,7 +191,7 @@ GoDeferStmtArtifact sub GoSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_STATEMENT;
 
-GoEllipsisArtifact sub EllipsisArtifact,
+GoEllipsisArtifact sub GoSourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
 	plays IS_TYPE;
@@ -676,7 +227,9 @@ GoFieldListArtifact sub GoSourceArtifact,
 	plays IS_RECEIVER,
 	plays IS_RETURN;
 
-GoFileArtifact sub FileArtifact;
+GoFileArtifact sub GoSourceArtifact,
+	# Semantic
+	plays IS_FILE;
 
 GoForStmtArtifact sub GoSourceArtifact,
 	# Semantic
@@ -819,10 +372,40 @@ GoMapTypeArtifact sub GoSourceArtifact,
 	plays IS_POSITIONAL,
 	plays IS_TYPE;
 
-GoOperatorArtifact sub OperatorArtifact,
+GoOperatorArtifact sub GoSourceArtifact,
 	# Semantic
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BOOLEAN,
 	plays IS_DECLARATION,
-	plays IS_TAKE_ADDRESS;
+	plays IS_DECREMENT,
+	plays IS_DIVIDE,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_INCOMPLETE,
+	plays IS_INCREMENT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_NEGATIVE,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_POSITIVE,
+	plays IS_RELATIONAL,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_TAKE_ADDRESS,
+	plays IS_UNARY,
+	plays IS_XOR;
 
 GoParenExprArtifact sub GoSourceArtifact,
 	# Semantic
@@ -1056,11 +639,13 @@ JavaArrayInitializerArtifact sub JavaSourceArtifact,
 	plays IS_LIST,
 	plays IS_LITERAL;
 
-JavaArrayTypeArtifact sub ArrayTypeArtifact,
+JavaArrayTypeArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_FUNCTION,
+	plays IS_LIST,
 	plays IS_PRIMITIVE,
-	plays IS_RETURN;
+	plays IS_RETURN,
+	plays IS_TYPE;
 
 JavaAssertStatementArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1106,15 +691,21 @@ JavaAssignmentArtifact sub JavaSourceArtifact,
 	plays IS_UPDATE,
 	plays IS_XOR;
 
-JavaBlockArtifact sub BlockArtifact,
+JavaBlockArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BLOCK,
+	plays IS_BODY,
 	plays IS_CASE,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
 	plays IS_FINALLY,
+	plays IS_FOR,
+	plays IS_FUNCTION,
 	plays IS_IF,
 	plays IS_SCOPE,
 	plays IS_STATEMENT,
 	plays IS_SWITCH,
+	plays IS_THEN,
 	plays IS_TRY,
 	plays IS_WHILE;
 
@@ -1122,16 +713,40 @@ JavaBlockCommentArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_COMMENT;
 
-JavaBooleanLiteralArtifact sub BooleanLiteralArtifact,
+JavaBooleanLiteralArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_POSITIONAL;
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_POSITIONAL,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
-JavaBreakStatementArtifact sub BreakStatementArtifact,
+JavaBreakStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
+	plays IS_BREAK,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN;
 
-JavaCastExpressionArtifact sub CastExpressionArtifact,
+JavaCastExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -1141,17 +756,21 @@ JavaCastExpressionArtifact sub CastExpressionArtifact,
 	plays IS_CASE,
 	plays IS_CONDITION,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_IF,
+	plays IS_INCOMPLETE,
 	plays IS_LEFT,
 	plays IS_POSITIONAL,
 	plays IS_RIGHT,
 	plays IS_SWITCH,
 	plays IS_THEN;
 
-JavaCatchClauseArtifact sub CatchClauseArtifact,
+JavaCatchClauseArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_CATCH,
+	plays IS_TRY,
 	plays IS_UNANNOTATED;
 
 JavaCharacterLiteralArtifact sub JavaSourceArtifact,
@@ -1192,11 +811,28 @@ JavaClassInstanceCreationArtifact sub JavaSourceArtifact,
 	plays IS_RIGHT,
 	plays IS_THEN;
 
-JavaCompilationUnitArtifact sub CompilationUnitArtifact;
-
-JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_POSITIONAL;
+	plays IS_FILE;
+
+JavaConditionalExpressionArtifact sub JavaSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_POSITIONAL,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 JavaConstructorInvocationArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1204,10 +840,14 @@ JavaConstructorInvocationArtifact sub JavaSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_STATEMENT;
 
-JavaContinueStatementArtifact sub ContinueStatementArtifact,
+JavaContinueStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
+	plays IS_ELSE,
+	plays IS_IF,
 	plays IS_SWITCH,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
 JavaCreationReferenceArtifact sub JavaSourceArtifact,
@@ -1229,16 +869,22 @@ JavaDimensionArtifact sub JavaSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_TYPE;
 
-JavaDoStatementArtifact sub DoStatementArtifact,
+JavaDoStatementArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_CASE,
+	plays IS_DO_WHILE,
+	plays IS_STATEMENT,
 	plays IS_SWITCH;
 
-JavaEmptyStatementArtifact sub EmptyStatementArtifact,
+JavaEmptyStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_FOR,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_WHILE;
 
 JavaEnhancedForStatementArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1257,9 +903,12 @@ JavaEnumConstantDeclarationArtifact sub JavaSourceArtifact,
 	plays IS_DECLARATION,
 	plays IS_ENUMERATION;
 
-JavaEnumDeclarationArtifact sub EnumDeclarationArtifact,
+JavaEnumDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_BODY;
+	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_TYPE;
 
 JavaExpressionMethodReferenceArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1277,10 +926,18 @@ JavaExpressionMethodReferenceArtifact sub JavaSourceArtifact,
 	plays IS_RIGHT,
 	plays IS_THEN;
 
-JavaExpressionStatementArtifact sub ExpressionStatementArtifact,
+JavaExpressionStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 JavaFieldAccessArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1304,22 +961,40 @@ JavaFieldAccessArtifact sub JavaSourceArtifact,
 	plays IS_UNANNOTATED,
 	plays IS_WHILE;
 
-JavaFieldDeclarationArtifact sub FieldDeclarationArtifact,
+JavaFieldDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_BODY;
+	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
 
-JavaForStatementArtifact sub ForStatementArtifact,
+JavaForStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
 	plays IS_SWITCH,
+	plays IS_THEN,
 	plays IS_UNANNOTATED;
 
-JavaIfStatementArtifact sub IfStatementArtifact,
+JavaIfStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_WHILE;
 
-JavaImportDeclarationArtifact sub ImportDeclarationArtifact;
+JavaImportDeclarationArtifact sub JavaSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_IMPORT;
 
 JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1401,9 +1076,12 @@ JavaJavadocArtifact sub JavaSourceArtifact,
 	plays IS_COMMENT,
 	plays IS_DOCUMENTATION;
 
-JavaLabeledStatementArtifact sub LabeledStatementArtifact,
+JavaLabeledStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
 	plays IS_SWITCH;
 
 JavaLambdaExpressionArtifact sub JavaSourceArtifact,
@@ -1442,11 +1120,14 @@ JavaMemberValuePairArtifact sub JavaSourceArtifact,
 	plays IS_ANNOTATION,
 	plays IS_INCOMPLETE;
 
-JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_BODY,
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
 	plays IS_PACKAGE,
 	plays IS_SUBTYPE,
+	plays IS_TYPE,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
@@ -1504,9 +1185,23 @@ JavaNormalAnnotationArtifact sub JavaSourceArtifact,
 	plays IS_ANNOTATION,
 	plays IS_INCOMPLETE;
 
-JavaNullLiteralArtifact sub NullLiteralArtifact,
+JavaNullLiteralArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_POSITIONAL;
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_NULL,
+	plays IS_POSITIONAL,
+	plays IS_RIGHT,
+	plays IS_THEN;
 
 JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1529,9 +1224,39 @@ JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	plays IS_SWITCH,
 	plays IS_THEN;
 
-JavaOperatorArtifact sub OperatorArtifact,
+JavaOperatorArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_POSTFIX;
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BOOLEAN,
+	plays IS_DECREMENT,
+	plays IS_DIVIDE,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN,
+	plays IS_GREATER_THAN_OR_EQUAL,
+	plays IS_INCREMENT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_NEGATIVE,
+	plays IS_NOT,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_POSITIVE,
+	plays IS_POSTFIX,
+	plays IS_RELATIONAL,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_UNARY,
+	plays IS_UNSIGNED,
+	plays IS_XOR;
 
 JavaPackageDeclarationArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1547,7 +1272,7 @@ JavaParameterizedTypeArtifact sub JavaSourceArtifact,
 	plays IS_RETURN,
 	plays IS_TYPE;
 
-JavaParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
+JavaParenthesizedExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -1558,6 +1283,7 @@ JavaParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
 	plays IS_CONDITION,
 	plays IS_DO_WHILE,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_IF,
@@ -1639,7 +1365,7 @@ JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
 	plays IS_PRIMITIVE,
 	plays IS_TYPE;
 
-JavaQualifiedNameArtifact sub QualifiedNameArtifact,
+JavaQualifiedNameArtifact sub JavaSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -1653,11 +1379,13 @@ JavaQualifiedNameArtifact sub QualifiedNameArtifact,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
 	plays IS_IF,
 	plays IS_IMPORT,
 	plays IS_LEFT,
 	plays IS_PATHNAME,
 	plays IS_POSITIONAL,
+	plays IS_QUALIFIED,
 	plays IS_RECEIVER,
 	plays IS_RIGHT,
 	plays IS_SWITCH,
@@ -1669,10 +1397,16 @@ JavaQualifiedTypeArtifact sub JavaSourceArtifact,
 	plays IS_QUALIFIED,
 	plays IS_TYPE;
 
-JavaReturnStatementArtifact sub ReturnStatementArtifact,
+JavaReturnStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_RETURN,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN;
 
 JavaSimpleNameArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1721,10 +1455,27 @@ JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	plays IS_ITERATOR,
 	plays IS_VARIABLE;
 
-JavaStringLiteralArtifact sub StringLiteralArtifact,
+JavaStringLiteralArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_LEFT,
+	plays IS_LITERAL,
 	plays IS_POSITIONAL,
-	plays IS_RECEIVER;
+	plays IS_RECEIVER,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_SWITCH,
+	plays IS_THEN;
 
 JavaSuperConstructorInvocationArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1778,14 +1529,19 @@ JavaSuperMethodReferenceArtifact sub JavaSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_POSITIONAL;
 
-JavaSwitchCaseArtifact sub SwitchCaseArtifact,
+JavaSwitchCaseArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_CASE,
 	plays IS_DEFAULT,
-	plays IS_STATEMENT;
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
 
-JavaSwitchStatementArtifact sub SwitchStatementArtifact,
+JavaSwitchStatementArtifact sub JavaSourceArtifact,
 	# Semantic
-	plays IS_CASE;
+	plays IS_BODY,
+	plays IS_CASE,
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
 
 JavaSynchronizedStatementArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1809,22 +1565,47 @@ JavaTextElementArtifact sub JavaSourceArtifact,
 	plays IS_DOCUMENTATION,
 	plays IS_INCOMPLETE;
 
-JavaThisExpressionArtifact sub ThisExpressionArtifact,
+JavaThisExpressionArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
+	plays IS_LEFT,
 	plays IS_POSITIONAL,
 	plays IS_RECEIVER,
-	plays IS_SWITCH;
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_THIS;
 
-JavaThrowStatementArtifact sub ThrowStatementArtifact,
+JavaThrowStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_THROW;
 
-JavaTryStatementArtifact sub TryStatementArtifact,
+JavaTryStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
 	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
 	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_TRY,
 	plays IS_UNANNOTATED;
 
 JavaTypeDeclarationArtifact sub JavaSourceArtifact,
@@ -1870,7 +1651,10 @@ JavaTypeMethodReferenceArtifact sub JavaSourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_POSITIONAL;
 
-JavaTypeParameterArtifact sub TypeParameterArtifact;
+JavaTypeParameterArtifact sub JavaSourceArtifact,
+	# Semantic
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
 
 JavaUnionTypeArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -1901,10 +1685,16 @@ JavaVariableDeclarationStatementArtifact sub JavaSourceArtifact,
 	plays IS_SWITCH,
 	plays IS_VARIABLE;
 
-JavaWhileStatementArtifact sub WhileStatementArtifact,
+JavaWhileStatementArtifact sub JavaSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_CASE,
-	plays IS_SWITCH;
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 JavaWildcardTypeArtifact sub JavaSourceArtifact,
 	# Semantic
@@ -2044,7 +1834,7 @@ JavascriptAssignmentPatternArtifact sub JavascriptSourceArtifact,
 	plays IS_MAP,
 	plays IS_VALUE;
 
-JavascriptAwaitExpressionArtifact sub AwaitExpressionArtifact,
+JavascriptAwaitExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -2056,9 +1846,11 @@ JavascriptAwaitExpressionArtifact sub AwaitExpressionArtifact,
 	plays IS_CALLEE,
 	plays IS_CONDITION,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_IF,
+	plays IS_INCOMPLETE,
 	plays IS_INITIALIZATION,
 	plays IS_KEY,
 	plays IS_LEFT,
@@ -2167,14 +1959,32 @@ JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-JavascriptBooleanLiteralArtifact sub BooleanLiteralArtifact,
+JavascriptBooleanLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_BOOLEAN,
+	plays IS_CALL,
 	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_INITIALIZATION,
 	plays IS_KEY,
+	plays IS_LEFT,
+	plays IS_LITERAL,
 	plays IS_MAP,
+	plays IS_RIGHT,
 	plays IS_SWITCH,
-	plays IS_VALUE;
+	plays IS_THEN,
+	plays IS_VALUE,
+	plays IS_WHILE;
 
 JavascriptBooleanLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -2189,10 +1999,16 @@ JavascriptBooleanTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_DECLARATION,
 	plays IS_TYPE;
 
-JavascriptBreakStatementArtifact sub BreakStatementArtifact,
+JavascriptBreakStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
+	plays IS_BREAK,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
 	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
 JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
@@ -2227,17 +2043,23 @@ JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-JavascriptCatchClauseArtifact sub CatchClauseArtifact;
+JavascriptCatchClauseArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_STATEMENT,
+	plays IS_TRY;
 
 JavascriptClassBodyArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_TYPE;
 
-JavascriptClassDeclarationArtifact sub ClassDeclarationArtifact,
+JavascriptClassDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_DECLARATION,
 	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
+	plays IS_STATEMENT,
+	plays IS_TYPE;
 
 JavascriptClassExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -2296,23 +2118,44 @@ JavascriptCommentLineArtifact sub JavascriptSourceArtifact,
 	plays IS_COMMENT,
 	plays IS_NOOP;
 
-JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+JavascriptConditionalExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
 	plays IS_BASE,
+	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_BOOLEAN,
+	plays IS_CALL,
 	plays IS_CALLEE,
+	plays IS_CONDITION,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_INITIALIZATION,
 	plays IS_KEY,
 	plays IS_LEFT,
 	plays IS_MAP,
+	plays IS_RIGHT,
+	plays IS_SWITCH,
+	plays IS_THEN,
 	plays IS_TYPE,
-	plays IS_VALUE;
+	plays IS_VALUE,
+	plays IS_WHILE;
 
-JavascriptContinueStatementArtifact sub ContinueStatementArtifact,
+JavascriptContinueStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
+	plays IS_CONTINUE,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
 	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
 JavascriptDebuggerStatementArtifact sub JavascriptSourceArtifact,
@@ -2409,12 +2252,17 @@ JavascriptDoWhileStatementArtifact sub JavascriptSourceArtifact,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
-JavascriptEmptyStatementArtifact sub EmptyStatementArtifact,
+JavascriptEmptyStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_DO_WHILE,
 	plays IS_ELSE,
+	plays IS_FOR,
 	plays IS_IF,
-	plays IS_THEN;
+	plays IS_NOOP,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 JavascriptEmptyTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -2454,9 +2302,20 @@ JavascriptExportSpecifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact;
+JavascriptExpressionStatementArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
-JavascriptFileArtifact sub FileArtifact;
+JavascriptFileArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_FILE;
 
 JavascriptForInStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -2477,9 +2336,15 @@ JavascriptForOfStatementArtifact sub JavascriptSourceArtifact,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
-JavascriptForStatementArtifact sub ForStatementArtifact,
+JavascriptForStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
 JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
@@ -2533,7 +2398,7 @@ JavascriptGenericTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_DECLARATION,
 	plays IS_TYPE;
 
-JavascriptIdentifierArtifact sub IdentifierArtifact,
+JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -2568,20 +2433,30 @@ JavascriptIdentifierArtifact sub IdentifierArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-JavascriptIfStatementArtifact sub IfStatementArtifact,
+JavascriptIfStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DO_WHILE;
+	plays IS_BODY,
+	plays IS_DO_WHILE,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
-JavascriptImportArtifact sub ImportArtifact,
+JavascriptImportArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_CALL,
 	plays IS_CALLEE,
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION,
+	plays IS_IMPORT;
 
-JavascriptImportDeclarationArtifact sub ImportDeclarationArtifact,
+JavascriptImportDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_BODY,
+	plays IS_DECLARATION,
 	plays IS_IF,
+	plays IS_IMPORT,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
@@ -2603,7 +2478,7 @@ JavascriptInferredPredicateArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-JavascriptInterfaceDeclarationArtifact sub InterfaceDeclarationArtifact,
+JavascriptInterfaceDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE,
 	plays IS_UNANNOTATED;
@@ -2710,11 +2585,14 @@ JavascriptJSXTextArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-JavascriptLabeledStatementArtifact sub LabeledStatementArtifact,
+JavascriptLabeledStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_ANNOTATION,
+	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_IF,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT,
 	plays IS_THEN,
 	plays IS_WHILE;
 
@@ -2841,17 +2719,31 @@ JavascriptNullableTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_TYPE;
 
-JavascriptNullLiteralArtifact sub NullLiteralArtifact,
+JavascriptNullLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
 	plays IS_BASE,
+	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_BOOLEAN,
+	plays IS_CALL,
 	plays IS_CASE,
 	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_INITIALIZATION,
 	plays IS_KEY,
+	plays IS_LEFT,
+	plays IS_LITERAL,
 	plays IS_MAP,
 	plays IS_NAME,
+	plays IS_NULL,
+	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_TYPE,
 	plays IS_VALUE;
 
@@ -2991,12 +2883,43 @@ JavascriptOpaqueTypeArtifact sub JavascriptSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_UNANNOTATED;
 
-JavascriptOperatorArtifact sub OperatorArtifact,
+JavascriptOperatorArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARITHMETIC,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_BOOLEAN,
+	plays IS_DECREMENT,
+	plays IS_DIVIDE,
+	plays IS_EQUAL,
+	plays IS_EXPRESSION,
+	plays IS_GREATER_THAN,
+	plays IS_GREATER_THAN_OR_EQUAL,
 	plays IS_IDENTICAL,
+	plays IS_INCOMPLETE,
+	plays IS_INCREMENT,
+	plays IS_LEFT_SHIFT,
+	plays IS_LESS_THAN,
+	plays IS_LESS_THAN_OR_EQUAL,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_NEGATIVE,
+	plays IS_NOT,
 	plays IS_NULL,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_POSITIVE,
+	plays IS_RELATIONAL,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
 	plays IS_THROW,
-	plays IS_TYPE;
+	plays IS_TYPE,
+	plays IS_UNARY,
+	plays IS_UNSIGNED,
+	plays IS_XOR;
 
 JavascriptPrivateNameArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -3047,10 +2970,16 @@ JavascriptRestElementArtifact sub JavascriptSourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_INCOMPLETE;
 
-JavascriptReturnStatementArtifact sub ReturnStatementArtifact,
+JavascriptReturnStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_DO_WHILE,
+	plays IS_ELSE,
 	plays IS_FOR,
+	plays IS_IF,
+	plays IS_RETURN,
+	plays IS_STATEMENT,
+	plays IS_THEN,
 	plays IS_WHILE;
 
 JavascriptSequenceExpressionArtifact sub JavascriptSourceArtifact,
@@ -3093,18 +3022,35 @@ JavascriptSpreadElementArtifact sub JavascriptSourceArtifact,
 	plays IS_LIST,
 	plays IS_VALUE;
 
-JavascriptStringLiteralArtifact sub StringLiteralArtifact,
+JavascriptStringLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_BOOLEAN,
+	plays IS_CALL,
 	plays IS_CALLEE,
+	plays IS_CASE,
+	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_IMPORT,
 	plays IS_INCOMPLETE,
 	plays IS_INITIALIZATION,
 	plays IS_KEY,
+	plays IS_LEFT,
+	plays IS_LITERAL,
 	plays IS_MAP,
 	plays IS_NAME,
 	plays IS_PATHNAME,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_SWITCH,
+	plays IS_THEN,
 	plays IS_VALUE;
 
 JavascriptStringLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
@@ -3120,18 +3066,27 @@ JavascriptStringTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_STRING,
 	plays IS_TYPE;
 
-JavascriptSuperArtifact sub SuperArtifact,
+JavascriptSuperArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BASE,
+	plays IS_CALL,
 	plays IS_CALLEE,
+	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER;
 
-JavascriptSwitchCaseArtifact sub SwitchCaseArtifact;
-
-JavascriptSwitchStatementArtifact sub SwitchStatementArtifact,
+JavascriptSwitchCaseArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_CASE,
+	plays IS_SWITCH;
+
+JavascriptSwitchStatementArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_FOR,
 	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_SWITCH,
 	plays IS_THEN,
 	plays IS_WHILE;
 
@@ -3193,28 +3148,53 @@ JavascriptTemplateLiteralArtifact sub JavascriptSourceArtifact,
 	plays IS_TYPE,
 	plays IS_VALUE;
 
-JavascriptThisExpressionArtifact sub ThisExpressionArtifact,
+JavascriptThisExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
 	plays IS_BOOLEAN,
+	plays IS_CALL,
 	plays IS_CALLEE,
 	plays IS_CASE,
 	plays IS_CONDITION,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_INITIALIZATION,
+	plays IS_LEFT,
 	plays IS_MAP,
+	plays IS_RIGHT,
+	plays IS_THEN,
+	plays IS_THIS,
 	plays IS_VALUE;
 
 JavascriptThisTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-JavascriptThrowStatementArtifact sub ThrowStatementArtifact,
+JavascriptThrowStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_FOR;
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_FOR,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_THROW;
 
-JavascriptTryStatementArtifact sub TryStatementArtifact,
+JavascriptTryStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
+	plays IS_BODY,
 	plays IS_DO_WHILE,
 	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_TRY,
 	plays IS_WHILE;
 
 JavascriptTupleTypeAnnotationArtifact sub JavascriptSourceArtifact,
@@ -3267,9 +3247,11 @@ JavascriptTypeofTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_TYPE;
 
-JavascriptTypeParameterArtifact sub TypeParameterArtifact,
+JavascriptTypeParameterArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION;
+	plays IS_ARGUMENT,
+	plays IS_DECLARATION,
+	plays IS_TYPE;
 
 JavascriptTypeParameterDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -3365,9 +3347,10 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
+JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
 	plays IS_BODY,
+	plays IS_DECLARATION,
 	plays IS_DO_WHILE,
 	plays IS_ELSE,
 	plays IS_FOR,
@@ -3377,9 +3360,13 @@ JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	plays IS_ITERATOR,
 	plays IS_STATEMENT,
 	plays IS_THEN,
+	plays IS_VARIABLE,
 	plays IS_WHILE;
 
-JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact;
+JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_VARIABLE;
 
 JavascriptVarianceArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -3391,7 +3378,14 @@ JavascriptVoidTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_TYPE;
 
-JavascriptWhileStatementArtifact sub WhileStatementArtifact;
+JavascriptWhileStatementArtifact sub JavascriptSourceArtifact,
+	# Semantic
+	plays IS_BODY,
+	plays IS_ELSE,
+	plays IS_IF,
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 JavascriptWithStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
@@ -3431,9 +3425,14 @@ JavascriptYieldExpressionArtifact sub JavascriptSourceArtifact,
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
-PhpArgArtifact sub ArgArtifact;
+PhpArgArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT;
 
-PhpCommentArtifact sub CommentArtifact;
+PhpCommentArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
 
 PhpCommentDocArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -3441,8 +3440,10 @@ PhpCommentDocArtifact sub PhpSourceArtifact,
 	plays IS_DOCUMENTATION,
 	plays IS_NOOP;
 
-PhpConstArtifact sub ConstArtifact,
+PhpConstArtifact sub PhpSourceArtifact,
 	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
 	plays IS_VARIABLE;
 
 PhpDeclareStmtsArtifact sub PhpSourceArtifact,
@@ -4622,13 +4623,19 @@ PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
 	plays IS_RETURN,
 	plays IS_TYPE;
 
-PhpModuleArtifact sub ModuleArtifact;
+PhpModuleArtifact sub PhpSourceArtifact,
+	# Semantic
+	plays IS_MODULE;
 
-PhpNameArtifact sub NameArtifact,
+PhpNameArtifact sub PhpSourceArtifact,
 	# Semantic
 	plays IS_ALIAS,
+	plays IS_ARGUMENT,
 	plays IS_BASE,
+	plays IS_CALL,
 	plays IS_CATCH,
+	plays IS_EXPRESSION,
+	plays IS_IDENTIFIER,
 	plays IS_IMPLEMENTS,
 	plays IS_INCOMPLETE,
 	plays IS_RECEIVER,
@@ -4649,9 +4656,10 @@ PhpNameFullyQualifiedArtifact sub PhpSourceArtifact,
 	plays IS_TYPE,
 	plays IS_VARIABLE;
 
-PhpNullableTypeArtifact sub NullableTypeArtifact,
+PhpNullableTypeArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE;
+	plays IS_INCOMPLETE,
+	plays IS_TYPE;
 
 PhpParamArtifact sub PhpSourceArtifact,
 	# Semantic
@@ -5172,7 +5180,7 @@ PythonAddArtifact sub PythonSourceArtifact,
 	plays IS_BINARY,
 	plays IS_OPERATOR;
 
-PythonAliasArtifact sub AliasArtifact,
+PythonAliasArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_IDENTIFIER,
 	plays IS_IMPORT,
@@ -5185,7 +5193,11 @@ PythonAliasAsnameArtifact sub PythonSourceArtifact,
 	plays IS_IMPORT,
 	plays IS_PATHNAME;
 
-PythonAndArtifact sub AndArtifact;
+PythonAndArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_AND,
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR;
 
 PythonAnnAssignArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5193,10 +5205,12 @@ PythonAnnAssignArtifact sub PythonSourceArtifact,
 	plays IS_BINARY,
 	plays IS_OPERATOR;
 
-PythonArgArtifact sub ArgArtifact,
+PythonArgArtifact sub PythonSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
 	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays IS_FUNCTION,
+	plays IS_NAME;
 
 PythonArgumentsArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5237,7 +5251,7 @@ PythonAsyncWithArtifact sub PythonSourceArtifact,
 	plays IS_SCOPE,
 	plays IS_STATEMENT;
 
-PythonAttributeArtifact sub AttributeArtifact,
+PythonAttributeArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER;
@@ -5369,7 +5383,10 @@ PythonBoolOpArtifact sub PythonSourceArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-PythonBreakArtifact sub BreakArtifact;
+PythonBreakArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_BREAK,
+	plays IS_STATEMENT;
 
 PythonBytesArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5542,7 +5559,7 @@ PythonDivArtifact sub PythonSourceArtifact,
 	plays IS_DIVIDE,
 	plays IS_OPERATOR;
 
-PythonEllipsisArtifact sub EllipsisArtifact,
+PythonEllipsisArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_BODY,
@@ -5590,9 +5607,11 @@ PythonFloorDivArtifact sub PythonSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_OPERATOR;
 
-PythonForArtifact sub ForArtifact,
+PythonForArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_ITERATOR;
+	plays IS_FOR,
+	plays IS_ITERATOR,
+	plays IS_STATEMENT;
 
 PythonForBodyArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5670,7 +5689,10 @@ PythonGtEArtifact sub PythonSourceArtifact,
 	plays IS_OPERATOR,
 	plays IS_RELATIONAL;
 
-PythonIfArtifact sub IfArtifact;
+PythonIfArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_IF;
 
 PythonIfBodyArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5709,9 +5731,10 @@ PythonIfOrelseArtifact sub PythonSourceArtifact,
 	plays IS_ELSE,
 	plays IS_IF;
 
-PythonImportArtifact sub ImportArtifact,
+PythonImportArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
+	plays IS_IMPORT,
 	plays IS_STATEMENT;
 
 PythonImportFromArtifact sub PythonSourceArtifact,
@@ -5799,11 +5822,13 @@ PythonKeywordArtifact sub PythonSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_NAME;
 
-PythonKwargArtifact sub KwargArtifact,
+PythonKwargArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ARGS_LIST,
 	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays IS_FUNCTION,
+	plays IS_MAP,
+	plays IS_NAME;
 
 PythonKwonlyArgArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5916,9 +5941,10 @@ PythonModArtifact sub PythonSourceArtifact,
 	plays IS_MODULE,
 	plays IS_OPERATOR;
 
-PythonModuleArtifact sub ModuleArtifact,
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Semantic
-	plays IS_FILE;
+	plays IS_FILE,
+	plays IS_MODULE;
 
 PythonMultArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -5927,17 +5953,21 @@ PythonMultArtifact sub PythonSourceArtifact,
 	plays IS_MULTIPLY,
 	plays IS_OPERATOR;
 
-PythonNameArtifact sub NameArtifact,
+PythonNameArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ANNOTATION,
+	plays IS_ARGUMENT,
 	plays IS_BINARY,
 	plays IS_BODY,
+	plays IS_CALL,
 	plays IS_CALLEE,
 	plays IS_CONDITION,
 	plays IS_DEFAULT,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
+	plays IS_IDENTIFIER,
 	plays IS_IF,
 	plays IS_KEY,
 	plays IS_LEFT,
@@ -6042,7 +6072,11 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays IS_VALUE,
 	plays IS_WHILE;
 
-PythonOrArtifact sub OrArtifact;
+PythonOrArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_BOOLEAN,
+	plays IS_OPERATOR,
+	plays IS_OR;
 
 PythonPassArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -6107,7 +6141,10 @@ PythonRemainderNoopsArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_NOOP;
 
-PythonReturnArtifact sub ReturnArtifact;
+PythonReturnArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_RETURN,
+	plays IS_STATEMENT;
 
 PythonRShiftArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -6178,19 +6215,34 @@ PythonStarredArtifact sub PythonSourceArtifact,
 	plays IS_POSITIONAL,
 	plays IS_UNANNOTATED;
 
-PythonStrArtifact sub StrArtifact,
+PythonStrArtifact sub PythonSourceArtifact,
 	# Semantic
 	plays IS_ANNOTATION,
+	plays IS_ARGUMENT,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_DEFAULT,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
 	plays IS_IF,
 	plays IS_KEY,
+	plays IS_LEFT,
+	plays IS_LITERAL,
 	plays IS_MAP,
 	plays IS_NAME,
 	plays IS_NOOP,
 	plays IS_POSITIONAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
 	plays IS_STATEMENT,
-	plays IS_UPDATE;
+	plays IS_STRING,
+	plays IS_THEN,
+	plays IS_UPDATE,
+	plays IS_VALUE;
 
 PythonSubArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -6338,7 +6390,10 @@ PythonVarargArtifact sub PythonSourceArtifact,
 	plays IS_LIST,
 	plays IS_NAME;
 
-PythonWhileArtifact sub WhileArtifact;
+PythonWhileArtifact sub PythonSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
 
 PythonWithArtifact sub PythonSourceArtifact,
 	# Semantic
@@ -6366,10 +6421,17 @@ PythonWithItemsArtifact sub PythonSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_SCOPE;
 
-PythonYieldArtifact sub YieldArtifact,
+PythonYieldArtifact sub PythonSourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_CALL,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
 	plays IS_NAME,
 	plays IS_POSITIONAL,
+	plays IS_RETURN,
+	plays IS_RIGHT,
 	plays IS_STATEMENT;
 
 PythonYieldFromArtifact sub PythonSourceArtifact,
@@ -6391,7 +6453,7 @@ PythonYieldFromArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
-RubyAliasArtifact sub AliasArtifact,
+RubyAliasArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ALIAS,
 	plays IS_BODY,
@@ -6400,18 +6462,21 @@ RubyAliasArtifact sub AliasArtifact,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
-RubyAndArtifact sub AndArtifact,
+RubyAndArtifact sub RubySourceArtifact,
 	# Semantic
+	plays IS_AND,
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
 	plays IS_BINARY,
 	plays IS_BODY,
+	plays IS_BOOLEAN,
 	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FUNCTION,
 	plays IS_LEFT,
+	plays IS_OPERATOR,
 	plays IS_RIGHT,
 	plays IS_THEN,
 	plays IS_TUPLE,
@@ -6428,10 +6493,12 @@ RubyAndAsgnArtifact sub RubySourceArtifact,
 	plays IS_OPERATOR,
 	plays IS_THEN;
 
-RubyArgArtifact sub ArgArtifact,
+RubyArgArtifact sub RubySourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
 	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
+	plays IS_IDENTIFIER,
+	plays IS_NAME;
 
 RubyArgsArtifact sub RubySourceArtifact,
 	# Semantic
@@ -6505,16 +6572,22 @@ RubyBlockargArtifact sub RubySourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_NAME;
 
-RubyBlockArtifact sub BlockArtifact,
+RubyBlockArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
 	plays IS_BINARY,
+	plays IS_BLOCK,
+	plays IS_BODY,
 	plays IS_CALL,
 	plays IS_CONDITION,
+	plays IS_ELSE,
 	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
 	plays IS_LEFT,
 	plays IS_RIGHT,
+	plays IS_THEN,
 	plays IS_TUPLE,
 	plays IS_UPDATE,
 	plays IS_VALUE;
@@ -6526,12 +6599,14 @@ RubyBlockPassArtifact sub RubySourceArtifact,
 	plays IS_FUNCTION,
 	plays IS_UNANNOTATED;
 
-RubyBreakArtifact sub BreakArtifact,
+RubyBreakArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BODY,
+	plays IS_BREAK,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
 RubyCaseArtifact sub RubySourceArtifact,
@@ -6581,7 +6656,10 @@ RubyClassArtifact sub RubySourceArtifact,
 	plays IS_THEN,
 	plays IS_TYPE;
 
-RubyCommentArtifact sub CommentArtifact;
+RubyCommentArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
 
 RubyComplexArtifact sub RubySourceArtifact,
 	# Semantic
@@ -6595,7 +6673,7 @@ RubyComplexArtifact sub RubySourceArtifact,
 	plays IS_PRIMITIVE,
 	plays IS_RIGHT;
 
-RubyConstArtifact sub ConstArtifact,
+RubyConstArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -6604,9 +6682,11 @@ RubyConstArtifact sub ConstArtifact,
 	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
 	plays IS_IDENTIFIER,
+	plays IS_INCOMPLETE,
 	plays IS_LEFT,
 	plays IS_RIGHT,
 	plays IS_THEN,
@@ -6785,12 +6865,14 @@ RubyFloatArtifact sub RubySourceArtifact,
 	plays IS_TUPLE,
 	plays IS_VALUE;
 
-RubyForArtifact sub ForArtifact,
+RubyForArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
 RubyGvarArtifact sub RubySourceArtifact,
@@ -6848,9 +6930,9 @@ RubyHashArtifact sub RubySourceArtifact,
 	plays IS_UPDATE,
 	plays IS_VALUE;
 
-RubyIdentifierArtifact sub IdentifierArtifact;
+RubyIdentifierArtifact sub RubySourceArtifact;
 
-RubyIfArtifact sub IfArtifact,
+RubyIfArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
@@ -6859,8 +6941,10 @@ RubyIfArtifact sub IfArtifact,
 	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FOR,
 	plays IS_FUNCTION,
+	plays IS_IF,
 	plays IS_LEFT,
 	plays IS_RIGHT,
 	plays IS_STATEMENT,
@@ -6947,10 +7031,12 @@ RubyIvasgnArtifact sub RubySourceArtifact,
 	plays IS_RIGHT,
 	plays IS_THEN;
 
-RubyKwargArtifact sub KwargArtifact,
+RubyKwargArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION,
+	plays IS_MAP,
+	plays IS_NAME;
 
 RubyKwbeginArtifact sub RubySourceArtifact,
 	# Semantic
@@ -7056,12 +7142,13 @@ RubyMlhsArtifact sub RubySourceArtifact,
 	plays IS_ITERATOR,
 	plays IS_LEFT;
 
-RubyModuleArtifact sub ModuleArtifact,
+RubyModuleArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_IDENTIFIER,
+	plays IS_MODULE,
 	plays IS_RIGHT,
 	plays IS_STATEMENT,
 	plays IS_THEN;
@@ -7148,7 +7235,24 @@ RubyOpAsgnArtifact sub RubySourceArtifact,
 	plays IS_VALUE,
 	plays IS_XOR;
 
-RubyOperatorArtifact sub OperatorArtifact;
+RubyOperatorArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_ADD,
+	plays IS_AND,
+	plays IS_ARITHMETIC,
+	plays IS_BINARY,
+	plays IS_BITWISE,
+	plays IS_DIVIDE,
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT_SHIFT,
+	plays IS_MODULO,
+	plays IS_MULTIPLY,
+	plays IS_OPERATOR,
+	plays IS_OR,
+	plays IS_RIGHT_SHIFT,
+	plays IS_SUBSTRACT,
+	plays IS_XOR;
 
 RubyOptargArtifact sub RubySourceArtifact,
 	# Semantic
@@ -7157,18 +7261,21 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_NAME;
 
-RubyOrArtifact sub OrArtifact,
+RubyOrArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
 	plays IS_BINARY,
 	plays IS_BODY,
+	plays IS_BOOLEAN,
 	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FUNCTION,
 	plays IS_LEFT,
+	plays IS_OPERATOR,
+	plays IS_OR,
 	plays IS_RIGHT,
 	plays IS_THEN,
 	plays IS_TUPLE,
@@ -7288,12 +7395,14 @@ RubyRetryArtifact sub RubySourceArtifact,
 	plays IS_STATEMENT,
 	plays IS_THEN;
 
-RubyReturnArtifact sub ReturnArtifact,
+RubyReturnArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
+	plays IS_RETURN,
 	plays IS_RIGHT,
+	plays IS_STATEMENT,
 	plays IS_THEN;
 
 RubySclassArtifact sub RubySourceArtifact,
@@ -7525,19 +7634,37 @@ RubySplatArtifact sub RubySourceArtifact,
 	plays IS_LEFT,
 	plays IS_RIGHT;
 
-RubyStrArtifact sub StrArtifact,
-	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_TUPLE;
-
-RubySuperArtifact sub SuperArtifact,
+RubyStrArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
 	plays IS_BINARY,
 	plays IS_BODY,
+	plays IS_CALL,
+	plays IS_ELSE,
+	plays IS_EXPRESSION,
+	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_LEFT,
+	plays IS_LITERAL,
+	plays IS_PRIMITIVE,
+	plays IS_RIGHT,
+	plays IS_STRING,
+	plays IS_THEN,
+	plays IS_TUPLE,
+	plays IS_VALUE;
+
+RubySuperArtifact sub RubySourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_ASSIGNMENT,
+	plays IS_BASE,
+	plays IS_BINARY,
+	plays IS_BODY,
+	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
+	plays IS_EXPRESSION,
 	plays IS_FUNCTION,
 	plays IS_LEFT,
 	plays IS_RIGHT,
@@ -7616,14 +7743,16 @@ RubyWhenArtifact sub RubySourceArtifact,
 	plays IS_CASE,
 	plays IS_EXPRESSION;
 
-RubyWhileArtifact sub WhileArtifact,
+RubyWhileArtifact sub RubySourceArtifact,
 	# Semantic
 	plays IS_BINARY,
 	plays IS_BODY,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_RIGHT,
-	plays IS_THEN;
+	plays IS_STATEMENT,
+	plays IS_THEN,
+	plays IS_WHILE;
 
 RubyWhilePostArtifact sub RubySourceArtifact,
 	# Semantic
@@ -7652,15 +7781,22 @@ RubyXstrArtifact sub RubySourceArtifact,
 	plays IS_STRING,
 	plays IS_THEN;
 
-RubyYieldArtifact sub YieldArtifact,
+RubyYieldArtifact sub RubySourceArtifact,
 	# Semantic
+	plays IS_ARGUMENT,
 	plays IS_ASSIGNMENT,
 	plays IS_BINARY,
 	plays IS_BODY,
+	plays IS_CALL,
 	plays IS_CONDITION,
 	plays IS_ELSE,
 	plays IS_EXPRESSION,
 	plays IS_FOR,
+	plays IS_FUNCTION,
+	plays IS_INCOMPLETE,
+	plays IS_LEFT,
+	plays IS_RETURN,
+	plays IS_RIGHT,
 	plays IS_THEN,
 	plays IS_TUPLE,
 	plays IS_VALUE;
@@ -7801,9 +7937,11 @@ CsharpArrayRankSpecifierArtifact sub CsharpSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_LIST;
 
-CsharpArrayTypeArtifact sub ArrayTypeArtifact,
+CsharpArrayTypeArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE;
+	plays IS_INCOMPLETE,
+	plays IS_LIST,
+	plays IS_TYPE;
 
 CsharpArrowExpressionClauseArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -7856,7 +7994,7 @@ CsharpAttributeArgumentListArtifact sub CsharpSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_LIST;
 
-CsharpAttributeArtifact sub AttributeArtifact,
+CsharpAttributeArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
@@ -7870,7 +8008,10 @@ CsharpAttributeTargetSpecifierArtifact sub CsharpSourceArtifact,
 	plays IS_ARGUMENT,
 	plays IS_INCOMPLETE;
 
-CsharpAwaitExpressionArtifact sub AwaitExpressionArtifact;
+CsharpAwaitExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
 
 CsharpAwaitKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8073,7 +8214,9 @@ CsharpBinaryExpressionSubtractExpressionArtifact sub CsharpSourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_SUBSTRACT;
 
-CsharpBlockArtifact sub BlockArtifact;
+CsharpBlockArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BLOCK;
 
 CsharpBoolKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8097,7 +8240,10 @@ CsharpBreakKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_BREAK;
 
-CsharpBreakStatementArtifact sub BreakStatementArtifact;
+CsharpBreakStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_BREAK,
+	plays IS_STATEMENT;
 
 CsharpByKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8140,9 +8286,15 @@ CsharpCaseSwitchLabelArtifact sub CsharpSourceArtifact,
 	plays IS_NAME,
 	plays IS_SWITCH;
 
-CsharpCastExpressionArtifact sub CastExpressionArtifact;
+CsharpCastExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_INCOMPLETE;
 
-CsharpCatchClauseArtifact sub CatchClauseArtifact;
+CsharpCatchClauseArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CATCH,
+	plays IS_STATEMENT;
 
 CsharpCatchDeclarationArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8202,7 +8354,10 @@ CsharpCheckedStatementUncheckedStatementArtifact sub CsharpSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_STATEMENT;
 
-CsharpClassDeclarationArtifact sub ClassDeclarationArtifact;
+CsharpClassDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_TYPE;
 
 CsharpClassKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8254,8 +8409,9 @@ CsharpCommaTokenArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+CsharpCompilationUnitArtifact sub CsharpSourceArtifact,
 	# Semantic
+	plays IS_FILE,
 	plays IS_MODULE;
 
 CsharpComplexElementInitializerExpressionArtifact sub CsharpSourceArtifact,
@@ -8270,7 +8426,10 @@ CsharpConditionalAccessExpressionArtifact sub CsharpSourceArtifact,
 	plays IS_NOT,
 	plays IS_NULL;
 
-CsharpConditionalExpressionArtifact sub ConditionalExpressionArtifact;
+CsharpConditionalExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONDITION,
+	plays IS_EXPRESSION;
 
 CsharpConstantPatternArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8301,7 +8460,10 @@ CsharpContinueKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_CONTINUE;
 
-CsharpContinueStatementArtifact sub ContinueStatementArtifact;
+CsharpContinueStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_CONTINUE,
+	plays IS_STATEMENT;
 
 CsharpConversionOperatorDeclarationArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8399,7 +8561,10 @@ CsharpDoKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpDoStatementArtifact sub DoStatementArtifact;
+CsharpDoStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DO_WHILE,
+	plays IS_STATEMENT;
 
 CsharpDotTokenArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8442,7 +8607,10 @@ CsharpElseKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_ELSE;
 
-CsharpEmptyStatementArtifact sub EmptyStatementArtifact;
+CsharpEmptyStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_NOOP,
+	plays IS_STATEMENT;
 
 CsharpEndIfDirectiveTriviaArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8462,7 +8630,11 @@ CsharpEndRegionDirectiveTriviaArtifact sub CsharpSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_NOOP;
 
-CsharpEnumDeclarationArtifact sub EnumDeclarationArtifact;
+CsharpEnumDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_ENUMERATION,
+	plays IS_TYPE;
 
 CsharpEnumKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8548,9 +8720,10 @@ CsharpExplicitKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
+CsharpExpressionStatementArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION;
+	plays IS_EXPRESSION,
+	plays IS_STATEMENT;
 
 CsharpExternAliasDirectiveArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8571,9 +8744,11 @@ CsharpFalseLiteralExpressionArtifact sub CsharpSourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_LITERAL;
 
-CsharpFieldDeclarationArtifact sub FieldDeclarationArtifact,
+CsharpFieldDeclarationArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_TYPE;
+	plays IS_DECLARATION,
+	plays IS_TYPE,
+	plays IS_VARIABLE;
 
 CsharpFieldKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8620,7 +8795,10 @@ CsharpForKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_FOR;
 
-CsharpForStatementArtifact sub ForStatementArtifact;
+CsharpForStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_FOR,
+	plays IS_STATEMENT;
 
 CsharpFromClauseArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8724,7 +8902,10 @@ CsharpIfKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_IF;
 
-CsharpIfStatementArtifact sub IfStatementArtifact;
+CsharpIfStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IF,
+	plays IS_STATEMENT;
 
 CsharpImplicitArrayCreationExpressionArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8757,7 +8938,7 @@ CsharpInKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpInterfaceDeclarationArtifact sub InterfaceDeclarationArtifact,
+CsharpInterfaceDeclarationArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_TYPE;
@@ -8857,9 +9038,11 @@ CsharpJoinKeywordArtifact sub CsharpSourceArtifact,
 	plays IS_EQUAL,
 	plays IS_INCOMPLETE;
 
-CsharpLabeledStatementArtifact sub LabeledStatementArtifact,
+CsharpLabeledStatementArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_BLOCK;
+	plays IS_BLOCK,
+	plays IS_INCOMPLETE,
+	plays IS_STATEMENT;
 
 CsharpLeftShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -8952,7 +9135,11 @@ CsharpMemberBindingExpressionArtifact sub CsharpSourceArtifact,
 	plays IS_EXPRESSION,
 	plays IS_QUALIFIED;
 
-CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact;
+CsharpMethodDeclarationArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
+	plays IS_TYPE;
 
 CsharpMethodKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9036,10 +9223,11 @@ CsharpNoneArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpNullableTypeArtifact sub NullableTypeArtifact,
+CsharpNullableTypeArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_EXPRESSION,
-	plays IS_NULL;
+	plays IS_NULL,
+	plays IS_TYPE;
 
 CsharpNullKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9168,7 +9356,9 @@ CsharpParamsKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact;
+CsharpParenthesizedExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION;
 
 CsharpParenthesizedLambdaExpressionArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9333,7 +9523,10 @@ CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
-CsharpQualifiedNameArtifact sub QualifiedNameArtifact;
+CsharpQualifiedNameArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_IDENTIFIER,
+	plays IS_QUALIFIED;
 
 CsharpQueryBodyArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9418,7 +9611,10 @@ CsharpReturnKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_RETURN;
 
-CsharpReturnStatementArtifact sub ReturnStatementArtifact;
+CsharpReturnStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_RETURN,
+	plays IS_STATEMENT;
 
 CsharpRightShiftAssignmentExpressionArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9581,13 +9777,19 @@ CsharpSwitchSectionArtifact sub CsharpSourceArtifact,
 	plays IS_BLOCK,
 	plays IS_SWITCH;
 
-CsharpSwitchStatementArtifact sub SwitchStatementArtifact;
+CsharpSwitchStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_SWITCH;
 
 CsharpThisConstructorInitializerArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-CsharpThisExpressionArtifact sub ThisExpressionArtifact;
+CsharpThisExpressionArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_EXPRESSION,
+	plays IS_THIS;
 
 CsharpThisKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9602,7 +9804,10 @@ CsharpThrowKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpThrowStatementArtifact sub ThrowStatementArtifact;
+CsharpThrowStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_THROW;
 
 CsharpTildeTokenArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9627,7 +9832,10 @@ CsharpTryKeywordArtifact sub CsharpSourceArtifact,
 	plays IS_INCOMPLETE,
 	plays IS_TRY;
 
-CsharpTryStatementArtifact sub TryStatementArtifact;
+CsharpTryStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_TRY;
 
 CsharpTupleElementArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9676,7 +9884,10 @@ CsharpTypeOfKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_INCOMPLETE;
 
-CsharpTypeParameterArtifact sub TypeParameterArtifact;
+CsharpTypeParameterArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_ARGUMENT,
+	plays IS_INCOMPLETE;
 
 CsharpTypeParameterConstraintClauseArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9753,13 +9964,17 @@ CsharpUsingStatementArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-CsharpVariableDeclarationArtifact sub VariableDeclarationArtifact,
+CsharpVariableDeclarationArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION;
+	plays IS_DECLARATION,
+	plays IS_EXPRESSION,
+	plays IS_VARIABLE;
 
-CsharpVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
+CsharpVariableDeclaratorArtifact sub CsharpSourceArtifact,
 	# Semantic
-	plays IS_RIGHT;
+	plays IS_DECLARATION,
+	plays IS_RIGHT,
+	plays IS_VARIABLE;
 
 CsharpVirtualKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -9801,7 +10016,10 @@ CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
 	plays IS_WHILE;
 
-CsharpWhileStatementArtifact sub WhileStatementArtifact;
+CsharpWhileStatementArtifact sub CsharpSourceArtifact,
+	# Semantic
+	plays IS_STATEMENT,
+	plays IS_WHILE;
 
 CsharpYieldKeywordArtifact sub CsharpSourceArtifact,
 	# Semantic
@@ -10003,11 +10221,13 @@ BashCommaArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
 
-BashCommentArtifact sub CommentArtifact,
+BashCommentArtifact sub BashSourceArtifact,
 	# Semantic
 	plays IS_BLOCK,
 	plays IS_BODY,
+	plays IS_COMMENT,
 	plays IS_ELSE,
+	plays IS_NOOP,
 	plays IS_THEN;
 
 BashComposedCommandArtifact sub BashSourceArtifact,
@@ -10677,7 +10897,10 @@ CplusplusBodyPositionArtifact sub CplusplusSourceArtifact,
 	# Semantic
 	plays IS_NOOP;
 
-CplusplusCommentArtifact sub CommentArtifact;
+CplusplusCommentArtifact sub CplusplusSourceArtifact,
+	# Semantic
+	plays IS_COMMENT,
+	plays IS_NOOP;
 
 CplusplusCPPASTAliasDeclarationArtifact sub CplusplusSourceArtifact,
 	# Semantic
@@ -11548,343 +11771,3 @@ CplusplusExpansionLocationArtifact sub CplusplusSourceArtifact,
 CplusplusGNUCPPASTGotoStatementArtifact sub CplusplusSourceArtifact,
 	# Semantic
 	plays IS_UNANNOTATED;
-
-##########---------- Semantic Roles ----------##########
-ADD sub relation,
-	relates IS_ADD;
-
-ALIAS sub relation,
-	relates IS_ALIAS;
-
-AND sub relation,
-	relates IS_AND;
-
-ANNOTATION sub relation,
-	relates IS_ANNOTATION;
-
-ANONYMOUS sub relation,
-	relates IS_ANONYMOUS;
-
-ARGS_LIST sub relation,
-	relates IS_ARGS_LIST;
-
-ARGUMENT sub relation,
-	relates IS_ARGUMENT;
-
-ARITHMETIC sub relation,
-	relates IS_ARITHMETIC;
-
-ASSERT sub relation,
-	relates IS_ASSERT;
-
-ASSIGNMENT sub relation,
-	relates IS_ASSIGNMENT;
-
-BASE sub relation,
-	relates IS_BASE;
-
-BINARY sub relation,
-	relates IS_BINARY;
-
-BITWISE sub relation,
-	relates IS_BITWISE;
-
-BLOCK sub relation,
-	relates IS_BLOCK;
-
-BODY sub relation,
-	relates IS_BODY;
-
-BOOLEAN sub relation,
-	relates IS_BOOLEAN;
-
-BREAK sub relation,
-	relates IS_BREAK;
-
-BYTE sub relation,
-	relates IS_BYTE;
-
-BYTE_STRING sub relation,
-	relates IS_BYTE_STRING;
-
-CALL sub relation,
-	relates IS_CALL;
-
-CALLEE sub relation,
-	relates IS_CALLEE;
-
-CASE sub relation,
-	relates IS_CASE;
-
-CATCH sub relation,
-	relates IS_CATCH;
-
-CHARACTER sub relation,
-	relates IS_CHARACTER;
-
-COMMENT sub relation,
-	relates IS_COMMENT;
-
-CONDITION sub relation,
-	relates IS_CONDITION;
-
-CONTAINS sub relation,
-	relates IS_CONTAINS;
-
-CONTINUE sub relation,
-	relates IS_CONTINUE;
-
-DECLARATION sub relation,
-	relates IS_DECLARATION;
-
-DECREMENT sub relation,
-	relates IS_DECREMENT;
-
-DEFAULT sub relation,
-	relates IS_DEFAULT;
-
-DEREFERENCE sub relation,
-	relates IS_DEREFERENCE;
-
-DIVIDE sub relation,
-	relates IS_DIVIDE;
-
-DO_WHILE sub relation,
-	relates IS_DO_WHILE;
-
-DOCUMENTATION sub relation,
-	relates IS_DOCUMENTATION;
-
-ELSE sub relation,
-	relates IS_ELSE;
-
-ENTRY sub relation,
-	relates IS_ENTRY;
-
-ENUMERATION sub relation,
-	relates IS_ENUMERATION;
-
-EQUAL sub relation,
-	relates IS_EQUAL;
-
-EXPRESSION sub relation,
-	relates IS_EXPRESSION;
-
-FILE sub relation,
-	relates IS_FILE;
-
-FINALLY sub relation,
-	relates IS_FINALLY;
-
-FOR sub relation,
-	relates IS_FOR;
-
-FUNCTION sub relation,
-	relates IS_FUNCTION;
-
-GOTO sub relation,
-	relates IS_GOTO;
-
-GREATER_THAN sub relation,
-	relates IS_GREATER_THAN;
-
-GREATER_THAN_OR_EQUAL sub relation,
-	relates IS_GREATER_THAN_OR_EQUAL;
-
-IDENTICAL sub relation,
-	relates IS_IDENTICAL;
-
-IDENTIFIER sub relation,
-	relates IS_IDENTIFIER;
-
-IF sub relation,
-	relates IS_IF;
-
-IMPLEMENTS sub relation,
-	relates IS_IMPLEMENTS;
-
-IMPORT sub relation,
-	relates IS_IMPORT;
-
-INCOMPLETE sub relation,
-	relates IS_INCOMPLETE;
-
-INCREMENT sub relation,
-	relates IS_INCREMENT;
-
-INITIALIZATION sub relation,
-	relates IS_INITIALIZATION;
-
-INSTANCE sub relation,
-	relates IS_INSTANCE;
-
-ITERATOR sub relation,
-	relates IS_ITERATOR;
-
-KEY sub relation,
-	relates IS_KEY;
-
-LEFT sub relation,
-	relates IS_LEFT;
-
-LEFT_SHIFT sub relation,
-	relates IS_LEFT_SHIFT;
-
-LESS_THAN sub relation,
-	relates IS_LESS_THAN;
-
-LESS_THAN_OR_EQUAL sub relation,
-	relates IS_LESS_THAN_OR_EQUAL;
-
-LIST sub relation,
-	relates IS_LIST;
-
-LITERAL sub relation,
-	relates IS_LITERAL;
-
-MAP sub relation,
-	relates IS_MAP;
-
-MODULE sub relation,
-	relates IS_MODULE;
-
-MODULO sub relation,
-	relates IS_MODULO;
-
-MULTIPLY sub relation,
-	relates IS_MULTIPLY;
-
-NAME sub relation,
-	relates IS_NAME;
-
-NEGATIVE sub relation,
-	relates IS_NEGATIVE;
-
-NOOP sub relation,
-	relates IS_NOOP;
-
-NOT sub relation,
-	relates IS_NOT;
-
-NULL sub relation,
-	relates IS_NULL;
-
-NUMBER sub relation,
-	relates IS_NUMBER;
-
-OPERATOR sub relation,
-	relates IS_OPERATOR;
-
-OR sub relation,
-	relates IS_OR;
-
-PACKAGE sub relation,
-	relates IS_PACKAGE;
-
-PATHNAME sub relation,
-	relates IS_PATHNAME;
-
-POSITIONAL sub relation,
-	relates IS_POSITIONAL;
-
-POSITIVE sub relation,
-	relates IS_POSITIVE;
-
-POSTFIX sub relation,
-	relates IS_POSTFIX;
-
-PRIMITIVE sub relation,
-	relates IS_PRIMITIVE;
-
-QUALIFIED sub relation,
-	relates IS_QUALIFIED;
-
-RECEIVER sub relation,
-	relates IS_RECEIVER;
-
-REGEXP sub relation,
-	relates IS_REGEXP;
-
-RELATIONAL sub relation,
-	relates IS_RELATIONAL;
-
-RETURN sub relation,
-	relates IS_RETURN;
-
-RIGHT sub relation,
-	relates IS_RIGHT;
-
-RIGHT_SHIFT sub relation,
-	relates IS_RIGHT_SHIFT;
-
-SCOPE sub relation,
-	relates IS_SCOPE;
-
-SET sub relation,
-	relates IS_SET;
-
-STATEMENT sub relation,
-	relates IS_STATEMENT;
-
-STRING sub relation,
-	relates IS_STRING;
-
-SUBSTRACT sub relation,
-	relates IS_SUBSTRACT;
-
-SUBTYPE sub relation,
-	relates IS_SUBTYPE;
-
-SWITCH sub relation,
-	relates IS_SWITCH;
-
-TAKE_ADDRESS sub relation,
-	relates IS_TAKE_ADDRESS;
-
-THEN sub relation,
-	relates IS_THEN;
-
-THIS sub relation,
-	relates IS_THIS;
-
-THROW sub relation,
-	relates IS_THROW;
-
-TRY sub relation,
-	relates IS_TRY;
-
-TUPLE sub relation,
-	relates IS_TUPLE;
-
-TYPE sub relation,
-	relates IS_TYPE;
-
-UNANNOTATED sub relation,
-	relates IS_UNANNOTATED;
-
-UNARY sub relation,
-	relates IS_UNARY;
-
-UNSIGNED sub relation,
-	relates IS_UNSIGNED;
-
-UPDATE sub relation,
-	relates IS_UPDATE;
-
-VALUE sub relation,
-	relates IS_VALUE;
-
-VARIABLE sub relation,
-	relates IS_VARIABLE;
-
-VISIBILITY sub relation,
-	relates IS_VISIBILITY;
-
-WHILE sub relation,
-	relates IS_WHILE;
-
-WORLD sub relation,
-	relates IS_WORLD;
-
-XOR sub relation,
-	relates IS_XOR;

@@ -111,79 +111,10 @@ SourceArtifact sub entity,
 	plays is_child,
 	plays is_parent;
 
-#####----- Omnilingual -----#####
-OmnilingualSourceArtifact sub SourceArtifact;
-
-AndArtifact sub OmnilingualSourceArtifact;
-
-ArgArtifact sub OmnilingualSourceArtifact;
-
-ArrayTypeArtifact sub OmnilingualSourceArtifact;
-
-BlockArtifact sub OmnilingualSourceArtifact;
-
-BooleanLiteralArtifact sub OmnilingualSourceArtifact;
-
-CatchClauseArtifact sub OmnilingualSourceArtifact;
-
-CompilationUnitArtifact sub OmnilingualSourceArtifact;
-
-ConditionalExpressionArtifact sub OmnilingualSourceArtifact;
-
-DoStatementArtifact sub OmnilingualSourceArtifact;
-
-ExpressionStatementArtifact sub OmnilingualSourceArtifact;
-
-FieldDeclarationArtifact sub OmnilingualSourceArtifact;
-
-FileArtifact sub OmnilingualSourceArtifact;
-
-ForArtifact sub OmnilingualSourceArtifact;
-
-ForStatementArtifact sub OmnilingualSourceArtifact;
-
-IdentifierArtifact sub OmnilingualSourceArtifact;
-
-IfArtifact sub OmnilingualSourceArtifact;
-
-IfStatementArtifact sub OmnilingualSourceArtifact;
-
-KwargArtifact sub OmnilingualSourceArtifact;
-
-MethodDeclarationArtifact sub OmnilingualSourceArtifact;
-
-ModuleArtifact sub OmnilingualSourceArtifact;
-
-NameArtifact sub OmnilingualSourceArtifact;
-
-OperatorArtifact sub OmnilingualSourceArtifact;
-
-OrArtifact sub OmnilingualSourceArtifact;
-
-ParenthesizedExpressionArtifact sub OmnilingualSourceArtifact;
-
-QualifiedNameArtifact sub OmnilingualSourceArtifact;
-
-StrArtifact sub OmnilingualSourceArtifact;
-
-StringLiteralArtifact sub OmnilingualSourceArtifact;
-
-SwitchCaseArtifact sub OmnilingualSourceArtifact;
-
-SwitchStatementArtifact sub OmnilingualSourceArtifact;
-
-TryStatementArtifact sub OmnilingualSourceArtifact;
-
-VariableDeclarationArtifact sub OmnilingualSourceArtifact;
-
-VariableDeclaratorArtifact sub OmnilingualSourceArtifact;
-
-WhileStatementArtifact sub OmnilingualSourceArtifact;
-
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoArrayTypeArtifact sub ArrayTypeArtifact,
+GoArrayTypeArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_type_role,
 	plays has_go_elt_role,
@@ -304,7 +235,7 @@ GoFieldListArtifact sub GoSourceArtifact,
 	plays has_go_list_role,
 	plays has_go_opening_role;
 
-GoFileArtifact sub FileArtifact,
+GoFileArtifact sub GoSourceArtifact,
 	# Structural
 	plays has_go_comments_role,
 	plays has_go_decls_role,
@@ -388,7 +319,7 @@ GoIncDecStmtArtifact sub GoSourceArtifact,
 	plays has_go_tok_pos_role,
 	plays has_go_x_role;
 
-GoOperatorArtifact sub OperatorArtifact,
+GoOperatorArtifact sub GoSourceArtifact,
 	# Structural
 	plays is_go_op_role;
 
@@ -482,7 +413,7 @@ JavaArrayInitializerArtifact sub JavaSourceArtifact,
 	plays is_java_initializer_role,
 	plays has_java_expressions_role;
 
-JavaArrayTypeArtifact sub ArrayTypeArtifact,
+JavaArrayTypeArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_type_role,
 	plays has_java_dimensions_role,
@@ -495,7 +426,7 @@ JavaAssignmentArtifact sub JavaSourceArtifact,
 	plays has_java_operator_role,
 	plays has_java_right_hand_side_role;
 
-JavaBlockArtifact sub BlockArtifact,
+JavaBlockArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_body_role,
 	plays is_java_else_statement_role,
@@ -503,25 +434,25 @@ JavaBlockArtifact sub BlockArtifact,
 	plays is_java_then_statement_role,
 	plays has_java_statements_role;
 
-JavaBooleanLiteralArtifact sub BooleanLiteralArtifact,
+JavaBooleanLiteralArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_expression_role,
 	plays is_java_left_operand_role,
 	plays is_java_right_operand_role;
 
-JavaCatchClauseArtifact sub CatchClauseArtifact,
+JavaCatchClauseArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_catch_clauses_role,
 	plays has_java_body_role,
 	plays has_java_exception_role;
 
-JavaCompilationUnitArtifact sub CompilationUnitArtifact,
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Attributes
 	has name,
 	# Structural
 	plays has_java_types_role;
 
-JavaConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+JavaConditionalExpressionArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_right_hand_side_role,
 	plays has_java_else_expression_role,
@@ -533,7 +464,7 @@ JavaDimensionArtifact sub JavaSourceArtifact,
 	plays is_java_dimensions_role,
 	plays is_java_extra_dimensions2_role;
 
-JavaDoStatementArtifact sub DoStatementArtifact,
+JavaDoStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_body_role,
@@ -546,13 +477,13 @@ JavaEnhancedForStatementArtifact sub JavaSourceArtifact,
 	plays has_java_expression_role,
 	plays has_java_parameter_role;
 
-JavaExpressionStatementArtifact sub ExpressionStatementArtifact,
+JavaExpressionStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_body_role,
 	plays is_java_statements_role,
 	plays has_java_expression_role;
 
-JavaFieldDeclarationArtifact sub FieldDeclarationArtifact,
+JavaFieldDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has name,
 	# Structural
@@ -560,7 +491,7 @@ JavaFieldDeclarationArtifact sub FieldDeclarationArtifact,
 	plays has_java_fragments_role,
 	plays has_java_type_role;
 
-JavaForStatementArtifact sub ForStatementArtifact,
+JavaForStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_body_role,
@@ -568,7 +499,7 @@ JavaForStatementArtifact sub ForStatementArtifact,
 	plays has_java_initializers_role,
 	plays has_java_updaters_role;
 
-JavaIfStatementArtifact sub IfStatementArtifact,
+JavaIfStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_else_statement_role,
 	plays is_java_statements_role,
@@ -583,7 +514,7 @@ JavaInfixExpressionArtifact sub JavaSourceArtifact,
 	plays has_java_operator_role,
 	plays has_java_right_operand_role;
 
-JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has javaConstructorAttribute,
 	has name,
@@ -621,7 +552,7 @@ JavaNumberLiteralArtifact sub JavaSourceArtifact,
 	plays is_java_right_operand_role,
 	plays is_java_then_expression_role;
 
-JavaOperatorArtifact sub OperatorArtifact,
+JavaOperatorArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_operator_role;
 
@@ -631,7 +562,7 @@ JavaParameterizedTypeArtifact sub JavaSourceArtifact,
 	plays has_java_type_arguments_role,
 	plays has_java_type_role;
 
-JavaParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
+JavaParenthesizedExpressionArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_expression_role,
 	plays has_java_expression_role;
@@ -654,7 +585,7 @@ JavaPrimitiveTypeArtifact sub JavaSourceArtifact,
 	plays is_java_return_type2_role,
 	plays is_java_type_role;
 
-JavaQualifiedNameArtifact sub QualifiedNameArtifact,
+JavaQualifiedNameArtifact sub JavaSourceArtifact,
 	# Attributes
 	has name,
 	# Structural
@@ -693,7 +624,7 @@ JavaSingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	plays has_java_name_role,
 	plays has_java_type_role;
 
-JavaStringLiteralArtifact sub StringLiteralArtifact,
+JavaStringLiteralArtifact sub JavaSourceArtifact,
 	# Attributes
 	has stringValue,
 	has javaUnescapedValueAttribute,
@@ -701,19 +632,19 @@ JavaStringLiteralArtifact sub StringLiteralArtifact,
 	plays is_java_arguments_role,
 	plays is_java_initializer_role;
 
-JavaSwitchCaseArtifact sub SwitchCaseArtifact,
+JavaSwitchCaseArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_body_role,
 	plays has_java_expression_role;
 
-JavaSwitchStatementArtifact sub SwitchStatementArtifact,
+JavaSwitchStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_expression_role,
 	plays has_java_statements_role;
 
-JavaTryStatementArtifact sub TryStatementArtifact,
+JavaTryStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_body_role,
@@ -753,7 +684,7 @@ JavaVariableDeclarationStatementArtifact sub JavaSourceArtifact,
 	plays has_java_fragments_role,
 	plays has_java_type_role;
 
-JavaWhileStatementArtifact sub WhileStatementArtifact,
+JavaWhileStatementArtifact sub JavaSourceArtifact,
 	# Structural
 	plays is_java_statements_role,
 	plays has_java_body_role,
@@ -800,7 +731,7 @@ JavascriptBlockStatementArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_finalizer_role,
 	plays has_javascript_body_role;
 
-JavascriptBooleanLiteralArtifact sub BooleanLiteralArtifact,
+JavascriptBooleanLiteralArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_left_role,
 	plays is_javascript_right_role,
@@ -812,7 +743,7 @@ JavascriptCallExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_arguments_role,
 	plays has_javascript_callee_role;
 
-JavascriptCatchClauseArtifact sub CatchClauseArtifact,
+JavascriptCatchClauseArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_handler_role,
 	plays has_javascript_body_role,
@@ -824,7 +755,7 @@ JavascriptCommentLineArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_leading_comments_role,
 	plays is_javascript_trailing_comments_role;
 
-JavascriptConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+JavascriptConditionalExpressionArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_right_role,
 	plays has_javascript_alternate_role,
@@ -841,13 +772,13 @@ JavascriptEmptyStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role;
 
-JavascriptExpressionStatementArtifact sub ExpressionStatementArtifact,
+JavascriptExpressionStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays is_javascript_consequent_role,
 	plays has_javascript_expression_role;
 
-JavascriptFileArtifact sub FileArtifact,
+JavascriptFileArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays has_javascript_comments_role,
 	plays has_javascript_program_role;
@@ -859,7 +790,7 @@ JavascriptForInStatementArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_left_role,
 	plays has_javascript_right_role;
 
-JavascriptForStatementArtifact sub ForStatementArtifact,
+JavascriptForStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_body_role,
@@ -878,7 +809,7 @@ JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_id_role,
 	plays has_javascript_params_role;
 
-JavascriptIdentifierArtifact sub IdentifierArtifact,
+JavascriptIdentifierArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_argument_role,
 	plays is_javascript_arguments_role,
@@ -891,7 +822,7 @@ JavascriptIdentifierArtifact sub IdentifierArtifact,
 	plays is_javascript_right_role,
 	plays has_javascript_type_annotation_role;
 
-JavascriptIfStatementArtifact sub IfStatementArtifact,
+JavascriptIfStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_alternate_role,
 	plays is_javascript_body_role,
@@ -932,7 +863,7 @@ JavascriptNumericLiteralArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_right_role,
 	plays is_javascript_test_role;
 
-JavascriptOperatorArtifact sub OperatorArtifact,
+JavascriptOperatorArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_operator_role;
 
@@ -948,7 +879,7 @@ JavascriptRestElementArtifact sub JavascriptSourceArtifact,
 	plays is_javascript_params_role,
 	plays has_javascript_argument_role;
 
-JavascriptStringLiteralArtifact sub StringLiteralArtifact,
+JavascriptStringLiteralArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has stringValue,
 	has javascriptValueAttribute,
@@ -956,19 +887,19 @@ JavascriptStringLiteralArtifact sub StringLiteralArtifact,
 	plays is_javascript_arguments_role,
 	plays is_javascript_init_role;
 
-JavascriptSwitchCaseArtifact sub SwitchCaseArtifact,
+JavascriptSwitchCaseArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_cases_role,
 	plays has_javascript_consequent_role,
 	plays has_javascript_test_role;
 
-JavascriptSwitchStatementArtifact sub SwitchStatementArtifact,
+JavascriptSwitchStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_cases_role,
 	plays has_javascript_discriminant_role;
 
-JavascriptTryStatementArtifact sub TryStatementArtifact,
+JavascriptTryStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_block_role,
@@ -996,7 +927,7 @@ JavascriptUpdateExpressionArtifact sub JavascriptSourceArtifact,
 	plays has_javascript_argument_role,
 	plays has_javascript_operator_role;
 
-JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
+JavascriptVariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
 	has javascriptKindAttribute,
 	has name,
@@ -1008,13 +939,13 @@ JavascriptVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	plays has_javascript_leading_comments_role,
 	plays has_javascript_trailing_comments_role;
 
-JavascriptVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
+JavascriptVariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_declarations_role,
 	plays has_javascript_id_role,
 	plays has_javascript_init_role;
 
-JavascriptWhileStatementArtifact sub WhileStatementArtifact,
+JavascriptWhileStatementArtifact sub JavascriptSourceArtifact,
 	# Structural
 	plays is_javascript_body_role,
 	plays has_javascript_body_role,
@@ -1128,11 +1059,11 @@ PhpFunctionReturnTypeArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_return_type_role;
 
-PhpModuleArtifact sub ModuleArtifact,
+PhpModuleArtifact sub PhpSourceArtifact,
 	# Structural
 	plays has_php_children_role;
 
-PhpNameArtifact sub NameArtifact,
+PhpNameArtifact sub PhpSourceArtifact,
 	# Structural
 	plays is_php_name_role;
 
@@ -1232,11 +1163,11 @@ PythonAddArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
-PythonAndArtifact sub AndArtifact,
+PythonAndArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
-PythonArgArtifact sub ArgArtifact,
+PythonArgArtifact sub PythonSourceArtifact,
 	# Attributes
 	has pythonCtxAttribute,
 	# Structural
@@ -1304,7 +1235,7 @@ PythonExceptHandlerArtifact sub PythonSourceArtifact,
 	plays has_python_body_role,
 	plays has_python_type_role;
 
-PythonForArtifact sub ForArtifact,
+PythonForArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_body_stmts_role,
 	plays has_python_body_role,
@@ -1339,7 +1270,7 @@ PythonFunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_decorator_list_role;
 
-PythonIfArtifact sub IfArtifact,
+PythonIfArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_body_stmts_role,
 	plays is_python_else_stmts_role,
@@ -1357,16 +1288,16 @@ PythonIfOrelseArtifact sub PythonSourceArtifact,
 	plays is_python_orelse_role,
 	plays has_python_else_stmts_role;
 
-PythonKwargArtifact sub KwargArtifact,
+PythonKwargArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_args_role;
 
-PythonModuleArtifact sub ModuleArtifact,
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Structural
 	plays has_python_body_role,
 	plays has_python_noops_remainder_role;
 
-PythonNameArtifact sub NameArtifact,
+PythonNameArtifact sub PythonSourceArtifact,
 	# Attributes
 	has pythonCtxAttribute,
 	# Structural
@@ -1403,7 +1334,7 @@ PythonNumArtifact sub PythonSourceArtifact,
 	plays is_python_right_role,
 	plays is_python_value_role;
 
-PythonOrArtifact sub OrArtifact,
+PythonOrArtifact sub PythonSourceArtifact,
 	# Structural
 	plays is_python_op_role;
 
@@ -1432,7 +1363,7 @@ PythonSameLineNoopsArtifact sub PythonSourceArtifact,
 	plays is_python_noops_sameline_role,
 	plays has_python_noop_lines_role;
 
-PythonStrArtifact sub StrArtifact,
+PythonStrArtifact sub PythonSourceArtifact,
 	# Attributes
 	has stringValue,
 	# Structural
@@ -1475,13 +1406,13 @@ PythonWhileArtifact sub PythonSourceArtifact,
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
-RubyAndArtifact sub AndArtifact,
+RubyAndArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_condition_role,
 	plays has_ruby_left_role,
 	plays has_ruby_right_role;
 
-RubyArgArtifact sub ArgArtifact,
+RubyArgArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
 
@@ -1531,20 +1462,20 @@ RubyFloatArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_value_role;
 
-RubyForArtifact sub ForArtifact,
+RubyForArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_body_role,
 	plays has_ruby_body_role,
 	plays has_ruby_iterated_role,
 	plays has_ruby_iterators_role;
 
-RubyIdentifierArtifact sub IdentifierArtifact,
+RubyIdentifierArtifact sub RubySourceArtifact,
 	# Attributes
 	has name,
 	# Structural
 	plays is_ruby_qnames_role;
 
-RubyIfArtifact sub IfArtifact,
+RubyIfArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_body_role,
 	plays is_ruby_else_role,
@@ -1566,7 +1497,7 @@ RubyIntArtifact sub RubySourceArtifact,
 	plays is_ruby_value_role,
 	plays is_ruby_values_role;
 
-RubyKwargArtifact sub KwargArtifact,
+RubyKwargArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_children_role;
 
@@ -1588,7 +1519,7 @@ RubyLvasgnArtifact sub RubySourceArtifact,
 	plays is_ruby_iterators_role,
 	plays has_ruby_value_role;
 
-RubyModuleArtifact sub ModuleArtifact,
+RubyModuleArtifact sub RubySourceArtifact,
 	# Structural
 	plays has_ruby_file_role;
 
@@ -1601,7 +1532,7 @@ RubyOptargArtifact sub RubySourceArtifact,
 	plays is_ruby_children_role,
 	plays has_ruby_default_role;
 
-RubyOrArtifact sub OrArtifact,
+RubyOrArtifact sub RubySourceArtifact,
 	# Structural
 	plays is_ruby_condition_role,
 	plays has_ruby_left_role,
@@ -1632,7 +1563,7 @@ RubySendQualifiedArtifact sub RubySourceArtifact,
 	plays has_ruby_qnames_role,
 	plays has_ruby_values_role;
 
-RubyStrArtifact sub StrArtifact,
+RubyStrArtifact sub RubySourceArtifact,
 	# Attributes
 	has stringValue,
 	# Structural
@@ -1706,7 +1637,7 @@ CsharpArrayRankSpecifierArtifact sub CsharpSourceArtifact,
 	plays has_csharp_open_bracket_token_role,
 	plays has_csharp_sizes_role;
 
-CsharpArrayTypeArtifact sub ArrayTypeArtifact,
+CsharpArrayTypeArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1787,7 +1718,7 @@ CsharpBinaryExpressionNotEqualsExpressionArtifact sub CsharpSourceArtifact,
 	plays has_csharp_operator_token_role,
 	plays has_csharp_right_role;
 
-CsharpBlockArtifact sub BlockArtifact,
+CsharpBlockArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1850,7 +1781,7 @@ CsharpCaseSwitchLabelArtifact sub CsharpSourceArtifact,
 	plays has_csharp_keyword_role,
 	plays has_csharp_value_role;
 
-CsharpCatchClauseArtifact sub CatchClauseArtifact,
+CsharpCatchClauseArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1938,7 +1869,7 @@ CsharpColonTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_colon_token_role;
 
-CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+CsharpCompilationUnitArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1947,7 +1878,7 @@ CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
 	plays has_csharp_members_role,
 	plays has_csharp_usings_role;
 
-CsharpConditionalExpressionArtifact sub ConditionalExpressionArtifact,
+CsharpConditionalExpressionArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -1975,7 +1906,7 @@ CsharpDoKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_do_keyword_role;
 
-CsharpDoStatementArtifact sub DoStatementArtifact,
+CsharpDoStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2099,7 +2030,7 @@ CsharpExclamationEqualsTokenArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_operator_token_role;
 
-CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
+CsharpExpressionStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpAllowsAnyExpressionAttribute,
 	has csharpIsMissingAttribute,
@@ -2109,7 +2040,7 @@ CsharpExpressionStatementArtifact sub ExpressionStatementArtifact,
 	plays has_csharp_expression_role,
 	plays has_csharp_semicolon_token_role;
 
-CsharpFieldDeclarationArtifact sub FieldDeclarationArtifact,
+CsharpFieldDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2176,7 +2107,7 @@ CsharpForKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_for_keyword_role;
 
-CsharpForStatementArtifact sub ForStatementArtifact,
+CsharpForStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2256,7 +2187,7 @@ CsharpIfKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_if_keyword_role;
 
-CsharpIfStatementArtifact sub IfStatementArtifact,
+CsharpIfStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2323,7 +2254,7 @@ CsharpLongKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_keyword_role;
 
-CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
+CsharpMethodDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpArityAttribute,
 	has csharpIsMissingAttribute,
@@ -2462,7 +2393,7 @@ CsharpParamsKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_modifiers_role;
 
-CsharpParenthesizedExpressionArtifact sub ParenthesizedExpressionArtifact,
+CsharpParenthesizedExpressionArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2528,7 +2459,7 @@ CsharpPublicKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_modifiers_role;
 
-CsharpQualifiedNameArtifact sub QualifiedNameArtifact,
+CsharpQualifiedNameArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpArityAttribute,
 	has csharpIsMissingAttribute,
@@ -2672,7 +2603,7 @@ CsharpSwitchSectionArtifact sub CsharpSourceArtifact,
 	plays has_csharp_labels_role,
 	plays has_csharp_statements_role;
 
-CsharpSwitchStatementArtifact sub SwitchStatementArtifact,
+CsharpSwitchStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2712,7 +2643,7 @@ CsharpTryKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_try_keyword_role;
 
-CsharpTryStatementArtifact sub TryStatementArtifact,
+CsharpTryStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2776,7 +2707,7 @@ CsharpUsingKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_using_keyword_role;
 
-CsharpVariableDeclarationArtifact sub VariableDeclarationArtifact,
+CsharpVariableDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2786,7 +2717,7 @@ CsharpVariableDeclarationArtifact sub VariableDeclarationArtifact,
 	plays has_csharp_type_role,
 	plays has_csharp_variables_role;
 
-CsharpVariableDeclaratorArtifact sub VariableDeclaratorArtifact,
+CsharpVariableDeclaratorArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
@@ -2811,7 +2742,7 @@ CsharpWhileKeywordArtifact sub CsharpSourceArtifact,
 	# Structural
 	plays is_csharp_while_keyword_role;
 
-CsharpWhileStatementArtifact sub WhileStatementArtifact,
+CsharpWhileStatementArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,

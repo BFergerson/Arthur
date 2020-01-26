@@ -146,9 +146,6 @@ class GraknSchemaWriter implements SchemaWriter {
                     .append("\tplays is_parent;\n")
         }
 
-        if (rootLanguage.isOmnilingual()) {
-            outputEntities(output, rootLanguage, includeAttributes, includeStructure, includeSemantics)
-        }
         observedLanguages.each { observedLanguage ->
             if (!observedLanguage.isOmnilingual()) {
                 outputEntities(output, observedLanguage, includeAttributes, includeStructure, includeSemantics)
