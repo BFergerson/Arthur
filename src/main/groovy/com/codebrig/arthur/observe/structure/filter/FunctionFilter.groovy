@@ -17,7 +17,8 @@ class FunctionFilter extends StructureFilter<FunctionFilter, Void> {
     FunctionFilter() {
         filter = MultiFilter.matchAll(
                 new RoleFilter("DECLARATION"), new RoleFilter("FUNCTION"),
-                new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY")
+                new RoleFilter().reject("ARGUMENT", "RETURN", "INCOMPLETE", "BODY"),
+                new TypeFilter().reject("CPPASTName")
         )
     }
 

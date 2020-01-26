@@ -226,7 +226,6 @@ CplusplusCPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
 	has cplusplusTakesVarArgsAttribute,
 	# Structural
 	plays is_cplusplus_prop__declarator_role,
-	plays has_cplusplus_prop__name_role,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION;
@@ -242,15 +241,6 @@ CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION;
-
-CplusplusCPPASTNameArtifact sub CplusplusSourceArtifact,
-	# Structural
-	plays is_cplusplus_prop__name_role,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_NAME;
 
 CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
 	# Structural
@@ -296,9 +286,6 @@ cplusplus_prop__declarations_relation sub parent_child_relation,
 
 cplusplus_prop__declarator_relation sub parent_child_relation,
 	relates is_cplusplus_prop__declarator_role as is_child, relates has_cplusplus_prop__declarator_role as is_parent;
-
-cplusplus_prop__name_relation sub parent_child_relation,
-	relates is_cplusplus_prop__name_role as is_child, relates has_cplusplus_prop__name_role as is_parent;
 
 ##########---------- Semantic Roles ----------##########
 DECLARATION sub relation,
