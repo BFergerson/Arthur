@@ -24,16 +24,6 @@ class ObservedLanguages extends ObservedLanguage {
         }
         def omniLanguage = new ObservedLanguages(new ObservationConfig(segments.toArray(new SchemaSegment[0])))
         observedLanguages.each { lang ->
-            lang.observedEntities.each { entity ->
-                observedLanguages.stream().each {
-                    if (lang.language != it.language && it.observedEntity(entity)) {
-                        omniLanguage.observeGlobalEntity(entity)
-                        observedLanguages.each {
-                            it.addEntityExtends(entity)
-                        }
-                    }
-                }
-            }
             lang.observedAttributes.each { attribute ->
                 observedLanguages.stream().each {
                     if (lang.language != it.language && it.observedAttribute(attribute)) {
@@ -58,43 +48,18 @@ class ObservedLanguages extends ObservedLanguage {
                 omniLanguage.observeGlobalSemanticRole(it)
             }
         }
-        omniLanguage.getObservedSemanticRoles(true).each { role ->
-            observedLanguages.each { lang ->
-                lang.getEntitiesWithRole(role).each { entity ->
-                    observedLanguages.each {
-                        if (lang.language != it.language && it.observedEntityRole(entity, role)) {
-                            omniLanguage.addEntitySemanticRole(entity, role)
-                            it.removeEntityRole(entity, role)
-                            lang.removeEntityRole(entity, role)
-                        }
-                    }
-                }
-            }
-        }
         return omniLanguage
     }
 
-    //todo: rename to omniEntities?
-    final Set<String> globalEntities
     final Set<String> globalAttributes
     final Set<String> globalRelations
     final Set<String> globalSemanticRoles
 
     private ObservedLanguages(ObservationConfig observationConfig) {
         super(SourceLanguage.Omnilingual, observationConfig)
-        this.globalEntities = new HashSet<>()
         this.globalAttributes = new HashSet<>()
         this.globalRelations = new HashSet<>()
         this.globalSemanticRoles = new HashSet<>()
-    }
-
-    void addEntitySemanticRole(String entity, String role) {
-        roles.putIfAbsent(entity, new ObservedRoles())
-        roles.get(entity).observe([role].iterator())
-    }
-
-    void observeGlobalEntity(String entity) {
-        globalEntities.add(entity)
     }
 
     void observeGlobalAttribute(String attribute) {
@@ -107,17 +72,6 @@ class ObservedLanguages extends ObservedLanguage {
 
     void observeGlobalSemanticRole(String role) {
         globalSemanticRoles.add(role)
-    }
-
-    @Override
-    List<String> getObservedEntities(boolean naturalOrdering) {
-        if (naturalOrdering) {
-            def rtnEntities = globalEntities.toList()
-            rtnEntities.sort(String.CASE_INSENSITIVE_ORDER)
-            return rtnEntities
-        } else {
-            return globalEntities.toList()
-        }
     }
 
     @Override
@@ -151,11 +105,6 @@ class ObservedLanguages extends ObservedLanguage {
         } else {
             return globalRelations.toList()
         }
-    }
-
-    @Override
-    boolean observedEntity(String entity) {
-        return globalEntities.contains(entity)
     }
 
     @Override

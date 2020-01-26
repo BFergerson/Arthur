@@ -41,32 +41,14 @@ SourceArtifact sub entity,
 	plays is_child,
 	plays is_parent;
 
-#####----- Omnilingual -----#####
-OmnilingualSourceArtifact sub SourceArtifact;
-
-CompilationUnitArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_FILE;
-
-FileArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_FILE;
-
-MethodDeclarationArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
-
-ModuleArtifact sub OmnilingualSourceArtifact,
-	# Semantic
-	plays IS_MODULE;
-
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
-GoFileArtifact sub FileArtifact,
+GoFileArtifact sub GoSourceArtifact,
 	# Structural
-	plays has_go_decls_role;
+	plays has_go_decls_role,
+	# Semantic
+	plays IS_FILE;
 
 GoFuncDeclArtifact sub GoSourceArtifact,
 	# Attributes
@@ -80,28 +62,34 @@ GoFuncDeclArtifact sub GoSourceArtifact,
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
-JavaCompilationUnitArtifact sub CompilationUnitArtifact,
+JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Attributes
 	has name,
 	# Structural
-	plays is_parent;
+	plays is_parent,
+	# Semantic
+	plays IS_FILE;
 
-JavaMethodDeclarationArtifact sub MethodDeclarationArtifact,
+JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
 	has javaConstructorAttribute,
 	has name,
 	# Structural
 	plays is_child,
 	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
 	plays IS_VISIBILITY,
 	plays IS_WORLD;
 
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
-JavascriptFileArtifact sub FileArtifact,
+JavascriptFileArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays has_javascript_program_role;
+	plays has_javascript_program_role,
+	# Semantic
+	plays IS_FILE;
 
 JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
@@ -127,9 +115,11 @@ JavascriptProgramArtifact sub JavascriptSourceArtifact,
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
-PhpModuleArtifact sub ModuleArtifact,
+PhpModuleArtifact sub PhpSourceArtifact,
 	# Structural
-	plays has_php_children_role;
+	plays has_php_children_role,
+	# Semantic
+	plays IS_MODULE;
 
 PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
@@ -155,11 +145,12 @@ PythonFunctionDefArtifact sub PythonSourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_NAME;
 
-PythonModuleArtifact sub ModuleArtifact,
+PythonModuleArtifact sub PythonSourceArtifact,
 	# Structural
 	plays has_python_body_role,
 	# Semantic
-	plays IS_FILE;
+	plays IS_FILE,
+	plays IS_MODULE;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
@@ -175,26 +166,28 @@ RubyDefArtifact sub RubySourceArtifact,
 	plays IS_IDENTIFIER,
 	plays IS_STATEMENT;
 
-RubyModuleArtifact sub ModuleArtifact,
+RubyModuleArtifact sub RubySourceArtifact,
 	# Structural
 	plays has_ruby_file_role,
 	# Semantic
 	plays IS_IDENTIFIER,
+	plays IS_MODULE,
 	plays IS_STATEMENT;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
 
-CsharpCompilationUnitArtifact sub CompilationUnitArtifact,
+CsharpCompilationUnitArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpIsMissingAttribute,
 	has csharpIsStructuredTriviaAttribute,
 	# Structural
 	plays is_parent,
 	# Semantic
+	plays IS_FILE,
 	plays IS_MODULE;
 
-CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
+CsharpMethodDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
 	has csharpArityAttribute,
 	has csharpIsMissingAttribute,
@@ -203,6 +196,8 @@ CsharpMethodDeclarationArtifact sub MethodDeclarationArtifact,
 	# Structural
 	plays is_child,
 	# Semantic
+	plays IS_DECLARATION,
+	plays IS_FUNCTION,
 	plays IS_TYPE;
 
 #####----- Bash -----#####
