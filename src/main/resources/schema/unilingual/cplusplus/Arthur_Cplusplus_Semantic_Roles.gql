@@ -161,6 +161,7 @@ CPPASTBinaryExpressionArtifact sub CplusplusSourceArtifact,
 	plays IS_MODULO,
 	plays IS_MULTIPLY,
 	plays IS_NOT,
+	plays IS_OPERATOR,
 	plays IS_OR,
 	plays IS_QUALIFIED,
 	plays IS_RELATIONAL,
@@ -1114,6 +1115,9 @@ NULL sub relation,
 
 NUMBER sub relation,
 	relates IS_NUMBER;
+
+OPERATOR sub relation,
+	relates IS_OPERATOR;
 
 OR sub relation,
 	relates IS_OR;
