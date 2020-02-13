@@ -161,7 +161,7 @@ class SchemaGenerator {
                     failCount.getAndIncrement()
                 }
             }
-        }).every()
+        }).collect()
         executorService.shutdown()
 
         log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
