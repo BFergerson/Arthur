@@ -41,18 +41,30 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node) {
-        return getFilteredNodes(new SourceNode(language, node))
+        return getFilteredNodes(language, node, true)
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node, boolean onChildren) {
+        return getFilteredNodes(new SourceNode(language, node), onChildren)
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
-        return new FilterIterator(new PreorderIterator(sourceNode), this)
+        return getFilteredNodes(sourceNode, true)
     }
 
-    static class PreorderIterator implements Iterator<SourceNode> {
+    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, boolean onChildren) {
+        if (onChildren) {
+            return new FilterIterator(new ChildPreorderIterator(sourceNode), this)
+        } else {
+            return new FilterIterator(new ParentIterator(sourceNode), this)
+        }
+    }
+
+    static class ChildPreorderIterator implements Iterator<SourceNode> {
 
         private final Deque<SourceNode> nodeStack
 
-        PreorderIterator(SourceNode node) {
+        ChildPreorderIterator(SourceNode node) {
             nodeStack = new ArrayDeque<SourceNode>()
             nodeStack.push(node)
         }
@@ -67,6 +79,30 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
             SourceNode next = nodeStack.pop()
             next.children.reverse().each {
                 nodeStack.push(it)
+            }
+            return next
+        }
+    }
+
+    static class ParentIterator implements Iterator<SourceNode> {
+
+        private final Deque<SourceNode> nodeStack
+
+        ParentIterator(SourceNode node) {
+            nodeStack = new ArrayDeque<SourceNode>()
+            nodeStack.push(node)
+        }
+
+        @Override
+        boolean hasNext() {
+            return !nodeStack.isEmpty()
+        }
+
+        @Override
+        SourceNode next() {
+            SourceNode next = nodeStack.pop()
+            if (next.parentSourceNode != null) {
+                nodeStack.push(next.parentSourceNode)
             }
             return next
         }
