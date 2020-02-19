@@ -3,9 +3,9 @@ package com.codebrig.arthur.generator
 import com.codebrig.arthur.SourceLanguage
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguages
+import com.codebrig.arthur.observe.structure.filter.CompilationUnitFilter
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
-import com.codebrig.arthur.observe.structure.filter.RoleFilter
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
 import org.junit.Test
 
@@ -17,8 +17,7 @@ class SchemaGeneratorTest {
     void fileAndFunctionOnlySchema() {
         def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
-        def roleFilter = new RoleFilter("FILE", "MODULE")
-        multiFilter.accept(roleFilter)
+        multiFilter.accept(new CompilationUnitFilter())
         multiFilter.accept(new FunctionFilter())
         schemaGenerator.filter = multiFilter
 

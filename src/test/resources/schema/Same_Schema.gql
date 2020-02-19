@@ -14,7 +14,6 @@ javaConstructorAttribute sub attribute, datatype string;
 #####----- Javascript -----#####
 javascriptAsyncAttribute sub attribute, datatype string;
 javascriptGeneratorAttribute sub attribute, datatype string;
-javascriptSourceTypeAttribute sub attribute, datatype string;
 
 #####----- Php -----#####
 phpByRefAttribute sub attribute, datatype string;
@@ -25,15 +24,8 @@ csharpIsMissingAttribute sub attribute, datatype string;
 csharpIsStructuredTriviaAttribute sub attribute, datatype string;
 
 #####----- Cplusplus -----#####
-cplusplusIsConstAttribute sub attribute, datatype string;
 cplusplusIsDefaultedAttribute sub attribute, datatype string;
 cplusplusIsDeletedAttribute sub attribute, datatype string;
-cplusplusIsFinalAttribute sub attribute, datatype string;
-cplusplusIsMutableAttribute sub attribute, datatype string;
-cplusplusIsOverrideAttribute sub attribute, datatype string;
-cplusplusIsPureVirtualAttribute sub attribute, datatype string;
-cplusplusIsVolatileAttribute sub attribute, datatype string;
-cplusplusTakesVarArgsAttribute sub attribute, datatype string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
@@ -87,7 +79,7 @@ JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptFileArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays has_javascript_program_role,
+	plays is_parent,
 	# Semantic
 	plays IS_FILE;
 
@@ -97,20 +89,11 @@ JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	has javascriptGeneratorAttribute,
 	has name,
 	# Structural
-	plays is_javascript_body_role,
+	plays is_child,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION,
 	plays IS_STATEMENT;
-
-JavascriptProgramArtifact sub JavascriptSourceArtifact,
-	# Attributes
-	has javascriptSourceTypeAttribute,
-	# Structural
-	plays is_javascript_program_role,
-	plays has_javascript_body_role,
-	# Semantic
-	plays IS_MODULE;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
@@ -210,21 +193,6 @@ BashFILEArtifact sub BashSourceArtifact,
 #####----- Cplusplus -----#####
 CplusplusSourceArtifact sub SourceArtifact;
 
-CplusplusCPPASTFunctionDeclaratorArtifact sub CplusplusSourceArtifact,
-	# Attributes
-	has cplusplusIsConstAttribute,
-	has cplusplusIsFinalAttribute,
-	has cplusplusIsMutableAttribute,
-	has cplusplusIsOverrideAttribute,
-	has cplusplusIsPureVirtualAttribute,
-	has cplusplusIsVolatileAttribute,
-	has cplusplusTakesVarArgsAttribute,
-	# Structural
-	plays is_cplusplus_prop__declarator_role,
-	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
-
 CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
 	# Attributes
 	has cplusplusIsDefaultedAttribute,
@@ -232,7 +200,6 @@ CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
 	has name,
 	# Structural
 	plays is_cplusplus_prop__declarations_role,
-	plays has_cplusplus_prop__declarator_role,
 	# Semantic
 	plays IS_DECLARATION,
 	plays IS_FUNCTION;
@@ -248,28 +215,17 @@ CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
 parent_child_relation sub relation,
 	relates is_parent, relates is_child;
 
-#####----- Omnilingual -----#####
-body_relation sub parent_child_relation,
-	relates is_body_role as is_child, relates has_body_role as is_parent;
-
 #####----- Go -----#####
 go_decls_relation sub parent_child_relation,
 	relates is_go_decls_role as is_child, relates has_go_decls_role as is_parent;
-
-#####----- Javascript -----#####
-javascript_body_relation sub body_relation,
-	relates is_javascript_body_role as is_body_role, relates has_javascript_body_role as has_body_role;
-
-javascript_program_relation sub parent_child_relation,
-	relates is_javascript_program_role as is_child, relates has_javascript_program_role as is_parent;
 
 #####----- Php -----#####
 php_children_relation sub parent_child_relation,
 	relates is_php_children_role as is_child, relates has_php_children_role as is_parent;
 
 #####----- Python -----#####
-python_body_relation sub body_relation,
-	relates is_python_body_role as is_body_role, relates has_python_body_role as has_body_role;
+python_body_relation sub parent_child_relation,
+	relates is_python_body_role as is_child, relates has_python_body_role as is_parent;
 
 #####----- Ruby -----#####
 ruby_file_relation sub parent_child_relation,
@@ -278,9 +234,6 @@ ruby_file_relation sub parent_child_relation,
 #####----- Cplusplus -----#####
 cplusplus_prop__declarations_relation sub parent_child_relation,
 	relates is_cplusplus_prop__declarations_role as is_child, relates has_cplusplus_prop__declarations_role as is_parent;
-
-cplusplus_prop__declarator_relation sub parent_child_relation,
-	relates is_cplusplus_prop__declarator_role as is_child, relates has_cplusplus_prop__declarator_role as is_parent;
 
 ##########---------- Semantic Roles ----------##########
 DECLARATION sub relation,
