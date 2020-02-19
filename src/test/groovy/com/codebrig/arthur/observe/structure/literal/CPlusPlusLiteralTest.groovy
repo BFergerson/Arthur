@@ -83,7 +83,7 @@ class CPlusPlusLiteralTest extends ArthurTest {
 
         boolean foundLiteral = false
         MultiFilter.matchAll(new NameFilter(literalName), new InitializeVariableOperatorFilter())
-                .getFilteredNodesIncludingCurrent(language, resp.uast).each {
+                .getFilteredNodes(language, resp.uast).each {
             assertEquals(literalName, it.name)
             def literalNode = new LiteralFilter().getFilteredNodesIncludingCurrent(it).next()
             assertNotNull(literalNode)

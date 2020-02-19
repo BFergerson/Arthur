@@ -56,18 +56,13 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return getFilteredNodes(new SourceNode(language, node), onChildren)
     }
 
-    @Deprecated
-    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node, boolean onChildren, boolean includeCurrent) {
-        return getFilteredNodes(new SourceNode(language, node), onChildren, includeCurrent)
-    }
-
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
         return getFilteredNodes(sourceNode, true)
     }
 
     @Deprecated
     Iterator<SourceNode> getFilteredNodesIncludingCurrent(SourceLanguage language, Node node) {
-        return getFilteredNodes(language, node, true, true)
+        return getFilteredNodes(new SourceNode(language, node), true, true)
     }
 
     @Deprecated
