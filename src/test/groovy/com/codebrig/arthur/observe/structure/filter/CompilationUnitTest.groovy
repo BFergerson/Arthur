@@ -59,11 +59,8 @@ class CompilationUnitTest extends ArthurTest {
         def language = SourceLanguage.getSourceLanguage(file)
         def resp = client.parse(file.name, file.text, language.babelfishName, Encoding.UTF8$.MODULE$)
 
-        boolean foundCompilationUnit = false
-        new CompilationUnitFilter().getFilteredNodes(language, resp.uast).each {
-            assertFalse(foundCompilationUnit)
-            foundCompilationUnit = true
-        }
-        assertTrue(foundCompilationUnit)
+        def compilationUnitFilter = new CompilationUnitFilter()
+        assertTrue(compilationUnitFilter.evaluate(language, resp.uast))
+        assertFalse(compilationUnitFilter.getFilteredNodes(language, resp.uast).hasNext())
     }
 }

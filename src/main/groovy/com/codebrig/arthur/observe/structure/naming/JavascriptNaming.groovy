@@ -52,7 +52,7 @@ class JavascriptNaming implements StructureNaming {
 
     static String getVariableDeclarationName(SourceNode node) {
         def name = ""
-        new TypeFilter("VariableDeclarator").getFilteredNodes(node).each {
+        new TypeFilter("VariableDeclarator").getFilteredNodesIncludingCurrent(node).each {
             MultiFilter.matchAll(
                     new TypeFilter("Identifier"),
                     new InternalRoleFilter("id")
@@ -92,13 +92,13 @@ class JavascriptNaming implements StructureNaming {
         def name = ""
         def paramsMatched = MultiFilter.matchAll(
                 new InternalRoleFilter("params")
-        ).getFilteredNodes(node)
+        ).getFilteredNodesIncludingCurrent(node)
         if (paramsMatched.hasNext()) {
             name += getRegularParamNames(node)
         }
         def argumentsMatched = MultiFilter.matchAll(
                 new InternalRoleFilter("arguments")
-        ).getFilteredNodes(node)
+        ).getFilteredNodesIncludingCurrent(node)
         if (argumentsMatched.hasNext()) {
             name += getArgumentNames(node)
         }
@@ -107,7 +107,7 @@ class JavascriptNaming implements StructureNaming {
 
     static String getRegularParamNames(SourceNode node) {
         def name = ""
-        new InternalRoleFilter("params").getFilteredNodes(node).each {
+        new InternalRoleFilter("params").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + ","
         }
         return name
@@ -115,7 +115,7 @@ class JavascriptNaming implements StructureNaming {
 
     static String getArgumentNames(SourceNode node) {
         def name = ""
-        new InternalRoleFilter("argument", "arguments").getFilteredNodes(node).each {
+        new InternalRoleFilter("argument", "arguments").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + ","
         }
         return name

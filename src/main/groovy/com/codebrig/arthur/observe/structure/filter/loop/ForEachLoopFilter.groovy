@@ -42,7 +42,7 @@ class ForEachLoopFilter extends StructureFilter<ForEachLoopFilter, Void> {
     }
 
     static boolean evaluateForShellCommand(SourceNode node) {
-        def a = new TypeFilter("for_shellcommand").getFilteredNodes(node)
+        def a = new TypeFilter("for_shellcommand").getFilteredNodesIncludingCurrent(node)
         if (a?.hasNext()) {
             def b = MultiFilter.matchAll(
                     new RoleFilter("FOR"), new RoleFilter("EXPRESSION"), new RoleFilter("ITERATOR"),

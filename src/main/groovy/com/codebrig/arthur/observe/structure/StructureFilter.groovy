@@ -36,6 +36,10 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return (acceptSet.isEmpty() || acceptSet.contains(value)) && !rejectSet.contains(value)
     }
 
+    boolean evaluate(SourceLanguage language, Node node) {
+        return evaluate(new SourceNode(language, node))
+    }
+
     Iterator<? extends SourceNode> getFilteredNodes(Iterable<? extends SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes.iterator(), this)
     }
@@ -52,13 +56,32 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return getFilteredNodes(new SourceNode(language, node), onChildren)
     }
 
+    @Deprecated
+    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node, boolean onChildren, boolean includeCurrent) {
+        return getFilteredNodes(new SourceNode(language, node), onChildren, includeCurrent)
+    }
+
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
         return getFilteredNodes(sourceNode, true)
     }
 
+    @Deprecated
+    Iterator<SourceNode> getFilteredNodesIncludingCurrent(SourceLanguage language, Node node) {
+        return getFilteredNodes(language, node, true, true)
+    }
+
+    @Deprecated
+    Iterator<SourceNode> getFilteredNodesIncludingCurrent(SourceNode sourceNode) {
+        return getFilteredNodes(sourceNode, true, true)
+    }
+
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, boolean onChildren) {
+        return getFilteredNodes(sourceNode, onChildren, false)
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, boolean onChildren, boolean includeCurrent) {
         if (onChildren) {
-            return new FilterIterator(new ChildPreorderIterator(sourceNode), this)
+            return new FilterIterator(new ChildPreorderIterator(sourceNode, includeCurrent), this)
         } else {
             return new FilterIterator(new ParentIterator(sourceNode), this)
         }
@@ -68,9 +91,15 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
 
         private final Deque<SourceNode> nodeStack
 
-        ChildPreorderIterator(SourceNode node) {
+        ChildPreorderIterator(SourceNode node, boolean includeCurrent) {
             nodeStack = new ArrayDeque<SourceNode>()
-            nodeStack.push(node)
+            if (includeCurrent) {
+                nodeStack.push(node)
+            } else {
+                node.children.each {
+                    nodeStack.push(it)
+                }
+            }
         }
 
         @Override
@@ -94,7 +123,9 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
 
         ParentIterator(SourceNode node) {
             nodeStack = new ArrayDeque<SourceNode>()
-            nodeStack.push(node)
+            if (node.parentSourceNode != null) {
+                nodeStack.push(node.parentSourceNode)
+            }
         }
 
         @Override

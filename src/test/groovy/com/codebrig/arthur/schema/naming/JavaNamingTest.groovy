@@ -2,8 +2,8 @@ package com.codebrig.arthur.schema.naming
 
 import com.codebrig.arthur.ArthurTest
 import com.codebrig.arthur.SourceLanguage
+import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.RoleFilter
-import com.codebrig.arthur.observe.structure.filter.TypeFilter
 import gopkg.in.bblfsh.sdk.v1.protocol.generated.Encoding
 import org.junit.Test
 
@@ -38,7 +38,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_noPackage() {
         def file = new File("src/test/resources/java/ForStmt.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             assertEquals("ForStmt.method()", it.name)
@@ -49,7 +49,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_withPackage() {
         def file = new File("src/test/resources/java/com/company/ForStmt_WithPackage.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         functionFilter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
             assertEquals("com.company.ForStmt.method()", it.name)
@@ -60,7 +60,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_variousStuff_noPackage_differentArgs() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         boolean foundQualifiedTypeArgs = false
         boolean foundMapEntryArrayArgs = false
@@ -102,7 +102,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_variousStuff_noPackage() {
         def file = new File("src/test/resources/java/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         boolean foundMethod3 = false
         boolean foundMethod4 = false
@@ -129,7 +129,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_variousStuff_withPackage() {
         def file = new File("src/test/resources/java/com/company/VariousStuff.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         boolean foundMethod3 = false
         boolean foundMethod4 = false
@@ -158,7 +158,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_importQualified_noPackage() {
         def file = new File("src/test/resources/java/ImportQualifiedName.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         boolean foundSetMethod = false
         boolean foundMapMethod = false
@@ -187,7 +187,7 @@ class JavaNamingTest extends ArthurTest {
     void methodQualifiedName_importQualified_withPackage() {
         def file = new File("src/test/resources/java/com/company/ImportQualifiedName.java")
         def resp = client.parse(file.name, file.text, SourceLanguage.Java.babelfishName, Encoding.UTF8$.MODULE$)
-        def functionFilter = new TypeFilter("MethodDeclaration")
+        def functionFilter = new FunctionFilter()
 
         boolean foundSetMethod = false
         boolean foundMapMethod = false

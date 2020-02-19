@@ -63,7 +63,7 @@ class FunctionFilterTest extends ArthurTest {
             foundFunction = true
 
             //verify functions are not found inside functions
-            assertTrue(new FunctionFilter().getFilteredNodes(it).size() == 1)
+            assertTrue(new FunctionFilter().getFilteredNodes(it).size() == 0)
         }
         assertTrue(foundFunction)
     }

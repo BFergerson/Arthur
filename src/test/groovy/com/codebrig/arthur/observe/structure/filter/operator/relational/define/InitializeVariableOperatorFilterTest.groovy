@@ -73,9 +73,9 @@ class InitializeVariableOperatorFilterTest extends ArthurTest {
         MultiFilter.matchAll(functionFilter, nameFilter).getFilteredNodes(language, resp.uast).each {
             assertEquals(qualifiedName + "initializeVariableOperator()", it.name)
 
-            new InitializeVariableOperatorFilter().getFilteredNodes(it).each {
+            new InitializeVariableOperatorFilter().getFilteredNodesIncludingCurrent(it).each {
                 assertFalse(foundInitializeVariableOperator)
-                assertNotNull(new TokenFilter("x").getFilteredNodes(it).next())
+                assertNotNull(new TokenFilter("x").getFilteredNodesIncludingCurrent(it).next())
                 foundInitializeVariableOperator = true
             }
         }

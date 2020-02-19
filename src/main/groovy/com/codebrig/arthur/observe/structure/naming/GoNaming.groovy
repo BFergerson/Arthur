@@ -92,7 +92,7 @@ class GoNaming implements StructureNaming {
 
     static String getGenDeclName(SourceNode node) {
         def name = ""
-        new TypeFilter("ValueSpec").getFilteredNodes(node).each {
+        new TypeFilter("ValueSpec").getFilteredNodesIncludingCurrent(node).each {
             MultiFilter.matchAll(
                     new TypeFilter("Ident"),
                     new InternalRoleFilter("Names")
@@ -105,7 +105,7 @@ class GoNaming implements StructureNaming {
 
     static String getIdentTypeName(SourceNode node) {
         def name = ""
-        new TypeFilter("Ident").getFilteredNodes(node).each {
+        new TypeFilter("Ident").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + ","
         }
         return name

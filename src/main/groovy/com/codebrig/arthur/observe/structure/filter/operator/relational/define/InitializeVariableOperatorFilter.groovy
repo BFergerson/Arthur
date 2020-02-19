@@ -25,6 +25,6 @@ class InitializeVariableOperatorFilter extends StructureFilter<InitializeVariabl
     @Override
     boolean evaluate(SourceNode node) {
         //todo: new objects, method calls
-        return filter.evaluate(node) && new LiteralFilter().getFilteredNodes(node) != null
+        return filter.evaluate(node) && new LiteralFilter().getFilteredNodesIncludingCurrent(node) != null
     }
 }
