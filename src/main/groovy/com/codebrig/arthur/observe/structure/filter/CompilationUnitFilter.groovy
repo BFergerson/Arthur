@@ -8,7 +8,7 @@ import com.codebrig.arthur.observe.structure.StructureFilter
  * Match by compilation unit
  *
  * @version 0.4
- * @since 0.4
+ * @since 0.5
  * @author <a href="mailto:brandon.fergerson@codebrig.com">Brandon Fergerson</a>
  */
 class CompilationUnitFilter extends StructureFilter<CompilationUnitFilter, Void> {
