@@ -36,7 +36,7 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return (acceptSet.isEmpty() || acceptSet.contains(value)) && !rejectSet.contains(value)
     }
 
-    Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
+    Iterator<? extends SourceNode> getFilteredNodes(Iterator<? extends SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes, this)
     }
 
