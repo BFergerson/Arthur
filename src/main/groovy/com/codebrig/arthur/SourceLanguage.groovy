@@ -138,8 +138,12 @@ enum SourceLanguage {
     }
 
     static SourceLanguage getSourceLanguage(File file) {
+        return getSourceLanguage(file.name)
+    }
+
+    static SourceLanguage getSourceLanguage(String filename) {
         def sourceLanguage
-        def fileExtension = Files.getFileExtension(file.name)
+        def fileExtension = Files.getFileExtension(filename)
         values().each {
             if (it.isValidExtension(fileExtension)) {
                 sourceLanguage = it
@@ -148,7 +152,7 @@ enum SourceLanguage {
         if (sourceLanguage != null) {
             return sourceLanguage
         } else {
-            throw new IllegalArgumentException("Could not detect source code language of file: " + file)
+            throw new IllegalArgumentException("Could not detect source code language of file: " + filename)
         }
     }
 
