@@ -6,3 +6,5 @@ services:
     container_name: bblfshd
     ports:
       - "9432:9432"
+    environment:
+      - JAEGER_DISABLED=1
