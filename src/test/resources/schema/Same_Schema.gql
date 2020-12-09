@@ -1,215 +1,215 @@
 define
 
 ##########---------- Attributes ----------##########
-booleanValue sub attribute, datatype boolean;
-doubleValue sub attribute, datatype double;
-name sub attribute, datatype string;
-numberValue sub attribute, datatype long;
-stringValue sub attribute, datatype string;
-token sub attribute, datatype string;
+booleanValue sub attribute, value boolean;
+doubleValue sub attribute, value double;
+name sub attribute, value string;
+numberValue sub attribute, value long;
+stringValue sub attribute, value string;
+token sub attribute, value string;
 
 #####----- Java -----#####
-javaConstructorAttribute sub attribute, datatype string;
+javaConstructorAttribute sub attribute, value string;
 
 #####----- Javascript -----#####
-javascriptAsyncAttribute sub attribute, datatype string;
-javascriptGeneratorAttribute sub attribute, datatype string;
+javascriptAsyncAttribute sub attribute, value string;
+javascriptGeneratorAttribute sub attribute, value string;
 
 #####----- Php -----#####
-phpByRefAttribute sub attribute, datatype string;
+phpByRefAttribute sub attribute, value string;
 
 #####----- Csharp -----#####
-csharpArityAttribute sub attribute, datatype string;
-csharpIsMissingAttribute sub attribute, datatype string;
-csharpIsStructuredTriviaAttribute sub attribute, datatype string;
+csharpArityAttribute sub attribute, value string;
+csharpIsMissingAttribute sub attribute, value string;
+csharpIsStructuredTriviaAttribute sub attribute, value string;
 
 #####----- Cplusplus -----#####
-cplusplusIsDefaultedAttribute sub attribute, datatype string;
-cplusplusIsDeletedAttribute sub attribute, datatype string;
+cplusplusIsDefaultedAttribute sub attribute, value string;
+cplusplusIsDeletedAttribute sub attribute, value string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
-	has token,
-	plays is_child,
-	plays is_parent;
+	owns token,
+	plays parent_child_relation:is_child,
+	plays parent_child_relation:is_parent;
 
 #####----- Go -----#####
 GoSourceArtifact sub SourceArtifact;
 
 GoFileArtifact sub GoSourceArtifact,
 	# Structural
-	plays has_go_decls_role,
+	plays go_decls_relation:has_go_decls_role,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 GoFuncDeclArtifact sub GoSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_go_decls_role,
+	plays go_decls_relation:is_go_decls_role,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
 JavaCompilationUnitArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_parent,
+	plays parent_child_relation:is_parent,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 JavaMethodDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has javaConstructorAttribute,
-	has name,
+	owns javaConstructorAttribute,
+	owns name,
 	# Structural
-	plays is_child,
+	plays parent_child_relation:is_child,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_VISIBILITY,
-	plays IS_WORLD;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays VISIBILITY:IS_VISIBILITY,
+	plays WORLD:IS_WORLD;
 
 #####----- Javascript -----#####
 JavascriptSourceArtifact sub SourceArtifact;
 
 JavascriptFileArtifact sub JavascriptSourceArtifact,
 	# Structural
-	plays is_parent,
+	plays parent_child_relation:is_parent,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 JavascriptFunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	# Attributes
-	has javascriptAsyncAttribute,
-	has javascriptGeneratorAttribute,
-	has name,
+	owns javascriptAsyncAttribute,
+	owns javascriptGeneratorAttribute,
+	owns name,
 	# Structural
-	plays is_child,
+	plays parent_child_relation:is_child,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_STATEMENT;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays STATEMENT:IS_STATEMENT;
 
 #####----- Php -----#####
 PhpSourceArtifact sub SourceArtifact;
 
 PhpModuleArtifact sub PhpSourceArtifact,
 	# Structural
-	plays has_php_children_role,
+	plays php_children_relation:has_php_children_role,
 	# Semantic
-	plays IS_MODULE;
+	plays MODULE:IS_MODULE;
 
 PhpStmtFunctionArtifact sub PhpSourceArtifact,
 	# Attributes
-	has phpByRefAttribute,
-	has name,
+	owns phpByRefAttribute,
+	owns name,
 	# Structural
-	plays is_php_children_role,
+	plays php_children_relation:is_php_children_role,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
 PythonFunctionDefArtifact sub PythonSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_python_body_role,
+	plays python_body_relation:is_python_body_role,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_NAME;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays NAME:IS_NAME;
 
 PythonModuleArtifact sub PythonSourceArtifact,
 	# Structural
-	plays has_python_body_role,
+	plays python_body_relation:has_python_body_role,
 	# Semantic
-	plays IS_FILE,
-	plays IS_MODULE;
+	plays FILE:IS_FILE,
+	plays MODULE:IS_MODULE;
 
 #####----- Ruby -----#####
 RubySourceArtifact sub SourceArtifact;
 
 RubyDefArtifact sub RubySourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_ruby_file_role,
+	plays ruby_file_relation:is_ruby_file_role,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_STATEMENT;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays STATEMENT:IS_STATEMENT;
 
 RubyModuleArtifact sub RubySourceArtifact,
 	# Structural
-	plays has_ruby_file_role,
+	plays ruby_file_relation:has_ruby_file_role,
 	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_MODULE,
-	plays IS_STATEMENT;
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays MODULE:IS_MODULE,
+	plays STATEMENT:IS_STATEMENT;
 
 #####----- Csharp -----#####
 CsharpSourceArtifact sub SourceArtifact;
 
 CsharpCompilationUnitArtifact sub CsharpSourceArtifact,
 	# Attributes
-	has csharpIsMissingAttribute,
-	has csharpIsStructuredTriviaAttribute,
+	owns csharpIsMissingAttribute,
+	owns csharpIsStructuredTriviaAttribute,
 	# Structural
-	plays is_parent,
+	plays parent_child_relation:is_parent,
 	# Semantic
-	plays IS_FILE,
-	plays IS_MODULE;
+	plays FILE:IS_FILE,
+	plays MODULE:IS_MODULE;
 
 CsharpMethodDeclarationArtifact sub CsharpSourceArtifact,
 	# Attributes
-	has csharpArityAttribute,
-	has csharpIsMissingAttribute,
-	has csharpIsStructuredTriviaAttribute,
-	has name,
+	owns csharpArityAttribute,
+	owns csharpIsMissingAttribute,
+	owns csharpIsStructuredTriviaAttribute,
+	owns name,
 	# Structural
-	plays is_child,
+	plays parent_child_relation:is_child,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays TYPE:IS_TYPE;
 
 #####----- Bash -----#####
 BashSourceArtifact sub SourceArtifact;
 
 BashFILEArtifact sub BashSourceArtifact,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 #####----- Cplusplus -----#####
 CplusplusSourceArtifact sub SourceArtifact;
 
 CplusplusCPPASTFunctionDefinitionArtifact sub CplusplusSourceArtifact,
 	# Attributes
-	has cplusplusIsDefaultedAttribute,
-	has cplusplusIsDeletedAttribute,
-	has name,
+	owns cplusplusIsDefaultedAttribute,
+	owns cplusplusIsDeletedAttribute,
+	owns name,
 	# Structural
-	plays is_cplusplus_prop__declarations_role,
+	plays cplusplus_prop__declarations_relation:is_cplusplus_prop__declarations_role,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION;
 
 CplusplusCPPASTTranslationUnitArtifact sub CplusplusSourceArtifact,
 	# Structural
-	plays has_cplusplus_prop__declarations_role,
+	plays cplusplus_prop__declarations_relation:has_cplusplus_prop__declarations_role,
 	# Semantic
-	plays IS_FILE,
-	plays IS_MODULE;
+	plays FILE:IS_FILE,
+	plays MODULE:IS_MODULE;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,

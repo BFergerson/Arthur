@@ -7,1721 +7,1721 @@ JavascriptSourceArtifact sub SourceArtifact;
 
 AnyTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 ArrayExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE;
 
 ArrayPatternArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_MAP,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays MAP:IS_MAP,
+	plays VALUE:IS_VALUE;
 
 ArrayTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ArrowFunctionExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ANONYMOUS,
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ANONYMOUS:IS_ANONYMOUS,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 AssignmentExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_DIVIDE,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LEFT_SHIFT,
-	plays IS_MAP,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NAME,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UNSIGNED,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays DIVIDE:IS_DIVIDE,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays MAP:IS_MAP,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NAME:IS_NAME,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT:IS_RIGHT,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UNSIGNED:IS_UNSIGNED,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE,
+	plays XOR:IS_XOR;
 
 AssignmentPatternArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_ITERATOR,
-	plays IS_MAP,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays ITERATOR:IS_ITERATOR,
+	plays MAP:IS_MAP,
+	plays VALUE:IS_VALUE;
 
 AwaitExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 BigIntLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_UNANNOTATED,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays UNANNOTATED:IS_UNANNOTATED,
+	plays VALUE:IS_VALUE;
 
 BinaryExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DIVIDE,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_GREATER_THAN,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_IDENTICAL,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LEFT_SHIFT,
-	plays IS_LESS_THAN,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_MAP,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NAME,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UNSIGNED,
-	plays IS_VALUE,
-	plays IS_WHILE,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DIVIDE:IS_DIVIDE,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays GREATER_THAN:IS_GREATER_THAN,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays IDENTICAL:IS_IDENTICAL,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays LESS_THAN:IS_LESS_THAN,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays MAP:IS_MAP,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NAME:IS_NAME,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UNSIGNED:IS_UNSIGNED,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE,
+	plays XOR:IS_XOR;
 
 BindExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_RIGHT;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays RIGHT:IS_RIGHT;
 
 BlockStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FINALLY,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_MAP,
-	plays IS_SCOPE,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_TRY,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays BLOCK:IS_BLOCK,
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FINALLY:IS_FINALLY,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays MAP:IS_MAP,
+	plays SCOPE:IS_SCOPE,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays TRY:IS_TRY,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 BooleanLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 BooleanLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_DECLARATION,
-	plays IS_LITERAL,
-	plays IS_TYPE;
+	plays BOOLEAN:IS_BOOLEAN,
+	plays DECLARATION:IS_DECLARATION,
+	plays LITERAL:IS_LITERAL,
+	plays TYPE:IS_TYPE;
 
 BooleanTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays BOOLEAN:IS_BOOLEAN,
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 BreakStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_BREAK,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays BREAK:IS_BREAK,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 CallExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 CatchClauseArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_CATCH,
-	plays IS_STATEMENT,
-	plays IS_TRY;
+	plays CATCH:IS_CATCH,
+	plays STATEMENT:IS_STATEMENT,
+	plays TRY:IS_TRY;
 
 ClassBodyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays TYPE:IS_TYPE;
 
 ClassDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays TYPE:IS_TYPE;
 
 ClassExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_DECLARATION,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays DECLARATION:IS_DECLARATION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ClassImplementsArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ClassMethodArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_STATEMENT;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays STATEMENT:IS_STATEMENT;
 
 ClassPrivateMethodArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_STATEMENT;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays STATEMENT:IS_STATEMENT;
 
 ClassPrivatePropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_VARIABLE;
+	plays VARIABLE:IS_VARIABLE;
 
 ClassPropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_VARIABLE;
+	plays VARIABLE:IS_VARIABLE;
 
 CommentBlockArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_COMMENT,
-	plays IS_NOOP;
+	plays BLOCK:IS_BLOCK,
+	plays COMMENT:IS_COMMENT,
+	plays NOOP:IS_NOOP;
 
 CommentLineArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_COMMENT,
-	plays IS_NOOP;
+	plays COMMENT:IS_COMMENT,
+	plays NOOP:IS_NOOP;
 
 ConditionalExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 ContinueStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CONTINUE,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays CONTINUE:IS_CONTINUE,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 DebuggerStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_NOOP,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays NOOP:IS_NOOP,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 DeclareClassArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 DeclaredPredicateArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareExportAllDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareExportDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareFunctionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareInterfaceArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareModuleArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareModuleExportsArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareOpaqueTypeArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareTypeAliasArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DeclareVariableArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 DecoratorArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ANNOTATION,
-	plays IS_INCOMPLETE;
+	plays ANNOTATION:IS_ANNOTATION,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 DirectiveArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE;
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 DirectiveLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LITERAL;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LITERAL:IS_LITERAL;
 
 DoExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 DoWhileStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 EmptyStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_NOOP,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays NOOP:IS_NOOP,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 EmptyTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExistsTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 ExportAllDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_MODULE,
-	plays IS_STATEMENT,
-	plays IS_VISIBILITY;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays MODULE:IS_MODULE,
+	plays STATEMENT:IS_STATEMENT,
+	plays VISIBILITY:IS_VISIBILITY;
 
 ExportDefaultDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_MODULE,
-	plays IS_STATEMENT,
-	plays IS_VISIBILITY;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays MODULE:IS_MODULE,
+	plays STATEMENT:IS_STATEMENT,
+	plays VISIBILITY:IS_VISIBILITY;
 
 ExportNamedDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_MODULE,
-	plays IS_STATEMENT,
-	plays IS_VISIBILITY;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays MODULE:IS_MODULE,
+	plays STATEMENT:IS_STATEMENT,
+	plays VISIBILITY:IS_VISIBILITY;
 
 ExportSpecifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE;
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 ExpressionStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 FileArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 ForInStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_ITERATOR,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays ITERATOR:IS_ITERATOR,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 ForOfStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_ITERATOR,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays ITERATOR:IS_ITERATOR,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 ForStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 FunctionDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays WHILE:IS_WHILE;
 
 FunctionExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 FunctionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 FunctionTypeParamArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 GenericTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 IdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 IfStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 ImportArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_EXPRESSION,
-	plays IS_IMPORT;
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IMPORT:IS_IMPORT;
 
 ImportDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 ImportDefaultSpecifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DEFAULT,
-	plays IS_IMPORT;
+	plays DEFAULT:IS_DEFAULT,
+	plays IMPORT:IS_IMPORT;
 
 ImportNamespaceSpecifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_IMPORT,
-	plays IS_NAME;
+	plays IMPORT:IS_IMPORT,
+	plays NAME:IS_NAME;
 
 ImportSpecifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_IMPORT;
+	plays IMPORT:IS_IMPORT;
 
 InferredPredicateArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 InterfaceDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_UNANNOTATED;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 InterfaceExtendsArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_SUBTYPE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays SUBTYPE:IS_SUBTYPE,
+	plays TYPE:IS_TYPE;
 
 IntersectionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 JSXAttributeArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE;
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 JSXClosingElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXClosingFragmentArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE;
 
 JSXEmptyExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXExpressionContainerArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXFragmentArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNANNOTATED,
-	plays IS_VALUE;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED,
+	plays VALUE:IS_VALUE;
 
 JSXIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_INCOMPLETE;
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 JSXMemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXNamespacedNameArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXOpeningElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_INCOMPLETE;
+	plays BLOCK:IS_BLOCK,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 JSXOpeningFragmentArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXSpreadAttributeArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXSpreadChildArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 JSXTextArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 LabeledStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ANNOTATION,
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays ANNOTATION:IS_ANNOTATION,
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 LogicalExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_AND,
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays AND:IS_AND,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 MemberExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_QUALIFIED,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays QUALIFIED:IS_QUALIFIED,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 MetaPropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 MixedTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 NewExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_INSTANCE,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays INSTANCE:IS_INSTANCE,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 NullableTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 NullLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_NULL,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays NULL:IS_NULL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 NullLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_NULL,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays NULL:IS_NULL,
+	plays TYPE:IS_TYPE;
 
 NumberLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays LITERAL:IS_LITERAL,
+	plays NUMBER:IS_NUMBER,
+	plays TYPE:IS_TYPE;
 
 NumberTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_NUMBER,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays NUMBER:IS_NUMBER,
+	plays TYPE:IS_TYPE;
 
 NumericLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_NUMBER,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays NUMBER:IS_NUMBER,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 ObjectExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ObjectMethodArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_MAP;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays MAP:IS_MAP;
 
 ObjectPatternArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays VALUE:IS_VALUE;
 
 ObjectPropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_MAP;
+	plays MAP:IS_MAP;
 
 ObjectTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_LITERAL,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LITERAL:IS_LITERAL,
+	plays TYPE:IS_TYPE;
 
 ObjectTypeCallPropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 ObjectTypeIndexerArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 ObjectTypePropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 ObjectTypeSpreadPropertyArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 OpaqueTypeArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_UNANNOTATED;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 OperatorArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BOOLEAN,
-	plays IS_DECREMENT,
-	plays IS_DIVIDE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_GREATER_THAN,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_IDENTICAL,
-	plays IS_INCOMPLETE,
-	plays IS_INCREMENT,
-	plays IS_LEFT_SHIFT,
-	plays IS_LESS_THAN,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NEGATIVE,
-	plays IS_NOT,
-	plays IS_NULL,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_POSITIVE,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_THROW,
-	plays IS_TYPE,
-	plays IS_UNARY,
-	plays IS_UNSIGNED,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays DECREMENT:IS_DECREMENT,
+	plays DIVIDE:IS_DIVIDE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays GREATER_THAN:IS_GREATER_THAN,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays IDENTICAL:IS_IDENTICAL,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INCREMENT:IS_INCREMENT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays LESS_THAN:IS_LESS_THAN,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays NOT:IS_NOT,
+	plays NULL:IS_NULL,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays POSITIVE:IS_POSITIVE,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays THROW:IS_THROW,
+	plays TYPE:IS_TYPE,
+	plays UNARY:IS_UNARY,
+	plays UNSIGNED:IS_UNSIGNED,
+	plays XOR:IS_XOR;
 
 PrivateNameArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_INSTANCE,
-	plays IS_KEY,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_QUALIFIED,
-	plays IS_VISIBILITY;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays INSTANCE:IS_INSTANCE,
+	plays KEY:IS_KEY,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays QUALIFIED:IS_QUALIFIED,
+	plays VISIBILITY:IS_VISIBILITY;
 
 ProgramArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_MODULE;
+	plays MODULE:IS_MODULE;
 
 QualifiedTypeIdentifierArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 RegExpLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_REGEXP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays REGEXP:IS_REGEXP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE;
 
 RestElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGS_LIST,
-	plays IS_ARGUMENT,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE;
+	plays ARGS_LIST:IS_ARGS_LIST,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 ReturnStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_RETURN,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays RETURN:IS_RETURN,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 SequenceExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 SpreadElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGS_LIST,
-	plays IS_ARGUMENT,
-	plays IS_CALL,
-	plays IS_INCOMPLETE,
-	plays IS_LIST,
-	plays IS_VALUE;
+	plays ARGS_LIST:IS_ARGS_LIST,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALL:IS_CALL,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LIST:IS_LIST,
+	plays VALUE:IS_VALUE;
 
 StringLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_PATHNAME,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays PATHNAME:IS_PATHNAME,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE;
 
 StringLiteralTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_LITERAL,
-	plays IS_STRING,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays LITERAL:IS_LITERAL,
+	plays STRING:IS_STRING,
+	plays TYPE:IS_TYPE;
 
 StringTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_STRING,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays STRING:IS_STRING,
+	plays TYPE:IS_TYPE;
 
 SuperArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BASE,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER;
+	plays BASE:IS_BASE,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER;
 
 SwitchCaseArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_SWITCH;
+	plays CASE:IS_CASE,
+	plays SWITCH:IS_SWITCH;
 
 SwitchStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 TaggedTemplateExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN,
+	plays VALUE:IS_VALUE;
 
 TemplateElementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_STRING,
-	plays IS_VALUE;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STRING:IS_STRING,
+	plays VALUE:IS_VALUE;
 
 TemplateLiteralArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ThisExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_THIS,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays THIS:IS_THIS,
+	plays VALUE:IS_VALUE;
 
 ThisTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ThrowStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_THROW;
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays THROW:IS_THROW;
 
 TryStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_TRY,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays TRY:IS_TRY,
+	plays WHILE:IS_WHILE;
 
 TupleTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TUPLE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TUPLE:IS_TUPLE,
+	plays TYPE:IS_TYPE;
 
 TypeAliasArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays ALIAS:IS_ALIAS,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 TypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 TypeCastExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ALIAS:IS_ALIAS,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 TypeofTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 TypeParameterArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 TypeParameterDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_DECLARATION,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays DECLARATION:IS_DECLARATION,
+	plays TYPE:IS_TYPE;
 
 TypeParameterInstantiationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 UnaryExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_NEGATIVE,
-	plays IS_NOT,
-	plays IS_NULL,
-	plays IS_OPERATOR,
-	plays IS_POSITIVE,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_THROW,
-	plays IS_TYPE,
-	plays IS_UNARY,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays NOT:IS_NOT,
+	plays NULL:IS_NULL,
+	plays OPERATOR:IS_OPERATOR,
+	plays POSITIVE:IS_POSITIVE,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays THROW:IS_THROW,
+	plays TYPE:IS_TYPE,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 UnionTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 UpdateExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_DECREMENT,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCREMENT,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_OPERATOR,
-	plays IS_POSTFIX,
-	plays IS_RIGHT,
-	plays IS_SWITCH,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UNARY,
-	plays IS_UPDATE,
-	plays IS_VALUE,
-	plays IS_WHILE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays DECREMENT:IS_DECREMENT,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCREMENT:IS_INCREMENT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays OPERATOR:IS_OPERATOR,
+	plays POSTFIX:IS_POSTFIX,
+	plays RIGHT:IS_RIGHT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE,
+	plays VALUE:IS_VALUE,
+	plays WHILE:IS_WHILE;
 
 VariableDeclarationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_ITERATOR,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_VARIABLE,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays ITERATOR:IS_ITERATOR,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays VARIABLE:IS_VARIABLE,
+	plays WHILE:IS_WHILE;
 
 VariableDeclaratorArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_VARIABLE;
+	plays DECLARATION:IS_DECLARATION,
+	plays VARIABLE:IS_VARIABLE;
 
 VarianceArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 VoidTypeAnnotationArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 WhileStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 WithStatementArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_INCOMPLETE,
-	plays IS_SCOPE,
-	plays IS_STATEMENT;
+	plays BLOCK:IS_BLOCK,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays SCOPE:IS_SCOPE,
+	plays STATEMENT:IS_STATEMENT;
 
 YieldExpressionArtifact sub JavascriptSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BASE,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_INITIALIZATION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_NAME,
-	plays IS_RETURN,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BASE:IS_BASE,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays NAME:IS_NAME,
+	plays RETURN:IS_RETURN,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,

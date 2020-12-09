@@ -7,568 +7,568 @@ GoSourceArtifact sub SourceArtifact;
 
 ArrayTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_KEY,
-	plays IS_LIST,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays KEY:IS_KEY,
+	plays LIST:IS_LIST,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 AssignStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_DECLARATION,
-	plays IS_DIVIDE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT_SHIFT,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NEGATIVE,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT_SHIFT,
-	plays IS_STATEMENT,
-	plays IS_SUBSTRACT,
-	plays IS_SWITCH,
-	plays IS_UPDATE,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays DECLARATION:IS_DECLARATION,
+	plays DIVIDE:IS_DIVIDE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays STATEMENT:IS_STATEMENT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays SWITCH:IS_SWITCH,
+	plays UPDATE:IS_UPDATE,
+	plays XOR:IS_XOR;
 
 BasicLitArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CHARACTER,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INCOMPLETE,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_PATHNAME,
-	plays IS_POSITIONAL,
-	plays IS_PRIMITIVE,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CHARACTER:IS_CHARACTER,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays NUMBER:IS_NUMBER,
+	plays PATHNAME:IS_PATHNAME,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays PRIMITIVE:IS_PRIMITIVE,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays VALUE:IS_VALUE;
 
 BinaryExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BOOLEAN,
-	plays IS_CONDITION,
-	plays IS_DIVIDE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_GREATER_THAN,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_IF,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LEFT_SHIFT,
-	plays IS_LESS_THAN,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NEGATIVE,
-	plays IS_NOT,
-	plays IS_OR,
-	plays IS_POSITIONAL,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_VALUE,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CONDITION:IS_CONDITION,
+	plays DIVIDE:IS_DIVIDE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays GREATER_THAN:IS_GREATER_THAN,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays IF:IS_IF,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays LESS_THAN:IS_LESS_THAN,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays NOT:IS_NOT,
+	plays OR:IS_OR,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays VALUE:IS_VALUE,
+	plays XOR:IS_XOR;
 
 BlockStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_SCOPE,
-	plays IS_STATEMENT,
-	plays IS_SWITCH,
-	plays IS_THEN;
+	plays BLOCK:IS_BLOCK,
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays SCOPE:IS_SCOPE,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN;
 
 BranchStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_BREAK,
-	plays IS_CONTINUE,
-	plays IS_GOTO,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
+	plays BREAK:IS_BREAK,
+	plays CONTINUE:IS_CONTINUE,
+	plays GOTO:IS_GOTO,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT;
 
 CallExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALL,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALL:IS_CALL,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 CaseClauseArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_STATEMENT;
+	plays CASE:IS_CASE,
+	plays STATEMENT:IS_STATEMENT;
 
 ChanTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_KEY,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays KEY:IS_KEY,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 CommClauseArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
+	plays CASE:IS_CASE,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT;
 
 CommentArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_COMMENT;
+	plays COMMENT:IS_COMMENT;
 
 CommentGroupArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_COMMENT,
-	plays IS_LIST;
+	plays COMMENT:IS_COMMENT,
+	plays LIST:IS_LIST;
 
 CompositeLitArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_EXPRESSION,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 DeclStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_STATEMENT;
+	plays STATEMENT:IS_STATEMENT;
 
 DeferStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT;
 
 EllipsisArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_TYPE;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays TYPE:IS_TYPE;
 
 EmptyStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_STATEMENT,
-	plays IS_SWITCH,
-	plays IS_UPDATE;
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH,
+	plays UPDATE:IS_UPDATE;
 
 FieldArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ENTRY,
-	plays IS_FUNCTION,
-	plays IS_RECEIVER,
-	plays IS_RETURN,
-	plays IS_UNANNOTATED;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ENTRY:IS_ENTRY,
+	plays FUNCTION:IS_FUNCTION,
+	plays RECEIVER:IS_RECEIVER,
+	plays RETURN:IS_RETURN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 FieldListArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGS_LIST,
-	plays IS_FUNCTION,
-	plays IS_INCOMPLETE,
-	plays IS_LIST,
-	plays IS_RECEIVER,
-	plays IS_RETURN;
+	plays ARGS_LIST:IS_ARGS_LIST,
+	plays FUNCTION:IS_FUNCTION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LIST:IS_LIST,
+	plays RECEIVER:IS_RECEIVER,
+	plays RETURN:IS_RETURN;
 
 FileArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FILE;
+	plays FILE:IS_FILE;
 
 ForStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FOR,
-	plays IS_STATEMENT;
+	plays FOR:IS_FOR,
+	plays STATEMENT:IS_STATEMENT;
 
 FuncDeclArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_UNANNOTATED;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 FuncLitArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_EXPRESSION,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 FuncTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_KEY,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays KEY:IS_KEY,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 GenDeclArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays DECLARATION:IS_DECLARATION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 GoStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT;
 
 IdentArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_NAME,
-	plays IS_POSITIONAL,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_TYPE,
-	plays IS_VALUE,
-	plays IS_VARIABLE;
+	plays ALIAS:IS_ALIAS,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays NAME:IS_NAME,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE,
+	plays VARIABLE:IS_VARIABLE;
 
 IfStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT;
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT;
 
 ImportSpecArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_IMPORT;
+	plays DECLARATION:IS_DECLARATION,
+	plays IMPORT:IS_IMPORT;
 
 IncDecStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECREMENT,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCREMENT,
-	plays IS_INITIALIZATION,
-	plays IS_STATEMENT,
-	plays IS_SWITCH,
-	plays IS_UNARY,
-	plays IS_UPDATE;
+	plays DECREMENT:IS_DECREMENT,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCREMENT:IS_INCREMENT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE;
 
 IndexExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 InterfaceTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_KEY,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays KEY:IS_KEY,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 KeyValueExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION;
+	plays EXPRESSION:IS_EXPRESSION;
 
 LabeledStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_STATEMENT;
+	plays STATEMENT:IS_STATEMENT;
 
 MapTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_KEY,
-	plays IS_MAP,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays KEY:IS_KEY,
+	plays MAP:IS_MAP,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 OperatorArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_AND,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BOOLEAN,
-	plays IS_DECLARATION,
-	plays IS_DECREMENT,
-	plays IS_DIVIDE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_GREATER_THAN,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_INCOMPLETE,
-	plays IS_INCREMENT,
-	plays IS_LEFT_SHIFT,
-	plays IS_LESS_THAN,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_MODULO,
-	plays IS_MULTIPLY,
-	plays IS_NEGATIVE,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_POSITIVE,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT_SHIFT,
-	plays IS_SUBSTRACT,
-	plays IS_TAKE_ADDRESS,
-	plays IS_UNARY,
-	plays IS_XOR;
+	plays ADD:IS_ADD,
+	plays AND:IS_AND,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays DECLARATION:IS_DECLARATION,
+	plays DECREMENT:IS_DECREMENT,
+	plays DIVIDE:IS_DIVIDE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays GREATER_THAN:IS_GREATER_THAN,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays INCREMENT:IS_INCREMENT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays LESS_THAN:IS_LESS_THAN,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays MODULO:IS_MODULO,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays POSITIVE:IS_POSITIVE,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays TAKE_ADDRESS:IS_TAKE_ADDRESS,
+	plays UNARY:IS_UNARY,
+	plays XOR:IS_XOR;
 
 ParenExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 PositionArtifact sub GoSourceArtifact;
 
 RangeStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FOR,
-	plays IS_ITERATOR,
-	plays IS_STATEMENT;
+	plays FOR:IS_FOR,
+	plays ITERATOR:IS_ITERATOR,
+	plays STATEMENT:IS_STATEMENT;
 
 ReturnStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_RETURN,
-	plays IS_STATEMENT;
+	plays RETURN:IS_RETURN,
+	plays STATEMENT:IS_STATEMENT;
 
 SelectorExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_QUALIFIED,
-	plays IS_RIGHT,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays QUALIFIED:IS_QUALIFIED,
+	plays RIGHT:IS_RIGHT,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 SelectStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_SWITCH;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH;
 
 SendStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_FOR,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_UPDATE;
+	plays FOR:IS_FOR,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays UPDATE:IS_UPDATE;
 
 SliceExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 StarExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CONDITION,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_ITERATOR,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CONDITION:IS_CONDITION,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays ITERATOR:IS_ITERATOR,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 StructTypeArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_CALLEE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_KEY,
-	plays IS_POSITIONAL,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays CALLEE:IS_CALLEE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays KEY:IS_KEY,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays TYPE:IS_TYPE;
 
 SwitchStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_STATEMENT,
-	plays IS_SWITCH;
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH;
 
 TypeAssertExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_CALLEE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_POSITIONAL,
-	plays IS_RIGHT,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays CALLEE:IS_CALLEE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays VALUE:IS_VALUE;
 
 TypeSpecArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION;
+	plays DECLARATION:IS_DECLARATION;
 
 TypeSwitchStmtArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_SWITCH;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays SWITCH:IS_SWITCH;
 
 UnaryExprArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ARITHMETIC,
-	plays IS_ASSIGNMENT,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_BOOLEAN,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_KEY,
-	plays IS_LEFT,
-	plays IS_NEGATIVE,
-	plays IS_POSITIONAL,
-	plays IS_POSITIVE,
-	plays IS_RIGHT,
-	plays IS_TAKE_ADDRESS,
-	plays IS_UNARY,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ARITHMETIC:IS_ARITHMETIC,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays KEY:IS_KEY,
+	plays LEFT:IS_LEFT,
+	plays NEGATIVE:IS_NEGATIVE,
+	plays POSITIONAL:IS_POSITIONAL,
+	plays POSITIVE:IS_POSITIVE,
+	plays RIGHT:IS_RIGHT,
+	plays TAKE_ADDRESS:IS_TAKE_ADDRESS,
+	plays UNARY:IS_UNARY,
+	plays VALUE:IS_VALUE;
 
 ValueSpecArtifact sub GoSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION;
+	plays DECLARATION:IS_DECLARATION;
 
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,
