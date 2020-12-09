@@ -7,8 +7,6 @@ import com.codebrig.arthur.schema.SchemaSegment
 import com.codebrig.arthur.schema.SchemaWriter
 import com.google.common.base.CaseFormat
 import groovy.util.logging.Slf4j
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import static com.codebrig.arthur.schema.SchemaSegment.*
 
@@ -58,7 +56,7 @@ class GraknSchemaWriter implements SchemaWriter {
         log.info "Writing attributes"
         output.append("\n##########---------- Attributes ----------##########\n")
         StructureLiteral.allLiteralAttributes.each {
-            output.append(it.key).append(" sub attribute, datatype ").append(it.value).append(";\n")
+            output.append(it.key).append(" sub attribute, value ").append(it.value).append(";\n")
         }
 
         if (rootLanguage.isOmnilingual()) {
@@ -82,7 +80,7 @@ class GraknSchemaWriter implements SchemaWriter {
         observedAttributes.each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             output.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
-                    .append(", datatype ").append(GraknAttributeDatatype.getType(attribute))
+                    .append(", value ").append(GraknAttributeDatatype.getType(attribute))
                     .append(";\n")
         }
     }
@@ -112,7 +110,7 @@ class GraknSchemaWriter implements SchemaWriter {
         }
         for (int i = 0; i < observedRelations.size(); i++) {
             def relation = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, observedRelations.get(i) as String)
-            def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual())
+            def fullRelation = observedLanguage.getRelation(relation, rootLanguage.isOmnilingual(), false)
             def relationRole = observedLanguage.getRelationRole(relation, rootLanguage.isOmnilingual())
             def isRole = "is_$relationRole"
             def hasRole = "has_$relationRole"
@@ -141,9 +139,9 @@ class GraknSchemaWriter implements SchemaWriter {
         output.append("\n##########---------- Entities ----------##########\n")
         if (includeAttributes) {
             output.append("SourceArtifact sub entity,\n")
-                    .append("\thas token,\n")
-                    .append("\tplays is_child,\n")
-                    .append("\tplays is_parent;\n")
+                    .append("\towns token,\n")
+                    .append("\tplays parent_child_relation:is_child,\n")
+                    .append("\tplays parent_child_relation:is_parent;\n")
         }
 
         observedLanguages.each { observedLanguage ->
@@ -178,7 +176,7 @@ class GraknSchemaWriter implements SchemaWriter {
                 if (!attrList.isEmpty()) output.append(",\n\t# Attributes\n")
                 for (int z = 0; z < attrList.size(); z++) {
                     def attribute = observedLanguage.getAttribute(attrList.get(z), rootLanguage.isOmnilingual())
-                    output.append("\thas ").append(attribute)
+                    output.append("\towns ").append(attribute)
 
                     if ((z + 1) < attrList.size()) {
                         output.append(",\n")
@@ -192,16 +190,22 @@ class GraknSchemaWriter implements SchemaWriter {
                 def hasRelations = observedLanguage.getEntityObservedHasRelations(entity, naturalOrdering)
                 if (!isRelations.isEmpty() || !hasRelations.isEmpty()) output.append(",\n\t# Structural\n")
                 for (int z = 0; z < isRelations.size(); z++) {
-                    output.append("\tplays is_").append(observedLanguage.getRelationRole(
-                            isRelations.get(z), rootLanguage.isOmnilingual()))
+                    output.append("\tplays ")
+                            .append(observedLanguage.getRelation(isRelations.get(z), rootLanguage.isOmnilingual(), true))
+                            .append(":")
+                            .append("is_")
+                            .append(observedLanguage.getRelationRole(isRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < isRelations.size() || !hasRelations.isEmpty()) {
                         output.append(",\n")
                     }
                 }
                 for (int z = 0; z < hasRelations.size(); z++) {
-                    output.append("\tplays has_").append(observedLanguage.getRelationRole(
-                            hasRelations.get(z), rootLanguage.isOmnilingual()))
+                    output.append("\tplays ")
+                            .append(observedLanguage.getRelation(hasRelations.get(z), rootLanguage.isOmnilingual(), true))
+                            .append(":")
+                            .append("has_")
+                            .append(observedLanguage.getRelationRole(hasRelations.get(z), rootLanguage.isOmnilingual()))
 
                     if ((z + 1) < hasRelations.size()) {
                         output.append(",\n")
@@ -215,7 +219,8 @@ class GraknSchemaWriter implements SchemaWriter {
                 if (!roleList.isEmpty()) {
                     output.append(",\n\t# Semantic\n")
                     for (int z = 0; z < roleList.size(); z++) {
-                        output.append("\tplays IS_").append(roleList.get(z))
+                        output.append("\tplays ").append(roleList.get(z))
+                                .append(":").append("IS_").append(roleList.get(z))
 
                         if ((z + 1) < roleList.size()) {
                             output.append(",\n")
