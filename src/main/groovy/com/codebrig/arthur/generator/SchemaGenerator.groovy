@@ -118,7 +118,7 @@ class SchemaGenerator {
         def sourceFiles = new ArrayList<File>()
         Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
             def file = p.toFile()
-            log.info("Parsing file: $file")
+            log.info("Visiting file: $file")
 
             if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
                 if (file.exists()) {
@@ -133,9 +133,11 @@ class SchemaGenerator {
 
         def failCount = new AtomicInteger(0)
         def parseCount = new AtomicInteger(0)
-        def executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+        log.warn "Available processors: " + Runtime.getRuntime().availableProcessors()
+        def executorService = Executors.newFixedThreadPool(1)
         sourceFiles.parallelStream().map({ file ->
             if (parseCount.get() >= parseFileLimit) {
+                log.warn "Hit parse limit: " + parseFileLimit
                 return null
             }
 
