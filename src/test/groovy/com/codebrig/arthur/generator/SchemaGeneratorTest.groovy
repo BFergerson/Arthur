@@ -24,7 +24,7 @@ class SchemaGeneratorTest {
         multiFilter.accept(new FunctionFilter())
         schemaGenerator.filter = multiFilter
 
-        def goLanguage = schemaGenerator.observeLanguage(SourceLanguage.Go, new File("src/test/resources/same/program/"))
+        def goLanguage = schemaGenerator.observeLanguage(SourceLanguage.Go, new File("../src/test/resources/same/program/"))
         def javaLanguage = schemaGenerator.observeLanguage(SourceLanguage.Java, new File("src/test/resources/same/program/"))
         def javascriptLanguage = schemaGenerator.observeLanguage(SourceLanguage.Javascript, new File("src/test/resources/same/program/"))
         def phpLanguage = schemaGenerator.observeLanguage(SourceLanguage.Php, new File("src/test/resources/same/program/"))
