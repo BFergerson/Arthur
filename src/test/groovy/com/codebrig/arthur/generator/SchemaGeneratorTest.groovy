@@ -21,11 +21,6 @@ class SchemaGeneratorTest {
 
     @Test
     void fileAndFunctionOnlySchema() {
-        Files.walk(new File(".").toPath())
-                .filter(Files.&isRegularFile)
-                .map({ it -> it.toAbsolutePath().toString() })
-                .forEach(log.&warn)
-
         def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         multiFilter.accept(new CompilationUnitFilter())

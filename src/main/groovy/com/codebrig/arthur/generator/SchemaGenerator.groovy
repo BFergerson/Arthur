@@ -126,6 +126,8 @@ class SchemaGenerator {
                 } else {
                     log.error "Skipping non-existent file: " + file
                 }
+            } else {
+                log.warn "Invalid extension: " + getFileExtension(file.name)
             }
         })
 
