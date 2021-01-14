@@ -135,10 +135,8 @@ class SchemaGenerator {
 
         def failCount = new AtomicInteger(0)
         def parseCount = new AtomicInteger(0)
-        log.warn "Available processors: " + Runtime.getRuntime().availableProcessors()
-        log.warn "Will scan files: " + sourceFiles.size()
-        def executorService = Executors.newFixedThreadPool(1)
-        sourceFiles.stream().map({ file ->
+        def executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+        sourceFiles.parallelStream().map({ file ->
             if (parseCount.get() >= parseFileLimit) {
                 log.warn "Hit parse limit: " + parseFileLimit
                 return null
@@ -171,7 +169,7 @@ class SchemaGenerator {
                     failCount.getAndIncrement()
                 }
             }
-        }).count()
+        }).collect()
         executorService.shutdown()
 
         log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"
