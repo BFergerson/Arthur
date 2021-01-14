@@ -11,6 +11,9 @@ import groovy.util.logging.Slf4j
 import org.apache.commons.lang3.StringUtils
 import org.junit.Test
 
+import java.nio.file.Files
+import java.nio.file.Paths
+
 import static org.junit.Assert.assertEquals
 
 @Slf4j
@@ -18,6 +21,11 @@ class SchemaGeneratorTest {
 
     @Test
     void fileAndFunctionOnlySchema() {
+        Files.walk(new File(".").toPath())
+                .filter(Files.&isRegularFile)
+                .map({ it -> it.toAbsolutePath().toString() })
+                .forEach(log.&warn)
+
         def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         multiFilter.accept(new CompilationUnitFilter())
@@ -35,11 +43,7 @@ class SchemaGeneratorTest {
         def cppLanguage = schemaGenerator.observeLanguage(SourceLanguage.CPlusPlus, new File("src/test/resources/same/program/"))
         def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
-        log.warn "Working Directory = " + System.getProperty("user.dir")
-        log.warn "File: " + new File("src/test/resources/schema/", "Same_Schema.gql").getAbsoluteFile()
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
-        log.warn "verifyFile.text: '" + verifyFile.text + "'"
-        log.warn "schemaWriter.fullSchemaDefinition: '" + schemaWriter.fullSchemaDefinition + "'"
         assertEquals(verifyFile.text, schemaWriter.fullSchemaDefinition)
     }
 }
