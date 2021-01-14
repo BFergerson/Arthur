@@ -35,6 +35,8 @@ class SchemaGeneratorTest {
         def cppLanguage = schemaGenerator.observeLanguage(SourceLanguage.CPlusPlus, new File("src/test/resources/same/program/"))
         def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
+        log.warn "Working Directory = " + System.getProperty("user.dir")
+        log.warn "File: " + new File("src/test/resources/schema/", "Same_Schema.gql").getAbsoluteFile()
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
         log.warn "verifyFile.text: '" + verifyFile.text + "'"
         log.warn "schemaWriter.fullSchemaDefinition: '" + schemaWriter.fullSchemaDefinition + "'"
