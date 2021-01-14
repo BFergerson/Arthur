@@ -118,18 +118,12 @@ class SchemaGenerator {
         def sourceFiles = new ArrayList<File>()
         Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
             def file = p.toFile()
-            log.info("Visiting file: $file")
-
-            def ext = getFileExtension(file.name)
-            log.warn "Ext: $ext"
-            if (observedLanguage.language.isValidExtension(ext)) {
+            if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
                 if (file.exists()) {
                     sourceFiles.add(file)
                 } else {
                     log.error "Skipping non-existent file: " + file
                 }
-            } else {
-                log.warn "Invalid extension: " + getFileExtension(file.name)
             }
         })
 
