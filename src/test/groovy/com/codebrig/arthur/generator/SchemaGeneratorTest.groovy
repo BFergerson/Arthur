@@ -7,10 +7,13 @@ import com.codebrig.arthur.observe.structure.filter.CompilationUnitFilter
 import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
+import groovy.util.logging.Slf4j
+import org.apache.commons.lang3.StringUtils
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
 
+@Slf4j
 class SchemaGeneratorTest {
 
     @Test
@@ -33,6 +36,8 @@ class SchemaGeneratorTest {
         def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
+        println "Diff: " + StringUtils.difference(verifyFile.text, schemaWriter.fullSchemaDefinition)
+        log.warn "Diff: " + StringUtils.difference(verifyFile.text, schemaWriter.fullSchemaDefinition)
         assertEquals(verifyFile.text, schemaWriter.fullSchemaDefinition)
     }
 }
