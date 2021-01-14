@@ -36,8 +36,8 @@ class SchemaGeneratorTest {
         def omniLanguage = ObservedLanguages.mergeLanguages(goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def schemaWriter = new GraknSchemaWriter(omniLanguage, goLanguage, javaLanguage, javascriptLanguage, phpLanguage, pythonLanguage, rubyLanguage, cSharpLanguage, bashLanguage, cppLanguage)
         def verifyFile = new File("src/test/resources/schema/", "Same_Schema.gql")
-        println "Diff: " + StringUtils.difference(verifyFile.text, schemaWriter.fullSchemaDefinition)
-        log.warn "Diff: " + StringUtils.difference(verifyFile.text, schemaWriter.fullSchemaDefinition)
+        log.warn "verifyFile.text: '" + verifyFile.text + "'"
+        log.warn "schemaWriter.fullSchemaDefinition: '" + schemaWriter.fullSchemaDefinition + "'"
         assertEquals(verifyFile.text, schemaWriter.fullSchemaDefinition)
     }
 }
