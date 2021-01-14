@@ -6,6 +6,7 @@ import com.codebrig.arthur.generator.SchemaGenerator
 import com.codebrig.arthur.observe.ObservationConfig
 import com.codebrig.arthur.observe.ObservedLanguages
 import com.codebrig.arthur.schema.SchemaSegment
+import org.bblfsh.client.BblfshClient
 import org.junit.Test
 
 import static org.junit.Assert.assertEquals
@@ -14,7 +15,8 @@ class GraknSchemaWriterTest extends ArthurTest {
 
     @Test
     void segmentedSchema() {
-        def schemaGenerator = new SchemaGenerator(ObservationConfig.fullStructure())
+        def schemaGenerator = new SchemaGenerator(new BblfshClient("172.19.0.1", 9432, Integer.MAX_VALUE),
+                ObservationConfig.fullStructure())
         def goLanguage = schemaGenerator.observeLanguage(SourceLanguage.Go, new File("src/test/resources/same/"))
         def javaLanguage = schemaGenerator.observeLanguage(SourceLanguage.Java, new File("src/test/resources/same/"))
         def javascriptLanguage = schemaGenerator.observeLanguage(SourceLanguage.Javascript, new File("src/test/resources/same/"))

@@ -8,11 +8,8 @@ import com.codebrig.arthur.observe.structure.filter.FunctionFilter
 import com.codebrig.arthur.observe.structure.filter.MultiFilter
 import com.codebrig.arthur.schema.grakn.GraknSchemaWriter
 import groovy.util.logging.Slf4j
-import org.apache.commons.lang3.StringUtils
+import org.bblfsh.client.BblfshClient
 import org.junit.Test
-
-import java.nio.file.Files
-import java.nio.file.Paths
 
 import static org.junit.Assert.assertEquals
 
@@ -21,7 +18,8 @@ class SchemaGeneratorTest {
 
     @Test
     void fileAndFunctionOnlySchema() {
-        def schemaGenerator = new SchemaGenerator(ObservationConfig.baseStructureWithSemanticRoles())
+        def schemaGenerator = new SchemaGenerator(new BblfshClient("172.19.0.1", 9432, Integer.MAX_VALUE),
+                ObservationConfig.baseStructureWithSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         multiFilter.accept(new CompilationUnitFilter())
         multiFilter.accept(new FunctionFilter())
