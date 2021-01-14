@@ -53,7 +53,7 @@ class ObservedLanguage {
 
     void observeAttributes(String entity, Map<String, String> entityAttributes) {
         entity = toValidEntity(entity)
-        def cleanedAttributes = new HashMap<>()
+        def cleanedAttributes = new HashMap<String, String>()
         entityAttributes.each {
             if (it.key != "internalRole" && it.key != "token") {
                 cleanedAttributes.put(toValidAttribute(it.key), it.value)
