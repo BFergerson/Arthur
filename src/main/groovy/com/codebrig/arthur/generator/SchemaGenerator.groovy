@@ -114,9 +114,12 @@ class SchemaGenerator {
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
+        log.info("Parsing local repository: " + localRoot.absolutePath)
         def sourceFiles = new ArrayList<File>()
         Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
             def file = p.toFile()
+            log.info("Parsing file: $file")
+
             if (observedLanguage.language.isValidExtension(getFileExtension(file.name))) {
                 if (file.exists()) {
                     sourceFiles.add(file)
