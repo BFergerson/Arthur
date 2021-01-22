@@ -9,9 +9,9 @@ stringValue sub attribute, value string;
 token sub attribute, value string;
 
 #####----- Omnilingual -----#####
-isConstAttribute sub attribute, value string;
-kindAttribute sub attribute, value string;
-valueAttribute sub attribute, value string;
+isConstAttribute sub attribute, abstract, value string;
+kindAttribute sub attribute, abstract, value string;
+valueAttribute sub attribute, abstract, value string;
 
 #####----- Go -----#####
 goColAttribute sub attribute, value string;

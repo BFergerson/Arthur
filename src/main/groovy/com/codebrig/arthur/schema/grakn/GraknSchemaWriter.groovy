@@ -60,16 +60,16 @@ class GraknSchemaWriter implements SchemaWriter {
         }
 
         if (rootLanguage.isOmnilingual()) {
-            outputAttributes(output, rootLanguage)
+            outputAttributes(output, rootLanguage, true)
         }
         observedLanguages.each { observedLanguage ->
             if (!observedLanguage.isOmnilingual()) {
-                outputAttributes(output, observedLanguage)
+                outputAttributes(output, observedLanguage, false)
             }
         }
     }
 
-    private void outputAttributes(Writer output, ObservedLanguage observedLanguage) {
+    private void outputAttributes(Writer output, ObservedLanguage observedLanguage, boolean omnilingual) {
         def observedAttributes = observedLanguage.getObservedAttributes(naturalOrdering)
         observedAttributes.removeIf({
             StructureLiteral.allLiteralAttributes.keySet().contains(it.replace("Attribute", ""))
@@ -80,6 +80,7 @@ class GraknSchemaWriter implements SchemaWriter {
         observedAttributes.each {
             def attribute = observedLanguage.getAttribute(it, rootLanguage.isOmnilingual())
             output.append(attribute).append(" sub ").append(observedLanguage.getAttributeExtends(attribute))
+                    .append((omnilingual) ? ", abstract": "")
                     .append(", value ").append(GraknAttributeDatatype.getType(attribute))
                     .append(";\n")
         }

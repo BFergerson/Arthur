@@ -9,13 +9,13 @@ stringValue sub attribute, value string;
 token sub attribute, value string;
 
 #####----- Omnilingual -----#####
-flagsAttribute sub attribute, value string;
-isConstAttribute sub attribute, value string;
-kindAttribute sub attribute, value string;
-methodAttribute sub attribute, value string;
-staticAttribute sub attribute, value string;
-textAttribute sub attribute, value string;
-valueAttribute sub attribute, value string;
+flagsAttribute sub attribute, abstract, value string;
+isConstAttribute sub attribute, abstract, value string;
+kindAttribute sub attribute, abstract, value string;
+methodAttribute sub attribute, abstract, value string;
+staticAttribute sub attribute, abstract, value string;
+textAttribute sub attribute, abstract, value string;
+valueAttribute sub attribute, abstract, value string;
 
 #####----- Go -----#####
 goColAttribute sub attribute, value string;
