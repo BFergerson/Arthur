@@ -54,7 +54,7 @@ jobs:
 
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
