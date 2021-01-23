@@ -56,7 +56,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: arthur-artifact
           path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
   # Prepare a draft release for GitHub Releases page for the manual verification
@@ -109,7 +108,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./arthur-artifact/${{ needs.build.outputs.artifact }}
+          asset_path: ./Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_name: Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_content_type: application/java-application
 
