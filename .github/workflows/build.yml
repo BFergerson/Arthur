@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
-          path: ./build/libs/build/Arthur-${{ steps.vars.outputs.tag }}.jar
+          path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
