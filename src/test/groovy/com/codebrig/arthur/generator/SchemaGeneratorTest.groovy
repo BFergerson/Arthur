@@ -18,7 +18,7 @@ class SchemaGeneratorTest {
 
     @Test
     void fileAndFunctionOnlySchema() {
-        def schemaGenerator = new SchemaGenerator(new BblfshClient("172.19.0.1", 9432, Integer.MAX_VALUE),
+        def schemaGenerator = new SchemaGenerator(new BblfshClient("localhost", 9432, Integer.MAX_VALUE),
                 ObservationConfig.baseStructureWithSemanticRoles())
         def multiFilter = new MultiFilter(MultiFilter.MatchStyle.ANY)
         multiFilter.accept(new CompilationUnitFilter())

@@ -15,7 +15,7 @@ class GraknSchemaWriterTest extends ArthurTest {
 
     @Test
     void segmentedSchema() {
-        def schemaGenerator = new SchemaGenerator(new BblfshClient("172.19.0.1", 9432, Integer.MAX_VALUE),
+        def schemaGenerator = new SchemaGenerator(new BblfshClient("localhost", 9432, Integer.MAX_VALUE),
                 ObservationConfig.fullStructure())
         def goLanguage = schemaGenerator.observeLanguage(SourceLanguage.Go, new File("src/test/resources/same/"))
         def javaLanguage = schemaGenerator.observeLanguage(SourceLanguage.Java, new File("src/test/resources/same/"))
