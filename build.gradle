@@ -5,7 +5,7 @@ plugins {
 
 apply plugin: 'groovy'
 
-group 'com.codebrig.arthur'
+group 'com.codebrig'
 version '0.4.3'
 
 publishing {
