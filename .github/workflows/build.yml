@@ -5,27 +5,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    container: gradle:jdk11
     steps:
-
-      - name: Install Docker
-        run: |
-          apt-get update
-          apt-get install -y \
-              apt-transport-https \
-              ca-certificates \
-              curl \
-              gnupg-agent \
-              software-properties-common
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-          add-apt-repository \
-             "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-             $(lsb_release -cs) \
-             stable"
-          apt-get update
-          apt-get install -y docker-ce docker-ce-cli containerd.io
-          curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          chmod +x /usr/local/bin/docker-compose
 
       # Check out current repository
       - name: Fetch Sources
@@ -54,9 +34,8 @@ jobs:
 
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: arthur-artifact
           path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
   # Prepare a draft release for GitHub Releases page for the manual verification
@@ -71,6 +50,10 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
 
       # Remove old release drafts by using the curl request for the available releases with draft flag
       - name: Remove Old Release Drafts
@@ -91,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.vars.outputs.tag }}
-          release_name: v${{ steps.vars.outputs.tag }}
+          release_name: Arthur ${{ steps.vars.outputs.tag }}
           body: ${{ steps.vars.outputs.tag }}
           draft: true
 
@@ -99,7 +82,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: arthur-artifact
+          name: artifact
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
@@ -109,7 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./arthur-artifact/${{ needs.build.outputs.artifact }}
+          asset_path: ./artifact/Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_name: Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_content_type: application/java-application
 
