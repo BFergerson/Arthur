@@ -43,25 +43,28 @@ class CPlusPlusNaming implements StructureNaming {
         def name = ""
         def matched = new TypeFilter("CPPASTFunctionDeclarator").getFilteredNodes(node.children)
         if (matched.hasNext()) {
-            def next = matched.next()
-            name += getAstName(next.children)
-            name += "("
-            next.children.each {
-                switch (Objects.requireNonNull(it).internalType) {
-                    case "CPPASTDeclarator":
-                        name += getAstDeclarator(it)
-                        break
-                    case "CPPASTArrayDeclarator":
-                        name += getAstArrayDeclarator(it)
-                        break
-                    default:
-                        break
-                }
-            }
-            name = trimTrailingComma(name)
-            return name + ")"
+            name += getFunctionDeclarator(matched.next())
         }
         return name
+    }
+
+    static String getFunctionDeclarator(SourceNode node) {
+        def name = getAstName(node.children)
+        name += "("
+        node.children.each {
+            switch (Objects.requireNonNull(it).internalType) {
+                case "CPPASTDeclarator":
+                    name += getAstDeclarator(it)
+                    break
+                case "CPPASTArrayDeclarator":
+                    name += getAstArrayDeclarator(it)
+                    break
+                default:
+                    break
+            }
+        }
+        name = trimTrailingComma(name)
+        return name + ")"
     }
 
     static String getSimpleDeclaration(SourceNode node) {

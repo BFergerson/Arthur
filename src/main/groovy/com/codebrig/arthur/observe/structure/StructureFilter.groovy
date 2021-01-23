@@ -36,25 +36,65 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
         return (acceptSet.isEmpty() || acceptSet.contains(value)) && !rejectSet.contains(value)
     }
 
-    Iterator<SourceNode> getFilteredNodes(Iterator<SourceNode> sourceNodes) {
+    boolean evaluate(SourceLanguage language, Node node) {
+        return evaluate(new SourceNode(language, node))
+    }
+
+    Iterator<? extends SourceNode> getFilteredNodes(Iterable<? extends SourceNode> sourceNodes) {
+        return new FilterIterator(sourceNodes.iterator(), this)
+    }
+
+    Iterator<? extends SourceNode> getFilteredNodes(Iterator<? extends SourceNode> sourceNodes) {
         return new FilterIterator(sourceNodes, this)
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node) {
-        return getFilteredNodes(new SourceNode(language, node))
+        return getFilteredNodes(language, node, true)
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceLanguage language, Node node, boolean onChildren) {
+        return getFilteredNodes(new SourceNode(language, node), onChildren)
     }
 
     Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode) {
-        return new FilterIterator(new PreorderIterator(sourceNode), this)
+        return getFilteredNodes(sourceNode, true)
     }
 
-    static class PreorderIterator implements Iterator<SourceNode> {
+    @Deprecated
+    Iterator<SourceNode> getFilteredNodesIncludingCurrent(SourceLanguage language, Node node) {
+        return getFilteredNodes(new SourceNode(language, node), true, true)
+    }
+
+    @Deprecated
+    Iterator<SourceNode> getFilteredNodesIncludingCurrent(SourceNode sourceNode) {
+        return getFilteredNodes(sourceNode, true, true)
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, boolean onChildren) {
+        return getFilteredNodes(sourceNode, onChildren, false)
+    }
+
+    Iterator<SourceNode> getFilteredNodes(SourceNode sourceNode, boolean onChildren, boolean includeCurrent) {
+        if (onChildren) {
+            return new FilterIterator(new ChildPreorderIterator(sourceNode, includeCurrent), this)
+        } else {
+            return new FilterIterator(new ParentIterator(sourceNode), this)
+        }
+    }
+
+    static class ChildPreorderIterator implements Iterator<SourceNode> {
 
         private final Deque<SourceNode> nodeStack
 
-        PreorderIterator(SourceNode node) {
+        ChildPreorderIterator(SourceNode node, boolean includeCurrent) {
             nodeStack = new ArrayDeque<SourceNode>()
-            nodeStack.push(node)
+            if (includeCurrent) {
+                nodeStack.push(node)
+            } else {
+                node.children.each {
+                    nodeStack.push(it)
+                }
+            }
         }
 
         @Override
@@ -67,6 +107,32 @@ abstract class StructureFilter<T extends StructureFilter, P> implements Predicat
             SourceNode next = nodeStack.pop()
             next.children.reverse().each {
                 nodeStack.push(it)
+            }
+            return next
+        }
+    }
+
+    static class ParentIterator implements Iterator<SourceNode> {
+
+        private final Deque<SourceNode> nodeStack
+
+        ParentIterator(SourceNode node) {
+            nodeStack = new ArrayDeque<SourceNode>()
+            if (node.parentSourceNode != null) {
+                nodeStack.push(node.parentSourceNode)
+            }
+        }
+
+        @Override
+        boolean hasNext() {
+            return !nodeStack.isEmpty()
+        }
+
+        @Override
+        SourceNode next() {
+            SourceNode next = nodeStack.pop()
+            if (next.parentSourceNode != null) {
+                nodeStack.push(next.parentSourceNode)
             }
             return next
         }

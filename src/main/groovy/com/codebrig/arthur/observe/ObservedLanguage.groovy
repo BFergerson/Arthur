@@ -53,7 +53,7 @@ class ObservedLanguage {
 
     void observeAttributes(String entity, Map<String, String> entityAttributes) {
         entity = toValidEntity(entity)
-        def cleanedAttributes = new HashMap<>()
+        def cleanedAttributes = new HashMap<String, String>()
         entityAttributes.each {
             if (it.key != "internalRole" && it.key != "token") {
                 cleanedAttributes.put(toValidAttribute(it.key), it.value)
@@ -158,16 +158,22 @@ class ObservedLanguage {
     }
 
     String getRelationRole(String relation, boolean multilingual) {
-        def relationRole = getRelation(relation, multilingual)
+        def relationRole = getRelation(relation, multilingual, false)
         if (relationRole.endsWith("_relation")) {
             return relationRole.substring(0, relationRole.length() - 8) + "role"
         }
         return relationRole
     }
 
-    String getRelation(String relation, boolean multilingual) {
-        if (isOmnilingual() || !multilingual || relation == "parent" || relation == "child") {
+    String getRelation(String relation, boolean multilingual, boolean includeParentChild) {
+        if (isOmnilingual() || !multilingual) {
             return relation
+        } else if (relation == "parent" || relation == "child") {
+            if (includeParentChild) {
+                return "parent_child_relation"
+            } else {
+                return relation
+            }
         }
         return language.key + "_" + relation
     }

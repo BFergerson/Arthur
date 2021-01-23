@@ -1,0 +1,137 @@
+on: [push]
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    container: gradle:jdk11
+    steps:
+
+      - name: Install Docker
+        run: |
+          apt-get update
+          apt-get install -y \
+              apt-transport-https \
+              ca-certificates \
+              curl \
+              gnupg-agent \
+              software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+          add-apt-repository \
+             "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+             $(lsb_release -cs) \
+             stable"
+          apt-get update
+          apt-get install -y docker-ce docker-ce-cli containerd.io
+          curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+
+      # Cache Gradle dependencies
+      - name: Setup Gradle Dependencies Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts', 'gradle.properties') }}
+
+      # Cache Gradle Wrapper
+      - name: Setup Gradle Wrapper Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Check build & test
+        run: ./gradlew check build test --stacktrace
+    
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
+
+      # Upload plugin artifact to make it available in the next jobs
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: plugin-artifact
+          path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
+
+  # Prepare a draft release for GitHub Releases page for the manual verification
+  # If accepted and published, release workflow would be triggered
+  releaseDraft:
+    name: Release Draft
+    needs: [test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+
+      # Remove old release drafts by using the curl request for the available releases with draft flag
+      - name: Remove Old Release Drafts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
+            | tr '\r\n' ' ' \
+            | jq '.[] | select(.draft == true) | .id' \
+            | xargs -I '{}' \
+          curl -X DELETE -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/releases/{}
+
+      # Create new release draft - which is not publicly visible and requires manual acceptance
+      - name: Create Release Draft
+        id: createDraft
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.build.outputs.version }}
+          release_name: v${{ needs.build.outputs.version }}
+          body: ${{ needs.build.outputs.changelog }}
+          draft: true
+
+      # Download plugin artifact provided by the previous job
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: plugin-artifact
+
+      # Upload artifact as a release asset
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.createDraft.outputs.upload_url }}
+          asset_path: ./plugin-artifact/${{ needs.build.outputs.artifact }}
+          asset_name: ${{ needs.build.outputs.artifact }}
+          asset_content_type: application/zip
+
+  # Delete plugin artifact (No release draft)
+  cleanupNoReleaseDraft:
+    name: Cleanup (No Release Draft)
+    needs: [test]
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Artifact      
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: plugin-artifact
+
+  # Delete plugin artifact
+  cleanup:
+    name: Cleanup
+    needs: [test, releaseDraft]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Artifact      
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: plugin-artifact

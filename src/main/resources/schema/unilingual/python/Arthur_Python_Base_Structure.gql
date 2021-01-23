@@ -1,1377 +1,1377 @@
 define
 
 ##########---------- Attributes ----------##########
-booleanValue sub attribute, datatype boolean;
-doubleValue sub attribute, datatype double;
-name sub attribute, datatype string;
-numberValue sub attribute, datatype long;
-stringValue sub attribute, datatype string;
-token sub attribute, datatype string;
+booleanValue sub attribute, value boolean;
+doubleValue sub attribute, value double;
+name sub attribute, value string;
+numberValue sub attribute, value long;
+stringValue sub attribute, value string;
+token sub attribute, value string;
 
 #####----- Python -----#####
-conversionAttribute sub attribute, datatype string;
-ctxAttribute sub attribute, datatype string;
-encodingAttribute sub attribute, datatype string;
-isAsyncAttribute sub attribute, datatype string;
-literalValueAttribute sub attribute, datatype string;
-nlAttribute sub attribute, datatype string;
-numLevelAttribute sub attribute, datatype string;
-simpleAttribute sub attribute, datatype string;
-valueAttribute sub attribute, datatype string;
+conversionAttribute sub attribute, value string;
+ctxAttribute sub attribute, value string;
+encodingAttribute sub attribute, value string;
+isAsyncAttribute sub attribute, value string;
+literalValueAttribute sub attribute, value string;
+nlAttribute sub attribute, value string;
+numLevelAttribute sub attribute, value string;
+simpleAttribute sub attribute, value string;
+valueAttribute sub attribute, value string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
-	has token,
-	plays is_child,
-	plays is_parent;
+	owns token,
+	plays parent_child_relation:is_child,
+	plays parent_child_relation:is_parent;
 
 #####----- Python -----#####
 PythonSourceArtifact sub SourceArtifact;
 
 AddArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 AliasArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_name_list_role,
-	plays has_asname_role;
+	plays name_list_relation:is_name_list_role,
+	plays asname_relation:has_asname_role;
 
 AliasAsnameArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_asname_role;
+	plays asname_relation:is_asname_role;
 
 AndArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 AnnAssignArtifact sub PythonSourceArtifact,
 	# Attributes
-	has simpleAttribute,
+	owns simpleAttribute,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays has_annotation_role,
-	plays has_target_role,
-	plays has_value_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays annotation_relation:has_annotation_role,
+	plays target_relation:has_target_role,
+	plays value_relation:has_value_role;
 
 ArgArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_args_role,
-	plays has_annotation_role,
-	plays has_default_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays annotation_relation:has_annotation_role,
+	plays default_relation:has_default_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 ArgumentsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays has_args_role;
+	plays args_relation:is_args_role,
+	plays args_relation:has_args_role;
 
 AssertArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_msg_role,
-	plays has_test_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays msg_relation:has_msg_role,
+	plays test_relation:has_test_role;
 
 AssignArtifact sub PythonSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_finalbody_role,
-	plays is_orelse_role,
-	plays has_targets_role,
-	plays has_value_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays orelse_relation:is_orelse_role,
+	plays targets_relation:has_targets_role,
+	plays value_relation:has_value_role;
 
 AsyncForArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_stmts_role,
-	plays has_body_role,
-	plays has_iter_role,
-	plays has_orelse_role,
-	plays has_target_role;
+	plays body_stmts_relation:is_body_stmts_role,
+	plays body_relation:has_body_role,
+	plays iter_relation:has_iter_role,
+	plays orelse_relation:has_orelse_role,
+	plays target_relation:has_target_role;
 
 AsyncFunctionDefArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays has_args_role,
-	plays has_body_role,
-	plays has_decorator_list_role,
-	plays has_returns_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays args_relation:has_args_role,
+	plays body_relation:has_body_role,
+	plays decorator_list_relation:has_decorator_list_role,
+	plays returns_relation:has_returns_role;
 
 AsyncWithArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_stmts_role,
-	plays is_final_stmts_role,
-	plays has_body_role,
-	plays has_items_role;
+	plays body_stmts_relation:is_body_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays body_relation:has_body_role,
+	plays items_relation:has_items_role;
 
 AttributeArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_identifiers_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays identifiers_relation:is_identifiers_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 AugAssignArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_op_role,
-	plays has_target_role,
-	plays has_value_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays op_relation:has_op_role,
+	plays target_relation:has_target_role,
+	plays value_relation:has_value_role;
 
 AwaitArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_left_role,
-	plays is_operand_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_value_role;
+	plays args_relation:is_args_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays left_relation:is_left_role,
+	plays operand_relation:is_operand_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays value_relation:has_value_role;
 
 BinOpArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_starargs_role,
-	plays is_step_role,
-	plays is_test_role,
-	plays is_type_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_left_role,
-	plays has_noops_sameline_role,
-	plays has_op_role,
-	plays has_right_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays starargs_relation:is_starargs_role,
+	plays step_relation:is_step_role,
+	plays test_relation:is_test_role,
+	plays type_relation:is_type_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays left_relation:has_left_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays op_relation:has_op_role,
+	plays right_relation:has_right_role;
 
 BitAndArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 BitOrArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 BitXorArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 BoolLiteralArtifact sub PythonSourceArtifact,
 	# Attributes
-	has valueAttribute,
+	owns valueAttribute,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 BoolOpArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_iter_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_op_role,
-	plays has_values_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays iter_relation:is_iter_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays op_relation:has_op_role,
+	plays values_relation:has_values_role;
 
 BreakArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_orelse_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays orelse_relation:is_orelse_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 BytesArtifact sub PythonSourceArtifact,
 	# Attributes
-	has encodingAttribute,
+	owns encodingAttribute,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_iter_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays iter_relation:is_iter_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 CallArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_cause_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_decorators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_kwargs_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_starargs_role,
-	plays is_step_role,
-	plays is_test_role,
-	plays is_type_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_args_role,
-	plays has_func_role,
-	plays has_keywords_role,
-	plays has_kwargs_role,
-	plays has_starargs_role;
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays cause_relation:is_cause_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays decorators_relation:is_decorators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays kwargs_relation:is_kwargs_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays starargs_relation:is_starargs_role,
+	plays step_relation:is_step_role,
+	plays test_relation:is_test_role,
+	plays type_relation:is_type_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays args_relation:has_args_role,
+	plays func_relation:has_func_role,
+	plays keywords_relation:has_keywords_role,
+	plays kwargs_relation:has_kwargs_role,
+	plays starargs_relation:has_starargs_role;
 
 ClassDefArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_orelse_role,
-	plays has_bases_role,
-	plays has_body_role,
-	plays has_decorator_list_role,
-	plays has_keywords_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays orelse_relation:is_orelse_role,
+	plays bases_relation:has_bases_role,
+	plays body_relation:has_body_role,
+	plays decorator_list_relation:has_decorator_list_role,
+	plays keywords_relation:has_keywords_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 ClassDefBasesArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_bases_role,
-	plays has_bases_role;
+	plays bases_relation:is_bases_role,
+	plays bases_relation:has_bases_role;
 
 ClassDefBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 ClassDefDecoratorListArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_decorator_list_role,
-	plays has_decorators_role;
+	plays decorator_list_relation:is_decorator_list_role,
+	plays decorators_relation:has_decorators_role;
 
 CompareArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_comparators_role,
-	plays has_left_role,
-	plays has_ops_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays comparators_relation:has_comparators_role,
+	plays left_relation:has_left_role,
+	plays ops_relation:has_ops_role;
 
 CompareComparatorsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_comparators_role,
-	plays has_comparators_role;
+	plays comparators_relation:is_comparators_role,
+	plays comparators_relation:has_comparators_role;
 
 CompareOpsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role,
-	plays has_ops_role;
+	plays ops_relation:is_ops_role,
+	plays ops_relation:has_ops_role;
 
 ComprehensionArtifact sub PythonSourceArtifact,
 	# Attributes
-	has isAsyncAttribute,
+	owns isAsyncAttribute,
 	# Structural
-	plays is_generators_role,
-	plays has_ifs_role,
-	plays has_iter_role,
-	plays has_target_role;
+	plays generators_relation:is_generators_role,
+	plays ifs_relation:has_ifs_role,
+	plays iter_relation:has_iter_role,
+	plays target_relation:has_target_role;
 
 ContinueArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 DeleteArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_targets_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays targets_relation:has_targets_role;
 
 DictArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_keys_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role,
-	plays has_values_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays keys_relation:has_keys_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays values_relation:has_values_role;
 
 DictCompArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_left_role,
-	plays is_orelse_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_generators_role,
-	plays has_key_role,
-	plays has_value_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays left_relation:is_left_role,
+	plays orelse_relation:is_orelse_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays generators_relation:has_generators_role,
+	plays key_relation:has_key_role,
+	plays value_relation:has_value_role;
 
 DivArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 EllipsisArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elts_role,
-	plays is_value_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elts_relation:is_elts_role,
+	plays value_relation:is_value_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 EqArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 ExceptHandlerArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_handlers_role,
-	plays has_body_role,
-	plays has_noops_sameline_role,
-	plays has_type_role;
+	plays handlers_relation:is_handlers_role,
+	plays body_relation:has_body_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays type_relation:has_type_role;
 
 ExecArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays has_body_role,
-	plays has_globals_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays body_relation:has_body_role,
+	plays globals_relation:has_globals_role;
 
 ExprArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_finalbody_role,
-	plays is_orelse_role,
-	plays has_value_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays orelse_relation:is_orelse_role,
+	plays value_relation:has_value_role;
 
 ExtSliceArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_slice_role,
-	plays has_dims_role;
+	plays slice_relation:is_slice_role,
+	plays dims_relation:has_dims_role;
 
 FloorDivArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 ForArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_finalbody_role,
-	plays is_orelse_role,
-	plays has_body_role,
-	plays has_iter_role,
-	plays has_orelse_role,
-	plays has_target_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays orelse_relation:is_orelse_role,
+	plays body_relation:has_body_role,
+	plays iter_relation:has_iter_role,
+	plays orelse_relation:has_orelse_role,
+	plays target_relation:has_target_role;
 
 ForBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 FormattedValueArtifact sub PythonSourceArtifact,
 	# Attributes
-	has conversionAttribute,
+	owns conversionAttribute,
 	# Structural
-	plays is_values_role,
-	plays has_format_spec_role,
-	plays has_value_role;
+	plays values_relation:is_values_role,
+	plays format_spec_relation:has_format_spec_role,
+	plays value_relation:has_value_role;
 
 ForOrelseArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_orelse_role,
-	plays has_else_stmts_role;
+	plays orelse_relation:is_orelse_role,
+	plays else_stmts_relation:has_else_stmts_role;
 
 FunctionDefArtifact sub PythonSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_orelse_role,
-	plays has_args_role,
-	plays has_body_role,
-	plays has_decorator_list_role,
-	plays has_noops_sameline_role,
-	plays has_returns_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays orelse_relation:is_orelse_role,
+	plays args_relation:has_args_role,
+	plays body_relation:has_body_role,
+	plays decorator_list_relation:has_decorator_list_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays returns_relation:has_returns_role;
 
 FunctionDefBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 FunctionDefDecoratorsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_decorator_list_role,
-	plays has_decorators_role;
+	plays decorator_list_relation:is_decorator_list_role,
+	plays decorators_relation:has_decorators_role;
 
 GeneratorExpArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_comparators_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_iter_role,
-	plays is_orelse_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays has_elt_role,
-	plays has_generators_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays comparators_relation:is_comparators_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays iter_relation:is_iter_role,
+	plays orelse_relation:is_orelse_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays elt_relation:has_elt_role,
+	plays generators_relation:has_generators_role;
 
 GlobalArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays has_names_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays names_relation:has_names_role;
 
 GtArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 GtEArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 IfArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_finalbody_role,
-	plays is_orelse_role,
-	plays has_body_role,
-	plays has_noops_sameline_role,
-	plays has_orelse_role,
-	plays has_test_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays orelse_relation:is_orelse_role,
+	plays body_relation:has_body_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays orelse_relation:has_orelse_role,
+	plays test_relation:has_test_role;
 
 IfBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 IfExpArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_body_role,
-	plays has_orelse_role,
-	plays has_test_role;
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays body_relation:has_body_role,
+	plays orelse_relation:has_orelse_role,
+	plays test_relation:has_test_role;
 
 IfOrelseArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_orelse_role,
-	plays has_else_stmts_role;
+	plays orelse_relation:is_orelse_role,
+	plays else_stmts_relation:has_else_stmts_role;
 
 ImportArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_names_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays names_relation:has_names_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 ImportFromArtifact sub PythonSourceArtifact,
 	# Attributes
-	has numLevelAttribute,
+	owns numLevelAttribute,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_level_role,
-	plays has_module_role,
-	plays has_names_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays level_relation:has_level_role,
+	plays module_relation:has_module_role,
+	plays names_relation:has_names_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 ImportFromLevelArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_level_role;
+	plays level_relation:is_level_role;
 
 ImportFromModuleArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_module_role;
+	plays module_relation:is_module_role;
 
 ImportFromNamesArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_names_role,
-	plays has_name_list_role;
+	plays names_relation:is_names_role,
+	plays name_list_relation:has_name_list_role;
 
 InArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 IndexArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_dims_role,
-	plays is_slice_role,
-	plays has_value_role;
+	plays dims_relation:is_dims_role,
+	plays slice_relation:is_slice_role,
+	plays value_relation:has_value_role;
 
 InvertArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 IsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 IsNotArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 JoinedStrArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_format_spec_role,
-	plays is_identifiers_role,
-	plays is_key_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_values_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays format_spec_relation:is_format_spec_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays key_relation:is_key_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays values_relation:has_values_role;
 
 KeywordArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_keywords_role,
-	plays has_value_role;
+	plays keywords_relation:is_keywords_role,
+	plays value_relation:has_value_role;
 
 KwargArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays has_annotation_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays annotation_relation:has_annotation_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 KwonlyArgArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays has_annotation_role,
-	plays has_default_role,
-	plays has_noops_previous_role;
+	plays args_relation:is_args_role,
+	plays annotation_relation:has_annotation_role,
+	plays default_relation:has_default_role,
+	plays noops_previous_relation:has_noops_previous_role;
 
 LambdaArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_orelse_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_args_role,
-	plays has_body_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays orelse_relation:is_orelse_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays args_relation:has_args_role,
+	plays body_relation:has_body_role;
 
 ListArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_iter_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_target_role,
-	plays is_targets_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_elts_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays iter_relation:is_iter_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays target_relation:is_target_role,
+	plays targets_relation:is_targets_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays elts_relation:has_elts_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 ListCompArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_iter_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_starargs_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_elt_role,
-	plays has_generators_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays iter_relation:is_iter_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays starargs_relation:is_starargs_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays elt_relation:has_elt_role,
+	plays generators_relation:has_generators_role;
 
 LShiftArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 LtArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 LtEArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 MatMultArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 ModArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 ModuleArtifact sub PythonSourceArtifact,
 	# Structural
-	plays has_body_role,
-	plays has_noops_remainder_role;
+	plays body_relation:has_body_role,
+	plays noops_remainder_relation:has_noops_remainder_role;
 
 MultArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 NameArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_cause_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_decorators_role,
-	plays is_default_role,
-	plays is_dest_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_globals_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_kwargs_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_names_role,
-	plays is_operand_role,
-	plays is_optional_vars_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_starargs_role,
-	plays is_step_role,
-	plays is_target_role,
-	plays is_targets_role,
-	plays is_tback_role,
-	plays is_test_role,
-	plays is_type_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays cause_relation:is_cause_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays decorators_relation:is_decorators_role,
+	plays default_relation:is_default_role,
+	plays dest_relation:is_dest_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays globals_relation:is_globals_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays kwargs_relation:is_kwargs_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays names_relation:is_names_role,
+	plays operand_relation:is_operand_role,
+	plays optional_vars_relation:is_optional_vars_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays starargs_relation:is_starargs_role,
+	plays step_relation:is_step_role,
+	plays target_relation:is_target_role,
+	plays targets_relation:is_targets_role,
+	plays tback_relation:is_tback_role,
+	plays test_relation:is_test_role,
+	plays type_relation:is_type_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 NoneLiteralArtifact sub PythonSourceArtifact,
 	# Attributes
-	has literalValueAttribute,
+	owns literalValueAttribute,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_cause_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays cause_relation:is_cause_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 NonlocalArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays has_names_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays names_relation:has_names_role;
 
 NoopLineArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_lines_role;
+	plays lines_relation:is_lines_role;
 
 NoopSameLineArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_noop_lines_role;
+	plays noop_lines_relation:is_noop_lines_role;
 
 NotArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 NotEqArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 NotInArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_ops_role;
+	plays ops_relation:is_ops_role;
 
 NumArtifact sub PythonSourceArtifact,
 	# Attributes
-	has numberValue,
+	owns numberValue,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_cause_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_step_role,
-	plays is_test_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays cause_relation:is_cause_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays step_relation:is_step_role,
+	plays test_relation:is_test_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 OrArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 PassArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_finalbody_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 PowArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 PreviousNoopsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_noops_previous_role,
-	plays has_lines_role;
+	plays noops_previous_relation:is_noops_previous_role,
+	plays lines_relation:has_lines_role;
 
 PrintArtifact sub PythonSourceArtifact,
 	# Attributes
-	has nlAttribute,
+	owns nlAttribute,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays has_dest_role,
-	plays has_noops_previous_role,
-	plays has_values_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays dest_relation:has_dest_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays values_relation:has_values_role;
 
 QualifiedIdentifierArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_decorators_role,
-	plays is_default_role,
-	plays is_dest_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_globals_role,
-	plays is_ifs_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_optional_vars_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_step_role,
-	plays is_target_role,
-	plays is_targets_role,
-	plays is_tback_role,
-	plays is_test_role,
-	plays is_type_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_identifiers_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays decorators_relation:is_decorators_role,
+	plays default_relation:is_default_role,
+	plays dest_relation:is_dest_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays globals_relation:is_globals_role,
+	plays ifs_relation:is_ifs_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays optional_vars_relation:is_optional_vars_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays step_relation:is_step_role,
+	plays target_relation:is_target_role,
+	plays targets_relation:is_targets_role,
+	plays tback_relation:is_tback_role,
+	plays test_relation:is_test_role,
+	plays type_relation:is_type_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays identifiers_relation:has_identifiers_role;
 
 RaiseArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_cause_role,
-	plays has_exc_role,
-	plays has_inst_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role,
-	plays has_tback_role,
-	plays has_type_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays cause_relation:has_cause_role,
+	plays exc_relation:has_exc_role,
+	plays inst_relation:has_inst_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays tback_relation:has_tback_role,
+	plays type_relation:has_type_role;
 
 RemainderNoopsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_noops_remainder_role,
-	plays has_lines_role;
+	plays noops_remainder_relation:is_noops_remainder_role,
+	plays lines_relation:has_lines_role;
 
 ReturnArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays is_orelse_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role,
-	plays has_value_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays orelse_relation:is_orelse_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays value_relation:has_value_role;
 
 RShiftArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 SameLineNoopsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_noops_sameline_role,
-	plays has_noop_lines_role;
+	plays noops_sameline_relation:is_noops_sameline_role,
+	plays noop_lines_relation:has_noop_lines_role;
 
 SetArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_iter_role,
-	plays is_left_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_elts_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays iter_relation:is_iter_role,
+	plays left_relation:is_left_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays elts_relation:has_elts_role;
 
 SetCompArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_identifiers_role,
-	plays is_left_role,
-	plays is_right_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_elt_role,
-	plays has_generators_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays left_relation:is_left_role,
+	plays right_relation:is_right_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays elt_relation:has_elt_role,
+	plays generators_relation:has_generators_role;
 
 SliceArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_dims_role,
-	plays is_slice_role,
-	plays has_lower_role,
-	plays has_step_role,
-	plays has_upper_role;
+	plays dims_relation:is_dims_role,
+	plays slice_relation:is_slice_role,
+	plays lower_relation:has_lower_role,
+	plays step_relation:has_step_role,
+	plays upper_relation:has_upper_role;
 
 StarredArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_args_role,
-	plays is_elts_role,
-	plays has_value_role;
+	plays args_relation:is_args_role,
+	plays elts_relation:is_elts_role,
+	plays value_relation:has_value_role;
 
 StrArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_identifiers_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 SubArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 SubscriptArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_annotation_role,
-	plays is_args_role,
-	plays is_bases_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_context_expr_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_func_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_optional_vars_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_step_role,
-	plays is_target_role,
-	plays is_targets_role,
-	plays is_tback_role,
-	plays is_test_role,
-	plays is_type_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_slice_role,
-	plays has_value_role;
+	plays annotation_relation:is_annotation_role,
+	plays args_relation:is_args_role,
+	plays bases_relation:is_bases_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays func_relation:is_func_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays optional_vars_relation:is_optional_vars_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays step_relation:is_step_role,
+	plays target_relation:is_target_role,
+	plays targets_relation:is_targets_role,
+	plays tback_relation:is_tback_role,
+	plays test_relation:is_test_role,
+	plays type_relation:is_type_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays slice_relation:has_slice_role,
+	plays value_relation:has_value_role;
 
 TryArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_body_role,
-	plays has_finalbody_role,
-	plays has_handlers_role,
-	plays has_noops_sameline_role,
-	plays has_orelse_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays body_relation:has_body_role,
+	plays finalbody_relation:has_finalbody_role,
+	plays handlers_relation:has_handlers_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays orelse_relation:has_orelse_role;
 
 TryBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 TryElseArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_orelse_role;
+	plays orelse_relation:is_orelse_role;
 
 TryExceptArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_finalbody_role,
-	plays is_orelse_role,
-	plays has_body_role,
-	plays has_handlers_role,
-	plays has_orelse_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays finalbody_relation:is_finalbody_role,
+	plays orelse_relation:is_orelse_role,
+	plays body_relation:has_body_role,
+	plays handlers_relation:has_handlers_role,
+	plays orelse_relation:has_orelse_role;
 
 TryFinalbodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_finalbody_role,
-	plays has_final_stmts_role;
+	plays finalbody_relation:is_finalbody_role,
+	plays final_stmts_relation:has_final_stmts_role;
 
 TryFinallyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays has_body_role,
-	plays has_finalbody_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays body_relation:has_body_role,
+	plays finalbody_relation:has_finalbody_role;
 
 TryHandlersArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_handlers_role,
-	plays has_handlers_role;
+	plays handlers_relation:is_handlers_role,
+	plays handlers_relation:has_handlers_role;
 
 TupleArtifact sub PythonSourceArtifact,
 	# Attributes
-	has ctxAttribute,
+	owns ctxAttribute,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_exc_role,
-	plays is_identifiers_role,
-	plays is_inst_role,
-	plays is_iter_role,
-	plays is_key_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_msg_role,
-	plays is_operand_role,
-	plays is_optional_vars_role,
-	plays is_orelse_role,
-	plays is_returns_role,
-	plays is_right_role,
-	plays is_target_role,
-	plays is_targets_role,
-	plays is_type_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_elts_role,
-	plays has_noops_previous_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays exc_relation:is_exc_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays inst_relation:is_inst_role,
+	plays iter_relation:is_iter_role,
+	plays key_relation:is_key_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays msg_relation:is_msg_role,
+	plays operand_relation:is_operand_role,
+	plays optional_vars_relation:is_optional_vars_role,
+	plays orelse_relation:is_orelse_role,
+	plays returns_relation:is_returns_role,
+	plays right_relation:is_right_role,
+	plays target_relation:is_target_role,
+	plays targets_relation:is_targets_role,
+	plays type_relation:is_type_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays elts_relation:has_elts_role,
+	plays noops_previous_relation:has_noops_previous_role;
 
 UAddArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 UnaryOpArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_comparators_role,
-	plays is_default_role,
-	plays is_elt_role,
-	plays is_elts_role,
-	plays is_identifiers_role,
-	plays is_ifs_role,
-	plays is_keys_role,
-	plays is_left_role,
-	plays is_lower_role,
-	plays is_operand_role,
-	plays is_orelse_role,
-	plays is_right_role,
-	plays is_step_role,
-	plays is_test_role,
-	plays is_upper_role,
-	plays is_value_role,
-	plays is_values_role,
-	plays has_op_role,
-	plays has_operand_role;
+	plays args_relation:is_args_role,
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays comparators_relation:is_comparators_role,
+	plays default_relation:is_default_role,
+	plays elt_relation:is_elt_role,
+	plays elts_relation:is_elts_role,
+	plays identifiers_relation:is_identifiers_role,
+	plays ifs_relation:is_ifs_role,
+	plays keys_relation:is_keys_role,
+	plays left_relation:is_left_role,
+	plays lower_relation:is_lower_role,
+	plays operand_relation:is_operand_role,
+	plays orelse_relation:is_orelse_role,
+	plays right_relation:is_right_role,
+	plays step_relation:is_step_role,
+	plays test_relation:is_test_role,
+	plays upper_relation:is_upper_role,
+	plays value_relation:is_value_role,
+	plays values_relation:is_values_role,
+	plays op_relation:has_op_role,
+	plays operand_relation:has_operand_role;
 
 USubArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_op_role;
+	plays op_relation:is_op_role;
 
 VarargArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays has_annotation_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role;
+	plays args_relation:is_args_role,
+	plays annotation_relation:has_annotation_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role;
 
 WhileArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_body_role,
-	plays has_orelse_role,
-	plays has_test_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays body_relation:has_body_role,
+	plays orelse_relation:has_orelse_role,
+	plays test_relation:has_test_role;
 
 WithArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_body_stmts_role,
-	plays is_else_stmts_role,
-	plays is_final_stmts_role,
-	plays has_body_role,
-	plays has_context_expr_role,
-	plays has_items_role,
-	plays has_optional_vars_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays else_stmts_relation:is_else_stmts_role,
+	plays final_stmts_relation:is_final_stmts_role,
+	plays body_relation:has_body_role,
+	plays context_expr_relation:has_context_expr_role,
+	plays items_relation:has_items_role,
+	plays optional_vars_relation:has_optional_vars_role;
 
 WithBodyArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays has_body_stmts_role;
+	plays body_relation:is_body_role,
+	plays body_stmts_relation:has_body_stmts_role;
 
 WithitemArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_items_role,
-	plays has_context_expr_role,
-	plays has_optional_vars_role;
+	plays items_relation:is_items_role,
+	plays context_expr_relation:has_context_expr_role,
+	plays optional_vars_relation:has_optional_vars_role;
 
 WithItemsArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_items_role,
-	plays has_items_role;
+	plays items_relation:is_items_role,
+	plays items_relation:has_items_role;
 
 YieldArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_stmts_role,
-	plays is_value_role,
-	plays has_noops_previous_role,
-	plays has_noops_sameline_role,
-	plays has_value_role;
+	plays args_relation:is_args_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays value_relation:is_value_role,
+	plays noops_previous_relation:has_noops_previous_role,
+	plays noops_sameline_relation:has_noops_sameline_role,
+	plays value_relation:has_value_role;
 
 YieldFromArtifact sub PythonSourceArtifact,
 	# Structural
-	plays is_args_role,
-	plays is_body_stmts_role,
-	plays is_context_expr_role,
-	plays is_iter_role,
-	plays is_test_role,
-	plays is_value_role,
-	plays has_value_role;
+	plays args_relation:is_args_role,
+	plays body_stmts_relation:is_body_stmts_role,
+	plays context_expr_relation:is_context_expr_role,
+	plays iter_relation:is_iter_role,
+	plays test_relation:is_test_role,
+	plays value_relation:is_value_role,
+	plays value_relation:has_value_role;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,

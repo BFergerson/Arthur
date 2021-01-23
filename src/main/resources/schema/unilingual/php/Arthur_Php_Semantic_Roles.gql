@@ -7,1748 +7,1748 @@ PhpSourceArtifact sub SourceArtifact;
 
 ArgArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT;
+	plays ARGUMENT:IS_ARGUMENT;
 
 CommentArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_COMMENT,
-	plays IS_NOOP;
+	plays COMMENT:IS_COMMENT,
+	plays NOOP:IS_NOOP;
 
 CommentDocArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_COMMENT,
-	plays IS_DOCUMENTATION,
-	plays IS_NOOP;
+	plays COMMENT:IS_COMMENT,
+	plays DOCUMENTATION:IS_DOCUMENTATION,
+	plays NOOP:IS_NOOP;
 
 ConstArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_VARIABLE;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays VARIABLE:IS_VARIABLE;
 
 DeclareStmtsArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY;
 
 ExprArrayArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_LITERAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprArrayDimFetchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ExprArrayItemArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_LIST;
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LIST:IS_LIST;
 
 ExprAssignArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE;
 
 ExprAssignOpBitwiseAndArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpBitwiseOrArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpBitwiseXorArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpConcatArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpDivArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_DIVIDE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_THEN,
-	plays IS_UPDATE;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays DIVIDE:IS_DIVIDE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays THEN:IS_THEN,
+	plays UPDATE:IS_UPDATE;
 
 ExprAssignOpMinusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_SUBSTRACT,
-	plays IS_THEN,
-	plays IS_UPDATE;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays THEN:IS_THEN,
+	plays UPDATE:IS_UPDATE;
 
 ExprAssignOpModArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_MODULO,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays MODULO:IS_MODULO,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprAssignOpMulArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_MULTIPLY,
-	plays IS_OPERATOR,
-	plays IS_THEN;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays OPERATOR:IS_OPERATOR,
+	plays THEN:IS_THEN;
 
 ExprAssignOpPlusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UPDATE;
+	plays ADD:IS_ADD,
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UPDATE:IS_UPDATE;
 
 ExprAssignOpPowArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpShiftLeftArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignOpShiftRightArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_UNANNOTATED;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprAssignRefArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNANNOTATED,
-	plays IS_UPDATE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNANNOTATED:IS_UNANNOTATED,
+	plays UPDATE:IS_UPDATE;
 
 ExprBinaryOpBitwiseAndArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_AND,
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays AND:IS_AND,
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpBitwiseOrArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpBitwiseXorArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_XOR;
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays XOR:IS_XOR;
 
 ExprBinaryOpBooleanAndArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_AND,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays AND:IS_AND,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpBooleanOrArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpCoalesceArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 ExprBinaryOpConcatArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_PATHNAME,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ADD:IS_ADD,
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays PATHNAME:IS_PATHNAME,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpDivArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DIVIDE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays DIVIDE:IS_DIVIDE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpEqualArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpGreaterArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_GREATER_THAN,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays GREATER_THAN:IS_GREATER_THAN,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpGreaterOrEqualArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpIdenticalArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTICAL,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTICAL:IS_IDENTICAL,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpLogicalAndArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_AND,
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT;
+	plays AND:IS_AND,
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT;
 
 ExprBinaryOpLogicalOrArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BODY,
-	plays IS_BOOLEAN,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_OR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BODY:IS_BODY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays OR:IS_OR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpLogicalXorArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BOOLEAN,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_XOR;
+	plays BINARY:IS_BINARY,
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays XOR:IS_XOR;
 
 ExprBinaryOpMinusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_SUBSTRACT,
-	plays IS_THEN;
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays SUBSTRACT:IS_SUBSTRACT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpModArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_MODULO,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays MODULO:IS_MODULO,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpMulArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_MULTIPLY,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays MULTIPLY:IS_MULTIPLY,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpNotEqualArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EQUAL,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EQUAL:IS_EQUAL,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT;
 
 ExprBinaryOpNotIdenticalArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTICAL,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTICAL:IS_IDENTICAL,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpPlusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ADD,
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ADD:IS_ADD,
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpPowArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpShiftLeftArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_LEFT_SHIFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT;
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays LEFT_SHIFT:IS_LEFT_SHIFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT;
 
 ExprBinaryOpShiftRightArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_BITWISE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_RIGHT_SHIFT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays BITWISE:IS_BITWISE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays RIGHT_SHIFT:IS_RIGHT_SHIFT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpSmallerArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LESS_THAN,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays LESS_THAN:IS_LESS_THAN,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpSmallerOrEqualArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BINARY:IS_BINARY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprBinaryOpSpaceshipArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BINARY,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_GREATER_THAN_OR_EQUAL,
-	plays IS_IF,
-	plays IS_LESS_THAN_OR_EQUAL,
-	plays IS_OPERATOR,
-	plays IS_RELATIONAL;
+	plays BINARY:IS_BINARY,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays GREATER_THAN_OR_EQUAL:IS_GREATER_THAN_OR_EQUAL,
+	plays IF:IS_IF,
+	plays LESS_THAN_OR_EQUAL:IS_LESS_THAN_OR_EQUAL,
+	plays OPERATOR:IS_OPERATOR,
+	plays RELATIONAL:IS_RELATIONAL;
 
 ExprBitwiseNotArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BITWISE,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY;
+	plays BITWISE:IS_BITWISE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY;
 
 ExprBooleanNotArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_NOT,
-	plays IS_OPERATOR,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays NOT:IS_NOT,
+	plays OPERATOR:IS_OPERATOR,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprCastArrayArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LIST,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprCastBoolArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BOOLEAN,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BOOLEAN:IS_BOOLEAN,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprCastDoubleArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_NUMBER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays NUMBER:IS_NUMBER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprCastIntArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_NUMBER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays NUMBER:IS_NUMBER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprCastObjectArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 ExprCastStringArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN;
 
 ExprCastUnsetArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_RIGHT;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RIGHT:IS_RIGHT;
 
 ExprClassConstFetchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 ExprCloneArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_INCOMPLETE,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CALL:IS_CALL,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprClosureArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ANONYMOUS,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FUNCTION,
-	plays IS_IDENTIFIER,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays ANONYMOUS:IS_ANONYMOUS,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FUNCTION:IS_FUNCTION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprClosureUseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_VISIBILITY;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays VISIBILITY:IS_VISIBILITY;
 
 ExprConstFetchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_VARIABLE;
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays VARIABLE:IS_VARIABLE;
 
 ExprEmptyArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_RIGHT;
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT;
 
 ExprErrorSuppressArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprEvalArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprExitArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprFuncCallArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE;
 
 ExprIncludeArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprInstanceofArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_RIGHT;
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT;
 
 ExprIssetArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprListArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CALL,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_LIST;
+	plays CALL:IS_CALL,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays LIST:IS_LIST;
 
 ExprMethodCallArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_UPDATE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays UPDATE:IS_UPDATE;
 
 ExprNewArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprPostDecArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_DECREMENT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_POSTFIX,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY,
-	plays IS_UPDATE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays DECREMENT:IS_DECREMENT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays POSTFIX:IS_POSTFIX,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE;
 
 ExprPostIncArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCREMENT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_POSTFIX,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY,
-	plays IS_UPDATE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCREMENT:IS_INCREMENT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays POSTFIX:IS_POSTFIX,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE;
 
 ExprPreDecArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DECREMENT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY,
-	plays IS_UPDATE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DECREMENT:IS_DECREMENT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE;
 
 ExprPreIncArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCREMENT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY,
-	plays IS_UPDATE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCREMENT:IS_INCREMENT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY,
+	plays UPDATE:IS_UPDATE;
 
 ExprPrintArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 ExprPropertyFetchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ExprShellExecArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_RIGHT,
-	plays IS_UNANNOTATED;
+	plays RIGHT:IS_RIGHT,
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 ExprStaticCallArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 ExprStaticPropertyFetchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_ENTRY,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_MAP,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VALUE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays ENTRY:IS_ENTRY,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays MAP:IS_MAP,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VALUE:IS_VALUE;
 
 ExprTernaryArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INITIALIZATION,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprUnaryMinusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_UNARY;
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays UNARY:IS_UNARY;
 
 ExprUnaryPlusArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_RIGHT,
-	plays IS_UNARY;
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays RIGHT:IS_RIGHT,
+	plays UNARY:IS_UNARY;
 
 ExprVariableArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGUMENT,
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IDENTIFIER,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_INITIALIZATION,
-	plays IS_ITERATOR,
-	plays IS_LEFT,
-	plays IS_PATHNAME,
-	plays IS_RECEIVER,
-	plays IS_RIGHT,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays INITIALIZATION:IS_INITIALIZATION,
+	plays ITERATOR:IS_ITERATOR,
+	plays LEFT:IS_LEFT,
+	plays PATHNAME:IS_PATHNAME,
+	plays RECEIVER:IS_RECEIVER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 ExprYieldArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_RETURN,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RETURN:IS_RETURN,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ExprYieldFromArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_RETURN,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RETURN:IS_RETURN,
+	plays THEN:IS_THEN;
 
 FunctionBodyArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_FUNCTION;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION;
 
 FunctionReturnTypeArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DECLARATION,
-	plays IS_FUNCTION,
-	plays IS_RETURN,
-	plays IS_TYPE;
+	plays DECLARATION:IS_DECLARATION,
+	plays FUNCTION:IS_FUNCTION,
+	plays RETURN:IS_RETURN,
+	plays TYPE:IS_TYPE;
 
 ModuleArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_MODULE;
+	plays MODULE:IS_MODULE;
 
 NameArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_ARGUMENT,
-	plays IS_BASE,
-	plays IS_CALL,
-	plays IS_CATCH,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IMPLEMENTS,
-	plays IS_INCOMPLETE,
-	plays IS_RECEIVER,
-	plays IS_TYPE;
+	plays ALIAS:IS_ALIAS,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BASE:IS_BASE,
+	plays CALL:IS_CALL,
+	plays CATCH:IS_CATCH,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IMPLEMENTS:IS_IMPLEMENTS,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RECEIVER:IS_RECEIVER,
+	plays TYPE:IS_TYPE;
 
 NameFullyQualifiedArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_ARGUMENT,
-	plays IS_BASE,
-	plays IS_CALL,
-	plays IS_CATCH,
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_IMPLEMENTS,
-	plays IS_INCOMPLETE,
-	plays IS_RECEIVER,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays ALIAS:IS_ALIAS,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays BASE:IS_BASE,
+	plays CALL:IS_CALL,
+	plays CATCH:IS_CATCH,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays IMPLEMENTS:IS_IMPLEMENTS,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays RECEIVER:IS_RECEIVER,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 NullableTypeArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_TYPE;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE;
 
 ParamArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ARGS_LIST,
-	plays IS_ARGUMENT,
-	plays IS_INCOMPLETE;
+	plays ARGS_LIST:IS_ARGS_LIST,
+	plays ARGUMENT:IS_ARGUMENT,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 ScalarDNumberArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays NUMBER:IS_NUMBER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ScalarEncapsedArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IMPORT,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_PATHNAME,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN;
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IMPORT:IS_IMPORT,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays PATHNAME:IS_PATHNAME,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN;
 
 ScalarEncapsedStringPartArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_VALUE;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays VALUE:IS_VALUE;
 
 ScalarLNumberArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_NUMBER,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays NUMBER:IS_NUMBER,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ScalarMagicConstClassArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DEFAULT,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays DEFAULT:IS_DEFAULT,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstDirArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstFileArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT,
-	plays IS_THEN;
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT,
+	plays THEN:IS_THEN;
 
 ScalarMagicConstFunctionArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstLineArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_DEFAULT,
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays DEFAULT:IS_DEFAULT,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstMethodArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstNamespaceArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_RIGHT;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays RIGHT:IS_RIGHT;
 
 ScalarMagicConstTraitArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_LEFT,
-	plays IS_LITERAL;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL;
 
 ScalarStringArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CONDITION,
-	plays IS_DEFAULT,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_IMPORT,
-	plays IS_LEFT,
-	plays IS_LITERAL,
-	plays IS_PATHNAME,
-	plays IS_RIGHT,
-	plays IS_STRING,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CONDITION:IS_CONDITION,
+	plays DEFAULT:IS_DEFAULT,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays IMPORT:IS_IMPORT,
+	plays LEFT:IS_LEFT,
+	plays LITERAL:IS_LITERAL,
+	plays PATHNAME:IS_PATHNAME,
+	plays RIGHT:IS_RIGHT,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN;
 
 StmtBreakArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_BREAK,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays BREAK:IS_BREAK,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtCaseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CASE,
-	plays IS_DEFAULT;
+	plays CASE:IS_CASE,
+	plays DEFAULT:IS_DEFAULT;
 
 StmtCatchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_CATCH,
-	plays IS_TYPE;
+	plays CATCH:IS_CATCH,
+	plays TYPE:IS_TYPE;
 
 StmtClassArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 StmtClassConstArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays BODY:IS_BODY,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 StmtClassMethodArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_FUNCTION,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays FUNCTION:IS_FUNCTION,
+	plays TYPE:IS_TYPE;
 
 StmtConstArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_INCOMPLETE,
-	plays IS_VARIABLE;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays VARIABLE:IS_VARIABLE;
 
 StmtContinueArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_CONTINUE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays CONTINUE:IS_CONTINUE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtDeclareArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ASSIGNMENT,
-	plays IS_BODY,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_THEN;
+	plays ASSIGNMENT:IS_ASSIGNMENT,
+	plays BODY:IS_BODY,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays THEN:IS_THEN;
 
 StmtDeclareDeclareArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_IDENTIFIER,
-	plays IS_LEFT;
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays LEFT:IS_LEFT;
 
 StmtDoArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_DO_WHILE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays DO_WHILE:IS_DO_WHILE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtEchoArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtElseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_STATEMENT;
+	plays ELSE:IS_ELSE,
+	plays STATEMENT:IS_STATEMENT;
 
 StmtElseIfArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_STATEMENT;
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT;
 
 StmtFinallyArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_FINALLY,
-	plays IS_STATEMENT;
+	plays FINALLY:IS_FINALLY,
+	plays STATEMENT:IS_STATEMENT;
 
 StmtForArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtForeachArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtFunctionArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_FUNCTION,
-	plays IS_IF,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays FUNCTION:IS_FUNCTION,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN;
 
 StmtGlobalArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_VISIBILITY,
-	plays IS_WORLD;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays VISIBILITY:IS_VISIBILITY,
+	plays WORLD:IS_WORLD;
 
 StmtGotoArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_GOTO,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays GOTO:IS_GOTO,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtGroupUseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BLOCK,
-	plays IS_INCOMPLETE;
+	plays BLOCK:IS_BLOCK,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 StmtHaltCompilerArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_UNANNOTATED;
+	plays UNANNOTATED:IS_UNANNOTATED;
 
 StmtIfArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtInlineHTMLArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_LITERAL,
-	plays IS_STRING,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays LITERAL:IS_LITERAL,
+	plays STRING:IS_STRING,
+	plays THEN:IS_THEN;
 
 StmtInterfaceArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 StmtLabelArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_GOTO,
-	plays IS_IF,
-	plays IS_INCOMPLETE,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays GOTO:IS_GOTO,
+	plays IF:IS_IF,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtNamespaceArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BLOCK;
+	plays BLOCK:IS_BLOCK;
 
 StmtNopArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_NOOP,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays NOOP:IS_NOOP,
+	plays THEN:IS_THEN;
 
 StmtPropertyArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_INCOMPLETE,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays BODY:IS_BODY,
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 StmtPropertyPropertyArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_INCOMPLETE,
-	plays IS_TYPE,
-	plays IS_VARIABLE;
+	plays INCOMPLETE:IS_INCOMPLETE,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE;
 
 StmtReturnArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_RETURN,
-	plays IS_STATEMENT,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays RETURN:IS_RETURN,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN;
 
 StmtStaticArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_TYPE,
-	plays IS_VISIBILITY;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE,
+	plays VISIBILITY:IS_VISIBILITY;
 
 StmtStaticVarArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_EXPRESSION,
-	plays IS_IDENTIFIER,
-	plays IS_TYPE,
-	plays IS_VARIABLE,
-	plays IS_VISIBILITY;
+	plays EXPRESSION:IS_EXPRESSION,
+	plays IDENTIFIER:IS_IDENTIFIER,
+	plays TYPE:IS_TYPE,
+	plays VARIABLE:IS_VARIABLE,
+	plays VISIBILITY:IS_VISIBILITY;
 
 StmtSwitchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_SWITCH,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays SWITCH:IS_SWITCH,
+	plays THEN:IS_THEN;
 
 StmtThrowArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_THROW;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays THROW:IS_THROW;
 
 StmtTraitArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_DECLARATION,
-	plays IS_ELSE,
-	plays IS_IF,
-	plays IS_THEN,
-	plays IS_TYPE;
+	plays BODY:IS_BODY,
+	plays DECLARATION:IS_DECLARATION,
+	plays ELSE:IS_ELSE,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN,
+	plays TYPE:IS_TYPE;
 
 StmtTraitUseAdaptationAliasArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_STATEMENT;
+	plays ALIAS:IS_ALIAS,
+	plays STATEMENT:IS_STATEMENT;
 
 StmtTraitUseAdaptationPrecedenceArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS,
-	plays IS_BASE,
-	plays IS_INCOMPLETE;
+	plays ALIAS:IS_ALIAS,
+	plays BASE:IS_BASE,
+	plays INCOMPLETE:IS_INCOMPLETE;
 
 StmtTraitUseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BASE,
-	plays IS_BODY,
-	plays IS_TYPE;
+	plays BASE:IS_BASE,
+	plays BODY:IS_BODY,
+	plays TYPE:IS_TYPE;
 
 StmtTryCatchArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_TRY;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays TRY:IS_TRY;
 
 StmtUnsetArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CALL,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_EXPRESSION,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_THEN;
+	plays BODY:IS_BODY,
+	plays CALL:IS_CALL,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays EXPRESSION:IS_EXPRESSION,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays THEN:IS_THEN;
 
 StmtUseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS;
+	plays ALIAS:IS_ALIAS;
 
 StmtUseUseArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_ALIAS;
+	plays ALIAS:IS_ALIAS;
 
 StmtWhileArtifact sub PhpSourceArtifact,
 	# Semantic
-	plays IS_BODY,
-	plays IS_CASE,
-	plays IS_CATCH,
-	plays IS_ELSE,
-	plays IS_FOR,
-	plays IS_IF,
-	plays IS_STATEMENT,
-	plays IS_THEN,
-	plays IS_WHILE;
+	plays BODY:IS_BODY,
+	plays CASE:IS_CASE,
+	plays CATCH:IS_CATCH,
+	plays ELSE:IS_ELSE,
+	plays FOR:IS_FOR,
+	plays IF:IS_IF,
+	plays STATEMENT:IS_STATEMENT,
+	plays THEN:IS_THEN,
+	plays WHILE:IS_WHILE;
 
 ##########---------- Semantic Roles ----------##########
 ADD sub relation,

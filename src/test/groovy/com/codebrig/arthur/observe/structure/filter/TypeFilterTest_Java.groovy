@@ -33,7 +33,7 @@ class TypeFilterTest_Java extends ArthurTest {
 
         boolean foundCompilationUnit = false
         boolean foundMethod = false
-        filter.getFilteredNodes(SourceLanguage.Java, resp.uast).each {
+        filter.getFilteredNodesIncludingCurrent(SourceLanguage.Java, resp.uast).each {
             assertTrue(["CompilationUnit", "MethodDeclaration"].contains(it.internalType))
             switch (it.internalType) {
                 case "CompilationUnit":

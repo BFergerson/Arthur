@@ -21,7 +21,7 @@ class CPlusPlusLiteral extends StructureLiteral {
             case "CPPASTLiteralExpression":
                 def matchedNumber = MultiFilter.matchAll(
                         new RoleFilter("NUMBER"), new RoleFilter("LITERAL"), new RoleFilter("EXPRESSION")
-                ).getFilteredNodes(node)
+                ).getFilteredNodesIncludingCurrent(node)
                 if (matchedNumber.hasNext()) {
                     if (node.token.contains(".") ||
                             (node.token.isDouble() &&
@@ -35,7 +35,7 @@ class CPlusPlusLiteral extends StructureLiteral {
                 }
                 def matchedString = MultiFilter.matchAll(
                         new RoleFilter("STRING"), new RoleFilter("LITERAL"), new RoleFilter("EXPRESSION")
-                ).getFilteredNodes(node)
+                ).getFilteredNodesIncludingCurrent(node)
                 if (matchedString.hasNext()) {
                     return stringValueLiteral()
                 }
@@ -51,13 +51,13 @@ class CPlusPlusLiteral extends StructureLiteral {
             case "CPPASTLiteralExpression":
                 def matchedNumber = MultiFilter.matchAll(
                         new RoleFilter("NUMBER"), new RoleFilter("LITERAL"), new RoleFilter("EXPRESSION")
-                ).getFilteredNodes(node)
+                ).getFilteredNodesIncludingCurrent(node)
                 if (matchedNumber.hasNext()) {
                     return [numberValueLiteral(), doubleValueLiteral()]
                 }
                 def matchedString = MultiFilter.matchAll(
                         new RoleFilter("STRING"), new RoleFilter("LITERAL"), new RoleFilter("EXPRESSION")
-                ).getFilteredNodes(node)
+                ).getFilteredNodesIncludingCurrent(node)
                 if (matchedString.hasNext()) {
                     return [stringValueLiteral()]
                 }

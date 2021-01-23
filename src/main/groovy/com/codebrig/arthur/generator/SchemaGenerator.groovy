@@ -114,6 +114,7 @@ class SchemaGenerator {
     }
 
     private void parseLocalRepo(File localRoot, ObservedLanguage observedLanguage, int parseFileLimit) {
+        log.info("Parsing local repository: " + localRoot.absolutePath)
         def sourceFiles = new ArrayList<File>()
         Files.walk(localRoot.toPath()).filter(Files.&isRegularFile).forEach({ p ->
             def file = p.toFile()
@@ -131,6 +132,7 @@ class SchemaGenerator {
         def executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
         sourceFiles.parallelStream().map({ file ->
             if (parseCount.get() >= parseFileLimit) {
+                log.warn "Hit parse limit: " + parseFileLimit
                 return null
             }
 
@@ -161,7 +163,7 @@ class SchemaGenerator {
                     failCount.getAndIncrement()
                 }
             }
-        }).count()
+        }).collect()
         executorService.shutdown()
 
         log.info "Parsed " + parseCount.get() + " " + observedLanguage.language.qualifiedName + " files"

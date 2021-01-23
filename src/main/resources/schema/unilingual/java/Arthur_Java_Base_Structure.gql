@@ -1,1061 +1,1061 @@
 define
 
 ##########---------- Attributes ----------##########
-booleanValue sub attribute, datatype boolean;
-doubleValue sub attribute, datatype double;
-name sub attribute, datatype string;
-numberValue sub attribute, datatype long;
-stringValue sub attribute, datatype string;
-token sub attribute, datatype string;
+booleanValue sub attribute, value boolean;
+doubleValue sub attribute, value double;
+name sub attribute, value string;
+numberValue sub attribute, value long;
+stringValue sub attribute, value string;
+token sub attribute, value string;
 
 #####----- Java -----#####
-constructorAttribute sub attribute, datatype string;
-interfaceAttribute sub attribute, datatype string;
-onDemandAttribute sub attribute, datatype string;
-parenthesesAttribute sub attribute, datatype string;
-staticAttribute sub attribute, datatype string;
-tagNameAttribute sub attribute, datatype string;
-textAttribute sub attribute, datatype string;
-upperBoundAttribute sub attribute, datatype string;
-varargsAttribute sub attribute, datatype string;
+constructorAttribute sub attribute, value string;
+interfaceAttribute sub attribute, value string;
+onDemandAttribute sub attribute, value string;
+parenthesesAttribute sub attribute, value string;
+staticAttribute sub attribute, value string;
+tagNameAttribute sub attribute, value string;
+textAttribute sub attribute, value string;
+upperBoundAttribute sub attribute, value string;
+varargsAttribute sub attribute, value string;
 
 ##########---------- Entities ----------##########
 SourceArtifact sub entity,
-	has token,
-	plays is_child,
-	plays is_parent;
+	owns token,
+	plays parent_child_relation:is_child,
+	plays parent_child_relation:is_parent;
 
 #####----- Java -----#####
 JavaSourceArtifact sub SourceArtifact;
 
 AnnotationTypeDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_declarations_role,
-	plays is_types_role,
-	plays has_body_declarations_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays types_relation:is_types_role,
+	plays body_declarations_relation:has_body_declarations_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role;
 
 AnnotationTypeMemberDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_declarations_role,
-	plays has_default_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_type_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays default_relation:has_default_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays type_relation:has_type_role;
 
 AnonymousClassDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_anonymous_class_declaration_role,
-	plays has_body_declarations_role;
+	plays anonymous_class_declaration_relation:is_anonymous_class_declaration_role,
+	plays body_declarations_relation:has_body_declarations_role;
 
 ArrayAccessArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_hand_side_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_array_role,
-	plays has_index_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_hand_side_relation:is_left_hand_side_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays array_relation:has_array_role,
+	plays index_relation:has_index_role;
 
 ArrayCreationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_initializer_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays has_dimensions_role,
-	plays has_initializer_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays initializer_relation:is_initializer_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays dimensions_relation:has_dimensions_role,
+	plays initializer_relation:has_initializer_role,
+	plays type_relation:has_type_role;
 
 ArrayInitializerArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_default_role,
-	plays is_expressions_role,
-	plays is_initializer_role,
-	plays is_value_role,
-	plays has_expressions_role;
+	plays default_relation:is_default_role,
+	plays expressions_relation:is_expressions_role,
+	plays initializer_relation:is_initializer_role,
+	plays value_relation:is_value_role,
+	plays expressions_relation:has_expressions_role;
 
 ArrayTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_bound_role,
-	plays is_return_type2_role,
-	plays is_right_operand_role,
-	plays is_type_arguments_role,
-	plays is_type_role,
-	plays has_dimensions_role,
-	plays has_element_type_role;
+	plays bound_relation:is_bound_role,
+	plays return_type2_relation:is_return_type2_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays type_arguments_relation:is_type_arguments_role,
+	plays type_relation:is_type_role,
+	plays dimensions_relation:has_dimensions_role,
+	plays element_type_relation:has_element_type_role;
 
 AssertStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_expression_role,
-	plays has_message_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays expression_relation:has_expression_role,
+	plays message_relation:has_message_role;
 
 AssignmentArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_expression_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_initializers_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays is_updaters_role,
-	plays has_left_hand_side_role,
-	plays has_operator_role,
-	plays has_right_hand_side_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays expression_relation:is_expression_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays initializers_relation:is_initializers_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays updaters_relation:is_updaters_role,
+	plays left_hand_side_relation:has_left_hand_side_role,
+	plays operator_relation:has_operator_role,
+	plays right_hand_side_relation:has_right_hand_side_role;
 
 BlockArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_finally_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_statements_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays finally_relation:is_finally_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays statements_relation:has_statements_role;
 
 BlockCommentArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_comments_role;
+	plays comments_relation:is_comments_role;
 
 BooleanLiteralArtifact sub JavaSourceArtifact,
 	# Attributes
-	has booleanValue,
+	owns booleanValue,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role;
 
 BreakStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_label_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays label_relation:has_label_role;
 
 CastExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_expression_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays expression_relation:has_expression_role,
+	plays type_relation:has_type_role;
 
 CatchClauseArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_catch_clauses_role,
-	plays has_body_role,
-	plays has_exception_role;
+	plays catch_clauses_relation:is_catch_clauses_role,
+	plays body_relation:has_body_role,
+	plays exception_relation:has_exception_role;
 
 CharacterLiteralArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_default_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role;
+	plays arguments_relation:is_arguments_role,
+	plays default_relation:is_default_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role;
 
 ClassInstanceCreationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_anonymous_class_declaration_role,
-	plays has_arguments_role,
-	plays has_expression_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays anonymous_class_declaration_relation:has_anonymous_class_declaration_role,
+	plays arguments_relation:has_arguments_role,
+	plays expression_relation:has_expression_role,
+	plays type_relation:has_type_role;
 
 CompilationUnitArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays has_comments_role,
-	plays has_imports_role,
-	plays has_package_role,
-	plays has_types_role;
+	plays comments_relation:has_comments_role,
+	plays imports_relation:has_imports_role,
+	plays package_relation:has_package_role,
+	plays types_relation:has_types_role;
 
 ConditionalExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays has_else_expression_role,
-	plays has_expression_role,
-	plays has_then_expression_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays else_expression_relation:has_else_expression_role,
+	plays expression_relation:has_expression_role,
+	plays then_expression_relation:has_then_expression_role;
 
 ConstructorInvocationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_statements_role,
-	plays has_arguments_role;
+	plays statements_relation:is_statements_role,
+	plays arguments_relation:has_arguments_role;
 
 ContinueStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_label_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays label_relation:has_label_role;
 
 CreationReferenceArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_initializer_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays initializer_relation:is_initializer_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays type_relation:has_type_role;
 
 DimensionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_dimensions_role,
-	plays is_extra_dimensions2_role,
-	plays has_annotations_role;
+	plays dimensions_relation:is_dimensions_role,
+	plays extra_dimensions2_relation:is_extra_dimensions2_role,
+	plays annotations_relation:has_annotations_role;
 
 DoStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays has_body_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role;
 
 EmptyStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role;
 
 EnhancedForStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_body_role,
-	plays has_expression_role,
-	plays has_parameter_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role,
+	plays parameter_relation:has_parameter_role;
 
 EnumConstantDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_enum_constants_role,
-	plays has_anonymous_class_declaration_role,
-	plays has_arguments_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role;
+	plays enum_constants_relation:is_enum_constants_role,
+	plays anonymous_class_declaration_relation:has_anonymous_class_declaration_role,
+	plays arguments_relation:has_arguments_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role;
 
 EnumDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_declarations_role,
-	plays is_types_role,
-	plays has_body_declarations_role,
-	plays has_enum_constants_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_super_interface_types_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays types_relation:is_types_role,
+	plays body_declarations_relation:has_body_declarations_role,
+	plays enum_constants_relation:has_enum_constants_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays super_interface_types_relation:has_super_interface_types_role;
 
 ExpressionMethodReferenceArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_initializer_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays has_expression_role,
-	plays has_name_role,
-	plays has_type_arguments_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays initializer_relation:is_initializer_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays expression_relation:has_expression_role,
+	plays name_relation:has_name_role,
+	plays type_arguments_relation:has_type_arguments_role;
 
 ExpressionStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays expression_relation:has_expression_role;
 
 FieldAccessArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_hand_side_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_expression_role,
-	plays has_name_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_hand_side_relation:is_left_hand_side_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays expression_relation:has_expression_role,
+	plays name_relation:has_name_role;
 
 FieldDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_body_declarations_role,
-	plays has_fragments_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_type_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays fragments_relation:has_fragments_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays type_relation:has_type_role;
 
 ForStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_body_role,
-	plays has_expression_role,
-	plays has_initializers_role,
-	plays has_updaters_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role,
+	plays initializers_relation:has_initializers_role,
+	plays updaters_relation:has_updaters_role;
 
 IfStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_else_statement_role,
-	plays has_expression_role,
-	plays has_then_statement_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays else_statement_relation:has_else_statement_role,
+	plays expression_relation:has_expression_role,
+	plays then_statement_relation:has_then_statement_role;
 
 ImportDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has onDemandAttribute,
-	has staticAttribute,
+	owns onDemandAttribute,
+	owns staticAttribute,
 	# Structural
-	plays is_imports_role,
-	plays has_name_role;
+	plays imports_relation:is_imports_role,
+	plays name_relation:has_name_role;
 
 InfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role,
-	plays has_extended_operands_role,
-	plays has_left_operand_role,
-	plays has_operator_role,
-	plays has_right_operand_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role,
+	plays extended_operands_relation:has_extended_operands_role,
+	plays left_operand_relation:has_left_operand_role,
+	plays operator_relation:has_operator_role,
+	plays right_operand_relation:has_right_operand_role;
 
 InitializerArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_declarations_role,
-	plays has_body_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays body_relation:has_body_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role;
 
 InstanceofExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_expression_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays has_left_operand_role,
-	plays has_right_operand_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays expression_relation:is_expression_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays left_operand_relation:has_left_operand_role,
+	plays right_operand_relation:has_right_operand_role;
 
 IntersectionTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_type_role,
-	plays has_types_role;
+	plays type_relation:is_type_role,
+	plays types_relation:has_types_role;
 
 JavadocArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_comments_role,
-	plays is_javadoc_role,
-	plays has_tags_role;
+	plays comments_relation:is_comments_role,
+	plays javadoc_relation:is_javadoc_role,
+	plays tags_relation:has_tags_role;
 
 LabeledStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays has_body_role,
-	plays has_label_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays body_relation:has_body_role,
+	plays label_relation:has_label_role;
 
 LambdaExpressionArtifact sub JavaSourceArtifact,
 	# Attributes
-	has parenthesesAttribute,
+	owns parenthesesAttribute,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_initializer_role,
-	plays is_right_hand_side_role,
-	plays is_then_expression_role,
-	plays has_body_role,
-	plays has_parameters_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays initializer_relation:is_initializer_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays body_relation:has_body_role,
+	plays parameters_relation:has_parameters_role;
 
 LineCommentArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_comments_role;
+	plays comments_relation:is_comments_role;
 
 MarkerAnnotationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_annotations_role,
-	plays is_default_role,
-	plays is_expressions_role,
-	plays is_modifiers_role,
-	plays is_value_role,
-	plays is_varargs_annotations_role,
-	plays has_type_name_role;
+	plays annotations_relation:is_annotations_role,
+	plays default_relation:is_default_role,
+	plays expressions_relation:is_expressions_role,
+	plays modifiers_relation:is_modifiers_role,
+	plays value_relation:is_value_role,
+	plays varargs_annotations_relation:is_varargs_annotations_role,
+	plays type_name_relation:has_type_name_role;
 
 MemberRefArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_fragments_role,
-	plays has_name_role,
-	plays has_qualifier_role;
+	plays fragments_relation:is_fragments_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role;
 
 MemberValuePairArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_values_role,
-	plays has_name_role,
-	plays has_value_role;
+	plays values_relation:is_values_role,
+	plays name_relation:has_name_role,
+	plays value_relation:has_value_role;
 
 MethodDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has constructorAttribute,
-	has name,
+	owns constructorAttribute,
+	owns name,
 	# Structural
-	plays is_body_declarations_role,
-	plays has_body_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_parameters_role,
-	plays has_return_type2_role,
-	plays has_thrown_exception_types_role,
-	plays has_type_parameters_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays body_relation:has_body_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays parameters_relation:has_parameters_role,
+	plays return_type2_relation:has_return_type2_role,
+	plays thrown_exception_types_relation:has_thrown_exception_types_role,
+	plays type_parameters_relation:has_type_parameters_role;
 
 MethodInvocationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_updaters_role,
-	plays has_arguments_role,
-	plays has_expression_role,
-	plays has_name_role,
-	plays has_type_arguments_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays updaters_relation:is_updaters_role,
+	plays arguments_relation:has_arguments_role,
+	plays expression_relation:has_expression_role,
+	plays name_relation:has_name_role,
+	plays type_arguments_relation:has_type_arguments_role;
 
 MethodRefArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_fragments_role,
-	plays has_name_role,
-	plays has_parameters_role,
-	plays has_qualifier_role;
+	plays fragments_relation:is_fragments_role,
+	plays name_relation:has_name_role,
+	plays parameters_relation:has_parameters_role,
+	plays qualifier_relation:has_qualifier_role;
 
 MethodRefParameterArtifact sub JavaSourceArtifact,
 	# Attributes
-	has varargsAttribute,
+	owns varargsAttribute,
 	# Structural
-	plays is_parameters_role,
-	plays has_name_role,
-	plays has_type_role;
+	plays parameters_relation:is_parameters_role,
+	plays name_relation:has_name_role,
+	plays type_relation:has_type_role;
 
 ModifierArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_modifiers_role;
+	plays modifiers_relation:is_modifiers_role;
 
 NameQualifiedTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_element_type_role,
-	plays is_type_role,
-	plays has_annotations_role,
-	plays has_name_role,
-	plays has_qualifier_role;
+	plays element_type_relation:is_element_type_role,
+	plays type_relation:is_type_role,
+	plays annotations_relation:has_annotations_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role;
 
 NormalAnnotationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_annotations_role,
-	plays is_default_role,
-	plays is_expressions_role,
-	plays is_modifiers_role,
-	plays is_value_role,
-	plays has_type_name_role,
-	plays has_values_role;
+	plays annotations_relation:is_annotations_role,
+	plays default_relation:is_default_role,
+	plays expressions_relation:is_expressions_role,
+	plays modifiers_relation:is_modifiers_role,
+	plays value_relation:is_value_role,
+	plays type_name_relation:has_type_name_role,
+	plays values_relation:has_values_role;
 
 NullLiteralArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role;
 
 NumberLiteralArtifact sub JavaSourceArtifact,
 	# Attributes
-	has doubleValue,
-	has numberValue,
+	owns doubleValue,
+	owns numberValue,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role;
 
 OperatorArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_operator_role;
+	plays operator_relation:is_operator_role;
 
 PackageDeclarationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_package_role,
-	plays has_annotations_role,
-	plays has_javadoc_role,
-	plays has_name_role;
+	plays package_relation:is_package_role,
+	plays annotations_relation:has_annotations_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays name_relation:has_name_role;
 
 ParameterizedTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_bound_role,
-	plays is_element_type_role,
-	plays is_qualifier_role,
-	plays is_return_type2_role,
-	plays is_right_operand_role,
-	plays is_super_interface_types_role,
-	plays is_superclass_type_role,
-	plays is_type_arguments_role,
-	plays is_type_bounds_role,
-	plays is_type_role,
-	plays is_types_role,
-	plays has_type_arguments_role,
-	plays has_type_role;
+	plays bound_relation:is_bound_role,
+	plays element_type_relation:is_element_type_role,
+	plays qualifier_relation:is_qualifier_role,
+	plays return_type2_relation:is_return_type2_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays super_interface_types_relation:is_super_interface_types_role,
+	plays superclass_type_relation:is_superclass_type_role,
+	plays type_arguments_relation:is_type_arguments_role,
+	plays type_bounds_relation:is_type_bounds_role,
+	plays type_relation:is_type_role,
+	plays types_relation:is_types_role,
+	plays type_arguments_relation:has_type_arguments_role,
+	plays type_relation:has_type_role;
 
 ParenthesizedExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_expression_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays expression_relation:has_expression_role;
 
 PostfixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_initializers_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_updaters_role,
-	plays has_operand_role,
-	plays has_operator_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays initializers_relation:is_initializers_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays updaters_relation:is_updaters_role,
+	plays operand_relation:has_operand_role,
+	plays operator_relation:has_operator_role;
 
 PrefixExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_initializers_role,
-	plays is_left_operand_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_updaters_role,
-	plays is_value_role,
-	plays has_operand_role,
-	plays has_operator_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays initializers_relation:is_initializers_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays updaters_relation:is_updaters_role,
+	plays value_relation:is_value_role,
+	plays operand_relation:has_operand_role,
+	plays operator_relation:has_operator_role;
 
 PrimitiveTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_element_type_role,
-	plays is_return_type2_role,
-	plays is_type_role;
+	plays element_type_relation:is_element_type_role,
+	plays return_type2_relation:is_return_type2_role,
+	plays type_relation:is_type_role;
 
 QualifiedNameArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_fragments_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_left_hand_side_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_name_role,
-	plays is_operand_role,
-	plays is_qualifier_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_type_name_role,
-	plays is_value_role,
-	plays has_name_role,
-	plays has_qualifier_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays fragments_relation:is_fragments_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_hand_side_relation:is_left_hand_side_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays name_relation:is_name_role,
+	plays operand_relation:is_operand_role,
+	plays qualifier_relation:is_qualifier_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays type_name_relation:is_type_name_role,
+	plays value_relation:is_value_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role;
 
 QualifiedTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_bound_role,
-	plays is_return_type2_role,
-	plays is_superclass_type_role,
-	plays is_type_arguments_role,
-	plays is_type_role,
-	plays has_name_role,
-	plays has_qualifier_role;
+	plays bound_relation:is_bound_role,
+	plays return_type2_relation:is_return_type2_role,
+	plays superclass_type_relation:is_superclass_type_role,
+	plays type_arguments_relation:is_type_arguments_role,
+	plays type_relation:is_type_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role;
 
 ReturnStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays expression_relation:has_expression_role;
 
 SimpleNameArtifact sub JavaSourceArtifact,
 	# Attributes
-	has name,
+	owns name,
 	# Structural
-	plays is_arguments_role,
-	plays is_array_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_dimensions_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_fragments_role,
-	plays is_index_role,
-	plays is_initializer_role,
-	plays is_label_role,
-	plays is_left_hand_side_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_name_role,
-	plays is_operand_role,
-	plays is_qualifier_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_type_name_role,
-	plays is_value_role;
+	plays arguments_relation:is_arguments_role,
+	plays array_relation:is_array_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays dimensions_relation:is_dimensions_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays fragments_relation:is_fragments_role,
+	plays index_relation:is_index_role,
+	plays initializer_relation:is_initializer_role,
+	plays label_relation:is_label_role,
+	plays left_hand_side_relation:is_left_hand_side_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays name_relation:is_name_role,
+	plays operand_relation:is_operand_role,
+	plays qualifier_relation:is_qualifier_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays type_name_relation:is_type_name_role,
+	plays value_relation:is_value_role;
 
 SimpleTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_bound_role,
-	plays is_element_type_role,
-	plays is_return_type2_role,
-	plays is_right_operand_role,
-	plays is_super_interface_types_role,
-	plays is_superclass_type_role,
-	plays is_thrown_exception_types_role,
-	plays is_type_arguments_role,
-	plays is_type_bounds_role,
-	plays is_type_role,
-	plays is_types_role,
-	plays has_annotations_role,
-	plays has_name_role;
+	plays bound_relation:is_bound_role,
+	plays element_type_relation:is_element_type_role,
+	plays return_type2_relation:is_return_type2_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays super_interface_types_relation:is_super_interface_types_role,
+	plays superclass_type_relation:is_superclass_type_role,
+	plays thrown_exception_types_relation:is_thrown_exception_types_role,
+	plays type_arguments_relation:is_type_arguments_role,
+	plays type_bounds_relation:is_type_bounds_role,
+	plays type_relation:is_type_role,
+	plays types_relation:is_types_role,
+	plays annotations_relation:has_annotations_role,
+	plays name_relation:has_name_role;
 
 SingleMemberAnnotationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_annotations_role,
-	plays is_default_role,
-	plays is_expressions_role,
-	plays is_modifiers_role,
-	plays is_value_role,
-	plays has_type_name_role,
-	plays has_value_role;
+	plays annotations_relation:is_annotations_role,
+	plays default_relation:is_default_role,
+	plays expressions_relation:is_expressions_role,
+	plays modifiers_relation:is_modifiers_role,
+	plays value_relation:is_value_role,
+	plays type_name_relation:has_type_name_role,
+	plays value_relation:has_value_role;
 
 SingleVariableDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has varargsAttribute,
-	has name,
+	owns varargsAttribute,
+	owns name,
 	# Structural
-	plays is_exception_role,
-	plays is_parameter_role,
-	plays is_parameters_role,
-	plays has_extra_dimensions2_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_type_role,
-	plays has_varargs_annotations_role;
+	plays exception_relation:is_exception_role,
+	plays parameter_relation:is_parameter_role,
+	plays parameters_relation:is_parameters_role,
+	plays extra_dimensions2_relation:has_extra_dimensions2_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays type_relation:has_type_role,
+	plays varargs_annotations_relation:has_varargs_annotations_role;
 
 StringLiteralArtifact sub JavaSourceArtifact,
 	# Attributes
-	has stringValue,
+	owns stringValue,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role;
 
 SuperConstructorInvocationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_statements_role,
-	plays has_arguments_role,
-	plays has_expression_role;
+	plays statements_relation:is_statements_role,
+	plays arguments_relation:has_arguments_role,
+	plays expression_relation:has_expression_role;
 
 SuperFieldAccessArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_expression_role,
-	plays is_initializer_role,
-	plays is_left_hand_side_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_name_role;
+	plays arguments_relation:is_arguments_role,
+	plays expression_relation:is_expression_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_hand_side_relation:is_left_hand_side_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays name_relation:has_name_role;
 
 SuperMethodInvocationArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_arguments_role,
-	plays has_name_role,
-	plays has_qualifier_role,
-	plays has_type_arguments_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays operand_relation:is_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays arguments_relation:has_arguments_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role,
+	plays type_arguments_relation:has_type_arguments_role;
 
 SuperMethodReferenceArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_initializer_role,
-	plays has_name_role,
-	plays has_qualifier_role;
+	plays arguments_relation:is_arguments_role,
+	plays initializer_relation:is_initializer_role,
+	plays name_relation:has_name_role,
+	plays qualifier_relation:has_qualifier_role;
 
 SwitchCaseArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_statements_role,
-	plays has_body_role,
-	plays has_expression_role;
+	plays statements_relation:is_statements_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role;
 
 SwitchStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays has_expression_role,
-	plays has_statements_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays expression_relation:has_expression_role,
+	plays statements_relation:has_statements_role;
 
 SynchronizedStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_body_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role;
 
 TagElementArtifact sub JavaSourceArtifact,
 	# Attributes
-	has tagNameAttribute,
+	owns tagNameAttribute,
 	# Structural
-	plays is_fragments_role,
-	plays is_tags_role,
-	plays has_fragments_role;
+	plays fragments_relation:is_fragments_role,
+	plays tags_relation:is_tags_role,
+	plays fragments_relation:has_fragments_role;
 
 TextElementArtifact sub JavaSourceArtifact,
 	# Attributes
-	has textAttribute,
+	owns textAttribute,
 	# Structural
-	plays is_fragments_role;
+	plays fragments_relation:is_fragments_role;
 
 ThisExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_message_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays has_qualifier_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays message_relation:is_message_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays qualifier_relation:has_qualifier_role;
 
 ThrowStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays expression_relation:has_expression_role;
 
 TryStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_body_role,
-	plays has_catch_clauses_role,
-	plays has_finally_role,
-	plays has_resources_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays body_relation:has_body_role,
+	plays catch_clauses_relation:has_catch_clauses_role,
+	plays finally_relation:has_finally_role,
+	plays resources_relation:has_resources_role;
 
 TypeDeclarationArtifact sub JavaSourceArtifact,
 	# Attributes
-	has interfaceAttribute,
-	has name,
+	owns interfaceAttribute,
+	owns name,
 	# Structural
-	plays is_body_declarations_role,
-	plays is_declaration_role,
-	plays is_types_role,
-	plays has_body_declarations_role,
-	plays has_javadoc_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_super_interface_types_role,
-	plays has_superclass_type_role,
-	plays has_type_parameters_role;
+	plays body_declarations_relation:is_body_declarations_role,
+	plays declaration_relation:is_declaration_role,
+	plays types_relation:is_types_role,
+	plays body_declarations_relation:has_body_declarations_role,
+	plays javadoc_relation:has_javadoc_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays super_interface_types_relation:has_super_interface_types_role,
+	plays superclass_type_relation:has_superclass_type_role,
+	plays type_parameters_relation:has_type_parameters_role;
 
 TypeDeclarationStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_statements_role,
-	plays has_declaration_role;
+	plays statements_relation:is_statements_role,
+	plays declaration_relation:has_declaration_role;
 
 TypeLiteralArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays is_body_role,
-	plays is_default_role,
-	plays is_else_expression_role,
-	plays is_expression_role,
-	plays is_expressions_role,
-	plays is_extended_operands_role,
-	plays is_initializer_role,
-	plays is_left_operand_role,
-	plays is_right_hand_side_role,
-	plays is_right_operand_role,
-	plays is_then_expression_role,
-	plays is_value_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays body_relation:is_body_role,
+	plays default_relation:is_default_role,
+	plays else_expression_relation:is_else_expression_role,
+	plays expression_relation:is_expression_role,
+	plays expressions_relation:is_expressions_role,
+	plays extended_operands_relation:is_extended_operands_role,
+	plays initializer_relation:is_initializer_role,
+	plays left_operand_relation:is_left_operand_role,
+	plays right_hand_side_relation:is_right_hand_side_role,
+	plays right_operand_relation:is_right_operand_role,
+	plays then_expression_relation:is_then_expression_role,
+	plays value_relation:is_value_role,
+	plays type_relation:has_type_role;
 
 TypeMethodReferenceArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_arguments_role,
-	plays has_name_role,
-	plays has_type_role;
+	plays arguments_relation:is_arguments_role,
+	plays name_relation:has_name_role,
+	plays type_relation:has_type_role;
 
 TypeParameterArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_type_parameters_role,
-	plays has_modifiers_role,
-	plays has_name_role,
-	plays has_type_bounds_role;
+	plays type_parameters_relation:is_type_parameters_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays name_relation:has_name_role,
+	plays type_bounds_relation:has_type_bounds_role;
 
 UnionTypeArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_type_role,
-	plays has_types_role;
+	plays type_relation:is_type_role,
+	plays types_relation:has_types_role;
 
 VariableDeclarationExpressionArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_initializers_role,
-	plays is_resources_role,
-	plays has_fragments_role,
-	plays has_modifiers_role,
-	plays has_type_role;
+	plays initializers_relation:is_initializers_role,
+	plays resources_relation:is_resources_role,
+	plays fragments_relation:has_fragments_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays type_relation:has_type_role;
 
 VariableDeclarationFragmentArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_fragments_role,
-	plays is_parameters_role,
-	plays has_extra_dimensions2_role,
-	plays has_initializer_role,
-	plays has_name_role;
+	plays fragments_relation:is_fragments_role,
+	plays parameters_relation:is_parameters_role,
+	plays extra_dimensions2_relation:has_extra_dimensions2_role,
+	plays initializer_relation:has_initializer_role,
+	plays name_relation:has_name_role;
 
 VariableDeclarationStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_statements_role,
-	plays has_fragments_role,
-	plays has_modifiers_role,
-	plays has_type_role;
+	plays body_relation:is_body_role,
+	plays statements_relation:is_statements_role,
+	plays fragments_relation:has_fragments_role,
+	plays modifiers_relation:has_modifiers_role,
+	plays type_relation:has_type_role;
 
 WhileStatementArtifact sub JavaSourceArtifact,
 	# Structural
-	plays is_body_role,
-	plays is_else_statement_role,
-	plays is_statements_role,
-	plays is_then_statement_role,
-	plays has_body_role,
-	plays has_expression_role;
+	plays body_relation:is_body_role,
+	plays else_statement_relation:is_else_statement_role,
+	plays statements_relation:is_statements_role,
+	plays then_statement_relation:is_then_statement_role,
+	plays body_relation:has_body_role,
+	plays expression_relation:has_expression_role;
 
 WildcardTypeArtifact sub JavaSourceArtifact,
 	# Attributes
-	has upperBoundAttribute,
+	owns upperBoundAttribute,
 	# Structural
-	plays is_type_arguments_role,
-	plays has_bound_role;
+	plays type_arguments_relation:is_type_arguments_role,
+	plays bound_relation:has_bound_role;
 
 ##########---------- Structural Relationships ----------##########
 parent_child_relation sub relation,

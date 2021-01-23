@@ -32,11 +32,10 @@ class CatchFilter extends StructureFilter<CatchFilter, Void> {
     boolean evaluate(SourceNode node) {
         boolean result = filter.evaluate(node)
         if (result) {
-            def matched = MultiFilter.matchAll(
+            return !MultiFilter.matchAll(
                     new RoleFilter("TRY", "CATCH", "STATEMENT"),
                     new TypeFilter("TryExcept")
-            ).getFilteredNodes(node)
-            return !matched.hasNext()
+            ).evaluate(node)
         }
         return result
     }

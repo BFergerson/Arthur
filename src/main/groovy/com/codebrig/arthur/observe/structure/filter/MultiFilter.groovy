@@ -38,10 +38,10 @@ class MultiFilter extends StructureFilter<MultiFilter, StructureFilter> {
     @Override
     boolean evaluate(SourceNode object) {
         if (matchStyle == MatchStyle.ANY) {
-            return acceptSet.any { it.evaluate(object) } &&
+            return (acceptSet.isEmpty() || acceptSet.any { it.evaluate(object) }) &&
                     (rejectSet.isEmpty() || !rejectSet.any { it.evaluate(object) })
         } else {
-            return acceptSet.every { it.evaluate(object) } &&
+            return (acceptSet.isEmpty() || acceptSet.every { it.evaluate(object) }) &&
                     (rejectSet.isEmpty() || !rejectSet.every { it.evaluate(object) })
         }
     }

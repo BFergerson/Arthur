@@ -117,7 +117,7 @@ class JavaNaming implements StructureNaming {
 
     static String getPackageDeclarationName(SourceNode node) {
         def name = ""
-        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+        new TypeFilter("SimpleName").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + "."
         }
         return name
@@ -125,7 +125,7 @@ class JavaNaming implements StructureNaming {
 
     static String getSimpleNameName(SourceNode node) {
         def name = ""
-        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+        new TypeFilter("SimpleName").getFilteredNodesIncludingCurrent(node).each {
             name += it.token
         }
         return name
@@ -133,7 +133,7 @@ class JavaNaming implements StructureNaming {
 
     static String getQualifiedNameName(SourceNode node) {
         def name = ""
-        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+        new TypeFilter("SimpleName").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + "."
         }
         if (name.endsWith(".")) {
@@ -193,7 +193,7 @@ class JavaNaming implements StructureNaming {
 
     static String getSimpleTypeName(SourceNode node) {
         def name = ""
-        new TypeFilter("SimpleName").getFilteredNodes(node).each {
+        new TypeFilter("SimpleName").getFilteredNodesIncludingCurrent(node).each {
             name += it.token + "."
         }
         if (name.endsWith(".")) {
@@ -268,7 +268,7 @@ class JavaNaming implements StructureNaming {
         def importList = new ArrayList<String>()
         new InternalRoleFilter("imports").getFilteredNodes(rootNode.children).each {
             def importStr = ""
-            new TypeFilter("SimpleName").getFilteredNodes(it).each {
+            new TypeFilter("SimpleName").getFilteredNodesIncludingCurrent(it).each {
                 importStr += it.token + "."
             }
             if (importStr.endsWith(".")) {

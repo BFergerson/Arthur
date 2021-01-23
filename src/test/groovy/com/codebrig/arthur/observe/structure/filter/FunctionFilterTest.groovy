@@ -61,6 +61,9 @@ class FunctionFilterTest extends ArthurTest {
         boolean foundFunction = false
         new FunctionFilter().getFilteredNodes(language, resp.uast).each {
             foundFunction = true
+
+            //verify functions are not found inside functions
+            assertTrue(new FunctionFilter().getFilteredNodes(it).size() == 0)
         }
         assertTrue(foundFunction)
     }
