@@ -6,21 +6,24 @@ plugins {
 apply plugin: 'groovy'
 
 group 'com.codebrig.arthur'
-version '0.4'
+version '0.4.3'
 
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/CodeBrig/Arthur")
+            url = uri("https://maven.pkg.github.com/codebrig/arthur")
             credentials {
-                username = project.findProperty("gpr.user")
-                password = project.findProperty("gpr.key")
+                username = project.findProperty("gpr.user") ?: System.getenv("gpr.user")
+                password = project.findProperty("gpr.key") ?: System.getenv("gpr.key")
             }
         }
     }
     publications {
         gpr(MavenPublication) {
+            groupId group
+            artifactId jar.baseName.toLowerCase()
+
             from(components.java)
         }
     }
