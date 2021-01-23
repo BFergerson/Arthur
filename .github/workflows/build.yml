@@ -103,6 +103,9 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
+        
+      - name: Test
+        run: ls -lh
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
