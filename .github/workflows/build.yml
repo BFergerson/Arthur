@@ -56,7 +56,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: plugin-artifact
+          name: arthur-artifact
           path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
   # Prepare a draft release for GitHub Releases page for the manual verification
@@ -90,16 +90,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ needs.build.outputs.version }}
-          release_name: v${{ needs.build.outputs.version }}
-          body: ${{ needs.build.outputs.changelog }}
+          tag_name: v${{ steps.vars.outputs.tag }}
+          release_name: v${{ steps.vars.outputs.tag }}
+          body: ${{ steps.vars.outputs.tag }}
           draft: true
 
       # Download plugin artifact provided by the previous job
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: plugin-artifact
+          name: arthur-artifact
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
@@ -109,9 +109,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./plugin-artifact/${{ needs.build.outputs.artifact }}
-          asset_name: ${{ needs.build.outputs.artifact }}
-          asset_content_type: application/zip
+          asset_path: ./arthur-artifact/${{ needs.build.outputs.artifact }}
+          asset_name: Arthur-${{ steps.vars.outputs.tag }}.jar
+          asset_content_type: application/java-application
 
   # Delete plugin artifact (No release draft)
   cleanupNoReleaseDraft:
