@@ -98,7 +98,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: arthur-artifact
+          name: artifact
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
