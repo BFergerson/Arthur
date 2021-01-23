@@ -103,9 +103,6 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
-        
-      - name: Test
-        run: ls -lh
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
@@ -115,7 +112,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./Arthur-${{ steps.vars.outputs.tag }}.jar
+          asset_path: ./artifact/Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_name: Arthur-${{ steps.vars.outputs.tag }}.jar
           asset_content_type: application/java-application
 
