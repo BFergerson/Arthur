@@ -5,14 +5,11 @@ on:
 
 jobs:
 
-  # Prepare and publish the plugin to the Marketplace repository
   release:
     name: Publish Package
     runs-on: ubuntu-latest
-    container: gradle:jdk11
     steps:
 
-      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
         with:

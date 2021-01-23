@@ -106,7 +106,7 @@ jobs:
       - name: Delete Artifact      
         uses: geekyeggo/delete-artifact@v1
         with:
-          name: plugin-artifact
+          name: artifact
 
   # Delete plugin artifact
   cleanup:
@@ -117,4 +117,4 @@ jobs:
       - name: Delete Artifact      
         uses: geekyeggo/delete-artifact@v1
         with:
-          name: plugin-artifact
+          name: artifact
