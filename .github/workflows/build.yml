@@ -48,10 +48,3 @@ jobs:
       # Run detekt, ktlint and tests
       - name: Run Linters and Test
         run: ./gradlew check --stacktrace
-
-      - name: Publish GitHub Package
-        if: startsWith(github.ref, 'refs/tags/')
-        run: >
-          gradle publish \
-            -Pgpr.key=${{ secrets.GITHUB_TOKEN }} \
-            -Pgpr.user=$GITHUB_ACTOR
