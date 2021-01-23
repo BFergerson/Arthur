@@ -45,9 +45,8 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Run detekt, ktlint and tests
-      - name: Run Linters and Test
-        run: ./gradlew check --stacktrace
+      - name: Check build & test
+        run: ./gradlew check build test --stacktrace
     
       - name: Get the version
         id: vars
