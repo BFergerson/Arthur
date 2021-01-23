@@ -51,6 +51,10 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v2
 
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
+
       # Remove old release drafts by using the curl request for the available releases with draft flag
       - name: Remove Old Release Drafts
         env:
@@ -70,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.vars.outputs.tag }}
-          release_name: v${{ steps.vars.outputs.tag }}
+          release_name: Arthur ${{ steps.vars.outputs.tag }}
           body: ${{ steps.vars.outputs.tag }}
           draft: true
 
@@ -79,10 +83,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: artifact
-
-      - name: Get the version
-        id: vars
-        run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
