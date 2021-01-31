@@ -27,16 +27,10 @@ jobs:
 
       - name: Check build & test
         run: ./gradlew check build test --stacktrace
-    
+
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(gradle properties -q | grep "version:" | awk '{print $2}')
-
-      # Upload plugin artifact to make it available in the next jobs
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          path: ./build/libs/Arthur-${{ steps.vars.outputs.tag }}.jar
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
@@ -77,44 +71,3 @@ jobs:
           release_name: Arthur ${{ steps.vars.outputs.tag }}
           body: ${{ steps.vars.outputs.tag }}
           draft: true
-
-      # Download plugin artifact provided by the previous job
-      - name: Download Artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: artifact
-
-      # Upload artifact as a release asset
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./artifact/Arthur-${{ steps.vars.outputs.tag }}.jar
-          asset_name: Arthur-${{ steps.vars.outputs.tag }}.jar
-          asset_content_type: application/java-application
-
-  # Delete plugin artifact (No release draft)
-  cleanupNoReleaseDraft:
-    name: Cleanup (No Release Draft)
-    needs: [test]
-    if: github.ref != 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Delete Artifact      
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: artifact
-
-  # Delete plugin artifact
-  cleanup:
-    name: Cleanup
-    needs: [test, releaseDraft]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Delete Artifact      
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: artifact
